@@ -47,6 +47,25 @@
 </label>
 {%- endmacro %}
 
+{% macro switch(label='Notifications', checked=false, disabled=false, state='default', className='', wrapperClassName='', id='', name='', value='on') -%}
+{%- set switchClasses = "switch" -%}
+{%- set fieldClasses = "switch-field" -%}
+{%- if checked -%}{%- set switchClasses = switchClasses + " is-checked" -%}{%- endif -%}
+{%- if state == "hover" -%}{%- set switchClasses = switchClasses + " is-hover" -%}{%- endif -%}
+{%- if state == "active" -%}{%- set switchClasses = switchClasses + " is-active" -%}{%- endif -%}
+{%- if state == "focus" -%}{%- set switchClasses = switchClasses + " is-focus-visible" -%}{%- endif -%}
+{%- if disabled or state == "disabled" -%}
+  {%- set switchClasses = switchClasses + " is-disabled" -%}
+  {%- set fieldClasses = fieldClasses + " is-disabled" -%}
+{%- endif -%}
+{%- if className -%}{%- set switchClasses = switchClasses + " " + className -%}{%- endif -%}
+{%- if wrapperClassName -%}{%- set fieldClasses = fieldClasses + " " + wrapperClassName -%}{%- endif -%}
+<label class="{{ fieldClasses }}">
+  <input class="{{ switchClasses }}" type="checkbox" role="switch"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if checked %} checked{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
+  <span class="switch-field__text">{{ label }}</span>
+</label>
+{%- endmacro %}
+
 {% macro colorChip(token) -%}
 <div class="swatch" style="--swatch-color: var({{ token.cssVar }})">
   <span class="swatch-name">{{ token.name }}</span>

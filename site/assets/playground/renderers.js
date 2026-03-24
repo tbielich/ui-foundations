@@ -349,6 +349,51 @@
     return { element: wrapper, code };
   };
 
+  const renderVanillaSwitch = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const labelText = String(props.label || "Notifications");
+    const checked = asBoolean(props.checked);
+    const disabled =
+      previewState === "disabled" ||
+      asBoolean(props.disabled);
+
+    const wrapper = document.createElement("label");
+    const wrapperClasses = ["switch-field"];
+    if (disabled) wrapperClasses.push("is-disabled");
+    wrapper.className = wrapperClasses.join(" ");
+
+    const input = document.createElement("input");
+    const inputClasses = ["switch"];
+    if (checked) inputClasses.push("is-checked");
+    if (previewState === "hover") inputClasses.push("is-hover");
+    if (previewState === "active") inputClasses.push("is-active");
+    if (previewState === "focus") inputClasses.push("is-focus-visible");
+    if (disabled) inputClasses.push("is-disabled");
+
+    input.className = inputClasses.join(" ");
+    input.type = "checkbox";
+    input.checked = checked;
+    input.disabled = disabled;
+    input.setAttribute("role", "switch");
+
+    const text = document.createElement("span");
+    text.className = "switch-field__text";
+    text.textContent = labelText;
+
+    wrapper.append(input, text);
+
+    const attrs = [
+      `class="${quoteAttr(input.className)}"`,
+      'type="checkbox"',
+      'role="switch"',
+    ];
+    if (checked) attrs.push("checked");
+    if (disabled) attrs.push("disabled");
+
+    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="switch-field__text">${quoteAttr(labelText)}</span></label>`;
+    return { element: wrapper, code };
+  };
+
   const renderVanillaButtonGroup = ({ props, meta }) => {
     const element = document.createElement("div");
     const orientation =
@@ -431,6 +476,7 @@
       icon: renderVanillaIcon,
       input: renderVanillaInput,
       label: renderVanillaLabel,
+      switch: renderVanillaSwitch,
     },
   };
 })(window);

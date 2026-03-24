@@ -1,0 +1,155 @@
+@layer components {
+  .switch-field {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--typography-label-gap);
+    font-family: var(--typography-label-font-family);
+    font-weight: var(--typography-label-font-weight);
+    font-size: var(--typography-label-font-size);
+    line-height: var(--typography-label-line-height);
+    color: var(--color-text-default);
+    cursor: pointer;
+  }
+
+  .switch-field.is-disabled {
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+  }
+
+  .switch {
+    --_switch-inline-size: var(--size-spacing-1000);
+    --_switch-block-size: var(--size-spacing-600);
+    --_switch-padding: var(--size-spacing-100);
+    --_switch-thumb-size: calc(
+      var(--_switch-block-size) - (var(--_switch-padding) * 2)
+    );
+    inline-size: var(--_switch-inline-size);
+    block-size: var(--_switch-block-size);
+    box-sizing: border-box;
+    margin: 0;
+    appearance: none;
+    position: relative;
+    flex: 0 0 auto;
+    border-style: solid;
+    border-width: var(--size-border-100);
+    border-color: var(--color-border-default);
+    border-radius: var(--size-radius-full);
+    background: var(--color-fill-surface);
+    cursor: pointer;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      opacity 160ms ease;
+  }
+
+  .switch::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: var(--_switch-padding);
+    inline-size: var(--_switch-thumb-size);
+    block-size: var(--_switch-thumb-size);
+    box-sizing: border-box;
+    border-radius: var(--size-radius-full);
+    background: var(--color-border-default);
+    transform: translate(0, -50%);
+    transition:
+      transform 160ms ease,
+      background-color 160ms ease;
+  }
+
+  .switch:checked,
+  .switch.is-checked {
+    border-color: var(--color-border-brand);
+    background: var(--color-fill-brand);
+  }
+
+  .switch:checked::after,
+  .switch.is-checked::after {
+    background: var(--color-fill-surface);
+    transform: translate(
+      calc(var(--_switch-inline-size) - var(--_switch-block-size)),
+      -50%
+    );
+  }
+
+  .switch:hover,
+  .switch.is-hover {
+    background:
+      linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
+      var(--color-fill-surface);
+    border-color: var(--color-border-brand);
+  }
+
+  .switch:hover::after,
+  .switch.is-hover::after {
+    background: var(--color-border-brand);
+  }
+
+  .switch:checked:hover,
+  .switch.is-checked.is-hover {
+    background:
+      linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
+      var(--color-fill-brand);
+  }
+
+  .switch:checked:hover::after,
+  .switch.is-checked.is-hover::after {
+    background: var(--color-fill-surface);
+  }
+
+  .switch:active,
+  .switch.is-active {
+    background:
+      linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
+      var(--color-fill-surface);
+    border-color: var(--color-border-brand);
+  }
+
+  .switch:active::after,
+  .switch.is-active::after {
+    background: var(--color-border-brand);
+  }
+
+  .switch:checked:active,
+  .switch.is-checked.is-active {
+    background:
+      linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
+      var(--color-fill-brand);
+  }
+
+  .switch:checked:active::after,
+  .switch.is-checked.is-active::after {
+    background: var(--color-fill-surface);
+  }
+
+  .switch:focus-visible,
+  .switch.is-focus-visible {
+    border-color: var(--color-border-brand);
+    outline: none;
+    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
+  }
+
+  .switch:disabled,
+  .switch.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .switch:disabled:not(:checked),
+  .switch.is-disabled:not(.is-checked) {
+    border-color: var(--color-border-disabled);
+    background: var(--color-fill-disabled);
+  }
+
+  .switch:disabled::after,
+  .switch.is-disabled::after {
+    background: var(--color-fill-surface);
+  }
+
+  .switch:checked:disabled,
+  .switch.is-checked.is-disabled {
+    border-color: var(--color-border-disabled);
+    background: var(--color-fill-brand);
+  }
+}
