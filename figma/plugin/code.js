@@ -1,6 +1,6 @@
 // Kiro Plugin — Token Validator + Exporter
 
-figma.showUI(__html__, { width: 480, height: 600, title: 'Kiro' });
+figma.showUI(__html__, { width: 480, height: 600, title: 'Token Foundry' });
 
 figma.ui.onmessage = async (msg) => {
 

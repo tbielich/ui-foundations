@@ -72,7 +72,7 @@ npm run ci:check
 
 - Foundations: `docs/foundations/`
 - AI playbook: `docs/agentic/team-ai-playbook.md`
-- Figma plugin: `figma/plugin/README.md`
+- Figma plugin (Token Foundry): `figma/plugin/README.md`
 - Docs site: `site/`
 - Vanilla starter: `site/examples/vanilla-starter.md`
 

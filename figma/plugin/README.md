@@ -1,4 +1,4 @@
-# Kiro Token Validator & Exporter
+# Token Foundry
 
 Figma plugin for the UI Foundations design system. Validates components against token files and exports variables as JSON.
 
@@ -22,7 +22,9 @@ The plugin:
 - Traverses all nodes including children
 - Reads bound variables and their values for the active mode
 - Normalizes units (px ↔ rem), colors (hex ↔ rgb), and font weights (string ↔ number)
-- Shows match / mismatch / unknown per binding
+- Shows results as a table with match / mismatch / unknown per binding
+- Provides a Fix button per mismatch row to correct the value directly in Figma
+- Fix All button to correct all mismatches at once
 
 The light/dark toggle switches both the plugin UI and the CSS parsing context.
 
@@ -45,5 +47,5 @@ Figma → Plugin Export → figma/exports/*.tokens.json → npm run build:all �
 ## Limitations
 
 - No network access (plugin runs entirely locally)
-- No write access to Figma (read and export only)
+- No write access to Figma canvas (can only modify variable values via Fix)
 - Font weight aliases are resolved via ref path (e.g. `Font/Weight/700` → `700`)
