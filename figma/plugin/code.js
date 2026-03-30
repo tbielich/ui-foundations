@@ -43,6 +43,22 @@ figma.ui.onmessage = async (msg) => {
 // ─── FIX ─────────────────────────────────────────────────────────────────────
 
 async function applyFix(fix) {
+  // wrong-binding: rebind the node property to the correct variable
+  if (fix.fixType === 'rebind') {
+    const node = figma.currentPage.findOne(n => n.id === fix.nodeId);
+    if (!node) throw new Error('Node not found: ' + fix.nodeId);
+
+    // find the correct variable by name
+    const targetVar = figma.variables.getLocalVariables().find(
+      v => v.name === fix.expectedVarName
+    );
+    if (!targetVar) throw new Error('Variable not found: ' + fix.expectedVarName);
+
+    node.setBoundVariable(fix.property, targetVar);
+    return;
+  }
+
+  // mismatch: change the variable value
   const variable = figma.variables.getVariableById(fix.variableId);
   if (!variable) throw new Error('Variable not found: ' + fix.variableId);
 
@@ -175,20 +191,95 @@ function collectResults(node, tokens, results, depth, activeModes) {
   for (const b of bindings) {
     const normalized = b.name.replace(/^var\(--/, '').replace(/\)$/, '').replace(/^--/, '');
     const tokenValue = findToken(tokens, normalized);
-    let status, expected;
-    if (tokenValue === undefined) { status = 'unknown'; expected = null; }
-    else { expected = tokenValue; status = valuesMatch(b.value, tokenValue) ? 'match' : 'mismatch'; }
+
+    // Check 1: is the variable name expected for this component+property?
+    const expectedVarName = findExpectedVariable(tokens, node.name, b.property);
+
+    let status, expected, expectedName;
+    if (expectedVarName && normalizeKey(expectedVarName) !== normalizeKey(b.name)) {
+      // Wrong variable bound — name mismatch
+      status = 'wrong-binding';
+      expected = tokenValue;
+      expectedName = expectedVarName;
+    } else if (tokenValue === undefined) {
+      status = 'unknown';
+      expected = null;
+      expectedName = null;
+    } else {
+      expected = tokenValue;
+      expectedName = null;
+      status = valuesMatch(b.value, tokenValue) ? 'match' : 'mismatch';
+    }
+
     results.push({
       nodeName: node.name, nodeType: node.type, depth,
+      nodeId: node.id,
       property: b.property, tokenName: b.name,
       figmaValue: b.value, expectedValue: expected, status,
-      // pass IDs so UI can send fix commands
+      expectedVarName: expectedName,
       variableId: b.variableId, modeId: b.modeId,
     });
   }
   if ('children' in node) {
     for (const child of node.children) collectResults(child, tokens, results, depth + 1, activeModes);
   }
+}
+
+// Find the expected variable name for a component property from the token map
+// e.g. node "Button", property "fills" → look for token "--button-*-background-default"
+function findExpectedVariable(tokens, nodeName, property) {
+  const componentSlug = normalizeKey(nodeName);
+  const propMap = {
+    'fills': ['container-background-default', 'background-default', 'background'],
+    'strokes': ['border-color-default', 'border-color', 'color-default'],
+    'topLeftRadius': ['border-radius', 'radius'],
+    'topRightRadius': ['border-radius', 'radius'],
+    'bottomLeftRadius': ['border-radius', 'radius'],
+    'bottomRightRadius': ['border-radius', 'radius'],
+    'strokeTopWeight': ['border-size-default', 'border-size'],
+    'strokeBottomWeight': ['border-size-default', 'border-size'],
+    'strokeLeftWeight': ['border-size-default', 'border-size'],
+    'strokeRightWeight': ['border-size-default', 'border-size'],
+    'maxHeight': ['height'],
+    'minHeight': ['height'],
+    'itemSpacing': ['gap'],
+    'paddingLeft': ['padding-inline'],
+    'paddingRight': ['padding-inline'],
+    'paddingTop': ['padding-block'],
+    'paddingBottom': ['padding-block'],
+    'fontSize': ['font-size'],
+    'fontFamily': ['font-family'],
+    'fontStyle': ['font-weight'],
+    'lineHeight': ['line-height'],
+  };
+
+  const suffixes = propMap[property];
+  if (!suffixes) return null;
+
+  for (var key in tokens) {
+    var cleanKey = key.replace(/^--/, '');
+    var keyNorm = normalizeKey(cleanKey);
+    // token must start with the component name
+    if (!keyNorm.startsWith(componentSlug + '-')) continue;
+    for (var i = 0; i < suffixes.length; i++) {
+      if (keyNorm.endsWith('-' + suffixes[i])) {
+        // convert CSS var name back to Figma variable path
+        return cssVarToFigmaName(cleanKey);
+      }
+    }
+  }
+  return null;
+}
+
+function cssVarToFigmaName(cssVar) {
+  // --button-solid-container-background-default → Button/Solid/Container/Background Default
+  return cssVar.split('-').map(function(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }).join('/').replace(/\//g, '/');
+}
+
+function normalizeKey(s) {
+  return s.toLowerCase().replace(/[\s/\\]+/g, '-').replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 }
 
 function getBoundVariables(node, activeModes) {

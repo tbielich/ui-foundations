@@ -66,6 +66,7 @@
     td { padding: 4px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
     tr.match td:first-child { color: var(--match); }
     tr.mismatch td:first-child { color: var(--mismatch); }
+    tr.wrong-binding td:first-child { color: #9747ff; }
     tr.unknown td:first-child { color: var(--unknown); }
     .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px;
       border: 1px solid var(--border); vertical-align: middle; margin-right: 3px; }
@@ -217,14 +218,14 @@
 
   // ── fix all ────────────────────────────────────────────────────────────────
   fixAllBtn.addEventListener('click', () => {
-    const mismatches = allResults.filter(r => r.status === 'mismatch' && r.variableId && r.expectedValue !== null);
+    const mismatches = allResults.filter(r => (r.status === 'mismatch' || r.status === 'wrong-binding') && r.variableId);
     if (!mismatches.length) return;
-    const fixes = mismatches.map((r, i) => ({
-      id: 'fix-' + i,
-      variableId: r.variableId,
-      modeId: r.modeId,
-      expectedValue: r.expectedValue,
-    }));
+    const fixes = mismatches.map((r, i) => {
+      if (r.status === 'wrong-binding' && r.expectedVarName) {
+        return { id: 'fix-' + allResults.indexOf(r), fixType: 'rebind', nodeId: r.nodeId, property: r.property, expectedVarName: r.expectedVarName };
+      }
+      return { id: 'fix-' + allResults.indexOf(r), fixType: 'value', variableId: r.variableId, modeId: r.modeId, expectedValue: r.expectedValue };
+    });
     parent.postMessage({ pluginMessage: { type: 'fix_all', fixes } }, '*');
     fixAllBtn.disabled = true;
     fixAllBtn.textContent = 'Fixing...';
@@ -233,13 +234,25 @@
   // ── single fix ─────────────────────────────────────────────────────────────
   function fixSingle(idx) {
     const r = allResults[idx];
-    if (!r || !r.variableId || r.expectedValue === null) return;
-    parent.postMessage({ pluginMessage: { type: 'fix', fix: {
-      id: 'fix-' + idx,
-      variableId: r.variableId,
-      modeId: r.modeId,
-      expectedValue: r.expectedValue,
-    }}}, '*');
+    if (!r) return;
+
+    if (r.status === 'wrong-binding' && r.expectedVarName) {
+      parent.postMessage({ pluginMessage: { type: 'fix', fix: {
+        id: 'fix-' + idx,
+        fixType: 'rebind',
+        nodeId: r.nodeId,
+        property: r.property,
+        expectedVarName: r.expectedVarName,
+      }}}, '*');
+    } else if (r.status === 'mismatch' && r.variableId && r.expectedValue !== null) {
+      parent.postMessage({ pluginMessage: { type: 'fix', fix: {
+        id: 'fix-' + idx,
+        fixType: 'value',
+        variableId: r.variableId,
+        modeId: r.modeId,
+        expectedValue: r.expectedValue,
+      }}}, '*');
+    }
   }
 
   // ── export ─────────────────────────────────────────────────────────────────
@@ -272,7 +285,7 @@
     if (msg.type === 'results') {
       allResults = msg.results;
       const match = allResults.filter(r => r.status === 'match').length;
-      const mismatch = allResults.filter(r => r.status === 'mismatch').length;
+      const mismatch = allResults.filter(r => r.status === 'mismatch' || r.status === 'wrong-binding').length;
       const unknown = allResults.filter(r => r.status === 'unknown').length;
       if (!allResults.length) {
         resultsEl.innerHTML = '<div class="empty">No variable bindings found.</div>';
@@ -311,16 +324,22 @@
 
   // ── render results table ───────────────────────────────────────────────────
   function renderResults(results) {
-    const filtered = activeFilter === 'all' ? results : results.filter(r => r.status === activeFilter);
+    const filtered = activeFilter === 'all' ? results : results.filter(r => {
+      if (activeFilter === 'mismatch') return r.status === 'mismatch' || r.status === 'wrong-binding';
+      return r.status === activeFilter;
+    });
     if (!filtered.length) { resultsEl.innerHTML = '<div class="empty">No results for this filter.</div>'; return; }
 
     let html = '<table><thead><tr><th></th><th>Property</th><th>Figma</th><th>Expected</th><th></th></tr></thead><tbody>';
     for (const r of filtered) {
       const idx = allResults.indexOf(r);
-      const icon = r.status === 'match' ? '✅' : r.status === 'mismatch' ? '❌' : '⚠️';
+      const icon = r.status === 'match' ? '✅' : r.status === 'mismatch' ? '❌' : r.status === 'wrong-binding' ? '🔀' : '⚠️';
       const figmaStr = fmtVal(r.figmaValue);
-      const expStr = r.expectedValue !== null ? fmtVal(r.expectedValue) : '—';
-      const fixBtn = r.status === 'mismatch' && r.variableId && r.expectedValue !== null
+      const expStr = r.status === 'wrong-binding' && r.expectedVarName
+        ? 'Should be: ' + r.expectedVarName
+        : r.expectedValue !== null ? fmtVal(r.expectedValue) : '—';
+      const fixBtn = (r.status === 'wrong-binding' && r.expectedVarName)
+        || (r.status === 'mismatch' && r.variableId && r.expectedValue !== null)
         ? '<button class="btn fix" id="fix-' + idx + '" onclick="fixSingle(' + idx + ')">Fix</button>'
         : '';
 
@@ -389,6 +408,7 @@
       else if (/data-brand=["']a["']/.test(sel)) blocks['brand-a'] = Object.assign(blocks['brand-a']||{}, props);
       else if (/data-brand=["']b["']/.test(sel)) blocks['brand-b'] = Object.assign(blocks['brand-b']||{}, props);
       else if (/data-mode=["']dark["']/.test(sel)) blocks['dark'] = Object.assign(blocks['dark']||{}, props);
+      else if (/data-mode=["']light["']/.test(sel)) blocks['light'] = Object.assign(blocks['light']||{}, props);
       else if (sel.includes(':root')) Object.assign(blocks['global'], props);
     }
     return blocks;
