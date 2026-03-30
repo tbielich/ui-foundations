@@ -199,15 +199,28 @@ function collectResults(node, tokens, results, depth, activeModes, prefix) {
     const normalized = b.name.replace(/^var\(--/, '').replace(/\)$/, '').replace(/^--/, '');
     const tokenValue = findToken(tokens, normalized, prefix);
 
-    const expectedToken = findExpectedToken(tokens, node.name, b.property, prefix);
+    var expectedToken = findExpectedToken(tokens, node.name, b.property, prefix);
 
     let status, expected, expectedName, expectedCssVar;
-    if (expectedToken && normalizeKey(expectedToken.cssVar) !== normalizeKey(b.name)) {
-      // Wrong variable bound — name mismatch
-      status = 'wrong-binding';
-      expected = expectedToken.value;
-      expectedName = expectedToken.cssVar;
-      expectedCssVar = expectedToken.rawKey;
+    if (expectedToken) {
+      // compare with prefix stripped from both sides
+      var pfxStr = prefix ? normalizeKey(prefix) + '-' : '';
+      var expNorm = normalizeKey(expectedToken.cssVar);
+      if (pfxStr && expNorm.startsWith(pfxStr)) expNorm = expNorm.slice(pfxStr.length);
+      var boundNorm = normalizeKey(b.name);
+      if (pfxStr && boundNorm.startsWith(pfxStr)) boundNorm = boundNorm.slice(pfxStr.length);
+
+      if (expNorm !== boundNorm) {
+        status = 'wrong-binding';
+        expected = expectedToken.value;
+        expectedName = expectedToken.cssVar;
+        expectedCssVar = expectedToken.rawKey;
+      } else {
+        expected = tokenValue !== undefined ? tokenValue : expectedToken.value;
+        expectedName = null;
+        expectedCssVar = null;
+        status = valuesMatch(b.value, expected) ? 'match' : 'mismatch';
+      }
     } else if (tokenValue === undefined) {
       status = 'unknown';
       expected = null;
