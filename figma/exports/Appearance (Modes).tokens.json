@@ -638,7 +638,14 @@
       "Danger": {
         "$type": "color",
         "$value": {
-          "$ref": "Brand/Color/Functional/Danger"
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0,
+            0
+          ],
+          "alpha": 1,
+          "hex": "#FF0000"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:356",
@@ -648,16 +655,16 @@
           "com.figma.codeSyntax": {
             "WEB": "var(--color-border-danger)"
           },
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:206",
-            "targetVariableName": "Brand/Color/Functional/Danger",
-            "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
-          },
-          "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "$ref": "Brand/Color/Functional/Danger"
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0,
+                0
+              ],
+              "alpha": 1,
+              "hex": "#FF0000"
             },
             "Dark Mode": {
               "$ref": "Brand/Color/Functional/Danger"

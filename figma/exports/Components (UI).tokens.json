@@ -1118,7 +1118,7 @@
         "com.figma.isOverride": true
       }
     },
-    "Height": {
+    "Height Min": {
       "$type": "number",
       "$value": 40,
       "$extensions": {
@@ -1127,7 +1127,7 @@
           "WIDTH_HEIGHT"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--button-height)"
+          "WEB": "var(--button-height-min)"
         }
       }
     },
@@ -1152,6 +1152,19 @@
             "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true
+        }
+      }
+    },
+    "Width Min": {
+      "$type": "number",
+      "$value": 40,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2228:502",
+        "com.figma.scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--button-width-min)"
         }
       }
     }
@@ -1540,6 +1553,19 @@
             "targetVariableSetName": "Appearance (Modes)"
           },
           "com.figma.isOverride": true
+        }
+      },
+      "Height Min": {
+        "$type": "number",
+        "$value": 40,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2228:321",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--input-text-height-min)"
+          }
         }
       }
     },

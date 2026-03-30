@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     white-space: nowrap;
+    min-height: var(--button-height-min);
     background: var(--button-solid-container-background-default);
     border-color: var(--button-solid-border-color-default);
     border-width: var(--button-solid-border-size);

@@ -251,8 +251,8 @@ function findExpectedToken(tokens, nodeName, property) {
     'strokeBottomWeight': ['border-size-default', 'border-size'],
     'strokeLeftWeight': ['border-size-default', 'border-size'],
     'strokeRightWeight': ['border-size-default', 'border-size'],
-    'maxHeight': ['height'],
-    'minHeight': ['height'],
+    'maxHeight': ['height-min', 'height-max', 'height'],
+    'minHeight': ['height-min', 'height-max', 'height'],
     'itemSpacing': ['gap'],
     'paddingLeft': ['padding-inline'],
     'paddingRight': ['padding-inline'],
@@ -271,8 +271,12 @@ function findExpectedToken(tokens, nodeName, property) {
     var cleanKey = key.replace(/^--/, '');
     var keyNorm = normalizeKey(cleanKey);
     if (!keyNorm.startsWith(componentSlug + '-')) continue;
+    // get the part after the component slug
+    var rest = keyNorm.slice(componentSlug.length + 1);
     for (var i = 0; i < suffixes.length; i++) {
-      if (keyNorm.endsWith('-' + suffixes[i])) {
+      // exact match on the remaining part, or ends with the suffix
+      // but only if the suffix matches a complete segment (after a dash)
+      if (rest === suffixes[i] || rest.endsWith('-' + suffixes[i])) {
         return { cssVar: '--' + cleanKey, rawKey: cleanKey, value: tokens[key] };
       }
     }
