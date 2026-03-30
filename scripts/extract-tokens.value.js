@@ -153,6 +153,21 @@ function resolveTokenOutputValue(token, lookup, report) {
   }
   const segments = token.pathSegments || [];
   const tokenKey = buildTokenKey(segments);
+
+  // If value is still an unresolved $ref object (e.g. font weight alias),
+  // try to extract a usable value from the ref path
+  if (resolved && typeof resolved === "object" && resolved.$ref) {
+    const refPath = String(resolved.$ref);
+    // Font weight refs like "Font/Weight/700" → extract the number
+    if (isFontWeightPath(segments)) {
+      const lastSegment = refPath.split("/").pop();
+      const mapped = toNumericFontWeight(lastSegment);
+      if (mapped !== null) return mapped;
+    }
+    // Fall back to var() reference from the ref path
+    resolved = `var(--${toKebabCase(refPath.replace(/[/.]/g, "-"))})`;
+  }
+
   return formatTokenValue(token, resolved, tokenKey, segments);
 }
 
