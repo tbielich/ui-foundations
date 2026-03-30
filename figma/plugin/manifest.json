@@ -1,0 +1,11 @@
+{
+  "name": "Kiro Token Validator",
+  "id": "kiro-token-validator",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
+}

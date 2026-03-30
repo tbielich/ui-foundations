@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+  <style>
+    :root {
+      --bg: #fff; --bg2: #f5f5f5; --border: #e8e8e8;
+      --text: #333; --text-muted: #999; --text-strong: #111;
+      --btn-primary: #0c4bf3; --btn-primary-hover: #0a3fd4;
+      --val-figma: #f0f0f0; --val-expected: #e8f4fd;
+      --val-mismatch: #fff0f0; --val-mismatch-text: #c00;
+      --toggle-bg: #eee; --toggle-active: #0c4bf3;
+    }
+    [data-theme="dark"] {
+      --bg: #1e1e1e; --bg2: #2a2a2a; --border: #3a3a3a;
+      --text: #ccc; --text-muted: #666; --text-strong: #fff;
+      --btn-primary: #4d7fff; --btn-primary-hover: #3a6fee;
+      --val-figma: #2a2a2a; --val-expected: #1a2a3a;
+      --val-mismatch: #2a1a1a; --val-mismatch-text: #ff6b6b;
+      --toggle-bg: #333; --toggle-active: #4d7fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, sans-serif; font-size: 12px; color: var(--text); background: var(--bg); transition: background .2s, color .2s; }
+
+    .header { padding: 12px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+    .header-top { display: flex; align-items: center; justify-content: space-between; }
+    .header-top h2 { font-size: 13px; font-weight: 600; color: var(--text-strong); }
+
+    .mode-toggle { display: flex; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); background: var(--toggle-bg); }
+    .mode-btn { background: none; border: none; padding: 4px 8px; font-size: 11px; cursor: pointer; color: var(--text-muted); transition: background .15s, color .15s; }
+    .mode-btn.active { background: var(--toggle-active); color: #fff; }
+
+    .drop-zone {
+      border: 2px dashed var(--border); border-radius: 6px; padding: 10px;
+      text-align: center; cursor: pointer; color: var(--text-muted); transition: border-color .2s;
+    }
+    .drop-zone:hover, .drop-zone.active { border-color: var(--btn-primary); color: var(--btn-primary); }
+    .drop-zone.loaded { border-color: #13ae5c; color: #13ae5c; }
+
+    .actions { padding: 8px 12px; display: flex; gap: 8px; align-items: center; border-bottom: 1px solid var(--border); }
+    .validate-btn {
+      background: var(--btn-primary); color: #fff; border: none; border-radius: 4px;
+      padding: 6px 14px; font-size: 12px; cursor: pointer; font-weight: 500;
+    }
+    .validate-btn:hover { background: var(--btn-primary-hover); }
+    .validate-btn:disabled { background: var(--border); color: var(--text-muted); cursor: default; }
+
+    .summary { padding: 6px 12px; font-size: 11px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+
+    .filter-bar { padding: 6px 12px; display: flex; gap: 6px; border-bottom: 1px solid var(--border); }
+    .filter-btn {
+      background: var(--bg2); color: var(--text-muted); border: none; border-radius: 3px;
+      padding: 3px 8px; font-size: 11px; cursor: pointer;
+    }
+    .filter-btn.active { background: var(--btn-primary); color: #fff; }
+
+    .results { overflow-y: auto; max-height: 340px; padding: 0 12px 12px; }
+    .result-item {
+      display: flex; align-items: flex-start; gap: 6px;
+      padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 11px;
+    }
+    .icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+    .info { flex: 1; min-width: 0; }
+    .token-name { font-weight: 600; word-break: break-all; }
+    .node-path { color: var(--text-muted); margin-bottom: 2px; }
+    .values { display: flex; gap: 6px; margin-top: 2px; flex-wrap: wrap; }
+    .val { padding: 1px 5px; border-radius: 3px; font-size: 10px; color: var(--text); }
+    .val.figma { background: var(--val-figma); }
+    .val.expected { background: var(--val-expected); }
+    .val.mismatch-val { background: var(--val-mismatch); color: var(--val-mismatch-text); }
+    .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; border: 1px solid var(--border); vertical-align: middle; margin-right: 3px; }
+
+    .status-match .token-name { color: #13ae5c; }
+    .status-mismatch .token-name { color: #e53; }
+    .status-unknown .token-name { color: var(--text-muted); }
+
+    .error-msg { padding: 12px; color: #e53; font-size: 12px; }
+    .empty { padding: 12px; color: var(--text-muted); font-size: 12px; text-align: center; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <h2>Kiro Token Validator</h2>
+    <div class="mode-toggle">
+      <button class="mode-btn active" data-mode="light">🌞 light</button>
+      <button class="mode-btn" data-mode="dark">🌚 dark</button>
+    </div>
+  </div>
+  <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+    Drop token JSON or CSS here or click to load
+  </div>
+  <input type="file" id="fileInput" accept=".json,.css" style="display:none">
+</div>
+
+<div class="actions">
+  <button class="validate-btn" id="validateBtn" disabled>Validate Selection</button>
+  <span id="tokenCount" style="color:var(--text-muted); font-size:11px;"></span>
+</div>
+
+<div class="filter-bar" id="filterBar" style="display:none">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="mismatch">❌ Mismatch</button>
+  <button class="filter-btn" data-filter="match">✅ Match</button>
+  <button class="filter-btn" data-filter="unknown">⚠️ Unknown</button>
+</div>
+
+<div class="summary" id="summary"></div>
+<div class="results" id="results"><div class="empty">Load a token file and select a component to validate.</div></div>
+
+<script>
+  let tokens = null;
+  let allResults = [];
+  let activeFilter = 'all';
+  let lastFileContent = null;
+  let lastFileName = null;
+  let currentMode = 'light';
+
+  const html = document.documentElement;
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const validateBtn = document.getElementById('validateBtn');
+  const tokenCount = document.getElementById('tokenCount');
+  const resultsEl = document.getElementById('results');
+  const summaryEl = document.getElementById('summary');
+  const filterBar = document.getElementById('filterBar');
+
+  // Mode toggle
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentMode = btn.dataset.mode;
+      html.setAttribute('data-theme', currentMode);
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // re-parse if CSS loaded
+      if (lastFileContent && lastFileName && lastFileName.endsWith('.css')) {
+        tokens = parseCss(lastFileContent, currentMode);
+        const count = Object.keys(tokens).length;
+        tokenCount.textContent = count + ' tokens loaded';
+      }
+    });
+  });
+
+  // File loading
+  fileInput.addEventListener('change', e => loadFile(e.target.files[0]));
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('active'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('active'));
+  dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('active'); loadFile(e.dataTransfer.files[0]); });
+
+  function loadFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        const content = e.target.result;
+        lastFileContent = content;
+        lastFileName = file.name;
+        tokens = file.name.endsWith('.css')
+          ? parseCss(content, currentMode)
+          : flattenTokens(JSON.parse(content));
+        const count = Object.keys(tokens).length;
+        dropZone.textContent = `✓ ${file.name} (${count} tokens)`;
+        dropZone.className = 'drop-zone loaded';
+        tokenCount.textContent = count + ' tokens loaded';
+        validateBtn.disabled = false;
+      } catch(err) {
+        dropZone.textContent = 'Invalid file — try again';
+        dropZone.className = 'drop-zone';
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function parseCss(css, mode) {
+    const blocks = extractBlocks(css);
+    const raw = {};
+    for (const key of ['global', 'brand-a', mode === 'dark' ? 'dark' : 'light']) {
+      if (blocks[key]) Object.assign(raw, blocks[key]);
+    }
+    const resolved = {};
+    for (const [key, val] of Object.entries(raw)) {
+      resolved[key] = resolveVar(val, raw, 0);
+    }
+    return resolved;
+  }
+
+  function extractBlocks(css) {
+    const blocks = { global: {} };
+    const blockRe = /([^{}]+)\{([^{}]*)\}/g;
+    let m;
+    while ((m = blockRe.exec(css)) !== null) {
+      const selector = m[1].trim();
+      const body = m[2];
+      const props = {};
+      const propRe = /--([a-zA-Z0-9_-]+)\s*:\s*([^;]+);/g;
+      let p;
+      while ((p = propRe.exec(body)) !== null) props[p[1].trim()] = p[2].trim();
+      if (!Object.keys(props).length) continue;
+
+      if (/data-theme=["']dark["']/.test(selector))       blocks['dark']    = Object.assign(blocks['dark']    || {}, props);
+      else if (/data-theme=["']light["']/.test(selector)) blocks['light']   = Object.assign(blocks['light']   || {}, props);
+      else if (/data-brand=["']a["']/.test(selector))     blocks['brand-a'] = Object.assign(blocks['brand-a'] || {}, props);
+      else if (/data-brand=["']b["']/.test(selector))     blocks['brand-b'] = Object.assign(blocks['brand-b'] || {}, props);
+      else if (selector.includes(':root'))                 Object.assign(blocks['global'], props);
+    }
+    return blocks;
+  }
+
+  function resolveVar(val, map, depth) {
+    if (depth > 10) return val;
+    return val.replace(/var\(--([a-zA-Z0-9_-]+)(?:,\s*([^)]+))?\)/g, (_, name, fallback) => {
+      if (map[name]) return resolveVar(map[name], map, depth + 1);
+      return fallback ? fallback.trim() : _;
+    });
+  }
+
+  function flattenTokens(obj, prefix) {
+    const result = {};
+    for (const [key, val] of Object.entries(obj)) {
+      if (key.startsWith('$')) continue;
+      const path = prefix ? prefix + '/' + key : key;
+      if (val && typeof val === 'object' && !Array.isArray(val)) {
+        if ('$value' in val) { const v = val.$value; result[path] = (v && typeof v === 'object' && v.hex) ? v.hex.toLowerCase() : v; }
+        else if ('value' in val) { const v = val.value; result[path] = (v && typeof v === 'object' && v.hex) ? v.hex.toLowerCase() : v; }
+        else Object.assign(result, flattenTokens(val, path));
+      } else { result[path] = val; }
+    }
+    return result;
+  }
+
+  validateBtn.addEventListener('click', () => {
+    if (!tokens) return;
+    if (lastFileContent && lastFileName && lastFileName.endsWith('.css')) {
+      tokens = parseCss(lastFileContent, currentMode);
+    }
+    parent.postMessage({ pluginMessage: { type: 'validate', tokens } }, '*');
+    resultsEl.innerHTML = '<div class="empty">Validating...</div>';
+    summaryEl.textContent = '';
+  });
+
+  filterBar.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.filter;
+      filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderResults(allResults);
+    });
+  });
+
+  window.onmessage = (event) => {
+    const msg = event.data.pluginMessage;
+    if (!msg) return;
+    if (msg.type === 'error') { resultsEl.innerHTML = '<div class="error-msg">' + msg.text + '</div>'; return; }
+    if (msg.type === 'results') {
+      allResults = msg.results;
+      const match = allResults.filter(r => r.status === 'match').length;
+      const mismatch = allResults.filter(r => r.status === 'mismatch').length;
+      const unknown = allResults.filter(r => r.status === 'unknown').length;
+      if (!allResults.length) {
+        resultsEl.innerHTML = '<div class="empty">No variable bindings found in selection.</div>';
+        summaryEl.textContent = ''; filterBar.style.display = 'none'; return;
+      }
+      summaryEl.textContent = `${allResults.length} bindings — ✅ ${match} match  ❌ ${mismatch} mismatch  ⚠️ ${unknown} not in file`;
+      filterBar.style.display = 'flex';
+      renderResults(allResults);
+    }
+  };
+
+  function renderResults(results) {
+    const filtered = activeFilter === 'all' ? results : results.filter(r => r.status === activeFilter);
+    if (!filtered.length) { resultsEl.innerHTML = '<div class="empty">No results for this filter.</div>'; return; }
+    resultsEl.innerHTML = filtered.map(r => {
+      const icon = r.status === 'match' ? '✅' : r.status === 'mismatch' ? '❌' : '⚠️';
+      const figmaVal = formatValue(r.figmaValue);
+      const expVal = r.expectedValue !== null ? formatValue(r.expectedValue) : null;
+      const valClass = r.status === 'mismatch' ? 'mismatch-val' : '';
+      return `<div class="result-item status-${r.status}">
+        <span class="icon">${icon}</span>
+        <div class="info">
+          <div class="node-path">${r.nodeName} · ${r.property}</div>
+          <div class="token-name">${r.tokenName}</div>
+          <div class="values">
+            <span class="val figma">${colorSwatch(r.figmaValue)}Figma: ${figmaVal}</span>
+            ${expVal !== null ? `<span class="val expected ${valClass}">Expected: ${expVal}</span>` : '<span class="val" style="color:var(--text-muted)">not in file</span>'}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function formatValue(val) { return (val === null || val === undefined) ? '—' : String(val); }
+
+  function colorSwatch(val) {
+    if (typeof val === 'string' && val.startsWith('#'))
+      return `<span class="swatch" style="background:${val}"></span>`;
+    return '';
+  }
+</script>
+</body>
+</html>
