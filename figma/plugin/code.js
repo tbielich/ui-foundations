@@ -48,11 +48,17 @@ async function applyFix(fix) {
     const node = figma.currentPage.findOne(n => n.id === fix.nodeId);
     if (!node) throw new Error('Node not found: ' + fix.nodeId);
 
-    // find the correct variable by name
-    const targetVar = figma.variables.getLocalVariables().find(
-      v => v.name === fix.expectedVarName
-    );
-    if (!targetVar) throw new Error('Variable not found: ' + fix.expectedVarName);
+    // find the correct variable by matching codeSyntax.WEB against the expected CSS var name
+    const expectedCssVar = fix.expectedCssVar;
+    const allVars = figma.variables.getLocalVariables();
+    const targetVar = allVars.find(v => {
+      if (v.codeSyntax && v.codeSyntax.WEB) {
+        const web = v.codeSyntax.WEB.replace(/^var\(/, '').replace(/\)$/, '');
+        return web === '--' + expectedCssVar || web === expectedCssVar;
+      }
+      return false;
+    });
+    if (!targetVar) throw new Error('No variable with WEB syntax: --' + expectedCssVar);
 
     node.setBoundVariable(fix.property, targetVar);
     return;
@@ -193,21 +199,24 @@ function collectResults(node, tokens, results, depth, activeModes) {
     const tokenValue = findToken(tokens, normalized);
 
     // Check 1: is the variable name expected for this component+property?
-    const expectedVarName = findExpectedVariable(tokens, node.name, b.property);
+    const expectedToken = findExpectedToken(tokens, node.name, b.property);
 
-    let status, expected, expectedName;
-    if (expectedVarName && normalizeKey(expectedVarName) !== normalizeKey(b.name)) {
+    let status, expected, expectedName, expectedCssVar;
+    if (expectedToken && normalizeKey(expectedToken.cssVar) !== normalizeKey(b.name)) {
       // Wrong variable bound — name mismatch
       status = 'wrong-binding';
-      expected = tokenValue;
-      expectedName = expectedVarName;
+      expected = expectedToken.value;
+      expectedName = expectedToken.cssVar;
+      expectedCssVar = expectedToken.rawKey;
     } else if (tokenValue === undefined) {
       status = 'unknown';
       expected = null;
       expectedName = null;
+      expectedCssVar = null;
     } else {
       expected = tokenValue;
       expectedName = null;
+      expectedCssVar = null;
       status = valuesMatch(b.value, tokenValue) ? 'match' : 'mismatch';
     }
 
@@ -217,6 +226,7 @@ function collectResults(node, tokens, results, depth, activeModes) {
       property: b.property, tokenName: b.name,
       figmaValue: b.value, expectedValue: expected, status,
       expectedVarName: expectedName,
+      expectedCssVar: expectedCssVar,
       variableId: b.variableId, modeId: b.modeId,
     });
   }
@@ -226,8 +236,9 @@ function collectResults(node, tokens, results, depth, activeModes) {
 }
 
 // Find the expected variable name for a component property from the token map
-// e.g. node "Button", property "fills" → look for token "--button-*-background-default"
-function findExpectedVariable(tokens, nodeName, property) {
+// Find the expected token for a component property from the token map
+// Returns { cssVar: display name, rawKey: CSS var key, value } or null
+function findExpectedToken(tokens, nodeName, property) {
   const componentSlug = normalizeKey(nodeName);
   const propMap = {
     'fills': ['container-background-default', 'background-default', 'background'],
@@ -259,23 +270,14 @@ function findExpectedVariable(tokens, nodeName, property) {
   for (var key in tokens) {
     var cleanKey = key.replace(/^--/, '');
     var keyNorm = normalizeKey(cleanKey);
-    // token must start with the component name
     if (!keyNorm.startsWith(componentSlug + '-')) continue;
     for (var i = 0; i < suffixes.length; i++) {
       if (keyNorm.endsWith('-' + suffixes[i])) {
-        // convert CSS var name back to Figma variable path
-        return cssVarToFigmaName(cleanKey);
+        return { cssVar: '--' + cleanKey, rawKey: cleanKey, value: tokens[key] };
       }
     }
   }
   return null;
-}
-
-function cssVarToFigmaName(cssVar) {
-  // --button-solid-container-background-default → Button/Solid/Container/Background Default
-  return cssVar.split('-').map(function(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }).join('/').replace(/\//g, '/');
 }
 
 function normalizeKey(s) {

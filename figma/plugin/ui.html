@@ -221,8 +221,8 @@
     const mismatches = allResults.filter(r => (r.status === 'mismatch' || r.status === 'wrong-binding') && r.variableId);
     if (!mismatches.length) return;
     const fixes = mismatches.map((r, i) => {
-      if (r.status === 'wrong-binding' && r.expectedVarName) {
-        return { id: 'fix-' + allResults.indexOf(r), fixType: 'rebind', nodeId: r.nodeId, property: r.property, expectedVarName: r.expectedVarName };
+      if (r.status === 'wrong-binding' && r.expectedCssVar) {
+        return { id: 'fix-' + allResults.indexOf(r), fixType: 'rebind', nodeId: r.nodeId, property: r.property, expectedCssVar: r.expectedCssVar };
       }
       return { id: 'fix-' + allResults.indexOf(r), fixType: 'value', variableId: r.variableId, modeId: r.modeId, expectedValue: r.expectedValue };
     });
@@ -236,13 +236,13 @@
     const r = allResults[idx];
     if (!r) return;
 
-    if (r.status === 'wrong-binding' && r.expectedVarName) {
+    if (r.status === 'wrong-binding' && r.expectedCssVar) {
       parent.postMessage({ pluginMessage: { type: 'fix', fix: {
         id: 'fix-' + idx,
         fixType: 'rebind',
         nodeId: r.nodeId,
         property: r.property,
-        expectedVarName: r.expectedVarName,
+        expectedCssVar: r.expectedCssVar,
       }}}, '*');
     } else if (r.status === 'mismatch' && r.variableId && r.expectedValue !== null) {
       parent.postMessage({ pluginMessage: { type: 'fix', fix: {
@@ -306,7 +306,7 @@
 
     if (msg.type === 'fix_error') {
       const btn = document.getElementById(msg.fixId);
-      if (btn) { btn.textContent = 'Error'; btn.style.opacity = '.5'; }
+      if (btn) { btn.textContent = msg.error || 'Error'; btn.title = msg.error || ''; btn.style.opacity = '.5'; }
     }
 
     if (msg.type === 'fix_all_done') {
@@ -338,7 +338,7 @@
       const expStr = r.status === 'wrong-binding' && r.expectedVarName
         ? 'Should be: ' + r.expectedVarName
         : r.expectedValue !== null ? fmtVal(r.expectedValue) : '—';
-      const fixBtn = (r.status === 'wrong-binding' && r.expectedVarName)
+      const fixBtn = (r.status === 'wrong-binding' && r.expectedCssVar)
         || (r.status === 'mismatch' && r.variableId && r.expectedValue !== null)
         ? '<button class="btn fix" id="fix-' + idx + '" onclick="fixSingle(' + idx + ')">Fix</button>'
         : '';
