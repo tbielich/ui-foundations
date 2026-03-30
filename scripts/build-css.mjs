@@ -100,7 +100,7 @@ function getTokenCssFilesFromDist() {
 
   const tokenFiles = fs
     .readdirSync(DIST_TOKENS_DIR, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && /\.tokens\.css$/i.test(entry.name))
+    .filter((entry) => entry.isFile() && /\.tokens(\.[a-z0-9-]+)?\.css$/i.test(entry.name))
     .map((entry) => ({
       fileName: entry.name,
       scope: parseScopeFromTokenCss(entry.name),

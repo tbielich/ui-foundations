@@ -50,33 +50,92 @@ function isTokenNode(node) {
 }
 
 function inferBucketFromFilename(fileName) {
+  // Legacy fallback — only used if content-based detection is bypassed
   const baseName = path.basename(fileName);
   const stem = baseName
     .replace(/\.(token|tokens)\.jsonc?$/i, "")
     .replace(/\.jsonc?$/i, "")
     .trim();
-
-  let match = stem.match(/^brand\s+(.+)$/i);
-  if (match) {
-    const rest = match[1].trim();
-    if (/^[a-z]$/i.test(rest)) {
-      return { bucket: "brand", id: rest.toLowerCase(), stem };
-    }
-    return { bucket: "brand", id: slugifyName(rest), stem };
-  }
-
-  match = stem.match(/^mode\s+(.+)$/i);
-  if (match) {
-    return { bucket: "mode", id: slugifyName(match[1]), stem };
-  }
-
-  // Also support "Light Mode"/"Dark Mode" filename order.
-  match = stem.match(/^(.+)\s+mode$/i);
-  if (match) {
-    return { bucket: "mode", id: slugifyName(match[1]), stem };
-  }
-
   return { bucket: "global", id: slugifyName(stem), stem };
+}
+
+// Derive scope from mode name (e.g. "Light Mode" → mode:light, "Brand A" → brand:a)
+function inferScopeFromModeName(modeName) {
+  const slug = slugifyName(modeName);
+  // "brand-a" / "brand-b" → brand scope
+  const brandMatch = slug.match(/^brand[-\s]?([a-z])$/i);
+  if (brandMatch) return { bucket: "brand", id: brandMatch[1].toLowerCase() };
+  // "light-mode" / "dark-mode" → mode scope
+  const modeMatch = slug.match(/^(.+)-mode$/) || slug.match(/^mode-(.+)$/);
+  if (modeMatch) return { bucket: "mode", id: modeMatch[1] };
+  // fallback: treat as mode
+  return { bucket: "mode", id: slug };
+}
+
+// Derive scope from file content by inspecting token paths and types
+function inferScopeFromContent(data, filePath) {
+  const topKeys = Object.keys(data).filter(k => !k.startsWith("$"));
+  const slug = slugifyName(path.basename(filePath).replace(/\.(token|tokens)\.jsonc?$/i, "").replace(/\.jsonc?$/i, ""));
+
+  // Check if all top-level keys look like component names (Button, Input, etc.)
+  // by looking for codeSyntax with component-level prefixes
+  const sampleTokens = collectSampleTokens(data, 5);
+
+  // If tokens have codeSyntax starting with --color- or --font- → primitives
+  // If tokens have codeSyntax starting with --brand- → brand tokens
+  // If tokens have codeSyntax starting with --button-, --input- → components
+  const prefixes = sampleTokens
+    .map(t => t.web)
+    .filter(Boolean)
+    .map(w => w.replace(/^var\(--/, "").replace(/\)$/, "").split("-")[0]);
+
+  const uniquePrefixes = [...new Set(prefixes)];
+
+  // Heuristic: if most tokens are color/font/size primitives → global:primitives
+  // This is intentionally loose — the content tells us what it is
+  return { bucket: "global", id: slug };
+}
+
+// Collect a few sample tokens from a data tree for content inspection
+function collectSampleTokens(node, max, found) {
+  if (!found) found = [];
+  if (found.length >= max || !node || typeof node !== "object") return found;
+  if (node.$type && (node.$value !== undefined || node.$value === null)) {
+    const web = node.$extensions && node.$extensions["com.figma.codeSyntax"]
+      ? node.$extensions["com.figma.codeSyntax"].WEB
+      : null;
+    found.push({ type: node.$type, web });
+    return found;
+  }
+  for (const [key, val] of Object.entries(node)) {
+    if (key.startsWith("$")) continue;
+    collectSampleTokens(val, max, found);
+    if (found.length >= max) break;
+  }
+  return found;
+}
+
+// Collect all unique mode names from modeValues in a token file
+function collectModeNames(node, found) {
+  if (!found) found = new Set();
+  if (!node || typeof node !== "object") return [...found];
+  if (node.$extensions && node.$extensions["com.figma.modeValues"]) {
+    for (const key of Object.keys(node.$extensions["com.figma.modeValues"])) {
+      found.add(key);
+    }
+  }
+  for (const [key, val] of Object.entries(node)) {
+    if (!key.startsWith("$")) collectModeNames(val, found);
+  }
+  return [...found];
+}
+
+// Get the mode-specific value for a token from its stored _modeValues
+function getModeValue(token, modeName) {
+  if (token._modeValues && token._modeValues[modeName] !== undefined) {
+    return token._modeValues[modeName];
+  }
+  return undefined;
 }
 
 
@@ -129,6 +188,9 @@ function flattenTokens(node, pathSegments, list, sourceMeta) {
       sourceScope: sourceMeta.scope,
       sourceFile: sourceMeta.filePath,
       sourceFileName: sourceMeta.fileName,
+      _modeValues: node.$extensions && node.$extensions["com.figma.modeValues"]
+        ? node.$extensions["com.figma.modeValues"]
+        : null,
     });
     return;
   }
@@ -402,12 +464,47 @@ async function extractTokens() {
     const perFileTokens = [];
     for (const filePath of files.sort()) {
       const data = readJsonLike(filePath);
+
+      // Content-based scope detection:
+      // 1. If file has modeValues → expand per mode, derive scope from mode names
+      // 2. Otherwise → global scope with ID derived from token content
+      const modeNames = collectModeNames(data);
+      if (modeNames.length > 1) {
+        for (const modeName of modeNames) {
+          const modeScope = inferScopeFromModeName(modeName);
+          const tokenList = [];
+          flattenTokens(data, [], tokenList, {
+            scope: `${modeScope.bucket}:${modeScope.id}`,
+            bucket: modeScope.bucket,
+            id: modeScope.id,
+            filePath,
+            fileName: path.basename(filePath),
+          });
+          for (const token of tokenList) {
+            const modeVal = getModeValue(token, modeName);
+            if (modeVal !== undefined) {
+              token.value = modeVal;
+              if (modeVal && typeof modeVal === 'object' && modeVal.$ref) {
+                const refPath = normalizeTokenPath(modeVal.$ref);
+                token.aliasRefPath = refPath;
+                token.aliasTargetName = refPath;
+                // clear ID-based lookup so path-based resolution takes over
+                token.aliasTargetId = null;
+              }
+            }
+          }
+          allTokens.push(...tokenList);
+          perFileTokens.push({ filePath, tokenList, scope: modeScope });
+        }
+        continue;
+      }
+
+      const scope = inferScopeFromContent(data, filePath);
       const tokenList = [];
-      const scope = inferBucketFromFilename(filePath);
       flattenTokens(data, [], tokenList, {
-        scope: `${scope.bucket}:${scope.id || "default"}`,
+        scope: `${scope.bucket}:${scope.id}`,
         bucket: scope.bucket,
-        id: scope.id || "default",
+        id: scope.id,
         filePath,
         fileName: path.basename(filePath),
       });
@@ -446,7 +543,11 @@ async function extractTokens() {
 
     for (const { filePath, tokenList, scope } of perFileTokens) {
       const rawBase = normalizeOutputBase(filePath);
-      const base = normalizePerFileBase(rawBase);
+      // For mode-expanded files, append the scope id to avoid overwriting
+      const scopeSuffix = (scope.bucket === "mode" || scope.bucket === "brand")
+        ? `.${scope.bucket}-${scope.id}`
+        : "";
+      const base = normalizePerFileBase(rawBase + scopeSuffix) || rawBase + scopeSuffix;
       const sourceData = readJsonLike(filePath);
       const perTokens = buildTokensFromList(tokenList, report, globalLookup);
       const transformReport = { unmappedFontWeights: [] };

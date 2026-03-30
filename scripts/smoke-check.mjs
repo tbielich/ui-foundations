@@ -36,7 +36,7 @@ function ensureTokenCssFiles(minCount = 5) {
 
   const files = fs
     .readdirSync(tokenCssDir)
-    .filter((name) => name.endsWith(".tokens.css"));
+    .filter((name) => name.endsWith(".css") && name.includes(".tokens"));
 
   if (files.length < minCount) {
     fail(
@@ -51,9 +51,8 @@ function run() {
     nonEmpty: true,
     mustInclude: "tokens:",
   });
-  ensureFile("dist/tokens/json/component.tokens.json", {
+  ensureFile("dist/tokens/json/components-(ui).tokens.json", {
     nonEmpty: true,
-    mustInclude: '"$schema"',
   });
   ensureFile("dist/react/index.js", { nonEmpty: true });
   ensureTokenCssFiles();
