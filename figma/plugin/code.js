@@ -11,8 +11,9 @@ figma.ui.onmessage = async (msg) => {
       return;
     }
     const activeModes = getActiveModes(selection[0]);
+    const prefix = msg.prefix || '';
     const results = [];
-    for (const node of selection) collectResults(node, msg.tokens, results, 0, activeModes);
+    for (const node of selection) collectResults(node, msg.tokens, results, 0, activeModes, prefix);
     figma.ui.postMessage({ type: 'results', results });
   }
 
@@ -192,14 +193,13 @@ function resolveModeId(variable, activeModes) {
   return activeModes.get(variable.variableCollectionId) || col.defaultModeId;
 }
 
-function collectResults(node, tokens, results, depth, activeModes) {
+function collectResults(node, tokens, results, depth, activeModes, prefix) {
   const bindings = getBoundVariables(node, activeModes);
   for (const b of bindings) {
     const normalized = b.name.replace(/^var\(--/, '').replace(/\)$/, '').replace(/^--/, '');
-    const tokenValue = findToken(tokens, normalized);
+    const tokenValue = findToken(tokens, normalized, prefix);
 
-    // Check 1: is the variable name expected for this component+property?
-    const expectedToken = findExpectedToken(tokens, node.name, b.property);
+    const expectedToken = findExpectedToken(tokens, node.name, b.property, prefix);
 
     let status, expected, expectedName, expectedCssVar;
     if (expectedToken && normalizeKey(expectedToken.cssVar) !== normalizeKey(b.name)) {
@@ -231,14 +231,15 @@ function collectResults(node, tokens, results, depth, activeModes) {
     });
   }
   if ('children' in node) {
-    for (const child of node.children) collectResults(child, tokens, results, depth + 1, activeModes);
+    for (const child of node.children) collectResults(child, tokens, results, depth + 1, activeModes, prefix);
   }
 }
 
 // Find the expected variable name for a component property from the token map
 // Find the expected token for a component property from the token map
 // Returns { cssVar: display name, rawKey: CSS var key, value } or null
-function findExpectedToken(tokens, nodeName, property) {
+function findExpectedToken(tokens, nodeName, property, prefix) {
+  const pfx = prefix ? normalizeKey(prefix) + '-' : '';
   const componentSlug = normalizeKey(nodeName);
   const propMap = {
     'fills': ['container-background-default', 'background-default', 'background'],
@@ -270,6 +271,8 @@ function findExpectedToken(tokens, nodeName, property) {
   for (var key in tokens) {
     var cleanKey = key.replace(/^--/, '');
     var keyNorm = normalizeKey(cleanKey);
+    // strip prefix if present
+    if (pfx && keyNorm.startsWith(pfx)) keyNorm = keyNorm.slice(pfx.length);
     if (!keyNorm.startsWith(componentSlug + '-')) continue;
     // get the part after the component slug
     var rest = keyNorm.slice(componentSlug.length + 1);
@@ -323,13 +326,19 @@ function resolveValue(val, activeModes) {
   return val;
 }
 
-function findToken(tokens, name) {
+function findToken(tokens, name, prefix) {
   function normalize(s) {
     return s.toLowerCase().replace(/[\s/\\]+/g, '-').replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
   }
-  const needle = normalize(name);
+  var pfx = prefix ? normalize(prefix) + '-' : '';
+  var needle = normalize(name);
+  // strip prefix from needle if present
+  if (pfx && needle.startsWith(pfx)) needle = needle.slice(pfx.length);
   for (const [key, val] of Object.entries(tokens)) {
-    if (normalize(key.replace(/^--/, '')) === needle) return val;
+    var cleanKey = normalize(key.replace(/^--/, ''));
+    // strip prefix from token key if present
+    if (pfx && cleanKey.startsWith(pfx)) cleanKey = cleanKey.slice(pfx.length);
+    if (cleanKey === needle) return val;
   }
   return undefined;
 }

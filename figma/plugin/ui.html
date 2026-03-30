@@ -103,6 +103,10 @@
       Drop main.css or token JSON here
     </div>
     <input type="file" id="fileInput" accept=".json,.css" style="display:none">
+    <div style="display:flex;gap:6px;align-items:center;">
+      <label style="font-size:11px;color:var(--text-muted);white-space:nowrap;">Token prefix:</label>
+      <input type="text" id="prefixInput" placeholder="e.g. uilib" style="flex:1;font-size:11px;padding:3px 6px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);">
+    </div>
   </div>
   <div class="actions">
     <button class="btn" id="validateBtn" disabled>Validate Selection</button>
@@ -201,7 +205,7 @@
     if (!tokens) return;
     if (lastFileContent && lastFileName && lastFileName.endsWith('.css'))
       tokens = parseCss(lastFileContent, currentMode);
-    parent.postMessage({ pluginMessage: { type: 'validate', tokens } }, '*');
+    parent.postMessage({ pluginMessage: { type: 'validate', tokens, prefix: document.getElementById('prefixInput').value.trim() } }, '*');
     resultsEl.innerHTML = '<div class="empty">Validating...</div>';
     summaryEl.textContent = '';
     fixAllBtn.style.display = 'none';
