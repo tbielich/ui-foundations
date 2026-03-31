@@ -184,6 +184,7 @@
 
   function loadFile(file) {
     if (!file) return;
+    if (file.size > 5242880) { dropZone.textContent = 'File too large (max 5MB)'; dropZone.className = 'drop-zone'; return; }
     const reader = new FileReader();
     reader.onload = e => {
       try {
@@ -206,6 +207,7 @@
     if (lastFileContent && lastFileName && lastFileName.endsWith('.css'))
       tokens = parseCss(lastFileContent, currentMode);
     parent.postMessage({ pluginMessage: { type: 'validate', tokens, prefix: document.getElementById('prefixInput').value.trim() } }, '*');
+    validateBtn.disabled = true;
     resultsEl.innerHTML = '<div class="empty">Validating...</div>';
     summaryEl.textContent = '';
     fixAllBtn.style.display = 'none';
@@ -302,6 +304,7 @@
       }
       summaryEl.textContent = allResults.length + ' bindings — ✅ ' + match + '  ❌ ' + mismatch + '  ⚠️ ' + unknown;
       filterBar.style.display = 'flex';
+      validateBtn.disabled = false;
       fixAllBtn.style.display = mismatch > 0 ? '' : 'none';
       fixAllBtn.disabled = false;
       fixAllBtn.textContent = 'Fix All (' + mismatch + ')';
@@ -379,11 +382,14 @@
     const list = document.getElementById('exportList');
     list.innerHTML = Object.entries(data).map(function(entry) {
       var name = entry[0], tokens = entry[1];
-      return '<div class="export-item"><div><div class="export-name">' + name + '.tokens.json</div>' +
+      return '<div class="export-item"><div><div class="export-name">' + esc(name) + '.tokens.json</div>' +
         '<div class="export-meta">' + countLeaves(tokens) + ' tokens</div></div>' +
-        '<div><button class="btn secondary" style="padding:4px 10px;font-size:11px;" ' +
-        'onclick="downloadJson(\'' + name + '.tokens.json\',exportData[\'' + name + '\'])">⬇</button></div></div>';
+        '<div><button class="btn secondary" style="padding:4px 10px;font-size:11px;" data-export-name="' + esc(name) + '">⬇</button></div></div>';
     }).join('');
+    list.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-export-name]');
+      if (btn && exportData) downloadJson(btn.dataset.exportName + '.tokens.json', exportData[btn.dataset.exportName]);
+    });
   }
 
   function countLeaves(obj, c) {

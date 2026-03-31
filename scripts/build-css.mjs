@@ -20,8 +20,9 @@ function writeFile(filePath, content) {
 }
 
 function inlineImports(filePath, seen = new Set()) {
-  if (seen.has(filePath)) return "";
-  seen.add(filePath);
+  const resolved = path.resolve(filePath);
+  if (seen.has(resolved)) return "";
+  seen.add(resolved);
 
   const baseDir = path.dirname(filePath);
   const css = fs.readFileSync(filePath, "utf8");

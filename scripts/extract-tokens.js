@@ -116,16 +116,17 @@ function collectSampleTokens(node, max, found) {
 }
 
 // Collect all unique mode names from modeValues in a token file
-function collectModeNames(node, found) {
+function collectModeNames(node, found, depth) {
   if (!found) found = new Set();
-  if (!node || typeof node !== "object") return [...found];
+  if (!depth) depth = 0;
+  if (depth > 50 || !node || typeof node !== "object") return [...found];
   if (node.$extensions && node.$extensions["com.figma.modeValues"]) {
     for (const key of Object.keys(node.$extensions["com.figma.modeValues"])) {
       found.add(key);
     }
   }
   for (const [key, val] of Object.entries(node)) {
-    if (!key.startsWith("$")) collectModeNames(val, found);
+    if (!key.startsWith("$")) collectModeNames(val, found, depth + 1);
   }
   return [...found];
 }

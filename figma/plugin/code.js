@@ -79,7 +79,7 @@ async function applyFix(fix, varCache) {
 function parseFixValue(value, resolvedType) {
   if (resolvedType === 'COLOR') {
     const hex = String(value).replace(/^#/, '');
-    if (hex.length === 6 || hex.length === 8) {
+    if (/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(hex)) {
       const r = parseInt(hex.slice(0, 2), 16) / 255;
       const g = parseInt(hex.slice(2, 4), 16) / 255;
       const b = parseInt(hex.slice(4, 6), 16) / 255;
