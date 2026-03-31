@@ -663,7 +663,8 @@ pre {
   overflow: auto;
   border-radius: 12px;
   border: 1px solid var(--docs-border);
-  background: #fff;
+  background: #1e1e2e;
+  color: #cdd6f4;
   padding: 14px;
   font-family: var(--docs-code-font);
   box-shadow: var(--docs-shadow-sm);
@@ -671,6 +672,7 @@ pre {
 
 code {
   font-family: var(--docs-code-font);
+  color: inherit;
 }
 
 .palette {

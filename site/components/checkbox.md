@@ -19,7 +19,21 @@ playgroundLabel: Open Checkbox Playground
   {{ ui.checkbox("Disabled option", false, true) }}
 </div>
 
-## Usage (HTML)
+## Usage
+
+### SSG / Nunjucks
+
+{% raw %}
+```njk
+{% import "macros/ui.njk" as ui %}
+
+{{ ui.checkbox("Accept terms") }}
+{{ ui.checkbox("Receive updates", true) }}
+{{ ui.checkbox("Disabled option", false, true) }}
+```
+{% endraw %}
+
+### HTML
 
 ```html
 <label class="checkbox-field">
@@ -27,6 +41,18 @@ playgroundLabel: Open Checkbox Playground
   <span class="checkbox-field__text">Accept terms</span>
 </label>
 ```
+
+### React
+
+{% raw %}
+```jsx
+import { Checkbox } from "ui-foundations/react";
+
+<Checkbox label="Accept terms" />
+<Checkbox defaultChecked label="Receive updates" />
+<Checkbox disabled label="Disabled option" />
+```
+{% endraw %}
 
 ## Used tokens
 
@@ -65,13 +91,4 @@ playgroundLabel: Open Checkbox Playground
   </table>
 </div>
 
-## API (React)
 
-{% raw %}
-```jsx
-<Checkbox label="Accept terms" />
-<Checkbox defaultChecked label="Receive updates" />
-<Checkbox disabled label="Disabled option" />
-<Checkbox name="consent">Accept terms</Checkbox>
-```
-{% endraw %}

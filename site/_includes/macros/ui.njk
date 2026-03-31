@@ -72,3 +72,41 @@
   <span class="swatch-meta">{{ token.value }}</span>
 </div>
 {%- endmacro %}
+
+{% macro icon(name, label='', className='') -%}
+{%- set classes = "icon" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<span class="{{ classes }}" style="--icon-src: url('/assets/icons/{{ name }}.svg');"{% if label %} role="img" aria-label="{{ label }}"{% else %} aria-hidden="true"{% endif %}></span>
+{%- endmacro %}
+
+{% macro labelContent(text='', startIcon='', endIcon='', iconOnly=false) -%}
+<span class="label-content{% if iconOnly %} is-icon-only{% endif %}">
+  {%- if startIcon %}<span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
+  {%- if not iconOnly %}<span class="label-content__text">{{ text }}</span>{% endif -%}
+  {%- if endIcon %}<span class="icon" data-slot="end" style="--icon-src: url('/assets/icons/{{ endIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
+</span>
+{%- endmacro %}
+
+{% macro fieldLabel(text, htmlFor='', required=false, startIcon='') -%}
+<label class="field-label"{% if htmlFor %} for="{{ htmlFor }}"{% endif %}>
+  <span class="label-content">
+    {%- if startIcon %}<span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
+    <span class="label-content__text">{{ text }}</span>
+  </span>
+  {%- if required %}
+  <span class="field-label__required" aria-hidden="true">*</span>
+  <span class="field-label__required-text"> (required)</span>
+  {%- endif %}
+</label>
+{%- endmacro %}
+
+{% macro link(text, href='#', startIcon='', endIcon='', state='', disabled=false) -%}
+{%- set classes = "link" -%}
+{%- if state -%}{%- set classes = classes + " is-" + state -%}{%- endif -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+<a class="{{ classes }}" href="{{ href }}"{% if disabled %} aria-disabled="true"{% endif %}>
+  {%- if startIcon %}<span class="icon" style="--icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span> {% endif -%}
+  {{ text }}
+  {%- if endIcon %} <span class="icon" style="--icon-src: url('/assets/icons/{{ endIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
+</a>
+{%- endmacro %}

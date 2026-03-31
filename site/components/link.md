@@ -14,24 +14,18 @@ permalink: /components/link/
 ## Preview
 
 <div class="docs-stack">
-  <a href="#" class="link">Default link</a>
-  <a href="#" class="link is-hover">Hover state</a>
-  <a href="#" class="link is-active">Active state</a>
-  <a href="#" class="link is-visited">Visited state</a>
-  <a href="#" class="link is-disabled" aria-disabled="true">Disabled link</a>
+  {{ ui.link("Default link") }}
+  {{ ui.link("Hover state", state="hover") }}
+  {{ ui.link("Active state", state="active") }}
+  {{ ui.link("Visited state", state="visited") }}
+  {{ ui.link("Disabled link", disabled=true) }}
 </div>
 
 ### With Icon
 
 <div class="docs-stack">
-  <a href="#" class="link">
-    <span class="icon" style="--icon-src: url('/assets/icons/login.svg');" aria-hidden="true"></span>
-    Link with leading icon
-  </a>
-  <a href="#" class="link">
-    Link with trailing icon
-    <span class="icon" style="--icon-src: url('/assets/icons/logout.svg');" aria-hidden="true"></span>
-  </a>
+  {{ ui.link("Link with leading icon", startIcon="login") }}
+  {{ ui.link("Link with trailing icon", endIcon="logout") }}
 </div>
 
 ## Token Map
@@ -48,6 +42,20 @@ permalink: /components/link/
 | `--link-gap` | `var(--size-spacing-100)` |
 
 ## Usage
+
+### SSG / Nunjucks
+
+{% raw %}
+```njk
+{% import "macros/ui.njk" as ui %}
+
+{{ ui.link("Go to page", href="/page") }}
+{{ ui.link("With icon", startIcon="login") }}
+{{ ui.link("Disabled", disabled=true) }}
+```
+{% endraw %}
+
+### HTML
 
 ```html
 <a href="/page" class="link">Go to page</a>

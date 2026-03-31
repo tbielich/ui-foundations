@@ -19,11 +19,37 @@ playgroundLabel: Open Input Playground
   {{ ui.input(type="text", value="Disabled field", disabled=true) }}
 </div>
 
-## Usage (HTML)
+## Usage
+
+### SSG / Nunjucks
+
+{% raw %}
+```njk
+{% import "macros/ui.njk" as ui %}
+
+{{ ui.input(type="text", placeholder="Email address") }}
+{{ ui.input(type="text", value="Focus preview", state="focus") }}
+{{ ui.input(type="text", value="Disabled field", disabled=true) }}
+```
+{% endraw %}
+
+### HTML
 
 ```html
 <input class="input" type="text" placeholder="Email address" />
 ```
+
+### React
+
+{% raw %}
+```jsx
+import { Input } from "ui-foundations/react/input";
+
+<Input placeholder="Email address" />
+<Input type="email" placeholder="name@example.com" />
+<Input disabled value="Disabled field" />
+```
+{% endraw %}
 
 ## Used tokens
 
@@ -70,13 +96,4 @@ playgroundLabel: Open Input Playground
   </table>
 </div>
 
-## API (React)
 
-{% raw %}
-```jsx
-<Input placeholder="Email address" />
-<Input type="email" placeholder="name@example.com" />
-<Input value="Read only" readOnly />
-<Input disabled value="Disabled field" />
-```
-{% endraw %}

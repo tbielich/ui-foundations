@@ -30,6 +30,52 @@ playgroundLabel: Open Label Playground
   </label>
 </div>
 
+## Usage
+
+### SSG / Nunjucks
+
+{% raw %}
+```njk
+{% import "macros/ui.njk" as ui %}
+
+{{ ui.labelContent("Search", startIcon="search") }}
+{{ ui.labelContent("Add", endIcon="plus") }}
+{{ ui.labelContent(startIcon="menu", iconOnly=true) }}
+{{ ui.fieldLabel("Email address", htmlFor="email", required=true) }}
+```
+{% endraw %}
+
+### HTML
+
+```html
+<!-- Label with icon -->
+<span class="label-content">
+  <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg')" aria-hidden="true"></span>
+  <span class="label-content__text">Search</span>
+</span>
+
+<!-- Field label with required marker -->
+<label class="field-label" for="email">
+  <span class="label-content">
+    <span class="label-content__text">Email address</span>
+  </span>
+  <span class="field-label__required" aria-hidden="true">*</span>
+  <span class="field-label__required-text"> (required)</span>
+</label>
+```
+
+### React
+
+{% raw %}
+```jsx
+import { LabelContent, FieldLabel } from "ui-foundations/react/label";
+
+<LabelContent text="Search" startIcon="search" />
+<LabelContent text="Add" endIcon="plus" />
+<FieldLabel htmlFor="email" text="Email address" required />
+```
+{% endraw %}
+
 ## Notes
 
 - Use `FieldLabel` for inputs/selects/textarea so `htmlFor` links label and field.
@@ -54,21 +100,6 @@ playgroundLabel: Open Label Playground
     </tbody>
   </table>
 </div>
-
-## Usage (React)
-
-{% raw %}
-```jsx
-<LabelContent text="Continue" />
-<LabelContent text="Search" startIcon="search" />
-<LabelContent text="Add" endIcon="plus" />
-<LabelContent startIcon="menu" iconOnly />
-
-<FieldLabel htmlFor="email" text="Email address" />
-<FieldLabel htmlFor="search" text="Search" startIcon="search" />
-<FieldLabel htmlFor="booking-code" text="Booking code" required />
-```
-{% endraw %}
 
 ## React exports
 

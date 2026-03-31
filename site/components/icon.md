@@ -17,7 +17,20 @@ playgroundLabel: Open Icon Playground
   <span class="icon" style="--icon-src: url('/assets/icons/plus.svg'); color: #d81b60;" aria-hidden="true"></span>
 </div>
 
-## Usage (HTML)
+## Usage
+
+### SSG / Nunjucks
+
+{% raw %}
+```njk
+{% import "macros/ui.njk" as ui %}
+
+{{ ui.icon("search") }}
+{{ ui.icon("menu", "Open menu") }}
+```
+{% endraw %}
+
+### HTML
 
 ```html
 <span
@@ -26,6 +39,18 @@ playgroundLabel: Open Icon Playground
   aria-hidden="true"
 ></span>
 ```
+
+### React
+
+{% raw %}
+```jsx
+import { Icon } from "ui-foundations/react/icon";
+
+<Icon name="search" />
+<Icon name="search" label="Search" decorative={false} />
+<Icon src="/assets/icons/search.svg" />
+```
+{% endraw %}
 
 ## Used tokens
 
@@ -42,19 +67,6 @@ playgroundLabel: Open Icon Playground
     </tbody>
   </table>
 </div>
-
-## API (React)
-
-{% raw %}
-```jsx
-<Icon name="search" />
-<Icon name="search" label="Search" decorative={false} />
-<span style={{ lineHeight: "24px" }}>
-  <Icon name="plus" />
-</span>
-<Icon src="/assets/icons/search.svg" />
-```
-{% endraw %}
 
 ## React props
 

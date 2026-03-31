@@ -21,7 +21,21 @@ playgroundLabel: Open Switch Playground
 
 Use `Switch` for settings that turn a behavior on or off immediately. For binary selection inside a form list, use `Checkbox`.
 
-## Usage (HTML)
+## Usage
+
+### SSG / Nunjucks
+
+{% raw %}
+```njk
+{% import "macros/ui.njk" as ui %}
+
+{{ ui.switch("Notifications") }}
+{{ ui.switch("Auto updates", true) }}
+{{ ui.switch("Airplane mode", false, true) }}
+```
+{% endraw %}
+
+### HTML
 
 ```html
 <label class="switch-field">
@@ -29,6 +43,18 @@ Use `Switch` for settings that turn a behavior on or off immediately. For binary
   <span class="switch-field__text">Notifications</span>
 </label>
 ```
+
+### React
+
+{% raw %}
+```jsx
+import { Switch } from "ui-foundations/react";
+
+<Switch label="Notifications" />
+<Switch defaultChecked label="Auto updates" />
+<Switch disabled label="Airplane mode" />
+```
+{% endraw %}
 
 ## Used tokens
 
@@ -67,13 +93,4 @@ Use `Switch` for settings that turn a behavior on or off immediately. For binary
   </table>
 </div>
 
-## API (React)
 
-{% raw %}
-```jsx
-<Switch label="Notifications" />
-<Switch defaultChecked label="Auto updates" />
-<Switch disabled label="Airplane mode" />
-<Switch name="alerts">Marketing alerts</Switch>
-```
-{% endraw %}

@@ -53,6 +53,42 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
 - `attached`: `false` (default) removes shared borders/gaps when `true`
 - `justify`: `"start"` (default) or `"stretch"`
 
+## Usage
+
+### SSG / Nunjucks
+
+{% raw %}
+```njk
+{% import "macros/ui.njk" as ui %}
+
+{{ ui.button("Solid") }}
+{{ ui.button("Outline", "outline") }}
+{{ ui.button("Ghost", "ghost") }}
+{{ ui.button("Disabled", "", true) }}
+```
+{% endraw %}
+
+### HTML
+
+```html
+<button class="button" type="button">Solid</button>
+<button class="button outline" type="button">Outline</button>
+<button class="button ghost" type="button">Ghost</button>
+<button class="button" type="button" disabled>Disabled</button>
+```
+
+### React
+
+```jsx
+import { Button } from "ui-foundations/react/button";
+
+<Button>Solid</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button startIcon="search">Search</Button>
+<Button disabled>Disabled</Button>
+```
+
 ## Used tokens
 
 <div class="docs-table-wrap">
@@ -107,22 +143,4 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
   </table>
 </div>
 
-## API (React)
 
-```jsx
-<Button variant="solid">Solid</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
-<Button startIcon="search">Search</Button>
-<Button endIcon="plus">Add</Button>
-<Button startIcon="menu" iconOnly ariaLabel="Open menu" />
-<Button disabled>Disabled</Button>
-```
-
-```jsx
-<ButtonGroup attached aria-label="Travel dates">
-  <Button variant="outline">Day 1</Button>
-  <Button variant="outline">Day 2</Button>
-  <Button variant="outline">Day 3</Button>
-</ButtonGroup>
-```
