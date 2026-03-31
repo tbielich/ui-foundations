@@ -1,0 +1,6 @@
+[build]
+  command = "npm run docs:site"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "20"
