@@ -3,25 +3,25 @@
 <head>
   <style>
     :root {
-      --bg: #fff; --bg2: #f8f6fc; --border: #e8e4f0;
-      --text: #333; --text-muted: #888; --text-strong: #1a1a1a;
-      --btn-primary: #9747ff; --btn-primary-hover: #551a8b;
-      --accent: #70cbf4;
-      --match: #13ae5c; --mismatch: #ff0000; --unknown: #999;
-      --val-figma: #f3eeff; --val-expected: #e2f4fd;
-      --val-mismatch: #fff0f0; --val-mismatch-text: #cc0000;
+      --bg: #ffffff; --bg2: #f5f5f5; --border: #e5e5e5;
+      --text: #333333; --text-muted: #b3b3b3; --text-strong: #333333;
+      --btn-primary: #0c8ce9; --btn-primary-hover: #007be5;
+      --accent: #0c8ce9;
+      --match: #13ae5c; --mismatch: #f24822; --unknown: #999;
+      --val-figma: #f5f5f5; --val-expected: #e8f0fe;
+      --val-mismatch: #fff0f0; --val-mismatch-text: #f24822;
     }
     [data-theme="dark"] {
-      --bg: #1a1528; --bg2: #231d33; --border: #3a3050;
-      --text: #d4cce8; --text-muted: #7a6f96; --text-strong: #f0ecf8;
-      --btn-primary: #9747ff; --btn-primary-hover: #b87aff;
+      --bg: #2c2c2c; --bg2: #383838; --border: #444444;
+      --text: #ffffff; --text-muted: #8c8c8c; --text-strong: #ffffff;
+      --btn-primary: #9747ff; --btn-primary-hover: #4db3ff;
       --accent: #70cbf4;
-      --match: #13ae5c; --mismatch: #ff4444; --unknown: #7a6f96;
-      --val-figma: #2a2240; --val-expected: #1a2a3a;
-      --val-mismatch: #2a1a1a; --val-mismatch-text: #ff6b6b;
+      --match: #13ae5c; --mismatch: #f24822; --unknown: #8c8c8c;
+      --val-figma: #383838; --val-expected: #1a2a3a;
+      --val-mismatch: #2a1a1a; --val-mismatch-text: #f24822;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Inter, sans-serif; font-size: 12px; color: var(--text); background: var(--bg); }
+    body { font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 11px; color: var(--text); background: var(--bg); }
 
     .tabs { display: flex; border-bottom: 1px solid var(--border); }
     .tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: 500;
@@ -66,7 +66,7 @@
     td { padding: 4px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
     tr.match td:first-child { color: var(--match); }
     tr.mismatch td:first-child { color: var(--mismatch); }
-    tr.wrong-binding td:first-child { color: #9747ff; }
+    tr.wrong-binding td:first-child { color: #0c8ce9; }
     tr.unknown td:first-child { color: var(--unknown); }
     .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px;
       border: 1px solid var(--border); vertical-align: middle; margin-right: 3px; }
