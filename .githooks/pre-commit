@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 # Pre-commit hook: run lint and unit tests before allowing commit
 
 echo "Running lint..."

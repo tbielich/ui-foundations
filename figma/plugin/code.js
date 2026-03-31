@@ -218,15 +218,18 @@ async function getBoundVariables(node, activeModes) {
   return result;
 }
 
-async function resolveValue(val, activeModes, depth) {
+async function resolveValue(val, activeModes, depth, seen) {
   if (depth > 20 || val === null || val === undefined) return null;
+  if (!seen) seen = new Set();
   if (typeof val === 'object' && 'r' in val) return rgbaToHex(val);
   if (typeof val === 'object' && 'value' in val && 'unit' in val) return val.value;
   if (typeof val === 'object' && 'type' in val && val.type === 'VARIABLE_ALIAS') {
+    if (seen.has(val.id)) return null; // cycle detected
+    seen.add(val.id);
     var ref = await figma.variables.getVariableByIdAsync(val.id);
     if (ref) {
       var modeId = await resolveModeId(ref, activeModes);
-      if (modeId && ref.valuesByMode[modeId] !== undefined) return resolveValue(ref.valuesByMode[modeId], activeModes, depth + 1);
+      if (modeId && ref.valuesByMode[modeId] !== undefined) return resolveValue(ref.valuesByMode[modeId], activeModes, depth + 1, seen);
     }
     return null;
   }

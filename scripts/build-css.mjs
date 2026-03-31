@@ -32,7 +32,10 @@ function inlineImports(filePath, seen = new Set()) {
     (match, importPath) => {
       if (importPath.startsWith("http")) return match;
       const resolved = path.resolve(baseDir, importPath);
-      if (!fs.existsSync(resolved)) return match;
+      if (!fs.existsSync(resolved)) {
+        console.warn(`⚠️  Missing CSS import: ${importPath} (resolved: ${resolved})`);
+        return match;
+      }
       return inlineImports(resolved, seen);
     },
   );
