@@ -177,6 +177,16 @@ function buildAssetsBundle() {
   copyDir(path.join(REPO_ROOT, "src", "assets"), path.join(DIST_DIR, "assets"));
 }
 
+function buildMacrosBundle() {
+  const src = path.join(REPO_ROOT, "site", "_includes", "macros", "ui.njk");
+  const dest = path.join(DIST_DIR, "macros");
+  if (fs.existsSync(src)) {
+    fs.mkdirSync(dest, { recursive: true });
+    fs.copyFileSync(src, path.join(dest, "ui.njk"));
+    console.log("✅ Macros copied to dist/macros/");
+  }
+}
+
 function buildDocs() {
   const tokenFiles = getTokenCssFilesFromDist();
   console.log("♻️  Using pre-generated token CSS from dist/tokens/css");
@@ -186,6 +196,7 @@ function buildDocs() {
   buildUiBundle();
   buildReactBundle();
   buildAssetsBundle();
+  buildMacrosBundle();
 
   const coreCss = inlineImports(path.join(DIST_DIR, "core", "index.css"));
   const uiCss = inlineImports(path.join(DIST_DIR, "ui", "index.css"));

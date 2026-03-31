@@ -17,6 +17,8 @@ Package on npm: [ui-foundations](https://www.npmjs.com/package/ui-foundations)
 
 Figma library: [UI Foundations on Figma](https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations)
 
+Starter template: [ui-foundations-starter](https://github.com/tbielich/ui-foundations-starter)
+
 ## CSS Setup
 
 Import the full bundle for all tokens and components:

@@ -2,7 +2,7 @@ const path = require("path");
 
 function normalizeOutputBase(filePath) {
   const base = path.basename(filePath).toLowerCase().replace(/\s+/g, "-");
-  return base.replace(/\.jsonc?$/i, "");
+  return base.replace(/\.jsonc?$/i, "").replace(/[()]/g, "").replace(/-+/g, "-").replace(/^-|-$/g, "");
 }
 
 function normalizePerFileBase(base) {

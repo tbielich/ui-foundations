@@ -51,7 +51,7 @@ function run() {
     nonEmpty: true,
     mustInclude: "tokens:",
   });
-  ensureFile("dist/tokens/json/components-(ui).tokens.json", {
+  ensureFile("dist/tokens/json/components-ui.tokens.json", {
     nonEmpty: true,
   });
   ensureFile("dist/react/index.js", { nonEmpty: true });

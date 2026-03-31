@@ -2,6 +2,8 @@
 
 A token-first design system that uses Figma as the single source of truth and automatically generates CSS, JSON, and TypeScript tokens.
 
+[Documentation](https://ui-foundations.netlify.app/) · [Starter Template](https://github.com/tbielich/ui-foundations-starter) · [npm](https://www.npmjs.com/package/ui-foundations) · [Figma Library](https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations)
+
 ## Pipeline
 
 ```
