@@ -62,10 +62,7 @@
     "docs:build": "eleventy",
     "docs:site": "npm run build:all && npm run docs:build",
     "ci:check": "npm run lint && npm run test:unit && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run docs:build",
-    "docs:dev": "npm run build:all && eleventy --serve",
-    "figma:bridge": "node scripts/figma-bridge.js",
-    "figma:sync": "node scripts/figma-sync.mjs",
-    "figma:sync-and-build": "node scripts/figma-sync.mjs && npm run tokens:generate && npm run build:css"
+    "docs:dev": "npm run build:all && eleventy --serve"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
@@ -73,8 +70,7 @@
     "fast-glob": "^3.3.3",
     "js-yaml": "^4.1.0",
     "jsonc-parser": "^3.3.1",
-    "prismjs": "^1.30.0",
-    "ws": "^8.20.0"
+    "prismjs": "^1.30.0"
   },
   "dependencies": {
     "ui-foundations": "^0.1.2"

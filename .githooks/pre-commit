@@ -1,0 +1,10 @@
+#!/bin/sh
+# Pre-commit hook: run lint and unit tests before allowing commit
+
+echo "Running lint..."
+npm run lint || exit 1
+
+echo "Running unit tests..."
+npm run test:unit || exit 1
+
+echo "Pre-commit checks passed."

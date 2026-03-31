@@ -16,7 +16,6 @@ Figma Variables → Plugin Export → figma/exports/*.tokens.json → extract-to
 - Content-based scope detection (independent of filenames)
 - Figma plugin with Validate + Export tabs (see `figma/plugin/README.md`)
 - CI pipeline: lint, unit tests, build, smoke check, docs build
-- MCP integration: Figma Desktop + REST API for read access from the IDE
 - Docs site with Eleventy, auto-generated from token data
 
 ## Tech Stack
@@ -66,6 +65,22 @@ Validation:
 npm run lint
 npm run test:unit
 npm run ci:check
+```
+
+## MCP Integration
+
+This repo supports Figma integration via MCP (Model Context Protocol). Two servers are used:
+
+- `figma-developer-mcp` — REST API read access (requires `FIGMA_TOKEN` in `.env`)
+- Figma Desktop MCP — local server via Figma Desktop app (enable in Dev Mode inspect panel)
+
+Configure these in your agent's MCP config. Example for the REST API server:
+
+```json
+{
+  "command": "npx",
+  "args": ["-y", "figma-developer-mcp", "--figma-api-key=YOUR_TOKEN", "--stdio"]
+}
 ```
 
 ## Documentation
