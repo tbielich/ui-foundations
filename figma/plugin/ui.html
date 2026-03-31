@@ -259,6 +259,11 @@
     }
   }
 
+  resultsEl.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-fix-idx]');
+    if (btn) fixSingle(parseInt(btn.dataset.fixIdx, 10));
+  });
+
   // ── export ─────────────────────────────────────────────────────────────────
   document.getElementById('loadExportBtn').addEventListener('click', () => {
     document.getElementById('exportList').innerHTML = '<div class="empty">Loading...</div>';
@@ -344,7 +349,7 @@
         : r.expectedValue !== null ? fmtVal(r.expectedValue) : '—';
       const fixBtn = (r.status === 'wrong-binding' && r.expectedCssVar)
         || (r.status === 'mismatch' && r.variableId && r.expectedValue !== null)
-        ? '<button class="btn fix" id="fix-' + idx + '" onclick="fixSingle(' + idx + ')">Fix</button>'
+        ? '<button class="btn fix" id="fix-' + idx + '" data-fix-idx="' + idx + '">Fix</button>'
         : '';
 
       html += '<tr class="' + r.status + '">';

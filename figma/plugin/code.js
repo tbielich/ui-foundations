@@ -19,7 +19,7 @@ figma.ui.onmessage = async (msg) => {
 
   if (msg.type === 'fix') {
     try {
-      await applyFix(msg.fix);
+      await applyFix(msg.fix, null);
       figma.ui.postMessage({ type: 'fix_ok', fixId: msg.fix.id });
     } catch (err) {
       figma.ui.postMessage({ type: 'fix_error', fixId: msg.fix.id, error: err.message });
@@ -28,8 +28,10 @@ figma.ui.onmessage = async (msg) => {
 
   if (msg.type === 'fix_all') {
     const errors = [];
+    // cache variables once for all fixes
+    const varCache = figma.variables.getLocalVariables();
     for (const fix of msg.fixes) {
-      try { await applyFix(fix); }
+      try { await applyFix(fix, varCache); }
       catch (err) { errors.push({ id: fix.id, error: err.message }); }
     }
     figma.ui.postMessage({ type: 'fix_all_done', errors });
@@ -43,15 +45,13 @@ figma.ui.onmessage = async (msg) => {
 
 // ─── FIX ─────────────────────────────────────────────────────────────────────
 
-async function applyFix(fix) {
-  // wrong-binding: rebind the node property to the correct variable
+async function applyFix(fix, varCache) {
   if (fix.fixType === 'rebind') {
     const node = figma.currentPage.findOne(n => n.id === fix.nodeId);
     if (!node) throw new Error('Node not found: ' + fix.nodeId);
 
-    // find the correct variable by matching codeSyntax.WEB against the expected CSS var name
     const expectedCssVar = fix.expectedCssVar;
-    const allVars = figma.variables.getLocalVariables();
+    const allVars = varCache || figma.variables.getLocalVariables();
     const targetVar = allVars.find(v => {
       if (v.codeSyntax && v.codeSyntax.WEB) {
         const web = v.codeSyntax.WEB.replace(/^var\(/, '').replace(/\)$/, '');
@@ -65,7 +65,6 @@ async function applyFix(fix) {
     return;
   }
 
-  // mismatch: change the variable value
   const variable = figma.variables.getVariableById(fix.variableId);
   if (!variable) throw new Error('Variable not found: ' + fix.variableId);
 
@@ -107,9 +106,16 @@ function buildExports() {
   const variables = figma.variables.getLocalVariables();
   const result = {};
 
+  // group variables by collection id once
+  const byCollection = {};
+  for (const v of variables) {
+    if (!byCollection[v.variableCollectionId]) byCollection[v.variableCollectionId] = [];
+    byCollection[v.variableCollectionId].push(v);
+  }
+
   for (const col of collections) {
     const colTokens = {};
-    const colVars = variables.filter(v => v.variableCollectionId === col.id);
+    const colVars = byCollection[col.id] || [];
     for (const variable of colVars) {
       const segments = variable.name.split('/').map(s => s.trim());
       const defaultValue = variable.valuesByMode[col.defaultModeId];
@@ -248,7 +254,6 @@ function collectResults(node, tokens, results, depth, activeModes, prefix) {
   }
 }
 
-// Find the expected variable name for a component property from the token map
 // Find the expected token for a component property from the token map
 // Returns { cssVar: display name, rawKey: CSS var key, value } or null
 function findExpectedToken(tokens, nodeName, property, prefix) {
@@ -324,7 +329,9 @@ function getBoundVariables(node, activeModes) {
   return result;
 }
 
-function resolveValue(val, activeModes) {
+function resolveValue(val, activeModes, depth) {
+  if (!depth) depth = 0;
+  if (depth > 20) return null;
   if (val === null || val === undefined) return null;
   if (typeof val === 'object' && 'r' in val) return rgbaToHex(val);
   if (typeof val === 'object' && 'value' in val && 'unit' in val) return val.value;
@@ -332,7 +339,7 @@ function resolveValue(val, activeModes) {
     const ref = figma.variables.getVariableById(val.id);
     if (ref) {
       const modeId = resolveModeId(ref, activeModes);
-      if (modeId && ref.valuesByMode[modeId] !== undefined) return resolveValue(ref.valuesByMode[modeId], activeModes);
+      if (modeId && ref.valuesByMode[modeId] !== undefined) return resolveValue(ref.valuesByMode[modeId], activeModes, depth + 1);
     }
     return null;
   }
