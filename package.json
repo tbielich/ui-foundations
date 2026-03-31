@@ -46,6 +46,7 @@
     "test:unit": "node --test tests/*.test.mjs",
     "test": "npm run test:unit",
     "smoke:check": "node scripts/smoke-check.mjs",
+    "assets:check": "node scripts/check-asset-refs.mjs",
     "tokens:generate": "node scripts/extract-tokens.js",
     "tokens:validate": "node scripts/validate-tokens.mjs",
     "tokens:build": "npm run tokens:generate",
@@ -61,7 +62,7 @@
     "release:publish": "npm publish",
     "docs:build": "eleventy",
     "docs:site": "npm run build:all && npm run docs:build",
-    "ci:check": "npm run lint && npm run test:unit && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run docs:build",
+    "ci:check": "npm run lint && npm run test:unit && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run assets:check && npm run docs:build",
     "docs:dev": "npm run build:all && eleventy --serve"
   },
   "devDependencies": {
