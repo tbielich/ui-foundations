@@ -6,6 +6,7 @@ This file is the entry point for AI coding agents working in this repository.
 
 - `docs/agentic/assistant-behavior-rules.md` — behavior and architecture guardrails for assistants
 - `docs/agentic/team-ai-playbook.md` — team workflow for AI-assisted implementation
+- `docs/agentic/figma-plugin-api-reference.md` — Figma Plugin API rules and patterns for Token Foundry
 
 ## Required baseline
 
