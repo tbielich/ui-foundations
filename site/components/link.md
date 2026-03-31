@@ -43,7 +43,26 @@ permalink: /components/link/
 
 ## Usage
 
-### SSG / Nunjucks
+<div class="code-tabs">
+{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
+  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
+  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
+{% endcall %}
+<div class="code-tabs-panel" data-lang="html">
+
+```html
+<a href="/page" class="link">Go to page</a>
+
+<a href="/page" class="link">
+  <span class="icon" style="--icon-src: url('/assets/icons/login.svg')" aria-hidden="true"></span>
+  With icon
+</a>
+
+<a class="link" aria-disabled="true">Disabled</a>
+```
+
+</div>
+<div class="code-tabs-panel" data-lang="njk">
 
 {% raw %}
 ```njk
@@ -55,26 +74,8 @@ permalink: /components/link/
 ```
 {% endraw %}
 
-### HTML
-
-```html
-<a href="/page" class="link">Go to page</a>
-```
-
-With icon:
-
-```html
-<a href="/page" class="link">
-  <span class="icon" style="--icon-src: url('/assets/icons/login.svg')" aria-hidden="true"></span>
-  Go to page
-</a>
-```
-
-Disabled:
-
-```html
-<a class="link" aria-disabled="true">Unavailable</a>
-```
+</div>
+</div>
 
 ## Open Questions
 

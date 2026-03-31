@@ -8,6 +8,8 @@ permalink: /components/label/
 playgroundUrl: /components/label-playground/
 playgroundLabel: Open Label Playground
 ---
+{% import "macros/ui.njk" as ui %}
+
 
 ## Preview
 
@@ -32,7 +34,31 @@ playgroundLabel: Open Label Playground
 
 ## Usage
 
-### SSG / Nunjucks
+<div class="code-tabs">
+{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
+  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
+  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
+  {{ ui.toggleButton("React", "lang", "react", "outline") }}
+{% endcall %}
+<div class="code-tabs-panel" data-lang="html">
+
+```html
+<span class="label-content">
+  <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg')" aria-hidden="true"></span>
+  <span class="label-content__text">Search</span>
+</span>
+
+<label class="field-label" for="email">
+  <span class="label-content">
+    <span class="label-content__text">Email address</span>
+  </span>
+  <span class="field-label__required" aria-hidden="true">*</span>
+  <span class="field-label__required-text"> (required)</span>
+</label>
+```
+
+</div>
+<div class="code-tabs-panel" data-lang="njk">
 
 {% raw %}
 ```njk
@@ -45,26 +71,8 @@ playgroundLabel: Open Label Playground
 ```
 {% endraw %}
 
-### HTML
-
-```html
-<!-- Label with icon -->
-<span class="label-content">
-  <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg')" aria-hidden="true"></span>
-  <span class="label-content__text">Search</span>
-</span>
-
-<!-- Field label with required marker -->
-<label class="field-label" for="email">
-  <span class="label-content">
-    <span class="label-content__text">Email address</span>
-  </span>
-  <span class="field-label__required" aria-hidden="true">*</span>
-  <span class="field-label__required-text"> (required)</span>
-</label>
-```
-
-### React
+</div>
+<div class="code-tabs-panel" data-lang="react">
 
 {% raw %}
 ```jsx
@@ -75,6 +83,9 @@ import { LabelContent, FieldLabel } from "ui-foundations/react/label";
 <FieldLabel htmlFor="email" text="Email address" required />
 ```
 {% endraw %}
+
+</div>
+</div>
 
 ## Notes
 

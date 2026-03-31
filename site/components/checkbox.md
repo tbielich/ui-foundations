@@ -21,7 +21,23 @@ playgroundLabel: Open Checkbox Playground
 
 ## Usage
 
-### SSG / Nunjucks
+<div class="code-tabs">
+{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
+  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
+  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
+  {{ ui.toggleButton("React", "lang", "react", "outline") }}
+{% endcall %}
+<div class="code-tabs-panel" data-lang="html">
+
+```html
+<label class="checkbox-field">
+  <input class="checkbox" type="checkbox" />
+  <span class="checkbox-field__text">Accept terms</span>
+</label>
+```
+
+</div>
+<div class="code-tabs-panel" data-lang="njk">
 
 {% raw %}
 ```njk
@@ -33,16 +49,8 @@ playgroundLabel: Open Checkbox Playground
 ```
 {% endraw %}
 
-### HTML
-
-```html
-<label class="checkbox-field">
-  <input class="checkbox" type="checkbox" />
-  <span class="checkbox-field__text">Accept terms</span>
-</label>
-```
-
-### React
+</div>
+<div class="code-tabs-panel" data-lang="react">
 
 {% raw %}
 ```jsx
@@ -53,6 +61,9 @@ import { Checkbox } from "ui-foundations/react";
 <Checkbox disabled label="Disabled option" />
 ```
 {% endraw %}
+
+</div>
+</div>
 
 ## Used tokens
 

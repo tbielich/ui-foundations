@@ -831,3 +831,22 @@ html[data-brand="b"] .palette-group[data-brand-scope="a"] {
     overflow: visible;
   }
 }
+
+/* Code tabs */
+.code-tabs {
+  margin: 16px 0;
+}
+
+.code-tabs-panel {
+  display: none;
+}
+
+.code-tabs-panel.is-active {
+  display: block;
+}
+
+.code-tabs-panel pre {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-top-left-radius: 0;
+}

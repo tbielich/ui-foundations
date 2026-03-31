@@ -16,6 +16,19 @@
 
         <nav class="docs-nav" aria-label="Documentation navigation">
           <section class="docs-nav-section">
+            <ul>
+              <li>
+                <a
+                  href="/getting-started/"
+                  {% if page.url == "/getting-started/" %}aria-current="page"{% endif %}
+                >
+                  Getting Started
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="docs-nav-section">
             <h2>Tokens</h2>
             <ul>
               {% for entry in collections.tokensDocs %}
@@ -210,6 +223,38 @@
           localStorage.setItem("ui-foundations-brand", brand);
         });
       });
+    </script>
+    <script>
+      // Code tab switcher — syncs all tab groups to the same language
+      (function() {
+        var stored = localStorage.getItem("ui-foundations-code-tab") || "html";
+        var groups = document.querySelectorAll(".code-tabs");
+
+        function activate(group, lang) {
+          var buttons = group.querySelectorAll("[data-lang]");
+          var panels = group.querySelectorAll(".code-tabs-panel");
+          buttons.forEach(function(b) {
+            var active = b.dataset.lang === lang;
+            b.setAttribute("aria-pressed", active ? "true" : "false");
+            b.classList.toggle("is-active", active);
+          });
+          panels.forEach(function(p) { p.classList.toggle("is-active", p.dataset.lang === lang); });
+        }
+
+        function switchAll(lang) {
+          stored = lang;
+          localStorage.setItem("ui-foundations-code-tab", lang);
+          groups.forEach(function(g) { activate(g, lang); });
+        }
+
+        groups.forEach(function(g) {
+          activate(g, stored);
+          g.addEventListener("click", function(e) {
+            var btn = e.target.closest("[data-lang]");
+            if (btn) switchAll(btn.dataset.lang);
+          });
+        });
+      })();
     </script>
     <script src="/assets/vendor/prism/prism.js"></script>
     <script src="/assets/vendor/prism/prism-markup.min.js"></script>

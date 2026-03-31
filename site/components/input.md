@@ -21,7 +21,20 @@ playgroundLabel: Open Input Playground
 
 ## Usage
 
-### SSG / Nunjucks
+<div class="code-tabs">
+{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
+  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
+  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
+  {{ ui.toggleButton("React", "lang", "react", "outline") }}
+{% endcall %}
+<div class="code-tabs-panel" data-lang="html">
+
+```html
+<input class="input" type="text" placeholder="Email address" />
+```
+
+</div>
+<div class="code-tabs-panel" data-lang="njk">
 
 {% raw %}
 ```njk
@@ -33,13 +46,8 @@ playgroundLabel: Open Input Playground
 ```
 {% endraw %}
 
-### HTML
-
-```html
-<input class="input" type="text" placeholder="Email address" />
-```
-
-### React
+</div>
+<div class="code-tabs-panel" data-lang="react">
 
 {% raw %}
 ```jsx
@@ -50,6 +58,9 @@ import { Input } from "ui-foundations/react/input";
 <Input disabled value="Disabled field" />
 ```
 {% endraw %}
+
+</div>
+</div>
 
 ## Used tokens
 

@@ -23,7 +23,23 @@ Use `Switch` for settings that turn a behavior on or off immediately. For binary
 
 ## Usage
 
-### SSG / Nunjucks
+<div class="code-tabs">
+{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
+  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
+  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
+  {{ ui.toggleButton("React", "lang", "react", "outline") }}
+{% endcall %}
+<div class="code-tabs-panel" data-lang="html">
+
+```html
+<label class="switch-field">
+  <input class="switch" type="checkbox" role="switch" />
+  <span class="switch-field__text">Notifications</span>
+</label>
+```
+
+</div>
+<div class="code-tabs-panel" data-lang="njk">
 
 {% raw %}
 ```njk
@@ -35,16 +51,8 @@ Use `Switch` for settings that turn a behavior on or off immediately. For binary
 ```
 {% endraw %}
 
-### HTML
-
-```html
-<label class="switch-field">
-  <input class="switch" type="checkbox" role="switch" />
-  <span class="switch-field__text">Notifications</span>
-</label>
-```
-
-### React
+</div>
+<div class="code-tabs-panel" data-lang="react">
 
 {% raw %}
 ```jsx
@@ -55,6 +63,9 @@ import { Switch } from "ui-foundations/react";
 <Switch disabled label="Airplane mode" />
 ```
 {% endraw %}
+
+</div>
+</div>
 
 ## Used tokens
 

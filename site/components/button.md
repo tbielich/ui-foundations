@@ -55,7 +55,23 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
 
 ## Usage
 
-### SSG / Nunjucks
+<div class="code-tabs">
+{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
+  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
+  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
+  {{ ui.toggleButton("React", "lang", "react", "outline") }}
+{% endcall %}
+<div class="code-tabs-panel" data-lang="html">
+
+```html
+<button class="button" type="button">Solid</button>
+<button class="button outline" type="button">Outline</button>
+<button class="button ghost" type="button">Ghost</button>
+<button class="button" type="button" disabled>Disabled</button>
+```
+
+</div>
+<div class="code-tabs-panel" data-lang="njk">
 
 {% raw %}
 ```njk
@@ -68,16 +84,8 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
 ```
 {% endraw %}
 
-### HTML
-
-```html
-<button class="button" type="button">Solid</button>
-<button class="button outline" type="button">Outline</button>
-<button class="button ghost" type="button">Ghost</button>
-<button class="button" type="button" disabled>Disabled</button>
-```
-
-### React
+</div>
+<div class="code-tabs-panel" data-lang="react">
 
 ```jsx
 import { Button } from "ui-foundations/react/button";
@@ -88,6 +96,9 @@ import { Button } from "ui-foundations/react/button";
 <Button startIcon="search">Search</Button>
 <Button disabled>Disabled</Button>
 ```
+
+</div>
+</div>
 
 ## Used tokens
 
