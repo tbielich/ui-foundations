@@ -1,5 +1,5 @@
 ---
-title: Foundation-002: Naming and Grouping Conventions
+title: Foundation-002 – Naming and Grouping Conventions
 status: active
 type: foundation-decision
 ---

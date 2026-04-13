@@ -1,5 +1,5 @@
 ---
-title: Foundation-004: Typography Scale and Line Height
+title: Foundation-004 – Typography Scale and Line Height
 status: active
 type: foundation-decision
 ---

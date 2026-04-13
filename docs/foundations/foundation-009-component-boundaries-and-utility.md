@@ -1,5 +1,5 @@
 ---
-title: Foundation-009: Component Boundaries and Utility Test
+title: Foundation-009 – Component Boundaries and Utility Test
 status: active
 type: foundation-decision
 ---

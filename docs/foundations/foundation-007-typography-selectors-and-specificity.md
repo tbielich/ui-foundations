@@ -1,5 +1,5 @@
 ---
-title: Foundation-007: Typography Selectors and Specificity
+title: Foundation-007 – Typography Selectors and Specificity
 status: active
 type: foundation-decision
 ---

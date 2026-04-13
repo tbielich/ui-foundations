@@ -1,5 +1,5 @@
 ---
-title: Foundation-012: Minimal Markup and Composition
+title: Foundation-012 – Minimal Markup and Composition
 status: active
 type: foundation-decision
 ---

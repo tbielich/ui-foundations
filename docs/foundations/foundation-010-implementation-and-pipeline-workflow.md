@@ -1,5 +1,5 @@
 ---
-title: Foundation-010: Implementation and Pipeline Workflow
+title: Foundation-010 – Implementation and Pipeline Workflow
 status: active
 type: foundation-decision
 ---

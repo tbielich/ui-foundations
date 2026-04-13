@@ -1,5 +1,5 @@
 ---
-title: Foundation-008: Mode Activation and Consumer Control
+title: Foundation-008 – Mode Activation and Consumer Control
 status: active
 type: foundation-decision
 ---
