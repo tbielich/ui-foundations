@@ -176,6 +176,8 @@
   const resultsEl = document.getElementById('results');
   const summaryEl = document.getElementById('summary');
   const filterBar = document.getElementById('filterBar');
+  const exportListEl = document.getElementById('exportList');
+  const downloadAllBtn = document.getElementById('downloadAllBtn');
 
   fileInput.addEventListener('change', e => loadFile(e.target.files[0]));
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('active'); });
@@ -201,6 +203,13 @@
     reader.readAsText(file);
   }
 
+  function setResultsMessage(className, text) {
+    const div = document.createElement('div');
+    div.className = className;
+    div.textContent = text;
+    resultsEl.replaceChildren(div);
+  }
+
   // ── validate ───────────────────────────────────────────────────────────────
   validateBtn.addEventListener('click', () => {
     if (!tokens) return;
@@ -208,7 +217,7 @@
       tokens = parseCss(lastFileContent, currentMode);
     parent.postMessage({ pluginMessage: { type: 'validate', tokens, prefix: document.getElementById('prefixInput').value.trim() } }, '*');
     validateBtn.disabled = true;
-    resultsEl.innerHTML = '<div class="empty">Validating...</div>';
+    setResultsMessage('empty', 'Validating...');
     summaryEl.textContent = '';
     fixAllBtn.style.display = 'none';
   });
@@ -224,14 +233,17 @@
 
   // ── fix all ────────────────────────────────────────────────────────────────
   fixAllBtn.addEventListener('click', () => {
-    const mismatches = allResults.filter(r => (r.status === 'mismatch' || r.status === 'wrong-binding') && r.variableId);
-    if (!mismatches.length) return;
-    const fixes = mismatches.map((r, i) => {
-      if (r.status === 'wrong-binding' && r.expectedCssVar) {
-        return { id: 'fix-' + allResults.indexOf(r), fixType: 'rebind', nodeId: r.nodeId, property: r.property, expectedCssVar: r.expectedCssVar };
+    const fixes = [];
+    allResults.forEach((r, idx) => {
+      if (r.status === 'wrong-binding' && r.nodeId && r.property && r.expectedCssVar) {
+        fixes.push({ id: 'fix-' + idx, fixType: 'rebind', nodeId: r.nodeId, property: r.property, expectedCssVar: r.expectedCssVar });
+        return;
       }
-      return { id: 'fix-' + allResults.indexOf(r), fixType: 'value', variableId: r.variableId, modeId: r.modeId, expectedValue: r.expectedValue };
+      if (r.status === 'mismatch' && r.variableId && r.expectedValue !== null) {
+        fixes.push({ id: 'fix-' + idx, fixType: 'value', variableId: r.variableId, modeId: r.modeId, expectedValue: r.expectedValue });
+      }
     });
+    if (!fixes.length) return;
     parent.postMessage({ pluginMessage: { type: 'fix_all', fixes } }, '*');
     fixAllBtn.disabled = true;
     fixAllBtn.textContent = 'Fixing...';
@@ -268,11 +280,11 @@
 
   // ── export ─────────────────────────────────────────────────────────────────
   document.getElementById('loadExportBtn').addEventListener('click', () => {
-    document.getElementById('exportList').innerHTML = '<div class="empty">Loading...</div>';
+    exportListEl.innerHTML = '<div class="empty">Loading...</div>';
     parent.postMessage({ pluginMessage: { type: 'export' } }, '*');
   });
 
-  document.getElementById('downloadAllBtn').addEventListener('click', () => {
+  downloadAllBtn.addEventListener('click', () => {
     if (!exportData) return;
     const files = {};
     for (const [name, data] of Object.entries(exportData)) {
@@ -286,20 +298,25 @@
     });
   });
 
+  exportListEl.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-export-name]');
+    if (btn && exportData) downloadJson(btn.dataset.exportName + '.tokens.json', exportData[btn.dataset.exportName]);
+  });
+
   // ── messages from plugin ───────────────────────────────────────────────────
   window.onmessage = (event) => {
-    const msg = event.data.pluginMessage;
-    if (!msg) return;
+    const msg = event && event.data ? event.data.pluginMessage : null;
+    if (!msg || typeof msg !== 'object' || typeof msg.type !== 'string') return;
 
-    if (msg.type === 'error') { resultsEl.innerHTML = '<div class="error-msg">' + msg.text + '</div>'; return; }
+    if (msg.type === 'error') { setResultsMessage('error-msg', msg.text || 'Unknown error'); return; }
 
     if (msg.type === 'results') {
-      allResults = msg.results;
+      allResults = Array.isArray(msg.results) ? msg.results : [];
       const match = allResults.filter(r => r.status === 'match').length;
       const mismatch = allResults.filter(r => r.status === 'mismatch' || r.status === 'wrong-binding').length;
       const unknown = allResults.filter(r => r.status === 'unknown').length;
       if (!allResults.length) {
-        resultsEl.innerHTML = '<div class="empty">No variable bindings found.</div>';
+        setResultsMessage('empty', 'No variable bindings found.');
         summaryEl.textContent = ''; filterBar.style.display = 'none'; fixAllBtn.style.display = 'none'; return;
       }
       summaryEl.textContent = allResults.length + ' bindings — ✅ ' + match + '  ❌ ' + mismatch + '  ⚠️ ' + unknown;
@@ -336,15 +353,18 @@
 
   // ── render results table ───────────────────────────────────────────────────
   function renderResults(results) {
-    const filtered = activeFilter === 'all' ? results : results.filter(r => {
-      if (activeFilter === 'mismatch') return r.status === 'mismatch' || r.status === 'wrong-binding';
-      return r.status === activeFilter;
+    const filtered = [];
+    results.forEach((result, index) => {
+      if (activeFilter === 'all' || (activeFilter === 'mismatch' && (result.status === 'mismatch' || result.status === 'wrong-binding')) || result.status === activeFilter) {
+        filtered.push({ result, index });
+      }
     });
-    if (!filtered.length) { resultsEl.innerHTML = '<div class="empty">No results for this filter.</div>'; return; }
+    if (!filtered.length) { setResultsMessage('empty', 'No results for this filter.'); return; }
 
     let html = '<table><thead><tr><th></th><th>Property</th><th>Figma</th><th>Expected</th><th></th></tr></thead><tbody>';
-    for (const r of filtered) {
-      const idx = allResults.indexOf(r);
+    for (const entry of filtered) {
+      const r = entry.result;
+      const idx = entry.index;
       const icon = r.status === 'match' ? '✅' : r.status === 'mismatch' ? '❌' : r.status === 'wrong-binding' ? '🔀' : '⚠️';
       const figmaStr = fmtVal(r.figmaValue);
       const expStr = r.status === 'wrong-binding' && r.expectedVarName
@@ -378,18 +398,13 @@
   // ── export list ────────────────────────────────────────────────────────────
   function renderExportList(data) {
     exportData = data;
-    document.getElementById('downloadAllBtn').disabled = false;
-    const list = document.getElementById('exportList');
-    list.innerHTML = Object.entries(data).map(function(entry) {
+    downloadAllBtn.disabled = false;
+    exportListEl.innerHTML = Object.entries(data).map(function(entry) {
       var name = entry[0], tokens = entry[1];
       return '<div class="export-item"><div><div class="export-name">' + esc(name) + '.tokens.json</div>' +
         '<div class="export-meta">' + countLeaves(tokens) + ' tokens</div></div>' +
         '<div><button class="btn secondary" style="padding:4px 10px;font-size:11px;" data-export-name="' + esc(name) + '">⬇</button></div></div>';
     }).join('');
-    list.addEventListener('click', function(e) {
-      var btn = e.target.closest('[data-export-name]');
-      if (btn && exportData) downloadJson(btn.dataset.exportName + '.tokens.json', exportData[btn.dataset.exportName]);
-    });
   }
 
   function countLeaves(obj, c) {

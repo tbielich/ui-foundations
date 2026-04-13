@@ -367,16 +367,25 @@ function transformTokenNodeToW3C(tokenNode, segments, report) {
   }
 
   if (type === "string" && isFontWeightPath(segments)) {
-    const mapped = toNumericFontWeight(token.$value);
     token.$type = "fontWeight";
-    if (mapped !== null) {
-      token.$value = mapped;
-    } else {
-      report.unmappedFontWeights.push({
-        path: segments.join("/"),
-        value: token.$value,
-      });
+
+    const isAliasRef =
+      token.$value &&
+      typeof token.$value === "object" &&
+      typeof token.$value.$ref === "string";
+
+    if (!isAliasRef) {
+      const mapped = toNumericFontWeight(token.$value);
+      if (mapped !== null) {
+        token.$value = mapped;
+      } else {
+        report.unmappedFontWeights.push({
+          path: segments.join("/"),
+          value: token.$value,
+        });
+      }
     }
+
     if (token.$extensions && token.$extensions["com.figma.type"] === "string") {
       token.$extensions = {
         ...token.$extensions,

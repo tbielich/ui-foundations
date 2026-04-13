@@ -25,7 +25,22 @@ function getFiles() {
   });
 }
 
+function isLikelyEsm(source) {
+  return /^\s*(import\s|export\s)/m.test(source);
+}
+
 function runNodeCheck(filePath) {
+  const source = fs.readFileSync(filePath, "utf8");
+
+  if (isLikelyEsm(source)) {
+    return spawnSync(process.execPath, ["--input-type=module", "--check"], {
+      cwd: REPO_ROOT,
+      stdio: "pipe",
+      encoding: "utf8",
+      input: source,
+    });
+  }
+
   return spawnSync(process.execPath, ["--check", filePath], {
     cwd: REPO_ROOT,
     stdio: "pipe",
