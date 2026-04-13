@@ -1,3 +1,9 @@
+---
+title: Figma Plugin API Reference for Agents
+status: active
+type: agent-guide
+---
+
 # Figma Plugin API Reference for Agents
 
 Rules and patterns for working with the Figma Plugin API in this repo's Token Foundry plugin (`figma/plugin/`).

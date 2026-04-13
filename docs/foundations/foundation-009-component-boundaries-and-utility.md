@@ -1,3 +1,9 @@
+---
+title: Foundation-009: Component Boundaries and Utility Test
+status: active
+type: foundation-decision
+---
+
 # Foundation-009: Component Boundaries and Utility Test
 
 ## Purpose

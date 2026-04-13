@@ -1,3 +1,9 @@
+---
+title: AI Playbook
+status: active
+type: agent-guide
+---
+
 # AI Playbook
 
 This playbook defines how to use AI as an engineering copilot in this repository.

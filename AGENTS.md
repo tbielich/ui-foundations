@@ -3,11 +3,11 @@
 ## Source of Truth
 This repository is token-first and Figma-aligned.
 
-Follow:
-- docs/foundations/ → architecture decisions
-- docs/agentic/ → workflows and behavior
-
-Also read CLAUDE.md for implementation details.
+Use sources in this order when working on UI Foundations decisions:
+1. `docs/ui-foundations-rules.md` → canonical operating rules for structure, naming, theming, governance, and review
+2. `docs/foundations/` → architecture decisions and foundation-specific rules
+3. `docs/agentic/` → workflows and agent behavior
+4. `IMPLEMENTATION.md` → implementation details and repo-specific execution guidance
 
 Never contradict these sources.
 
@@ -29,6 +29,19 @@ Plan → Execute → Verify → Report
 - Work on feature branches only
 - Never rely on assumed state
 - Keep changes small, reviewable, non-breaking
+
+---
+
+## Decision Bias
+When in doubt, prefer the option that:
+- preserves Core → Semantic → Component separation
+- uses explicit semantic naming over visual naming
+- keeps Figma naming and code naming closely aligned
+- reduces ambiguity for humans and agents
+- supports brand and mode as orthogonal concerns
+- avoids undocumented exceptions
+- improves design-to-code predictability
+- scales beyond a single local use case
 
 ---
 
@@ -56,6 +69,9 @@ Never:
 - Never mix layers
 - Never hardcode values
 - Always use CSS variables: var(--...)
+- Prefer explicit semantic naming over visual or convenience naming
+- Align Figma naming and code naming as closely as possible
+- Document exceptions when a rule must be broken
 
 Do not edit generated files in `dist/`
 

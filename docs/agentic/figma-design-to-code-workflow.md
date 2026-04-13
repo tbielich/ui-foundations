@@ -1,3 +1,9 @@
+---
+title: Figma Design-to-Code Workflow
+status: active
+type: agent-guide
+---
+
 # Figma Design-to-Code Workflow
 
 Structured workflow for translating Figma designs into production code with visual fidelity. Content was rephrased from [openai/skills](https://github.com/openai/skills) for compliance with licensing restrictions (Figma Developer Terms apply).

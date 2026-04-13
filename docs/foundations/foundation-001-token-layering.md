@@ -1,3 +1,9 @@
+---
+title: Foundation-001: Token Layering Principles
+status: active
+type: foundation-decision
+---
+
 # Foundation-001: Token Layering Principles
 
 ## Purpose

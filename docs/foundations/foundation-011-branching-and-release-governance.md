@@ -1,3 +1,9 @@
+---
+title: Foundation-011: Branching and Release Governance
+status: active
+type: foundation-decision
+---
+
 # Foundation-011: Branching and Release Governance
 
 ## Purpose

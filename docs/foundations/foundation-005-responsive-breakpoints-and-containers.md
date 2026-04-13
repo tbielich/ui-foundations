@@ -1,3 +1,9 @@
+---
+title: Foundation-005: Responsive Strategy (Breakpoints and Containers)
+status: active
+type: foundation-decision
+---
+
 # Foundation-005: Responsive Strategy (Breakpoints and Containers)
 
 ## Purpose

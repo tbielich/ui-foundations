@@ -2,7 +2,9 @@
 
 This file provides implementation details for working in this repository.
 
-Follow AGENTS.md as the single source of truth for rules and behavior.
+Follow `AGENTS.md` for operational rules and source priority.
+Follow `docs/ui-foundations-rules.md` for the canonical governance model covering token layering, naming, theming, design-to-code parity, review criteria, and agent-readiness.
+This file should add implementation detail, not redefine those rules.
 
 ---
 
@@ -70,11 +72,8 @@ Notes:
 ## Token Naming
 
 - Component: `Component.variant.part.property.state` → `--component-variant-part-property-state`
-
 - Semantic: Role-based (e.g. `Color.Text.Default`)
-
 - States: `default`, `hover`, `active`, `focus`, `disabled`
-
 - CSS variables: kebab-case with `--`
 
 ---
@@ -183,4 +182,3 @@ Commands:
 - docs/agentic/
 - Figma file
 - Docs site
-

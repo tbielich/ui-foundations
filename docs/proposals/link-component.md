@@ -1,6 +1,10 @@
-# Component Proposal: Link
+---
+title: Component Proposal: Link
+status: draft
+type: proposal
+---
 
-Status: Draft
+# Component Proposal: Link
 
 ## Boundary Decision
 

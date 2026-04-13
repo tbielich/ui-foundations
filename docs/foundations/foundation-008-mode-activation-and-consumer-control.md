@@ -1,3 +1,9 @@
+---
+title: Foundation-008: Mode Activation and Consumer Control
+status: active
+type: foundation-decision
+---
+
 # Foundation-008: Mode Activation and Consumer Control
 
 ## Purpose

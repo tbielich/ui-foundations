@@ -1,3 +1,9 @@
+---
+title: Foundation-006: Z-Index and Layering Strategy
+status: active
+type: foundation-decision
+---
+
 # Foundation-006: Z-Index and Layering Strategy
 
 ## Purpose

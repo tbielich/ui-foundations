@@ -1,3 +1,9 @@
+---
+title: Foundation-007: Typography Selectors and Specificity
+status: active
+type: foundation-decision
+---
+
 # Foundation-007: Typography Selectors and Specificity
 
 ## Purpose

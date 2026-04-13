@@ -1,3 +1,9 @@
+---
+title: Figma Code Connect Workflow
+status: active
+type: agent-guide
+---
+
 # Figma Code Connect Workflow
 
 Workflow for connecting Figma design components to code implementations using Code Connect. Content was rephrased from [openai/skills](https://github.com/openai/skills) for compliance with licensing restrictions (Figma Developer Terms apply).

@@ -1,3 +1,9 @@
+---
+title: Assistant rules (UI Foundations)
+status: active
+type: agent-guide
+---
+
 # Assistant rules (UI Foundations)
 
 1. Always follow foundation rules in `/docs/foundations` as the source of truth.

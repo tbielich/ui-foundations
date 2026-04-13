@@ -1,3 +1,9 @@
+---
+title: Foundation-003: Color Semantics, Status vs State
+status: active
+type: foundation-decision
+---
+
 # Foundation-003: Color Semantics, Status vs State
 
 ## Purpose

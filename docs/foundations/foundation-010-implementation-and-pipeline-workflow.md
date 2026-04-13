@@ -1,3 +1,9 @@
+---
+title: Foundation-010: Implementation and Pipeline Workflow
+status: active
+type: foundation-decision
+---
+
 # Foundation-010: Implementation and Pipeline Workflow
 
 ## Purpose

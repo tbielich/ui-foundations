@@ -1,3 +1,9 @@
+---
+title: Agentic Skills
+status: active
+type: agent-guide
+---
+
 # Agentic Skills
 
 This directory contains repo-specific skills for AI-assisted design-system work.

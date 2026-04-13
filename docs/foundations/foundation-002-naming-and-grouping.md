@@ -1,3 +1,9 @@
+---
+title: Foundation-002: Naming and Grouping Conventions
+status: active
+type: foundation-decision
+---
+
 # Foundation-002: Naming and Grouping Conventions
 
 ## Purpose
