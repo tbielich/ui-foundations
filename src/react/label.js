@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "./icon.js";
 
-function hasTextContent(value) {
+export function hasTextContent(value) {
   if (value === null || value === undefined || value === false) return false;
   if (typeof value === "string") return value.trim().length > 0;
   if (Array.isArray(value)) return value.some(hasTextContent);

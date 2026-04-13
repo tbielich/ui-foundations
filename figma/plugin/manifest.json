@@ -2,7 +2,7 @@
   "name": "Token Foundry",
   "id": "1620762959876648836",
   "api": "1.0.0",
-  "main": "code.js",
+  "main": "code.generated.js",
   "ui": "ui.html",
   "documentAccess": "dynamic-page",
   "editorType": ["figma"],

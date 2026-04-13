@@ -7,6 +7,18 @@ function hasLabelContent(value) {
   return true;
 }
 
+function warnDev(message) {
+  if (
+    typeof process !== "undefined" &&
+    process.env &&
+    process.env.NODE_ENV === "production"
+  ) {
+    return;
+  }
+
+  console.warn(message);
+}
+
 export function Switch({
   className = "",
   wrapperClassName = "",
@@ -27,6 +39,12 @@ export function Switch({
     className: classes.join(" "),
     ...props,
   });
+
+  if (!hasLabel && !props["aria-label"] && !props["aria-labelledby"]) {
+    warnDev(
+      "[ui-foundations] Switch should include visible label content or `aria-label`/`aria-labelledby`.",
+    );
+  }
 
   if (!hasLabel) return input;
 

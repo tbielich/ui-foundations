@@ -1,5 +1,5 @@
 import React from "react";
-import { LabelContent } from "./label.js";
+import { LabelContent, hasTextContent } from "./label.js";
 
 function normalizeOrientation(value) {
   return value === "vertical" ? "vertical" : "horizontal";
@@ -7,6 +7,18 @@ function normalizeOrientation(value) {
 
 function normalizeJustify(value) {
   return value === "stretch" ? "stretch" : "start";
+}
+
+function warnDev(message) {
+  if (
+    typeof process !== "undefined" &&
+    process.env &&
+    process.env.NODE_ENV === "production"
+  ) {
+    return;
+  }
+
+  console.warn(message);
 }
 
 export function Button({
@@ -28,10 +40,7 @@ export function Button({
   if (className) classes.push(className);
 
   const content = children ?? label;
-  const hasReadableLabel =
-    typeof content === "string"
-      ? content.trim().length > 0
-      : content !== null && content !== undefined && content !== false;
+  const hasReadableLabel = hasTextContent(content);
   const resolvedIconOnly = iconOnly ?? !hasReadableLabel;
   const iconStart = resolvedIconOnly ? startIcon || endIcon : startIcon;
   const iconEnd = resolvedIconOnly ? undefined : endIcon;
@@ -49,7 +58,7 @@ export function Button({
   }
 
   if (resolvedIconOnly && !buttonProps["aria-label"]) {
-    console.warn(
+    warnDev(
       "[ui-foundations] iconOnly Button should include `ariaLabel` or `aria-label`.",
     );
   }

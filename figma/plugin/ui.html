@@ -80,6 +80,17 @@
       padding: 8px 0; border-bottom: 1px solid var(--border); }
     .export-name { font-weight: 500; font-size: 12px; }
     .export-meta { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+    .plugin-meta { padding: 8px 12px; border-bottom: 1px solid var(--border); background: var(--bg2); }
+    .plugin-meta__title { font-size: 11px; font-weight: 600; color: var(--text-strong); }
+    .plugin-meta__version { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .plugin-meta__history { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+    .plugin-meta__entry { padding-top: 6px; border-top: 1px solid var(--border); }
+    .plugin-meta__entry:first-child { border-top: none; padding-top: 0; }
+    .plugin-meta__entry-title { font-size: 11px; font-weight: 600; color: var(--text); }
+    .plugin-meta__entry-date { font-size: 10px; color: var(--text-muted); margin-left: 6px; }
+    .plugin-meta__changes { margin: 4px 0 0 16px; padding: 0; color: var(--text-muted); }
+    .plugin-meta__changes li { margin: 2px 0; }
   </style>
 </head>
 <body>
@@ -87,6 +98,12 @@
 <div class="tabs">
   <button class="tab active" data-tab="validate">🔍 Validate</button>
   <button class="tab" data-tab="export">📦 Export</button>
+</div>
+
+<div class="plugin-meta" id="pluginMeta">
+  <div class="plugin-meta__title">Token Foundry</div>
+  <div class="plugin-meta__version" id="pluginVersion">Version information unavailable</div>
+  <div class="plugin-meta__history" id="pluginHistory"></div>
 </div>
 
 <!-- VALIDATE -->
@@ -178,11 +195,15 @@
   const filterBar = document.getElementById('filterBar');
   const exportListEl = document.getElementById('exportList');
   const downloadAllBtn = document.getElementById('downloadAllBtn');
+  const pluginVersionEl = document.getElementById('pluginVersion');
+  const pluginHistoryEl = document.getElementById('pluginHistory');
 
   fileInput.addEventListener('change', e => loadFile(e.target.files[0]));
   dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('active'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('active'));
   dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('active'); loadFile(e.dataTransfer.files[0]); });
+
+  parent.postMessage({ pluginMessage: { type: 'plugin_meta' } }, '*');
 
   function loadFile(file) {
     if (!file) return;
@@ -208,6 +229,51 @@
     div.className = className;
     div.textContent = text;
     resultsEl.replaceChildren(div);
+  }
+
+  function renderPluginMeta(meta) {
+    if (!meta || typeof meta !== 'object') return;
+
+    var details = [];
+    if (meta.version) details.push('Version ' + meta.version);
+    if (meta.commit) details.push('Commit ' + meta.commit);
+    if (meta.branch) details.push('Branch ' + meta.branch);
+    if (meta.buildDate) details.push('Built ' + meta.buildDate);
+    pluginVersionEl.textContent = details.length
+      ? details.join(' • ')
+      : 'Version information unavailable';
+
+    const fragment = document.createDocumentFragment();
+    (Array.isArray(meta.history) ? meta.history : []).forEach(function(entry) {
+      const item = document.createElement('div');
+      item.className = 'plugin-meta__entry';
+
+      const title = document.createElement('div');
+      title.className = 'plugin-meta__entry-title';
+      title.textContent = entry.version || 'Unknown version';
+      if (entry.date) {
+        const date = document.createElement('span');
+        date.className = 'plugin-meta__entry-date';
+        date.textContent = entry.date;
+        title.appendChild(date);
+      }
+      item.appendChild(title);
+
+      if (Array.isArray(entry.changes) && entry.changes.length) {
+        const list = document.createElement('ul');
+        list.className = 'plugin-meta__changes';
+        entry.changes.forEach(function(change) {
+          const li = document.createElement('li');
+          li.textContent = change;
+          list.appendChild(li);
+        });
+        item.appendChild(list);
+      }
+
+      fragment.appendChild(item);
+    });
+
+    pluginHistoryEl.replaceChildren(fragment);
   }
 
   function createSwatchNode(value) {
@@ -357,6 +423,7 @@
     }
 
     if (msg.type === 'export_data') renderExportList(msg.exports);
+    if (msg.type === 'plugin_meta') renderPluginMeta(msg.meta);
   };
 
   // ── render results table ───────────────────────────────────────────────────
@@ -498,12 +565,101 @@
     return resolved;
   }
 
+  function stripCssComments(css) {
+    return String(css || '').replace(/\/\*[\s\S]*?\*\//g, '');
+  }
+
+  function readCssBlock(css, startIndex) {
+    var depth = 1;
+    var i = startIndex;
+    var quote = null;
+
+    while (i < css.length) {
+      var ch = css[i];
+      if (quote) {
+        if (ch === '\\') {
+          i += 2;
+          continue;
+        }
+        if (ch === quote) quote = null;
+        i += 1;
+        continue;
+      }
+
+      if (ch === '"' || ch === "'") {
+        quote = ch;
+        i += 1;
+        continue;
+      }
+
+      if (ch === '{') depth += 1;
+      else if (ch === '}') {
+        depth -= 1;
+        if (depth === 0) {
+          return {
+            body: css.slice(startIndex, i),
+            endIndex: i,
+          };
+        }
+      }
+      i += 1;
+    }
+
+    return {
+      body: css.slice(startIndex),
+      endIndex: css.length,
+    };
+  }
+
+  function collectRuleBlocks(css, target) {
+    var source = stripCssComments(css);
+    var cursor = 0;
+
+    while (cursor < source.length) {
+      var openIndex = source.indexOf('{', cursor);
+      if (openIndex === -1) break;
+
+      var selector = source.slice(cursor, openIndex).trim();
+      var block = readCssBlock(source, openIndex + 1);
+      var body = block.body;
+
+      if (selector.charAt(0) === '@') {
+        collectRuleBlocks(body, target);
+      } else if (selector) {
+        target.push({ selector: selector, body: body });
+      }
+
+      cursor = block.endIndex + 1;
+    }
+  }
+
+  function extractCustomProperties(body) {
+    var props = {};
+    var lines = String(body || '').split(';');
+
+    lines.forEach(function(line) {
+      var segment = line.trim();
+      if (!segment || segment.slice(0, 2) !== '--') return;
+      var colonIndex = segment.indexOf(':');
+      if (colonIndex === -1) return;
+      var name = segment.slice(2, colonIndex).trim();
+      var value = segment.slice(colonIndex + 1).trim();
+      if (!name || !value) return;
+      props[name] = value;
+    });
+
+    return props;
+  }
+
   function extractBlocks(css) {
-    var blocks = { global: {} }, re = /([^{}]+)\{([^{}]*)\}/g, m;
-    while ((m = re.exec(css)) !== null) {
-      var sel = m[1].trim(), body = m[2], props = {}, pre = /--([a-zA-Z0-9_-]+)\s*:\s*([^;]+);/g, p;
-      while ((p = pre.exec(body)) !== null) props[p[1].trim()] = p[2].trim();
-      if (!Object.keys(props).length) continue;
+    var blocks = { global: {} };
+    var rules = [];
+    collectRuleBlocks(css, rules);
+
+    rules.forEach(function(rule) {
+      var sel = rule.selector;
+      var props = extractCustomProperties(rule.body);
+      if (!Object.keys(props).length) return;
       if (/data-theme=["']dark["']/.test(sel)) blocks['dark'] = Object.assign(blocks['dark']||{}, props);
       else if (/data-theme=["']light["']/.test(sel)) blocks['light'] = Object.assign(blocks['light']||{}, props);
       else if (/data-brand=["']a["']/.test(sel)) blocks['brand-a'] = Object.assign(blocks['brand-a']||{}, props);
@@ -511,7 +667,8 @@
       else if (/data-mode=["']dark["']/.test(sel)) blocks['dark'] = Object.assign(blocks['dark']||{}, props);
       else if (/data-mode=["']light["']/.test(sel)) blocks['light'] = Object.assign(blocks['light']||{}, props);
       else if (sel.includes(':root')) Object.assign(blocks['global'], props);
-    }
+    });
+
     return blocks;
   }
 

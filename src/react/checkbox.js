@@ -7,6 +7,18 @@ function hasLabelContent(value) {
   return true;
 }
 
+function warnDev(message) {
+  if (
+    typeof process !== "undefined" &&
+    process.env &&
+    process.env.NODE_ENV === "production"
+  ) {
+    return;
+  }
+
+  console.warn(message);
+}
+
 export function Checkbox({
   className = "",
   wrapperClassName = "",
@@ -25,6 +37,12 @@ export function Checkbox({
     className: classes.join(" "),
     ...props,
   });
+
+  if (!hasLabel && !props["aria-label"] && !props["aria-labelledby"]) {
+    warnDev(
+      "[ui-foundations] Checkbox should include visible label content or `aria-label`/`aria-labelledby`.",
+    );
+  }
 
   if (!hasLabel) return input;
 

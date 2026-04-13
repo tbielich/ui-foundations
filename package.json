@@ -42,6 +42,7 @@
   },
   "scripts": {
     "icons:generate-list": "node scripts/generate-icon-list.mjs",
+    "plugin:meta": "node scripts/generate-plugin-meta.mjs",
     "lint:js": "node scripts/lint-js.mjs",
     "lint": "npm run lint:js",
     "test:unit": "node --test tests/*.test.mjs",
@@ -52,7 +53,7 @@
     "tokens:validate": "node scripts/validate-tokens.mjs",
     "tokens:build": "npm run tokens:generate",
     "build:css": "node scripts/build-css.mjs",
-    "build:all": "npm run icons:generate-list && npm run tokens:generate && npm run build:css",
+    "build:all": "npm run icons:generate-list && npm run plugin:meta && npm run tokens:generate && npm run build:css",
     "build": "npm run build:all",
     "pack:check": "npm pack --dry-run",
     "release:check": "npm run ci:check && npm run pack:check",

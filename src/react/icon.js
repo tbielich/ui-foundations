@@ -11,6 +11,18 @@ function humanizeName(name) {
     .trim();
 }
 
+function warnDev(message) {
+  if (
+    typeof process !== "undefined" &&
+    process.env &&
+    process.env.NODE_ENV === "production"
+  ) {
+    return;
+  }
+
+  console.warn(message);
+}
+
 export function Icon({
   name,
   src,
@@ -37,8 +49,14 @@ export function Icon({
   if (isDecorative) {
     accessibilityProps["aria-hidden"] = true;
   } else {
+    const accessibleLabel = label || humanizeName(name);
+    if (!accessibleLabel) {
+      warnDev(
+        "[ui-foundations] Non-decorative Icon should include a readable `label` or `name`.",
+      );
+    }
     accessibilityProps.role = "img";
-    accessibilityProps["aria-label"] = label || humanizeName(name);
+    accessibilityProps["aria-label"] = accessibleLabel;
   }
 
   return React.createElement("span", {
