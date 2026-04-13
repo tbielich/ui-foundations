@@ -85,3 +85,24 @@ test("resolveAliasRef detects alias cycles", () => {
   assert.equal(resolveAliasRef(tokenA, lookup, report), null);
   assert.deepEqual(report.aliasCycles, ["A"]);
 });
+
+
+test("resolveAliasRef resolves targets via normalized path matching", () => {
+  const target = baseToken({
+    path: "Typography/Label/Font Weight",
+    pathKey: "Typography.Label.Font Weight",
+    cssVar: "--typography-label-font-weight",
+  });
+  const source = baseToken({
+    path: "Button/Font Weight",
+    pathKey: "Button.Font Weight",
+    aliasRefPath: "typography.label.font weight",
+  });
+
+  const lookup = createTokenLookup([source, target]);
+
+  assert.equal(
+    resolveAliasRef(source, lookup, { missingAliasTargets: [], aliasCycles: [] }),
+    "var(--typography-label-font-weight)",
+  );
+});

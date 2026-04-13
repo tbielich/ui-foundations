@@ -210,6 +210,14 @@
     resultsEl.replaceChildren(div);
   }
 
+  function createSwatchNode(value) {
+    if (typeof value !== 'string' || !value.startsWith('#')) return null;
+    const swatch = document.createElement('span');
+    swatch.className = 'swatch';
+    swatch.style.background = value;
+    return swatch;
+  }
+
   // ── validate ───────────────────────────────────────────────────────────────
   validateBtn.addEventListener('click', () => {
     if (!tokens) return;
@@ -361,7 +369,19 @@
     });
     if (!filtered.length) { setResultsMessage('empty', 'No results for this filter.'); return; }
 
-    let html = '<table><thead><tr><th></th><th>Property</th><th>Figma</th><th>Expected</th><th></th></tr></thead><tbody>';
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    ['', 'Property', 'Figma', 'Expected', ''].forEach((label) => {
+      const th = document.createElement('th');
+      th.textContent = label;
+      headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+
     for (const entry of filtered) {
       const r = entry.result;
       const idx = entry.index;
@@ -370,41 +390,92 @@
       const expStr = r.status === 'wrong-binding' && r.expectedVarName
         ? 'Should be: ' + r.expectedVarName
         : r.expectedValue !== null ? fmtVal(r.expectedValue) : '—';
-      const fixBtn = (r.status === 'wrong-binding' && r.expectedCssVar)
-        || (r.status === 'mismatch' && r.variableId && r.expectedValue !== null)
-        ? '<button class="btn fix" id="fix-' + idx + '" data-fix-idx="' + idx + '">Fix</button>'
-        : '';
 
-      html += '<tr class="' + r.status + '">';
-      html += '<td>' + icon + '</td>';
-      html += '<td><span class="token-path">' + esc(r.nodeName) + '</span><br>' + esc(r.tokenName) + '</td>';
-      html += '<td>' + swatch(r.figmaValue) + esc(figmaStr) + '</td>';
-      html += '<td>' + swatch(r.expectedValue) + esc(expStr) + '</td>';
-      html += '<td>' + fixBtn + '</td>';
-      html += '</tr>';
+      const tr = document.createElement('tr');
+      tr.className = r.status;
+
+      const statusTd = document.createElement('td');
+      statusTd.textContent = icon;
+      tr.appendChild(statusTd);
+
+      const propertyTd = document.createElement('td');
+      const pathSpan = document.createElement('span');
+      pathSpan.className = 'token-path';
+      pathSpan.textContent = r.nodeName;
+      propertyTd.appendChild(pathSpan);
+      propertyTd.appendChild(document.createElement('br'));
+      propertyTd.appendChild(document.createTextNode(fmtVal(r.tokenName)));
+      tr.appendChild(propertyTd);
+
+      const figmaTd = document.createElement('td');
+      const figmaSwatch = createSwatchNode(r.figmaValue);
+      if (figmaSwatch) figmaTd.appendChild(figmaSwatch);
+      figmaTd.appendChild(document.createTextNode(figmaStr));
+      tr.appendChild(figmaTd);
+
+      const expectedTd = document.createElement('td');
+      const expectedSwatch = createSwatchNode(r.expectedValue);
+      if (expectedSwatch) expectedTd.appendChild(expectedSwatch);
+      expectedTd.appendChild(document.createTextNode(expStr));
+      tr.appendChild(expectedTd);
+
+      const actionTd = document.createElement('td');
+      if ((r.status === 'wrong-binding' && r.expectedCssVar) || (r.status === 'mismatch' && r.variableId && r.expectedValue !== null)) {
+        const button = document.createElement('button');
+        button.className = 'btn fix';
+        button.id = 'fix-' + idx;
+        button.setAttribute('data-fix-idx', String(idx));
+        button.textContent = 'Fix';
+        actionTd.appendChild(button);
+      }
+      tr.appendChild(actionTd);
+
+      tbody.appendChild(tr);
     }
-    html += '</tbody></table>';
-    resultsEl.innerHTML = html;
+
+    table.appendChild(tbody);
+    resultsEl.replaceChildren(table);
   }
 
   function fmtVal(v) { return (v === null || v === undefined) ? '—' : String(v); }
-  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function swatch(v) {
-    if (typeof v === 'string' && v.startsWith('#'))
-      return '<span class="swatch" style="background:' + v + '"></span>';
-    return '';
-  }
 
   // ── export list ────────────────────────────────────────────────────────────
   function renderExportList(data) {
     exportData = data;
     downloadAllBtn.disabled = false;
-    exportListEl.innerHTML = Object.entries(data).map(function(entry) {
+
+    const fragment = document.createDocumentFragment();
+    Object.entries(data).forEach(function(entry) {
       var name = entry[0], tokens = entry[1];
-      return '<div class="export-item"><div><div class="export-name">' + esc(name) + '.tokens.json</div>' +
-        '<div class="export-meta">' + countLeaves(tokens) + ' tokens</div></div>' +
-        '<div><button class="btn secondary" style="padding:4px 10px;font-size:11px;" data-export-name="' + esc(name) + '">⬇</button></div></div>';
-    }).join('');
+
+      var item = document.createElement('div');
+      item.className = 'export-item';
+
+      var content = document.createElement('div');
+      var nameEl = document.createElement('div');
+      nameEl.className = 'export-name';
+      nameEl.textContent = name + '.tokens.json';
+      var metaEl = document.createElement('div');
+      metaEl.className = 'export-meta';
+      metaEl.textContent = countLeaves(tokens) + ' tokens';
+      content.appendChild(nameEl);
+      content.appendChild(metaEl);
+
+      var actions = document.createElement('div');
+      var button = document.createElement('button');
+      button.className = 'btn secondary';
+      button.style.padding = '4px 10px';
+      button.style.fontSize = '11px';
+      button.setAttribute('data-export-name', name);
+      button.textContent = '⬇';
+      actions.appendChild(button);
+
+      item.appendChild(content);
+      item.appendChild(actions);
+      fragment.appendChild(item);
+    });
+
+    exportListEl.replaceChildren(fragment);
   }
 
   function countLeaves(obj, c) {

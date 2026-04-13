@@ -7,6 +7,8 @@ const {
   buildTokenKey,
   classifyTokenGroup,
   formatTokenValue,
+  resolveTokenOutputValue,
+  toNumericFontWeight,
 } = require("../scripts/extract-tokens.value.js");
 const {
   parseScopeKey,
@@ -53,4 +55,43 @@ test("scope helpers normalize and resolve selectors", () => {
   assert.deepEqual(parseScopeKey("brand:a"), { bucket: "brand", id: "a" });
   assert.equal(selectorForScope({ bucket: "mode", id: "dark" }), ':root[data-mode="dark"]');
   assert.equal(normalizePerFileBase("mode-light.tokens"), "color.light.tokens");
+});
+
+test("toNumericFontWeight maps named and numeric weights", () => {
+  assert.equal(toNumericFontWeight("semi-bold"), 600);
+  assert.equal(toNumericFontWeight("700"), 700);
+  assert.equal(toNumericFontWeight(400), 400);
+  assert.equal(toNumericFontWeight("unknown-weight"), null);
+});
+
+test("resolveTokenOutputValue converts unresolved font weight refs to numeric values", () => {
+  const token = {
+    type: "fontWeight",
+    value: { $ref: "Font/Weight/700" },
+    pathSegments: ["Typography", "Label", "Font Weight"],
+    aliasTargetId: null,
+    aliasTargetName: null,
+    aliasRefPath: null,
+  };
+
+  const report = { missingAliasTargets: [], aliasCycles: [] };
+  assert.equal(resolveTokenOutputValue(token, { byId: new Map(), byPath: new Map() }, report), 700);
+});
+
+
+test("resolveTokenOutputValue falls back to CSS var for unresolved non-font aliases", () => {
+  const token = {
+    type: "string",
+    value: { $ref: "Color/Text/Default" },
+    pathSegments: ["Button", "Text Color"],
+    aliasTargetId: null,
+    aliasTargetName: null,
+    aliasRefPath: null,
+  };
+
+  const report = { missingAliasTargets: [], aliasCycles: [] };
+  assert.equal(
+    resolveTokenOutputValue(token, { byId: new Map(), byPath: new Map() }, report),
+    "var(--color-text-default)",
+  );
 });
