@@ -48,6 +48,9 @@ if (!hasRequiredApis) {
     const queryControls = controls.filter(
       (control) => control.dataset.queryParam === "1",
     );
+    const controlByName = new Map(
+      controls.map((control) => [control.name, control]),
+    );
     applyQueryParamsToControls(queryPrefix, queryControls);
     applyControlVisibility(form, controls);
     syncColorPickersFromControls(form);
@@ -103,6 +106,28 @@ if (!hasRequiredApis) {
     });
     form.addEventListener("change", (event) => {
       if (event.target?.matches?.("[data-playground-color-picker]")) return;
+      render();
+    });
+    mountNode.addEventListener("change", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (rendererId !== "checkbox") return;
+      if (target.type !== "checkbox") return;
+
+      const checkedControl = controlByName.get("checked");
+      if (checkedControl instanceof HTMLInputElement) {
+        checkedControl.checked = target.checked;
+      }
+
+      const stateControl = controlByName.get("state");
+      if (
+        stateControl instanceof HTMLSelectElement &&
+        stateControl.value === "indeterminate" &&
+        target.indeterminate === false
+      ) {
+        stateControl.value = "default";
+      }
+
       render();
     });
     if (resetButton) {

@@ -43,6 +43,7 @@ playground:
       default: default
       options:
         - default
+        - indeterminate
         - hover
         - active
         - focus

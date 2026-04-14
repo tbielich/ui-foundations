@@ -1982,7 +1982,7 @@
       "Text Color Hover": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Text/Default"
+          "$ref": "Color/Text/Strong"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2142:554",
@@ -1993,8 +1993,8 @@
             "WEB": "var(--input-checkbox-text-color-hover)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2007:326",
-            "targetVariableName": "Color/Text/Default",
+            "targetVariableId": "VariableID:2007:355",
+            "targetVariableName": "Color/Text/Strong",
             "targetVariableSetId": "VariableCollectionId:2007:325",
             "targetVariableSetName": "Appearance (Modes)"
           },
@@ -2049,7 +2049,7 @@
         "Color Hover": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Border/Brand"
+            "$ref": "Color/Border/Strong"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2142:557",
@@ -2060,8 +2060,8 @@
               "WEB": "var(--input-checkbox-border-color-hover)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2007:345",
-              "targetVariableName": "Color/Border/Brand",
+              "targetVariableId": "VariableID:2007:344",
+              "targetVariableName": "Color/Border/Strong",
               "targetVariableSetId": "VariableCollectionId:2007:325",
               "targetVariableSetName": "Appearance (Modes)"
             },
@@ -2150,6 +2150,28 @@
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:344",
               "targetVariableName": "Color/Border/Strong",
+              "targetVariableSetId": "VariableCollectionId:2007:325",
+              "targetVariableSetName": "Appearance (Modes)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "Color Disabled": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Disabled"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2281:720",
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-checkbox-border-color-disabled)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:2007:346",
+              "targetVariableName": "Color/Border/Disabled",
               "targetVariableSetId": "VariableCollectionId:2007:325",
               "targetVariableSetName": "Appearance (Modes)"
             },
@@ -2245,6 +2267,116 @@
             },
             "com.figma.isOverride": true
           }
+        },
+        "Background Disabled": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Disabled"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2281:719",
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-checkbox-container-background-disabled)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:2007:330",
+              "targetVariableName": "Color/Fill/Disabled",
+              "targetVariableSetId": "VariableCollectionId:2007:325",
+              "targetVariableSetName": "Appearance (Modes)"
+            },
+            "com.figma.isOverride": true
+          }
+        }
+      },
+      "Text Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2281:721",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--input-checkbox-text-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:328",
+            "targetVariableName": "Color/Text/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Size Hover": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Border/200"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2287:831",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--checkbox-border-size-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:202",
+            "targetVariableName": "Size/Border/200",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Size Disabled": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Border/000"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2287:832",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--checkbox-border-size-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:212",
+            "targetVariableName": "Size/Border/000",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Size Default": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Border/100"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2287:833",
+          "com.figma.scopes": [
+            "STROKE_FLOAT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--checkbox-border-size-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:201",
+            "targetVariableName": "Size/Border/100",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
         }
       }
     }

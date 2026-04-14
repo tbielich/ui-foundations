@@ -1,4 +1,7 @@
+const { renderComponentTokenTable } = require("./site/lib/component-token-table.js");
+
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addShortcode("componentTokenTable", renderComponentTokenTable);
   eleventyConfig.addPassthroughCopy({
     "dist/main.css": "vendor/ui-foundations/main.css",
   });

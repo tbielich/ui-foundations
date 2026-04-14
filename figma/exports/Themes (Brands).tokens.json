@@ -5,7 +5,7 @@
         "Success": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Brand A/Green"
+            "$ref": "Color/Brand A/Green/600"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2006:198",
@@ -17,17 +17,17 @@
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2006:207",
-              "targetVariableName": "Color/Brand A/Green",
+              "targetVariableName": "Color/Brand A/Green/600",
               "targetVariableSetId": "VariableCollectionId:1:200",
               "targetVariableSetName": "Core (Primitives)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Brand A": {
-                "$ref": "Color/Brand A/Green"
+                "$ref": "Color/Brand A/Green/600"
               },
               "Brand B": {
-                "$ref": "Color/Brand B/Green"
+                "$ref": "Color/Brand B/Green/600"
               }
             }
           }
@@ -35,7 +35,7 @@
         "Danger": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Brand A/Red"
+            "$ref": "Color/Brand A/Red/600"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2006:206",
@@ -47,17 +47,17 @@
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2006:208",
-              "targetVariableName": "Color/Brand A/Red",
+              "targetVariableName": "Color/Brand A/Red/600",
               "targetVariableSetId": "VariableCollectionId:1:200",
               "targetVariableSetName": "Core (Primitives)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Brand A": {
-                "$ref": "Color/Brand A/Red"
+                "$ref": "Color/Brand A/Red/600"
               },
               "Brand B": {
-                "$ref": "Color/Brand B/Red"
+                "$ref": "Color/Brand B/Red/600"
               }
             }
           }
@@ -65,7 +65,7 @@
         "Base": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Brand A/Blue/700"
+            "$ref": "Color/Brand A/Green/700"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2006:211",
@@ -76,18 +76,18 @@
               "WEB": "var(--brand-color-functional-base)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:188",
-              "targetVariableName": "Color/Brand A/Blue/700",
+              "targetVariableId": "VariableID:2006:210",
+              "targetVariableName": "Color/Brand A/Green/700",
               "targetVariableSetId": "VariableCollectionId:1:200",
               "targetVariableSetName": "Core (Primitives)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Brand A": {
-                "$ref": "Color/Brand A/Blue/700"
+                "$ref": "Color/Brand A/Green/700"
               },
               "Brand B": {
-                "$ref": "Color/Brand B/Purple/600"
+                "$ref": "Color/Brand B/Purple/700"
               }
             }
           }
@@ -95,7 +95,7 @@
         "Base Dark": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Brand A/Blue/800"
+            "$ref": "Color/Brand A/Green/900"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2007:379",
@@ -106,18 +106,18 @@
               "WEB": "var(--brand-color-functional-base-dark)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:190",
-              "targetVariableName": "Color/Brand A/Blue/800",
+              "targetVariableId": "VariableID:2258:595",
+              "targetVariableName": "Color/Brand A/Green/900",
               "targetVariableSetId": "VariableCollectionId:1:200",
               "targetVariableSetName": "Core (Primitives)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Brand A": {
-                "$ref": "Color/Brand A/Blue/800"
+                "$ref": "Color/Brand A/Green/900"
               },
               "Brand B": {
-                "$ref": "Color/Brand B/Purple/800"
+                "$ref": "Color/Brand B/Purple/900"
               }
             }
           }
@@ -126,7 +126,7 @@
       "Primary": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Brand A/Purple/600"
+          "$ref": "Color/Brand A/Sand/700"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2006:200",
@@ -137,18 +137,18 @@
             "WEB": "var(--brand-color-primary)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:180",
-            "targetVariableName": "Color/Brand A/Purple/600",
+            "targetVariableId": "VariableID:2258:420",
+            "targetVariableName": "Color/Brand A/Sand/700",
             "targetVariableSetId": "VariableCollectionId:1:200",
             "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Brand A": {
-              "$ref": "Color/Brand A/Purple/600"
+              "$ref": "Color/Brand A/Sand/700"
             },
             "Brand B": {
-              "$ref": "Color/Brand B/Blue/500"
+              "$ref": "Color/Brand B/Purple/600"
             }
           }
         }
@@ -156,7 +156,7 @@
       "Accent": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Brand A/Blue/500"
+          "$ref": "Color/Brand A/Green/400"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2006:203",
@@ -167,18 +167,18 @@
             "WEB": "var(--brand-color-accent)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:186",
-            "targetVariableName": "Color/Brand A/Blue/500",
+            "targetVariableId": "VariableID:2258:425",
+            "targetVariableName": "Color/Brand A/Green/400",
             "targetVariableSetId": "VariableCollectionId:1:200",
             "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Brand A": {
-              "$ref": "Color/Brand A/Blue/500"
+              "$ref": "Color/Brand A/Green/400"
             },
             "Brand B": {
-              "$ref": "Color/Brand B/Purple/600"
+              "$ref": "Color/Brand B/Green/400"
             }
           }
         }
@@ -186,7 +186,7 @@
       "Primary Dark": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Brand A/Purple/800"
+          "$ref": "Color/Brand A/Sand/900"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:377",
@@ -197,18 +197,18 @@
             "WEB": "var(--brand-color-primary-dark)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:182",
-            "targetVariableName": "Color/Brand A/Purple/800",
+            "targetVariableId": "VariableID:2258:422",
+            "targetVariableName": "Color/Brand A/Sand/900",
             "targetVariableSetId": "VariableCollectionId:1:200",
             "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Brand A": {
-              "$ref": "Color/Brand A/Purple/800"
+              "$ref": "Color/Brand A/Sand/900"
             },
             "Brand B": {
-              "$ref": "Color/Brand B/Blue/700"
+              "$ref": "Color/Brand B/Purple/800"
             }
           }
         }
@@ -216,7 +216,7 @@
       "Accent Dark": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Brand A/Blue/700"
+          "$ref": "Color/Brand A/Green/600"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:378",
@@ -227,18 +227,18 @@
             "WEB": "var(--brand-color-accent-dark)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:188",
-            "targetVariableName": "Color/Brand A/Blue/700",
+            "targetVariableId": "VariableID:2006:207",
+            "targetVariableName": "Color/Brand A/Green/600",
             "targetVariableSetId": "VariableCollectionId:1:200",
             "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Brand A": {
-              "$ref": "Color/Brand A/Blue/700"
+              "$ref": "Color/Brand A/Green/600"
             },
             "Brand B": {
-              "$ref": "Color/Brand B/Purple/800"
+              "$ref": "Color/Brand B/Green/800"
             }
           }
         }

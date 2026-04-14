@@ -24,17 +24,29 @@ export function Checkbox({
   wrapperClassName = "",
   label,
   children,
+  indeterminate = false,
   ...props
 }) {
   const classes = ["checkbox"];
+  if (indeterminate) classes.push("is-indeterminate");
   if (className) classes.push(className);
 
   const content = children ?? label;
   const hasLabel = hasLabelContent(content);
   const disabled = Boolean(props.disabled);
+  const inputRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!inputRef.current) return;
+    inputRef.current.indeterminate = Boolean(indeterminate);
+  }, [indeterminate]);
+
   const input = React.createElement("input", {
     type: "checkbox",
     className: classes.join(" "),
+    "aria-checked":
+      props["aria-checked"] ?? (indeterminate ? "mixed" : undefined),
+    ref: inputRef,
     ...props,
   });
 

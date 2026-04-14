@@ -28,10 +28,11 @@
 <input class="{{ classes }}" type="{{ type }}"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if dataPlaygroundControl %} data-playground-control{% endif %}{% if dataProp %} data-prop="{{ dataProp }}"{% endif %}{% if dataSource %} data-source="{{ dataSource }}"{% endif %}{% if dataValueType %} data-value-type="{{ dataValueType }}"{% endif %}{% if dataQueryParam %} data-query-param="{{ dataQueryParam }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
 {%- endmacro %}
 
-{% macro checkbox(label='Checkbox', checked=false, disabled=false, state='default', className='', wrapperClassName='', id='', name='', value='on') -%}
+{% macro checkbox(label='Checkbox', checked=false, disabled=false, state='default', indeterminate=false, className='', wrapperClassName='', id='', name='', value='on') -%}
 {%- set checkboxClasses = "checkbox" -%}
 {%- set fieldClasses = "checkbox-field" -%}
 {%- if checked -%}{%- set checkboxClasses = checkboxClasses + " is-checked" -%}{%- endif -%}
+{%- if indeterminate or state == "indeterminate" -%}{%- set checkboxClasses = checkboxClasses + " is-indeterminate" -%}{%- endif -%}
 {%- if state == "hover" -%}{%- set checkboxClasses = checkboxClasses + " is-hover" -%}{%- endif -%}
 {%- if state == "active" -%}{%- set checkboxClasses = checkboxClasses + " is-active" -%}{%- endif -%}
 {%- if state == "focus" -%}{%- set checkboxClasses = checkboxClasses + " is-focus-visible" -%}{%- endif -%}
@@ -42,7 +43,7 @@
 {%- if className -%}{%- set checkboxClasses = checkboxClasses + " " + className -%}{%- endif -%}
 {%- if wrapperClassName -%}{%- set fieldClasses = fieldClasses + " " + wrapperClassName -%}{%- endif -%}
 <label class="{{ fieldClasses }}">
-  <input class="{{ checkboxClasses }}" type="checkbox"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if checked %} checked{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
+  <input class="{{ checkboxClasses }}" type="checkbox"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if checked %} checked{% endif %}{% if indeterminate or state == "indeterminate" %} aria-checked="mixed"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
   <span class="checkbox-field__text">{{ label }}</span>
 </label>
 {%- endmacro %}

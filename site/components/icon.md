@@ -67,19 +67,7 @@ import { Icon } from "ui-foundations/react/icon";
 
 ## Used tokens
 
-<div class="docs-table-wrap">
-  <table class="docs-table">
-    <thead>
-      <tr>
-        <th>Token</th>
-        <th>Usage</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><code>--icon-src</code></td><td>Mask image source URL for the icon glyph</td></tr>
-    </tbody>
-  </table>
-</div>
+{% componentTokenTable "src/ui/patterns/icon.css" %}
 
 ## React props
 
