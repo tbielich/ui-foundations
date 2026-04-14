@@ -310,6 +310,7 @@
     const previewState = String(meta.state || "default");
     const labelText = String(props.label || "Accept terms");
     const checked = asBoolean(props.checked);
+    const indeterminate = previewState === "indeterminate";
     const disabled =
       previewState === "disabled" ||
       asBoolean(props.disabled);
@@ -322,6 +323,7 @@
     const input = document.createElement("input");
     const inputClasses = ["checkbox"];
     if (checked) inputClasses.push("is-checked");
+    if (indeterminate) inputClasses.push("is-indeterminate");
     if (previewState === "hover") inputClasses.push("is-hover");
     if (previewState === "active") inputClasses.push("is-active");
     if (previewState === "focus") inputClasses.push("is-focus-visible");
@@ -331,6 +333,8 @@
     input.type = "checkbox";
     input.checked = checked;
     input.disabled = disabled;
+    input.indeterminate = indeterminate;
+    if (indeterminate) input.setAttribute("aria-checked", "mixed");
 
     const text = document.createElement("span");
     text.className = "checkbox-field__text";
@@ -343,6 +347,7 @@
       'type="checkbox"',
     ];
     if (checked) attrs.push("checked");
+    if (indeterminate) attrs.push('aria-checked="mixed"');
     if (disabled) attrs.push("disabled");
 
     const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="checkbox-field__text">${quoteAttr(labelText)}</span></label>`;

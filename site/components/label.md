@@ -95,22 +95,7 @@ import { LabelContent, FieldLabel } from "ui-foundations/react/label";
 
 ## Used tokens
 
-<div class="docs-table-wrap">
-  <table class="docs-table">
-    <thead>
-      <tr>
-        <th>Token</th>
-        <th>Usage</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><code>--label-gap</code></td><td>Spacing between icon and text inside <code>.label-content</code></td></tr>
-      <tr><td><code>--field-label-gap</code></td><td>Spacing between label content and required marker</td></tr>
-      <tr><td><code>--field-label-line-height</code></td><td>Line-height override for field labels</td></tr>
-      <tr><td><code>--field-label-required-color</code></td><td>Color of required marker (<code>*</code>)</td></tr>
-    </tbody>
-  </table>
-</div>
+{% componentTokenTable "src/ui/patterns/label.css" %}
 
 ## React exports
 
