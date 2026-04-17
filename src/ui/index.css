@@ -3,4 +3,5 @@
 @import url("./patterns/input.css") layer(components);
 @import url("./patterns/icon.css") layer(components);
 @import url("./patterns/checkbox.css") layer(components);
+@import url("./patterns/radio.css") layer(components);
 @import url("./patterns/switch.css") layer(components);
