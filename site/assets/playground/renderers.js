@@ -473,6 +473,49 @@
     return { element, code };
   };
 
+  const renderVanillaRadio = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const labelText = String(props.label || "Option A");
+    const checked = asBoolean(props.checked);
+    const disabled =
+      previewState === "disabled" ||
+      asBoolean(props.disabled);
+
+    const wrapper = document.createElement("label");
+    const wrapperClasses = ["radio-field"];
+    if (disabled) wrapperClasses.push("is-disabled");
+    wrapper.className = wrapperClasses.join(" ");
+
+    const input = document.createElement("input");
+    const inputClasses = ["radio"];
+    if (checked) inputClasses.push("is-checked");
+    if (previewState === "hover") inputClasses.push("is-hover");
+    if (previewState === "active") inputClasses.push("is-active");
+    if (previewState === "focus") inputClasses.push("is-focus-visible");
+    if (disabled) inputClasses.push("is-disabled");
+
+    input.className = inputClasses.join(" ");
+    input.type = "radio";
+    input.checked = checked;
+    input.disabled = disabled;
+
+    const text = document.createElement("span");
+    text.className = "radio-field__text";
+    text.textContent = labelText;
+
+    wrapper.append(input, text);
+
+    const attrs = [
+      `class="${quoteAttr(input.className)}"`,
+      'type="radio"',
+    ];
+    if (checked) attrs.push("checked");
+    if (disabled) attrs.push("disabled");
+
+    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="radio-field__text">${quoteAttr(labelText)}</span></label>`;
+    return { element: wrapper, code };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       button: renderVanillaButton,
@@ -481,6 +524,7 @@
       icon: renderVanillaIcon,
       input: renderVanillaInput,
       label: renderVanillaLabel,
+      radio: renderVanillaRadio,
       switch: renderVanillaSwitch,
     },
   };

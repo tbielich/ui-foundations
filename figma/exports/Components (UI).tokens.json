@@ -2379,6 +2379,284 @@
           "com.figma.isOverride": true
         }
       }
+    },
+    "Radio": {
+      "Text Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--input-radio-text-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetName": "Appearance (Modes)"
+          }
+        }
+      },
+      "Text Color Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Strong"
+        },
+        "$extensions": {
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--input-radio-text-color-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Text/Strong",
+            "targetVariableSetName": "Appearance (Modes)"
+          }
+        }
+      },
+      "Text Color Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Inverse"
+        },
+        "$extensions": {
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--input-radio-text-color-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Text/Inverse",
+            "targetVariableSetName": "Appearance (Modes)"
+          }
+        }
+      },
+      "Text Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--input-radio-text-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Text/Disabled",
+            "targetVariableSetName": "Appearance (Modes)"
+          }
+        }
+      },
+      "Border": {
+        "Color Default": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Subtle"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-border-color-default)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Border/Subtle",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        },
+        "Color Hover": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Strong"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-border-color-hover)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Border/Strong",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        },
+        "Color Active": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Brand"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-border-color-active)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Border/Brand",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        },
+        "Color Focus": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Brand"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-border-color-focus)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Border/Brand",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        },
+        "Color Disabled": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Disabled"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-border-color-disabled)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Border/Disabled",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        }
+      },
+      "Container": {
+        "Background Default": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Surface"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-container-background-default)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Fill/Surface",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        },
+        "Background Hover": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Surface"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-container-background-hover)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Fill/Surface",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        },
+        "Background Focus": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Surface"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-container-background-focus)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Fill/Surface",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        },
+        "Background Active": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Brand"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-container-background-active)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Fill/Brand",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        },
+        "Background Disabled": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Disabled"
+          },
+          "$extensions": {
+            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--input-radio-container-background-disabled)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableName": "Color/Fill/Disabled",
+              "targetVariableSetName": "Appearance (Modes)"
+            }
+          }
+        }
+      },
+      "Border Size Default": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Border/100"
+        },
+        "$extensions": {
+          "com.figma.scopes": ["STROKE_FLOAT"],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--radio-border-size-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Size/Border/100",
+            "targetVariableSetName": "Core (Primitives)"
+          }
+        }
+      },
+      "Border Size Hover": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Border/200"
+        },
+        "$extensions": {
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--radio-border-size-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Size/Border/200",
+            "targetVariableSetName": "Core (Primitives)"
+          }
+        }
+      },
+      "Border Size Disabled": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Border/000"
+        },
+        "$extensions": {
+          "com.figma.scopes": ["ALL_SCOPES"],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--radio-border-size-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Size/Border/000",
+            "targetVariableSetName": "Core (Primitives)"
+          }
+        }
+      }
     }
   },
   "Form": {
