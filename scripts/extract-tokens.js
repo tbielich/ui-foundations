@@ -307,6 +307,31 @@ function assignCssVars(tokenList, report) {
   }
 }
 
+/**
+ * Suggest a reasonable mock/fallback value for a missing alias target based on its path.
+ * These are temporary placeholders — the real values should come from Figma.
+ */
+function suggestMockValue(refPath) {
+  const lower = refPath.toLowerCase().replace(/[/. ]+/g, "/");
+
+  // Color tokens
+  if (lower.includes("color/fill/muted")) return { type: "color", value: "#e5e5e5", note: "Semantic: muted fill — add to Appearance (Modes)" };
+  if (lower.includes("color/border/focus")) return { type: "color", value: "#3b82f6", note: "Semantic: focus border — add to Appearance (Modes)" };
+  if (lower.includes("color/fill")) return { type: "color", value: "#f5f5f5", note: "Semantic fill token — add to Appearance (Modes)" };
+  if (lower.includes("color/border")) return { type: "color", value: "#d4d4d4", note: "Semantic border token — add to Appearance (Modes)" };
+  if (lower.includes("color/text")) return { type: "color", value: "#333333", note: "Semantic text token — add to Appearance (Modes)" };
+  if (lower.includes("color")) return { type: "color", value: "#808080", note: "Color token — determine correct layer" };
+
+  // Size tokens
+  if (lower.includes("size/spacing/50")) return { type: "number", value: 2, unit: "px", note: "Core: spacing 50 — add to Core (Primitives)" };
+  if (lower.includes("size/radius/100")) return { type: "number", value: 4, unit: "px", note: "Core: radius 100 — add to Core (Primitives)" };
+  if (lower.includes("size/spacing")) return { type: "number", value: 8, unit: "px", note: "Core spacing token — add to Core (Primitives)" };
+  if (lower.includes("size/border")) return { type: "number", value: 1, unit: "px", note: "Core border token — add to Core (Primitives)" };
+  if (lower.includes("size/radius")) return { type: "number", value: 4, unit: "px", note: "Core radius token — add to Core (Primitives)" };
+
+  return { type: "unknown", value: "TODO", note: "Could not infer type — review manually" };
+}
+
 function clearGeneratedFiles(dirPath, extensions) {
   if (!fs.existsSync(dirPath)) return;
   for (const entry of fs.readdirSync(dirPath)) {
@@ -472,6 +497,8 @@ async function extractTokens() {
 
     const allTokens = [];
     const perFileTokens = [];
+    const shouldMockMissing = !process.argv.includes("--strict");
+
     for (const filePath of files.sort()) {
       const data = readJsonLike(filePath);
 
@@ -531,6 +558,67 @@ async function extractTokens() {
       scopeSeen: new Map(),
     };
     assignCssVars(allTokens, report);
+
+    // --mock-missing: inject temporary fallback tokens for unresolved aliases
+    // Pre-check: try resolving all aliases to find missing targets early
+    if (shouldMockMissing) {
+      const preCheckLookup = createTokenLookup(allTokens);
+      const preCheckReport = { missingAliasTargets: [], aliasCycles: [] };
+      const { resolveAliasRef } = require("./extract-tokens.lookup.js");
+      for (const token of allTokens) {
+        if (token.aliasTargetId || token.aliasTargetName || token.aliasRefPath) {
+          resolveAliasRef(token, preCheckLookup, preCheckReport);
+        }
+      }
+
+      if (preCheckReport.missingAliasTargets.length > 0) {
+        const mockedPaths = new Set();
+        for (const tokenPath of preCheckReport.missingAliasTargets) {
+          const token = allTokens.find((t) => t.path === tokenPath);
+          if (!token) continue;
+          const refPath = token.aliasRefPath || token.aliasTargetName;
+          if (!refPath || mockedPaths.has(refPath)) continue;
+          const normalizedRef = normalizeTokenPath(refPath);
+          if (preCheckLookup.byPath.has(normalizedRef)) continue;
+
+          const mock = suggestMockValue(refPath);
+          const segments = refPath.split("/");
+          const mockToken = {
+            pathSegments: segments,
+            type: mock.type === "color" ? "color" : "number",
+            value: mock.value,
+            variableId: null,
+            path: segments.join("/"),
+            pathKey: segments.join("."),
+            aliasTargetId: null,
+            aliasTargetName: null,
+            aliasRefPath: null,
+            webSyntax: `var(--${slugifyName(segments.join("-"))})`,
+            cssVar: null,
+            cssVarRef: null,
+            sourceScope: "global:components-ui",
+            sourceFile: "mock",
+            sourceFileName: "mock",
+            _modeValues: null,
+            _isMock: true,
+          };
+          allTokens.push(mockToken);
+          mockedPaths.add(refPath);
+        }
+
+        if (mockedPaths.size > 0) {
+          // Re-assign CSS vars with the new mock tokens included
+          report.missingAliasTargets = [];
+          assignCssVars(allTokens, report);
+          console.warn(`\n🔧 Mocked ${mockedPaths.size} missing token(s) with temporary fallbacks:`);
+          for (const p of mockedPaths) {
+            const mock = suggestMockValue(p);
+            console.warn(`   • ${p} → ${mock.value} (${mock.note})`);
+          }
+          console.warn("   ⚠️  These are temporary — create the real tokens in Figma and re-export.\n");
+        }
+      }
+    }
 
     const cssDir = path.join(OUTPUT_DIR, "css");
     const jsonDir = path.join(OUTPUT_DIR, "json");
@@ -659,6 +747,38 @@ async function extractTokens() {
       report.missingAliasTargets.forEach((entry) =>
         console.warn(`  - ${entry}`),
       );
+
+      // Generate mock suggestions for missing alias targets
+      const missingRefs = new Map();
+      for (const tokenPath of report.missingAliasTargets) {
+        const token = allTokens.find((t) => t.path === tokenPath);
+        if (!token) continue;
+        const refPath = token.aliasRefPath || token.aliasTargetName;
+        if (refPath && !missingRefs.has(refPath)) {
+          missingRefs.set(refPath, {
+            ref: refPath,
+            referencedBy: [],
+            suggestedMock: suggestMockValue(refPath),
+          });
+        }
+        if (refPath) {
+          missingRefs.get(refPath).referencedBy.push(tokenPath);
+        }
+      }
+
+      if (missingRefs.size > 0) {
+        const mockReport = {
+          generated: new Date().toISOString(),
+          description: "Missing alias targets — these tokens are referenced but do not exist in any Figma export. Create them in Figma or add temporary mocks.",
+          missing: [...missingRefs.values()],
+        };
+        const mockReportPath = path.join(OUTPUT_DIR, "missing-tokens.json");
+        fs.writeFileSync(mockReportPath, JSON.stringify(mockReport, null, 2));
+        console.warn(`\n📋 Missing token report written to ${path.relative(REPO_ROOT, mockReportPath)}`);
+        console.warn("   Options:");
+        console.warn("   1. Create these variables in Figma and re-export");
+        console.warn("   2. Run: npm run tokens:generate -- --strict  (fail without mocks)");
+      }
     }
     if (report.aliasCycles.length > 0) {
       console.warn("⚠️ Alias cycle detected (literal fallback applied):");

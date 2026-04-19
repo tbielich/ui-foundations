@@ -837,6 +837,68 @@ html[data-brand="b"] .palette-group[data-brand-scope="a"] {
   margin: 16px 0;
 }
 
+/* Code-tab bar: docs-only chrome, not bound to brand theming */
+.code-tabs-bar.button-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--docs-border);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--docs-shadow-sm);
+}
+
+.code-tabs-bar.button-group[data-attached="true"] {
+  gap: 6px;
+}
+
+.code-tabs-bar.button-group[data-attached="true"] > .button {
+  border-radius: 999px;
+}
+
+.code-tabs-bar.button-group > .button {
+  min-block-size: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--docs-text-1);
+  font-size: 0.79rem;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: none;
+  transition: all 120ms ease;
+}
+
+.code-tabs-bar.button-group > .button.outline,
+.code-tabs-bar.button-group > .button.ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--docs-text-1);
+}
+
+.code-tabs-bar.button-group > .button:hover,
+.code-tabs-bar.button-group > .button.outline:hover,
+.code-tabs-bar.button-group > .button.ghost:hover {
+  border-color: var(--docs-border);
+  background: #f3f7fc;
+  color: var(--docs-text-0);
+}
+
+.code-tabs-bar.button-group > .button.is-active,
+.code-tabs-bar.button-group > .button[aria-pressed="true"],
+.code-tabs-bar.button-group > .button:active {
+  border-color: #1d4ed8;
+  background: linear-gradient(180deg, #3472ff 0%, #1d4ed8 100%);
+  color: #fff;
+}
+
+.code-tabs-bar.button-group > .button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
 .code-tabs-panel {
   display: none;
 }
