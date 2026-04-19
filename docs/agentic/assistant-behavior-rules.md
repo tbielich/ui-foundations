@@ -35,3 +35,19 @@ type: agent-guide
    - Check `dist/tokens/css/components-ui.tokens.css` for existing tokens.
    - If the component has no tokens in Figma yet, propose new ones following the naming pattern `--<component>-<part>-<property>-<state>` and add them to `components-ui.tokens.css`, referencing only Semantic or Core tokens.
    - This keeps components independently themeable and avoids hidden coupling.
+10. Token alias references must point to tokens that actually exist in the system.
+    - Before adding a `$ref`, verify the target exists in `dist/tokens/css/` (Core, Modes, Semantics).
+    - Run `npm run tokens:generate` and check for "missing alias targets" warnings.
+    - Never invent Semantic/Core token names (e.g. `Color/Fill/Muted`, `Size/Spacing/50`) — use only what the system provides.
+    - If a needed Semantic token does not exist, flag it for creation in Figma first.
+11. CSS class naming must follow the project convention: bare component name (e.g. `.slider`, `.radio`, `.checkbox`).
+    - Never prefix with `.ui-` or other namespaces.
+    - CSS patterns must be wrapped in `@layer components { }`.
+12. React wrappers must follow the existing pattern:
+    - Named `export function` (not `export const`)
+    - No CSS imports inside React files
+    - Use `React.createElement`, not JSX
+    - Class array pattern: `const classes = ["component"]; if (className) classes.push(className);`
+13. Docs-only UI (code-tabs, mode toggles) must use docs-specific CSS, not component tokens.
+    - The `.code-tabs-bar` and `.docs-header` button groups are styled in `site/assets/docs.css` with hardcoded docs colors.
+    - They must not inherit brand theming from `data-brand`.

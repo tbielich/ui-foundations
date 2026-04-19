@@ -6,7 +6,7 @@ This repository is token-first and Figma-aligned.
 Use sources in this order when working on UI Foundations decisions:
 1. `docs/ui-foundations-rules.md` → canonical operating rules for structure, naming, theming, governance, and review
 2. `docs/foundations/` → architecture decisions and foundation-specific rules
-3. `docs/agentic/` → workflows and agent behavior
+3. `docs/agentic/assistant-behavior-rules.md` → agent behavior rules and component checklist
 4. `IMPLEMENTATION.md` → implementation details and repo-specific execution guidance
 
 Never contradict these sources.
