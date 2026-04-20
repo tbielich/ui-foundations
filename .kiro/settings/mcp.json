@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "figma-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--figma-api-key=${FIGMA_TOKEN}",
+        "--stdio"
+      ],
+      "env": {
+        "FIGMA_TOKEN": "${FIGMA_TOKEN}"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "get_figma_data"
+      ]
+    },
+    "figma-desktop": {
+      "url": "http://127.0.0.1:3845/mcp",
+      "disabled": false,
+      "autoApprove": [
+        "get_metadata",
+        "get_design_context",
+        "get_variable_defs",
+        "get_screenshot",
+        "add_code_connect_map"
+      ]
+    }
+  }
+}
