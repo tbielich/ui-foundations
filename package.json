@@ -49,11 +49,12 @@
     "test": "npm run test:unit",
     "smoke:check": "node scripts/smoke-check.mjs",
     "assets:check": "node scripts/check-asset-refs.mjs",
+    "rules:validate": "node scripts/validate-rule-pipeline.mjs",
     "tokens:generate": "node scripts/extract-tokens.js",
     "tokens:validate": "node scripts/validate-tokens.mjs",
     "tokens:build": "npm run tokens:generate",
     "build:css": "node scripts/build-css.mjs",
-    "build:all": "npm run icons:generate-list && npm run plugin:meta && npm run tokens:generate && npm run build:css",
+    "build:all": "npm run icons:generate-list && npm run tokens:generate && npm run build:css",
     "build": "npm run build:all",
     "pack:check": "npm pack --dry-run",
     "release:check": "npm run ci:check && npm run pack:check",
@@ -64,7 +65,7 @@
     "release:publish": "npm publish",
     "docs:build": "eleventy",
     "docs:site": "npm run build:all && npm run docs:build",
-    "ci:check": "npm run lint && npm run test:unit && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run assets:check && npm run docs:build",
+    "ci:check": "npm run lint && npm run test:unit && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run assets:check && npm run rules:validate && npm run docs:build",
     "docs:dev": "npm run build:all && eleventy --serve"
   },
   "devDependencies": {

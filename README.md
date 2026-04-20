@@ -10,6 +10,16 @@ A token-first design system that uses Figma as the single source of truth and au
 Figma Variables → Plugin Export → figma/exports/*.tokens.json → extract-tokens.js → dist/ (CSS, JSON, TS, YAML)
 ```
 
+Rule pipeline:
+
+```
+Principles → Heuristics → Pattern rules → Component rules → Validation → CI
+```
+
+Rule sources live in `.kiro/steering/`, the executable manifest lives in
+`docs/validation/rule-pipeline.manifest.json`, and CI runs
+`npm run rules:validate` through `npm run ci:check`.
+
 ## Features
 
 - 5 variable collections: Core Primitives, Themes (Brands), Appearance (Modes), Semantics (Roles), Components (UI)
@@ -66,6 +76,7 @@ Validation:
 ```bash
 npm run lint
 npm run test:unit
+npm run rules:validate
 npm run ci:check
 ```
 
@@ -88,6 +99,7 @@ Configure these in your agent's MCP config. Example for the REST API server:
 ## Documentation
 
 - Foundations: `docs/foundations/`
+- Rule pipeline: `docs/agentic/rule-pipeline.md`
 - AI playbook: `docs/agentic/team-ai-playbook.md`
 - Figma plugin (Token Foundry): `figma/plugin/README.md`
 - Docs site: `site/`

@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "sourceOfTruth": {
+    "principles": ".kiro/steering/design-principles.md",
+    "heuristics": ".kiro/steering/usability-heuristics.md",
+    "ruleGeneration": ".kiro/steering/rule-generation.md"
+  },
+  "patternDirectory": ".kiro/steering/pattern-rules",
+  "patterns": [
+    {
+      "id": "forms",
+      "file": ".kiro/steering/pattern-rules/forms.md",
+      "principles": [
+        "principle.proximity",
+        "principle.hierarchy",
+        "principle.affordance",
+        "principle.cognitive-load"
+      ],
+      "heuristics": [
+        "heuristic.feedback",
+        "heuristic.error-prevention",
+        "heuristic.recognition",
+        "heuristic.accessibility"
+      ]
+    },
+    {
+      "id": "cards",
+      "file": ".kiro/steering/pattern-rules/cards.md",
+      "principles": [
+        "principle.proximity",
+        "principle.hierarchy",
+        "principle.affordance",
+        "principle.consistency"
+      ],
+      "heuristics": [
+        "heuristic.consistency",
+        "heuristic.recognition",
+        "heuristic.user-control",
+        "heuristic.accessibility"
+      ]
+    },
+    {
+      "id": "navigation",
+      "file": ".kiro/steering/pattern-rules/navigation.md",
+      "principles": [
+        "principle.hierarchy",
+        "principle.affordance",
+        "principle.cognitive-load",
+        "principle.consistency"
+      ],
+      "heuristics": [
+        "heuristic.recognition",
+        "heuristic.consistency",
+        "heuristic.user-control",
+        "heuristic.accessibility"
+      ]
+    },
+    {
+      "id": "modals",
+      "file": ".kiro/steering/pattern-rules/modals.md",
+      "principles": [
+        "principle.hierarchy",
+        "principle.contrast",
+        "principle.affordance",
+        "principle.cognitive-load"
+      ],
+      "heuristics": [
+        "heuristic.feedback",
+        "heuristic.error-prevention",
+        "heuristic.user-control",
+        "heuristic.accessibility"
+      ]
+    },
+    {
+      "id": "tables",
+      "file": ".kiro/steering/pattern-rules/tables.md",
+      "principles": [
+        "principle.hierarchy",
+        "principle.contrast",
+        "principle.cognitive-load",
+        "principle.consistency"
+      ],
+      "heuristics": [
+        "heuristic.feedback",
+        "heuristic.consistency",
+        "heuristic.recognition",
+        "heuristic.accessibility"
+      ]
+    },
+    {
+      "id": "search-and-filter",
+      "file": ".kiro/steering/pattern-rules/search-and-filter.md",
+      "principles": [
+        "principle.proximity",
+        "principle.hierarchy",
+        "principle.affordance",
+        "principle.cognitive-load"
+      ],
+      "heuristics": [
+        "heuristic.feedback",
+        "heuristic.error-prevention",
+        "heuristic.recognition",
+        "heuristic.user-control",
+        "heuristic.accessibility"
+      ]
+    }
+  ],
+  "componentRules": [
+    {
+      "id": "component-rule-map",
+      "file": ".kiro/steering/component-rule-map.md"
+    },
+    {
+      "id": "component-css-patterns",
+      "file": ".kiro/steering/component-patterns.md"
+    },
+    {
+      "id": "react-wrappers",
+      "file": ".kiro/steering/react-wrappers.md"
+    },
+    {
+      "id": "assistant-component-checklist",
+      "file": "docs/agentic/assistant-behavior-rules.md"
+    }
+  ],
+  "validation": {
+    "script": "scripts/validate-rule-pipeline.mjs",
+    "npmScript": "rules:validate",
+    "ciScript": "ci:check"
+  }
+}

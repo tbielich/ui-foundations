@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "name": "Check Foundations",
+  "description": "Before writing code or token files, remind the agent to verify alignment with foundation rules. Scoped to src/ and figma/ only — does not trigger on docs, configs, or steering files.",
+  "version": "1",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": [
+      "write"
+    ],
+    "patterns": [
+      "src/**",
+      "figma/**"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before making this change, verify it aligns with the foundation rules in docs/foundations/. Key rules: token layering (foundation-001), naming and grouping (foundation-002), color semantics (foundation-003), typography scale (foundation-004), component boundaries (foundation-009), implementation workflow (foundation-010). If unsure, read the relevant foundation doc first."
+  }
+}
