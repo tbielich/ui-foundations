@@ -132,6 +132,19 @@ If layout feels flat:
 → regroup elements
 → change card composition
 
+## Frame Positioning (MANDATORY)
+
+Each new frame must be placed to the right of the previous one with an 80px gap.
+
+```js
+const existing = page.children.filter(n => n.type === 'FRAME');
+const x = existing.length > 0
+  ? existing[existing.length - 1].x + 1024 + 80
+  : 0;
+slide.x = x;
+slide.y = 0;
+```
+
 ## Frame Format
 
 ```
@@ -156,6 +169,35 @@ Slide (1024×768, FIXED, clipsContent=true)
 - Every card must include ≥1 icon in its header
 - Icons must be meaningful, not decorative
 - Use the Icon component set (600 variants by `Name` property)
+
+### Icon Color Rule (CRITICAL)
+
+Icons must always match the color of their adjacent text.
+All icon child nodes are named "Vector" and share the same stroke binding,
+so rebinding the stroke color on all children recolors the whole icon.
+Also clear the instance fill to remove the white background.
+
+```js
+function recolorIcon(icon, colorVarName) {
+  const colorVar = V[colorVarName];
+  if (!colorVar) return;
+  for (const child of icon.children) {
+    if (child.strokes && child.strokes.length > 0) {
+      child.strokes = [figma.variables.setBoundVariableForPaint(
+        child.strokes[0], 'color', colorVar
+      )];
+    }
+  }
+  icon.fills = []; // remove white background
+}
+```
+
+Apply after every `IC()` call. Use the same color variable as the
+sibling text. Example: hero text uses `Color/Text/Inverse`, so
+call `recolorIcon(icon, 'Color/Text/Inverse')`.
+
+Default icon color is `Color/Text/Default`. Only override when the
+context requires a different color (inverse, brand, subtle, strong).
 
 Useful icon names by topic:
 - Tokens: `pricetag`, `diamond`, `layers`
