@@ -1,4 +1,5 @@
 import figma, { html } from "@figma/code-connect/html";
+import { ButtonGroupProps } from "./web-button-group";
 
 figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2075-349&m=dev",
@@ -15,7 +16,7 @@ figma.connect(
         false: "false",
       }),
     },
-    example: ({ orientation, attached }) => html`<div
+    example: ({ orientation, attached }: ButtonGroupProps) => html`<div
       class="button-group"
       role="group"
       data-orientation="${orientation}"

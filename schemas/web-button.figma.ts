@@ -1,4 +1,5 @@
 import figma, { html } from "@figma/code-connect/html";
+import { ButtonProps } from "./web-button";
 
 figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=1-83&m=dev",
@@ -37,7 +38,7 @@ figma.connect(
         true: "Button",
       }),
     },
-    example: ({ className, disabled, text, ariaLabel }) => html`<button
+    example: ({ className, disabled, text, ariaLabel }: ButtonProps) => html`<button
       type="button"
       class="${className}"
       disabled="${disabled}"

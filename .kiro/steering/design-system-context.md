@@ -41,7 +41,7 @@ Figma exports are the source. Generated files in `dist/` are never edited direct
 | Playground renderers | `site/assets/playground/renderers.js` |
 | Docs pages | `site/components/*.md` |
 | Playground pages | `site/components/*-playground.md` |
-| Code Connect | `figma/connections/web-*.figma.ts` |
+| Code Connect | `schemas/web-*.figma.ts` |
 | Token exports | `figma/exports/*.tokens.json` |
 | Brand overrides | `dist/tokens/css/themes-brands.tokens.*.css` |
 

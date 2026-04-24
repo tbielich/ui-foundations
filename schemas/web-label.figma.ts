@@ -1,4 +1,5 @@
 import figma, { html } from "@figma/code-connect/html";
+import { LabelProps } from "./web-label";
 
 figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2026-810&m=dev",
@@ -15,7 +16,7 @@ figma.connect(
       ]),
       text: figma.string("Text"),
     },
-    example: ({ className, text }) => html`<span style="line-height: 24px;">
+    example: ({ className, text }: LabelProps) => html`<span style="line-height: 24px;">
       <span class="${className}">
         <span class="label-content__text">${text}</span>
       </span>

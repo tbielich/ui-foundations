@@ -1,4 +1,5 @@
 import figma, { html } from "@figma/code-connect/html";
+import { InputProps } from "./web-input";
 
 figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2035-317&m=dev",
@@ -46,7 +47,7 @@ figma.connect(
         Placeholder: "",
       }),
     },
-    example: ({ className, disabled, type, readonlyAttr, placeholder, value }) => html`<input
+    example: ({ className, disabled, type, readonlyAttr, placeholder, value }: InputProps) => html`<input
       class="${className}"
       type="${type}"
       placeholder="${placeholder}"

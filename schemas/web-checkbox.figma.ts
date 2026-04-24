@@ -1,4 +1,5 @@
 import figma, { html } from "@figma/code-connect/html";
+import { CheckboxProps, CheckboxFieldProps } from "./web-checkbox";
 
 figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2142-524&m=dev",
@@ -44,7 +45,7 @@ figma.connect(
         Indeterminate: "Checkbox",
       }),
     },
-    example: ({ className, checked, disabled, indeterminate, ariaChecked, ariaLabel }) => html`<input
+    example: ({ className, checked, disabled, indeterminate, ariaChecked, ariaLabel }: CheckboxProps) => html`<input
       type="checkbox"
       class="${className}"
       checked="${checked}"
@@ -91,7 +92,7 @@ figma.connect(
       disabled: figma.boolean("Is Disabled"),
       text: figma.string("Text"),
     },
-    example: ({ wrapperClassName, className, checked, disabled, text }) => html`<label
+    example: ({ wrapperClassName, className, checked, disabled, text }: CheckboxFieldProps) => html`<label
       class="${wrapperClassName}"
     >
       <input

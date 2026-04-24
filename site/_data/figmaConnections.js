@@ -37,6 +37,6 @@ module.exports = () => {
     componentNames,
     byName,
     urlsByName,
-    sourceDir: "figma/connections",
+    sourceDir: "schemas",
   };
 };

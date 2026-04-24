@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");
 
 const iconsDir = path.join(REPO_ROOT, "src", "assets", "icons");
-const outPath = path.join(REPO_ROOT, "figma", "connections", "icon-names.ts");
+const outPath = path.join(REPO_ROOT, "schemas", "icon-names.ts");
 
 function getIconNames() {
   return fs
