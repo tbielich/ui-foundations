@@ -127,7 +127,7 @@ React (optional):
 - CSS patterns: `src/ui/patterns/*.css`
 - React: `src/react/*.js`
 - Macros: `dist/macros/ui.njk`
-- Code Connect: `figma/connections/*.figma.ts`
+- Code Connect: `schemas/*.figma.ts`
 - Token exports: `figma/exports/*.tokens.json`
 - Generated tokens: `dist/tokens/`
 - Docs: `site/`

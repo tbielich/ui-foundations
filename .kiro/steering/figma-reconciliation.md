@@ -10,7 +10,7 @@ Use this when checking for drift between Figma design and code implementation.
 
 1. `figma/exports/*.tokens.json` — token exports from Figma
 2. `dist/tokens/css/components-ui.tokens.css` — generated CSS tokens
-3. `figma/connections/web-*.figma.ts` — Code Connect mappings
+3. `schemas/web-*.figma.ts` — Code Connect mappings
 4. `src/ui/patterns/*.css` — CSS implementation
 5. `src/react/*.js` — React wrappers
 6. `site/components/` — docs and playground pages

@@ -1,11 +1,11 @@
 ---
 inclusion: fileMatch
-fileMatchPattern: "figma/connections/**"
+fileMatchPattern: "schemas/**"
 ---
 
 # Code Connect Rules
 
-When working with files in `figma/connections/`, these rules apply:
+When working with files in `schemas/`, these rules apply:
 
 ## File Convention
 - Filename: `web-<component>.figma.ts`
@@ -32,4 +32,4 @@ When working with files in `figma/connections/`, these rules apply:
 - Node IDs come from the Figma component set, not individual variants
 
 ## Reference
-- See `figma/connections/web-checkbox.figma.ts` and `web-radio.figma.ts` for the canonical pattern
+- See `schemas/web-checkbox.figma.ts` and `web-radio.figma.ts` for the canonical pattern

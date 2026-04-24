@@ -1,4 +1,5 @@
 import figma, { html } from "@figma/code-connect/html";
+import { FormProps } from "./web-form";
 
 figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2070-474&m=dev",
@@ -15,7 +16,7 @@ figma.connect(
         Valid: "Looks good",
       }),
     },
-    example: ({ state, helperText }) => html`<div
+    example: ({ state, helperText }: FormProps) => html`<div
       class="form__field"
       data-state="${state}"
     >

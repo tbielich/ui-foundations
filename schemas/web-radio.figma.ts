@@ -1,4 +1,5 @@
 import figma, { html } from "@figma/code-connect/html";
+import { RadioProps, RadioFieldProps } from "./web-radio";
 
 figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2329-241&m=dev",
@@ -27,7 +28,7 @@ figma.connect(
         Checked: "Radio",
       }),
     },
-    example: ({ className, checked, disabled, ariaLabel }) => html`<input
+    example: ({ className, checked, disabled, ariaLabel }: RadioProps) => html`<input
       type="radio"
       class="${className}"
       checked="${checked}"
@@ -69,7 +70,7 @@ figma.connect(
       disabled: figma.boolean("Is Disabled"),
       text: figma.string("Text"),
     },
-    example: ({ wrapperClassName, className, checked, disabled, text }) => html`<label
+    example: ({ wrapperClassName, className, checked, disabled, text }: RadioFieldProps) => html`<label
       class="${wrapperClassName}"
     >
       <input

@@ -13,7 +13,7 @@ const PATTERNS = [
   "scripts/**/*.{js,mjs,cjs}",
   "site/**/*.js",
   "src/**/*.js",
-  "figma/connections/**/*.{js,mjs,cjs}",
+  "schemas/**/*.{js,mjs,cjs}",
 ];
 
 function getFiles() {

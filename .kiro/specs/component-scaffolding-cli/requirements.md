@@ -117,7 +117,7 @@ The Component Scaffolding CLI is a planned npm script that auto-generates all re
 
 #### Acceptance Criteria
 
-1. WHEN the CLI generates the Code Connect file, THE CLI SHALL create the file at `figma/connections/web-<Component_Name>.figma.ts`
+1. WHEN the CLI generates the Code Connect file, THE CLI SHALL create the file at `schemas/web-<Component_Name>.figma.ts`
 2. THE CLI SHALL include the standard `import figma, { html } from "@figma/code-connect/html"` import
 3. THE CLI SHALL include a skeleton `figma.connect()` call with a `TODO` comment for the Figma node URL and props mapping
 4. THE CLI SHALL use the correct HTML class name (bare Component_Name) in the example template
