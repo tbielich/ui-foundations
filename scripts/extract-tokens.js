@@ -474,6 +474,110 @@ function stripFigmaExtensions(node) {
   return out;
 }
 
+/**
+ * Convert Figma-style alias references to DTCG alias syntax.
+ * Figma: { "$ref": "Path/To/Token" }
+ * DTCG:  "{Path.To.Token}"
+ */
+function convertAliasesToDTCG(node) {
+  if (!node || typeof node !== "object") return node;
+  if (Array.isArray(node)) return node.map(convertAliasesToDTCG);
+
+  // If this is a token node, convert its $value (and leave $type/$extensions alone)
+  if (isTokenNode(node)) {
+    const out = {};
+    for (const [key, value] of Object.entries(node)) {
+      if (key === "$value") {
+        out[key] = convertValueAliases(value);
+      } else if (key === "$extensions") {
+        out[key] = convertAliasesToDTCG(value);
+      } else {
+        out[key] = value;
+      }
+    }
+    return out;
+  }
+
+  // Recurse into groups
+  const out = {};
+  for (const [key, value] of Object.entries(node)) {
+    out[key] = convertAliasesToDTCG(value);
+  }
+  return out;
+}
+
+/**
+ * Convert a $value that may be a Figma alias object to a DTCG alias string.
+ * { "$ref": "Color/Neutral/800" } → "{Color.Neutral.800}"
+ */
+function convertValueAliases(value) {
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    if (typeof value.$ref === "string") {
+      const dtcgPath = value.$ref.replace(/\//g, ".");
+      return `{${dtcgPath}}`;
+    }
+  }
+  return value;
+}
+
+/**
+ * Convert Figma color value objects to DTCG hex strings.
+ * Figma: { colorSpace: "srgb", components: [r, g, b], alpha: 1, hex: "#333333" }
+ * DTCG:  "#333333" or "#333333cc" (with alpha)
+ */
+function convertColorValuesToDTCG(node) {
+  if (!node || typeof node !== "object") return node;
+  if (Array.isArray(node)) return node.map(convertColorValuesToDTCG);
+
+  if (isTokenNode(node)) {
+    const type = String(node.$type || "").toLowerCase();
+    if (type === "color" && isFigmaColorObject(node.$value)) {
+      const out = { ...node };
+      out.$value = figmaColorToHex(node.$value);
+      return convertColorValuesToDTCG(out);
+    }
+    // Recurse into $extensions in case there are nested structures
+    const out = {};
+    for (const [key, value] of Object.entries(node)) {
+      out[key] = key === "$extensions" ? convertColorValuesToDTCG(value) : value;
+    }
+    return out;
+  }
+
+  const out = {};
+  for (const [key, value] of Object.entries(node)) {
+    out[key] = convertColorValuesToDTCG(value);
+  }
+  return out;
+}
+
+function isFigmaColorObject(value) {
+  return (
+    value &&
+    typeof value === "object" &&
+    !Array.isArray(value) &&
+    typeof value.colorSpace === "string" &&
+    Array.isArray(value.components)
+  );
+}
+
+function figmaColorToHex(colorObj) {
+  const { components, alpha } = colorObj;
+  const toHex = (n) => {
+    const clamped = Math.round(Math.min(1, Math.max(0, n)) * 255);
+    return clamped.toString(16).padStart(2, "0");
+  };
+  const r = toHex(components[0] || 0);
+  const g = toHex(components[1] || 0);
+  const b = toHex(components[2] || 0);
+
+  if (typeof alpha === "number" && alpha < 1) {
+    const a = toHex(alpha);
+    return `#${r}${g}${b}${a}`;
+  }
+  return `#${r}${g}${b}`;
+}
+
 function withSchema(node) {
   if (!node || typeof node !== "object" || Array.isArray(node)) return node;
   return {
@@ -650,7 +754,9 @@ async function extractTokens() {
       const perTokens = buildTokensFromList(tokenList, report, globalLookup);
       const transformReport = { unmappedFontWeights: [] };
       const w3cTokens = transformNodeToW3C(sourceData, [], transformReport);
-      const cleanTokens = withSchema(stripFigmaExtensions(w3cTokens));
+      const dtcgAliases = convertAliasesToDTCG(w3cTokens);
+      const dtcgColors = convertColorValuesToDTCG(dtcgAliases);
+      const cleanTokens = withSchema(stripFigmaExtensions(dtcgColors));
       const jsonOut = JSON.stringify(cleanTokens, null, 2);
       const cssOut = generateCSS(perTokens, scope);
       const tsOut = generateTypeScript(perTokens);
