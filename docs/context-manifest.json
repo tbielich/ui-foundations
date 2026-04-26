@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "description": "Agent context loading manifest for UI Foundations",
+  "readFirst": [
+    "AGENTS.md",
+    "docs/working-context.md",
+    "docs/ui-foundations-rules.md"
+  ],
+  "contextFiles": {
+    "design": {
+      "path": "DESIGN.md",
+      "purpose": "Executive design contract",
+      "priority": 1
+    },
+    "agentRules": {
+      "path": "AGENTS.md",
+      "purpose": "Agent behavior rules and workflow",
+      "priority": 2
+    },
+    "workingContext": {
+      "path": "docs/working-context.md",
+      "purpose": "Current priorities and non-negotiables",
+      "priority": 3
+    },
+    "operatingRules": {
+      "path": "docs/ui-foundations-rules.md",
+      "purpose": "Canonical operating rules for structure, naming, theming, governance",
+      "priority": 4
+    },
+    "implementation": {
+      "path": "IMPLEMENTATION.md",
+      "purpose": "Repo-specific execution guidance",
+      "priority": 5
+    },
+    "tokenPipeline": {
+      "path": "docs/token-pipeline.md",
+      "purpose": "Token generation pipeline and format reference",
+      "priority": 6
+    }
+  },
+  "contextDirectories": {
+    "foundations": {
+      "path": "docs/foundations/",
+      "purpose": "Architecture decisions and foundation-specific rules"
+    },
+    "agentic": {
+      "path": "docs/agentic/",
+      "purpose": "Agent behavior rules and component checklist"
+    },
+    "validation": {
+      "path": "docs/validation/",
+      "purpose": "Rule pipeline manifest and validation metadata"
+    },
+    "steering": {
+      "path": ".kiro/steering/",
+      "purpose": "Design principles, heuristics, pattern and component rules"
+    }
+  },
+  "tokenSources": {
+    "figmaExports": "figma/exports/*.tokens.json",
+    "distJson": "dist/tokens/json/*.json",
+    "distCss": "dist/tokens/css/*.css"
+  }
+}
