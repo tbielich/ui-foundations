@@ -1,13 +1,16 @@
 # UI Foundations — Agent Rules
 
-## Source of Truth
-This repository is token-first and Figma-aligned.
+## Context Loading Order
 
-Use sources in this order when working on UI Foundations decisions:
-1. `docs/ui-foundations-rules.md` → canonical operating rules for structure, naming, theming, governance, and review
-2. `docs/foundations/` → architecture decisions and foundation-specific rules
-3. `docs/agentic/assistant-behavior-rules.md` → agent behavior rules and component checklist
-4. `IMPLEMENTATION.md` → implementation details and repo-specific execution guidance
+Before acting, agents must load context in this order:
+
+1. `DESIGN.md` → executive design contract
+2. `AGENTS.md` → this file (behavior rules)
+3. `docs/working-context.md` → current priorities
+4. `docs/ui-foundations-rules.md` → canonical operating rules
+5. `docs/foundations/` → architecture decisions
+6. `docs/agentic/assistant-behavior-rules.md` → component checklist
+7. `IMPLEMENTATION.md` → repo-specific execution guidance
 
 Never contradict these sources.
 
@@ -99,3 +102,13 @@ Before completion:
 - Verify results after execution
 
 If not verified → not true
+
+## Agent Modes
+
+Depending on the task, load a mode from: `docs/agentic/modes/`
+
+If unclear:
+
+- default = Implementation
+- exploratory tasks = Pattern Discovery or Token Proposal
+- review tasks = Audit

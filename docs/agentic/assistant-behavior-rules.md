@@ -51,3 +51,14 @@ type: agent-guide
 13. Docs-only UI (code-tabs, mode toggles) must use docs-specific CSS, not component tokens.
     - The `.code-tabs-bar` and `.docs-header` button groups are styled in `site/assets/docs.css` with hardcoded docs colors.
     - They must not inherit brand theming from `data-brand`.
+
+## Modes
+
+The agent operates in different modes depending on the task:
+
+- **Implementation** → modify system
+- **Audit** → inspect only
+- **Pattern Discovery** → design patterns
+- **Token Proposal** → suggest tokens
+
+Mode-specific rules are defined in: `docs/agentic/modes/`
