@@ -49,8 +49,6 @@ playgroundLabel: Open Button Playground
     <li><a href="#keyboard-interactions">Keyboard interactions</a></li>
     <li><a href="#accessibility">Accessibility</a></li>
     <li><a href="#theming">Theming</a></li>
-    <li><a href="#code-usage">Code usage</a></li>
-    <li><a href="#used-tokens">Used tokens</a></li>
     <li><a href="#design-checklist">Design checklist</a></li>
   </ul>
 </nav>
@@ -58,14 +56,25 @@ playgroundLabel: Open Button Playground
 <h2 id="anatomy">Anatomy</h2>
 
 <div class="docs-anatomy">
-  <div class="docs-stack">
-    {{ ui.button("Label", "") }}
+  <div class="docs-anatomy-preview">
+    <div class="docs-anatomy-subject">
+      <span class="docs-anatomy-outline"></span>
+      <span class="docs-anatomy-callout" data-dir="top" style="left: 50%; transform: translateX(-50%);">
+        <span class="docs-anatomy-badge">1</span>
+        <span class="docs-anatomy-callout-line"></span>
+      </span>
+      <span class="docs-anatomy-callout" data-dir="right" style="top: 50%; transform: translateY(-50%);">
+        <span class="docs-anatomy-callout-line"></span>
+        <span class="docs-anatomy-badge">2</span>
+      </span>
+      {{ ui.button("Get started", "") }}
+    </div>
   </div>
+  <ol class="docs-anatomy-footnotes">
+    <li><span class="docs-anatomy-badge-inline">1</span> Container — provides the hit target, border, and fill</li>
+    <li><span class="docs-anatomy-badge-inline">2</span> Label — describes the action the button performs</li>
+  </ol>
 </div>
-
-A button consists of a container, a text label, and an optional leading icon.
-The label describes the action. The container provides the hit target and
-communicates the variant through fill, border, and color.
 
 <h2 id="options">Options</h2>
 
@@ -352,57 +361,6 @@ tokens. Use the hero preview switches above to see it in action.
 
 For the full theming architecture — brands, modes, and how tokens cascade — see
 [Foundations: Theming](/foundations/theming/).
-
-<h2 id="code-usage">Code usage</h2>
-
-<div class="code-tabs">
-{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
-  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
-  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
-  {{ ui.toggleButton("React", "lang", "react", "outline") }}
-{% endcall %}
-<div class="code-tabs-panel" data-lang="html">
-
-```html
-<button class="button" type="button">Solid</button>
-<button class="button outline" type="button">Outline</button>
-<button class="button ghost" type="button">Ghost</button>
-<button class="button" type="button" disabled>Disabled</button>
-```
-
-</div>
-<div class="code-tabs-panel" data-lang="njk">
-
-{% raw %}
-```njk
-{% import "macros/ui.njk" as ui %}
-
-{{ ui.button("Solid") }}
-{{ ui.button("Outline", "outline") }}
-{{ ui.button("Ghost", "ghost") }}
-{{ ui.button("Disabled", "", true) }}
-```
-{% endraw %}
-
-</div>
-<div class="code-tabs-panel" data-lang="react">
-
-```jsx
-import { Button } from "ui-foundations/react/button";
-
-<Button>Solid</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
-<Button startIcon="search">Search</Button>
-<Button disabled>Disabled</Button>
-```
-
-</div>
-</div>
-
-<h2 id="used-tokens">Used tokens</h2>
-
-{% componentTokenTable "src/ui/patterns/button.css" %}
 
 <h2 id="design-checklist">Design checklist</h2>
 

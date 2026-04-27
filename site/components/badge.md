@@ -1,7 +1,7 @@
 ---
 layout: layouts/docs.njk
 title: Badge
-description: Small pill-shaped label for status, counts, or highlights.
+description: Badges are small pill-shaped labels for status, counts, or highlights. Non-interactive, they adapt across brands and modes.
 navTitle: Badge
 order: 15
 permalink: /components/badge/
@@ -29,7 +29,7 @@ playgroundLabel: Open Badge Playground
     </div>
   </div>
   <div class="docs-hero-meta">
-    <span class="docs-status" data-status="stable">Stable</span>
+    <span class="docs-status" data-status="draft">Draft</span>
     {% if playgroundUrl %}
     <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
     {% endif %}
@@ -39,104 +39,132 @@ playgroundLabel: Open Badge Playground
   </div>
 </div>
 
-## Preview
+<h2 id="anatomy">Anatomy</h2>
 
-<div class="docs-stack">
-  {{ ui.badge("Default") }}
-  {{ ui.badge("Brand", variant="brand") }}
-  {{ ui.badge("Success", variant="success") }}
-  {{ ui.badge("Danger", variant="danger") }}
-  {{ ui.badge("Small", size="sm") }}
-  {{ ui.badge("With Icon", variant="brand", startIcon="star") }}
+<div class="docs-anatomy">
+  <div class="docs-anatomy-preview">
+    <div class="docs-anatomy-subject">
+      <span class="docs-anatomy-outline"></span>
+      <span class="docs-anatomy-callout" data-dir="top" style="left: 50%; transform: translateX(-50%);">
+        <span class="docs-anatomy-badge">1</span>
+        <span class="docs-anatomy-callout-line"></span>
+      </span>
+      <span class="docs-anatomy-callout" data-dir="right" style="top: 50%; transform: translateY(-50%);">
+        <span class="docs-anatomy-callout-line"></span>
+        <span class="docs-anatomy-badge">2</span>
+      </span>
+      {{ ui.badge("Brand", variant="brand", startIcon="star") }}
+    </div>
+  </div>
+  <ol class="docs-anatomy-footnotes">
+    <li><span class="docs-anatomy-badge-inline">1</span> Container — pill-shaped background with variant color</li>
+    <li><span class="docs-anatomy-badge-inline">2</span> Text + optional icon — label content</li>
+  </ol>
 </div>
 
-## Usage
+<h2 id="options">Options</h2>
 
-<div class="code-tabs">
-{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
-  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
-  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
-  {{ ui.toggleButton("React", "lang", "react", "outline") }}
-{% endcall %}
-<div class="code-tabs-panel" data-lang="html">
+### Variants
 
-```html
-<span class="badge">
-  <span class="badge__text">Default</span>
-</span>
-
-<span class="badge brand">
-  <span class="badge__text">Brand</span>
-</span>
-
-<span class="badge success sm">
-  <span class="badge__text">New</span>
-</span>
-
-<span class="badge danger">
-  <span class="badge__text">3</span>
-</span>
-```
-
-</div>
-<div class="code-tabs-panel" data-lang="njk">
-
-{% raw %}
-```njk
-{% import "macros/ui.njk" as ui %}
-
-{{ ui.badge("Default") }}
-{{ ui.badge("Brand", variant="brand") }}
-{{ ui.badge("New", variant="success", size="sm") }}
-{{ ui.badge("3", variant="danger") }}
-{{ ui.badge("Featured", variant="brand", startIcon="star") }}
-```
-{% endraw %}
-
-</div>
-<div class="code-tabs-panel" data-lang="react">
-
-{% raw %}
-```jsx
-import { Badge } from "ui-foundations/react/badge";
-
-<Badge text="Default" />
-<Badge text="Brand" variant="brand" />
-<Badge text="New" variant="success" size="sm" />
-<Badge text="3" variant="danger" />
-<Badge text="Featured" variant="brand" startIcon="star" />
-```
-{% endraw %}
-
-</div>
+<div class="docs-states-grid" style="--docs-states-cols: 4">
+  <div class="docs-states-grid-item">
+    <div class="docs-states-grid-item-preview">{{ ui.badge("Default") }}</div>
+    <span class="docs-states-grid-item-label">Default</span>
+  </div>
+  <div class="docs-states-grid-item">
+    <div class="docs-states-grid-item-preview">{{ ui.badge("Brand", variant="brand") }}</div>
+    <span class="docs-states-grid-item-label">Brand</span>
+  </div>
+  <div class="docs-states-grid-item">
+    <div class="docs-states-grid-item-preview">{{ ui.badge("Success", variant="success") }}</div>
+    <span class="docs-states-grid-item-label">Success</span>
+  </div>
+  <div class="docs-states-grid-item">
+    <div class="docs-states-grid-item-preview">{{ ui.badge("Danger", variant="danger") }}</div>
+    <span class="docs-states-grid-item-label">Danger</span>
+  </div>
 </div>
 
-## Variants
+### Table of options
 
-| Variant   | Class     | Purpose                          |
-|-----------|-----------|----------------------------------|
-| default   | `.badge`  | Subtle background, default text  |
-| brand     | `.brand`  | Brand fill, inverse text         |
-| success   | `.success`| Success fill, inverse text       |
-| danger    | `.danger` | Danger fill, inverse text        |
+<table class="docs-options-table">
+  <thead><tr><th>Property</th><th>Values</th><th>Default</th></tr></thead>
+  <tbody>
+    <tr><td>text</td><td>text</td><td>—</td></tr>
+    <tr><td>variant</td><td><code>default</code> / <code>brand</code> / <code>success</code> / <code>danger</code></td><td><code>default</code></td></tr>
+    <tr><td>size</td><td><code>md</code> / <code>sm</code></td><td><code>md</code></td></tr>
+    <tr><td>startIcon</td><td>icon name / none</td><td>none</td></tr>
+  </tbody>
+</table>
 
-## Sizes
+<h2 id="behaviors">Behaviors</h2>
 
-| Size | Class | Font size | Padding |
-|------|-------|-----------|---------|
-| md   | —     | `--badge-font-size-md` | `--badge-padding-inline-md` / `--badge-padding-block-md` |
-| sm   | `.sm` | `--badge-font-size-sm` | `--badge-padding-inline-sm` / `--badge-padding-block-sm` |
+<div class="docs-behavior-list">
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">{{ ui.badge("3", variant="danger") }}</div>
+    <div class="docs-behavior-body">
+      <h3>Non-interactive</h3>
+      <p>Badges are read-only. They cannot be clicked, focused, or dismissed.</p>
+    </div>
+  </div>
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">{{ ui.badge("Featured", variant="brand", startIcon="star") }}</div>
+    <div class="docs-behavior-body">
+      <h3>Optional icon</h3>
+      <p>A leading icon reinforces the badge meaning. It is decorative and inherits the text color.</p>
+    </div>
+  </div>
+</div>
 
-## Notes
+<h2 id="usage-guidelines">Usage guidelines</h2>
 
-- Badge is non-interactive. For clickable status labels, compose with a link or button.
-- Use `startIcon` for a leading decorative icon via the Icon component.
-- All colors adapt to brand and mode through semantic tokens.
+### Use the right variant for the meaning
 
-## Used tokens
+<div class="docs-guideline">
+  <div class="docs-guideline-item" data-type="do">
+    <div class="docs-guideline-preview">{{ ui.badge("Confirmed", variant="success") }}</div>
+    <div class="docs-guideline-body">
+      <p class="docs-guideline-label">Do</p>
+      <p>Use semantic variants to communicate status meaning.</p>
+    </div>
+  </div>
+  <div class="docs-guideline-item" data-type="dont">
+    <div class="docs-guideline-preview">{{ ui.badge("Confirmed", variant="brand") }}</div>
+    <div class="docs-guideline-body">
+      <p class="docs-guideline-label">Don't</p>
+      <p>Don't use brand for status — it doesn't convey success or danger.</p>
+    </div>
+  </div>
+</div>
 
-{% componentTokenTable "src/ui/patterns/badge.css" %}
+<h2 id="content-standards">Content standards</h2>
 
-## React exports
+- Keep text to 1–2 words or a number. Use sentence case. No punctuation.
 
-- `Badge`: pill-shaped status label with variant, size, and optional icon
+<h2 id="keyboard-interactions">Keyboard interactions</h2>
+
+Badges are non-interactive and not focusable.
+
+<h2 id="accessibility">Accessibility</h2>
+
+- Badge is a `<span>` — no interactive role.
+- Icons inside badges are decorative (`aria-hidden="true"`).
+- Color is not the only means of conveying variant meaning.
+
+<h2 id="theming">Theming</h2>
+
+Badge adapts across brands and modes through semantic tokens. Use the hero switches above.
+
+For the full theming architecture see [Foundations: Theming](/foundations/theming/).
+
+<h2 id="design-checklist">Design checklist</h2>
+
+<div class="docs-checklist">
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All color themes</strong><span>Works across light and dark modes.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Accessible use of color</strong><span>Text conveys meaning, not color alone (WCAG 1.4.1).</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Accessible contrast</strong><span>Text and background meet requirements.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Defined options</strong><span>Variant, size, icon documented.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Usage guidelines</strong><span>Variant selection do/don't.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>All visual attributes as tokens.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Figma component</strong><span>Available in Figma library.</span></div></div>
+</div>

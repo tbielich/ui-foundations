@@ -40,93 +40,119 @@ playgroundLabel: Open Label Playground
   </div>
 </div>
 
-## Preview
+<h2 id="anatomy">Anatomy</h2>
 
-<div class="docs-stack docs-icon-line-height">
-  <span class="label-content">
-    <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-    <span class="label-content__text">Search</span>
-  </span>
-
-  <span class="label-content is-icon-only">
-    <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span>
-  </span>
-
-  <label class="field-label" for="preview-email">
-    <span class="label-content">
-      <span class="label-content__text">Email address</span>
-    </span>
-    <span class="field-label__required" aria-hidden="true">*</span>
-    <span class="field-label__required-text"> (required)</span>
-  </label>
+<div class="docs-anatomy">
+  <div class="docs-anatomy-preview">
+    <div class="docs-anatomy-subject">
+      <span class="docs-anatomy-outline"></span>
+      <span class="docs-anatomy-callout" data-dir="left" style="top: 50%; transform: translateY(-50%);">
+        <span class="docs-anatomy-badge">1</span>
+        <span class="docs-anatomy-callout-line"></span>
+      </span>
+      <span class="docs-anatomy-callout" data-dir="right" style="top: 50%; transform: translateY(-50%);">
+        <span class="docs-anatomy-callout-line"></span>
+        <span class="docs-anatomy-badge">2</span>
+      </span>
+      <span class="label-content">
+        <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+        <span class="label-content__text">Search</span>
+      </span>
+    </div>
+  </div>
+  <ol class="docs-anatomy-footnotes">
+    <li><span class="docs-anatomy-badge-inline">1</span> Start icon slot — optional decorative icon</li>
+    <li><span class="docs-anatomy-badge-inline">2</span> Text — the label content</li>
+  </ol>
 </div>
 
-## Usage
+<h2 id="options">Options</h2>
 
-<div class="code-tabs">
-{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
-  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
-  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
-  {{ ui.toggleButton("React", "lang", "react", "outline") }}
-{% endcall %}
-<div class="code-tabs-panel" data-lang="html">
+### Table of options
 
-```html
-<span class="label-content">
-  <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg')" aria-hidden="true"></span>
-  <span class="label-content__text">Search</span>
-</span>
+<table class="docs-options-table">
+  <thead><tr><th>Property</th><th>Values</th><th>Default</th></tr></thead>
+  <tbody>
+    <tr><td>text</td><td>text</td><td>—</td></tr>
+    <tr><td>startIcon</td><td>icon name / none</td><td>none</td></tr>
+    <tr><td>endIcon</td><td>icon name / none</td><td>none</td></tr>
+    <tr><td>iconOnly</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
+    <tr><td>required (FieldLabel)</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
+    <tr><td>htmlFor (FieldLabel)</td><td>field id</td><td>—</td></tr>
+  </tbody>
+</table>
 
-<label class="field-label" for="email">
-  <span class="label-content">
-    <span class="label-content__text">Email address</span>
-  </span>
-  <span class="field-label__required" aria-hidden="true">*</span>
-  <span class="field-label__required-text"> (required)</span>
-</label>
-```
+<h2 id="behaviors">Behaviors</h2>
 
-</div>
-<div class="code-tabs-panel" data-lang="njk">
-
-{% raw %}
-```njk
-{% import "macros/ui.njk" as ui %}
-
-{{ ui.labelContent("Search", startIcon="search") }}
-{{ ui.labelContent("Add", endIcon="plus") }}
-{{ ui.labelContent(startIcon="menu", iconOnly=true) }}
-{{ ui.fieldLabel("Email address", htmlFor="email", required=true) }}
-```
-{% endraw %}
-
-</div>
-<div class="code-tabs-panel" data-lang="react">
-
-{% raw %}
-```jsx
-import { LabelContent, FieldLabel } from "ui-foundations/react/label";
-
-<LabelContent text="Search" startIcon="search" />
-<LabelContent text="Add" endIcon="plus" />
-<FieldLabel htmlFor="email" text="Email address" required />
-```
-{% endraw %}
-
-</div>
+<div class="docs-behavior-list">
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">
+      <span class="label-content"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content__text">Search</span></span>
+    </div>
+    <div class="docs-behavior-body">
+      <h3>Icon + text composition</h3>
+      <p>Icons sit in start or end slots alongside the text. They are decorative by default.</p>
+    </div>
+  </div>
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">
+      <span class="label-content is-icon-only"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span></span>
+    </div>
+    <div class="docs-behavior-body">
+      <h3>Icon-only mode</h3>
+      <p>Text is hidden, icon fills the label. Parent must provide an accessible name.</p>
+    </div>
+  </div>
 </div>
 
-## Notes
+<h2 id="usage-guidelines">Usage guidelines</h2>
 
-- Use `FieldLabel` for inputs/selects/textarea so `htmlFor` links label and field.
-- For buttons, use `LabelContent` inside the button content path.
-- `Icon` stays decorative by default when passed as `startIcon`/`endIcon`.
+<div class="docs-guideline">
+  <div class="docs-guideline-item" data-type="do">
+    <div class="docs-guideline-preview"><code>&lt;label class="field-label"&gt;</code></div>
+    <div class="docs-guideline-body">
+      <p class="docs-guideline-label">Do</p>
+      <p>Use FieldLabel with <code>htmlFor</code> to link label and input.</p>
+    </div>
+  </div>
+  <div class="docs-guideline-item" data-type="dont">
+    <div class="docs-guideline-preview"><code>&lt;span class="label-content"&gt;</code></div>
+    <div class="docs-guideline-body">
+      <p class="docs-guideline-label">Don't</p>
+      <p>Don't use LabelContent for form fields — no semantic link to the input.</p>
+    </div>
+  </div>
+</div>
 
-## Used tokens
+<h2 id="content-standards">Content standards</h2>
 
-{% componentTokenTable "src/ui/patterns/label.css" %}
+- Sentence case. Keep labels concise.
+- FieldLabel: describe the expected input, not the action.
 
-## React exports
+<h2 id="keyboard-interactions">Keyboard interactions</h2>
 
-- `LabelContent`: visual primitive for text with optional start/end icons
-- `FieldLabel`: semantic `<label>` wrapper that composes `LabelContent`
+Labels are not interactive. FieldLabel clicking focuses the associated input.
+
+<h2 id="accessibility">Accessibility</h2>
+
+- FieldLabel uses `<label>` with `for` attribute.
+- LabelContent is a `<span>` — no semantic role.
+- Icons are decorative (`aria-hidden="true"`).
+- Icon-only requires `aria-label` on the parent.
+
+<h2 id="theming">Theming</h2>
+
+Label adapts across brands and modes through typography and color tokens.
+
+For the full theming architecture see [Foundations: Theming](/foundations/theming/).
+
+<h2 id="design-checklist">Design checklist</h2>
+
+<div class="docs-checklist">
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All color themes</strong><span>Works across light and dark modes.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Accessible contrast</strong><span>Text meets 4.5:1.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Defined options</strong><span>Text, icons, iconOnly, required documented.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Usage guidelines</strong><span>FieldLabel vs. LabelContent do/don't.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>All visual attributes as tokens.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Figma component</strong><span>Available in Figma library.</span></div></div>
+</div>

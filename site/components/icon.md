@@ -42,12 +42,20 @@ playgroundLabel: Open Icon Playground
 <h2 id="anatomy">Anatomy</h2>
 
 <div class="docs-anatomy">
-  <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+  <div class="docs-anatomy-preview">
+    <div class="docs-anatomy-subject">
+      <span class="docs-anatomy-outline"></span>
+      <span class="docs-anatomy-callout" data-dir="top" style="left: 50%; transform: translateX(-50%);">
+        <span class="docs-anatomy-badge">1</span>
+        <span class="docs-anatomy-callout-line"></span>
+      </span>
+      <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+    </div>
+  </div>
+  <ol class="docs-anatomy-footnotes">
+    <li><span class="docs-anatomy-badge-inline">1</span> Icon element — square, inherits color from <code>currentColor</code> and size from parent <code>line-height</code></li>
+  </ol>
 </div>
-
-An icon is a single square element rendered via CSS mask. It inherits its color
-from `currentColor` and its size from the parent's `line-height`. The SVG source
-is set through the `--icon-src` custom property.
 
 <h2 id="options">Options</h2>
 
@@ -273,89 +281,6 @@ Icons adapt automatically across brands and color modes because they inherit
 
 For the full theming architecture — brands, modes, and how tokens cascade — see
 [Foundations: Theming](/foundations/theming/).
-
-<h2 id="code-usage">Code usage</h2>
-
-<div class="code-tabs">
-{% call ui.buttonGroup(true, "horizontal", "start", "Code format", "code-tabs-bar") %}
-  {{ ui.toggleButton("HTML", "lang", "html", "outline") }}
-  {{ ui.toggleButton("Nunjucks", "lang", "njk", "outline") }}
-  {{ ui.toggleButton("React", "lang", "react", "outline") }}
-{% endcall %}
-<div class="code-tabs-panel" data-lang="html">
-
-```html
-<!-- Decorative icon (next to a label) -->
-<span
-  class="icon"
-  style="--icon-src: url('/assets/icons/search.svg')"
-  aria-hidden="true"
-></span>
-
-<!-- Meaningful icon (icon-only, needs accessible name) -->
-<button class="button" type="button" aria-label="Search">
-  <span
-    class="icon"
-    style="--icon-src: url('/assets/icons/search.svg')"
-    aria-hidden="true"
-  ></span>
-</button>
-```
-
-</div>
-<div class="code-tabs-panel" data-lang="njk">
-
-{% raw %}
-```njk
-{% import "macros/ui.njk" as ui %}
-
-{# Decorative icon #}
-{{ ui.icon("search") }}
-
-{# Meaningful icon with accessible label #}
-{{ ui.icon("menu", "Open menu") }}
-```
-{% endraw %}
-
-</div>
-<div class="code-tabs-panel" data-lang="react">
-
-{% raw %}
-```jsx
-import { Icon } from "ui-foundations/react/icon";
-
-{/* Decorative icon */}
-<Icon name="search" />
-
-{/* Meaningful icon with label */}
-<Icon name="search" label="Search" decorative={false} />
-
-{/* Direct src instead of name */}
-<Icon src="/assets/icons/search.svg" />
-```
-{% endraw %}
-
-</div>
-</div>
-
-### React props
-
-<table class="docs-options-table">
-  <thead>
-    <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>name</code></td><td>string</td><td>—</td><td>Icon filename without <code>.svg</code></td></tr>
-    <tr><td><code>src</code></td><td>string</td><td>—</td><td>Direct icon URL (alternative to <code>name</code>)</td></tr>
-    <tr><td><code>label</code></td><td>string</td><td>—</td><td>Accessible name for non-decorative icons</td></tr>
-    <tr><td><code>decorative</code></td><td>boolean</td><td><code>true</code></td><td>Set to <code>false</code> when icon has a label</td></tr>
-    <tr><td><code>folder</code></td><td>string</td><td><code>"icons"</code></td><td>Asset subfolder under <code>assets/</code></td></tr>
-  </tbody>
-</table>
-
-<h2 id="used-tokens">Used tokens</h2>
-
-{% componentTokenTable "src/ui/patterns/icon.css" %}
 
 <h2 id="design-checklist">Design checklist</h2>
 

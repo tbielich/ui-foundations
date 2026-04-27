@@ -1463,14 +1463,141 @@ html[data-brand="b"] .palette-group[data-brand-scope="a"] {
 /* ─── Anatomy diagram ─── */
 .docs-anatomy {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.docs-anatomy-preview {
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px 24px;
+  padding: 40px 32px;
   border-radius: 12px;
   border: 1px solid var(--docs-border);
   background: var(--docs-surface-2);
-  margin: 16px 0;
   min-height: 120px;
+}
+
+.docs-anatomy-subject {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: 32px 48px;
+}
+
+.docs-anatomy-outline {
+  position: absolute;
+  inset: -4px;
+  border: 1px dashed var(--docs-accent);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.docs-anatomy-callout {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.docs-anatomy-callout-line {
+  background: var(--docs-accent);
+  flex-shrink: 0;
+}
+
+/* Top: badge on top, line below pointing down to component */
+.docs-anatomy-callout[data-dir="top"] {
+  flex-direction: column;
+  bottom: calc(100% + 4px);
+}
+
+.docs-anatomy-callout[data-dir="top"] .docs-anatomy-callout-line {
+  width: 1px;
+  height: 16px;
+}
+
+/* Bottom: line on top, badge below */
+.docs-anatomy-callout[data-dir="bottom"] {
+  flex-direction: column;
+  top: calc(100% + 4px);
+}
+
+.docs-anatomy-callout[data-dir="bottom"] .docs-anatomy-callout-line {
+  width: 1px;
+  height: 16px;
+}
+
+/* Left: badge on left, line pointing right to component */
+.docs-anatomy-callout[data-dir="left"] {
+  flex-direction: row;
+  right: calc(100% + 4px);
+}
+
+.docs-anatomy-callout[data-dir="left"] .docs-anatomy-callout-line {
+  height: 1px;
+  width: 16px;
+}
+
+/* Right: line on left, badge on right */
+.docs-anatomy-callout[data-dir="right"] {
+  flex-direction: row;
+  left: calc(100% + 4px);
+}
+
+.docs-anatomy-callout[data-dir="right"] .docs-anatomy-callout-line {
+  height: 1px;
+  width: 16px;
+}
+
+.docs-anatomy-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--docs-accent);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.docs-anatomy-footnotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.docs-anatomy-footnotes li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: var(--docs-text-1);
+  line-height: 1.4;
+}
+
+.docs-anatomy-footnotes .docs-anatomy-badge-inline {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--docs-accent);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1;
 }
 
 /* ─── Behavior items (2-col: example + description) ─── */
@@ -1727,6 +1854,120 @@ html[data-brand="b"] .palette-group[data-brand-scope="a"] {
 }
 
 /* ─── Docs utility classes (replace inline styles) ─── */
+
+.docs-states-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--docs-states-cols, 5), 1fr);
+  border: 1px solid var(--docs-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--docs-surface-1);
+  box-shadow: var(--docs-shadow-sm);
+  margin: 16px 0;
+}
+
+.docs-states-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 12px 14px;
+  border-inline-end: 1px solid var(--docs-border);
+  border-block-end: 1px solid var(--docs-border);
+}
+
+.docs-states-grid-row-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  grid-column: 1 / -1;
+  border-block-end: 1px solid var(--docs-border);
+  background: var(--docs-surface-2);
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--docs-text-1);
+}
+
+.docs-states-grid-item-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+}
+
+.docs-states-grid-item-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--docs-text-1);
+}
+
+@media (max-width: 980px) {
+  .docs-states-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+
+.docs-component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.docs-component-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  border: 1px solid var(--docs-border);
+  background: var(--docs-surface-1);
+  box-shadow: var(--docs-shadow-sm);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+}
+
+.docs-component-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--docs-border-strong);
+  box-shadow: var(--docs-shadow-md);
+}
+
+.docs-component-card-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 16px;
+  background: var(--docs-surface-2);
+  border-block-end: 1px solid var(--docs-border);
+  min-height: 72px;
+}
+
+.docs-component-card-body {
+  padding: 14px 16px;
+}
+
+.docs-component-card-body h2 {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+}
+
+.docs-component-card-body p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--docs-text-1);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .docs-narrow-stack {
   max-inline-size: 28rem;
 }

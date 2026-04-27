@@ -28,3 +28,7 @@ in the repository.
 
 - Agents planning or executing repo work
 - Engineers maintaining local agent workflows
+
+## Skills
+
+- `skills/ux-writing-coach.md` — multilingual UX writing review skill for product copy
