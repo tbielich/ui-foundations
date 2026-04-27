@@ -1,10 +1,10 @@
 {
-  "version": 1,
+  "version": 2,
   "description": "Agent context loading manifest for UI Foundations",
   "readFirst": [
     "AGENTS.md",
-    "docs/working-context.md",
-    "docs/ui-foundations-rules.md"
+    "docs/playbook.md",
+    "docs/working-context.md"
   ],
   "contextFiles": {
     "design": {
@@ -17,25 +17,35 @@
       "purpose": "Agent behavior rules and workflow",
       "priority": 2
     },
+    "playbook": {
+      "path": "docs/playbook.md",
+      "purpose": "Documentation hierarchy and operating model",
+      "priority": 3
+    },
     "workingContext": {
       "path": "docs/working-context.md",
-      "purpose": "Current priorities and non-negotiables",
-      "priority": 3
+      "purpose": "Current priorities",
+      "priority": 4
     },
     "operatingRules": {
       "path": "docs/ui-foundations-rules.md",
       "purpose": "Canonical operating rules for structure, naming, theming, governance",
-      "priority": 4
+      "priority": 5
+    },
+    "agentBehavior": {
+      "path": "docs/agentic/assistant-behavior-rules.md",
+      "purpose": "Component checklist and token usage rules",
+      "priority": 6
     },
     "implementation": {
       "path": "IMPLEMENTATION.md",
       "purpose": "Repo-specific execution guidance",
-      "priority": 5
+      "priority": 7
     },
     "tokenPipeline": {
       "path": "docs/token-pipeline.md",
       "purpose": "Token generation pipeline and format reference",
-      "priority": 6
+      "priority": 8
     }
   },
   "contextDirectories": {
@@ -43,13 +53,25 @@
       "path": "docs/foundations/",
       "purpose": "Architecture decisions and foundation-specific rules"
     },
+    "principles": {
+      "path": "docs/principles/",
+      "purpose": "Perception, heuristics, and accessibility intent"
+    },
+    "patterns": {
+      "path": "docs/patterns/",
+      "purpose": "Pattern-level guidance"
+    },
+    "components": {
+      "path": "docs/components/",
+      "purpose": "Component entry docs"
+    },
     "agentic": {
       "path": "docs/agentic/",
-      "purpose": "Agent behavior rules and component checklist"
+      "purpose": "Agent workflows, behavior rules, and modes"
     },
     "validation": {
       "path": "docs/validation/",
-      "purpose": "Rule pipeline manifest and validation metadata"
+      "purpose": "Rule pipeline manifest, CI, and validation metadata"
     },
     "steering": {
       "path": ".kiro/steering/",

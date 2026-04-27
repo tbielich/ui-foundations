@@ -142,6 +142,7 @@ This repo is structured for agent consumption:
 | File | Purpose |
 |---|---|
 | `AGENTS.md` | Entry point — behavior rules and context loading order |
+| `docs/playbook.md` | Documentation hierarchy and operating model |
 | `DESIGN.md` | Executive design contract |
 | `docs/working-context.md` | Current priorities |
 | `docs/context-manifest.json` | Machine-readable file index |
@@ -159,9 +160,12 @@ Agents operate in modes:
 
 | Directory | Content |
 |---|---|
-| `docs/foundations/` | Architecture decisions (token layering, naming, color, typography, components) |
-| `docs/agentic/` | Agent behavior rules, modes, rule pipeline |
-| `docs/validation/` | Rule pipeline manifest |
+| `docs/foundations/` | Token layering, naming, theming, parity, and 12 foundation ADRs |
+| `docs/principles/` | Perception laws, heuristics, and accessibility intent |
+| `docs/patterns/` | Pattern-level composition guidance |
+| `docs/components/` | Component entry docs |
+| `docs/agentic/` | Agent behavior rules, modes, workflows, rule pipeline |
+| `docs/validation/` | CI pipeline, token parity, rule pipeline manifest |
 | `docs/token-pipeline.md` | Token generation pipeline and format reference |
 | `site/` | Docs site source (Eleventy) |
 

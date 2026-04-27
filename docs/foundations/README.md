@@ -1,4 +1,13 @@
-# Foundations Index
+# Foundations
+
+## Purpose
+
+Foundations docs describe the canonical token, naming, theming, parity, and
+format rules that other layers build on.
+
+## Canonical files
+
+The detailed foundation ADRs are the source of truth:
 
 | File | Topic |
 |---|---|
@@ -14,3 +23,9 @@
 | `foundation-010-implementation-and-pipeline-workflow.md` | Token-first implementation workflow and validation commands |
 | `foundation-011-branching-and-release-governance.md` | Feature-branch, PR, and release governance |
 | `foundation-012-minimal-markup-and-composition.md` | Minimal markup, composition, and wrapper discipline |
+
+## Who should read this
+
+- Designers defining token and naming decisions
+- Engineers implementing or validating token-driven UI
+- Agents doing token, component, or parity work
