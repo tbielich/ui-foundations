@@ -1,0 +1,49 @@
+@layer components {
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--badge-gap, 0.25rem);
+    border-radius: var(--badge-border-radius, 625rem);
+    font-family: var(--badge-font-family, inherit);
+    font-weight: var(--badge-font-weight, 700);
+    white-space: nowrap;
+    background: var(--badge-default-container-background);
+    color: var(--badge-default-text-color);
+    font-size: var(--badge-font-size-md);
+    line-height: var(--badge-line-height-md);
+    padding-inline: var(--badge-padding-inline-md);
+    padding-block: var(--badge-padding-block-md);
+  }
+
+  /* ── Sizes ── */
+
+  .badge.sm {
+    font-size: var(--badge-font-size-sm);
+    line-height: var(--badge-line-height-sm);
+    padding-inline: var(--badge-padding-inline-sm);
+    padding-block: var(--badge-padding-block-sm);
+  }
+
+  /* ── Variants ── */
+
+  .badge.brand {
+    background: var(--badge-brand-container-background);
+    color: var(--badge-brand-text-color);
+  }
+
+  .badge.success {
+    background: var(--badge-success-container-background);
+    color: var(--badge-success-text-color);
+  }
+
+  .badge.danger {
+    background: var(--badge-danger-container-background);
+    color: var(--badge-danger-text-color);
+  }
+
+  /* ── Icon slot ── */
+
+  .badge > .icon {
+    flex: 0 0 auto;
+  }
+}

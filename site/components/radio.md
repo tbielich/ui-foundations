@@ -11,6 +11,22 @@ playgroundLabel: Open Radio Playground
 
 {% import "macros/ui.njk" as ui %}
 
+<div class="docs-hero">
+  <div class="docs-hero-preview">
+    {{ ui.radio("Option A", false, false, "default", "", "", "", "hero-group", "a") }}
+    {{ ui.radio("Option B", true, false, "default", "", "", "", "hero-group", "b") }}
+  </div>
+  <div class="docs-hero-meta">
+    <span class="docs-status" data-status="stable">Stable</span>
+    {% if playgroundUrl %}
+    <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
+    {% endif %}
+    {% if figmaConnections and figmaConnections.urlsByName and figmaConnections.urlsByName[page.fileSlug] %}
+    <a class="docs-page-link" href="{{ figmaConnections.urlsByName[page.fileSlug] }}" target="_blank" rel="noopener noreferrer">Open in Figma</a>
+    {% endif %}
+  </div>
+</div>
+
 ## Preview
 
 <div class="docs-stack">

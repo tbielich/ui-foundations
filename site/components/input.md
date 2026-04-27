@@ -11,9 +11,24 @@ playgroundLabel: Open Input Playground
 
 {% import "macros/ui.njk" as ui %}
 
+<div class="docs-hero">
+  <div class="docs-hero-preview">
+    {{ ui.input(type="text", placeholder="Email address") }}
+  </div>
+  <div class="docs-hero-meta">
+    <span class="docs-status" data-status="stable">Stable</span>
+    {% if playgroundUrl %}
+    <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
+    {% endif %}
+    {% if figmaConnections and figmaConnections.urlsByName and figmaConnections.urlsByName[page.fileSlug] %}
+    <a class="docs-page-link" href="{{ figmaConnections.urlsByName[page.fileSlug] }}" target="_blank" rel="noopener noreferrer">Open in Figma</a>
+    {% endif %}
+  </div>
+</div>
+
 ## Preview
 
-<div class="docs-stack" style="max-inline-size: 28rem;">
+<div class="docs-stack docs-narrow-stack">
   {{ ui.input(type="text", placeholder="Email address") }}
   {{ ui.input(type="text", value="Focus preview", state="focus") }}
   {{ ui.input(type="text", value="Disabled field", disabled=true) }}

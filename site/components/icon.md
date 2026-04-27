@@ -10,13 +10,29 @@ playgroundLabel: Open Icon Playground
 ---
 {% import "macros/ui.njk" as ui %}
 
+<div class="docs-hero">
+  <div class="docs-hero-preview">
+    <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+    <span class="icon" style="--icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span>
+    <span class="icon" style="--icon-src: url('/assets/icons/plus.svg');" aria-hidden="true"></span>
+  </div>
+  <div class="docs-hero-meta">
+    <span class="docs-status" data-status="stable">Stable</span>
+    {% if playgroundUrl %}
+    <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
+    {% endif %}
+    {% if figmaConnections and figmaConnections.urlsByName and figmaConnections.urlsByName[page.fileSlug] %}
+    <a class="docs-page-link" href="{{ figmaConnections.urlsByName[page.fileSlug] }}" target="_blank" rel="noopener noreferrer">Open in Figma</a>
+    {% endif %}
+  </div>
+</div>
 
 ## Preview
 
-<div class="docs-stack" style="line-height: 24px;">
+<div class="docs-stack docs-icon-line-height">
   <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-  <span class="icon" style="--icon-src: url('/assets/icons/menu.svg'); color: #0057b8;" aria-hidden="true"></span>
-  <span class="icon" style="--icon-src: url('/assets/icons/plus.svg'); color: #d81b60;" aria-hidden="true"></span>
+  <span class="icon docs-icon-color-brand" style="--icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span>
+  <span class="icon docs-icon-color-danger" style="--icon-src: url('/assets/icons/plus.svg');" aria-hidden="true"></span>
 </div>
 
 ## Usage

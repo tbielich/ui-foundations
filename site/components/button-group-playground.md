@@ -88,7 +88,7 @@ playground:
       name: justify
       label: Justify
       query: true
-      default: stretch
+      default: start
       options:
         - start
         - stretch
@@ -97,7 +97,7 @@ playground:
       label: Attached (No Gap)
       valueType: boolean
       query: true
-      default: true
+      default: false
     - kind: select
       name: state
       label: State

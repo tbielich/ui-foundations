@@ -516,8 +516,39 @@
     return { element: wrapper, code };
   };
 
+  const renderVanillaBadge = ({ props, children }) => {
+    const variant = String(props.variant || "default");
+    const size = String(props.size || "md");
+    const startIcon = normalizeIconName(props.startIcon);
+    const rawText =
+      typeof children === "undefined" ? "Badge" : String(children || "");
+
+    const element = document.createElement("span");
+    const classes = ["badge"];
+    if (variant && variant !== "default") classes.push(variant);
+    if (size === "sm") classes.push("sm");
+    element.className = classes.join(" ");
+
+    if (startIcon) {
+      const icon = createIconElement({ name: startIcon, decorative: true });
+      if (icon) element.append(icon);
+    }
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "badge__text";
+    textSpan.textContent = rawText;
+    element.append(textSpan);
+
+    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
+    const iconMarkup = startIcon ? iconCode({ name: startIcon, decorative: true }) : "";
+    const code = `<span class="${codeClasses}">${iconMarkup}<span class="badge__text">${quoteAttr(rawText)}</span></span>`;
+
+    return { element, code };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
+      badge: renderVanillaBadge,
       button: renderVanillaButton,
       "button-group": renderVanillaButtonGroup,
       checkbox: renderVanillaCheckbox,

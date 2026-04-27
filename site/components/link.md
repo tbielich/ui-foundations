@@ -9,6 +9,18 @@ permalink: /components/link/
 
 {% import "macros/ui.njk" as ui %}
 
+<div class="docs-hero">
+  <div class="docs-hero-preview">
+    {{ ui.link("Default link") }}
+  </div>
+  <div class="docs-hero-meta">
+    <span class="docs-status" data-status="draft">Draft</span>
+    {% if figmaConnections and figmaConnections.urlsByName and figmaConnections.urlsByName[page.fileSlug] %}
+    <a class="docs-page-link" href="{{ figmaConnections.urlsByName[page.fileSlug] }}" target="_blank" rel="noopener noreferrer">Open in Figma</a>
+    {% endif %}
+  </div>
+</div>
+
 <p class="page-intro">Status: <strong>Draft Proposal</strong></p>
 
 ## Preview

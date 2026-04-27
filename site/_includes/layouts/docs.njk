@@ -29,6 +29,22 @@
           </section>
 
           <section class="docs-nav-section">
+            <h2>Foundations</h2>
+            <ul>
+              {% for entry in collections.foundationsDocs %}
+              <li>
+                <a
+                  href="{{ entry.url }}"
+                  {% if entry.url == page.url %}aria-current="page"{% endif %}
+                >
+                  {{ entry.data.navTitle or entry.data.title }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+
+          <section class="docs-nav-section">
             <h2>Tokens</h2>
             <ul>
               {% for entry in collections.tokensDocs %}
@@ -94,6 +110,31 @@
 
         <article class="docs-content">
           {% set compactTitleInBreadcrumb = isPlayground and breadcrumb and breadcrumb.length %}
+
+          {# Auto-generate breadcrumb from URL when no manual breadcrumb is set #}
+          {% if not breadcrumb or not breadcrumb.length %}
+            {% set autoCrumbs = [] %}
+            {% set urlParts = page.url | replace(r/^\//, "") | replace(r/\/$/, "") %}
+            {% if urlParts %}
+              {% set segments = urlParts.split("/") %}
+              {% if segments.length >= 1 %}
+                {% set sectionSlug = segments[0] %}
+                {% set sectionLabel = sectionSlug | replace("-", " ") | capitalize %}
+                {% if sectionSlug == "getting-started" %}
+                  {% set sectionLabel = "Getting Started" %}
+                {% endif %}
+                {% set _ = autoCrumbs.push({ label: sectionLabel, url: "/" + sectionSlug + "/" }) %}
+              {% endif %}
+              {% if segments.length >= 3 %}
+                {% set parentSlug = segments[1] %}
+                {% set parentLabel = parentSlug | replace("-", " ") | capitalize %}
+                {% set _ = autoCrumbs.push({ label: parentLabel, url: "/" + segments[0] + "/" + parentSlug + "/" }) %}
+              {% endif %}
+              {% set _ = autoCrumbs.push({ label: title or page.fileSlug }) %}
+            {% endif %}
+            {% set breadcrumb = autoCrumbs if autoCrumbs.length > 1 else [] %}
+          {% endif %}
+
           {% if breadcrumb and breadcrumb.length %}
           <nav class="docs-breadcrumb" aria-label="Breadcrumb">
             <ol>
@@ -121,27 +162,62 @@
           </h1>
           {% endif %}
           {% if description and not isPlayground %}<p class="page-intro">{{ description }}</p>{% endif %}
-          {% if playgroundUrl or figmaComponentUrl %}
-          <p class="docs-page-actions">
-            {% if playgroundUrl %}
-            <a class="docs-page-link" href="{{ playgroundUrl }}">
-              {{ playgroundLabel or "Open Playground" }}
-            </a>
-            {% endif %}
-            {% if playgroundUrl and figmaComponentUrl %}
-            <span class="docs-page-link-separator">•</span>
-            {% endif %}
-            {% if figmaComponentUrl %}
-            <a class="docs-page-link" href="{{ figmaComponentUrl }}" target="_blank" rel="noopener noreferrer">
-              Open {{ title }} in Figma
-            </a>
-            {% endif %}
-          </p>
-          {% endif %}
           {{ content | safe }}
         </article>
       </main>
     </div>
+
+    <script>
+      // Right-side TOC: extract h2[id] headings and build nav + scroll spy
+      (function () {
+        var headings = document.querySelectorAll(".docs-content h2[id]");
+        if (headings.length < 2) return;
+
+        var aside = document.createElement("aside");
+        aside.className = "docs-toc-sidebar";
+        aside.setAttribute("aria-label", "On this page");
+
+        var title = document.createElement("p");
+        title.className = "docs-toc-sidebar-title";
+        title.textContent = "On this page";
+        aside.appendChild(title);
+
+        var ul = document.createElement("ul");
+        ul.className = "docs-toc-sidebar-list";
+
+        headings.forEach(function (h) {
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.href = "#" + h.id;
+          a.textContent = h.textContent;
+          a.dataset.tocTarget = h.id;
+          li.appendChild(a);
+          ul.appendChild(li);
+        });
+
+        aside.appendChild(ul);
+
+        var main = document.querySelector(".docs-main");
+        if (main) main.appendChild(aside);
+
+        // Scroll spy
+        var links = ul.querySelectorAll("a");
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                links.forEach(function (l) { l.classList.remove("is-active"); });
+                var active = ul.querySelector('[data-toc-target="' + entry.target.id + '"]');
+                if (active) active.classList.add("is-active");
+              }
+            });
+          },
+          { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+        );
+
+        headings.forEach(function (h) { observer.observe(h); });
+      })();
+    </script>
 
     <script>
       const root = document.documentElement;

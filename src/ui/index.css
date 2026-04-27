@@ -5,3 +5,4 @@
 @import url("./patterns/checkbox.css") layer(components);
 @import url("./patterns/radio.css") layer(components);
 @import url("./patterns/switch.css") layer(components);
+@import url("./patterns/badge.css") layer(components);
