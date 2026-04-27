@@ -68,7 +68,7 @@ content (no adjacent label), it must have an accessible name via `aria-label`.
 <div class="docs-stack docs-icon-line-height">
   <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
   <span class="icon docs-icon-color-brand" style="--icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
-  <span class="icon docs-icon-color-danger" style="--icon-src: url('/assets/icons/close.svg');" aria-hidden="true"></span>
+  <span class="icon docs-icon-color-danger" style="--icon-src: url('/assets/icons/login.svg');" aria-hidden="true"></span>
 </div>
 
 ### Color
@@ -90,7 +90,7 @@ needed.
     <tr><th>Property</th><th>Values</th><th>Default</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>--icon-src</code></td><td><code>url('/assets/icons/&lt;name&gt;.svg')</code></td><td>—</td></tr>
+    <tr><td><code>--icon-src</code></td><td>icon URL path</td><td>—</td></tr>
     <tr><td>color</td><td>Inherited from <code>currentColor</code></td><td>parent text color</td></tr>
     <tr><td>size</td><td>Inherited from parent <code>line-height</code></td><td><code>1lh</code></td></tr>
     <tr><td><code>aria-hidden</code></td><td><code>true</code> (decorative) / omitted (meaningful)</td><td><code>true</code></td></tr>
