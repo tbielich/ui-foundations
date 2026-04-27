@@ -49,6 +49,45 @@ Figma exports are the source. Generated files in `dist/` are never edited direct
 
 Label, Button (solid/outline/ghost), ButtonGroup, Input, Icon, Checkbox, Radio, Switch, Slider, Link
 
+## Component Promotion Workflow
+
+When building examples, pages, or compositions that use UI patterns not yet in
+the component list above, follow this workflow:
+
+1. **Detect** — After finishing the requested work, review the markup for any
+   repeated UI pattern (badge, list, card, tooltip, etc.) that is not an
+   existing system component.
+2. **Report** — At the end of your response, list each missing component with:
+   - Name and short purpose (e.g. "Badge — small status pill label").
+   - Why it passes the utility test (reusable across multiple contexts).
+   - Which of the 10 integration surfaces are needed (Rule 8).
+3. **Provide a follow-up prompt** — For each missing component, write a
+   ready-to-copy prompt the user can paste in a new conversation to scaffold
+   that component. The prompt should include the component name, variants,
+   token naming, and a reference to the example where it was first used.
+4. **Do NOT auto-create** — Never scaffold all 10 surfaces in the same session
+   unless the user explicitly asks. Keep the current task focused and
+   token-efficient.
+
+This keeps sessions short and gives the user control over when and how new
+components enter the system.
+
+## Icons and Functional Colors
+
+When generating UI that includes visual indicators (checkmarks, status marks,
+list bullets, badges, or decorative accents):
+
+- Use the Icon component (`ui.icon()` macro / `.icon` class) with an icon from
+  `src/assets/icons/` — never substitute a text character like "✓" or "•".
+- Color icons and status indicators with semantic functional tokens:
+  `--color-text-success`, `--color-text-danger`, `--color-text-brand`,
+  `--color-fill-brand`, `--color-fill-success`, `--color-fill-danger`.
+- Use `--color-text-inverse` for text on filled brand/functional backgrounds.
+- Use `--color-border-brand` for accent borders on highlighted or featured
+  elements.
+- Never hardcode hex colors for brand or functional meaning — always reference
+  semantic tokens so values adapt across brands and modes.
+
 ## Key Rules (from `docs/agentic/assistant-behavior-rules.md`)
 
 - Rule 8: New components require all 10 integration surfaces
