@@ -17,4 +17,4 @@ Provide a compact operating context for humans and agents.
 
 ## Agent expectations
 
-Before acting, read the context loading order in `AGENTS.md`.
+Before acting, read the Context Loading Order in `AGENTS.md`.

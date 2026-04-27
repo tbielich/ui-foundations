@@ -8,7 +8,7 @@ type: changelog
 
 This file documents why files were removed from `docs/agentic/` and where their responsibilities moved.
 
-## Current structure (after cleanup)
+## Current structure (historical snapshot)
 
 ```
 docs/agentic/
@@ -16,13 +16,25 @@ docs/agentic/
   MIGRATION.md                  ← this file
 ```
 
-All other agent guidance lives in:
+At the time of that cleanup, all other agent guidance lived in:
 - `AGENTS.md` — operational rules, decision bias, validation
 - `IMPLEMENTATION.md` — file locations, build pipeline, component workflow
 - `docs/ui-foundations-rules.md` — governance (naming, layering, theming, review)
 - `docs/foundations/` — architecture decisions
 
-Agent-specific configs (Kiro Steering, Goose Recipes) live locally, not in the repo.
+Agent-specific configs (Kiro Steering, Goose Recipes) lived locally, not in the repo.
+
+## Current structure after the docs architecture pass
+
+The repo now also includes:
+
+- `docs/playbook.md`
+- `docs/agentic/README.md`
+- `docs/agentic/agent-behavior-rules.md`
+- `docs/agentic/{kiro,goose,codex}-workflow.md`
+- `docs/agentic/prompts/`
+
+The detailed checklist remains in `assistant-behavior-rules.md`.
 
 ---
 

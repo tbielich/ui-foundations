@@ -1,8 +1,30 @@
-# Agentic Docs Index
+# Agentic Docs
+
+## Purpose
+
+This section explains how different agents should read, plan, validate, and act
+in the repository.
+
+## Canonical files
 
 | File | Topic |
 |---|---|
-| `assistant-behavior-rules.md` | Agent rules for components, tokens, integration surfaces, and validation |
-| `rule-pipeline.md` | Principles -> Heuristics -> Pattern rules -> Component rules -> Validation -> CI |
-| `rule-pipeline-audit.md` | Audit findings, target architecture, and current gap table |
-| `MIGRATION.md` | Consolidated migration notes from older agentic docs |
+| `assistant-behavior-rules.md` | Detailed component and token checklist |
+| `kiro-workflow.md` | Kiro steering, specs, and workflow guidance |
+| `goose-workflow.md` | Goose audit and validation workflow guidance |
+| `codex-workflow.md` | Codex execution workflow guidance |
+| `rule-pipeline.md` | Principles -> Patterns -> Components -> Validation -> CI |
+
+## Supporting files
+
+| File | Topic |
+|---|---|
+| `rule-pipeline-audit.md` | Audit findings, target architecture, and gap table |
+| `MIGRATION.md` | Historical migration context |
+| `prompts/` | Prompt templates and placeholders |
+| `modes/` | Task-specific agent modes |
+
+## Who should read this
+
+- Agents planning or executing repo work
+- Engineers maintaining local agent workflows

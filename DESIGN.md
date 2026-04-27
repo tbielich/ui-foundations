@@ -11,8 +11,8 @@ Canonical sources:
 - `docs/ui-foundations-rules.md`
 - `docs/foundations/`
 - `figma/exports/*.tokens.json`
-- `dist/tokens.css`
-- `dist/tokens.json`
+- `dist/tokens/css/*.css`
+- `dist/tokens/json/*.json`
 
 ## Design Philosophy
 

@@ -6,29 +6,31 @@ Before acting, agents must load context in this order:
 
 1. `DESIGN.md` → executive design contract
 2. `AGENTS.md` → this file (behavior rules)
-3. `docs/working-context.md` → current priorities
-4. `docs/ui-foundations-rules.md` → canonical operating rules
-5. `docs/foundations/` → architecture decisions
-6. `docs/agentic/assistant-behavior-rules.md` → component checklist
-7. `IMPLEMENTATION.md` → repo-specific execution guidance
+3. `docs/playbook.md` → documentation hierarchy and operating model
+4. `docs/working-context.md` → current priorities
+5. `docs/ui-foundations-rules.md` → canonical operating rules
+6. `docs/foundations/` → architecture decisions
+7. `docs/agentic/assistant-behavior-rules.md` → component checklist
+8. `IMPLEMENTATION.md` → repo-specific execution guidance
 
 Never contradict these sources.
 
 ---
 
 ## Core Principle
+
 Never assume system state. Always verify before acting.
 
-Workflow:
-Plan → Execute → Verify → Report
+Workflow: Plan → Execute → Verify → Report
 
 ---
 
 ## Repository Rules
+
 - Verify repo state before changes:
-  - pwd
-  - git status
-  - git branch
+  - `pwd`
+  - `git status`
+  - `git branch`
 - Work on feature branches only
 - Never rely on assumed state
 - Keep changes small, reviewable, non-breaking
@@ -36,7 +38,9 @@ Plan → Execute → Verify → Report
 ---
 
 ## Decision Bias
+
 When in doubt, prefer the option that:
+
 - preserves Core → Semantic → Component separation
 - uses explicit semantic naming over visual naming
 - keeps Figma naming and code naming closely aligned
@@ -49,6 +53,7 @@ When in doubt, prefer the option that:
 ---
 
 ## Token Workflow (MANDATORY)
+
 1. Ingest tokens (Figma export)
 2. Compare with code
 3. Identify drift:
@@ -60,6 +65,7 @@ When in doubt, prefer the option that:
 6. Re-validate
 
 Never:
+
 - invent tokens
 - skip comparison
 - modify tokens blindly
@@ -67,20 +73,21 @@ Never:
 ---
 
 ## Design System Rules
-- Respect token layers:
-  Core → Semantic → Component
+
+- Respect token layers: Core → Semantic → Component
 - Never mix layers
 - Never hardcode values
-- Always use CSS variables: var(--...)
+- Always use CSS variables: `var(--...)`
 - Prefer explicit semantic naming over visual or convenience naming
 - Align Figma naming and code naming as closely as possible
 - Document exceptions when a rule must be broken
 
-Do not edit generated files in `dist/`
+Do not edit generated files in `dist/`.
 
 ---
 
 ## Implementation Rules
+
 - Use existing patterns and file structure
 - Do not introduce new frameworks
 - Keep docs and implementation in sync
@@ -88,20 +95,25 @@ Do not edit generated files in `dist/`
 ---
 
 ## Validation (REQUIRED)
+
 Before completion:
-- npm run lint
-- npm run test:unit
-- npm run ci:check
+
+- `npm run lint`
+- `npm run test:unit`
+- `npm run ci:check`
 
 ---
 
 ## Behavior
+
 - Be concise and structured
 - Explain intent before actions
 - Show commands before execution
 - Verify results after execution
 
 If not verified → not true
+
+---
 
 ## Agent Modes
 
@@ -112,3 +124,11 @@ If unclear:
 - default = Implementation
 - exploratory tasks = Pattern Discovery or Token Proposal
 - review tasks = Audit
+
+---
+
+## Agent-Specific Workflows
+
+- Kiro: `docs/agentic/kiro-workflow.md`
+- Goose: `docs/agentic/goose-workflow.md`
+- Codex: `docs/agentic/codex-workflow.md`
