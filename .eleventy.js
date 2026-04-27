@@ -59,6 +59,18 @@ module.exports = function (eleventyConfig) {
         );
       });
   });
+  eleventyConfig.addCollection("foundationsDocs", (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("site/foundations/**/*.md")
+      .sort((a, b) => {
+        const aOrder = Number(a.data.order || 999);
+        const bOrder = Number(b.data.order || 999);
+        if (aOrder !== bOrder) return aOrder - bOrder;
+        return String(a.data.title || "").localeCompare(
+          String(b.data.title || ""),
+        );
+      });
+  });
 
   return {
     markdownTemplateEngine: "njk",

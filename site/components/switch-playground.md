@@ -18,6 +18,7 @@ playground:
   queryPrefix: switch
   runtime: vanilla
   renderer: switch
+  tokenCssPath: src/ui/patterns/switch.css
   controls:
     - kind: text
       name: label

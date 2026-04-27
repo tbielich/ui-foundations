@@ -15,85 +15,101 @@
         <a class="docs-logo" href="/">UI Foundations</a>
 
         <nav class="docs-nav" aria-label="Documentation navigation">
-          <section class="docs-nav-section">
-            <ul>
-              <li>
-                <a
-                  href="/getting-started/"
-                  {% if page.url == "/getting-started/" %}aria-current="page"{% endif %}
-                >
-                  Getting Started
-                </a>
-              </li>
-            </ul>
-          </section>
+          <nav class="docs-nav-group" aria-label="Foundations">
+            <details{% if page.url.indexOf("/foundations/") == 0 %} open{% endif %}>
+              <summary class="docs-nav-group-toggle">Foundations</summary>
+              <ul>
+                {% for entry in collections.foundationsDocs %}
+                <li>
+                  <a
+                    href="{{ entry.url }}"
+                    {% if entry.url == page.url %}aria-current="page"{% endif %}
+                  >
+                    {{ entry.data.navTitle or entry.data.title }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </details>
+          </nav>
 
-          <section class="docs-nav-section">
-            <h2>Tokens</h2>
-            <ul>
-              {% for entry in collections.tokensDocs %}
-              <li>
-                <a
-                  href="{{ entry.url }}"
-                  {% if entry.url == page.url %}aria-current="page"{% endif %}
-                >
-                  {{ entry.data.navTitle or entry.data.title }}
-                </a>
-              </li>
-              {% endfor %}
-            </ul>
-          </section>
+          <nav class="docs-nav-group" aria-label="Components">
+            <details{% if page.url.indexOf("/components/") == 0 or page.url == "/components/" %} open{% endif %}>
+              <summary class="docs-nav-group-toggle">Components</summary>
+              <ul>
+                {% for entry in collections.componentsDocs %}
+                <li>
+                  <a
+                    href="{{ entry.url }}"
+                    {% if entry.url == page.url %}aria-current="page"{% endif %}
+                  >
+                    {{ entry.data.navTitle or entry.data.title }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </details>
+          </nav>
 
-          <section class="docs-nav-section">
-            <h2>Components</h2>
-            <ul>
-              {% for entry in collections.componentsDocs %}
-              <li>
-                <a
-                  href="{{ entry.url }}"
-                  {% if entry.url == page.url %}aria-current="page"{% endif %}
-                >
-                  {{ entry.data.navTitle or entry.data.title }}
-                </a>
-              </li>
-              {% endfor %}
-            </ul>
-          </section>
+          <nav class="docs-nav-group" aria-label="Examples">
+            <details{% if page.url.indexOf("/examples/") == 0 or page.url == "/examples/" %} open{% endif %}>
+              <summary class="docs-nav-group-toggle">Examples</summary>
+              <ul>
+                {% for entry in collections.examplesDocs %}
+                <li>
+                  <a
+                    href="{{ entry.url }}"
+                    {% if entry.url == page.url %}aria-current="page"{% endif %}
+                  >
+                    {{ entry.data.navTitle or entry.data.title }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </details>
+          </nav>
 
-          <section class="docs-nav-section">
-            <h2>EXAMPLES</h2>
-            <ul>
-              {% for entry in collections.examplesDocs %}
-              <li>
-                <a
-                  href="{{ entry.url }}"
-                  {% if entry.url == page.url %}aria-current="page"{% endif %}
-                >
-                  {{ entry.data.navTitle or entry.data.title }}
-                </a>
-              </li>
-              {% endfor %}
-            </ul>
-          </section>
+          <ul class="docs-nav-top">
+            <li>
+              <a
+                href="/getting-started/"
+                {% if page.url == "/getting-started/" %}aria-current="page"{% endif %}
+              >
+                Getting Started
+              </a>
+            </li>
+          </ul>
         </nav>
       </aside>
 
       <main class="docs-main">
-        <header class="docs-header">
-          {% call ui.buttonGroup(true, "horizontal", "start", "Color mode", "mode-toggle") %}
-            {{ ui.toggleButton("Light", "mode", "light", "outline") }}
-            {{ ui.toggleButton("Dark", "mode", "dark", "outline") }}
-            {{ ui.toggleButton("System", "mode", "system", "outline") }}
-          {% endcall %}
-
-          {% call ui.buttonGroup(false, "horizontal", "start", "Brand", "mode-toggle") %}
-            {{ ui.toggleButton("Brand A", "brand", "a", "ghost") }}
-            {{ ui.toggleButton("Brand B", "brand", "b", "ghost") }}
-          {% endcall %}
-        </header>
-
         <article class="docs-content">
           {% set compactTitleInBreadcrumb = isPlayground and breadcrumb and breadcrumb.length %}
+
+          {# Auto-generate breadcrumb from URL when no manual breadcrumb is set #}
+          {% if not breadcrumb or not breadcrumb.length %}
+            {% set autoCrumbs = [] %}
+            {% set urlParts = page.url | replace(r/^\//, "") | replace(r/\/$/, "") %}
+            {% if urlParts %}
+              {% set segments = urlParts.split("/") %}
+              {% if segments.length >= 1 %}
+                {% set sectionSlug = segments[0] %}
+                {% set sectionLabel = sectionSlug | replace("-", " ") | capitalize %}
+                {% if sectionSlug == "getting-started" %}
+                  {% set sectionLabel = "Getting Started" %}
+                {% endif %}
+                {% set _ = autoCrumbs.push({ label: sectionLabel, url: "/" + sectionSlug + "/" }) %}
+              {% endif %}
+              {% if segments.length >= 3 %}
+                {% set parentSlug = segments[1] %}
+                {% set parentLabel = parentSlug | replace("-", " ") | capitalize %}
+                {% set _ = autoCrumbs.push({ label: parentLabel, url: "/" + segments[0] + "/" + parentSlug + "/" }) %}
+              {% endif %}
+              {% set _ = autoCrumbs.push({ label: title or page.fileSlug }) %}
+            {% endif %}
+            {% set breadcrumb = autoCrumbs if autoCrumbs.length > 1 else [] %}
+          {% endif %}
+
           {% if breadcrumb and breadcrumb.length %}
           <nav class="docs-breadcrumb" aria-label="Breadcrumb">
             <ol>
@@ -121,108 +137,151 @@
           </h1>
           {% endif %}
           {% if description and not isPlayground %}<p class="page-intro">{{ description }}</p>{% endif %}
-          {% if playgroundUrl or figmaComponentUrl %}
-          <p class="docs-page-actions">
-            {% if playgroundUrl %}
-            <a class="docs-page-link" href="{{ playgroundUrl }}">
-              {{ playgroundLabel or "Open Playground" }}
-            </a>
-            {% endif %}
-            {% if playgroundUrl and figmaComponentUrl %}
-            <span class="docs-page-link-separator">•</span>
-            {% endif %}
-            {% if figmaComponentUrl %}
-            <a class="docs-page-link" href="{{ figmaComponentUrl }}" target="_blank" rel="noopener noreferrer">
-              Open {{ title }} in Figma
-            </a>
-            {% endif %}
-          </p>
-          {% endif %}
           {{ content | safe }}
         </article>
       </main>
     </div>
 
     <script>
-      const root = document.documentElement;
-      const modeButtons = document.querySelectorAll("[data-mode]");
-      const brandButtons = document.querySelectorAll("[data-brand]");
-      const systemDarkMedia = window.matchMedia("(prefers-color-scheme: dark)");
-      const storedMode = localStorage.getItem("ui-foundations-mode");
-      const storedBrand = localStorage.getItem("ui-foundations-brand");
-      let selectedMode = "light";
+      // Right-side TOC: extract h2[id] headings and build nav + scroll spy
+      (function () {
+        var headings = document.querySelectorAll(".docs-content h2[id]");
+        if (headings.length < 2) return;
 
-      const setToggleState = (button, active) => {
-        button.setAttribute("aria-pressed", active ? "true" : "false");
-        button.classList.toggle("is-active", active);
-      };
+        var aside = document.createElement("aside");
+        aside.className = "docs-toc-sidebar";
+        aside.setAttribute("aria-label", "On this page");
 
-      const updateModePressedState = (mode) => {
-        modeButtons.forEach((button) => {
-          const active =
-            mode === "system"
-              ? button.dataset.mode === "system"
-              : button.dataset.mode === mode;
-          setToggleState(button, active);
+        var title = document.createElement("p");
+        title.className = "docs-toc-sidebar-title";
+        title.textContent = "On this page";
+        aside.appendChild(title);
+
+        var ul = document.createElement("ul");
+        ul.className = "docs-toc-sidebar-list";
+
+        headings.forEach(function (h) {
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          a.href = "#" + h.id;
+          a.textContent = h.textContent;
+          a.dataset.tocTarget = h.id;
+          li.appendChild(a);
+          ul.appendChild(li);
         });
-      };
 
-      const updateBrandPressedState = (brand) => {
-        brandButtons.forEach((button) => {
-          const active = button.dataset.brand === brand;
-          setToggleState(button, active);
-        });
-      };
+        aside.appendChild(ul);
 
-      const applyMode = (mode) => {
-        selectedMode = mode;
-        if (mode === "system") {
-          root.dataset.mode = systemDarkMedia.matches ? "dark" : "light";
-          updateModePressedState("system");
-          return;
+        var main = document.querySelector(".docs-main");
+        if (main) main.appendChild(aside);
+
+        // Scroll spy
+        var links = ul.querySelectorAll("a");
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                links.forEach(function (l) { l.classList.remove("is-active"); });
+                var active = ul.querySelector('[data-toc-target="' + entry.target.id + '"]');
+                if (active) active.classList.add("is-active");
+              }
+            });
+          },
+          { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+        );
+
+        headings.forEach(function (h) { observer.observe(h); });
+      })();
+    </script>
+
+    <script>
+      // Hero preview: inline brand/mode switching via token snapshot
+      (function () {
+        var previews = document.querySelectorAll(".docs-hero-preview");
+        if (!previews.length) return;
+
+        var root = document.documentElement;
+
+        function getTokens() {
+          var styles = getComputedStyle(root);
+          var tokens = {};
+          for (var s = 0; s < document.styleSheets.length; s++) {
+            try {
+              var rules = document.styleSheets[s].cssRules;
+              for (var r = 0; r < rules.length; r++) {
+                var rule = rules[r];
+                var inner = rule.cssRules ? rule.cssRules : [rule];
+                for (var i = 0; i < inner.length; i++) {
+                  var text = inner[i].cssText || "";
+                  var matches = text.match(/--[\w-]+/g);
+                  if (matches) {
+                    matches.forEach(function (prop) {
+                      var val = styles.getPropertyValue(prop).trim();
+                      if (val) tokens[prop] = val;
+                    });
+                  }
+                }
+              }
+            } catch (e) {}
+          }
+          return tokens;
         }
 
-        root.dataset.mode = mode;
-        updateModePressedState(mode);
-      };
+        function applySnapshot(stage, brand, mode) {
+          var origBrand = root.dataset.brand;
+          var origMode = root.dataset.mode;
+          root.dataset.brand = brand;
+          root.dataset.mode = mode;
+          getComputedStyle(root).getPropertyValue("--color-text-default");
+          var tokens = getTokens();
+          root.dataset.brand = origBrand;
+          root.dataset.mode = origMode;
+          var cssText = "";
+          Object.keys(tokens).forEach(function (prop) {
+            cssText += prop + ":" + tokens[prop] + ";";
+          });
+          stage.style.cssText = cssText;
+        }
 
-      const applyBrand = (brand) => {
-        root.dataset.brand = brand;
-        updateBrandPressedState(brand);
-      };
+        previews.forEach(function (preview) {
+          var stage = preview.querySelector(".docs-hero-preview-stage");
+          if (!stage) return;
 
-      applyMode(storedMode || "light");
-      applyBrand(storedBrand || "a");
+          var currentBrand = root.dataset.brand || "a";
+          var currentMode = root.dataset.mode || "light";
 
-      if (typeof systemDarkMedia.addEventListener === "function") {
-        systemDarkMedia.addEventListener("change", () => {
-          if (selectedMode === "system") {
-            root.dataset.mode = systemDarkMedia.matches ? "dark" : "light";
-          }
+          applySnapshot(stage, currentBrand, currentMode);
+
+          var brandBtns = preview.querySelectorAll("[data-hero-brand]");
+          var modeBtns = preview.querySelectorAll("[data-hero-mode]");
+          brandBtns.forEach(function (b) {
+            b.setAttribute("aria-pressed", b.dataset.heroBrand === currentBrand ? "true" : "false");
+          });
+          modeBtns.forEach(function (b) {
+            b.setAttribute("aria-pressed", b.dataset.heroMode === currentMode ? "true" : "false");
+          });
+
+          brandBtns.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              currentBrand = btn.dataset.heroBrand;
+              brandBtns.forEach(function (b) {
+                b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+              });
+              applySnapshot(stage, currentBrand, currentMode);
+            });
+          });
+
+          modeBtns.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              currentMode = btn.dataset.heroMode;
+              modeBtns.forEach(function (b) {
+                b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+              });
+              applySnapshot(stage, currentBrand, currentMode);
+            });
+          });
         });
-      } else if (typeof systemDarkMedia.addListener === "function") {
-        systemDarkMedia.addListener(() => {
-          if (selectedMode === "system") {
-            root.dataset.mode = systemDarkMedia.matches ? "dark" : "light";
-          }
-        });
-      }
-
-      modeButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const mode = button.dataset.mode;
-          applyMode(mode);
-          localStorage.setItem("ui-foundations-mode", mode);
-        });
-      });
-
-      brandButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const brand = button.dataset.brand;
-          applyBrand(brand);
-          localStorage.setItem("ui-foundations-brand", brand);
-        });
-      });
+      })();
     </script>
     <script>
       // Code tab switcher — syncs all tab groups to the same language
@@ -263,6 +322,7 @@
     <script src="/assets/playground/state.js"></script>
     <script src="/assets/playground/code.js"></script>
     <script src="/assets/playground/renderers.js"></script>
+    <script src="/assets/playground/code-generators.js"></script>
     <script src="/assets/playground.js"></script>
   </body>
 </html>

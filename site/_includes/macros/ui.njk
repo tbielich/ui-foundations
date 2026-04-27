@@ -130,3 +130,13 @@
   {%- if endIcon %} <span class="icon" style="--icon-src: url('/assets/icons/{{ endIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
 </a>
 {%- endmacro %}
+
+{% macro badge(text, variant='', size='', startIcon='') -%}
+{%- set classes = "badge" -%}
+{%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+<span class="{{ classes }}">
+  {%- if startIcon %}<span class="icon" style="--icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
+  <span class="badge__text">{{ text }}</span>
+</span>
+{%- endmacro %}

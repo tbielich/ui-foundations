@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const CONNECTIONS_DIR = path.join(__dirname, "..", "..", "figma", "connections");
+const CONNECTIONS_DIR = path.join(__dirname, "..", "..", "schemas");
 const FIGMA_CONNECT_URL_PATTERN = /figma\.connect\(\s*["'`](https?:\/\/[^"'`]+)["'`]/i;
 
 function loadConnections() {

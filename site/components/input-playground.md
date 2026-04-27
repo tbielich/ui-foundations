@@ -18,6 +18,7 @@ playground:
   queryPrefix: input
   runtime: vanilla
   renderer: input
+  tokenCssPath: src/ui/patterns/input.css
   controls:
     - kind: select
       name: type
