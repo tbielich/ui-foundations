@@ -66,17 +66,76 @@ body {
   gap: 20px;
 }
 
-.docs-nav-section h2 {
-  margin: 0 0 10px;
-  padding-inline: 4px;
+/* ─── Collapsible nav groups ─── */
+.docs-nav-top {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+
+.docs-nav-group {
+  margin: 0;
+}
+
+.docs-nav-group details {
+  border: 0;
+}
+
+.docs-nav-group-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 4px;
   font-size: 0.69rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
   font-weight: 800;
   color: var(--docs-text-1);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
 }
 
-.docs-nav-section ul {
+.docs-nav-group-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.docs-nav-group-toggle::before {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  border-inline-end: 2px solid currentColor;
+  border-block-end: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 150ms ease;
+  flex-shrink: 0;
+}
+
+details[open] > .docs-nav-group-toggle::before {
+  transform: rotate(45deg);
+}
+
+.docs-nav-group ul {
+  list-style: none;
+  margin: 4px 0 12px;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.docs-nav-section h2,
+.docs-nav-group h2 {
+  margin: 0;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.docs-nav-section ul,
+.docs-nav-top ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -84,7 +143,9 @@ body {
   gap: 6px;
 }
 
-.docs-nav-section a {
+.docs-nav-section a,
+.docs-nav-group a,
+.docs-nav-top a {
   display: block;
   padding: 8px 10px;
   border-radius: 10px;
@@ -96,7 +157,9 @@ body {
   transition: all 120ms ease;
 }
 
-.docs-nav-section a:hover {
+.docs-nav-section a:hover,
+.docs-nav-group a:hover,
+.docs-nav-top a:hover {
   border-color: var(--docs-border);
   background: #fff;
   color: var(--docs-text-0);
@@ -113,23 +176,6 @@ body {
   min-width: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto 1fr;
-}
-
-.docs-header {
-  grid-column: 1 / -1;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--docs-border);
-  background: rgba(245, 248, 253, 0.84);
-  backdrop-filter: blur(14px);
-  padding: 14px 28px;
 }
 
 .docs-content {
@@ -257,83 +303,6 @@ body {
   display: inline-flex;
   flex-wrap: nowrap;
   gap: 0;
-}
-
-/* Header controls reuse the system Button/ButtonGroup markup.
-   Keep behavior intact, but visually skin them for docs-only chrome. */
-.docs-header .button-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px;
-  border: 1px solid var(--docs-border);
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: var(--docs-shadow-sm);
-}
-
-.docs-header .button-group[data-attached="true"] {
-  gap: 6px;
-}
-
-.docs-header .button-group[data-attached="true"] > .button {
-  border-radius: 999px;
-}
-
-.docs-header
-  .button-group[data-attached="true"]:not([data-orientation="vertical"])
-  > .button
-  + .button {
-  border-inline-start-width: 1px;
-}
-
-.docs-header
-  .button-group[data-attached="true"][data-orientation="vertical"]
-  > .button
-  + .button {
-  border-block-start-width: 1px;
-}
-
-.docs-header .button-group > .button {
-  min-block-size: 0;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--docs-text-1);
-  font-size: 0.79rem;
-  font-weight: 700;
-  line-height: 1.2;
-  box-shadow: none;
-  transition: all 120ms ease;
-}
-
-.docs-header .button-group > .button.outline,
-.docs-header .button-group > .button.ghost {
-  border-color: transparent;
-  background: transparent;
-  color: var(--docs-text-1);
-}
-
-.docs-header .button-group > .button:hover,
-.docs-header .button-group > .button.outline:hover,
-.docs-header .button-group > .button.ghost:hover {
-  border-color: var(--docs-border);
-  background: #f3f7fc;
-  color: var(--docs-text-0);
-}
-
-.docs-header .button-group > .button.is-active,
-.docs-header .button-group > .button[aria-pressed="true"],
-.docs-header .button-group > .button:active {
-  border-color: #1d4ed8;
-  background: linear-gradient(180deg, #3472ff 0%, #1d4ed8 100%);
-  color: #fff;
-}
-
-.docs-header .button-group > .button:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 .docs-grid {
@@ -661,6 +630,60 @@ body {
   padding: 12px;
 }
 
+.playground-code-panel .code-tabs {
+  margin: 0;
+}
+
+.playground-code-panel .code-tabs-bar.button-group {
+  border-color: #303a48;
+  background: #1a2230;
+}
+
+.playground-code-panel .code-tabs-bar.button-group > .button {
+  color: #8899aa;
+}
+
+.playground-code-panel .code-tabs-bar.button-group > .button:hover {
+  border-color: #303a48;
+  background: #222d3d;
+  color: #cdd6f4;
+}
+
+.playground-tokens {
+  margin-top: 16px;
+  border-top: 1px solid #303a48;
+  padding-top: 12px;
+}
+
+.playground-tokens-title {
+  margin: 0 0 8px;
+  font-size: 0.69rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #8899aa;
+}
+
+.playground-tokens .docs-table-wrap {
+  border-color: #303a48;
+  background: #1a2230;
+}
+
+.playground-tokens .docs-table th {
+  background: #222d3d;
+  color: #8899aa;
+  border-color: #303a48;
+}
+
+.playground-tokens .docs-table td {
+  color: #cdd6f4;
+  border-color: #303a48;
+}
+
+.playground-tokens .docs-table tbody tr:hover td {
+  background: #222d3d;
+}
+
 .playground-code {
   margin: 0;
   overflow: auto;
@@ -824,11 +847,6 @@ html[data-brand="b"] .palette-group[data-brand-scope="a"] {
     padding: 14px 14px 18px;
   }
 
-  .docs-header {
-    justify-content: flex-start;
-    padding: 12px 16px;
-  }
-
   .docs-content {
     padding: 24px 16px 36px;
   }
@@ -946,23 +964,74 @@ html[data-brand="b"] .palette-group[data-brand-scope="a"] {
 
 .docs-hero-preview {
   display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 16px;
+  border: 1px solid var(--docs-border);
+  background: var(--docs-surface-2);
+  box-shadow:
+    var(--docs-shadow-sm),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+}
+
+.docs-hero-preview-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-block-end: 1px solid var(--docs-border);
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--docs-text-1);
+}
+
+.docs-hero-preview-controls .docs-hero-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 2px;
+  border-radius: 999px;
+  border: 1px solid var(--docs-border);
+  background: var(--docs-surface-1);
+}
+
+.docs-hero-switch button {
+  all: unset;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--docs-text-1);
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.docs-hero-switch button[aria-pressed="true"] {
+  background: var(--docs-accent);
+  color: #fff;
+}
+
+.docs-hero-switch button:hover:not([aria-pressed="true"]) {
+  background: var(--docs-surface-2);
+}
+
+.docs-hero-preview-stage {
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
   min-height: 180px;
   padding: 40px 32px;
-  border-radius: 16px;
-  border: 1px solid var(--docs-border);
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 60%),
-    var(--docs-surface-2);
-  box-shadow:
-    var(--docs-shadow-sm),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  background: var(--color-fill-surface, #fff);
+  transition: background 200ms ease, color 200ms ease;
 }
 
-.docs-hero-preview > * {
-  /* Let the rendered component sit at its natural size */
+.docs-hero-preview-stage > * {
   flex-shrink: 0;
 }
 
@@ -1415,7 +1484,7 @@ html[data-brand="b"] .palette-group[data-brand-scope="a"] {
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
   padding: 16px;
   border-radius: 12px;
   border: 1px solid var(--docs-border);

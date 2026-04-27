@@ -18,6 +18,7 @@ playground:
   queryPrefix: label
   runtime: vanilla
   renderer: label
+  tokenCssPath: src/ui/patterns/label.css
   controls:
     - kind: select
       name: mode

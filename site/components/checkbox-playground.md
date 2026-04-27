@@ -18,6 +18,7 @@ playground:
   queryPrefix: checkbox
   runtime: vanilla
   renderer: checkbox
+  tokenCssPath: src/ui/patterns/checkbox.css
   controls:
     - kind: text
       name: label

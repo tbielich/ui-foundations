@@ -18,6 +18,7 @@ playground:
   queryPrefix: badge
   runtime: vanilla
   renderer: badge
+  tokenCssPath: src/ui/patterns/badge.css
   controls:
     - kind: text
       name: text

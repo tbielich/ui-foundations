@@ -18,6 +18,7 @@ playground:
   queryPrefix: button-group
   runtime: vanilla
   renderer: button-group
+  tokenCssPath: src/ui/patterns/button.css
   controls:
     - kind: text
       name: primaryLabel

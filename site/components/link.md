@@ -11,7 +11,19 @@ permalink: /components/link/
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
-    {{ ui.link("Default link") }}
+    <div class="docs-hero-preview-controls">
+      <span class="docs-hero-switch" data-hero-group="brand">
+        <button type="button" data-hero-brand="a" aria-pressed="true">Brand A</button>
+        <button type="button" data-hero-brand="b" aria-pressed="false">Brand B</button>
+      </span>
+      <span class="docs-hero-switch" data-hero-group="mode">
+        <button type="button" data-hero-mode="light" aria-pressed="true">Light</button>
+        <button type="button" data-hero-mode="dark" aria-pressed="false">Dark</button>
+      </span>
+    </div>
+    <div class="docs-hero-preview-stage">
+      {{ ui.link("Default link") }}
+    </div>
   </div>
   <div class="docs-hero-meta">
     <span class="docs-status" data-status="draft">Draft</span>

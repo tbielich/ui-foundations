@@ -18,6 +18,7 @@ playground:
   queryPrefix: radio
   runtime: vanilla
   renderer: radio
+  tokenCssPath: src/ui/patterns/radio.css
   controls:
     - kind: text
       name: label

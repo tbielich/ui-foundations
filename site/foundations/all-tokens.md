@@ -3,8 +3,8 @@ layout: layouts/docs.njk
 title: All Tokens
 description: Tabular overview of all tokens from the central YAML export.
 navTitle: All Tokens
-order: 5
-permalink: /tokens/all/
+order: 12
+permalink: /foundations/all-tokens/
 templateEngineOverride: njk
 ---
 
@@ -36,11 +36,7 @@ templateEngineOverride: njk
 <div class="docs-table-wrap">
 <table class="docs-table">
 <thead>
-<tr>
-<th>Name</th>
-<th>Scope</th>
-<th>Value</th>
-</tr>
+<tr><th>Name</th><th>Scope</th><th>Value</th></tr>
 </thead>
 <tbody>
 {% for token in tokensTable.rows %}
@@ -54,42 +50,27 @@ templateEngineOverride: njk
 </table>
 </div>
 {% else %}
-<p>No tokens found in <code>{{ tokensTable.sourceDir }}</code>.</p>
-<p>Run <code>npm run tokens:generate</code> first.</p>
+<p>No tokens found. Run <code>npm run tokens:generate</code> first.</p>
 {% endif %}
 
 <script>
-  const scopeFilter = document.getElementById("token-scope-filter");
-  const typeFilter = document.getElementById("token-type-filter");
-  const resetButton = document.getElementById("token-filter-reset");
-  const summary = document.getElementById("token-filter-summary");
-  const rows = Array.from(document.querySelectorAll("[data-token-row]"));
-
-  if (scopeFilter && typeFilter && resetButton && summary && rows.length) {
-    const applyTokenFilters = () => {
-      const selectedScope = scopeFilter.value;
-      const selectedType = typeFilter.value;
-      let visible = 0;
-
-      rows.forEach((row) => {
-        const scopeMatch =
-          !selectedScope || row.dataset.tokenScope === selectedScope;
-        const typeMatch = !selectedType || row.dataset.tokenType === selectedType;
-        const show = scopeMatch && typeMatch;
-
-        row.hidden = !show;
-        if (show) visible += 1;
+  var scopeFilter = document.getElementById("token-scope-filter");
+  var typeFilter = document.getElementById("token-type-filter");
+  var resetBtn = document.getElementById("token-filter-reset");
+  var summary = document.getElementById("token-filter-summary");
+  var rows = Array.from(document.querySelectorAll("[data-token-row]"));
+  if (scopeFilter && typeFilter && resetBtn && summary && rows.length) {
+    function applyTokenFilters() {
+      var s = scopeFilter.value, t = typeFilter.value, v = 0;
+      rows.forEach(function (r) {
+        var show = (!s || r.dataset.tokenScope === s) && (!t || r.dataset.tokenType === t);
+        r.hidden = !show;
+        if (show) v++;
       });
-
-      summary.textContent = `${visible} of ${rows.length} tokens shown`;
-    };
-
+      summary.textContent = v + " of " + rows.length + " tokens shown";
+    }
     scopeFilter.addEventListener("change", applyTokenFilters);
     typeFilter.addEventListener("change", applyTokenFilters);
-    resetButton.addEventListener("click", () => {
-      scopeFilter.value = "";
-      typeFilter.value = "";
-      applyTokenFilters();
-    });
+    resetBtn.addEventListener("click", function () { scopeFilter.value = ""; typeFilter.value = ""; applyTokenFilters(); });
   }
 </script>

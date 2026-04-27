@@ -18,6 +18,7 @@ playground:
   queryPrefix: icon
   runtime: vanilla
   renderer: icon
+  tokenCssPath: src/ui/patterns/icon.css
   controls:
     - kind: select
       name: name

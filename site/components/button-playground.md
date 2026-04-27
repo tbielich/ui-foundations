@@ -18,6 +18,7 @@ playground:
   queryPrefix: button
   runtime: vanilla
   renderer: button
+  tokenCssPath: src/ui/patterns/button.css
   controls:
     - kind: text
       name: label

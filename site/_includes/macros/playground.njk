@@ -17,8 +17,18 @@
   {% if componentExport %}data-component-export="{{ componentExport }}"{% endif %}
   data-playground-id="{{ playgroundId }}"
 >
-  <div class="playground-preview playground-panel">
-    <div id="{{ playgroundId }}-root" class="playground-stage"></div>
+  <div class="docs-hero-preview playground-preview">
+    <div class="docs-hero-preview-controls">
+      <span class="docs-hero-switch" data-hero-group="brand">
+        <button type="button" data-hero-brand="a" aria-pressed="true">Brand A</button>
+        <button type="button" data-hero-brand="b" aria-pressed="false">Brand B</button>
+      </span>
+      <span class="docs-hero-switch" data-hero-group="mode">
+        <button type="button" data-hero-mode="light" aria-pressed="true">Light</button>
+        <button type="button" data-hero-mode="dark" aria-pressed="false">Dark</button>
+      </span>
+    </div>
+    <div id="{{ playgroundId }}-root" class="docs-hero-preview-stage playground-stage"></div>
   </div>
 
   <aside class="playground-controls-panel playground-panel">
@@ -165,7 +175,28 @@
   </aside>
 
   <section class="playground-code-panel">
-    <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code"></code></pre>
+    <div class="code-tabs">
+      <div class="code-tabs-bar button-group" role="group" data-orientation="horizontal" data-attached="true" data-justify="start" aria-label="Code format">
+        <button class="button outline" type="button" data-lang="html" aria-pressed="true">HTML</button>
+        <button class="button outline" type="button" data-lang="njk" aria-pressed="false">Nunjucks</button>
+        <button class="button outline" type="button" data-lang="react" aria-pressed="false">React</button>
+      </div>
+      <div class="code-tabs-panel" data-lang="html">
+        <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code"></code></pre>
+      </div>
+      <div class="code-tabs-panel" data-lang="njk">
+        <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code-njk"></code></pre>
+      </div>
+      <div class="code-tabs-panel" data-lang="react">
+        <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code-react"></code></pre>
+      </div>
+    </div>
+    {% if config.tokenCssPath %}
+    <div class="playground-tokens">
+      <p class="playground-tokens-title">Used tokens</p>
+      {% componentTokenTable config.tokenCssPath %}
+    </div>
+    {% endif %}
   </section>
 </div>
 {%- endmacro %}
