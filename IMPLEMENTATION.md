@@ -39,6 +39,10 @@ Tech stack:
 
 Note: MCP output is a design reference, not final code.
 
+This repository uses MCP as the active Figma integration path.
+The legacy plugin under `figma/plugin/` still exists in the repo, but it is not
+part of the normal build or validation path.
+
 ---
 
 ## Token Architecture
@@ -126,11 +130,13 @@ React (optional):
 
 - CSS patterns: `src/ui/patterns/*.css`
 - React: `src/react/*.js`
-- Macros: `dist/macros/ui.njk`
+- Macros: `site/_includes/macros/ui.njk` (source), `dist/macros/ui.njk` (generated copy)
 - Code Connect: `schemas/*.figma.ts`
 - Token exports: `figma/exports/*.tokens.json`
 - Generated tokens: `dist/tokens/`
 - Docs: `site/`
+- Rule pipeline docs: `docs/agentic/`
+- Rule pipeline validation: `docs/validation/rule-pipeline.manifest.json`, `scripts/validate-rule-pipeline.mjs`
 
 ---
 
@@ -154,6 +160,9 @@ Commands:
 
 - npm run tokens\:generate
 - npm run build\:css
+- npm run build\:all
+- npm run rules\:validate
+- npm run docs\:site
 
 ---
 
