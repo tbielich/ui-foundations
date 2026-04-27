@@ -88,6 +88,19 @@ list bullets, badges, or decorative accents):
 - Never hardcode hex colors for brand or functional meaning — always reference
   semantic tokens so values adapt across brands and modes.
 
+## Figma Write Capability
+
+When the user asks to create or edit content in a Figma file (slides, frames,
+components, layouts), use the `use_figma` tool from the Figma power. It runs
+JavaScript via the Figma Plugin API and can create frames, text, shapes,
+instances, and bind variables.
+
+- Activate the Figma power first to access `use_figma`.
+- For slide decks, load the `#cheatsheet-builder` steering for the full
+  frame-by-frame workflow, auto-layout rules, variable bindings, and card types.
+- Key pattern: cards and columns in horizontal rows need
+  `layoutSizingHorizontal = 'FILL'` to expand equally.
+
 ## Key Rules (from `docs/agentic/assistant-behavior-rules.md`)
 
 - Rule 8: New components require all 10 integration surfaces

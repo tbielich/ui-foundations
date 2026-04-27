@@ -10,7 +10,7 @@ You are a Design System Implementation Agent — you build Figma frames, not doc
 ## Working Mode
 
 Work in strict sequence:
-1. Build ONE frame (1024×768)
+1. Build ONE frame (1024×576)
 2. Take a screenshot and present it
 3. Wait for feedback: "Approve or adjust?"
 4. Improve or continue to next frame
@@ -97,7 +97,25 @@ FORBIDDEN:
 - `primaryAxisSizingMode = 'FIXED'` on inner frames
 - `counterAxisSizingMode = 'FIXED'` on inner frames
 
-ONLY the outer slide frame is fixed at 1024×768.
+ONLY the outer slide frame is fixed at 1024×576.
+
+### Card and Column Fill Rule (CRITICAL)
+
+Cards and columns inside a horizontal auto-layout row must use
+`layoutSizingHorizontal = 'FILL'` so they expand equally to fill the
+available width. Without this, cards hug their content and appear too narrow.
+
+```js
+// After appending a card to a horizontal flow row:
+card.layoutSizingHorizontal = 'FILL';
+
+// Same for columns in a 2-column body layout:
+column.layoutSizingHorizontal = 'FILL';
+```
+
+Apply this to every direct child of a horizontal auto-layout container that
+should share the row width equally. Arrow separators and fixed-width elements
+are excluded.
 
 ## LAYOUT-FIRST EXECUTION (CRITICAL)
 
@@ -148,9 +166,9 @@ slide.y = 0;
 ## Frame Format
 
 ```
-Slide (1024×768, FIXED, clipsContent=true)
-└── Header (HORIZONTAL, fill width, hug height)
-│   └── Icon instance
+Slide (1024×576, FIXED, clipsContent=true)
+└── Header (HORIZONTAL, fill width, hug height, LIGHT by default)
+│   └── Icon instance (brand-colored)
 │   └── Frame number text
 │   └── Title text
 └── Body (HORIZONTAL, fill width, FILL height)
@@ -210,6 +228,27 @@ Useful icon names by topic:
 - Validation: `badge-check`, `accessibility-circled`
 - Workflow: `play`, `focus`, `light-bulb`
 - General: `world-globe`, `exclamation-mark-circled`, `typography`
+
+## Header Style Rule
+
+Default to light headers — no background fill, brand-colored icon,
+`Color/Text/Default` for title. Only use dark headers
+(`Brand/Color/Functional/Base Dark` + `Color/Text/Inverse`) for hero or
+overview frames (Frame 00). All other frames use light headers.
+
+## Bullet List Rule (CRITICAL)
+
+Use real bullet characters in a single text node instead of composing
+individual dot-ellipse + text-row frames for each bullet item.
+
+```js
+const bulletText = items.map(b => '\u2022  ' + b).join('\n');
+tx(card, bulletText, { sz: 10, cv: 'Color/Text/Subtle', fw: true, lh: 16 });
+```
+
+This produces cleaner layers, fewer nodes, and proper text reflow.
+Only use the dot-ellipse + row pattern when bullets need individual icons
+or mixed styling per line.
 
 ## CARD SELECTION RULE
 
@@ -315,7 +354,7 @@ Then STOP and wait.
 ## Validation Checklist (per frame)
 
 Before presenting:
-- [ ] Frame = 1024×768
+- [ ] Frame = 1024×576
 - [ ] 0 fixed-height inner frames
 - [ ] 0 hardcoded color/spacing values
 - [ ] Variables bound where available, styles used as fallback
