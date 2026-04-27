@@ -153,15 +153,31 @@ If layout feels flat:
 ## Frame Positioning (MANDATORY)
 
 Each new frame must be placed to the right of the previous one with an 80px gap.
+Frames MUST NEVER overlap or share the same x position. Every frame gets a
+unique x offset calculated from the previous frame's position.
+
+When building multiple frames in one session (batch mode), calculate the x
+position immediately before creating each frame — not once at the start.
 
 ```js
-const existing = page.children.filter(n => n.type === 'FRAME');
-const x = existing.length > 0
-  ? existing[existing.length - 1].x + 1024 + 80
-  : 0;
-slide.x = x;
+function nextX() {
+  const existing = page.children.filter(n => n.type === 'FRAME');
+  return existing.length > 0
+    ? existing[existing.length - 1].x + 1024 + 80
+    : 0;
+}
+// Call nextX() right before each makeSlide(), not cached
+slide.x = nextX();
 slide.y = 0;
 ```
+
+## Batch Mode
+
+When the user asks to build all frames at once ("build all, I'll check later"):
+- Build frames sequentially in a single script execution
+- Use the `nextX()` function before each frame creation
+- After all frames are built, take a page-level screenshot and present a
+  summary table of all frames
 
 ## Frame Format
 
