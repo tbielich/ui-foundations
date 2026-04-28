@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Figma Library Sync",
+  "description": "When a new CSS pattern file is created in src/ui/patterns/, remind the agent to activate the figma-library-sync skill and sync the new component to the Figma library file including variables, component set, code syntax, and code snippets.",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "src/ui/patterns/*.css"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new component CSS pattern was just created. Activate the figma-library-sync skill and follow its workflow to sync this component to the Figma library file. This includes: creating component-level token variables in the Components UI collection with code syntax for Web/iOS/Android, building the component set with proper variants and token bindings, adding code snippets for all three platforms, and using unicode-prefixed variant names. Ask the user for the target Figma file URL if not already known."
+  }
+}

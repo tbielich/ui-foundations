@@ -2,6 +2,7 @@
 // Re-generate this file after adding or removing icons.
 
 export const ICON_NAMES = [
+  "checkmark",
   "location",
   "location-roundtrip",
   "location-track",

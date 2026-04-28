@@ -324,5 +324,24 @@
     <script src="/assets/playground/renderers.js"></script>
     <script src="/assets/playground/code-generators.js"></script>
     <script src="/assets/playground.js"></script>
+    <script>
+      // Sync is-checked class with native :checked state for radio, checkbox, switch
+      (function () {
+        function sync(input) {
+          var isChecked = input.checked;
+          input.classList.toggle("is-checked", isChecked);
+          if (input.type === "radio" && input.name) {
+            var siblings = document.querySelectorAll('input[type="radio"][name="' + input.name + '"]');
+            siblings.forEach(function (sib) {
+              if (sib !== input) sib.classList.remove("is-checked");
+            });
+          }
+        }
+        document.addEventListener("change", function (e) {
+          var t = e.target;
+          if (t.matches && t.matches('.radio, .checkbox, .switch')) sync(t);
+        });
+      })();
+    </script>
   </body>
 </html>

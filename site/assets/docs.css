@@ -999,6 +999,18 @@ html[data-brand="b"] .palette-group[data-brand-scope="a"] {
   background: var(--docs-surface-1);
 }
 
+.docs-hero-preview-controls .docs-hero-select {
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--docs-border);
+  background: var(--docs-surface-1);
+  color: var(--docs-text-0);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
 .docs-hero-switch button {
   all: unset;
   padding: 3px 10px;

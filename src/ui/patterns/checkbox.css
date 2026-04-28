@@ -45,9 +45,18 @@
 
   .checkbox:checked::after,
   .checkbox.is-checked::after {
-    content: "\2713";
-    font-size: var(--typography-label-font-size);
-    line-height: var(--typography-label-line-height);
+    content: "";
+    inline-size: 0.75em;
+    block-size: 0.75em;
+    background-color: currentColor;
+    -webkit-mask-image: url("/assets/icons/checkmark.svg");
+    mask-image: url("/assets/icons/checkmark.svg");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
   }
 
   .checkbox:indeterminate,
