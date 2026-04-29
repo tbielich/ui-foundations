@@ -9,7 +9,20 @@ permalink: /components/
 
 {% import "macros/ui.njk" as ui %}
 
-<div class="docs-component-grid">
+<div class="docs-hero-preview">
+  <div class="docs-hero-preview-controls">
+    <span class="docs-hero-switch" data-hero-group="brand">
+      <button type="button" data-hero-brand="a" aria-pressed="true">Brand A</button>
+      <button type="button" data-hero-brand="b" aria-pressed="false">Brand B</button>
+      <button type="button" data-hero-brand="c" aria-pressed="false">Brand C</button>
+    </span>
+    <span class="docs-hero-switch" data-hero-group="mode">
+      <button type="button" data-hero-mode="light" aria-pressed="true">Light</button>
+      <button type="button" data-hero-mode="dark" aria-pressed="false">Dark</button>
+    </span>
+  </div>
+  <div class="docs-hero-preview-stage">
+    <div class="docs-component-grid">
   <a class="docs-component-card" href="/components/button/">
     <div class="docs-component-card-preview">
       {{ ui.button("Action") }}
@@ -102,4 +115,6 @@ permalink: /components/
       <p>Inline and standalone navigation with token-driven states.</p>
     </div>
   </a>
+    </div>
+  </div>
 </div>

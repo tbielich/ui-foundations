@@ -31,6 +31,7 @@ import "ui-foundations/ui.css";
 import "ui-foundations/tokens/primitives.css";
 import "ui-foundations/tokens/brand-a.css";
 import "ui-foundations/tokens/brand-b.css";
+import "ui-foundations/tokens/brand-c.css";
 import "ui-foundations/tokens/color-light.css";
 import "ui-foundations/tokens/color-dark.css";
 import "ui-foundations/tokens/semantic.css";
@@ -68,7 +69,7 @@ Apply brand and mode to `:root` (`<html>`), not `body`.
 ```js
 const root = document.documentElement;
 
-root.dataset.brand = "a"; // "a" | "b"
+root.dataset.brand = "a"; // "a" | "b" | "c"
 root.dataset.mode = "light"; // "light" | "dark"
 
 window.setBrand = (brand) => {

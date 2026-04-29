@@ -80,6 +80,7 @@ Files in `dist/tokens/json/` follow the DTCG Design Tokens Format Module:
 | `components-ui.tokens.json` | Component tokens |
 | `themes-brands.tokens.brand-a.json` | Brand A overrides |
 | `themes-brands.tokens.brand-b.json` | Brand B overrides |
+| `themes-brands.tokens.brand-c.json` | Brand C overrides |
 
 ## Validation
 

@@ -25,7 +25,7 @@ The system uses a strict 4-layer token hierarchy. Never mix layers.
 | Layer | Figma Collection | Source File | Modes |
 |---|---|---|---|
 | Core Primitives | `Core Primitives` | `dist/tokens/css/core-primitives.tokens.css` | Default |
-| Brand Themes | `Brand Themes` | `dist/tokens/css/themes-brands.tokens.*.css` | Brand A, Brand B |
+| Brand Themes | `Brand Themes` | `dist/tokens/css/themes-brands.tokens.*.css` | Brand A, Brand B, Brand C |
 | Appearance Modes | `Appearance Modes` | `dist/tokens/css/appearance-modes.tokens.mode-*.css` | Light, Dark |
 | Semantics Roles | `Semantics Roles` | `dist/tokens/css/semantics-roles.tokens.css` | Default |
 | Components UI | `Components UI` | `dist/tokens/css/components-ui.tokens.css` | Default |

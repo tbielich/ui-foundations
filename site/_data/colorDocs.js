@@ -60,6 +60,14 @@ module.exports = () => {
       ),
     },
     {
+      id: "brand-c",
+      title: "Brand C",
+      description: "Filtered from tokens.yaml (scope brand:c).",
+      tokens: sortByName(
+        pickByPrefixes(pickByScope(tokens, "brand", "c"), ["--brand-color-"]),
+      ),
+    },
+    {
       id: "light-semantic",
       title: "Light Semantic Mapping",
       description: "Filtered from tokens.yaml (scope mode:light).",

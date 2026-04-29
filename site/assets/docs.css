@@ -785,11 +785,18 @@ code {
   margin-top: 16px;
 }
 
-html[data-brand="a"] .palette-group[data-brand-scope="b"] {
+html[data-brand="a"] .palette-group[data-brand-scope="b"],
+html[data-brand="a"] .palette-group[data-brand-scope="c"] {
   display: none;
 }
 
-html[data-brand="b"] .palette-group[data-brand-scope="a"] {
+html[data-brand="b"] .palette-group[data-brand-scope="a"],
+html[data-brand="b"] .palette-group[data-brand-scope="c"] {
+  display: none;
+}
+
+html[data-brand="c"] .palette-group[data-brand-scope="a"],
+html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   display: none;
 }
 

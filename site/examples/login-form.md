@@ -16,6 +16,20 @@ breadcrumb:
 
 <h2>Preview</h2>
 
+<div class="docs-hero-preview">
+  <div class="docs-hero-preview-controls">
+    <span class="docs-hero-switch" data-hero-group="brand">
+      <button type="button" data-hero-brand="a" aria-pressed="true">Brand A</button>
+      <button type="button" data-hero-brand="b" aria-pressed="false">Brand B</button>
+      <button type="button" data-hero-brand="c" aria-pressed="false">Brand C</button>
+    </span>
+    <span class="docs-hero-switch" data-hero-group="mode">
+      <button type="button" data-hero-mode="light" aria-pressed="true">Light</button>
+      <button type="button" data-hero-mode="dark" aria-pressed="false">Dark</button>
+    </span>
+  </div>
+  <div class="docs-hero-preview-stage">
+
 <div class="example-form-shell">
   <form id="example-login-form" class="example-form" action="#" method="post" novalidate>
     <fieldset class="example-form__group">
@@ -49,6 +63,9 @@ breadcrumb:
       {{ ui.button(label="Sign in", type="submit") }}
     </div>
   </form>
+</div>
+
+  </div>
 </div>
 
 <h2>Scope</h2>

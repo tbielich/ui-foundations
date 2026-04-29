@@ -33,6 +33,7 @@
     "./tokens/primitives.css": "./dist/tokens/css/core-primitives.tokens.css",
     "./tokens/brand-a.css": "./dist/tokens/css/themes-brands.tokens.brand-a.css",
     "./tokens/brand-b.css": "./dist/tokens/css/themes-brands.tokens.brand-b.css",
+    "./tokens/brand-c.css": "./dist/tokens/css/themes-brands.tokens.brand-c.css",
     "./tokens/color.css": "./dist/tokens/css/appearance-modes.tokens.mode-light.css",
     "./tokens/color-light.css": "./dist/tokens/css/appearance-modes.tokens.mode-light.css",
     "./tokens/color-dark.css": "./dist/tokens/css/appearance-modes.tokens.mode-dark.css",
