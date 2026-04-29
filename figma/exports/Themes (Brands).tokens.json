@@ -30,7 +30,7 @@
                 "$ref": "Color/Brand B/Green/600"
               },
               "Brand C": {
-                "$ref": "Color/Brand C/Green/600"
+                "$ref": "Color/Brand C/Green/30"
               }
             }
           }
@@ -63,7 +63,7 @@
                 "$ref": "Color/Brand B/Red/600"
               },
               "Brand C": {
-                "$ref": "Color/Brand C/Red/600"
+                "$ref": "Color/Brand C/Red/30"
               }
             }
           }
@@ -96,7 +96,7 @@
                 "$ref": "Color/Brand B/Purple/700"
               },
               "Brand C": {
-                "$ref": "Color/Brand C/Blue/100"
+                "$ref": "Color/Brand C/Blue/10"
               }
             }
           }
@@ -129,7 +129,7 @@
                 "$ref": "Color/Brand B/Purple/900"
               },
               "Brand C": {
-                "$ref": "Color/Brand C/Midnight/100"
+                "$ref": "Color/Brand C/Midnight/10"
               }
             }
           }
@@ -163,7 +163,7 @@
               "$ref": "Color/Brand B/Purple/600"
             },
             "Brand C": {
-              "$ref": "Color/Brand C/Blue/200"
+              "$ref": "Color/Brand C/Blue/40"
             }
           }
         }
@@ -196,7 +196,7 @@
               "$ref": "Color/Brand B/Green/400"
             },
             "Brand C": {
-              "$ref": "Color/Brand C/Coolblue/300"
+              "$ref": "Color/Brand C/Coolblue/60"
             }
           }
         }
@@ -229,7 +229,7 @@
               "$ref": "Color/Brand B/Purple/800"
             },
             "Brand C": {
-              "$ref": "Color/Brand C/Blue/100"
+              "$ref": "Color/Brand C/Blue/10"
             }
           }
         }
@@ -262,7 +262,7 @@
               "$ref": "Color/Brand B/Green/800"
             },
             "Brand C": {
-              "$ref": "Color/Brand C/Coolblue/100"
+              "$ref": "Color/Brand C/Coolblue/10"
             }
           }
         }
