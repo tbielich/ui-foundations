@@ -62,8 +62,8 @@ function inferBucketFromFilename(fileName) {
 // Derive scope from mode name (e.g. "Light Mode" → mode:light, "Brand A" → brand:a)
 function inferScopeFromModeName(modeName) {
   const slug = slugifyName(modeName);
-  // "brand-a" / "brand-b" → brand scope
-  const brandMatch = slug.match(/^brand[-\s]?([a-z])$/i);
+  // "brand-a" / "brand-b" / "brand-c" → brand scope
+  const brandMatch = slug.match(/^brand[-\s]?([a-z]+)$/i);
   if (brandMatch) return { bucket: "brand", id: brandMatch[1].toLowerCase() };
   // "light-mode" / "dark-mode" → mode scope
   const modeMatch = slug.match(/^(.+)-mode$/) || slug.match(/^mode-(.+)$/);

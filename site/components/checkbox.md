@@ -17,6 +17,7 @@ playgroundLabel: Open Checkbox Playground
       <span class="docs-hero-switch" data-hero-group="brand">
         <button type="button" data-hero-brand="a" aria-pressed="true">Brand A</button>
         <button type="button" data-hero-brand="b" aria-pressed="false">Brand B</button>
+        <button type="button" data-hero-brand="c" aria-pressed="false">Brand C</button>
       </span>
       <span class="docs-hero-switch" data-hero-group="mode">
         <button type="button" data-hero-mode="light" aria-pressed="true">Light</button>

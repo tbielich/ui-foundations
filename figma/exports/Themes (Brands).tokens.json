@@ -28,6 +28,9 @@
               },
               "Brand B": {
                 "$ref": "Color/Brand B/Green/600"
+              },
+              "Brand C": {
+                "$ref": "Color/Brand C/Green/30"
               }
             }
           }
@@ -58,6 +61,9 @@
               },
               "Brand B": {
                 "$ref": "Color/Brand B/Red/600"
+              },
+              "Brand C": {
+                "$ref": "Color/Brand C/Red/30"
               }
             }
           }
@@ -88,6 +94,9 @@
               },
               "Brand B": {
                 "$ref": "Color/Brand B/Purple/700"
+              },
+              "Brand C": {
+                "$ref": "Color/Brand C/Blue/10"
               }
             }
           }
@@ -118,6 +127,9 @@
               },
               "Brand B": {
                 "$ref": "Color/Brand B/Purple/900"
+              },
+              "Brand C": {
+                "$ref": "Color/Brand C/Midnight/10"
               }
             }
           }
@@ -149,6 +161,9 @@
             },
             "Brand B": {
               "$ref": "Color/Brand B/Purple/600"
+            },
+            "Brand C": {
+              "$ref": "Color/Brand C/Blue/40"
             }
           }
         }
@@ -179,6 +194,9 @@
             },
             "Brand B": {
               "$ref": "Color/Brand B/Green/400"
+            },
+            "Brand C": {
+              "$ref": "Color/Brand C/Coolblue/60"
             }
           }
         }
@@ -209,6 +227,9 @@
             },
             "Brand B": {
               "$ref": "Color/Brand B/Purple/800"
+            },
+            "Brand C": {
+              "$ref": "Color/Brand C/Blue/10"
             }
           }
         }
@@ -239,6 +260,9 @@
             },
             "Brand B": {
               "$ref": "Color/Brand B/Green/800"
+            },
+            "Brand C": {
+              "$ref": "Color/Brand C/Coolblue/10"
             }
           }
         }
@@ -268,6 +292,9 @@
               "$ref": "Color/Neutral/500"
             },
             "Brand B": {
+              "$ref": "Color/Neutral/500"
+            },
+            "Brand C": {
               "$ref": "Color/Neutral/500"
             }
           }
@@ -299,6 +326,9 @@
             },
             "Brand B": {
               "$ref": "Color/Neutral/800"
+            },
+            "Brand C": {
+              "$ref": "Color/Neutral/800"
             }
           }
         }
@@ -328,6 +358,9 @@
               "$ref": "Color/Neutral/200"
             },
             "Brand B": {
+              "$ref": "Color/Neutral/200"
+            },
+            "Brand C": {
               "$ref": "Color/Neutral/200"
             }
           }
@@ -361,6 +394,9 @@
             },
             "Brand B": {
               "$ref": "Font/Family/Sans"
+            },
+            "Brand C": {
+              "$ref": "Font/Family/Sans"
             }
           }
         }
@@ -390,6 +426,9 @@
               "$ref": "Font/Family/Serif"
             },
             "Brand B": {
+              "$ref": "Font/Family/Serif"
+            },
+            "Brand C": {
               "$ref": "Font/Family/Serif"
             }
           }
@@ -423,6 +462,9 @@
             },
             "Brand B": {
               "$ref": "Size/Radius/000"
+            },
+            "Brand C": {
+              "$ref": "Size/Radius/full"
             }
           }
         }
@@ -453,6 +495,9 @@
             },
             "Brand B": {
               "$ref": "Size/Radius/100"
+            },
+            "Brand C": {
+              "$ref": "Size/Radius/300"
             }
           }
         }
@@ -483,6 +528,9 @@
             },
             "Brand B": {
               "$ref": "Size/Radius/200"
+            },
+            "Brand C": {
+              "$ref": "Size/Radius/400"
             }
           }
         }
@@ -513,6 +561,9 @@
             },
             "Brand B": {
               "$ref": "Size/Radius/000"
+            },
+            "Brand C": {
+              "$ref": "Size/Radius/200"
             }
           }
         }

@@ -44,7 +44,7 @@ Set `data-brand` and `data-mode` on the root element to control theming at runti
 
 ```js
 const root = document.documentElement;
-root.dataset.brand = "a"; // "a" | "b"
+root.dataset.brand = "a"; // "a" | "b" | "c"
 root.dataset.mode = "light"; // "light" | "dark"
 ```
 
@@ -110,7 +110,7 @@ import { Icon } from "ui-foundations/react/icon";
 Tokens are layered in four levels:
 
 1. **Primitives** — raw values (colors, sizes, weights)
-2. **Brand** — brand-specific aliases (`brand-a`, `brand-b`)
+2. **Brand** — brand-specific aliases (`brand-a`, `brand-b`, `brand-c`)
 3. **Semantic** — role-based mappings (`color-text-default`, `color-fill-brand`)
 4. **Component** — component-specific tokens (`button-border-radius`, `input-height`)
 
