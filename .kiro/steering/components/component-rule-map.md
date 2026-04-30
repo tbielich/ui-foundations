@@ -10,8 +10,8 @@ validation.
 
 ## Source Order
 
-1. `.kiro/steering/design-principles.md`
-2. `.kiro/steering/usability-heuristics.md`
+1. `.kiro/steering/foundations/design-principles.md`
+2. `.kiro/steering/foundations/usability-heuristics.md`
 3. `.kiro/steering/pattern-rules/*.md`
 4. `docs/foundations/`
 5. `docs/agentic/assistant-behavior-rules.md`
@@ -31,14 +31,14 @@ validation.
 
 | Component | Primary patterns | Existing rule files | Validation intent |
 |---|---|---|---|
-| Button | forms, cards, modals, tables, search-and-filter | `.kiro/steering/component-patterns.md`, `docs/agentic/assistant-behavior-rules.md` | semantic button, variant state classes, focus visibility, token-only styling |
+| Button | forms, cards, modals, tables, search-and-filter | `.kiro/steering/components/component-patterns.md`, `docs/agentic/assistant-behavior-rules.md` | semantic button, variant state classes, focus visibility, token-only styling |
 | ButtonGroup | navigation, forms | `docs/agentic/assistant-behavior-rules.md` | grouped controls use `role="group"` and accessible label where needed |
-| Input | forms, search-and-filter | `.kiro/steering/component-patterns.md`, `.kiro/steering/react-wrappers.md` | programmatic label via consuming pattern, focus visibility, token-only styling |
-| Checkbox | forms, search-and-filter | `.kiro/steering/component-patterns.md`, `.kiro/steering/react-wrappers.md` | native checkbox semantics, checked/indeterminate/disabled state parity |
-| Radio | forms | `.kiro/steering/component-patterns.md`, `.kiro/steering/react-wrappers.md` | native radio semantics, shared name grouping, checked/disabled state parity |
-| Switch | forms | `.kiro/steering/component-patterns.md`, `.kiro/steering/react-wrappers.md` | switch role, checked/disabled state parity, visible focus |
-| Label | forms, cards, search-and-filter | `.kiro/steering/component-patterns.md` | label composition, required text accessible to screen readers |
-| Icon | navigation, cards, search-and-filter | `.kiro/steering/component-patterns.md`, `.kiro/steering/react-wrappers.md` | decorative icons hidden, informative icons named |
+| Input | forms, search-and-filter | `.kiro/steering/components/component-patterns.md`, `.kiro/steering/components/react-wrappers.md` | programmatic label via consuming pattern, focus visibility, token-only styling |
+| Checkbox | forms, search-and-filter | `.kiro/steering/components/component-patterns.md`, `.kiro/steering/components/react-wrappers.md` | native checkbox semantics, checked/indeterminate/disabled state parity |
+| Radio | forms | `.kiro/steering/components/component-patterns.md`, `.kiro/steering/components/react-wrappers.md` | native radio semantics, shared name grouping, checked/disabled state parity |
+| Switch | forms | `.kiro/steering/components/component-patterns.md`, `.kiro/steering/components/react-wrappers.md` | switch role, checked/disabled state parity, visible focus |
+| Label | forms, cards, search-and-filter | `.kiro/steering/components/component-patterns.md` | label composition, required text accessible to screen readers |
+| Icon | navigation, cards, search-and-filter | `.kiro/steering/components/component-patterns.md`, `.kiro/steering/components/react-wrappers.md` | decorative icons hidden, informative icons named |
 | Link | navigation, cards | `docs/foundations/foundation-012-minimal-markup-and-composition.md` | semantic link, disabled state via `aria-disabled` when needed |
 
 ## Agent Check

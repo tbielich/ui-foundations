@@ -49,10 +49,10 @@ What should change:
 
 | Stage | Owner | Artifact |
 |---|---|---|
-| Principles | Design system governance | `.kiro/steering/design-principles.md` |
-| Heuristics | Design system governance | `.kiro/steering/usability-heuristics.md` |
+| Principles | Design system governance | `.kiro/steering/foundations/design-principles.md` |
+| Heuristics | Design system governance | `.kiro/steering/foundations/usability-heuristics.md` |
 | Pattern rules | Pattern governance | `.kiro/steering/pattern-rules/*.md` |
-| Component rules | Component governance | `.kiro/steering/component-rule-map.md`, existing component steering |
+| Component rules | Component governance | `.kiro/steering/components/component-rule-map.md`, existing component steering |
 | Validation | Engineering governance | `docs/validation/rule-pipeline.manifest.json`, `scripts/validate-rule-pipeline.mjs` |
 | CI | Repository automation | `package.json`, `.github/workflows/ci.yml` |
 
@@ -70,10 +70,10 @@ What should change:
 
 | Layer | Status | Existing artifacts | Missing pieces | Recommended action |
 |---|---|---|---|---|
-| Principles | Added | `.kiro/steering/design-principles.md` | Future principle changes need governance review | Keep local steering as source of truth |
-| Heuristics | Added | `.kiro/steering/usability-heuristics.md` | Future heuristic changes need governance review | Keep ids stable and cite them downstream |
+| Principles | Added | `.kiro/steering/foundations/design-principles.md` | Future principle changes need governance review | Keep local steering as source of truth |
+| Heuristics | Added | `.kiro/steering/foundations/usability-heuristics.md` | Future heuristic changes need governance review | Keep ids stable and cite them downstream |
 | Pattern rules | Added | `.kiro/steering/pattern-rules/*.md` | No generated rule tooling yet | Maintain manually until generator exists |
-| Component rules | Partial | `assistant-behavior-rules.md`, component steering, `component-rule-map.md` | Per-component executable contracts are still shallow | Extend validator when component specs mature |
+| Component rules | Partial | `assistant-behavior-rules.md`, component steering, `.kiro/steering/components/component-rule-map.md` | Per-component executable contracts are still shallow | Extend validator when component specs mature |
 | Validation | Added scaffold | `rule-pipeline.manifest.json`, `validate-rule-pipeline.mjs` | Does not yet inspect rendered DOM or token contrast | Keep planned a11y/mode/drift validators as next layer |
 | CI | Updated | `ci:check`, GitHub Actions | CI now checks traceability, not full semantic behavior | Add future validators as they become deterministic |
 

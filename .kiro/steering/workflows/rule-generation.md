@@ -11,8 +11,8 @@ Generate pattern-level UI rules by translating design principles and usability h
 ## Inputs
 
 Read these local steering files first:
-- `.kiro/steering/design-principles.md`
-- `.kiro/steering/usability-heuristics.md`
+- `.kiro/steering/foundations/design-principles.md`
+- `.kiro/steering/foundations/usability-heuristics.md`
 
 These files represent the source of truth for design intent in this repository.
 External skills may provide supporting examples, but they must not override the

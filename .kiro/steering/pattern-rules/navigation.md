@@ -1,3 +1,26 @@
+---
+type: pattern-rule
+domain: ui-foundations
+status: active
+pattern: navigation
+applies_to:
+  - primary-navigation
+  - secondary-navigation
+  - breadcrumbs
+  - tabs
+principles:
+  - principle.hierarchy
+  - principle.affordance
+  - principle.cognitive-load
+  - principle.consistency
+heuristics:
+  - heuristic.recognition
+  - heuristic.consistency
+  - heuristic.user-control
+  - heuristic.accessibility
+inclusion: manual
+---
+
 # Pattern: navigation
 
 ## Rule type

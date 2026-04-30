@@ -2,11 +2,15 @@
 inclusion: always
 ---
 
-# Usability Heuristics
+# UI Foundations Usability Heuristics
 
-These heuristics are the source of truth for interaction and validation intent.
-They turn design principles into observable behavior that pattern, component,
-and validation rules can reference.
+These project-specific heuristics are the source of truth for interaction and
+validation intent in UI Foundations.
+
+They override or narrow generic global usability-review skills for UI Foundations
+work. Use the global `usability-heuristics` skill as background knowledge, but
+use these IDs when generating pattern rules, component rules, validation checks,
+or review findings for this project.
 
 ## Traceability Contract
 

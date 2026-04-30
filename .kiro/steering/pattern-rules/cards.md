@@ -1,3 +1,25 @@
+---
+type: pattern-rule
+domain: ui-foundations
+status: active
+pattern: cards
+applies_to:
+  - cards
+  - summary-panels
+  - selectable-content-blocks
+principles:
+  - principle.proximity
+  - principle.hierarchy
+  - principle.affordance
+  - principle.consistency
+heuristics:
+  - heuristic.consistency
+  - heuristic.recognition
+  - heuristic.user-control
+  - heuristic.accessibility
+inclusion: manual
+---
+
 # Pattern: cards
 
 ## Rule type

@@ -1,3 +1,25 @@
+---
+type: pattern-rule
+domain: ui-foundations
+status: active
+pattern: forms
+applies_to:
+  - forms
+  - field-groups
+  - validation-messages
+principles:
+  - principle.proximity
+  - principle.hierarchy
+  - principle.affordance
+  - principle.cognitive-load
+heuristics:
+  - heuristic.feedback
+  - heuristic.error-prevention
+  - heuristic.recognition
+  - heuristic.accessibility
+inclusion: manual
+---
+
 # Pattern: forms
 
 ## Rule type

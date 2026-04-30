@@ -1,3 +1,27 @@
+---
+type: pattern-rule
+domain: ui-foundations
+status: active
+pattern: search-and-filter
+applies_to:
+  - search
+  - filters
+  - faceted-filtering
+  - result-refinement
+principles:
+  - principle.proximity
+  - principle.hierarchy
+  - principle.affordance
+  - principle.cognitive-load
+heuristics:
+  - heuristic.feedback
+  - heuristic.error-prevention
+  - heuristic.recognition
+  - heuristic.user-control
+  - heuristic.accessibility
+inclusion: manual
+---
+
 # Pattern: search-and-filter
 
 ## Rule type
