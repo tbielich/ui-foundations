@@ -2019,6 +2019,13 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
 
 /* ─── Responsive adjustments for new patterns ─── */
 @media (max-width: 980px) {
+  .docs-search-results {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    top: auto;
+  }
+
   .docs-toc-list {
     columns: 1;
   }
@@ -2035,4 +2042,89 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   .docs-checklist {
     grid-template-columns: 1fr;
   }
+}
+
+/* ─── Docs search ─── */
+.docs-search {
+  position: relative;
+  margin: 0 0 16px;
+}
+
+.docs-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--docs-border);
+  border-radius: 10px;
+  background: var(--docs-surface-1);
+  color: var(--docs-text-0);
+  font-family: var(--docs-font-sans);
+  font-size: 0.88rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.docs-search-input::placeholder {
+  color: var(--docs-text-1);
+}
+
+.docs-search-input:focus {
+  border-color: var(--docs-accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.docs-search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 4px 0 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid var(--docs-border);
+  border-radius: 12px;
+  background: var(--docs-surface-1);
+  box-shadow: var(--docs-shadow-md);
+  z-index: 100;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.docs-search-result {
+  margin: 0;
+  padding: 0;
+}
+
+.docs-search-result a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--docs-text-0);
+  text-decoration: none;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.docs-search-result a:hover,
+.docs-search-result[aria-selected="true"] a {
+  background: var(--docs-surface-2);
+}
+
+.docs-search-type {
+  flex-shrink: 0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.69rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--docs-surface-2);
+  color: var(--docs-text-1);
+}
+
+.docs-search-empty {
+  padding: 12px 10px;
+  font-size: 0.88rem;
+  color: var(--docs-text-1);
 }
