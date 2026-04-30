@@ -8,6 +8,6 @@
   },
   "then": {
     "type": "askAgent",
-    "prompt": "If the user asks to build a new feature, create a new component, implement a broad workflow, or make a multi-step product change, consider using the Kiro spec workflow with requirements, design, and tasks before implementation. If the user asks for a small direct fix or clearly says not to create a spec, do not force the spec workflow."
+    "prompt": "If the user asks to build a new feature, create a new component, implement a broad workflow, or make a multi-step product change, consider whether a Kiro spec workflow is needed. Use the spec workflow ONLY when the request is ambiguous, scope is unclear, multiple components or architecture decisions are involved, or work will span multiple sessions. If the user provides a well-defined GitHub Issue with clear scope and acceptance criteria, or asks for a straightforward feature, skip the spec and implement directly. Never force the spec workflow on clearly scoped work."
   }
 }
