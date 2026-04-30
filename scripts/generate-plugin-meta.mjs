@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,9 +18,9 @@ function readPackageVersion() {
   return pkg.version || "0.0.0";
 }
 
-function safeGit(command) {
+function safeGit(args) {
   try {
-    return execSync(command, {
+    return execFileSync("git", args, {
       cwd: REPO_ROOT,
       stdio: ["ignore", "pipe", "ignore"],
       encoding: "utf8",
@@ -47,8 +47,8 @@ function buildHistory(version, buildDate, commit) {
 function main() {
   const version = readPackageVersion();
   const buildDate = new Date().toISOString();
-  const commit = safeGit("git rev-parse --short HEAD");
-  const branch = safeGit("git rev-parse --abbrev-ref HEAD");
+  const commit = safeGit(["rev-parse", "--short", "HEAD"]);
+  const branch = safeGit(["rev-parse", "--abbrev-ref", "HEAD"]);
 
   const meta = {
     name: "Token Foundry",

@@ -6,7 +6,6 @@
       "autoApprove": [
         "get_metadata",
         "get_design_context",
-        "use_figma",
         "get_screenshot",
         "get_variable_defs",
         "search_design_system",
