@@ -1,3 +1,25 @@
+---
+type: pattern-rule
+domain: ui-foundations
+status: active
+pattern: tables
+applies_to:
+  - data-tables
+  - comparison-tables
+  - dense-record-lists
+principles:
+  - principle.hierarchy
+  - principle.contrast
+  - principle.cognitive-load
+  - principle.consistency
+heuristics:
+  - heuristic.feedback
+  - heuristic.consistency
+  - heuristic.recognition
+  - heuristic.accessibility
+inclusion: manual
+---
+
 # Pattern: tables
 
 ## Rule type

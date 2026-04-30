@@ -1,9 +1,9 @@
 {
   "version": 1,
   "sourceOfTruth": {
-    "principles": ".kiro/steering/design-principles.md",
-    "heuristics": ".kiro/steering/usability-heuristics.md",
-    "ruleGeneration": ".kiro/steering/rule-generation.md"
+    "principles": ".kiro/steering/foundations/design-principles.md",
+    "heuristics": ".kiro/steering/foundations/usability-heuristics.md",
+    "ruleGeneration": ".kiro/steering/workflows/rule-generation.md"
   },
   "patternDirectory": ".kiro/steering/pattern-rules",
   "patterns": [
@@ -108,15 +108,15 @@
   "componentRules": [
     {
       "id": "component-rule-map",
-      "file": ".kiro/steering/component-rule-map.md"
+      "file": ".kiro/steering/components/component-rule-map.md"
     },
     {
       "id": "component-css-patterns",
-      "file": ".kiro/steering/component-patterns.md"
+      "file": ".kiro/steering/components/component-patterns.md"
     },
     {
       "id": "react-wrappers",
-      "file": ".kiro/steering/react-wrappers.md"
+      "file": ".kiro/steering/components/react-wrappers.md"
     },
     {
       "id": "assistant-component-checklist",

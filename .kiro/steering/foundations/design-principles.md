@@ -2,11 +2,15 @@
 inclusion: always
 ---
 
-# Design Principles
+# UI Foundations Design Principles
 
-These principles are the source of truth for cross-cutting UI composition intent.
-They describe what good UI structure must preserve before any pattern or component
-rule is generated.
+These project-specific principles are the source of truth for cross-cutting UI
+composition intent in UI Foundations.
+
+They override or narrow generic global design review skills for UI Foundations
+work. Use global skills such as `gestalt-principles` as background knowledge, but
+use these IDs when generating pattern rules, component rules, validation checks,
+or review findings for this project.
 
 ## Traceability Contract
 

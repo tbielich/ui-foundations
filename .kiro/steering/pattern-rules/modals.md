@@ -1,3 +1,25 @@
+---
+type: pattern-rule
+domain: ui-foundations
+status: active
+pattern: modals
+applies_to:
+  - dialogs
+  - modal-confirmations
+  - blocking-overlays
+principles:
+  - principle.hierarchy
+  - principle.contrast
+  - principle.affordance
+  - principle.cognitive-load
+heuristics:
+  - heuristic.feedback
+  - heuristic.error-prevention
+  - heuristic.user-control
+  - heuristic.accessibility
+inclusion: manual
+---
+
 # Pattern: modals
 
 ## Rule type

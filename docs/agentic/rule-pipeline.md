@@ -17,10 +17,10 @@ This document explains ownership and handoffs. The executable inventory lives in
 
 | Layer | Responsibility | Source artifacts |
 |---|---|---|
-| Principles | Cross-cutting design intent | `.kiro/steering/design-principles.md` |
-| Heuristics | Observable usability behavior | `.kiro/steering/usability-heuristics.md` |
+| Principles | Cross-cutting design intent | `.kiro/steering/foundations/design-principles.md` |
+| Heuristics | Observable usability behavior | `.kiro/steering/foundations/usability-heuristics.md` |
 | Pattern rules | Composition rules for reusable UI patterns | `.kiro/steering/pattern-rules/*.md` |
-| Component rules | Local markup, token, API, and state rules | `.kiro/steering/component-rule-map.md`, `.kiro/steering/component-patterns.md`, `.kiro/steering/react-wrappers.md`, `docs/agentic/assistant-behavior-rules.md` |
+| Component rules | Local markup, token, API, and state rules | `.kiro/steering/components/component-rule-map.md`, `.kiro/steering/components/component-patterns.md`, `.kiro/steering/components/react-wrappers.md`, `docs/agentic/assistant-behavior-rules.md` |
 | Validation | Deterministic checks grounded in upstream ids | `docs/validation/rule-pipeline.manifest.json`, `scripts/validate-rule-pipeline.mjs` |
 | CI | Required execution | `package.json`, `.github/workflows/ci.yml` |
 
@@ -38,7 +38,7 @@ This document explains ownership and handoffs. The executable inventory lives in
 1. Add or update a source principle or heuristic only if the intent is truly
    cross-cutting.
 2. Create `.kiro/steering/pattern-rules/<pattern>.md` using the section structure
-   in `.kiro/steering/rule-generation.md`.
+   in `.kiro/steering/workflows/rule-generation.md`.
 3. Add the pattern entry to `docs/validation/rule-pipeline.manifest.json`.
 4. Run `npm run rules:validate`.
 
