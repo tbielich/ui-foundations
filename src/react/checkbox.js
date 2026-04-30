@@ -1,23 +1,6 @@
 import React from "react";
-
-function hasLabelContent(value) {
-  if (value === null || value === undefined || value === false) return false;
-  if (typeof value === "string") return value.trim().length > 0;
-  if (Array.isArray(value)) return value.some(hasLabelContent);
-  return true;
-}
-
-function warnDev(message) {
-  if (
-    typeof process !== "undefined" &&
-    process.env &&
-    process.env.NODE_ENV === "production"
-  ) {
-    return;
-  }
-
-  console.warn(message);
-}
+import { hasTextContent } from "./label.js";
+import { warnDev } from "./warn-dev.js";
 
 export function Checkbox({
   className = "",
@@ -32,7 +15,7 @@ export function Checkbox({
   if (className) classes.push(className);
 
   const content = children ?? label;
-  const hasLabel = hasLabelContent(content);
+  const hasLabel = hasTextContent(content);
   const disabled = Boolean(props.disabled);
   const inputRef = React.useRef(null);
 

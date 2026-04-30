@@ -1,5 +1,6 @@
 import React from "react";
 import { LabelContent, hasTextContent } from "./label.js";
+import { warnDev } from "./warn-dev.js";
 
 function normalizeOrientation(value) {
   return value === "vertical" ? "vertical" : "horizontal";
@@ -7,18 +8,6 @@ function normalizeOrientation(value) {
 
 function normalizeJustify(value) {
   return value === "stretch" ? "stretch" : "start";
-}
-
-function warnDev(message) {
-  if (
-    typeof process !== "undefined" &&
-    process.env &&
-    process.env.NODE_ENV === "production"
-  ) {
-    return;
-  }
-
-  console.warn(message);
 }
 
 export function Button({
