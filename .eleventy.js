@@ -7,6 +7,7 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "site/assets": "assets" });
+  eleventyConfig.addPassthroughCopy({ "site/_headers": "_headers" });
   eleventyConfig.addPassthroughCopy({
     "node_modules/prismjs/themes/prism-okaidia.min.css":
       "assets/vendor/prism/prism.css",

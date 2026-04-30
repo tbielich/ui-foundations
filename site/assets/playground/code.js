@@ -70,12 +70,16 @@
         "markup",
       );
 
-      // Harden the only innerHTML write path; Prism output should already be encoded.
-      if (
-        typeof highlighted === "string" &&
-        !/<script\b/i.test(highlighted)
-      ) {
-        codeNode.innerHTML = highlighted;
+      // Sanitize Prism output: strip all event handler attributes and dangerous tags
+      // before writing to DOM. This is defense-in-depth — Prism should already encode.
+      if (typeof highlighted === "string") {
+        const sanitized = highlighted
+          .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
+          .replace(/<iframe\b[^>]*>[\s\S]*?<\/iframe>/gi, "")
+          .replace(/<object\b[^>]*>[\s\S]*?<\/object>/gi, "")
+          .replace(/<embed\b[^>]*>/gi, "")
+          .replace(/\bon\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "");
+        codeNode.innerHTML = sanitized;
         return;
       }
     }
