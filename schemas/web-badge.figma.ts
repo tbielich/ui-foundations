@@ -2,7 +2,7 @@ import figma, { html } from "@figma/code-connect/html";
 import { BadgeProps } from "./web-badge";
 
 figma.connect(
-  "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=PLACEHOLDER&m=dev",
+  "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2385-709&m=dev",
   {
     props: {
       className: figma.className([
