@@ -49,16 +49,6 @@ function isTokenNode(node) {
   );
 }
 
-function inferBucketFromFilename(fileName) {
-  // Legacy fallback — only used if content-based detection is bypassed
-  const baseName = path.basename(fileName);
-  const stem = baseName
-    .replace(/\.(token|tokens)\.jsonc?$/i, "")
-    .replace(/\.jsonc?$/i, "")
-    .trim();
-  return { bucket: "global", id: slugifyName(stem), stem };
-}
-
 // Derive scope from mode name (e.g. "Light Mode" → mode:light, "Brand A" → brand:a)
 function inferScopeFromModeName(modeName) {
   const slug = slugifyName(modeName);
@@ -72,47 +62,11 @@ function inferScopeFromModeName(modeName) {
   return { bucket: "mode", id: slug };
 }
 
-// Derive scope from file content by inspecting token paths and types
+// Derive scope from file content — currently uses filename-based slug.
+// The heuristic inspection hooks are reserved for future refinement.
 function inferScopeFromContent(data, filePath) {
-  const topKeys = Object.keys(data).filter(k => !k.startsWith("$"));
   const slug = slugifyName(path.basename(filePath).replace(/\.(token|tokens)\.jsonc?$/i, "").replace(/\.jsonc?$/i, ""));
-
-  // Check if all top-level keys look like component names (Button, Input, etc.)
-  // by looking for codeSyntax with component-level prefixes
-  const sampleTokens = collectSampleTokens(data, 5);
-
-  // If tokens have codeSyntax starting with --color- or --font- → primitives
-  // If tokens have codeSyntax starting with --brand- → brand tokens
-  // If tokens have codeSyntax starting with --button-, --input- → components
-  const prefixes = sampleTokens
-    .map(t => t.web)
-    .filter(Boolean)
-    .map(w => w.replace(/^var\(--/, "").replace(/\)$/, "").split("-")[0]);
-
-  const uniquePrefixes = [...new Set(prefixes)];
-
-  // Heuristic: if most tokens are color/font/size primitives → global:primitives
-  // This is intentionally loose — the content tells us what it is
   return { bucket: "global", id: slug };
-}
-
-// Collect a few sample tokens from a data tree for content inspection
-function collectSampleTokens(node, max, found) {
-  if (!found) found = [];
-  if (found.length >= max || !node || typeof node !== "object") return found;
-  if (node.$type && (node.$value !== undefined || node.$value === null)) {
-    const web = node.$extensions && node.$extensions["com.figma.codeSyntax"]
-      ? node.$extensions["com.figma.codeSyntax"].WEB
-      : null;
-    found.push({ type: node.$type, web });
-    return found;
-  }
-  for (const [key, val] of Object.entries(node)) {
-    if (key.startsWith("$")) continue;
-    collectSampleTokens(val, max, found);
-    if (found.length >= max) break;
-  }
-  return found;
 }
 
 // Collect all unique mode names from modeValues in a token file

@@ -1,4 +1,5 @@
 import React from "react";
+import { warnDev } from "./warn-dev.js";
 
 function resolveIconUrl(name, folder, src) {
   if (src) return src;
@@ -9,18 +10,6 @@ function humanizeName(name) {
   return String(name || "")
     .replace(/[-_]+/g, " ")
     .trim();
-}
-
-function warnDev(message) {
-  if (
-    typeof process !== "undefined" &&
-    process.env &&
-    process.env.NODE_ENV === "production"
-  ) {
-    return;
-  }
-
-  console.warn(message);
 }
 
 export function Icon({
