@@ -73,6 +73,37 @@ module.exports = function (eleventyConfig) {
       });
   });
 
+  eleventyConfig.addCollection("searchIndex", (collectionApi) => {
+    const foundations = collectionApi
+      .getFilteredByGlob("site/foundations/**/*.md")
+      .filter((page) => page.data.title);
+    const components = collectionApi
+      .getFilteredByGlob("site/components/**/*.md")
+      .filter((page) => !page.data.isPlayground && page.data.title);
+
+    const entries = [];
+
+    for (const page of foundations) {
+      entries.push({
+        title: page.data.title,
+        description: page.data.description || "",
+        url: page.url,
+        type: "token",
+      });
+    }
+
+    for (const page of components) {
+      entries.push({
+        title: page.data.title,
+        description: page.data.description || "",
+        url: page.url,
+        type: "component",
+      });
+    }
+
+    return entries;
+  });
+
   return {
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
