@@ -7,17 +7,21 @@ order: 1
 permalink: /getting-started/
 ---
 
+UI Foundations is a token-first design system that provides CSS custom properties,
+HTML component patterns, Nunjucks macros, and optional React wrappers. Tokens are
+authored in Figma and generated into CSS, JSON, and TypeScript.
+
 ## Install
 
 ```bash
 npm install ui-foundations
 ```
 
-Package on npm: [ui-foundations](https://www.npmjs.com/package/ui-foundations)
+**Resources**
 
-Figma library: [UI Foundations on Figma](https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations)
-
-Starter template: [ui-foundations-starter](https://github.com/tbielich/ui-foundations-starter)
+- [ui-foundations on npm](https://www.npmjs.com/package/ui-foundations)
+- [Figma library](https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations)
+- [Starter template](https://github.com/tbielich/ui-foundations-starter)
 
 ## CSS Setup
 
@@ -40,7 +44,12 @@ Or import individual token layers for more control:
 
 ## Brand and Mode Switching
 
-Set `data-brand` and `data-mode` on the root element to control theming at runtime:
+Set `data-brand` and `data-mode` on the root element to control theming at
+runtime:
+
+```html
+<html data-brand="a" data-mode="light">
+```
 
 ```js
 const root = document.documentElement;
@@ -48,13 +57,10 @@ root.dataset.brand = "a"; // "a" | "b" | "c"
 root.dataset.mode = "light"; // "light" | "dark"
 ```
 
-```html
-<html data-brand="a" data-mode="light">
-```
-
 ## Using Components
 
-Components are available as plain HTML classes, Nunjucks macros (for SSG), and optional React wrappers.
+Components are available as plain HTML classes, Nunjucks macros for static site
+generation, and optional React wrappers.
 
 ### HTML
 
@@ -64,7 +70,7 @@ Components are available as plain HTML classes, Nunjucks macros (for SSG), and o
 <a href="/page" class="link">Go to page</a>
 ```
 
-### SSG / Nunjucks
+### Nunjucks Macros
 
 {% raw %}
 ```njk
@@ -91,39 +97,42 @@ import { Icon } from "ui-foundations/react/icon";
 <Icon name="search" />
 ```
 
-## Available Macros
+## Macro Reference
 
 | Macro | Description |
 |---|---|
-| `ui.button(label, variant, disabled)` | Button with solid/outline/ghost variants |
-| `ui.buttonGroup(attached, orientation, justify, ariaLabel)` | Grouped button wrapper |
-| `ui.input(type, placeholder, value, state, disabled)` | Text input |
-| `ui.checkbox(label, checked, disabled)` | Checkbox with label |
-| `ui.switch(label, checked, disabled)` | Toggle switch with label |
-| `ui.icon(name, label)` | SVG icon via CSS mask |
-| `ui.labelContent(text, startIcon, endIcon, iconOnly)` | Text + icon label primitive |
-| `ui.fieldLabel(text, htmlFor, required, startIcon)` | Form field label |
-| `ui.link(text, href, startIcon, endIcon, state, disabled)` | Link with optional icons |
+| `ui.button(label, variant, disabled)` | Button — solid, outline, or ghost variant |
+| `ui.buttonGroup(attached, orientation, justify, ariaLabel)` | Groups related buttons |
+| `ui.input(type, placeholder, value, state, disabled)` | Text input field |
+| `ui.checkbox(label, checked, disabled)` | Checkbox with visible label |
+| `ui.radio(label, name, value, checked, disabled)` | Radio button with visible label |
+| `ui.switch(label, checked, disabled)` | Toggle switch with visible label |
+| `ui.icon(name, label)` | Icon rendered via CSS mask |
+| `ui.labelContent(text, startIcon, endIcon, iconOnly)` | Label primitive with optional icons |
+| `ui.fieldLabel(text, htmlFor, required, startIcon)` | Form field label with required indicator |
+| `ui.link(text, href, startIcon, endIcon, state, disabled)` | Link with optional start and end icons |
+| `ui.badge(text, variant, size, startIcon)` | Status badge with optional icon |
 
 ## Token Architecture
 
 Tokens are layered in four levels:
 
-1. **Primitives** — raw values (colors, sizes, weights)
+1. **Primitives** — raw values such as colours, sizes, and font weights
 2. **Brand** — brand-specific aliases (`brand-a`, `brand-b`, `brand-c`)
 3. **Semantic** — role-based mappings (`color-text-default`, `color-fill-brand`)
 4. **Component** — component-specific tokens (`button-border-radius`, `input-height`)
 
-See [Token Overview](/tokens/) for the full token reference.
+See [Token Overview](/foundations/design-tokens/) for the full token reference.
 
 ## Validation
 
 ```bash
 npm run lint          # JS syntax check
-npm run test:unit     # unit tests
-npm run ci:check      # full validation pipeline
+npm run test:unit     # Unit tests
+npm run ci:check      # Full validation pipeline
 ```
 
 ## Figma Integration
 
-Design tokens are synced from Figma via the Token Foundry plugin. See the [plugin README](https://github.com/tbielich/ui-foundations/blob/main/figma/plugin/README.md) for details.
+Design tokens are synced from Figma using the MCP integration. Token exports
+live in `figma/exports/` and are processed by `npm run tokens:generate`.

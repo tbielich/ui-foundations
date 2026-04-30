@@ -26,7 +26,6 @@ permalink: /
       <p>Deliver what is needed, when it is needed. No unnecessary decoration or irrelevant content.</p>
     </div>
   </div>
-  <p style="margin-top: 14px;"><a href="/foundations/principles/">Learn about our principles</a></p>
 </div>
 
 <div class="docs-home-section">
@@ -64,7 +63,7 @@ permalink: /
     </a>
     <a class="docs-card" href="/examples/">
       <h2>Examples</h2>
-      <p>Composed patterns built from existing components.</p>
+      <p>Page layouts and forms built from existing components.</p>
     </a>
   </div>
 </div>

@@ -22,7 +22,7 @@ permalink: /foundations/principles/
   </div>
 </div>
 
-## Principles in action
+## Design principles
 
 ### Proximity
 
