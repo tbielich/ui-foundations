@@ -1,10 +1,10 @@
 ---
-title: Foundation-003 – Agentic Docs Restructure
+title: ADR – Agentic Docs Restructure
 status: active
-type: foundation-decision
+type: adr
 ---
 
-# Foundation-003: Agentic Docs Restructure
+# ADR: Agentic Docs Restructure
 
 ## Purpose
 
