@@ -116,7 +116,7 @@ import "ui-foundations/ui.css";
 ### Apply Theming
 
 ```js
-document.documentElement.dataset.brand = "a";     // "a" | "b"
+document.documentElement.dataset.brand = "a";     // "a" | "b" | "c"
 document.documentElement.dataset.mode  = "light";  // "light" | "dark"
 ```
 
@@ -128,8 +128,8 @@ to see it in action.
 
 ## Components
 
-Label, Button (solid / outline / ghost), ButtonGroup, Input, Icon, Checkbox,
-Radio, RadioGroup, Switch, Slider, Link
+Label, Button (solid / outline / ghost), ButtonGroup, Badge, Input, Icon, Checkbox,
+Radio, Switch, Link
 
 Each component uses its own token layer and supports theming out of the box.
 
@@ -201,10 +201,11 @@ npm run rules:validate  # rule pipeline traceability
 
 ## MCP Integration
 
-Figma integration via Model Context Protocol:
+Figma integration uses the Model Context Protocol. Token exports live in
+`figma/exports/` and are processed by `npm run tokens:generate`.
 
-- `figma-developer-mcp` — REST API read access (requires `FIGMA_TOKEN` in `.env`)
-- Figma Desktop MCP — local server via Figma Desktop app
+- **Figma Desktop MCP** — local server via the Figma Desktop app (primary path)
+- **figma-developer-mcp** — REST API read access (requires `FIGMA_TOKEN` in `.env`)
 
 ```json
 {
@@ -240,4 +241,4 @@ Vanilla CSS (Custom Properties, `@layer`) · Node.js · Eleventy · React (optio
 
 ---
 
-Designed for consistency, built for scale, ready for agents.
+MIT License
