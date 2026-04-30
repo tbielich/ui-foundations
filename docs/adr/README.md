@@ -5,9 +5,10 @@
 This section collects architecture decision records and doc migration notes in a
 stable location for humans and agents.
 
-## Canonical rules
+## ADRs
 
-- `foundation-003-agentic-docs.md`
+- `adr-agentic-docs-restructure.md` — documentation structure and agent consumption model
+- `adr-github-projects-workflow.md` — GitHub Projects delivery workflow (proposed)
 
 ## Related docs
 
