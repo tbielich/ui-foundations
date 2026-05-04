@@ -32,3 +32,4 @@ in the repository.
 ## Skills
 
 - `skills/ux-writing-coach.md` — multilingual UX writing review skill for product copy
+- `skills/component-accessibility-audit.md` — repeatable workflow and template for single-component accessibility audits
