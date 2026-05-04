@@ -218,27 +218,9 @@ Figma integration uses the Model Context Protocol. Token exports live in
 
 ## Contributing
 
-- Follow token rules — no invented tokens, no hardcoded values
-- Use semantic tokens over primitives
-- Validate before commit: `npm run ci:check`
-- Work on feature branches
+## Pi deployment
 
----
+Pi-specific update behaviour is documented in [docs/pi-deployment.md](docs/pi-deployment.md).
 
-## Release
+This covers the expected update script path, the systemd timer/service model, and the current runtime boundary observed on the device.
 
-```bash
-npm run release:patch   # or release:minor / release:major
-npm run release:push
-npm run release:publish
-```
-
----
-
-## Tech Stack
-
-Vanilla CSS (Custom Properties, `@layer`) · Node.js · Eleventy · React (optional wrappers) · Nunjucks macros · Figma MCP
-
----
-
-MIT License
