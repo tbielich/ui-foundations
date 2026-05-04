@@ -22,7 +22,7 @@ Provide a consistent typography API with low selector specificity and predictabl
 
 4. Use `:where()` for zero-specificity size/scale selectors where possible.
 
-5. Reserve data attributes (for example `[data-theme]`, `[data-density]`) for context/state, not as primary styling API.
+5. Reserve data attributes (for example `[data-brand]`, `[data-mode]`, `[data-density]`) for context/state, not as primary styling API.
 
 ## Implications
 
