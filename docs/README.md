@@ -36,4 +36,3 @@ rewriting them unless a targeted migration is clearly safe.
 - `README.md`
 - `IMPLEMENTATION.md`
 - `DESIGN.md`
-- [Pi deployment](./pi-deployment.md)
