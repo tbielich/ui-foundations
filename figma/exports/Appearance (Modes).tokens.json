@@ -328,7 +328,7 @@
               "$ref": "Color/Neutral/Alpha/500"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/Alpha/500"
+              "$ref": "Color/Neutral/Alpha Inverse/100"
             }
           }
         }
@@ -699,7 +699,7 @@
               "$ref": "Color/Neutral/Alpha/400"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/Alpha/400"
+              "$ref": "Color/Neutral/Alpha Inverse/400"
             }
           }
         }
@@ -729,7 +729,7 @@
               "$ref": "Color/Neutral/Alpha/200"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/Alpha/200"
+              "$ref": "Color/Neutral/Alpha Inverse/100"
             }
           }
         }
@@ -759,7 +759,7 @@
               "$ref": "Color/Neutral/Alpha/400"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/Alpha/400"
+              "$ref": "Color/Neutral/Alpha Inverse/200"
             }
           }
         }
@@ -789,7 +789,7 @@
               "$ref": "Color/Neutral/Alpha/600"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/Alpha/600"
+              "$ref": "Color/Neutral/Alpha Inverse/300"
             }
           }
         }
