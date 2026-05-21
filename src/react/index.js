@@ -6,3 +6,4 @@ export { LabelContent, FieldLabel } from "./label.js";
 export { Radio } from "./radio.js";
 export { Switch } from "./switch.js";
 export { Badge } from "./badge.js";
+export { Divider } from "./divider.js";

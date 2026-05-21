@@ -140,3 +140,10 @@
   <span class="badge__text">{{ text }}</span>
 </span>
 {%- endmacro %}
+
+{% macro divider(orientation='horizontal', variant='', className='') -%}
+{%- set classes = "divider" -%}
+{%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<hr class="{{ classes }}"{% if orientation == "vertical" %} aria-orientation="vertical"{% endif %} />
+{%- endmacro %}
