@@ -1,0 +1,25 @@
+@layer components {
+  .divider {
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: var(--divider-color, var(--color-border-default));
+    block-size: var(--size-border-100);
+    inline-size: 100%;
+    align-self: stretch;
+  }
+
+  /* ── Vertical orientation ── */
+
+  .divider[aria-orientation="vertical"] {
+    block-size: auto;
+    inline-size: var(--size-border-100);
+    align-self: stretch;
+  }
+
+  /* ── Subtle variant ── */
+
+  .divider.subtle {
+    --divider-color: var(--color-border-subtle);
+  }
+}
