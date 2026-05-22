@@ -19,3 +19,6 @@ _site
 figma/plugin/code.generated.js
 figma/plugin/plugin-meta.js
 figma/plugin/plugin-meta.json
+
+# Local Netlify folder
+.netlify

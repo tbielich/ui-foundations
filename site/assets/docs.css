@@ -2128,3 +2128,24 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   font-size: 0.88rem;
   color: var(--docs-text-1);
 }
+
+/* Footer */
+.docs-footer {
+  padding-block: var(--size-spacing-400, 1rem);
+  padding-inline: var(--size-spacing-600, 1.5rem);
+  margin-block-start: var(--size-spacing-900, 3rem);
+  border-block-start: 1px solid var(--docs-border, #d9e1ec);
+  font-size: 0.82rem;
+  color: var(--docs-text-1, #6b7a90);
+  text-align: center;
+}
+
+.docs-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.docs-footer a:hover {
+  color: var(--docs-text-0, #1a2233);
+}
