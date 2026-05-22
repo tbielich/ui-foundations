@@ -1,11 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { execFileSync } from "child_process";
-import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const REPO_ROOT = path.resolve(__dirname, "..");
+const REPO_ROOT = path.resolve(import.meta.dirname, "..");
 const PACKAGE_JSON_PATH = path.join(REPO_ROOT, "package.json");
 const PLUGIN_DIR = path.join(REPO_ROOT, "figma", "plugin");
 const OUTPUT_JSON_PATH = path.join(PLUGIN_DIR, "plugin-meta.json");
@@ -26,6 +23,7 @@ function safeGit(args) {
       encoding: "utf8",
     }).trim();
   } catch {
+    // Git may not be available (CI, shallow clone, etc.) — fall back to empty string
     return "";
   }
 }
