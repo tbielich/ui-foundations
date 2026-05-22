@@ -129,9 +129,10 @@ to see it in action.
 ## Components
 
 Label, Button (solid / outline / ghost), ButtonGroup, Badge, Input, Icon, Checkbox,
-Radio, Switch, Link
+Radio, Switch, Link, Divider, TextArea, Avatar, Accordion, Tabs, Tooltip
 
-Each component uses its own token layer and supports theming out of the box.
+Each component uses semantic tokens (or its own token layer for complex variants)
+and supports theming out of the box.
 
 ---
 
@@ -222,6 +223,15 @@ Figma integration uses the Model Context Protocol. Token exports live in
 - Use semantic tokens over primitives
 - Validate before commit: `npm run ci:check`
 - Work on feature branches
+
+### Adding a New Component
+
+Load the `#component-creation` steering file for the full 10-phase workflow.
+Key steps: semantic HTML first, then Figma tokens (bind variables, never hardcode),
+CSS pattern, Nunjucks macro, React wrapper, docs page, playground, Code Connect.
+
+See `.kiro/steering/workflows/component-creation.md` for details and
+`.kiro/steering/figma/figma-components.md` for Figma-specific rules.
 
 ---
 
