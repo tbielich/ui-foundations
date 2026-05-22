@@ -25,12 +25,7 @@ figma.connect(
         }),
       ]),
       disabled: figma.boolean("Disabled"),
-      text: figma.enum("Icon Only", {
-        False: "Book now",
-        True: "",
-        false: "Book now",
-        true: "",
-      }),
+      text: figma.string("Label"),
       ariaLabel: figma.enum("Icon Only", {
         False: undefined,
         True: "Button",
