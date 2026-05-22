@@ -546,6 +546,166 @@
     return { element, code };
   };
 
+  const renderVanillaTextarea = ({ props }) => {
+    const placeholder = String(props.placeholder || "");
+    const value = String(props.value || "");
+    const disabled = asBoolean(props.disabled);
+    const readonly = asBoolean(props.readonly);
+    const rows = props.rows || "3";
+
+    const element = document.createElement("textarea");
+    element.className = "textarea";
+    element.placeholder = placeholder;
+    element.value = value;
+    element.rows = Number(rows);
+    if (disabled) { element.disabled = true; element.classList.add("is-disabled"); }
+    if (readonly) element.readOnly = true;
+
+    const attrs = [`class="textarea"`, `placeholder="${quoteAttr(placeholder)}"`, `rows="${rows}"`];
+    if (disabled) attrs.push("disabled");
+    if (readonly) attrs.push("readonly");
+    const code = `<textarea ${attrs.join(" ")}>${quoteAttr(value)}</textarea>`;
+
+    return { element, code };
+  };
+
+  const renderVanillaAvatar = ({ props }) => {
+    const initials = String(props.initials || "TB");
+    const size = String(props.size || "md");
+    const src = String(props.src || "");
+
+    const element = document.createElement("span");
+    const classes = ["avatar"];
+    if (size && size !== "md") classes.push(size);
+    element.className = classes.join(" ");
+    element.setAttribute("role", "img");
+    element.setAttribute("aria-label", initials);
+
+    if (src) {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = initials;
+      element.append(img);
+    } else {
+      const span = document.createElement("span");
+      span.className = "avatar__initials";
+      span.textContent = initials;
+      element.append(span);
+    }
+
+    const codeClasses = classes.join(" ");
+    const inner = src
+      ? `<img src="${quoteAttr(src)}" alt="${quoteAttr(initials)}" />`
+      : `<span class="avatar__initials">${quoteAttr(initials)}</span>`;
+    const code = `<span class="${codeClasses}" role="img" aria-label="${quoteAttr(initials)}">${inner}</span>`;
+
+    return { element, code };
+  };
+
+  const renderVanillaAccordion = ({ props }) => {
+    const items = Number(props.items || 3);
+    const openIndex = Number(props.openIndex || 0);
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "accordion";
+
+    let codeLines = ['<div class="accordion">'];
+    for (let i = 0; i < items; i++) {
+      const details = document.createElement("details");
+      details.className = "accordion-item";
+      if (i === openIndex) details.open = true;
+      const summary = document.createElement("summary");
+      summary.textContent = `Item ${i + 1}`;
+      const content = document.createElement("div");
+      content.className = "accordion-item__content";
+      content.innerHTML = `<p>Content for item ${i + 1}</p>`;
+      details.append(summary, content);
+      wrapper.append(details);
+
+      const openAttr = i === openIndex ? " open" : "";
+      codeLines.push(`  <details class="accordion-item"${openAttr}>`);
+      codeLines.push(`    <summary>Item ${i + 1}</summary>`);
+      codeLines.push(`    <div class="accordion-item__content"><p>Content for item ${i + 1}</p></div>`);
+      codeLines.push(`  </details>`);
+    }
+    codeLines.push("</div>");
+
+    return { element: wrapper, code: codeLines.join("\n") };
+  };
+
+  const renderVanillaTabs = ({ props }) => {
+    const tabCount = Number(props.tabs || 3);
+    const activeIndex = Number(props.active || 0);
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "tabs";
+
+    const tablist = document.createElement("div");
+    tablist.className = "tab-list";
+    tablist.setAttribute("role", "tablist");
+
+    let codeLines = ['<div class="tabs">', '  <div class="tab-list" role="tablist">'];
+
+    for (let i = 0; i < tabCount; i++) {
+      const btn = document.createElement("button");
+      btn.className = "tab";
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-selected", String(i === activeIndex));
+      btn.setAttribute("tabindex", i === activeIndex ? "0" : "-1");
+      btn.textContent = `Tab ${i + 1}`;
+      btn.type = "button";
+      tablist.append(btn);
+
+      const sel = i === activeIndex ? ' aria-selected="true" tabindex="0"' : ' aria-selected="false" tabindex="-1"';
+      codeLines.push(`    <button class="tab" role="tab"${sel} type="button">Tab ${i + 1}</button>`);
+    }
+    codeLines.push("  </div>");
+
+    wrapper.append(tablist);
+
+    const panel = document.createElement("div");
+    panel.className = "tab-panel";
+    panel.setAttribute("role", "tabpanel");
+    panel.setAttribute("tabindex", "0");
+    panel.innerHTML = `<p>Panel content for Tab ${activeIndex + 1}</p>`;
+    wrapper.append(panel);
+
+    codeLines.push(`  <div class="tab-panel" role="tabpanel" tabindex="0">`);
+    codeLines.push(`    <p>Panel content</p>`);
+    codeLines.push(`  </div>`);
+    codeLines.push("</div>");
+
+    return { element: wrapper, code: codeLines.join("\n") };
+  };
+
+  const renderVanillaTooltip = ({ props, children }) => {
+    const text = String(props.text || "Tooltip");
+    const placement = String(props.placement || "top");
+
+    const trigger = document.createElement("span");
+    trigger.className = "tooltip-trigger";
+
+    const btn = document.createElement("button");
+    btn.className = "button outline";
+    btn.type = "button";
+    btn.textContent = String(children || "Hover me");
+    trigger.append(btn);
+
+    const tip = document.createElement("span");
+    tip.className = "tooltip is-visible";
+    tip.setAttribute("role", "tooltip");
+    tip.setAttribute("data-placement", placement);
+    tip.textContent = text;
+    trigger.append(tip);
+
+    const code = `<span class="tooltip-trigger">
+  <button class="button outline" type="button">${quoteAttr(String(children || "Hover me"))}</button>
+  <span class="tooltip" role="tooltip" data-placement="${quoteAttr(placement)}">${quoteAttr(text)}</span>
+</span>`;
+
+    return { element: trigger, code };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -557,6 +717,11 @@
       label: renderVanillaLabel,
       radio: renderVanillaRadio,
       switch: renderVanillaSwitch,
+      textarea: renderVanillaTextarea,
+      avatar: renderVanillaAvatar,
+      accordion: renderVanillaAccordion,
+      tabs: renderVanillaTabs,
+      tooltip: renderVanillaTooltip,
     },
   };
 })(window);

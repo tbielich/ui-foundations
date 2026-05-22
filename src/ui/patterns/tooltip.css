@@ -1,0 +1,64 @@
+@layer components {
+  .tooltip {
+    position: absolute;
+    z-index: var(--zindex-tooltip);
+    max-inline-size: 15rem;
+    padding-inline: var(--size-spacing-300);
+    padding-block: var(--size-spacing-200);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+    color: var(--color-text-inverse);
+    background: var(--color-neutral-900);
+    border-radius: var(--size-radius-300);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .tooltip.is-visible {
+    opacity: 1;
+  }
+
+  /* ── Placement ── */
+
+  .tooltip[data-placement="top"] {
+    inset-block-end: 100%;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    margin-block-end: var(--size-spacing-200);
+  }
+
+  .tooltip[data-placement="bottom"] {
+    inset-block-start: 100%;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    margin-block-start: var(--size-spacing-200);
+  }
+
+  .tooltip[data-placement="left"] {
+    inset-inline-end: 100%;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    margin-inline-end: var(--size-spacing-200);
+  }
+
+  .tooltip[data-placement="right"] {
+    inset-inline-start: 100%;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    margin-inline-start: var(--size-spacing-200);
+  }
+
+  /* ── Trigger wrapper ── */
+
+  .tooltip-trigger {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .tooltip-trigger:hover > .tooltip,
+  .tooltip-trigger:focus-within > .tooltip {
+    opacity: 1;
+  }
+}

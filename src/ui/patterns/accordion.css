@@ -1,0 +1,81 @@
+@layer components {
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    border: var(--size-border-100) solid var(--color-border-default);
+    border-radius: var(--size-radius-400);
+    overflow: hidden;
+  }
+
+  .accordion-item {
+    border-block-start: var(--size-border-100) solid var(--color-border-default);
+  }
+
+  .accordion-item:first-child {
+    border-block-start: none;
+  }
+
+  .accordion-item > summary {
+    display: flex;
+    align-items: center;
+    gap: var(--size-spacing-200);
+    padding-inline: var(--size-spacing-400);
+    padding-block: var(--size-spacing-300);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-600);
+    line-height: var(--line-height-md);
+    color: var(--color-text-default);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .accordion-item > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion-item > summary::before {
+    content: "";
+    display: inline-block;
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-inline-end: var(--size-border-200) solid currentColor;
+    border-block-end: var(--size-border-200) solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .accordion-item[open] > summary::before {
+    transform: rotate(45deg);
+  }
+
+  .accordion-item > summary:hover,
+  .accordion-item > summary.is-hover {
+    background: var(--color-fill-hover);
+  }
+
+  .accordion-item > summary:focus-visible,
+  .accordion-item > summary.is-focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 var(--shadow-focus) var(--color-focus);
+  }
+
+  .accordion-item__content {
+    padding-inline: var(--size-spacing-400);
+    padding-block: var(--size-spacing-300);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+    color: var(--color-text-default);
+  }
+
+  /* ── Disabled ── */
+
+  .accordion-item.is-disabled > summary {
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}

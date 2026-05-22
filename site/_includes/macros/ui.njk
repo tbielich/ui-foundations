@@ -147,3 +147,57 @@
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <hr class="{{ classes }}"{% if orientation == "vertical" %} aria-orientation="vertical"{% endif %} />
 {%- endmacro %}
+
+{% macro textarea(placeholder='', value='', disabled=false, readonly=false, rows='', state='default', className='') -%}
+{%- set classes = "textarea" -%}
+{%- if state == "hover" -%}{%- set classes = classes + " is-hover" -%}{%- endif -%}
+{%- if state == "focus" -%}{%- set classes = classes + " is-focus-visible" -%}{%- endif -%}
+{%- if state == "disabled" or disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<textarea class="{{ classes }}"{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if rows %} rows="{{ rows }}"{% endif %}{% if readonly %} readonly{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %}>{{ value }}</textarea>
+{%- endmacro %}
+
+{% macro avatar(src='', alt='', initials='', size='', className='') -%}
+{%- set classes = "avatar" -%}
+{%- if size and size != "md" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<span class="{{ classes }}" role="img" aria-label="{{ alt or initials }}">
+  {%- if src -%}<img src="{{ src }}" alt="{{ alt }}" />{%- else -%}<span class="avatar__initials">{{ initials }}</span>{%- endif -%}
+</span>
+{%- endmacro %}
+
+{% macro accordion(className='') -%}
+{%- set classes = "accordion" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro accordionItem(title='', open=false, disabled=false) -%}
+{%- set classes = "accordion-item" -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+<details class="{{ classes }}"{% if open %} open{% endif %}>
+  <summary>{{ title }}</summary>
+  <div class="accordion-item__content">{{ caller() }}</div>
+</details>
+{%- endmacro %}
+
+{% macro tabList(orientation='horizontal', ariaLabel='', className='') -%}
+{%- set classes = "tab-list" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}" role="tablist" aria-orientation="{{ orientation }}"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro tab(label='', selected=false, disabled=false, controls='') -%}
+{%- set classes = "tab" -%}
+<button class="{{ classes }}" role="tab" type="button" aria-selected="{{ "true" if selected else "false" }}"{% if controls %} aria-controls="{{ controls }}"{% endif %}{% if disabled %} disabled{% endif %} tabindex="{{ "0" if selected else "-1" }}">{{ label }}</button>
+{%- endmacro %}
+
+{% macro tabPanel(id='', hidden=false) -%}
+<div class="tab-panel" role="tabpanel"{% if id %} id="{{ id }}"{% endif %}{% if hidden %} hidden{% endif %} tabindex="0">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro tooltip(text='', placement='top', className='') -%}
+{%- set classes = "tooltip-trigger" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<span class="{{ classes }}">{{ caller() }}<span class="tooltip" role="tooltip" data-placement="{{ placement }}">{{ text }}</span></span>
+{%- endmacro %}

@@ -1,0 +1,57 @@
+@layer components {
+  .avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--size-radius-full);
+    overflow: hidden;
+    background: var(--color-fill-subtle);
+    color: var(--color-text-default);
+    font-family: var(--font-family-sans);
+    font-weight: var(--font-weight-600);
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    font-size: var(--font-size-sm);
+  }
+
+  /* ── Sizes ── */
+
+  .avatar.xs {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    font-size: var(--font-size-xs);
+  }
+
+  .avatar.sm {
+    inline-size: 2rem;
+    block-size: 2rem;
+    font-size: var(--font-size-xs);
+  }
+
+  .avatar.lg {
+    inline-size: 3rem;
+    block-size: 3rem;
+    font-size: var(--font-size-md);
+  }
+
+  .avatar.xl {
+    inline-size: 4rem;
+    block-size: 4rem;
+    font-size: var(--font-size-lg);
+  }
+
+  /* ── Image ── */
+
+  .avatar > img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  /* ── Initials ── */
+
+  .avatar__initials {
+    user-select: none;
+    text-transform: uppercase;
+  }
+}

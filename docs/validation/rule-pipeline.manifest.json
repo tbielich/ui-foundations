@@ -103,6 +103,47 @@
         "heuristic.user-control",
         "heuristic.accessibility"
       ]
+    },
+    {
+      "id": "accordion",
+      "file": ".kiro/steering/pattern-rules/accordion.md",
+      "principles": [
+        "principle.hierarchy",
+        "principle.cognitive-load",
+        "principle.affordance"
+      ],
+      "heuristics": [
+        "heuristic.recognition",
+        "heuristic.user-control",
+        "heuristic.accessibility"
+      ]
+    },
+    {
+      "id": "tabs",
+      "file": ".kiro/steering/pattern-rules/tabs.md",
+      "principles": [
+        "principle.hierarchy",
+        "principle.consistency",
+        "principle.cognitive-load"
+      ],
+      "heuristics": [
+        "heuristic.recognition",
+        "heuristic.user-control",
+        "heuristic.accessibility"
+      ]
+    },
+    {
+      "id": "tooltips",
+      "file": ".kiro/steering/pattern-rules/tooltips.md",
+      "principles": [
+        "principle.cognitive-load",
+        "principle.proximity",
+        "principle.contrast"
+      ],
+      "heuristics": [
+        "heuristic.recognition",
+        "heuristic.accessibility"
+      ]
     }
   ],
   "componentRules": [

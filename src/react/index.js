@@ -7,3 +7,8 @@ export { Radio } from "./radio.js";
 export { Switch } from "./switch.js";
 export { Badge } from "./badge.js";
 export { Divider } from "./divider.js";
+export { TextArea } from "./textarea.js";
+export { Avatar } from "./avatar.js";
+export { Accordion, AccordionItem } from "./accordion.js";
+export { TabList, Tab, TabPanel } from "./tabs.js";
+export { Tooltip } from "./tooltip.js";
