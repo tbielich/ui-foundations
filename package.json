@@ -1,6 +1,6 @@
 {
   "name": "ui-foundations",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Token-first UI foundations with CSS, tokens, and React exports.",
   "license": "MIT",
   "repository": {
