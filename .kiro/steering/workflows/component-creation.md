@@ -37,9 +37,29 @@ Start with the correct HTML element. Use native elements before adding ARIA.
 
 ## Phase 2 — Component Tokens in Figma
 
-Create component tokens in Figma before writing CSS.
+Create component tokens in Figma before writing CSS — but only when the
+component meets the threshold for dedicated tokens.
 
-### Rules
+### Token Threshold Rule
+
+**Use component-specific tokens when ANY of these apply:**
+- The component has more than 2 visual variants (e.g. solid/outline/ghost)
+- The component needs brand-specific color overrides
+- The component has dedicated variables in the Figma "Components (UI)" collection
+
+**Use semantic tokens directly when ALL of these apply:**
+- The component only uses standard colors, spacing, and borders
+- No brand-specific overrides are needed
+- No dedicated Figma variables exist for the component
+
+Examples:
+- Button → component tokens (3 variants, brand colors)
+- Checkbox → component tokens (checked/unchecked/indeterminate states with distinct colors)
+- Divider → semantic tokens (single line, standard border color)
+- Avatar → semantic tokens (standard fill and text)
+- Accordion → semantic tokens (standard borders and text)
+
+### Rules (when component tokens apply)
 
 1. Token naming: `--component-variant-part-property-state`
    - Example: `--divider-container-border-color-default`
@@ -48,6 +68,14 @@ Create component tokens in Figma before writing CSS.
    tokens (Rule 9)
 4. States as last segment: `default`, `hover`, `active`, `focus`, `disabled`
 5. Set web syntax (`codeSyntax.WEB`) in Figma
+
+### Figma Component Rules
+
+Follow `.kiro/steering/figma/figma-components.md` for all Figma component creation:
+- Disabled is ALWAYS a separate boolean property (never in State enum)
+- All text must be exposed as component text properties
+- Colors must be bound to semantic variables
+- Circular shapes need `clipsContent = true` + `cornerRadius = size / 2`
 
 ### Checklist
 
