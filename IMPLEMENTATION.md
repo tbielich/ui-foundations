@@ -40,8 +40,10 @@ Tech stack:
 Note: MCP output is a design reference, not final code.
 
 This repository uses MCP as the active Figma integration path.
-The legacy plugin under `figma/plugin/` still exists in the repo, but it is not
-part of the normal build or validation path.
+The Figma plugin under `figma/plugin/` is a standalone validation/export tool
+loaded directly in Figma. It is not part of the site build or token pipeline, but
+it is actively maintained — `scripts/generate-plugin-meta.mjs` generates its
+entry file and `tests/plugin-code.test.mjs` covers its color utilities.
 
 ---
 

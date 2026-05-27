@@ -25,6 +25,9 @@ When working with files in `src/react/`, these rules apply:
 - If component has a label, wrap in `<label>` with `<span class="component-field__text">`
 - Wrapper class: `component-field`, disabled class: `is-disabled`
 - Check `hasLabelContent()` before rendering wrapper
+- The field-wrapper pattern is intentionally inlined in each component
+  (checkbox, radio, switch). If a 4th component needs the same pattern,
+  extract a shared `FieldWrapper` helper at that point.
 
 ## After creating a new wrapper
 - Add export to `src/react/index.js`
