@@ -2,7 +2,7 @@
   .label-content {
     display: inline-flex;
     align-items: center;
-    gap: var(--label-gap, 0.5em);
+    gap: var(--typography-label-gap, 0.5em);
     line-height: inherit;
   }
 
