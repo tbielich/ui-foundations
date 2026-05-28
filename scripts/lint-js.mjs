@@ -1,12 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { spawnSync } from "child_process";
-import { fileURLToPath } from "url";
 import fg from "fast-glob";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const REPO_ROOT = path.resolve(__dirname, "..");
+const REPO_ROOT = path.resolve(import.meta.dirname, "..");
 
 const PATTERNS = [
   ".eleventy.js",

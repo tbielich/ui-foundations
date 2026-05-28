@@ -1,10 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const REPO_ROOT = path.resolve(__dirname, "..");
+const REPO_ROOT = path.resolve(import.meta.dirname, "..");
 const DIST_JSON_DIR = path.join(REPO_ROOT, "dist", "tokens", "json");
 const REQUIRED_SCHEMA = "https://www.designtokens.org/schemas/2025.10/format.json";
 

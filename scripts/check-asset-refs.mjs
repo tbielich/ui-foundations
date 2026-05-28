@@ -7,10 +7,8 @@
 
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = path.resolve(__dirname, "..");
+const REPO_ROOT = path.resolve(import.meta.dirname, "..");
 const SITE_DIR = path.join(REPO_ROOT, "site");
 const ASSETS_DIR = path.join(REPO_ROOT, "src", "assets");
 
