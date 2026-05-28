@@ -9,7 +9,7 @@
     min-height: var(--button-height-min);
     background: var(--button-solid-container-background-default);
     border-color: var(--button-solid-border-color-default);
-    border-width: var(--button-solid-border-size);
+    border-width: var(--button-border-size-default);
     border-style: solid;
     color: var(--button-solid-text-color-default);
     border-radius: var(--button-border-radius);
@@ -69,7 +69,7 @@
   .button.outline {
     background: var(--button-outline-container-background-default);
     border-color: var(--button-outline-border-color-default);
-    border-width: var(--button-outline-border-size);
+    border-width: var(--button-border-size-default);
     border-style: solid;
     color: var(--button-outline-text-color-default);
   }
@@ -108,7 +108,7 @@
   .button.ghost {
     background: var(--button-ghost-container-background-default);
     border-color: var(--button-ghost-border-color-default);
-    border-width: var(--button-ghost-border-size);
+    border-width: var(--button-border-size-default);
     border-style: solid;
     color: var(--button-ghost-text-color-default);
   }

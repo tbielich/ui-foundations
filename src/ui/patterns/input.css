@@ -7,25 +7,25 @@
     font-weight: var(--input-font-weight);
     font-size: var(--input-font-size);
     line-height: var(--input-line-height, var(--button-line-height, 1.5));
-    color: var(--input-text-text-color-default);
-    background: var(--input-text-container-background-default);
+    color: var(--input-text-color-default);
+    background: var(--input-container-background-default);
     border-style: solid;
     border-width: var(--input-border-size-default);
-    border-color: var(--input-text-border-color-default);
+    border-color: var(--input-border-color-default);
     border-radius: var(--input-border-radius);
     padding-inline: var(--input-padding-inline);
     padding-block: var(--input-padding-block);
   }
 
   .input::placeholder {
-    color: var(--input-text-text-color-placeholder);
+    color: var(--input-text-color-placeholder);
   }
 
   .input:hover,
   .input.is-hover {
     background:
       linear-gradient(0deg, var(--input-overlay-hover), var(--input-overlay-hover)),
-      var(--input-text-container-background-default);
+      var(--input-container-background-default);
     border-width: var(--input-border-size-hover);
     padding-inline: calc(
       var(--input-padding-inline) + var(--input-border-size-default) -
@@ -35,15 +35,15 @@
       var(--input-padding-block) + var(--input-border-size-default) -
         var(--input-border-size-hover)
     );
-    border-color: var(--input-text-border-color-hover);
-    color: var(--input-text-text-color-hover);
+    border-color: var(--input-border-color-hover);
+    color: var(--input-text-color-hover);
   }
 
   .input:active,
   .input.is-active {
     background:
       linear-gradient(0deg, var(--input-overlay-active), var(--input-overlay-active)),
-      var(--input-text-container-background-default);
+      var(--input-container-background-default);
     border-width: var(--input-border-size-active);
     padding-inline: calc(
       var(--input-padding-inline) + var(--input-border-size-default) -
@@ -53,14 +53,14 @@
       var(--input-padding-block) + var(--input-border-size-default) -
         var(--input-border-size-active)
     );
-    border-color: var(--input-text-border-color-active);
-    color: var(--input-text-text-color-active);
+    border-color: var(--input-border-color-active);
+    color: var(--input-text-color-active);
   }
 
   .input:focus-visible,
   .input.is-focus-visible {
-    background: var(--input-text-container-background-focus);
-    border-color: var(--input-text-border-color-focus);
+    background: var(--input-container-background-focus);
+    border-color: var(--input-border-color-focus);
     outline: none;
     box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
   }

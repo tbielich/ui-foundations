@@ -1254,7 +1254,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-text-color-default)"
+            "WEB": "var(--input-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -1276,7 +1276,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-text-color-hover)"
+            "WEB": "var(--input-text-color-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -1298,7 +1298,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-text-color-active)"
+            "WEB": "var(--input-text-color-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -1320,7 +1320,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-text-color-disabled)"
+            "WEB": "var(--input-text-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:328",
@@ -1342,7 +1342,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-text-color-placeholder)"
+            "WEB": "var(--input-text-color-placeholder)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:341",
@@ -1366,7 +1366,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-color-default)"
+            "WEB": "var(--input-border-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:342",
@@ -1388,7 +1388,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-color-hover)"
+            "WEB": "var(--input-border-color-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -1410,7 +1410,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-color-active)"
+            "WEB": "var(--input-border-color-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -1432,7 +1432,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-color-focus)"
+            "WEB": "var(--input-border-color-focus)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -1454,7 +1454,7 @@
             "STROKE_FLOAT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-size-default)"
+            "WEB": "var(--input-border-size-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:1:201",
@@ -1476,7 +1476,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-size-hover)"
+            "WEB": "var(--input-border-size-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:1:201",
@@ -1498,7 +1498,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-size-active)"
+            "WEB": "var(--input-border-size-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:1:202",
@@ -1520,7 +1520,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-radius)"
+            "WEB": "var(--input-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2028:335",
@@ -1542,7 +1542,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-color-disabled)"
+            "WEB": "var(--input-border-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:346",
@@ -1564,7 +1564,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-color-invalid)"
+            "WEB": "var(--input-border-color-invalid)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:356",
@@ -1586,7 +1586,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-border-color-valid)"
+            "WEB": "var(--input-border-color-valid)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:344",
@@ -2784,6 +2784,17 @@
           },
           "com.figma.isOverride": true
         }
+      },
+      "Color Focus": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--input-radio-border-color-focus)"
+          }
+        }
       }
     },
     "Container": {
@@ -2829,6 +2840,17 @@
             "targetVariableSetName": "Appearance (Modes)"
           },
           "com.figma.isOverride": true
+        }
+      },
+      "Background Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--input-radio-container-background-hover)"
+          }
         }
       }
     },
@@ -2896,6 +2918,28 @@
           "targetVariableSetName": "Core (Primitives)"
         },
         "com.figma.isOverride": true
+      }
+    },
+    "Text Color Active": {
+      "$type": "color",
+      "$value": {
+        "$ref": "Color/Text/Default"
+      },
+      "$extensions": {
+        "com.figma.codeSyntax": {
+          "WEB": "var(--input-radio-text-color-active)"
+        }
+      }
+    },
+    "Text Color Hover": {
+      "$type": "color",
+      "$value": {
+        "$ref": "Color/Text/Strong"
+      },
+      "$extensions": {
+        "com.figma.codeSyntax": {
+          "WEB": "var(--input-radio-text-color-hover)"
+        }
       }
     }
   },
@@ -3154,50 +3198,6 @@
         "com.figma.isOverride": true
       }
     },
-    "Font Size": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Typography/Label/Font Size"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2385:1179",
-        "com.figma.scopes": [
-          "FONT_SIZE"
-        ],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--badge-font-size)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableId": "VariableID:15:37",
-          "targetVariableName": "Typography/Label/Font Size",
-          "targetVariableSetId": "VariableCollectionId:1:252",
-          "targetVariableSetName": "Semantics (Roles)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Line Height": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Typography/Label/Line Height"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2385:1180",
-        "com.figma.scopes": [
-          "LINE_HEIGHT"
-        ],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--badge-line-height)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableId": "VariableID:15:38",
-          "targetVariableName": "Typography/Label/Line Height",
-          "targetVariableSetId": "VariableCollectionId:1:252",
-          "targetVariableSetName": "Semantics (Roles)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
     "Border Size Default": {
       "$type": "number",
       "$value": {
@@ -3242,28 +3242,6 @@
         "com.figma.isOverride": true
       }
     },
-    "Padding Inline": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Size/Spacing/400"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2385:1201",
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--badge-padding-inline)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:232",
-          "targetVariableName": "Size/Spacing/400",
-          "targetVariableSetId": "VariableCollectionId:1:200",
-          "targetVariableSetName": "Core (Primitives)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
     "Padding Inline Icon Only": {
       "$type": "number",
       "$value": {
@@ -3276,28 +3254,6 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-padding-inline-icon-only)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:230",
-          "targetVariableName": "Size/Spacing/200",
-          "targetVariableSetId": "VariableCollectionId:1:200",
-          "targetVariableSetName": "Core (Primitives)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Padding Block": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Size/Spacing/200"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2385:1203",
-        "com.figma.scopes": [
-          "ALL_SCOPES"
-        ],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--badge-padding-block)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:1:230",
@@ -3423,6 +3379,138 @@
             "targetVariableSetName": "Appearance (Modes)"
           },
           "com.figma.isOverride": true
+        }
+      }
+    },
+    "font-size": {
+      "md": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Typography/Label/Font Size"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2385:1179",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--badge-font-size-md)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:15:37",
+            "targetVariableName": "Typography/Label/Font Size",
+            "targetVariableSetId": "VariableCollectionId:1:252",
+            "targetVariableSetName": "Semantics (Roles)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "sm": {
+        "$type": "number",
+        "$value": 12,
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--badge-font-size-sm)"
+          }
+        }
+      }
+    },
+    "line-height": {
+      "md": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Typography/Label/Line Height"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2385:1180",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--badge-line-height-md)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:15:38",
+            "targetVariableName": "Typography/Label/Line Height",
+            "targetVariableSetId": "VariableCollectionId:1:252",
+            "targetVariableSetName": "Semantics (Roles)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "sm": {
+        "$type": "number",
+        "$value": 16,
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--badge-line-height-sm)"
+          }
+        }
+      }
+    },
+    "padding-inline": {
+      "md": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Spacing/400"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2385:1201",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--badge-padding-inline-md)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:232",
+            "targetVariableName": "Size/Spacing/400",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "sm": {
+        "$type": "number",
+        "$value": 8,
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--badge-padding-inline-sm)"
+          }
+        }
+      }
+    },
+    "padding-block": {
+      "md": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Spacing/200"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2385:1203",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--badge-padding-block-md)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:230",
+            "targetVariableName": "Size/Spacing/200",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "sm": {
+        "$type": "number",
+        "$value": 2,
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--badge-padding-block-sm)"
+          }
         }
       }
     }
