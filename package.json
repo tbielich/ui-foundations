@@ -2,7 +2,7 @@
   "name": "ui-foundations",
   "version": "0.6.0",
   "description": "Token-first UI foundations with CSS, tokens, and React exports.",
-  "license": "MIT",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "repository": {
     "type": "git",
     "url": "git@ssh.source.tui:Thomas.Bielich/ui-foundations.git"
