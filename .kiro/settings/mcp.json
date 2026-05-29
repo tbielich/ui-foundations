@@ -9,7 +9,9 @@
         "get_screenshot",
         "get_variable_defs",
         "search_design_system",
-        "whoami"
+        "whoami",
+        "get_context_for_code_connect",
+        "use_figma"
       ]
     },
     "figma-mcp": {
