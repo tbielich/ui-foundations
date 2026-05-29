@@ -68,8 +68,9 @@ Components reference only Semantic or Core. Never raw values.
 ### Component Integration
 
 Every component ships with:
-CSS pattern, React wrapper, Nunjucks macro, playground page, docs page,
-and Code Connect mapping.
+CSS pattern, Nunjucks macro, playground page, docs page,
+and Code Connect mapping. React wrappers are available as an optional
+convenience layer but are not required — the CSS classes work in any framework.
 
 All surfaces must be present for the component to work predictably across
 docs, playgrounds, and consumer apps.
@@ -108,10 +109,28 @@ npm install ui-foundations
 
 ### Import
 
-```js
-import "ui-foundations/core.css";
-import "ui-foundations/ui.css";
+```css
+@import "ui-foundations/core.css";
+@import "ui-foundations/ui.css";
 ```
+
+### Use Components (plain HTML)
+
+```html
+<button class="button">Label</button>
+<button class="button outline">Outline</button>
+<input class="input" type="text" />
+```
+
+### Optional: React Wrappers
+
+```js
+import { Button } from "ui-foundations/react/button";
+```
+
+The React wrappers are thin convenience layers that apply CSS classes and
+add dev-mode accessibility warnings. They contain no framework-specific
+logic — the same result is achievable with plain HTML + CSS classes.
 
 ### Apply Theming
 
@@ -247,8 +266,14 @@ npm run release:publish
 
 ## Tech Stack
 
-Vanilla CSS (Custom Properties, `@layer`) · Node.js · Eleventy · React (optional wrappers) · Nunjucks macros · Figma MCP
+Vanilla CSS (Custom Properties, `@layer`) · Node.js · Eleventy · Nunjucks macros · Figma MCP · React (optional wrappers)
 
 ---
 
-MIT License
+## Roadmap
+
+- **Web Components** — replace React wrappers with framework-agnostic custom elements (light DOM, no shadow DOM) so the library is truly platform-independent.
+
+---
+
+PolyForm Noncommercial License 1.0.0

@@ -10,6 +10,10 @@ Provide a compact operating context for humans and agents.
 - Ensure token parity
 - Improve agent-readiness
 
+## Roadmap
+
+- Replace React wrappers with Web Components (light DOM custom elements)
+
 ## Theming
 
 - `data-brand`
