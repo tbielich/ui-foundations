@@ -3514,5 +3514,173 @@
         }
       }
     }
+  },
+  "Switch": {
+    "track": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Surface"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-track-background-default)"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Surface"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-track-background-hover)"
+            }
+          }
+        },
+        "active": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Brand"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-track-background-active)"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Disabled"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-track-background-disabled)"
+            }
+          }
+        }
+      },
+      "border-color": {
+        "default": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Default"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-track-border-color-default)"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Brand"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-track-border-color-hover)"
+            }
+          }
+        },
+        "active": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Brand"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-track-border-color-active)"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Disabled"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-track-border-color-disabled)"
+            }
+          }
+        }
+      }
+    },
+    "thumb": {
+      "background": {
+        "default": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Default"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-thumb-background-default)"
+            }
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Border/Brand"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-thumb-background-hover)"
+            }
+          }
+        },
+        "active": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Surface"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-thumb-background-active)"
+            }
+          }
+        },
+        "disabled": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Fill/Surface"
+          },
+          "$extensions": {
+            "com.figma.codeSyntax": {
+              "WEB": "var(--switch-thumb-background-disabled)"
+            }
+          }
+        }
+      }
+    },
+    "text-color": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--switch-text-color-default)"
+          }
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--switch-text-color-disabled)"
+          }
+        }
+      }
+    }
   }
 }
