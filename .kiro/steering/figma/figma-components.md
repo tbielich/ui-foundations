@@ -82,7 +82,30 @@ This mirrors the CSS approach: `var(--token)` for everything, never raw values.
 
 ## After Creation
 
-1. Add text component properties for all visible text
-2. Bind colors to semantic variables
-3. Verify shapes render correctly (circular, rounded, etc.)
-4. Publish to team library before registering Code Connect
+1. Add a component description (mandatory — see below)
+2. Add text component properties for all visible text
+3. Bind colors to semantic variables
+4. Verify shapes render correctly (circular, rounded, etc.)
+5. Publish to team library before registering Code Connect
+
+## Component Description (MANDATORY)
+
+Every component set must have a `description` set via `componentSet.description`.
+The description is user-facing copy visible in the Figma asset panel and library.
+
+Write the description following the UX Writing Coach skill
+(`docs/agentic/skills/ux-writing-coach.md`):
+- Clear, concise, helpful
+- One sentence explaining what the component is and when to use it
+- No jargon, no implementation details, no internal naming
+- English only
+
+Examples:
+- Switch: "A toggle control for binary on/off settings."
+- Badge: "A small label for status, count, or category indicators."
+- Divider: "A visual separator between content sections."
+
+Set via:
+```js
+componentSet.description = "A toggle control for binary on/off settings.";
+```
