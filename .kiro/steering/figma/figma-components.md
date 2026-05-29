@@ -74,9 +74,11 @@ This mirrors the CSS approach: `var(--token)` for everything, never raw values.
 
 ## Placement
 
-- Small/atomic components → Atoms section (node `2530:523` on Components page)
-- Compound/molecule components → Molecules section
-- Always position new component sets after existing ones (increment x position)
+- New components go into the Atoms section (node `2530:523` on the Components page).
+- Use `targetSection.appendChild(componentSet)` to place them.
+- Set `layoutSizingVertical = "HUG"` (height auto) on every component set.
+- Compound/molecule components → Molecules section.
+- Always position new component sets after existing ones (increment x position).
 
 ## After Creation
 
