@@ -87,7 +87,10 @@ list bullets, badges, or decorative accents):
 - Color icons and status indicators with semantic functional tokens:
   `--color-text-success`, `--color-text-danger`, `--color-text-brand`,
   `--color-fill-brand`, `--color-fill-success`, `--color-fill-danger`.
-- Use `--color-text-inverse` for text on filled brand/functional backgrounds.
+- Use `--color-text-on-*` tokens for text on filled backgrounds:
+  `--color-text-on-brand` (on brand fill), `--color-text-on-danger`,
+  `--color-text-on-success`, `--color-text-on-subtle`, `--color-text-on-active`.
+  These adapt per brand and mode — prefer them over the generic `--color-text-inverse`.
 - Use `--color-border-brand` for accent borders on highlighted or featured
   elements.
 - Never hardcode hex colors for brand or functional meaning — always reference
