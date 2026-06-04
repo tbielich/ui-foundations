@@ -2,10 +2,10 @@
 inclusion: manual
 ---
 
-# Skill: UI Foundations Cheatsheet Builder
+# Skill: UI Foundations Cheatsheet Builder — Rules
 
-Interactive frame-by-frame Figma slide deck builder for the UI Foundations design system.
-You are a Design System Implementation Agent — you build Figma frames, not documentation.
+Layout, style, card types, and validation rules for building Figma cheatsheet frames.
+For per-frame content definitions, load `#cheatsheet-builder-frames`.
 
 ## Working Mode
 
@@ -113,24 +113,13 @@ card.layoutSizingHorizontal = 'FILL';
 column.layoutSizingHorizontal = 'FILL';
 ```
 
-Apply this to every direct child of a horizontal auto-layout container that
-should share the row width equally. Arrow separators and fixed-width elements
-are excluded.
-
 ## LAYOUT-FIRST EXECUTION (CRITICAL)
 
 For each frame:
-1. Build layout structure first:
-   - frame
-   - grid
-   - columns
-   - card placement
+1. Build layout structure first: frame → grid → columns → card placement
 2. THEN add content
 
-DO NOT:
-- write content first
-- design afterwards
-
+DO NOT write content first and design afterwards.
 Layout defines content, not the reverse.
 
 ## VISUAL HIERARCHY (MANDATORY)
@@ -141,23 +130,12 @@ Hierarchy must be created using:
 - layout structure (columns, stacking)
 - component variants
 
-DO NOT rely on:
-- new colors
-- arbitrary font scaling
-
-If layout feels flat:
-→ increase spacing contrast
-→ regroup elements
-→ change card composition
+DO NOT rely on new colors or arbitrary font scaling.
 
 ## Frame Positioning (MANDATORY)
 
 Each new frame must be placed to the right of the previous one with an 80px gap.
-Frames MUST NEVER overlap or share the same x position. Every frame gets a
-unique x offset calculated from the previous frame's position.
-
-When building multiple frames in one session (batch mode), calculate the x
-position immediately before creating each frame — not once at the start.
+Frames MUST NEVER overlap or share the same x position.
 
 ```js
 function nextX() {
@@ -166,7 +144,6 @@ function nextX() {
     ? existing[existing.length - 1].x + 1024 + 80
     : 0;
 }
-// Call nextX() right before each makeSlide(), not cached
 slide.x = nextX();
 slide.y = 0;
 ```
@@ -176,8 +153,7 @@ slide.y = 0;
 When the user asks to build all frames at once ("build all, I'll check later"):
 - Build frames sequentially in a single script execution
 - Use the `nextX()` function before each frame creation
-- After all frames are built, take a page-level screenshot and present a
-  summary table of all frames
+- After all frames are built, take a page-level screenshot and present a summary
 
 ## Frame Format
 
@@ -207,9 +183,6 @@ Slide (1024×576, FIXED, clipsContent=true)
 ### Icon Color Rule (CRITICAL)
 
 Icons must always match the color of their adjacent text.
-All icon child nodes are named "Vector" and share the same stroke binding,
-so rebinding the stroke color on all children recolors the whole icon.
-Also clear the instance fill to remove the white background.
 
 ```js
 function recolorIcon(icon, colorVarName) {
@@ -226,31 +199,15 @@ function recolorIcon(icon, colorVarName) {
 }
 ```
 
-Apply after every `IC()` call. Use the same color variable as the
-sibling text. Example: hero text uses `Color/Text/Inverse`, so
-call `recolorIcon(icon, 'Color/Text/Inverse')`.
-
-Default icon color is `Color/Text/Default`. Only override when the
-context requires a different color (inverse, brand, subtle, strong).
-
-Useful icon names by topic:
-- Tokens: `pricetag`, `diamond`, `layers`
-- Components: `puzzle`, `code`, `list`
-- Tooling: `toolkit`, `linked`, `document`, `robot`
-- Governance: `shield`, `shield-check`, `checkmark-circled`
-- Theming: `settings`, `star`, `crown`
-- Pipeline: `sync`, `arrow`, `folder`, `picture`
-- Patterns: `notepad`, `compass`, `search`, `message-info`
-- Validation: `badge-check`, `accessibility-circled`
-- Workflow: `play`, `focus`, `light-bulb`
-- General: `world-globe`, `exclamation-mark-circled`, `typography`
+Default icon color is `Color/Text/Default`. Only override when context requires
+a different color (inverse, brand, subtle, strong).
 
 ## Header Style Rule
 
 Default to light headers — no background fill, brand-colored icon,
 `Color/Text/Default` for title. Only use dark headers
 (`Brand/Color/Functional/Base Dark` + `Color/Text/Inverse`) for hero or
-overview frames (Frame 00). All other frames use light headers.
+overview frames (Frame 00).
 
 ## Bullet List Rule (CRITICAL)
 
@@ -262,28 +219,16 @@ const bulletText = items.map(b => '\u2022  ' + b).join('\n');
 tx(card, bulletText, { sz: 10, cv: 'Color/Text/Subtle', fw: true, lh: 16 });
 ```
 
-This produces cleaner layers, fewer nodes, and proper text reflow.
-Only use the dot-ellipse + row pattern when bullets need individual icons
-or mixed styling per line.
-
 ## CARD SELECTION RULE
 
-Each frame must:
-- use at least 2 different card types
-- choose card types based on content:
-
-Rules:
+Each frame must use at least 2 different card types. Choose based on content:
 - concepts → Bullet or Layer
 - mappings → KeyValue
 - processes → Flow
 - emphasis → Highlight
 
-If card types repeat across frames:
-→ switch layout strategy
+## Card Types
 
-## Card Types (vary across frames)
-
-Use different card compositions per frame:
 - Bullet card: icon header + bullet list
 - Code card: dark background code block
 - Key-value card: icon + label pairs in grid
@@ -301,7 +246,9 @@ Do NOT repeat identical layouts across frames. Vary:
 - Section groupings
 - Visual emphasis patterns
 
-## Spacing Token Reference
+## Token References
+
+### Spacing
 
 | Token | Use |
 |---|---|
@@ -312,7 +259,7 @@ Do NOT repeat identical layouts across frames. Vary:
 | `Size/Spacing/600` | Outer horizontal padding |
 | `Size/Spacing/800` | Hero padding |
 
-## Color Token Reference
+### Colors
 
 | Token | Use |
 |---|---|
@@ -333,39 +280,6 @@ Do NOT repeat identical layouts across frames. Vary:
 | `Brand/Corner/Card` | Card corner radius |
 | `Size/Radius/100` | Small elements (badges, tags) |
 | `Size/Radius/200` | Cards, code blocks |
-
-## Frame Order
-
-```
-00 Overview — Hero + pipeline flow + 4-layer grid
-01 Tokens — 3-layer cards + theming model + naming
-02 Components — Icon grid + structure card + code example
-03 Tooling — Tool highlight cards + pipeline + commands
-04 Governance — Rule bullets + CI pipeline + agent rules
-05 Token Architecture — Layer cards with file paths + reference chain
-06 Theming — Brand comparison + CSS strategy + layer order
-07 Pipeline — Step flow cards + output files
-08 Component Model — 10-surface checklist + CSS anatomy
-09 Patterns — Pattern type cards + purpose + rule pipeline
-10 Validation — Validation checks + numbered CI steps
-11 Kiro Workflow — Agent step cards + steering files + hooks
-12 Final Poster — 3-column summary + footer
-```
-
-## Per-Frame Output (MANDATORY)
-
-After building each frame, output:
-
-```
-### Frame [X] — [Title]
-- [What was built]
-- [Card types used]
-- [Design principles applied]
-
-Approve or adjust?
-```
-
-Then STOP and wait.
 
 ## Validation Checklist (per frame)
 
@@ -391,24 +305,28 @@ If ANY occurs, rebuild the frame:
 ## CONTENT MODE (CRITICAL)
 
 The repository is NOT documentation to display.
-It is ONLY used to:
-- extract terminology
-- ensure correctness
+It is ONLY used to extract terminology and ensure correctness.
 
-DO NOT:
-- summarize files
-- describe folder structures
-- explain implementation details
-
-INSTEAD:
-- abstract the system into visual concepts
-- keep content short, scannable, and generic
-
-If content reads like documentation:
-→ simplify and generalize
+DO NOT summarize files, describe folder structures, or explain implementation.
+INSTEAD abstract the system into visual concepts — short, scannable, generic.
 
 ## Missing Assets
 
 If a needed library asset doesn't exist:
 → Add a text annotation: "Missing library asset: [exact need]"
 → Do NOT invent colors, styles, or components
+
+## Per-Frame Output (MANDATORY)
+
+After building each frame, output:
+
+```
+### Frame [X] — [Title]
+- [What was built]
+- [Card types used]
+- [Design principles applied]
+
+Approve or adjust?
+```
+
+Then STOP and wait.

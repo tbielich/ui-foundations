@@ -15,5 +15,5 @@ the Kiro configuration itself into `docs/`.
 ## Related docs
 
 - `docs/playbook.md`
-- `docs/agentic/agent-behavior-rules.md`
+- `docs/agentic/assistant-behavior-rules.md`
 - `IMPLEMENTATION.md`

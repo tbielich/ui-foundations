@@ -13,6 +13,6 @@ support.
 
 ## Related docs
 
-- `docs/validation/checklist.md`
+- `docs/validation/ci.md`
 - `docs/agentic/codex-workflow.md`
 - `docs/playbook.md`
