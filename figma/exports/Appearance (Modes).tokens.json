@@ -390,6 +390,36 @@
             }
           }
         }
+      },
+      "On Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Neutral/800"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2624:2",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--color-text-on-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2006:169",
+            "targetVariableName": "Color/Neutral/800",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true,
+          "com.figma.modeValues": {
+            "Light Mode": {
+              "$ref": "Color/Neutral/800"
+            },
+            "Dark Mode": {
+              "$ref": "Color/Neutral/800"
+            }
+          }
+        }
       }
     },
     "Fill": {
