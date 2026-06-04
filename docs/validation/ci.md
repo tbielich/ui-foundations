@@ -23,5 +23,4 @@ Current pipeline:
 
 ## Related docs
 
-- `docs/validation/checklist.md`
 - `docs/agentic/rule-pipeline-audit.md`

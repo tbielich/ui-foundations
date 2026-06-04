@@ -8,7 +8,7 @@ docs pages, and Code Connect mappings.
 
 ## Canonical rules
 
-- `docs/agentic/agent-behavior-rules.md`
+- `docs/agentic/assistant-behavior-rules.md`
 - `docs/foundations/foundation-009-component-boundaries-and-utility.md`
 - `docs/foundations/foundation-010-implementation-and-pipeline-workflow.md`
 - `site/components/*.md`
@@ -23,4 +23,4 @@ docs pages, and Code Connect mappings.
 
 - `docs/patterns/README.md`
 - `docs/principles/accessibility.md`
-- `docs/validation/checklist.md`
+- `docs/validation/ci.md`

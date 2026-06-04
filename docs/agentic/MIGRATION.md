@@ -30,9 +30,9 @@ The repo now also includes:
 
 - `docs/playbook.md`
 - `docs/agentic/README.md`
-- `docs/agentic/agent-behavior-rules.md`
+- `docs/agentic/assistant-behavior-rules.md`
 - `docs/agentic/{kiro,goose,codex}-workflow.md`
-- `docs/agentic/prompts/`
+- `docs/agentic/skills/`
 
 The detailed checklist remains in `assistant-behavior-rules.md`.
 

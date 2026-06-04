@@ -18,17 +18,15 @@ Activate this skill when the user asks to:
 - Target Figma file URL with a page node ID must be provided
 - The file key is extracted from the URL: `figma.com/design/:fileKey/...`
 
-## Token Architecture (4 layers)
+## Shared Context
 
-The system uses a strict 4-layer token hierarchy. Never mix layers.
+This skill relies on shared facts defined in steering files. Do NOT duplicate
+those facts here — reference them instead:
 
-| Layer | Figma Collection | Source File | Modes |
-|---|---|---|---|
-| Core Primitives | `Core Primitives` | `dist/tokens/css/core-primitives.tokens.css` | Default |
-| Brand Themes | `Brand Themes` | `dist/tokens/css/themes-brands.tokens.*.css` | Brand A, Brand B, Brand C |
-| Appearance Modes | `Appearance Modes` | `dist/tokens/css/appearance-modes.tokens.mode-*.css` | Light, Dark |
-| Semantics Roles | `Semantics Roles` | `dist/tokens/css/semantics-roles.tokens.css` | Default |
-| Components UI | `Components UI` | `dist/tokens/css/components-ui.tokens.css` | Default |
+- **Token architecture (4 layers), file locations, component list:**
+  See `#design-system-context` steering (`foundations/design-system-context.md`)
+- **Component variants, naming, Figma structure:**
+  See `#figma-components` steering (`figma/figma-components.md`)
 
 ## Workflow
 
@@ -38,10 +36,20 @@ Read each CSS file from `dist/tokens/css/`. Extract variable names and values.
 Token names use `/` separators in Figma (e.g. `color/neutral/100`), converted from
 CSS `--color-neutral-100`.
 
+Collections and modes by layer:
+
+| Layer | Figma Collection | Modes |
+|---|---|---|
+| Core Primitives | `Core Primitives` | Default |
+| Brand Themes | `Brand Themes` | Brand A, Brand B, Brand C |
+| Appearance Modes | `Appearance Modes` | Light, Dark |
+| Semantics Roles | `Semantics Roles` | Default |
+| Components UI | `Components UI` | Default |
+
 ### Step 2: Create Variable Collections
 
-For each layer, create a Figma variable collection using `figma.variables.createVariableCollection()`.
-Add modes where needed (Brand A/B, Light/Dark).
+For each layer, create a Figma variable collection using
+`figma.variables.createVariableCollection()`. Add modes where needed.
 
 Variable types:
 - Color tokens → `'COLOR'` variables with `{ r, g, b, a }` values (0–1 range)
@@ -67,36 +75,15 @@ Naming rules:
 
 ### Step 4: Create Components
 
-Components live on a dedicated page. Each component is a `COMPONENT_SET` with variants.
-
-Current components and their variant properties:
-
-| Component | Variants |
-|---|---|
-| Icon | Single component, `Name` text property |
-| Label Content | `Has Text` (True/False) |
-| Button | `Variant` (■ Solid/□ Outline/◇ Ghost), `State` (◻ Default/◼ Hover/▣ Active), `Disabled`, `Icon Only` |
-| Input | `State` (◻ Default/◼ Hover/▣ Active/◎ Readonly/◌ Placeholder), `Disabled` |
-| Checkbox | `Checked` (☐ Unchecked/☑ Checked/▣ Indeterminate), `State` (◻ Default/◼ Hover), `Disabled` |
-| Radio | `Checked` (boolean), `State` (◻ Default/◼ Hover), `Disabled` |
-| Switch | `Checked` (boolean), `State` (◻ Default/◼ Hover/▣ Active), `Disabled` |
-| Badge | `Variant` (○ Default/● Brand/✓ Success/✕ Danger), `Size` (▬ Md/▪ Sm) |
-| Button Group | `Orientation` (→ Horizontal/↓ Vertical), `Attached` (⊞ true/⊟ false) |
-| Link | `State` (◻ Default/◼ Hover/▣ Active) |
-| Field Label | `Required` (boolean) |
-| Checkbox Field | `Checked` (☐/☑/▣ enum), `Is Disabled` — nests Checkbox instance |
-| Radio Field | `Checked` (boolean), `Is Disabled` — nests Radio instance |
-| Switch Field | `Checked` (boolean), `Is Disabled` — nests Switch instance |
-
-Variant naming rules:
-- Enum values get leading unicode symbols (→ ↓ ■ □ ◇ ☐ ☑ etc.)
-- Two-state properties (only checked/unchecked) use boolean `true`/`false`
-- Three-state properties (unchecked/checked/indeterminate) use enum with symbols
+Components live on a dedicated page. Each component is a `COMPONENT_SET` with
+variants. Refer to the `#figma-components` steering for the full variant table
+and naming conventions (unicode-prefixed enum values, boolean properties, etc.).
 
 ### Step 5: Bind Tokens to Components
 
 Use `figma.variables.setBoundVariableForPaint()` for fills and strokes.
-Use `node.setBoundVariable()` for `strokeWeight`, `topLeftRadius`, `paddingLeft`, `itemSpacing`, etc.
+Use `node.setBoundVariable()` for `strokeWeight`, `topLeftRadius`, `paddingLeft`,
+`itemSpacing`, etc.
 
 Each component variant must bind to its own component-layer tokens, never to
 semantic or core tokens directly.
@@ -112,14 +99,13 @@ node.setSharedPluginData('code_snippets', 'snippets', JSON.stringify([
 ]));
 ```
 
-Also set the component `description` field with inline code examples for all three platforms.
+Also set the component `description` field with inline code examples for all
+three platforms.
 
 ### Step 7: Nest Component Instances in Field Components
 
 Field components (Checkbox Field, Radio Field, Switch Field) must use actual
-instances of their control component — never plain shapes. This allows users to
-swap the nested instance variant to change checked/disabled state directly on the
-field component.
+instances of their control component — never plain shapes.
 
 ## Figma Plugin API Patterns
 
@@ -174,25 +160,11 @@ set.layoutWrap = 'WRAP';
 
 ## Gotchas
 
-- `setBoundVariable('fills', ...)` does NOT work — use `setBoundVariableForPaint()` on the paint object instead
-- `layoutSizingHorizontal = 'FILL'` can only be set AFTER the node is appended to an auto-layout parent
+- `setBoundVariable('fills', ...)` does NOT work — use `setBoundVariableForPaint()`
+- `layoutSizingHorizontal = 'FILL'` can only be set AFTER appending to auto-layout parent
 - `layoutWrap = 'WRAP'` only works on `layoutMode = 'HORIZONTAL'` frames
-- `figma.setCurrentPageAsync(page)` is required — `figma.currentPage = page` is not supported
+- `figma.setCurrentPageAsync(page)` is required — assignment is not supported
 - Font must be loaded before setting text: `await figma.loadFontAsync({ family: 'Inter', style: 'Semi Bold' })`
 - For "Inter" font, the style is "Semi Bold" (with space), not "SemiBold"
-- Code Connect API mappings require components to be published to a team library first
-- `currentColor` in SVGs renders as black in Figma (no CSS cascade) — this is fine for icons
-
-## Source Files Reference
-
-| Surface | Path |
-|---|---|
-| Token CSS (core) | `dist/tokens/css/core-primitives.tokens.css` |
-| Token CSS (modes) | `dist/tokens/css/appearance-modes.tokens.mode-*.css` |
-| Token CSS (semantics) | `dist/tokens/css/semantics-roles.tokens.css` |
-| Token CSS (components) | `dist/tokens/css/components-ui.tokens.css` |
-| Token CSS (brands) | `dist/tokens/css/themes-brands.tokens.*.css` |
-| CSS patterns | `src/ui/patterns/*.css` |
-| CSS index | `src/ui/index.css` |
-| Icons | `src/assets/icons/*.svg` |
-| Code Connect schemas | `schemas/web-*.figma.ts` |
+- Code Connect API mappings require components to be published first
+- `currentColor` in SVGs renders as black in Figma — this is fine for icons

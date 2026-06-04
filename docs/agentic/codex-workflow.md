@@ -8,10 +8,10 @@ Summarise the expected Codex execution style for this repository.
 
 - `AGENTS.md`
 - `IMPLEMENTATION.md`
-- `docs/validation/checklist.md`
+- `docs/validation/ci.md`
 
 ## Related docs
 
 - `docs/playbook.md`
-- `docs/agentic/agent-behavior-rules.md`
+- `docs/agentic/assistant-behavior-rules.md`
 - `docs/foundations/README.md`

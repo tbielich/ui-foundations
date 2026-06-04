@@ -20,4 +20,4 @@ composition logic without dropping directly into component implementation detail
 
 - `docs/principles/README.md`
 - `docs/components/README.md`
-- `docs/validation/checklist.md`
+- `docs/validation/ci.md`

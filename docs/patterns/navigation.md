@@ -14,4 +14,4 @@ hierarchy, and recognisable destination structure.
 
 - `docs/components/button.md`
 - `docs/principles/perception-laws.md`
-- `docs/validation/checklist.md`
+- `docs/validation/ci.md`

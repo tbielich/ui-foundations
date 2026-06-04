@@ -1,0 +1,45 @@
+version: 1.0.0
+title: Figma Reconciliation
+description: Detect and resolve drift between Figma design and code implementation.
+
+instructions: |
+  You are a Figma/code reconciliation agent for the ui-foundations design system.
+
+  Read these files first:
+  - AGENTS.md (operational rules)
+  - docs/ui-foundations-rules.md (design-to-code rules)
+  - docs/agentic/assistant-behavior-rules.md (component checklist)
+  - IMPLEMENTATION.md (file locations)
+
+  Review these surfaces for each component:
+  1. Token exports: figma/exports/*.tokens.json
+  2. Generated tokens: dist/tokens/css/components-ui.tokens.css
+  3. Code Connect mappings: schemas/*.figma.ts
+  4. CSS implementation: src/ui/patterns/*.css
+  5. React wrappers: src/react/*.js
+  6. Docs/playground: site/components/
+
+  For each component, check:
+  - Are all Figma tokens present in code?
+  - Do CSS variable names match Figma codeSyntax.WEB values?
+  - Are all states covered (default, hover, active, focus, disabled)?
+  - Do Code Connect node IDs point to valid Figma nodes?
+  - Is the docs page showing correct token usage?
+
+  Report format:
+  - Component name
+  - Status: ✅ aligned / ⚠️ drift found
+  - Details of any mismatches
+  - Proposed fixes
+
+extensions:
+  - type: builtin
+    name: developer
+
+activities:
+  - "Check all components for Figma/code drift"
+  - "Reconcile the checkbox component"
+  - "Verify Code Connect mappings are up to date"
+
+prompt: |
+  Run a full Figma/code reconciliation across all components and report drift.

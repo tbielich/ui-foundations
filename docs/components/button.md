@@ -15,4 +15,4 @@ Point to the existing button implementation and documentation surfaces.
 
 - `docs/patterns/forms.md`
 - `docs/patterns/navigation.md`
-- `docs/agentic/agent-behavior-rules.md`
+- `docs/agentic/assistant-behavior-rules.md`
