@@ -16,6 +16,7 @@ principles:
   - principle.affordance
 heuristics:
   - heuristic.feedback
+  - heuristic.error-prevention
   - heuristic.recognition
   - heuristic.user-control
   - heuristic.accessibility
@@ -86,6 +87,7 @@ location (banners at the top, toasts in a fixed corner).
 
 ## Applied heuristics
 - `heuristic.feedback`
+- `heuristic.error-prevention`
 - `heuristic.recognition`
 - `heuristic.user-control`
 - `heuristic.accessibility`

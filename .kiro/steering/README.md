@@ -52,6 +52,19 @@ These are included in every prompt automatically:
 
 1. `workflows/pull-requests.md`
 
+## Specs Ready for Implementation
+
+These specs have requirements, design, and tasks complete — ready to pick up:
+
+- `code-connect-all-components` — Code Connect schemas for all components
+- `docs-navbar-search` — search feature in the docs site sidebar
+
+Specs with requirements only (need design/tasks before implementation):
+- `accessibility-test-suite`
+- `component-scaffolding-cli`
+- `dark-mode-validation`
+- `token-drift-detection`
+
 ## Inclusion Modes
 
 | Mode | Front-matter | Behavior |
