@@ -11,7 +11,7 @@ Track where select-component documentation should live once the component exists
 
 ## Related docs
 
-- `docs/agentic/agent-behavior-rules.md`
+- `docs/agentic/assistant-behavior-rules.md`
 - `docs/foundations/foundation-009-component-boundaries-and-utility.md`
 
 ## TODO

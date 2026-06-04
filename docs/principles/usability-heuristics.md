@@ -7,7 +7,7 @@ able to implement and validation should eventually check.
 
 ## Canonical rules
 
-- `.kiro/steering/usability-heuristics.md`
+- `.kiro/steering/foundations/usability-heuristics.md`
 - `docs/agentic/rule-pipeline.md`
 
 Current heuristic set:
@@ -23,4 +23,4 @@ Current heuristic set:
 
 - `docs/principles/perception-laws.md`
 - `docs/patterns/forms.md`
-- `docs/validation/checklist.md`
+- `docs/validation/ci.md`

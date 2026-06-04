@@ -6,6 +6,11 @@ inclusion: always
 
 This is a token-first, Figma-aligned design system. Figma is the single source of truth.
 
+## Language
+
+All documentation, code comments, commit messages, and user-facing content in
+this project must be written in English. No exceptions.
+
 ## Token Architecture (4 layers)
 
 | Layer | Purpose | Location |
@@ -96,8 +101,8 @@ JavaScript via the Figma Plugin API and can create frames, text, shapes,
 instances, and bind variables.
 
 - Activate the Figma power first to access `use_figma`.
-- For slide decks, load the `#cheatsheet-builder` steering for the full
-  frame-by-frame workflow, auto-layout rules, variable bindings, and card types.
+- For slide decks, load `#cheatsheet-builder-rules` for layout and style rules,
+  and `#cheatsheet-builder-frames` for per-frame content definitions.
 - Key pattern: cards and columns in horizontal rows need
   `layoutSizingHorizontal = 'FILL'` to expand equally.
 
