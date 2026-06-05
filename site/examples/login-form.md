@@ -43,7 +43,7 @@ breadcrumb:
         {{ ui.input(type="password", id="login-password", name="password", placeholder="Enter password") }}
       {% endcall %}
     {% endcall %}
-    {% call ui.formActions() %}
+    {% call ui.formActions(align="stretch") %}
       {{ ui.button(label="Sign in", type="submit") }}
     {% endcall %}
   {% endcall %}
