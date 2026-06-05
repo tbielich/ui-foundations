@@ -56,6 +56,6 @@ playground:
           value: stretch
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% from "macros/playground.njk" import playground as uiPlayground with context %}
 
-<div class="docs-playground-stage" id="form-playground"></div>
+{{ uiPlayground(playground) }}
