@@ -31,38 +31,22 @@ breadcrumb:
   <div class="docs-hero-preview-stage">
 
 <div class="example-form-shell">
-  <form id="example-login-form" class="example-form" action="#" method="post" novalidate>
-    <fieldset class="example-form__group">
-      <legend class="example-form__group-title">Sign in</legend>
-      <p class="example-form__intro">Use your account email and password.</p>
-
-      <div class="example-form__field">
-        <label class="field-label" for="login-email" style="line-height: 24px;">
-          <span class="label-content">
-            <span class="label-content__text">Email address</span>
-          </span>
-          <span class="field-label__required" aria-hidden="true">*</span>
-          <span class="field-label__required-text"> (required)</span>
-        </label>
+  {% call ui.form(borderless=true) %}
+    {% call ui.formGroup(title="Sign in") %}
+      <p class="form-field__helper">Use your account email and password.</p>
+      {% call ui.formField() %}
+        {{ ui.fieldLabel("Email address", htmlFor="login-email", required=true) }}
         {{ ui.input(type="email", id="login-email", name="email", placeholder="name@example.com") }}
-      </div>
-
-      <div class="example-form__field">
-        <label class="field-label" for="login-password" style="line-height: 24px;">
-          <span class="label-content">
-            <span class="label-content__text">Password</span>
-          </span>
-          <span class="field-label__required" aria-hidden="true">*</span>
-          <span class="field-label__required-text"> (required)</span>
-        </label>
+      {% endcall %}
+      {% call ui.formField() %}
+        {{ ui.fieldLabel("Password", htmlFor="login-password", required=true) }}
         {{ ui.input(type="password", id="login-password", name="password", placeholder="Enter password") }}
-      </div>
-    </fieldset>
-
-    <div class="example-form__actions">
+      {% endcall %}
+    {% endcall %}
+    {% call ui.formActions() %}
       {{ ui.button(label="Sign in", type="submit") }}
-    </div>
-  </form>
+    {% endcall %}
+  {% endcall %}
 </div>
 
   </div>
