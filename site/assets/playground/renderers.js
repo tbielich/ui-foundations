@@ -678,6 +678,111 @@
     return { element: wrapper, code: codeLines.join("\n") };
   };
 
+  const renderVanillaForm = ({ props }) => {
+    const borderless = asBoolean(props.borderless);
+    const labelPosition = String(props.labelPosition || "top");
+    const invalid = asBoolean(props.invalid);
+    const actionsAlign = String(props.actionsAlign || "end");
+
+    const form = document.createElement("form");
+    const formClasses = ["form"];
+    if (borderless) formClasses.push("borderless");
+    form.className = formClasses.join(" ");
+    form.setAttribute("novalidate", "");
+
+    // Field 1
+    const field1 = document.createElement("div");
+    const field1Classes = ["form-field"];
+    if (invalid) field1Classes.push("is-invalid");
+    field1.className = field1Classes.join(" ");
+    if (labelPosition === "side") field1.dataset.labelPosition = "side";
+
+    const label1 = document.createElement("label");
+    label1.className = "field-label";
+    label1.innerHTML = '<span class="label-content"><span class="label-content__text">Email</span></span><span class="field-label__required" aria-hidden="true">*</span>';
+
+    const input1 = document.createElement("input");
+    input1.className = "input";
+    input1.type = "email";
+    input1.placeholder = "you@example.com";
+
+    if (labelPosition === "side") {
+      const body1 = document.createElement("div");
+      body1.className = "form-field__body";
+      body1.append(input1);
+      if (invalid) {
+        const helper = document.createElement("p");
+        helper.className = "form-field__helper";
+        helper.textContent = "Please enter a valid email address.";
+        body1.append(helper);
+      }
+      field1.append(label1, body1);
+    } else {
+      field1.append(label1, input1);
+      if (invalid) {
+        const helper = document.createElement("p");
+        helper.className = "form-field__helper";
+        helper.textContent = "Please enter a valid email address.";
+        field1.append(helper);
+      }
+    }
+
+    // Field 2
+    const field2 = document.createElement("div");
+    field2.className = "form-field";
+    if (labelPosition === "side") field2.dataset.labelPosition = "side";
+
+    const label2 = document.createElement("label");
+    label2.className = "field-label";
+    label2.innerHTML = '<span class="label-content"><span class="label-content__text">Password</span></span>';
+
+    const input2 = document.createElement("input");
+    input2.className = "input";
+    input2.type = "password";
+
+    if (labelPosition === "side") {
+      const body2 = document.createElement("div");
+      body2.className = "form-field__body";
+      body2.append(input2);
+      field2.append(label2, body2);
+    } else {
+      field2.append(label2, input2);
+    }
+
+    // Actions
+    const actions = document.createElement("div");
+    actions.className = "form-actions";
+    if (actionsAlign !== "end") actions.dataset.align = actionsAlign;
+
+    const btn = document.createElement("button");
+    btn.className = "button solid";
+    btn.type = "submit";
+    btn.innerHTML = '<span class="label-content"><span class="label-content__text">Sign in</span></span>';
+    actions.append(btn);
+
+    form.append(field1, field2, actions);
+
+    const lp = labelPosition === "side" ? ' data-label-position="side"' : "";
+    const inv = invalid ? " is-invalid" : "";
+    const alignAttr = actionsAlign !== "end" ? ` data-align="${actionsAlign}"` : "";
+    const helperCode = invalid ? '\n    <p class="form-field__helper">Please enter a valid email address.</p>' : "";
+    const code = `<form class="${formClasses.join(" ")}" novalidate>
+  <div class="form-field${inv}"${lp}>
+    <label class="field-label"><span class="label-content"><span class="label-content__text">Email</span></span><span class="field-label__required" aria-hidden="true">*</span></label>
+    <input class="input" type="email" placeholder="you@example.com" />${helperCode}
+  </div>
+  <div class="form-field"${lp}>
+    <label class="field-label"><span class="label-content"><span class="label-content__text">Password</span></span></label>
+    <input class="input" type="password" />
+  </div>
+  <div class="form-actions"${alignAttr}>
+    <button class="button solid" type="submit"><span class="label-content"><span class="label-content__text">Sign in</span></span></button>
+  </div>
+</form>`;
+
+    return { element: form, code };
+  };
+
   const renderVanillaTooltip = ({ props, children }) => {
     const text = String(props.text || "Tooltip");
     const placement = String(props.placement || "top");
@@ -722,6 +827,7 @@
       accordion: renderVanillaAccordion,
       tabs: renderVanillaTabs,
       tooltip: renderVanillaTooltip,
+      form: renderVanillaForm,
     },
   };
 })(window);
