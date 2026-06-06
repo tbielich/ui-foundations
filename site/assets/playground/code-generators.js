@@ -148,6 +148,38 @@
     return "<Badge" + (attrs.length ? " " + attrs.join(" ") : "") + ">" + quoteAttr(text) + "</Badge>";
   }
 
+  function njkSelect(state) {
+    var p = state.props;
+    var placeholder = p.placeholder || "Choose an option";
+    var disabled = state.meta.state === "disabled";
+    var useOptgroups = p.optgroups === true || p.optgroups === "true";
+    var parts = [];
+    if (useOptgroups) {
+      parts.push('options=[{group: "Fruits", items: [{value: "apple", label: "Apple"}, {value: "banana", label: "Banana"}]}, {group: "Vegetables", items: [{value: "carrot", label: "Carrot"}]}]');
+    } else {
+      parts.push('options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}, {value: "opt3", label: "Option 3"}]');
+    }
+    parts.push('placeholder="' + quoteAttr(placeholder) + '"');
+    if (disabled) parts.push("disabled=true");
+    return "{{ ui.select(" + parts.join(", ") + ") }}";
+  }
+
+  function reactSelect(state) {
+    var p = state.props;
+    var placeholder = p.placeholder || "Choose an option";
+    var disabled = state.meta.state === "disabled";
+    var useOptgroups = p.optgroups === true || p.optgroups === "true";
+    var attrs = [];
+    attrs.push('placeholder="' + quoteAttr(placeholder) + '"');
+    if (useOptgroups) {
+      attrs.push('options={[{group: "Fruits", items: [{value: "apple", label: "Apple"}, {value: "banana", label: "Banana"}]}, {group: "Vegetables", items: [{value: "carrot", label: "Carrot"}]}]}');
+    } else {
+      attrs.push('options={[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}, {value: "opt3", label: "Option 3"}]}');
+    }
+    if (disabled) attrs.push("disabled");
+    return "<Select " + attrs.join(" ") + " />";
+  }
+
   function njkForm(state) {
     var p = state.props;
     var borderless = p.borderless === true || p.borderless === "true";
@@ -202,6 +234,7 @@
       "switch": njkSwitch, icon: njkIcon, radio: njkRadio, badge: njkBadge,
       label: function () { return '{{ ui.labelContent("text", "icon") }}'; },
       "button-group": function () { return '{% call ui.buttonGroup() %}...{% endcall %}'; },
+      select: njkSelect,
       form: njkForm,
     },
     react: {
@@ -209,6 +242,7 @@
       "switch": reactSwitch, icon: reactIcon, radio: reactRadio, badge: reactBadge,
       label: function () { return "<LabelContent>...</LabelContent>"; },
       "button-group": function () { return "<ButtonGroup>...</ButtonGroup>"; },
+      select: reactSelect,
       form: reactForm,
     },
   };

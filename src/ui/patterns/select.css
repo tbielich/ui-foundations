@@ -1,0 +1,93 @@
+@layer components {
+  .select {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    inline-size: 100%;
+    block-size: var(--select-height, 2.5rem);
+    appearance: none;
+    font-family: var(--select-font-family);
+    font-weight: var(--select-font-weight);
+    font-size: var(--select-font-size);
+    line-height: var(--select-line-height);
+    color: var(--select-text-color-default);
+    background: var(--select-container-background-default);
+    border-style: solid;
+    border-width: var(--select-border-size-default);
+    border-color: var(--select-border-color-default);
+    border-radius: var(--select-border-radius);
+    padding-inline-start: var(--select-padding-inline);
+    padding-inline-end: calc(var(--select-padding-inline) + 1.5em);
+    padding-block: var(--select-padding-block);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--select-padding-inline) center;
+    background-size: 1em;
+    cursor: pointer;
+  }
+
+  .select:hover,
+  .select.is-hover {
+    background-color: var(--select-container-background-hover);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    border-width: var(--select-border-size-hover);
+    border-color: var(--select-border-color-hover);
+    color: var(--select-text-color-hover);
+    padding-inline-start: calc(
+      var(--select-padding-inline) + var(--select-border-size-default) -
+        var(--select-border-size-hover)
+    );
+    padding-inline-end: calc(
+      var(--select-padding-inline) + 1.5em + var(--select-border-size-default) -
+        var(--select-border-size-hover)
+    );
+    padding-block: calc(
+      var(--select-padding-block) + var(--select-border-size-default) -
+        var(--select-border-size-hover)
+    );
+  }
+
+  .select:active,
+  .select.is-active {
+    background-color: var(--select-container-background-active);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    border-width: var(--select-border-size-active);
+    border-color: var(--select-border-color-active);
+    color: var(--select-text-color-active);
+    padding-inline-start: calc(
+      var(--select-padding-inline) + var(--select-border-size-default) -
+        var(--select-border-size-active)
+    );
+    padding-inline-end: calc(
+      var(--select-padding-inline) + 1.5em + var(--select-border-size-default) -
+        var(--select-border-size-active)
+    );
+    padding-block: calc(
+      var(--select-padding-block) + var(--select-border-size-default) -
+        var(--select-border-size-active)
+    );
+  }
+
+  .select:focus-visible,
+  .select.is-focus-visible {
+    background: var(--select-container-background-focus);
+    border-color: var(--select-border-color-focus);
+    outline: none;
+    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
+  }
+
+  .select:disabled,
+  .select[disabled],
+  .select.is-disabled {
+    cursor: not-allowed;
+    color: var(--select-text-color-disabled);
+    background-color: var(--select-container-background-disabled);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='%23999' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    border-color: var(--select-border-color-disabled);
+  }
+
+  .select.is-placeholder {
+    color: var(--select-text-color-placeholder);
+  }
+}
