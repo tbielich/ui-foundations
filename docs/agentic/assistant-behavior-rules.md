@@ -30,6 +30,7 @@ type: agent-guide
    - Playground page in `site/components/<component>-playground.md` with `renderer: <component>` matching the key in the renderers map
    - Docs page in `site/components/<component>.md`
    - Code Connect file in `schemas/web-<component>.figma.ts`
+   - Component card in `site/components/index.md`
    Missing any of these (especially the playground renderer) will cause broken pages.
 9. Every new component must have its own Component-layer tokens. Never reuse tokens from another component (e.g. do not use `--input-checkbox-*` for a radio).
    - Check `dist/tokens/css/components-ui.tokens.css` for existing tokens.
