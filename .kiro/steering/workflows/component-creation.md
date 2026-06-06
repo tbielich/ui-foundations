@@ -260,3 +260,39 @@ npm run ci:check           # Full pipeline
 | 8 | Playground Page | `site/components/{component}-playground.md` |
 | 9 | Playground Renderer | `site/assets/playground/renderers.js` |
 | 10 | Code Connect | `schemas/web-{component}.figma.ts` |
+
+---
+
+## Design Decision Checklist
+
+Before building, resolve these questions. They prevent rework mid-session:
+
+### Container ownership
+- **Does this component own its visual container (border, background, radius)?**
+- If yes → make it a variant property (e.g. `Container=bordered|none`)
+- If no → the component is layout-only; containers come from parent (Card, Modal, Page)
+- Rule: Only **one** component in the tree should own the container. Never nest
+  containers (Form inside Card both with borders).
+
+### Atom vs Molecule
+- **Does this component compose other existing components?**
+- If yes → it's a Molecule. Place in Molecules section. Use INSTANCES of existing
+  atoms (Input, Button, Label), not placeholder frames.
+- If no → it's an Atom. Place in Atoms section.
+
+### Component Set vs Simple Component
+- **Does this component need variant properties (state, size, orientation)?**
+- If yes → create a Component Set with `combineAsVariants()`
+- If no → create a simple `figma.createComponent()`
+- Rule: A Component Set with only 1 variant is invalid. If you remove variants
+  until 1 remains, convert to a simple Component.
+
+### Fieldset reset
+- **Does the HTML use `<fieldset>`?**
+- If yes → add explicit reset in CSS: `margin: 0; padding: 0; border: 0; min-inline-size: 0;`
+- Browsers apply default padding and borders to fieldsets that break layouts.
+
+### Playground page template
+- Always use `{% from "macros/playground.njk" import playground as uiPlayground with context %}`
+  and `{{ uiPlayground(playground) }}` — never a raw `<div>` stage.
+- Don't forget code generators in `code-generators.js` for Nunjucks/React tabs.

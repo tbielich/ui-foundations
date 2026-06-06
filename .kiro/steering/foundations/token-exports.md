@@ -27,3 +27,34 @@ When working with files in `figma/exports/`, these rules apply:
 ## After Changes
 - Run `npm run tokens:generate` and verify zero "missing alias targets"
 - Run `npm run ci:check` to validate the full pipeline
+
+## Code Syntax Naming (codeSyntax.WEB)
+
+The CSS variable name is derived from `codeSyntax.WEB` in Figma, NOT from the
+JSON key structure. Common pitfalls:
+
+- **Double segments**: If a Figma variable path is `Input/Border/Border Color Default`,
+  the auto-generated syntax becomes `--input-border-border-color-default` (doubled).
+  Fix: manually set codeSyntax to `var(--input-border-color-default)`.
+- **Title Case duplicates**: Figma allows both `Badge/font-size/sm` and
+  `Badge/Font Size Sm` — they produce the same CSS var name and cause duplicates.
+  Fix: delete the redundant variable in Figma.
+- **Validation**: `npm run tokens:generate` reports duplicates. Zero duplicates
+  is required for CI to pass.
+
+## On-Color Token Pattern
+
+For text on colored surfaces, use `--color-text-on-*` tokens (not `--color-text-inverse`):
+
+| Token | Use on |
+|-------|--------|
+| `--color-text-on-brand` | `--color-fill-brand` |
+| `--color-text-on-danger` | `--color-fill-danger` |
+| `--color-text-on-success` | `--color-fill-success` |
+| `--color-text-on-subtle` | `--color-fill-subtle` |
+| `--color-text-on-active` | `--color-fill-active` |
+| `--color-text-on-disabled` | `--color-fill-disabled` |
+
+These resolve per brand and mode. Prefer them over generic `--color-text-inverse`
+in component tokens. Example: `--button-solid-text-color-default` references
+`--color-text-on-brand`, not `--color-text-inverse`.

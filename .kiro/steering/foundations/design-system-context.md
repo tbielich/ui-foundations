@@ -52,7 +52,7 @@ Figma exports are the source. Generated files in `dist/` are never edited direct
 
 ## Current Components
 
-Label, Button (solid/outline/ghost), ButtonGroup, Input, Icon, Checkbox, Radio, Switch, Slider, Link
+Label, Button (solid/outline/ghost), ButtonGroup, Input, Icon, Checkbox, Radio, Switch, Slider, Link, Badge, Divider, Textarea, Avatar, Accordion, Tabs, Tooltip, Form (bordered/none), Form Group
 
 ## Component Promotion Workflow
 
