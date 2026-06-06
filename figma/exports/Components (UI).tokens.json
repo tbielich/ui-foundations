@@ -4086,6 +4086,20 @@
             "WEB": "var(--select-border-radius)"
           }
         }
+      },
+      "Border Color Invalid": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Danger"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-color-invalid)"
+          }
+        }
       }
     },
     "Font Family": {

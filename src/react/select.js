@@ -7,11 +7,13 @@ export function Select({
   placeholder = "",
   value,
   disabled = false,
+  invalid = false,
   children,
   ...props
 }) {
   const classes = ["select"];
   if (!value && placeholder) classes.push("is-placeholder");
+  if (invalid) classes.push("is-invalid");
   if (className) classes.push(className);
 
   if (!props["aria-label"] && !props["aria-labelledby"] && !props.id) {
@@ -39,6 +41,7 @@ export function Select({
         className: classes.join(" "),
         disabled,
         value,
+        "aria-invalid": invalid || undefined,
         ...props,
       },
       placeholder
@@ -86,6 +89,7 @@ export function Select({
       className: classes.join(" "),
       disabled,
       value,
+      "aria-invalid": invalid || undefined,
       ...props,
     },
     optionElements,
