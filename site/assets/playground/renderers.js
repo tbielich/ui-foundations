@@ -783,6 +783,85 @@
     return { element: form, code };
   };
 
+  const renderVanillaSelect = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const placeholder = String(props.placeholder || "Choose an option");
+    const useOptgroups = asBoolean(props.optgroups);
+    const disabled = previewState === "disabled" || asBoolean(props.disabled);
+
+    const element = document.createElement("select");
+    const classes = ["select"];
+
+    if (previewState === "hover") classes.push("is-hover");
+    if (previewState === "active") classes.push("is-active");
+    if (previewState === "focus") classes.push("is-focus-visible");
+    if (disabled) classes.push("is-disabled");
+    classes.push("is-placeholder");
+
+    element.className = classes.join(" ");
+    element.disabled = disabled;
+
+    const placeholderOpt = document.createElement("option");
+    placeholderOpt.value = "";
+    placeholderOpt.disabled = true;
+    placeholderOpt.selected = true;
+    placeholderOpt.textContent = placeholder;
+    element.append(placeholderOpt);
+
+    if (useOptgroups) {
+      const group1 = document.createElement("optgroup");
+      group1.label = "Fruits";
+      ["Apple", "Banana", "Cherry"].forEach((label) => {
+        const opt = document.createElement("option");
+        opt.value = label.toLowerCase();
+        opt.textContent = label;
+        group1.append(opt);
+      });
+      const group2 = document.createElement("optgroup");
+      group2.label = "Vegetables";
+      ["Carrot", "Potato"].forEach((label) => {
+        const opt = document.createElement("option");
+        opt.value = label.toLowerCase();
+        opt.textContent = label;
+        group2.append(opt);
+      });
+      element.append(group1, group2);
+    } else {
+      ["Option 1", "Option 2", "Option 3"].forEach((label, i) => {
+        const opt = document.createElement("option");
+        opt.value = `opt${i + 1}`;
+        opt.textContent = label;
+        element.append(opt);
+      });
+    }
+
+    const attrs = [
+      `class="${quoteAttr(element.className)}"`,
+    ];
+    if (disabled) attrs.push("disabled");
+
+    let optionsCode = "";
+    optionsCode += `\n  <option value="" disabled selected>${quoteAttr(placeholder)}</option>`;
+    if (useOptgroups) {
+      optionsCode += `\n  <optgroup label="Fruits">`;
+      optionsCode += `\n    <option value="apple">Apple</option>`;
+      optionsCode += `\n    <option value="banana">Banana</option>`;
+      optionsCode += `\n    <option value="cherry">Cherry</option>`;
+      optionsCode += `\n  </optgroup>`;
+      optionsCode += `\n  <optgroup label="Vegetables">`;
+      optionsCode += `\n    <option value="carrot">Carrot</option>`;
+      optionsCode += `\n    <option value="potato">Potato</option>`;
+      optionsCode += `\n  </optgroup>`;
+    } else {
+      optionsCode += `\n  <option value="opt1">Option 1</option>`;
+      optionsCode += `\n  <option value="opt2">Option 2</option>`;
+      optionsCode += `\n  <option value="opt3">Option 3</option>`;
+    }
+
+    const code = `<select ${attrs.join(" ")}>${optionsCode}\n</select>`;
+    return { element, code };
+  };
+
   const renderVanillaTooltip = ({ props, children }) => {
     const text = String(props.text || "Tooltip");
     const placement = String(props.placement || "top");
@@ -827,6 +906,7 @@
       accordion: renderVanillaAccordion,
       tabs: renderVanillaTabs,
       tooltip: renderVanillaTooltip,
+      select: renderVanillaSelect,
       form: renderVanillaForm,
     },
   };
