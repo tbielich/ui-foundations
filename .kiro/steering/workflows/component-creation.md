@@ -260,6 +260,7 @@ npm run ci:check           # Full pipeline
 | 8 | Playground Page | `site/components/{component}-playground.md` |
 | 9 | Playground Renderer | `site/assets/playground/renderers.js` |
 | 10 | Code Connect | `schemas/web-{component}.figma.ts` |
+| 11 | Components Index | `site/components/index.md` (add card) |
 
 ---
 

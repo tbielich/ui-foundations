@@ -3886,5 +3886,433 @@
         }
       }
     }
+  },
+  "Select": {
+    "Text": {
+      "Text Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-text-color-default)"
+          }
+        }
+      },
+      "Text Color Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Brand"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-text-color-hover)"
+          }
+        }
+      },
+      "Text Color Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-text-color-active)"
+          }
+        }
+      },
+      "Text Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-text-color-disabled)"
+          }
+        }
+      },
+      "Text Color Placeholder": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Subtle"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-text-color-placeholder)"
+          }
+        }
+      }
+    },
+    "Border": {
+      "Border Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-color-default)"
+          }
+        }
+      },
+      "Border Color Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-color-hover)"
+          }
+        }
+      },
+      "Border Color Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-color-active)"
+          }
+        }
+      },
+      "Border Color Focus": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-color-focus)"
+          }
+        }
+      },
+      "Border Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Disabled"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-color-disabled)"
+          }
+        }
+      },
+      "Border Size Default": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Border/100"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-size-default)"
+          }
+        }
+      },
+      "Border Size Hover": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Border/100"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-size-hover)"
+          }
+        }
+      },
+      "Border Size Active": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Border/200"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-size-active)"
+          }
+        }
+      },
+      "Border Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Corner/Input"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "CORNER_RADIUS"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-border-radius)"
+          }
+        }
+      }
+    },
+    "Font Family": {
+      "$type": "string",
+      "$value": {
+        "$ref": "Brand/Font/Base"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "FONT_FAMILY"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--select-font-family)"
+        }
+      }
+    },
+    "Font Weight": {
+      "$type": "string",
+      "$value": {
+        "$ref": "Typography/Body/Font Weight"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--select-font-weight)"
+        }
+      }
+    },
+    "Font Size": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Typography/Label/Font Size"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--select-font-size)"
+        }
+      }
+    },
+    "Line Height": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Typography/Body/Line Height"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "LINE_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--select-line-height)"
+        }
+      }
+    },
+    "Container": {
+      "Container Background Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-container-background-default)"
+          }
+        }
+      },
+      "Container Background Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-container-background-hover)"
+          }
+        }
+      },
+      "Container Background Focus": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-container-background-focus)"
+          }
+        }
+      },
+      "Container Background Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-container-background-active)"
+          }
+        }
+      },
+      "Container Background Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Disabled"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-container-background-disabled)"
+          }
+        }
+      }
+    },
+    "Padding Inline": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Size/Spacing/200"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--select-padding-inline)"
+        }
+      }
+    },
+    "Padding Block": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Size/Spacing/200"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--select-padding-block)"
+        }
+      }
+    },
+    "Height": {
+      "$type": "number",
+      "$value": "2.5rem",
+      "$extensions": {
+        "com.figma.scopes": [
+          "HEIGHT_FILL"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--select-height)"
+        }
+      }
+    },
+    "Overlay Hover": {
+      "$type": "color",
+      "$value": {
+        "$ref": "Color/Transparent"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--select-overlay-hover)"
+        }
+      }
+    },
+    "Overlay Active": {
+      "$type": "color",
+      "$value": {
+        "$ref": "Color/Transparent"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--select-overlay-active)"
+        }
+      }
+    },
+    "Icon": {
+      "Icon Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Subtle"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-icon-color-default)"
+          }
+        }
+      },
+      "Icon Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--select-icon-color-disabled)"
+          }
+        }
+      }
+    }
   }
 }
