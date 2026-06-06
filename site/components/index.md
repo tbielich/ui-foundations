@@ -115,6 +115,15 @@ permalink: /components/
       <p>Inline and standalone navigation with token-driven states.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/components/select/">
+    <div class="docs-component-card-preview">
+      {{ ui.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}], placeholder="Choose an option") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Select</h2>
+      <p>Dropdown for choosing a single option from a predefined list.</p>
+    </div>
+  </a>
     </div>
   </div>
 </div>
