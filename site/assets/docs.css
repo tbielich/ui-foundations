@@ -453,52 +453,6 @@ details[open] > .docs-nav-group-toggle::before {
   max-inline-size: 28rem;
 }
 
-.example-form {
-  display: grid;
-  gap: var(--form-gap, 1rem);
-  border-style: solid;
-  border-width: var(--form-border-size, 1px);
-  border-color: var(--form-container-border-color, var(--color-border-subtle, #ccc));
-  border-radius: var(
-    --form-border-radius,
-    var(--corner-form-radius, var(--size-radius-300, 0.375rem))
-  );
-  background: var(--form-container-background, var(--color-fill-surface, #fff));
-  padding-inline: var(--form-padding-inline, 1rem);
-  padding-block: var(--form-padding-block, 1rem);
-}
-
-.example-form__group {
-  min-inline-size: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  display: grid;
-  gap: var(--form-group-gap, 1rem);
-}
-
-.example-form__group-title {
-  margin: 0;
-  font-size: var(--typography-label-font-size, 1rem);
-  line-height: var(--typography-label-line-height, 1.5);
-  font-weight: var(--typography-label-font-weight, 600);
-  color: var(--form-group-title-color, currentColor);
-}
-
-.example-form__intro {
-  margin: 0;
-  color: var(--color-text-subtle, #555);
-}
-
-.example-form__field {
-  display: grid;
-  gap: var(--form-field-gap, 0.5rem);
-}
-
-.example-form__actions {
-  padding-top: var(--form-actions-padding-block-start, 0.25rem);
-}
-
 .playground-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;

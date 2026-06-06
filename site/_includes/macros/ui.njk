@@ -201,3 +201,36 @@
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <span class="{{ classes }}">{{ caller() }}<span class="tooltip" role="tooltip" data-placement="{{ placement }}">{{ text }}</span></span>
 {%- endmacro %}
+
+{% macro form(borderless=false, className='') -%}
+{%- set classes = "form" -%}
+{%- if borderless -%}{%- set classes = classes + " borderless" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<form class="{{ classes }}" novalidate>{{ caller() }}</form>
+{%- endmacro %}
+
+{% macro formGroup(title='', className='') -%}
+{%- set classes = "form-group" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<fieldset class="{{ classes }}">
+  {%- if title %}<legend class="form-group__title">{{ title }}</legend>{% endif -%}
+  {{ caller() }}
+</fieldset>
+{%- endmacro %}
+
+{% macro formField(labelPosition='top', invalid=false, className='') -%}
+{%- set classes = "form-field" -%}
+{%- if invalid -%}{%- set classes = classes + " is-invalid" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}"{% if labelPosition == "side" %} data-label-position="side"{% endif %}>{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro formHelper(text='') -%}
+<p class="form-field__helper">{{ text }}</p>
+{%- endmacro %}
+
+{% macro formActions(align='end', className='') -%}
+{%- set classes = "form-actions" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}"{% if align != "end" %} data-align="{{ align }}"{% endif %}>{{ caller() }}</div>
+{%- endmacro %}

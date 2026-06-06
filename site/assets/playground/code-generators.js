@@ -148,18 +148,68 @@
     return "<Badge" + (attrs.length ? " " + attrs.join(" ") : "") + ">" + quoteAttr(text) + "</Badge>";
   }
 
+  function njkForm(state) {
+    var p = state.props;
+    var borderless = p.borderless === true || p.borderless === "true";
+    var labelPosition = p.labelPosition || "top";
+    var invalid = p.invalid === true || p.invalid === "true";
+    var actionsAlign = p.actionsAlign || "end";
+    var lines = [];
+    lines.push("{% call ui.form(" + (borderless ? "borderless=true" : "") + ") %}");
+    lines.push("  {% call ui.formField(" + (invalid ? "invalid=true" : "") + (labelPosition === "side" ? 'labelPosition="side"' : "") + ") %}");
+    lines.push('    {{ ui.fieldLabel("Email", htmlFor="email", required=true) }}');
+    lines.push('    {{ ui.input(type="email", id="email", placeholder="you@example.com") }}');
+    if (invalid) lines.push('    {{ ui.formHelper("Please enter a valid email address.") }}');
+    lines.push("  {% endcall %}");
+    lines.push("  {% call ui.formField() %}");
+    lines.push('    {{ ui.fieldLabel("Password", htmlFor="pw") }}');
+    lines.push('    {{ ui.input(type="password", id="pw") }}');
+    lines.push("  {% endcall %}");
+    lines.push('  {% call ui.formActions(' + (actionsAlign !== "end" ? 'align="' + actionsAlign + '"' : "") + ') %}');
+    lines.push('    {{ ui.button("Sign in", variant="solid", type="submit") }}');
+    lines.push("  {% endcall %}");
+    lines.push("{% endcall %}");
+    return lines.join("\n");
+  }
+
+  function reactForm(state) {
+    var p = state.props;
+    var borderless = p.borderless === true || p.borderless === "true";
+    var labelPosition = p.labelPosition || "top";
+    var invalid = p.invalid === true || p.invalid === "true";
+    var actionsAlign = p.actionsAlign || "end";
+    var lines = [];
+    lines.push("<Form" + (borderless ? " borderless" : "") + ">");
+    lines.push("  <FormField" + (invalid ? " invalid" : "") + (labelPosition === "side" ? ' labelPosition="side"' : "") + ">");
+    lines.push('    <FieldLabel htmlFor="email" required>Email</FieldLabel>');
+    lines.push('    <Input type="email" id="email" placeholder="you@example.com" />');
+    if (invalid) lines.push("    <FormHelper text=\"Please enter a valid email address.\" />");
+    lines.push("  </FormField>");
+    lines.push("  <FormField>");
+    lines.push('    <FieldLabel htmlFor="pw">Password</FieldLabel>');
+    lines.push('    <Input type="password" id="pw" />');
+    lines.push("  </FormField>");
+    lines.push("  <FormActions" + (actionsAlign !== "end" ? ' align="' + actionsAlign + '"' : "") + ">");
+    lines.push('    <Button type="submit">Sign in</Button>');
+    lines.push("  </FormActions>");
+    lines.push("</Form>");
+    return lines.join("\n");
+  }
+
   global.UIPlaygroundCodeGenerators = {
     njk: {
       button: njkButton, input: njkInput, checkbox: njkCheckbox,
       "switch": njkSwitch, icon: njkIcon, radio: njkRadio, badge: njkBadge,
       label: function () { return '{{ ui.labelContent("text", "icon") }}'; },
       "button-group": function () { return '{% call ui.buttonGroup() %}...{% endcall %}'; },
+      form: njkForm,
     },
     react: {
       button: reactButton, input: reactInput, checkbox: reactCheckbox,
       "switch": reactSwitch, icon: reactIcon, radio: reactRadio, badge: reactBadge,
       label: function () { return "<LabelContent>...</LabelContent>"; },
       "button-group": function () { return "<ButtonGroup>...</ButtonGroup>"; },
+      form: reactForm,
     },
   };
 })(window);

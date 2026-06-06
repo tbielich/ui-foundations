@@ -1,0 +1,112 @@
+@layer components {
+  /* ----------------------------------------------------------------
+   * Form — layout container for form fields
+   * ---------------------------------------------------------------- */
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-gap);
+    padding-inline: var(--form-padding-inline);
+    padding-block: var(--form-padding-block);
+    background: var(--form-container-background);
+    border: var(--form-border-size) solid var(--form-container-border-color);
+    border-radius: var(--form-border-radius);
+  }
+
+  .form.borderless {
+    border: none;
+    padding: 0;
+    background: transparent;
+  }
+
+  /* ----------------------------------------------------------------
+   * Form Group — groups related fields with an optional title
+   * ---------------------------------------------------------------- */
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-group-gap);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-inline-size: 0;
+  }
+
+  .form-group__title {
+    font-family: var(--typography-heading-font-family);
+    font-weight: var(--typography-heading-font-weight);
+    font-size: var(--typography-heading-font-size-sm);
+    line-height: var(--typography-heading-line-height-sm);
+    color: var(--form-group-title-color);
+    margin: 0;
+  }
+
+  /* ----------------------------------------------------------------
+   * Form Field — single field with label, input, and helper/error
+   * ---------------------------------------------------------------- */
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-field-gap);
+  }
+
+  .form-field[data-label-position="side"] {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .form-field[data-label-position="side"] > .field-label {
+    flex-shrink: 0;
+    inline-size: 8rem;
+    padding-block-start: var(--size-spacing-200);
+  }
+
+  .form-field[data-label-position="side"] > .form-field__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-field-gap);
+  }
+
+  /* ----------------------------------------------------------------
+   * Helper and error text
+   * ---------------------------------------------------------------- */
+
+  .form-field__helper {
+    font-family: var(--typography-body-font-family);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+    color: var(--form-field-helper-text-color-default);
+    margin: 0;
+  }
+
+  .form-field.is-invalid .form-field__helper {
+    color: var(--form-field-helper-text-color-invalid);
+  }
+
+  /* ----------------------------------------------------------------
+   * Form Actions — button area at the bottom
+   * ---------------------------------------------------------------- */
+
+  .form-actions {
+    display: flex;
+    gap: var(--size-spacing-200);
+    justify-content: flex-end;
+    padding-block-start: var(--size-spacing-200);
+  }
+
+  .form-actions[data-align="start"] {
+    justify-content: flex-start;
+  }
+
+  .form-actions[data-align="stretch"] {
+    flex-direction: column;
+  }
+
+  .form-actions[data-align="stretch"] > * {
+    inline-size: 100%;
+  }
+}

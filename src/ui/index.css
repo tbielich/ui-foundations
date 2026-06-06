@@ -12,3 +12,4 @@
 @import url("./patterns/accordion.css") layer(components);
 @import url("./patterns/tabs.css") layer(components);
 @import url("./patterns/tooltip.css") layer(components);
+@import url("./patterns/form.css") layer(components);
