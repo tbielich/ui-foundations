@@ -2,7 +2,7 @@ import figma, { html } from "@figma/code-connect/html";
 import { SelectProps } from "./web-select";
 
 figma.connect(
-  "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=TODO&m=dev",
+  "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2660-390&m=dev",
   {
     props: {
       className: figma.className([
