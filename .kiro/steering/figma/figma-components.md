@@ -77,8 +77,43 @@ This mirrors the CSS approach: `var(--token)` for everything, never raw values.
 - New components go into the Atoms section (node `2530:523` on the Components page).
 - Use `targetSection.appendChild(componentSet)` to place them.
 - Set `layoutSizingVertical = "HUG"` (height auto) on every component set.
-- Compound/molecule components → Molecules section.
+- Compound/molecule components → Molecules section (node `2530:524`).
 - Always position new component sets after existing ones (increment x position).
+- **CRITICAL**: Always call `await figma.setCurrentPageAsync(componentsPage)` before
+  creating components — `combineAsVariants` requires children and parent to be on
+  the same page.
+
+## Plugin API Pitfalls (learned from experience)
+
+### combineAsVariants requires COMPONENT nodes
+- `combineAsVariants([...], parent)` only accepts `COMPONENT` type children.
+- Use `figma.createComponent()`, not `figma.createFrame()`.
+- The parent frame must be on the same page as the component nodes.
+
+### layoutSizingHorizontal requires Auto Layout parent
+- `node.layoutSizingHorizontal = "FILL"` only works AFTER the node is appended
+  to an Auto Layout frame.
+- Pattern: `parent.appendChild(child)` → then → `child.layoutSizingHorizontal = "FILL"`.
+
+### Component Sets with 1 variant are broken
+- If you remove variants until only 1 remains, the Component Set enters an error
+  state and `componentPropertyDefinitions` throws.
+- To convert a Component Set to a simple Component: create a fresh
+  `figma.createComponent()`, rebuild the content, delete the old set.
+- Never use `combineAsVariants` for components without true variants.
+
+### Instances are immutable
+- You cannot `insertChild()` into an INSTANCE or any node inside one.
+- Slots in instances are filled by the designer at usage time, not programmatically.
+- For component previews, rely on the Slot's defaultContent.
+
+### Height after resize
+- After `comp.resize(width, 1)` with `primaryAxisSizingMode = "AUTO"`, the height
+  may stay at 1px. Always follow with `comp.layoutSizingVertical = "HUG"` to fix.
+
+### Variable scopes for COLOR type
+- Use `variable.scopes = ["ALL_SCOPES"]` for color variables.
+- Text-specific scopes like `"TEXT_CONTENT"` are invalid for COLOR type.
 
 ## After Creation
 
