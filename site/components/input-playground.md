@@ -32,6 +32,9 @@ playground:
         - password
         - tel
         - url
+        - date
+        - time
+        - number
     - kind: text
       name: placeholder
       label: Placeholder
@@ -53,6 +56,8 @@ playground:
         - active
         - focus
         - disabled
+        - readonly
+        - invalid
 ---
 
 {% from "macros/playground.njk" import playground as uiPlayground with context %}
