@@ -286,6 +286,8 @@
     if (previewState === "active") classes.push("is-active");
     if (previewState === "focus") classes.push("is-focus-visible");
     if (previewState === "disabled") classes.push("is-disabled");
+    if (previewState === "readonly") classes.push("is-readonly");
+    if (previewState === "invalid") classes.push("is-invalid");
     if (props.className) classes.push(String(props.className));
 
     element.className = classes.join(" ");
@@ -293,6 +295,7 @@
     element.placeholder = placeholder;
     element.value = value;
     element.disabled = previewState === "disabled" || Boolean(props.disabled);
+    element.readOnly = previewState === "readonly";
 
     const attrs = [
       `class="${quoteAttr(element.className)}"`,
