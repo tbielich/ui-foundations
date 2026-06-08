@@ -73,4 +73,82 @@
     background: var(--input-container-background-disabled);
     border-color: var(--input-border-color-disabled);
   }
+
+  /* Date/time type inputs — picker indicator styling */
+
+  .input[type="date"],
+  .input[type="time"],
+  .input[type="datetime-local"] {
+    cursor: pointer;
+  }
+
+  .input[type="date"]::-webkit-calendar-picker-indicator,
+  .input[type="time"]::-webkit-calendar-picker-indicator,
+  .input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  .input[type="date"]:hover::-webkit-calendar-picker-indicator,
+  .input[type="time"]:hover::-webkit-calendar-picker-indicator,
+  .input[type="datetime-local"]:hover::-webkit-calendar-picker-indicator {
+    opacity: 1;
+  }
+
+  .input[type="date"]:disabled::-webkit-calendar-picker-indicator,
+  .input[type="time"]:disabled::-webkit-calendar-picker-indicator,
+  .input[type="datetime-local"]:disabled::-webkit-calendar-picker-indicator {
+    opacity: 0.4;
+  }
+
+  /* Number type — spinner styling */
+
+  .input[type="number"]::-webkit-inner-spin-button,
+  .input[type="number"]::-webkit-outer-spin-button {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+  .input[type="number"]:hover::-webkit-inner-spin-button,
+  .input[type="number"]:hover::-webkit-outer-spin-button {
+    opacity: 1;
+  }
+
+  .input[type="number"]:disabled::-webkit-inner-spin-button,
+  .input[type="number"]:disabled::-webkit-outer-spin-button {
+    opacity: 0.4;
+  }
+
+  /* Password type — reveal button styling */
+
+  .input[type="password"]::-ms-reveal,
+  .input[type="password"]::-webkit-credentials-auto-fill-button {
+    cursor: pointer;
+  }
+
+  /* Readonly state */
+
+  .input:read-only,
+  .input[readonly],
+  .input.is-readonly {
+    cursor: default;
+    background: var(--input-container-background-default);
+    border-style: dashed;
+  }
+
+  /* Validation states */
+  .input.is-invalid,
+  .input[aria-invalid="true"],
+  .input:user-invalid {
+    border-color: var(--input-border-color-invalid);
+  }
+
+  .input.is-invalid:focus-visible,
+  .input[aria-invalid="true"]:focus-visible,
+  .input:user-invalid:focus-visible,
+  .input.is-invalid.is-focus-visible,
+  .input[aria-invalid="true"].is-focus-visible {
+    border-color: var(--input-border-color-invalid);
+    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--input-border-color-invalid);
+  }
 }
