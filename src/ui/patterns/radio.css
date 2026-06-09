@@ -95,7 +95,7 @@
   .radio.is-focus-visible {
     border-color: var(--radio-border-color-focus);
     outline: none;
-    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
   .radio:disabled,

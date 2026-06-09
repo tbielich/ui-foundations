@@ -74,7 +74,7 @@
     background: var(--select-container-background-focus);
     border-color: var(--select-border-color-focus);
     outline: none;
-    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
   .select:disabled,
@@ -101,6 +101,6 @@
   .select.is-invalid.is-focus-visible,
   .select[aria-invalid="true"].is-focus-visible {
     border-color: var(--select-border-color-invalid);
-    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--select-border-color-invalid);
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--select-border-color-invalid);
   }
 }
