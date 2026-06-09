@@ -14,3 +14,4 @@ export { TabList, Tab, TabPanel } from "./tabs.js";
 export { Tooltip } from "./tooltip.js";
 export { Form, FormGroup, FormField, FormHelper, FormActions } from "./form.js";
 export { Select } from "./select.js";
+export { Link } from "./link.js";

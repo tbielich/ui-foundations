@@ -13,4 +13,5 @@
 @import url("./patterns/tabs.css") layer(components);
 @import url("./patterns/tooltip.css") layer(components);
 @import url("./patterns/select.css") layer(components);
+@import url("./patterns/link.css") layer(components);
 @import url("./patterns/form.css") layer(components);

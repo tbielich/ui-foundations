@@ -1,0 +1,58 @@
+@layer components {
+  .link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--link-gap, 0.25rem);
+    font-family: var(--link-font-family, inherit);
+    font-weight: var(--link-font-weight, inherit);
+    font-size: var(--link-font-size, inherit);
+    line-height: var(--link-line-height, inherit);
+    color: var(--link-text-color-default);
+    text-decoration: var(--link-text-decoration-default, underline);
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    transition: color 0.15s ease;
+  }
+
+  /* ── States ── */
+
+  .link:hover,
+  .link.is-hover {
+    color: var(--link-text-color-hover);
+    text-decoration: var(--link-text-decoration-hover, underline);
+  }
+
+  .link:active,
+  .link.is-active {
+    color: var(--link-text-color-active);
+  }
+
+  .link:visited,
+  .link.is-visited {
+    color: var(--link-text-color-visited);
+  }
+
+  .link:focus-visible,
+  .link.is-focus-visible {
+    color: var(--link-text-color-hover);
+    outline: none;
+    box-shadow: 0 0 0 var(--shadow-focus, 2px) var(--color-focus, transparent);
+    border-radius: 2px;
+  }
+
+  .link[aria-disabled="true"],
+  .link.is-disabled {
+    color: var(--link-text-color-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+    text-decoration: underline;
+  }
+
+  /* ── Icon slot ── */
+
+  .link > .icon {
+    flex: 0 0 auto;
+  }
+}
