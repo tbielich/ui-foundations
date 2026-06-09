@@ -24,16 +24,6 @@ export function Select({
 
   const optionElements = [];
 
-  if (placeholder) {
-    optionElements.push(
-      React.createElement(
-        "option",
-        { key: "__placeholder", value: "", disabled: true, selected: !value },
-        placeholder,
-      ),
-    );
-  }
-
   if (children) {
     return React.createElement(
       "select",
@@ -54,6 +44,16 @@ export function Select({
             children,
           ]
         : children,
+    );
+  }
+
+  if (placeholder) {
+    optionElements.push(
+      React.createElement(
+        "option",
+        { key: "__placeholder", value: "", disabled: true, selected: !value },
+        placeholder,
+      ),
     );
   }
 
