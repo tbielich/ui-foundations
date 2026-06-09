@@ -7,12 +7,12 @@
     font-weight: var(--typography-label-font-weight);
     font-size: var(--typography-label-font-size);
     line-height: var(--typography-label-line-height);
-    color: var(--color-text-default);
+    color: var(--switch-text-color-default);
     cursor: pointer;
   }
 
   .switch-field.is-disabled {
-    color: var(--color-text-disabled);
+    color: var(--switch-text-color-disabled);
     cursor: not-allowed;
   }
 
@@ -32,9 +32,9 @@
     flex: 0 0 auto;
     border-style: solid;
     border-width: var(--size-border-100);
-    border-color: var(--color-border-default);
+    border-color: var(--switch-track-border-color-default);
     border-radius: var(--size-radius-full);
-    background: var(--color-fill-surface);
+    background: var(--switch-track-background-default);
     cursor: pointer;
     transition:
       background-color 160ms ease,
@@ -51,7 +51,7 @@
     block-size: var(--_switch-thumb-size);
     box-sizing: border-box;
     border-radius: var(--size-radius-full);
-    background: var(--color-border-default);
+    background: var(--switch-thumb-background-default);
     transform: translate(0, -50%);
     transition:
       transform 160ms ease,
@@ -60,13 +60,13 @@
 
   .switch:checked,
   .switch.is-checked {
-    border-color: var(--color-border-brand);
-    background: var(--color-fill-brand);
+    border-color: var(--switch-track-border-color-active);
+    background: var(--switch-track-background-active);
   }
 
   .switch:checked::after,
   .switch.is-checked::after {
-    background: var(--color-fill-surface);
+    background: var(--switch-thumb-background-active);
     transform: translate(
       calc(var(--_switch-inline-size) - var(--_switch-block-size)),
       -50%
@@ -77,55 +77,55 @@
   .switch.is-hover {
     background:
       linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
-      var(--color-fill-surface);
-    border-color: var(--color-border-brand);
+      var(--switch-track-background-hover);
+    border-color: var(--switch-track-border-color-hover);
   }
 
   .switch:hover::after,
   .switch.is-hover::after {
-    background: var(--color-border-brand);
+    background: var(--switch-thumb-background-hover);
   }
 
   .switch:checked:hover,
   .switch.is-checked.is-hover {
     background:
       linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
-      var(--color-fill-brand);
+      var(--switch-track-background-active);
   }
 
   .switch:checked:hover::after,
   .switch.is-checked.is-hover::after {
-    background: var(--color-fill-surface);
+    background: var(--switch-thumb-background-active);
   }
 
   .switch:active,
   .switch.is-active {
     background:
       linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
-      var(--color-fill-surface);
-    border-color: var(--color-border-brand);
+      var(--switch-track-background-hover);
+    border-color: var(--switch-track-border-color-hover);
   }
 
   .switch:active::after,
   .switch.is-active::after {
-    background: var(--color-border-brand);
+    background: var(--switch-thumb-background-hover);
   }
 
   .switch:checked:active,
   .switch.is-checked.is-active {
     background:
       linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
-      var(--color-fill-brand);
+      var(--switch-track-background-active);
   }
 
   .switch:checked:active::after,
   .switch.is-checked.is-active::after {
-    background: var(--color-fill-surface);
+    background: var(--switch-thumb-background-active);
   }
 
   .switch:focus-visible,
   .switch.is-focus-visible {
-    border-color: var(--color-border-brand);
+    border-color: var(--switch-track-border-color-active);
     outline: none;
     box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
   }
@@ -138,18 +138,18 @@
 
   .switch:disabled:not(:checked),
   .switch.is-disabled:not(.is-checked) {
-    border-color: var(--color-border-disabled);
-    background: var(--color-fill-disabled);
+    border-color: var(--switch-track-border-color-disabled);
+    background: var(--switch-track-background-disabled);
   }
 
   .switch:disabled::after,
   .switch.is-disabled::after {
-    background: var(--color-fill-surface);
+    background: var(--switch-thumb-background-disabled);
   }
 
   .switch:checked:disabled,
   .switch.is-checked.is-disabled {
-    border-color: var(--color-border-disabled);
-    background: var(--color-fill-brand);
+    border-color: var(--switch-track-border-color-disabled);
+    background: var(--switch-track-background-active);
   }
 }

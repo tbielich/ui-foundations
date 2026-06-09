@@ -3,10 +3,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--size-radius-full);
+    border-radius: var(--avatar-border-radius);
     overflow: hidden;
-    background: var(--color-fill-subtle);
-    color: var(--color-text-default);
+    background: var(--avatar-container-background-default);
+    color: var(--avatar-text-color-default);
     font-family: var(--font-family-sans);
     font-weight: var(--font-weight-600);
     inline-size: 2.5rem;

@@ -2,48 +2,48 @@
   .textarea {
     display: block;
     inline-size: 100%;
-    min-block-size: calc(var(--line-height-md) * 3 + var(--size-spacing-300) * 2);
-    padding-inline: var(--size-spacing-300);
-    padding-block: var(--size-spacing-300);
-    font-family: var(--font-family-sans);
-    font-size: var(--font-size-md);
-    line-height: var(--line-height-md);
-    color: var(--color-text-default);
-    background: var(--color-fill-surface);
-    border: var(--size-border-100) solid var(--color-border-default);
-    border-radius: var(--size-radius-300);
+    min-block-size: calc(var(--textarea-line-height) * 3 + var(--textarea-padding-block) * 2);
+    padding-inline: var(--textarea-padding-inline);
+    padding-block: var(--textarea-padding-block);
+    font-family: var(--textarea-font-family);
+    font-size: var(--textarea-font-size);
+    line-height: var(--textarea-line-height);
+    color: var(--textarea-text-color-default);
+    background: var(--textarea-container-background-default);
+    border: var(--textarea-border-size-default) solid var(--textarea-border-color-default);
+    border-radius: var(--textarea-border-radius);
     resize: vertical;
     transition: border-color 0.15s ease;
   }
 
   .textarea::placeholder {
-    color: var(--color-text-disabled);
+    color: var(--textarea-text-color-placeholder);
   }
 
   .textarea:hover,
   .textarea.is-hover {
-    border-color: var(--color-border-strong);
+    border-color: var(--textarea-border-color-hover);
   }
 
   .textarea:focus-visible,
   .textarea.is-focus-visible {
-    border-color: var(--color-focus);
+    border-color: var(--textarea-border-color-focus);
     outline: none;
-    box-shadow: 0 0 0 var(--shadow-focus) var(--color-focus);
+    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
   }
 
   .textarea:disabled,
   .textarea.is-disabled {
-    color: var(--color-text-disabled);
-    background: var(--color-fill-disabled);
-    border-color: var(--color-border-disabled);
+    color: var(--textarea-text-color-disabled);
+    background: var(--textarea-container-background-disabled);
+    border-color: var(--textarea-border-color-disabled);
     cursor: not-allowed;
     resize: none;
   }
 
   .textarea[readonly] {
-    background: var(--color-fill-surface);
-    border-color: var(--color-border-default);
+    background: var(--textarea-container-background-default);
+    border-color: var(--textarea-border-color-default);
     cursor: default;
     resize: none;
   }
