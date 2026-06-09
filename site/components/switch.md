@@ -204,6 +204,6 @@ For the full theming architecture see [Foundations: Theming](/foundations/themin
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Defined behaviors</strong><span>Immediate effect, animation, focus documented.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Usage guidelines</strong><span>Switch vs. checkbox do/don't.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Keyboard interactions</strong><span>Space and Tab documented.</span></div></div>
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>All visual attributes as tokens.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--switch-*</code>).</span></div></div>
   <div class="docs-checklist-item" data-done="false"><div class="docs-checklist-icon">–</div><div class="docs-checklist-text"><strong>Figma component</strong><span>Not yet connected via Code Connect.</span></div></div>
 </div>
