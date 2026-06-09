@@ -160,11 +160,15 @@ Figma → exports → generate → dist → build CSS
 
 Commands:
 
-- npm run tokens\:generate
-- npm run build\:css
-- npm run build\:all
-- npm run rules\:validate
-- npm run docs\:site
+- npm run tokens\:sync — Figma dump → exports → generate (agent workflow)
+- npm run tokens\:dump — prints Figma plugin code for MCP export
+- npm run tokens\:generate — regenerate dist/ from existing exports
+- npm run build\:css — build CSS bundles from generated tokens
+- npm run build\:all — icons + tokens + CSS (full rebuild)
+- npm run rules\:validate — check rule pipeline traceability
+- npm run docs\:site — build documentation site
+
+See `docs/token-sync-workflow.md` for the full agent-assisted sync workflow.
 
 ---
 
