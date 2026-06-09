@@ -2,13 +2,13 @@
   .accordion {
     display: flex;
     flex-direction: column;
-    border: var(--size-border-100) solid var(--color-border-default);
-    border-radius: var(--size-radius-400);
+    border: var(--accordion-border-size-default) solid var(--accordion-border-color-default);
+    border-radius: var(--accordion-border-radius);
     overflow: hidden;
   }
 
   .accordion-item {
-    border-block-start: var(--size-border-100) solid var(--color-border-default);
+    border-block-start: var(--accordion-border-size-default) solid var(--accordion-border-color-default);
   }
 
   .accordion-item:first-child {
@@ -18,14 +18,14 @@
   .accordion-item > summary {
     display: flex;
     align-items: center;
-    gap: var(--size-spacing-200);
-    padding-inline: var(--size-spacing-400);
-    padding-block: var(--size-spacing-300);
+    gap: var(--accordion-gap);
+    padding-inline: var(--accordion-padding-inline);
+    padding-block: var(--accordion-padding-block);
     font-family: var(--font-family-sans);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-600);
     line-height: var(--line-height-md);
-    color: var(--color-text-default);
+    color: var(--accordion-text-color-default);
     cursor: pointer;
     list-style: none;
     user-select: none;
@@ -63,18 +63,18 @@
   }
 
   .accordion-item__content {
-    padding-inline: var(--size-spacing-400);
-    padding-block: var(--size-spacing-300);
+    padding-inline: var(--accordion-padding-inline);
+    padding-block: var(--accordion-padding-block);
     font-family: var(--font-family-sans);
     font-size: var(--font-size-md);
     line-height: var(--line-height-md);
-    color: var(--color-text-default);
+    color: var(--accordion-text-color-default);
   }
 
   /* ── Disabled ── */
 
   .accordion-item.is-disabled > summary {
-    color: var(--color-text-disabled);
+    color: var(--accordion-text-color-disabled);
     cursor: not-allowed;
     pointer-events: none;
   }
