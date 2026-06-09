@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Update README on Release",
+  "description": "When package.json is edited (e.g. version bump for a release), remind the agent to update the README with the new version, any new components, changed features, or updated links.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "package.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The package.json was just edited. If the version field changed, this is a release. Review the README.md and update it to reflect the new release: update any version references, add newly introduced components to the feature list if applicable, and ensure installation instructions and links are current. Keep the README concise and aligned with the existing tone and structure."
+  }
+}
