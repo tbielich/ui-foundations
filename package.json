@@ -62,6 +62,8 @@
     "assets:check": "node scripts/check-asset-refs.mjs",
     "rules:validate": "node scripts/validate-rule-pipeline.mjs",
     "tokens:generate": "node scripts/extract-tokens.js",
+    "tokens:sync": "node scripts/sync-figma-tokens.mjs",
+    "tokens:dump": "node scripts/dump-figma-variables.mjs",
     "tokens:validate": "node scripts/validate-tokens.mjs",
     "tokens:usage": "node scripts/validate-token-usage.mjs",
     "dtcg:validate": "node scripts/validate-dtcg.mjs",
