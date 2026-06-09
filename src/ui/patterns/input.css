@@ -62,7 +62,7 @@
     background: var(--input-container-background-focus);
     border-color: var(--input-border-color-focus);
     outline: none;
-    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
   .input:disabled,
@@ -149,6 +149,6 @@
   .input.is-invalid.is-focus-visible,
   .input[aria-invalid="true"].is-focus-visible {
     border-color: var(--input-border-color-invalid);
-    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--input-border-color-invalid);
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--input-border-color-invalid);
   }
 }
