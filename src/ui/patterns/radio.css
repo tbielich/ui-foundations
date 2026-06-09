@@ -7,12 +7,12 @@
     font-weight: var(--typography-label-font-weight);
     font-size: var(--typography-label-font-size);
     line-height: var(--typography-label-line-height);
-    color: var(--input-radio-text-color-default);
+    color: var(--radio-text-color-default);
     cursor: pointer;
   }
 
   .radio-field.is-disabled {
-    color: var(--input-radio-text-color-disabled);
+    color: var(--radio-text-color-disabled);
     cursor: not-allowed;
   }
 
@@ -25,9 +25,9 @@
     place-content: center;
     border-style: solid;
     border-width: var(--radio-border-size-default);
-    border-color: var(--input-radio-border-color-default);
+    border-color: var(--radio-border-color-default);
     border-radius: var(--size-radius-full);
-    background: var(--input-radio-container-background-default);
+    background: var(--radio-container-background-default);
     cursor: pointer;
   }
 
@@ -43,25 +43,25 @@
 
   .radio:checked,
   .radio.is-checked {
-    border-color: var(--input-radio-border-color-active);
-    background: var(--input-radio-container-background-default);
-    color: var(--input-radio-text-color-active);
+    border-color: var(--radio-border-color-active);
+    background: var(--radio-container-background-default);
+    color: var(--radio-text-color-active);
   }
 
   .radio:checked::after,
   .radio.is-checked::after {
     inline-size: 0.5rem;
     block-size: 0.5rem;
-    background: var(--input-radio-border-color-active);
+    background: var(--radio-border-color-active);
   }
 
   .radio:hover,
   .radio.is-hover {
     background:
       linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
-      var(--input-radio-container-background-hover);
-    color: var(--input-radio-text-color-hover);
-    border-color: var(--input-radio-border-color-hover);
+      var(--radio-container-background-hover);
+    color: var(--radio-text-color-hover);
+    border-color: var(--radio-border-color-hover);
     border-width: var(--radio-border-size-hover);
   }
 
@@ -69,8 +69,8 @@
   .radio.is-checked.is-hover {
     background:
       linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
-      var(--input-radio-container-background-default);
-    border-color: var(--input-radio-border-color-hover);
+      var(--radio-container-background-default);
+    border-color: var(--radio-border-color-hover);
     border-width: var(--radio-border-size-hover);
   }
 
@@ -78,8 +78,8 @@
   .radio.is-active {
     background:
       linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
-      var(--input-radio-container-background-default);
-    border-color: var(--input-radio-border-color-active);
+      var(--radio-container-background-default);
+    border-color: var(--radio-border-color-active);
     border-width: var(--size-border-200);
   }
 
@@ -87,13 +87,13 @@
   .radio.is-checked.is-active {
     background:
       linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
-      var(--input-radio-container-background-default);
-    border-color: var(--input-radio-border-color-active);
+      var(--radio-container-background-default);
+    border-color: var(--radio-border-color-active);
   }
 
   .radio:focus-visible,
   .radio.is-focus-visible {
-    border-color: var(--input-radio-border-color-focus);
+    border-color: var(--radio-border-color-focus);
     outline: none;
     box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
   }
@@ -101,9 +101,9 @@
   .radio:disabled,
   .radio.is-disabled {
     border-width: var(--radio-border-size-disabled);
-    border-color: var(--input-radio-border-color-disabled);
-    background: var(--input-radio-container-background-disabled);
-    color: var(--input-radio-text-color-disabled);
+    border-color: var(--radio-border-color-disabled);
+    background: var(--radio-container-background-disabled);
+    color: var(--radio-text-color-disabled);
     cursor: not-allowed;
   }
 }
