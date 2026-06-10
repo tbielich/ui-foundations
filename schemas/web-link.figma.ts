@@ -2,7 +2,8 @@ import figma, { html } from "@figma/code-connect/html";
 import { LinkProps } from "./web-link";
 
 figma.connect(
-  "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=TODO&m=dev",
+  // Figma component set not yet created — update node-id after publishing Link in Figma library
+  "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=0-0&m=dev",
   {
     props: {
       className: figma.className([

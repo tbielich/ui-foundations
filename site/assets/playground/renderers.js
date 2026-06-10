@@ -913,10 +913,12 @@
     if (disabled) classes.push("is-disabled");
 
     element.className = classes.join(" ");
-    element.href = disabled ? "javascript:void(0)" : href;
     if (disabled) {
+      element.removeAttribute("href");
       element.setAttribute("aria-disabled", "true");
       element.tabIndex = -1;
+    } else {
+      element.href = href;
     }
 
     if (startIcon) {
@@ -933,7 +935,7 @@
     }
 
     const attrs = [`class="${quoteAttr(element.className)}"`];
-    attrs.push(`href="${quoteAttr(href)}"`);
+    if (!disabled) attrs.push(`href="${quoteAttr(href)}"`);
     if (disabled) {
       attrs.push('aria-disabled="true"');
       attrs.push('tabindex="-1"');
