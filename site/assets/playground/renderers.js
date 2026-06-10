@@ -893,6 +893,65 @@
     return { element: trigger, code };
   };
 
+  const renderVanillaLink = ({ props, children, meta }) => {
+    const previewState = String(meta.state || "default");
+    const rawText =
+      typeof children === "undefined" ? "Learn more" : String(children || "");
+    const href = String(props.href || "#");
+    const startIcon = normalizeIconName(props.startIcon);
+    const endIcon = normalizeIconName(props.endIcon);
+    const disabled =
+      previewState === "disabled" || asBoolean(props.disabled);
+
+    const element = document.createElement("a");
+    const classes = ["link"];
+
+    if (previewState === "hover") classes.push("is-hover");
+    if (previewState === "active") classes.push("is-active");
+    if (previewState === "visited") classes.push("is-visited");
+    if (previewState === "focus") classes.push("is-focus-visible");
+    if (disabled) classes.push("is-disabled");
+
+    element.className = classes.join(" ");
+    if (disabled) {
+      element.removeAttribute("href");
+      element.setAttribute("aria-disabled", "true");
+      element.tabIndex = -1;
+    } else {
+      element.href = href;
+    }
+
+    if (startIcon) {
+      const icon = createIconElement({ name: startIcon, decorative: true });
+      if (icon) element.append(icon);
+    }
+
+    const textNode = document.createTextNode(rawText);
+    element.append(textNode);
+
+    if (endIcon) {
+      const icon = createIconElement({ name: endIcon, decorative: true });
+      if (icon) element.append(icon);
+    }
+
+    const attrs = [`class="${quoteAttr(element.className)}"`];
+    if (!disabled) attrs.push(`href="${quoteAttr(href)}"`);
+    if (disabled) {
+      attrs.push('aria-disabled="true"');
+      attrs.push('tabindex="-1"');
+    }
+
+    const startIconMarkup = startIcon
+      ? iconCode({ name: startIcon, decorative: true })
+      : "";
+    const endIconMarkup = endIcon
+      ? iconCode({ name: endIcon, decorative: true })
+      : "";
+
+    const code = `<a ${attrs.join(" ")}>${startIconMarkup}${quoteAttr(rawText)}${endIconMarkup}</a>`;
+    return { element, code };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -902,6 +961,7 @@
       icon: renderVanillaIcon,
       input: renderVanillaInput,
       label: renderVanillaLabel,
+      link: renderVanillaLink,
       radio: renderVanillaRadio,
       switch: renderVanillaSwitch,
       textarea: renderVanillaTextarea,
