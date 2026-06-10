@@ -46,8 +46,12 @@
   .link.is-disabled {
     color: var(--link-text-color-disabled);
     cursor: not-allowed;
-    pointer-events: none;
-    text-decoration: underline;
+    text-decoration: line-through;
+  }
+
+  .link[aria-disabled="true"]:hover,
+  .link.is-disabled:hover {
+    color: var(--link-text-color-disabled);
   }
 
   /* ── Icon slot ── */
