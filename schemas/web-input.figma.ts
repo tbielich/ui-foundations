@@ -14,12 +14,7 @@ figma.connect(
           Readonly: undefined,
           Placeholder: undefined,
         }),
-        figma.enum("Disabled", {
-          False: undefined,
-          True: "is-disabled",
-          false: undefined,
-          true: "is-disabled",
-        }),
+        figma.boolean("Disabled", { true: "is-disabled", false: undefined }),
       ]),
       disabled: figma.boolean("Disabled"),
       type: figma.enum("Type", {
