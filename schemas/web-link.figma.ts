@@ -12,13 +12,20 @@ figma.connect(
           Hover: "is-hover",
           Active: "is-active",
           Visited: "is-visited",
-          Disabled: "is-disabled",
+        }),
+        figma.enum("Disabled", {
+          True: "is-disabled",
+          true: "is-disabled",
+          False: undefined,
+          false: undefined,
         }),
       ]),
       text: figma.string("Text"),
       href: figma.string("URL"),
+      startIcon: figma.boolean("Start Icon"),
+      endIcon: figma.boolean("End Icon"),
     },
-    example: ({ className, text, href }: LinkProps) =>
-      html`<a class="${className}" href="${href}">${text}</a>`,
+    example: ({ className, text, href, startIcon, endIcon }: LinkProps) =>
+      html`<a class="${className}" href="${href}">${startIcon && html`<span class="icon" data-slot="start" aria-hidden="true"></span>`}${text}${endIcon && html`<span class="icon" data-slot="end" aria-hidden="true"></span>`}</a>`,
   },
 );
