@@ -226,6 +226,23 @@ playgroundLabel: Open Select Playground
 - Option groups use `<optgroup>` with a `label` attribute for screen reader announcement.
 - Focus indicators meet 3:1 contrast.
 
+<h2 id="enhanced-dropdown">Enhanced dropdown (base-select)</h2>
+
+In browsers that support `appearance: base-select` (Chromium 136+), the select
+dropdown is fully styleable — including the options list, individual options, and
+the picker icon. This enhancement is applied automatically via `@supports` and
+requires no markup changes.
+
+**What changes in supported browsers:**
+- The dropdown panel inherits the component's border radius and shadow tokens.
+- Options receive padding, hover, and selected-state styling via component tokens.
+- The chevron indicator is rendered as a `::picker-icon` pseudo-element instead of a background SVG.
+
+**Fallback:**
+In unsupported browsers, the select renders identically to before — with
+`appearance: none` and an inline SVG chevron as `background-image`. No visual
+regression occurs.
+
 <h2 id="theming">Theming</h2>
 
 Select adapts automatically across brands and color modes through component

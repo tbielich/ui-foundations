@@ -27,6 +27,67 @@
     cursor: pointer;
   }
 
+  /* --- Progressive enhancement: base-select --- */
+  @supports (appearance: base-select) {
+    .select {
+      appearance: base-select;
+      background-image: none;
+      padding-inline-end: var(--select-padding-inline);
+    }
+
+    .select::picker-icon {
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+      display: block;
+      inline-size: 1em;
+      block-size: 1em;
+      transition: rotate 0.2s ease;
+    }
+
+    .select:open::picker-icon {
+      rotate: 180deg;
+    }
+
+    .select::picker(select) {
+      appearance: base-select;
+      border: 1px solid var(--select-border-color-default, #ccc);
+      border-radius: var(--select-border-radius, 0.5rem);
+      background: var(--select-container-background-default, #fff);
+      padding: 0.25rem;
+      box-shadow: 0 4px 16px rgb(0 0 0 / 0.12);
+      transition: opacity 0.2s ease, translate 0.2s ease;
+      opacity: 0;
+      translate: 0 -0.5rem;
+    }
+
+    .select::picker(select):popover-open {
+      opacity: 1;
+      translate: 0;
+    }
+
+    @starting-style {
+      .select::picker(select):popover-open {
+        opacity: 0;
+        translate: 0 -0.5rem;
+      }
+    }
+
+    .select option {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .select option:hover {
+      background-color: color-mix(in srgb, currentColor 8%, transparent);
+    }
+
+    .select option:checked {
+      background-color: color-mix(in srgb, currentColor 12%, transparent);
+      font-weight: 500;
+    }
+  }
+
   .select:hover,
   .select.is-hover {
     background-color: var(--select-container-background-hover);
@@ -46,6 +107,17 @@
       var(--select-padding-block) + var(--select-border-size-default) -
         var(--select-border-size-hover)
     );
+  }
+
+  @supports (appearance: base-select) {
+    .select:hover,
+    .select.is-hover {
+      background-image: none;
+      padding-inline-end: calc(
+        var(--select-padding-inline) + var(--select-border-size-default) -
+          var(--select-border-size-hover)
+      );
+    }
   }
 
   .select:active,
@@ -69,6 +141,17 @@
     );
   }
 
+  @supports (appearance: base-select) {
+    .select:active,
+    .select.is-active {
+      background-image: none;
+      padding-inline-end: calc(
+        var(--select-padding-inline) + var(--select-border-size-default) -
+          var(--select-border-size-active)
+      );
+    }
+  }
+
   .select:focus-visible,
   .select.is-focus-visible {
     background: var(--select-container-background-focus);
@@ -85,6 +168,14 @@
     background-color: var(--select-container-background-disabled);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
     border-color: var(--select-border-color-disabled);
+  }
+
+  @supports (appearance: base-select) {
+    .select:disabled,
+    .select[disabled],
+    .select.is-disabled {
+      background-image: none;
+    }
   }
 
   .select.is-placeholder {
