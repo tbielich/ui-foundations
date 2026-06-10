@@ -13,12 +13,7 @@ figma.connect(
           Active: "is-active",
           Visited: "is-visited",
         }),
-        figma.enum("Disabled", {
-          True: "is-disabled",
-          true: "is-disabled",
-          False: undefined,
-          false: undefined,
-        }),
+        figma.boolean("Disabled", { true: "is-disabled", false: undefined }),
       ]),
       text: figma.string("Text"),
       href: figma.string("URL"),
