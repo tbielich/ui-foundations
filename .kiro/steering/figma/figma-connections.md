@@ -18,10 +18,16 @@ When working with files in `schemas/`, these rules apply:
 
 ## Props Mapping
 - Use `figma.className([...])` for CSS class composition
-- Use `figma.enum()` for variant properties (State, Checked, Disabled)
-- Use `figma.boolean()` for boolean properties
+- Use `figma.enum()` for variant properties with 3+ values (State, Checked, Variant)
+- Use `figma.boolean()` for boolean variant properties (Disabled, Open, Selected, Attached, Has Text)
 - Use `figma.string()` for text properties
-- Handle both capitalized and lowercase enum values: `{ True: "is-disabled", true: "is-disabled" }`
+- Never use `figma.enum()` for True/False-only properties — always use `figma.boolean()`
+
+## Boolean vs Enum Rule (CRITICAL)
+- If a Figma variant property has exactly two values `True`/`False`, it is a **boolean** → use `figma.boolean("Prop", { true: "class", false: undefined })`
+- If a property has 3+ values (e.g. Default/Hover/Active), it is an **enum** → use `figma.enum("Prop", { ... })`
+- Never write `figma.enum("Disabled", { True: ..., true: ..., False: ..., false: ... })` — this is always wrong
+- The `{ true: ..., false: ... }` object in `figma.boolean()` uses lowercase keys only
 
 ## HTML Class Names
 - Use bare component name in examples: `class="radio"` not `class="ui-radio"`
