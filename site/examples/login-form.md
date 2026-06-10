@@ -41,6 +41,37 @@ breadcrumb:
       {% call ui.formField() %}
         {{ ui.fieldLabel("Password", htmlFor="login-password", required=true) }}
         {{ ui.input(type="password", id="login-password", name="password", placeholder="Enter password") }}
+        <a class="form-field__link" href="#">Forgot password?</a>
+      {% endcall %}
+    {% endcall %}
+    {% call ui.formActions(align="stretch") %}
+      {{ ui.button(label="Sign in", type="submit") }}
+    {% endcall %}
+  {% endcall %}
+</div>
+
+  </div>
+</div>
+
+<h2>Error state</h2>
+
+<div class="docs-hero-preview">
+  <div class="docs-hero-preview-stage">
+
+<div class="example-form-shell">
+  {% call ui.form(borderless=true) %}
+    {% call ui.formGroup(title="Sign in") %}
+      <p class="form-field__helper">Use your account email and password.</p>
+      {% call ui.formField(invalid=true) %}
+        {{ ui.fieldLabel("Email address", htmlFor="login-email-err", required=true) }}
+        {{ ui.input(type="email", id="login-email-err", name="email", placeholder="name@example.com", className="is-invalid") }}
+        <p class="form-field__helper">Please enter a valid email address.</p>
+      {% endcall %}
+      {% call ui.formField(invalid=true) %}
+        {{ ui.fieldLabel("Password", htmlFor="login-password-err", required=true) }}
+        {{ ui.input(type="password", id="login-password-err", name="password", placeholder="Enter password", className="is-invalid") }}
+        <p class="form-field__helper">Password is required.</p>
+        <a class="form-field__link" href="#">Forgot password?</a>
       {% endcall %}
     {% endcall %}
     {% call ui.formActions(align="stretch") %}
@@ -56,6 +87,9 @@ breadcrumb:
 
 <ul>
   <li>This is an organism-level example in the sense of Atomic Design.</li>
-  <li>It intentionally stays HTML/CSS only for now.</li>
+  <li>Shows default, error, and loading states using existing system components.</li>
+  <li>Includes "Forgot password?" link for user control.</li>
+  <li>Intentionally stays HTML/CSS only for now.</li>
+  <li>Next step: Password Input variant with visibility toggle (see <a href="https://github.com/tbielich/ui-foundations/issues">issue</a>).</li>
   <li>Next step: JS enhancement for accessibility (validation messaging, live region feedback, and robust focus management).</li>
 </ul>

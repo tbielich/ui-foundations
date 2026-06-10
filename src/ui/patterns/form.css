@@ -87,6 +87,16 @@
     color: var(--form-field-helper-text-color-invalid);
   }
 
+  .form-field__link {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-brand);
+    text-decoration: none;
+  }
+
+  .form-field__link:hover {
+    text-decoration: underline;
+  }
+
   /* ----------------------------------------------------------------
    * Form Actions — button area at the bottom
    * ---------------------------------------------------------------- */
