@@ -8,12 +8,7 @@ figma.connect(
       className: figma.className([
         "tab",
       ]),
-      selected: figma.enum("Selected", {
-        True: "true",
-        False: "false",
-        true: "true",
-        false: "false",
-      }),
+      selected: figma.boolean("Selected", { true: "true", false: "false" }),
       label: figma.string("Label"),
     },
     example: ({ className, selected, label }: TabProps) =>

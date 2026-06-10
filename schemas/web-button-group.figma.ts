@@ -9,12 +9,7 @@ figma.connect(
         Horizontal: "horizontal",
         Vertical: "vertical",
       }),
-      attached: figma.enum("Attached", {
-        True: "true",
-        False: "false",
-        true: "true",
-        false: "false",
-      }),
+      attached: figma.boolean("Attached", { true: "true", false: "false" }),
     },
     example: ({ orientation, attached }: ButtonGroupProps) => html`<div
       class="button-group"

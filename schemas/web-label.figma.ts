@@ -7,12 +7,7 @@ figma.connect(
     props: {
       className: figma.className([
         "label-content",
-        figma.enum("Has Text", {
-          True: undefined,
-          False: "is-icon-only",
-          true: undefined,
-          false: "is-icon-only",
-        }),
+        figma.boolean("Has Text", { true: undefined, false: "is-icon-only" }),
       ]),
       text: figma.string("Text"),
     },
