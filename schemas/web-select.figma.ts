@@ -13,12 +13,7 @@ figma.connect(
           Active: "is-active",
           Placeholder: "is-placeholder",
         }),
-        figma.enum("Disabled", {
-          False: undefined,
-          True: "is-disabled",
-          false: undefined,
-          true: "is-disabled",
-        }),
+        figma.boolean("Disabled", { true: "is-disabled", false: undefined }),
       ]),
       disabled: figma.boolean("Disabled"),
       placeholder: figma.enum("State", {

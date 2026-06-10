@@ -12,12 +12,7 @@ figma.connect(
           Hover: "is-hover",
           Focus: "is-focus-visible",
         }),
-        figma.enum("Disabled", {
-          True: "is-disabled",
-          False: undefined,
-          true: "is-disabled",
-          false: undefined,
-        }),
+        figma.boolean("Disabled", { true: "is-disabled", false: undefined }),
       ]),
       disabled: figma.boolean("Disabled"),
       placeholder: figma.string("Placeholder"),

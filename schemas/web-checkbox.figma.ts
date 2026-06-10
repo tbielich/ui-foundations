@@ -16,12 +16,7 @@ figma.connect(
           Default: undefined,
           Hover: "is-hover",
         }),
-        figma.enum("Disabled", {
-          False: undefined,
-          True: "is-disabled",
-          false: undefined,
-          true: "is-disabled",
-        }),
+        figma.boolean("Disabled", { true: "is-disabled", false: undefined }),
       ]),
       checked: figma.enum("Checked", {
         Unchecked: "false",
@@ -62,12 +57,7 @@ figma.connect(
     props: {
       wrapperClassName: figma.className([
         "checkbox-field",
-        figma.enum("Is Disabled", {
-          False: undefined,
-          True: "is-disabled",
-          false: undefined,
-          true: "is-disabled",
-        }),
+        figma.boolean("Is Disabled", { true: "is-disabled", false: undefined }),
       ]),
       className: figma.className([
         "checkbox",
@@ -75,12 +65,7 @@ figma.connect(
           Default: undefined,
           Hover: "is-hover",
         }),
-        figma.enum("Is Disabled", {
-          False: undefined,
-          True: "is-disabled",
-          false: undefined,
-          true: "is-disabled",
-        }),
+        figma.boolean("Is Disabled", { true: "is-disabled", false: undefined }),
         "is-checked",
       ]),
       checked: figma.enum("Is Disabled", {

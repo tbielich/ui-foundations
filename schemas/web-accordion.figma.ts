@@ -5,12 +5,7 @@ figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2535-283&m=dev",
   {
     props: {
-      open: figma.enum("Open", {
-        True: "open",
-        False: undefined,
-        true: "open",
-        false: undefined,
-      }),
+      open: figma.boolean("Open", { true: "open", false: undefined }),
       title: figma.string("Title"),
     },
     example: ({ open, title }: AccordionItemProps) =>
