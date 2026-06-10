@@ -15,7 +15,7 @@ const {
   normalizeVariableId,
   normalizeTokenPath,
 } = require("./extract-tokens.utils.js");
-const { createTokenLookup } = require("./extract-tokens.lookup.js");
+const { createTokenLookup, resolveAliasRef } = require("./extract-tokens.lookup.js");
 const {
   buildTokenKey,
   classifyTokenGroup,
@@ -622,7 +622,6 @@ async function extractTokens() {
     if (shouldMockMissing) {
       const preCheckLookup = createTokenLookup(allTokens);
       const preCheckReport = { missingAliasTargets: [], aliasCycles: [] };
-      const { resolveAliasRef } = require("./extract-tokens.lookup.js");
       for (const token of allTokens) {
         if (token.aliasTargetId || token.aliasTargetName || token.aliasRefPath) {
           resolveAliasRef(token, preCheckLookup, preCheckReport);
