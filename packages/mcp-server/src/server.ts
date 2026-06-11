@@ -97,7 +97,7 @@ export function getUptime(): number {
  * @param config - Server configuration with version and root path
  * @returns The configured server and registry counts
  */
-export function createServer(config: ServerConfig): CreateServerResult {
+export async function createServer(config: ServerConfig): Promise<CreateServerResult> {
   startTime = Date.now();
 
   // Create the McpServer instance
@@ -113,7 +113,7 @@ export function createServer(config: ServerConfig): CreateServerResult {
   );
 
   // Load all registries (resources, tools, prompts)
-  const registryCounts = loadRegistries(server, config.rootPath);
+  const registryCounts = await loadRegistries(server, config.rootPath);
 
   // Override the default resources/list handler with paginated version.
   // The SDK sets up a handler that returns ALL resources at once.

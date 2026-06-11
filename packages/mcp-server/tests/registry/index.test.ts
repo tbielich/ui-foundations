@@ -29,8 +29,8 @@ describe('loadRegistries', () => {
     server = createServer();
   });
 
-  it('registers resources and prompts from populated registries', () => {
-    const result = loadRegistries(server, '/tmp/root');
+  it('registers resources and prompts from populated registries', async () => {
+    const result = await loadRegistries(server, '/tmp/root');
     // Registries are populated (tasks 5.2, 5.4 completed).
     // Resources and prompts register successfully; tools fail because
     // their stub handlers throw during registration attempts with the SDK.
@@ -42,15 +42,13 @@ describe('loadRegistries', () => {
     assert.ok(result.prompts >= 0, 'prompt count is non-negative');
   });
 
-  it('accepts an McpServer instance and a root path string', () => {
+  it('accepts an McpServer instance and a root path string', async () => {
     // Verify the function signature works without throwing
-    assert.doesNotThrow(() => {
-      loadRegistries(server, '/some/path');
-    });
+    await loadRegistries(server, '/some/path');
   });
 
-  it('returns a result object with resources, tools, and prompts counts', () => {
-    const result = loadRegistries(server, '/tmp');
+  it('returns a result object with resources, tools, and prompts counts', async () => {
+    const result = await loadRegistries(server, '/tmp');
     assert.equal(typeof result.resources, 'number');
     assert.equal(typeof result.tools, 'number');
     assert.equal(typeof result.prompts, 'number');

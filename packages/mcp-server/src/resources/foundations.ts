@@ -181,3 +181,17 @@ export async function handleFoundations(
 
   return handleFoundationDocument(uri, rootPath, id);
 }
+
+/**
+ * Lists all available foundation documents for resource template enumeration.
+ * Returns an array of { uri, name } objects for each foundation.
+ */
+export async function listFoundations(
+  rootPath: string,
+): Promise<Array<{ uri: string; name: string }>> {
+  const entries = await discoverFoundations(rootPath);
+  return entries.map((entry) => ({
+    uri: entry.uri,
+    name: entry.title,
+  }));
+}

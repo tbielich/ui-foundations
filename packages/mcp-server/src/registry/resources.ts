@@ -19,6 +19,9 @@ import { handleComponents } from '../resources/components.js';
 import { handleFoundations } from '../resources/foundations.js';
 import { handlePatterns } from '../resources/patterns.js';
 import { handleGovernanceResource } from '../resources/governance.js';
+import { listComponents } from '../resources/components.js';
+import { listPatterns } from '../resources/patterns.js';
+import { listFoundations } from '../resources/foundations.js';
 
 /** Placeholder handler used until real handlers are wired in Task 6. */
 const notImplemented = async (_uri: string, _rootPath: string): Promise<ResourceResponse> => {
@@ -154,6 +157,7 @@ export const resources: ResourceRegistryEntry[] = [
     mimeType: 'application/json',
     category: 'components',
     handler: handleComponents,
+    listCallback: listComponents,
   },
 
   // ---------------------------------------------------------------------------
@@ -174,6 +178,7 @@ export const resources: ResourceRegistryEntry[] = [
     mimeType: 'application/json',
     category: 'patterns',
     handler: handlePatterns,
+    listCallback: listPatterns,
   },
 
   // ---------------------------------------------------------------------------
@@ -222,5 +227,6 @@ export const resources: ResourceRegistryEntry[] = [
     mimeType: 'text/markdown',
     category: 'foundations',
     handler: handleFoundations,
+    listCallback: listFoundations,
   },
 ];

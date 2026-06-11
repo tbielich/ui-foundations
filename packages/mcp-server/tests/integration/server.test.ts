@@ -138,7 +138,7 @@ async function createFixtureDir(): Promise<string> {
 async function connectClient(
   rootPath: string,
 ): Promise<{ client: Client; cleanup: () => Promise<void> }> {
-  const { server } = createServer({ version: '1.0.0', rootPath });
+  const { server } = await createServer({ version: '1.0.0', rootPath });
 
   // Create linked in-memory transports
   const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
@@ -199,8 +199,8 @@ describe('MCP Server Integration', () => {
       }
     });
 
-    it('createServer returns non-zero registry counts', () => {
-      const { registry } = createServer({ version: '1.0.0', rootPath: testDir });
+    it('createServer returns non-zero registry counts', async () => {
+      const { registry } = await createServer({ version: '1.0.0', rootPath: testDir });
       assert.ok(registry.resources > 0, `Expected resources > 0, got ${registry.resources}`);
       assert.ok(registry.tools > 0, `Expected tools > 0, got ${registry.tools}`);
       assert.ok(registry.prompts > 0, `Expected prompts > 0, got ${registry.prompts}`);

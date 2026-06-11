@@ -53,6 +53,8 @@ export interface ResourceRegistryEntry {
   mimeType: string;
   category: ResourceCategory;
   handler: (uri: string, rootPath: string) => Promise<ResourceResponse>;
+  /** Optional callback to list concrete URIs for template resources (URIs with {param}). */
+  listCallback?: (rootPath: string) => Promise<Array<{ uri: string; name: string }>>;
 }
 
 /** Response structure returned by tool handlers. */

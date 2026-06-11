@@ -144,7 +144,7 @@ async function main(): Promise<void> {
   const version = await readPackageVersion();
 
   // Create server with registries loaded
-  const { server, registry } = createServer({ version, rootPath: args.root });
+  const { server, registry } = await createServer({ version, rootPath: args.root });
 
   // Create transport based on CLI flag
   if (args.transport === 'http') {

@@ -170,3 +170,16 @@ export async function handlePatterns(
     },
   };
 }
+
+/**
+ * Lists all available patterns for resource template enumeration.
+ * Returns an array of { uri, name } objects for each pattern.
+ */
+export async function listPatterns(
+  _rootPath: string,
+): Promise<Array<{ uri: string; name: string }>> {
+  return VALID_PATTERN_NAMES.map((name) => ({
+    uri: `uif://patterns/${name}`,
+    name: `Pattern: ${name}`,
+  }));
+}

@@ -35,7 +35,7 @@ const COMPONENT_TOKENS_FILE = 'dist/tokens/json/components-ui.tokens.json';
  * Discovers component names by scanning the docs directory for .md files,
  * excluding playground files and the index page.
  */
-async function discoverComponentNames(rootPath: string): Promise<string[]> {
+export async function discoverComponentNames(rootPath: string): Promise<string[]> {
   const docsDir = join(rootPath, COMPONENT_DOCS_DIR);
   let files: string[];
 
@@ -397,4 +397,18 @@ async function handleComponentDetail(
       category: 'components',
     },
   };
+}
+
+/**
+ * Lists all available components for resource template enumeration.
+ * Returns an array of { uri, name } objects for each component.
+ */
+export async function listComponents(
+  rootPath: string,
+): Promise<Array<{ uri: string; name: string }>> {
+  const names = await discoverComponentNames(rootPath);
+  return names.map((name) => ({
+    uri: `uif://components/${name}`,
+    name: `Component: ${name}`,
+  }));
 }

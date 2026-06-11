@@ -17,7 +17,7 @@
  * @module registry
  */
 
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import type {
   ResourceRegistryEntry,
@@ -42,6 +42,13 @@ export interface RegistryLoadResult {
   resources: number;
   tools: number;
   prompts: number;
+}
+
+/**
+ * Checks if a URI contains template parameters (e.g. `{name}`, `{id}`).
+ */
+function isTemplateUri(uri: string): boolean {
+  return /\{[^}]+\}/.test(uri);
 }
 
 /**
@@ -124,6 +131,9 @@ function buildPromptArgsSchema(
  * and calls the appropriate MCP SDK registration API. Malformed entries are
  * skipped with an error logged to stderr.
  *
+ * Resources with parameterized URIs (containing `{param}`) are registered as
+ * ResourceTemplate instances with a list callback for resource enumeration.
+ *
  * Each handler call is wrapped with error handling that:
  * - Catches errors and logs them with full context (method, target, code, category)
  * - Sanitizes error messages before returning them to the client
@@ -133,15 +143,42 @@ function buildPromptArgsSchema(
  * @param rootPath - The repository root path passed to handlers
  * @returns Counts of successfully registered resources, tools, and prompts
  */
-export function loadRegistries(
+export async function loadRegistries(
   server: McpServer,
   rootPath: string,
-): RegistryLoadResult {
+): Promise<RegistryLoadResult> {
   const result: RegistryLoadResult = { resources: 0, tools: 0, prompts: 0 };
 
   // Register resources
-  for (let i = 0; i < resourceEntries.length; i++) {
-    const entry = resourceEntries[i];
+  // First, expand template entries into concrete static resources
+  const expandedEntries: ResourceRegistryEntry[] = [];
+  for (const entry of resourceEntries) {
+    if (isTemplateUri(entry.uri) && entry.listCallback) {
+      // Keep the template registration for protocol compliance
+      expandedEntries.push(entry);
+      // Also expand into concrete static resources
+      try {
+        const items = await entry.listCallback(rootPath);
+        for (const item of items) {
+          expandedEntries.push({
+            uri: item.uri,
+            name: item.name,
+            description: entry.description,
+            mimeType: entry.mimeType,
+            category: entry.category,
+            handler: entry.handler,
+          });
+        }
+      } catch {
+        // If listing fails, just keep the template entry
+      }
+    } else {
+      expandedEntries.push(entry);
+    }
+  }
+
+  for (let i = 0; i < expandedEntries.length; i++) {
+    const entry = expandedEntries[i];
     if (!isValidResourceEntry(entry)) {
       logError({
         method: 'registry/load',
@@ -156,62 +193,165 @@ export function loadRegistries(
     }
 
     try {
-      server.resource(
-        entry.name,
-        entry.uri,
-        { description: entry.description, mimeType: entry.mimeType },
-        async (uri) => {
-          const startTime = Date.now();
-          try {
-            // Security middleware: validate URI before dispatching to handler
-            const securityError = validateResourceUri(uri.href, rootPath);
-            if (securityError) {
+      if (isTemplateUri(entry.uri)) {
+        // Register as a resource template with list and complete callbacks
+        const listCb = entry.listCallback;
+
+        // Build a completion callback that provides autocomplete suggestions
+        // by filtering available items based on user input prefix
+        const completeCallbacks: Record<string, (value: string) => Promise<string[]>> = {};
+        if (listCb) {
+          // Extract the variable name from the URI template (e.g., "name" from "{name}")
+          const varMatch = entry.uri.match(/\{([^}]+)\}/);
+          if (varMatch) {
+            const varName = varMatch[1];
+            completeCallbacks[varName] = async (value: string) => {
+              try {
+                const items = await listCb(rootPath);
+                // Extract the variable value from each URI
+                const prefix = entry.uri.split(`{${varName}}`)[0];
+                const values = items.map((item) => item.uri.replace(prefix, ''));
+                // Filter by prefix match on user input
+                return values.filter((v) =>
+                  v.toLowerCase().startsWith(value.toLowerCase()),
+                );
+              } catch {
+                return [];
+              }
+            };
+          }
+        }
+
+        const template = new ResourceTemplate(entry.uri, {
+          list: listCb
+            ? async () => ({
+                resources: (await listCb(rootPath)).map((item) => ({
+                  uri: item.uri,
+                  name: item.name,
+                  description: entry.description,
+                  mimeType: entry.mimeType,
+                })),
+              })
+            : undefined,
+          complete: Object.keys(completeCallbacks).length > 0
+            ? completeCallbacks
+            : undefined,
+        });
+
+        server.resource(
+          entry.name,
+          template,
+          { description: entry.description, mimeType: entry.mimeType },
+          async (uri) => {
+            const startTime = Date.now();
+            try {
+              // Security middleware: validate URI before dispatching to handler
+              const securityError = validateResourceUri(uri.href, rootPath);
+              if (securityError) {
+                const elapsed = Date.now() - startTime;
+                logError({
+                  method: 'resources/read',
+                  target: uri.href,
+                  responseMs: elapsed,
+                  error: { code: -32600, category: 'security_violation' },
+                });
+                const err = new Error(securityError);
+                (err as Error & { code: number }).code = -32600;
+                throw err;
+              }
+
+              const response = await entry.handler(uri.href, rootPath);
+              const text =
+                typeof response.content === 'string'
+                  ? response.content
+                  : JSON.stringify(response.content);
+              return {
+                contents: [
+                  {
+                    uri: uri.href,
+                    mimeType: response.mimeType,
+                    text,
+                  },
+                ],
+              };
+            } catch (handlerError: unknown) {
               const elapsed = Date.now() - startTime;
+              const code = getErrorCode(handlerError);
+              const safeMessage = getSafeErrorMessage(handlerError);
+              const category = ERROR_CATEGORIES[code] ?? 'internal_error';
+
               logError({
                 method: 'resources/read',
                 target: uri.href,
                 responseMs: elapsed,
-                error: { code: -32600, category: 'security_violation' },
+                error: { code, category },
               });
-              const err = new Error(securityError);
-              (err as Error & { code: number }).code = -32600;
-              throw err;
+
+              const sanitizedError = new Error(safeMessage);
+              (sanitizedError as Error & { code: number }).code = code;
+              throw sanitizedError;
             }
+          },
+        );
+      } else {
+        // Register as a static resource
+        server.resource(
+          entry.name,
+          entry.uri,
+          { description: entry.description, mimeType: entry.mimeType },
+          async (uri) => {
+            const startTime = Date.now();
+            try {
+              // Security middleware: validate URI before dispatching to handler
+              const securityError = validateResourceUri(uri.href, rootPath);
+              if (securityError) {
+                const elapsed = Date.now() - startTime;
+                logError({
+                  method: 'resources/read',
+                  target: uri.href,
+                  responseMs: elapsed,
+                  error: { code: -32600, category: 'security_violation' },
+                });
+                const err = new Error(securityError);
+                (err as Error & { code: number }).code = -32600;
+                throw err;
+              }
 
-            const response = await entry.handler(uri.href, rootPath);
-            const text =
-              typeof response.content === 'string'
-                ? response.content
-                : JSON.stringify(response.content);
-            return {
-              contents: [
-                {
-                  uri: uri.href,
-                  mimeType: response.mimeType,
-                  text,
-                },
-              ],
-            };
-          } catch (handlerError: unknown) {
-            const elapsed = Date.now() - startTime;
-            const code = getErrorCode(handlerError);
-            const safeMessage = getSafeErrorMessage(handlerError);
-            const category = ERROR_CATEGORIES[code] ?? 'internal_error';
+              const response = await entry.handler(uri.href, rootPath);
+              const text =
+                typeof response.content === 'string'
+                  ? response.content
+                  : JSON.stringify(response.content);
+              return {
+                contents: [
+                  {
+                    uri: uri.href,
+                    mimeType: response.mimeType,
+                    text,
+                  },
+                ],
+              };
+            } catch (handlerError: unknown) {
+              const elapsed = Date.now() - startTime;
+              const code = getErrorCode(handlerError);
+              const safeMessage = getSafeErrorMessage(handlerError);
+              const category = ERROR_CATEGORIES[code] ?? 'internal_error';
 
-            logError({
-              method: 'resources/read',
-              target: uri.href,
-              responseMs: elapsed,
-              error: { code, category },
-            });
+              logError({
+                method: 'resources/read',
+                target: uri.href,
+                responseMs: elapsed,
+                error: { code, category },
+              });
 
-            // Re-throw with sanitized message for the SDK to return to client
-            const sanitizedError = new Error(safeMessage);
-            (sanitizedError as Error & { code: number }).code = code;
-            throw sanitizedError;
-          }
-        },
-      );
+              // Re-throw with sanitized message for the SDK to return to client
+              const sanitizedError = new Error(safeMessage);
+              (sanitizedError as Error & { code: number }).code = code;
+              throw sanitizedError;
+            }
+          },
+        );
+      }
       result.resources++;
     } catch (err) {
       // Graceful degradation: skip this entry, log error, continue loading.

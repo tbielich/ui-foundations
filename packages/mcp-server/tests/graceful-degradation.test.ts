@@ -116,12 +116,12 @@ describe('Graceful Degradation', () => {
   });
 
   describe('Registry loading with malformed entries', () => {
-    it('continues loading valid entries when one registration fails', () => {
+    it('continues loading valid entries when one registration fails', async () => {
       const server = new McpServer({ name: 'test-server', version: '0.0.1' });
 
       // loadRegistries processes all entries and skips invalid ones.
       // The actual registries have valid entries, so they should register.
-      const result = loadRegistries(server, '/tmp/nonexistent');
+      const result = await loadRegistries(server, '/tmp/nonexistent');
       assert.equal(typeof result.resources, 'number');
       assert.equal(typeof result.tools, 'number');
       assert.equal(typeof result.prompts, 'number');
@@ -131,9 +131,9 @@ describe('Graceful Degradation', () => {
       assert.ok(result.prompts >= 0);
     });
 
-    it('total registered count equals valid entries minus skipped ones', () => {
+    it('total registered count equals valid entries minus skipped ones', async () => {
       const server = new McpServer({ name: 'test-server', version: '0.0.1' });
-      const result = loadRegistries(server, '/tmp');
+      const result = await loadRegistries(server, '/tmp');
 
       // The total should be > 0 because the registries have valid entries
       const total = result.resources + result.tools + result.prompts;
