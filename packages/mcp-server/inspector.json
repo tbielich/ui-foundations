@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "ui-foundations": {
+      "command": "node",
+      "args": [
+        "dist/mcp/index.js",
+        "--root",
+        "../.."
+      ]
+    }
+  }
+}

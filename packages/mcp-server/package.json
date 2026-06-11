@@ -1,0 +1,37 @@
+{
+  "name": "@ui-foundations/mcp-server",
+  "version": "0.1.0",
+  "description": "MCP Server exposing UI Foundations design system knowledge to AI agents via the Model Context Protocol.",
+  "type": "module",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "ui-foundations-mcp": "./dist/mcp/index.js"
+  },
+  "files": [
+    "dist/mcp/",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./dist/mcp/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test:unit": "node --import tsx --test 'tests/!(integration|properties)/**/*.test.ts' 'tests/*.test.ts'",
+    "test:property": "node --import tsx --test tests/properties/**/*.property.test.ts",
+    "test:integration": "node --import tsx --test tests/integration/**/*.test.ts",
+    "test:mcp": "npm run test:unit && npm run test:property && npm run test:integration"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "fast-check": "^4.1.1",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
