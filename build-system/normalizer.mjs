@@ -7,7 +7,7 @@
 
 import { STAGES } from './events.mjs';
 import * as events from './events.mjs';
-import { replaceEmojis } from './grid.mjs';
+import { replaceEmojis } from './format.mjs';
 
 // ─── Pattern Matchers ────────────────────────────────────────────────────────
 
