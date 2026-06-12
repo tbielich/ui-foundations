@@ -4,7 +4,70 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% if title %}{{ title }} · {% endif %}UI Foundations Docs</title>
+
+    {# Favicon and app icons #}
+    <link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/favicon/favicon.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    {# Task 2.2: Title tag formatting #}
+    {% if page.url == "/" %}
+    <title>UI Foundations Docs</title>
+    {% elif title %}
+    <title>{{ title }} · UI Foundations Docs</title>
+    {% else %}
+    <title>UI Foundations Docs</title>
+    {% endif %}
+
+    {# Task 2.1: Canonical URL (only when site.baseUrl exists) #}
+    {% if site.baseUrl %}
+    <link rel="canonical" href="{{ site.baseUrl }}{{ page.url }}" />
+    {% endif %}
+
+    {# Task 2.1: Meta description (only when description exists in front matter) #}
+    {% if description %}
+    <meta name="description" content="{{ description }}" />
+    {% endif %}
+
+    {# Task 2.1: Robots meta (noindex when noindex or isPlayground is true) #}
+    {% if noindex or isPlayground %}
+    <meta name="robots" content="noindex, nofollow" />
+    {% endif %}
+
+    {# Task 2.3: Open Graph meta tags #}
+    {% if title %}
+    <meta property="og:title" content="{{ title }}" />
+    {% endif %}
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    {% if description %}
+    <meta property="og:description" content="{{ description }}" />
+    {% endif %}
+    {% if site.baseUrl %}
+    <meta property="og:url" content="{{ site.baseUrl }}{{ page.url }}" />
+    <meta property="og:site_name" content="UI Foundations Docs" />
+    {% endif %}
+
+    {# Task 2.4: JSON-LD structured data for component pages #}
+    {% if page.url.indexOf("/components/") == 0 and not isPlayground and page.url != "/components/" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "name": "{{ title }}",
+      "headline": "{{ title }}"{% if description %},
+      "description": "{{ description }}"{% endif %}{% if site.baseUrl %},
+      "url": "{{ site.baseUrl }}{{ page.url }}",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "UI Foundations Docs",
+        "url": "{{ site.baseUrl }}/"
+      }{% endif %}
+    }
+    </script>
+    {% endif %}
+
     <link rel="stylesheet" href="/vendor/ui-foundations/main.css" />
     <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     <link rel="stylesheet" href="/assets/docs.css" />

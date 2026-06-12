@@ -1,0 +1,24 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+{%- if site.baseUrl %}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for page in collections.all %}
+{%- if not page.data.isPlayground and not page.data.noindex and not page.data.eleventyExcludeFromCollections %}
+  <url>
+    <loc>{{ site.baseUrl }}{{ page.url }}</loc>
+{%- if page.data.lastModified %}
+    <lastmod>{{ page.data.lastModified }}</lastmod>
+{%- elif page.date %}
+    <lastmod>{{ page.date.toISOString() }}</lastmod>
+{%- endif %}
+  </url>
+{%- endif %}
+{%- endfor %}
+</urlset>
+{%- else %}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+</urlset>
+{%- endif %}

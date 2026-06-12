@@ -1,0 +1,26 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# UI Foundations Documentation
+
+> A token-first, Figma-aligned design system providing CSS custom properties, HTML component patterns, Nunjucks macros, and React wrappers. Documentation covers design tokens, component usage, integration examples, and getting started guides.
+
+## Foundations
+{% for page in collections.foundationsDocs %}
+- {{ page.data.title }}: {{ site.baseUrl }}{{ page.url }}
+{%- endfor %}
+
+## Components
+{% for page in collections.componentsDocs %}
+- {{ page.data.title }}: {{ site.baseUrl }}{{ page.url }}
+{%- endfor %}
+
+## Examples
+{% for page in collections.examplesDocs %}
+- {{ page.data.title }}: {{ site.baseUrl }}{{ page.url }}
+{%- endfor %}
+
+## Getting Started
+
+- Getting Started: {{ site.baseUrl }}/getting-started/
