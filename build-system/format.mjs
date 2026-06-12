@@ -79,11 +79,24 @@ export function formatHeader(version, env) {
 }
 
 /**
- * Render a section header: [01] ICONS
+ * Render a section header with status on same line:
+ *
+ *   [01] ICONS                          [OK]
  */
-export function formatSectionTitle(number, label) {
+export function formatSectionTitle(number, label, status) {
   const num = String(number).padStart(2, '0');
-  return `\n  [${num}] ${label.toUpperCase()}\n`;
+  const indent = '  ';
+  const prefix = `[${num}] ${label.toUpperCase()}`;
+  if (!status) {
+    return `\n${indent}${prefix}\n`;
+  }
+  const tag = `[${status}]`;
+  const availableWidth = LOG_WIDTH - indent.length;
+  const gap = availableWidth - prefix.length - tag.length;
+  if (gap < 1) {
+    return `\n${indent}${prefix} ${tag}\n`;
+  }
+  return `\n${indent}${prefix}${' '.repeat(gap)}${tag}\n`;
 }
 
 /**

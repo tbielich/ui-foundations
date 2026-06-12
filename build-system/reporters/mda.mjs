@@ -16,7 +16,6 @@ import {
   formatHeader,
   formatSectionTitle,
   formatMetricRow,
-  formatStatus,
   formatSeparator,
   formatBuildComplete,
   formatBuildFailed,
@@ -156,16 +155,15 @@ export class MdaReporter {
 
   _printIconSection(state, isFail, c) {
     const m = state.metrics;
-    this.write(formatSectionTitle(1, 'ICONS'));
+    const status = isFail ? 'FAIL' : 'OK';
+    const color = isFail ? c.error : c.success;
+
+    this.write(`${color}${formatSectionTitle(1, 'ICONS', status)}${c.reset}`);
 
     if (m.icons != null) {
       this.write(formatMetricRow('Entries', m.icons));
     }
     this.write(formatMetricRow('Output', 'icon-names.ts'));
-
-    const status = isFail ? 'FAIL' : 'OK';
-    const color = isFail ? c.error : c.success;
-    this.write(`${color}${formatStatus(status)}${c.reset}`);
   }
 
   _printTokenSection(state, isFail, c) {
@@ -180,35 +178,36 @@ export class MdaReporter {
     this.write(formatMetricRow('YAML', a.yaml ? 'READY' : 'PENDING'));
 
     // [03] INTEGRITY
-    this.write(formatSectionTitle(3, 'INTEGRITY'));
-    this.write(formatMetricRow('Missing WEB', m.missingCodeSyntax ?? 0));
-    this.write(formatMetricRow('Unparseable WEB', m.unparseableCodeSyntax ?? 0));
-    this.write(formatMetricRow('Duplicate vars', m.duplicateCssVariables ?? 0));
-
     const hasIssues = (m.missingCodeSyntax > 0 || m.duplicateCssVariables > 0);
     const status = isFail ? 'FAIL' : hasIssues ? 'WARN' : 'OK';
     const color = isFail ? c.error : hasIssues ? c.warning : c.success;
-    this.write(`${color}${formatStatus(status)}${c.reset}`);
+
+    this.write(`${color}${formatSectionTitle(3, 'INTEGRITY', status)}${c.reset}`);
+    this.write(formatMetricRow('Missing WEB', m.missingCodeSyntax ?? 0));
+    this.write(formatMetricRow('Unparseable WEB', m.unparseableCodeSyntax ?? 0));
+    this.write(formatMetricRow('Duplicate vars', m.duplicateCssVariables ?? 0));
   }
 
   _printDistributionSection(state, isFail, c) {
     const m = state.metrics;
     const a = state.artifacts;
 
-    this.write(formatSectionTitle(4, 'DIST'));
+    const status = isFail ? 'FAIL' : 'OK';
+    const color = isFail ? c.error : c.success;
+
+    this.write(`${color}${formatSectionTitle(4, 'DIST', status)}${c.reset}`);
     this.write(formatMetricRow('Token CSS', m.tokenFiles ?? 0));
     this.write(formatMetricRow('Macros', a.macros ? 'READY' : 'PENDING'));
     this.write(formatMetricRow('Bundles', a.css ? 'READY' : 'PENDING'));
-
-    const status = isFail ? 'FAIL' : 'OK';
-    const color = isFail ? c.error : c.success;
-    this.write(`${color}${formatStatus(status)}${c.reset}`);
   }
 
   _printDocumentationSection(state, isFail, c) {
     const m = state.metrics;
 
-    this.write(formatSectionTitle(5, 'DOCS'));
+    const status = isFail ? 'FAIL' : 'OK';
+    const color = isFail ? c.error : c.success;
+
+    this.write(`${color}${formatSectionTitle(5, 'DOCS', status)}${c.reset}`);
 
     // Aggregate pages by category
     const categories = aggregatePages(this._siteProgressEvents);
@@ -223,10 +222,6 @@ export class MdaReporter {
     if (m.pages != null) this.write(formatMetricRow('Pages', m.pages));
     if (m.assets != null) this.write(formatMetricRow('Assets', m.assets));
     if (m.buildTime != null) this.write(formatMetricRow('Time', `${m.buildTime}s`));
-
-    const status = isFail ? 'FAIL' : 'OK';
-    const color = isFail ? c.error : c.success;
-    this.write(`${color}${formatStatus(status)}${c.reset}`);
   }
 
   // ─── Server Ready ────────────────────────────────────────────────────
@@ -234,10 +229,9 @@ export class MdaReporter {
   _printServerReady(event, state) {
     const c = this.theme.colors;
 
-    this.write(formatSectionTitle(6, 'DEV SERVER'));
+    this.write(`${c.success}${formatSectionTitle(6, 'DEV SERVER', 'RUN')}${c.reset}`);
     this.write(formatMetricRow('URL', event.url || 'http://localhost:8080/'));
     this.write(formatMetricRow('Watch', 'ACTIVE'));
-    this.write(`${c.success}${formatStatus('RUN')}${c.reset}`);
 
     // Final online banner
     this.write(formatSeparator(this.env));

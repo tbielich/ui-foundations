@@ -92,6 +92,18 @@ describe('Format Output', () => {
     assert.ok(result.includes('ICONS'));
   });
 
+  it('formatSectionTitle includes status on same line', () => {
+    const result = formatSectionTitle(1, 'ICONS', 'OK');
+    assert.ok(result.includes('[01]'));
+    assert.ok(result.includes('ICONS'));
+    assert.ok(result.includes('[OK]'));
+    // Status and title on same line
+    const lines = result.split('\n').filter(l => l.trim());
+    assert.equal(lines.length, 1);
+    assert.ok(lines[0].includes('ICONS'));
+    assert.ok(lines[0].includes('[OK]'));
+  });
+
   it('formatMetricRow right-aligns values', () => {
     const result = formatMetricRow('Entries', 289);
     assert.ok(result.includes('Entries'));
