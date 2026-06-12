@@ -1,3 +1,16 @@
+```
+╭─────────────────╖
+│ 16              ║
+│            ⬤   ║
+│   ██   ██       ║
+│   ██   ██  ██   ║
+│   ██   ██  ██   ║
+│   ░▒███▒░  ██   ║
+├─────────────────╢
+│   Foundations   ║
+╘═════════════════╝
+```
+
 # UI Foundations
 
 Keep Figma and code in sync by default — with tokens, not guesswork.
