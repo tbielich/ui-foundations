@@ -35,11 +35,11 @@ const SECTION_NUMBERS = {
 };
 
 const SECTION_LABELS = {
-  [STAGES.ICONS]: 'ICON REGISTRY',
-  [STAGES.TOKENS]: 'TOKEN EXTRACTION',
+  [STAGES.ICONS]: 'ICONS',
+  [STAGES.TOKENS]: 'TOKENS',
   [STAGES.CSS]: 'DISTRIBUTION',
-  [STAGES.SITE]: 'DOCUMENTATION',
-  [STAGES.SERVER]: 'DEVELOPMENT SERVER',
+  [STAGES.SITE]: 'DOCS',
+  [STAGES.SERVER]: 'DEV SERVER',
 };
 
 // Build mode inserts a token integrity section [03] between tokens [02] and css [04]
@@ -156,12 +156,12 @@ export class MdaReporter {
 
   _printIconSection(state, isFail, c) {
     const m = state.metrics;
-    this.write(formatSectionTitle(1, 'ICON REGISTRY'));
+    this.write(formatSectionTitle(1, 'ICONS'));
 
     if (m.icons != null) {
-      this.write(formatMetricRow('Entries generated', m.icons));
+      this.write(formatMetricRow('Entries', m.icons));
     }
-    this.write(formatMetricRow('Output', 'schemas/icon-names.ts'));
+    this.write(formatMetricRow('Output', 'icon-names.ts'));
 
     const status = isFail ? 'FAIL' : 'OK';
     const color = isFail ? c.error : c.success;
@@ -172,18 +172,18 @@ export class MdaReporter {
     const m = state.metrics;
     const a = state.artifacts;
 
-    // [02] TOKEN EXTRACTION
-    this.write(formatSectionTitle(2, 'TOKEN EXTRACTION'));
+    // [02] TOKENS
+    this.write(formatSectionTitle(2, 'TOKENS'));
     this.write(formatMetricRow('CSS', a.css ? 'READY' : 'PENDING'));
     this.write(formatMetricRow('JSON', a.json ? 'READY' : 'PENDING'));
-    this.write(formatMetricRow('TYPESCRIPT', a.typescript ? 'READY' : 'PENDING'));
+    this.write(formatMetricRow('TypeScript', a.typescript ? 'READY' : 'PENDING'));
     this.write(formatMetricRow('YAML', a.yaml ? 'READY' : 'PENDING'));
 
-    // [03] TOKEN INTEGRITY — always follows tokens
-    this.write(formatSectionTitle(3, 'TOKEN INTEGRITY'));
-    this.write(formatMetricRow('Missing codeSyntax.WEB', m.missingCodeSyntax ?? 0));
-    this.write(formatMetricRow('Unparseable codeSyntax.WEB', m.unparseableCodeSyntax ?? 0));
-    this.write(formatMetricRow('Duplicate CSS variables', m.duplicateCssVariables ?? 0));
+    // [03] INTEGRITY
+    this.write(formatSectionTitle(3, 'INTEGRITY'));
+    this.write(formatMetricRow('Missing WEB', m.missingCodeSyntax ?? 0));
+    this.write(formatMetricRow('Unparseable WEB', m.unparseableCodeSyntax ?? 0));
+    this.write(formatMetricRow('Duplicate vars', m.duplicateCssVariables ?? 0));
 
     const hasIssues = (m.missingCodeSyntax > 0 || m.duplicateCssVariables > 0);
     const status = isFail ? 'FAIL' : hasIssues ? 'WARN' : 'OK';
@@ -195,8 +195,8 @@ export class MdaReporter {
     const m = state.metrics;
     const a = state.artifacts;
 
-    this.write(formatSectionTitle(4, 'DISTRIBUTION'));
-    this.write(formatMetricRow('Token CSS files', m.tokenFiles ?? 0));
+    this.write(formatSectionTitle(4, 'DIST'));
+    this.write(formatMetricRow('Token CSS', m.tokenFiles ?? 0));
     this.write(formatMetricRow('Macros', a.macros ? 'READY' : 'PENDING'));
     this.write(formatMetricRow('Bundles', a.css ? 'READY' : 'PENDING'));
 
@@ -208,7 +208,7 @@ export class MdaReporter {
   _printDocumentationSection(state, isFail, c) {
     const m = state.metrics;
 
-    this.write(formatSectionTitle(5, 'DOCUMENTATION'));
+    this.write(formatSectionTitle(5, 'DOCS'));
 
     // Aggregate pages by category
     const categories = aggregatePages(this._siteProgressEvents);
@@ -217,12 +217,12 @@ export class MdaReporter {
     if (categories.Playgrounds > 0) this.write(formatMetricRow('Playgrounds', categories.Playgrounds));
     if (categories.Examples > 0) this.write(formatMetricRow('Examples', categories.Examples));
     const systemPages = (categories.System || 0) + (categories.Tokens || 0);
-    if (systemPages > 0) this.write(formatMetricRow('System pages', systemPages));
+    if (systemPages > 0) this.write(formatMetricRow('System', systemPages));
 
     this.write('\n');
-    if (m.pages != null) this.write(formatMetricRow('Pages generated', m.pages));
-    if (m.assets != null) this.write(formatMetricRow('Assets copied', m.assets));
-    if (m.buildTime != null) this.write(formatMetricRow('Generation time', `${m.buildTime}s`));
+    if (m.pages != null) this.write(formatMetricRow('Pages', m.pages));
+    if (m.assets != null) this.write(formatMetricRow('Assets', m.assets));
+    if (m.buildTime != null) this.write(formatMetricRow('Time', `${m.buildTime}s`));
 
     const status = isFail ? 'FAIL' : 'OK';
     const color = isFail ? c.error : c.success;
@@ -234,9 +234,9 @@ export class MdaReporter {
   _printServerReady(event, state) {
     const c = this.theme.colors;
 
-    this.write(formatSectionTitle(6, 'DEVELOPMENT SERVER'));
+    this.write(formatSectionTitle(6, 'DEV SERVER'));
     this.write(formatMetricRow('URL', event.url || 'http://localhost:8080/'));
-    this.write(formatMetricRow('Watch mode', 'ACTIVE'));
+    this.write(formatMetricRow('Watch', 'ACTIVE'));
     this.write(`${c.success}${formatStatus('RUN')}${c.reset}`);
 
     // Final online banner

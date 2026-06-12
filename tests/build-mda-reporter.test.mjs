@@ -78,18 +78,25 @@ describe('Format Output', () => {
     assert.ok(!result.includes('╔'));
   });
 
+  it('formatHeader fits within 48 chars', () => {
+    const result = formatHeader('0.7.0', env);
+    const lines = result.split('\n').filter(l => l.length > 0);
+    for (const line of lines) {
+      assert.ok(line.length <= 48, `Line too long (${line.length}): "${line}"`);
+    }
+  });
+
   it('formatSectionTitle formats numbered section', () => {
-    const result = formatSectionTitle(1, 'ICON REGISTRY');
+    const result = formatSectionTitle(1, 'ICONS');
     assert.ok(result.includes('[01]'));
-    assert.ok(result.includes('ICON REGISTRY'));
+    assert.ok(result.includes('ICONS'));
   });
 
   it('formatMetricRow right-aligns values', () => {
-    const result = formatMetricRow('Entries generated', 289);
-    assert.ok(result.includes('Entries generated'));
+    const result = formatMetricRow('Entries', 289);
+    assert.ok(result.includes('Entries'));
     assert.ok(result.includes('289'));
-    // Value should be to the right of the label
-    const labelIdx = result.indexOf('Entries generated');
+    const labelIdx = result.indexOf('Entries');
     const valueIdx = result.indexOf('289');
     assert.ok(valueIdx > labelIdx);
   });
@@ -106,24 +113,24 @@ describe('Format Output', () => {
 
   it('formatBuildComplete contains duration', () => {
     const result = formatBuildComplete(510);
-    assert.ok(result.includes('BUILD COMPLETE'));
-    assert.ok(result.includes('ARTIFACTS READY'));
+    assert.ok(result.includes('BUILD OK'));
+    assert.ok(result.includes('READY'));
     assert.ok(result.includes('510ms'));
   });
 
   it('formatBuildFailed contains stage and reason', () => {
-    const result = formatBuildFailed('TOKEN INTEGRITY', 1, 'Duplicate CSS variable names');
+    const result = formatBuildFailed('INTEGRITY', 1, 'Duplicate vars');
     assert.ok(result.includes('BUILD FAILED'));
-    assert.ok(result.includes('TOKEN INTEGRITY'));
-    assert.ok(result.includes('Duplicate CSS variable names'));
+    assert.ok(result.includes('INTEGRITY'));
+    assert.ok(result.includes('Duplicate vars'));
     assert.ok(result.includes('npm run build:verbose'));
   });
 
   it('formatOnline contains server status', () => {
     const result = formatOnline();
     assert.ok(result.includes('ONLINE'));
-    assert.ok(result.includes('SERVER ACTIVE'));
-    assert.ok(result.includes('WATCH MODE ACTIVE'));
+    assert.ok(result.includes('SERVER'));
+    assert.ok(result.includes('WATCH'));
   });
 });
 
@@ -172,12 +179,12 @@ describe('MDA Reporter — Linear Output', () => {
 
     const combined = output.join('');
     // No cursor hide/show
-    assert.ok(!combined.includes('\x1b[?25l'), 'should not hide cursor');
-    assert.ok(!combined.includes('\x1b[?25h'), 'should not show cursor');
+    assert.ok(!combined.includes('\x1b[?25l'), 'no cursor hide');
+    assert.ok(!combined.includes('\x1b[?25h'), 'no cursor show');
     // No cursor movement
-    assert.ok(!combined.match(/\x1b\[\d+A/), 'should not move cursor up');
-    assert.ok(!combined.match(/\x1b\[\d+B/), 'should not move cursor down');
-    assert.ok(!combined.match(/\x1b\[\d+;\d+H/), 'should not position cursor');
+    assert.ok(!combined.match(/\x1b\[\d+A/), 'no cursor up');
+    assert.ok(!combined.match(/\x1b\[\d+B/), 'no cursor down');
+    assert.ok(!combined.match(/\x1b\[\d+;\d+H/), 'no cursor pos');
   });
 
   it('prints each section exactly once', () => {
@@ -195,7 +202,7 @@ describe('MDA Reporter — Linear Output', () => {
     reporter.onEvent(iconComplete, state); // duplicate call should be ignored
 
     const combined = output.join('');
-    const iconSections = (combined.match(/\[01\] ICON REGISTRY/g) || []).length;
+    const iconSections = (combined.match(/\[01\] ICONS/g) || []).length;
     assert.equal(iconSections, 1);
   });
 
@@ -217,7 +224,7 @@ describe('MDA Reporter — Linear Output', () => {
 
     const combined = output.join('');
     assert.ok(!combined.includes('ONLINE'));
-    assert.ok(combined.includes('BUILD COMPLETE'));
+    assert.ok(combined.includes('BUILD OK'));
   });
 
   it('outputs BUILD COMPLETE with duration on success', () => {
@@ -237,7 +244,7 @@ describe('MDA Reporter — Linear Output', () => {
     reporter.onEvent(buildComplete, state);
 
     const combined = output.join('');
-    assert.ok(combined.includes('BUILD COMPLETE'));
+    assert.ok(combined.includes('BUILD OK'));
     assert.ok(combined.includes('510ms'));
   });
 
@@ -260,8 +267,8 @@ describe('MDA Reporter — Linear Output', () => {
 
     const combined = output.join('');
     assert.ok(combined.includes('BUILD FAILED'));
-    assert.ok(!combined.includes('BUILD COMPLETE'));
-    assert.ok(combined.includes('TOKEN EXTRACTION'));
+    assert.ok(!combined.includes('BUILD OK'));
+    assert.ok(combined.includes('TOKENS'));
   });
 
   it('contains no emojis in output', () => {
@@ -327,7 +334,7 @@ describe('MDA Reporter — Dev Mode', () => {
     const combined = output.join('');
     assert.ok(combined.includes('ONLINE'));
     assert.ok(combined.includes('http://localhost:8080/'));
-    assert.ok(combined.includes('WATCH MODE'));
+    assert.ok(combined.includes('Watch'));
     assert.ok(combined.includes('ACTIVE'));
   });
 
@@ -370,9 +377,9 @@ describe('MDA Reporter — Dev Mode', () => {
     assert.ok(combined.includes('8'));
     assert.ok(combined.includes('Components'));
     assert.ok(combined.includes('18'));
-    assert.ok(combined.includes('Pages generated'));
+    assert.ok(combined.includes('Pages'));
     assert.ok(combined.includes('54'));
-    assert.ok(combined.includes('Assets copied'));
+    assert.ok(combined.includes('Assets'));
     assert.ok(combined.includes('311'));
   });
 });

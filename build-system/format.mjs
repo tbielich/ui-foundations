@@ -51,21 +51,21 @@ export function replaceEmojis(str) {
   return result;
 }
 
-// ─── MDA Log Formatting ─────────────────────────────────────────────────────
+// ─── MDA Log Formatting ─────────────────────
 
-const LOG_WIDTH = 72;
+const LOG_WIDTH = 48;
 
 /**
  * Render the primary MDA header box.
  *
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║ UI FOUNDATIONS / DESIGN SYSTEM COMPILER                 BUILD 0.7.0 ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * ╔══════════════════════════════════════════════╗
+ * ║ UI FOUNDATIONS          BUILD 0.7.0 ║
+ * ╚══════════════════════════════════════════════╝
  */
 export function formatHeader(version, env) {
   const box = getBoxChars(env);
   const innerWidth = LOG_WIDTH - 2;
-  const title = ' UI FOUNDATIONS / DESIGN SYSTEM COMPILER';
+  const title = ' UI FOUNDATIONS';
   const versionTag = `BUILD ${version} `;
   const gap = innerWidth - title.length - versionTag.length;
   const titleLine = `${box.vertical}${title}${' '.repeat(Math.max(1, gap))}${versionTag}${box.vertical}`;
@@ -79,7 +79,7 @@ export function formatHeader(version, env) {
 }
 
 /**
- * Render a section header: [01] ICON REGISTRY
+ * Render a section header: [01] ICONS
  */
 export function formatSectionTitle(number, label) {
   const num = String(number).padStart(2, '0');
@@ -89,10 +89,10 @@ export function formatSectionTitle(number, label) {
 /**
  * Render a key-value metric row with right-aligned value.
  *
- *       Entries generated                                      289
+ *     Entries                              289
  */
 export function formatMetricRow(label, value) {
-  const indent = '      ';
+  const indent = '    ';
   const valueStr = String(value);
   const availableWidth = LOG_WIDTH - indent.length;
   const gap = availableWidth - label.length - valueStr.length;
@@ -105,10 +105,10 @@ export function formatMetricRow(label, value) {
 /**
  * Render a status tag at the end of a section.
  *
- *                                                             [OK]
+ *                                        [OK]
  */
 export function formatStatus(status) {
-  const indent = '      ';
+  const indent = '    ';
   const tag = `[${status}]`;
   const availableWidth = LOG_WIDTH - indent.length;
   return `${indent}${' '.repeat(Math.max(0, availableWidth - tag.length))}${tag}\n`;
@@ -117,7 +117,7 @@ export function formatStatus(status) {
 /**
  * Render the footer separator line.
  *
- * ────────────────────────────────────────────────────────────────────────
+ * ──────────────────────────────────────────────
  */
 export function formatSeparator(env) {
   const box = getBoxChars(env);
@@ -127,10 +127,10 @@ export function formatSeparator(env) {
 /**
  * Render the final build-complete footer.
  *
- * BUILD COMPLETE · ARTIFACTS READY · 510ms
+ * BUILD OK · READY · 510ms
  */
 export function formatBuildComplete(durationMs) {
-  return `  BUILD COMPLETE · ARTIFACTS READY · ${durationMs}ms\n`;
+  return `  BUILD OK · READY · ${durationMs}ms\n`;
 }
 
 /**
@@ -140,15 +140,15 @@ export function formatBuildFailed(stage, exitCode, reason) {
   const lines = [
     '  BUILD FAILED\n',
     `\n`,
-    `  Stage       ${stage}\n`,
+    `  Stage     ${stage}\n`,
   ];
   if (exitCode != null) {
-    lines.push(`  Exit code   ${exitCode}\n`);
+    lines.push(`  Exit      ${exitCode}\n`);
   }
   if (reason) {
-    lines.push(`  Reason      ${reason}\n`);
+    lines.push(`  Reason    ${reason}\n`);
   }
-  lines.push(`\n  Run \`npm run build:verbose\` for the complete output.\n`);
+  lines.push(`\n  Run \`npm run build:verbose\`\n`);
   return lines.join('');
 }
 
@@ -166,5 +166,5 @@ export function formatNote(level, message) {
  * Render the docs:dev online footer.
  */
 export function formatOnline() {
-  return '  UI FOUNDATIONS ONLINE · SERVER ACTIVE · WATCH MODE ACTIVE\n';
+  return '  ONLINE · SERVER · WATCH ACTIVE\n';
 }
