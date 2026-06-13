@@ -52,7 +52,20 @@ Figma exports are the source. Generated files in `dist/` are never edited direct
 
 ## Current Components
 
-Label, Button (solid/outline/ghost), ButtonGroup, Input, Icon, Checkbox, Radio, Switch, Slider, Link, Badge, Divider, Textarea, Avatar, Accordion, Tabs, Tooltip, Form (bordered/none), Form Group
+Label, Button (solid/outline/ghost), ButtonGroup, Input, Icon, Checkbox, Radio, Switch, Link, Badge, Divider, Textarea, Avatar, Accordion, Tabs, Tooltip, Select, Form (bordered/none), Form Group
+
+Planned (not yet implemented): Slider
+
+## Environment Variables
+
+| Variable | Used by | Required for |
+|----------|---------|--------------|
+| `FIGMA_TOKEN` | `tokens:sync`, Figma MCP servers | Token sync from Figma API |
+| `NPM_TOKEN` | `.npmrc`, CI publish workflow | Publishing to npm (CI only) |
+
+Copy `.env.example` to `.env` for local use. Scripts that need `FIGMA_TOKEN`
+will fail with auth errors if it is missing. `NPM_TOKEN` is only needed for
+`npm publish`.
 
 ## Component Promotion Workflow
 

@@ -20,10 +20,19 @@ These are included in every prompt automatically:
 3. `components/react-wrappers.md`
 4. `components/component-rule-map.md`
 5. `foundations/token-exports.md` (if token work needed)
+6. `components/playground-system.md` (for playground page)
 
 ### Writing documentation
 
 1. `components/component-doc-template.md`
+
+### Working with the playground
+
+1. `components/playground-system.md`
+
+### Working with site data files
+
+1. `components/site-data.md`
 
 ### Pattern rule work
 
@@ -52,18 +61,28 @@ These are included in every prompt automatically:
 
 1. `workflows/pull-requests.md`
 
+### Writing tests
+
+1. `workflows/testing.md`
+
+### Release / deployment
+
+1. `workflows/release-deploy.md`
+
+### Understanding build pipeline
+
+1. `foundations/build-pipeline.md`
+
+### Choosing agent mode
+
+1. `workflows/agent-modes.md`
+
 ## Specs Ready for Implementation
 
 These specs have requirements, design, and tasks complete — ready to pick up:
 
-- `code-connect-all-components` — Code Connect schemas for all components
-- `docs-navbar-search` — search feature in the docs site sidebar
-
-Specs with requirements only (need design/tasks before implementation):
-- `accessibility-test-suite`
-- `component-scaffolding-cli`
-- `dark-mode-validation`
-- `token-drift-detection`
+- `seo-indexing` — sitemap, robots.txt, structured metadata, canonical URLs
+- `mcp-remote-deployment` — remote HTTP MCP server for AI agent access
 
 ## Inclusion Modes
 
