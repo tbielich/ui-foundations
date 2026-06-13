@@ -51,11 +51,26 @@ const c = useColor ? {
 
 const W = 40;
 
+/** Zero-pad to 4 digits, dim the leading zeros. */
+function padNum(n) {
+  const s = String(n);
+  const zeros = Math.max(0, 4 - s.length);
+  if (zeros === 0) return s;
+  return `${c.dim}${'0'.repeat(zeros)}${c.reset}${s}`;
+}
+
+/** Visible length (strips ANSI for gap calculation). */
+function visLen(s) {
+  return s.replace(/\x1b\[[0-9;]*m/g, '').length;
+}
+
 function row(label, value, last) {
   const conn = last ? '\u2514' : '\u251C';
-  const val = typeof value === 'number' ? String(value).padStart(4, '0') : String(value);
+  const val = typeof value === 'number' || /^\d+$/.test(String(value))
+    ? padNum(Number(value))
+    : String(value);
   const left = `${conn} ${label}`;
-  const gap = W - left.length - val.length;
+  const gap = W - left.length - visLen(val);
   return gap > 0 ? `${left}${' '.repeat(gap)}${val}` : `${left} ${val}`;
 }
 
