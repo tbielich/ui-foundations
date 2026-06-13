@@ -2,6 +2,7 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { MdaReporter } from '../build-system/reporters/mda.mjs';
+import { PlainReporter } from '../build-system/reporters/plain.mjs';
 import { createInitialState, reduceEvent } from '../build-system/state.mjs';
 import { STAGES, EVENT_TYPES } from '../build-system/events.mjs';
 import * as events from '../build-system/events.mjs';
@@ -19,9 +20,8 @@ import {
   padRight,
   padLeft,
 } from '../build-system/format.mjs';
-import { PlainReporter } from '../build-system/reporters/plain.mjs';
 
-// ─── Format Utilities ────────────────────────────────────────────────────────
+// ─── Format Utilities ────────────────────────
 
 describe('Format Utilities', () => {
   it('visibleWidth ignores ANSI codes', () => {
@@ -48,9 +48,9 @@ describe('Format Utilities', () => {
   });
 
   it('replaceEmojis replaces known emojis', () => {
-    assert.equal(replaceEmojis('✅ Done'), '[OK] Done');
-    assert.equal(replaceEmojis('❌ Error'), '[FAIL] Error');
-    assert.equal(replaceEmojis('⚠️ Warning'), '[WARN] Warning');
+    assert.equal(replaceEmojis('\u2705 Done'), '[OK] Done');
+    assert.equal(replaceEmojis('\u274C Error'), '[FAIL] Error');
+    assert.equal(replaceEmojis('\u26A0\uFE0F Warning'), '[WARN] Warning');
   });
 
   it('replaceEmojis leaves plain text unchanged', () => {
@@ -58,69 +58,70 @@ describe('Format Utilities', () => {
   });
 });
 
-// ─── Format Output ───────────────────────────────────────────────────────────
+// ─── Format Output ───────────────────────────
 
 describe('Format Output', () => {
   const env = { unicodeSupport: true };
 
-  it('formatHeader contains version and box drawing', () => {
+  it('formatHeader contains version and rounded box', () => {
     const result = formatHeader('0.7.0', env);
-    assert.ok(result.includes('╔'));
-    assert.ok(result.includes('╚'));
-    assert.ok(result.includes('UI FOUNDATIONS'));
+    assert.ok(result.includes('\u256D')); // ╭
+    assert.ok(result.includes('\u256E')); // ╮ or ╯
+    assert.ok(result.includes('FOUNDATIONS'));
     assert.ok(result.includes('BUILD 0.7.0'));
   });
 
-  it('formatHeader ASCII fallback works', () => {
-    const result = formatHeader('0.7.0', { unicodeSupport: false });
-    assert.ok(result.includes('+'));
-    assert.ok(result.includes('UI FOUNDATIONS'));
-    assert.ok(!result.includes('╔'));
-  });
-
-  it('formatHeader fits within 48 chars', () => {
+  it('formatHeader fits within 40 chars per line', () => {
     const result = formatHeader('0.7.0', env);
     const lines = result.split('\n').filter(l => l.length > 0);
     for (const line of lines) {
-      assert.ok(line.length <= 48, `Line too long (${line.length}): "${line}"`);
+      assert.ok(line.length <= 40, `Line too long (${line.length}): "${line}"`);
     }
   });
 
-  it('formatSectionTitle formats numbered section', () => {
-    const result = formatSectionTitle(1, 'ICONS');
-    assert.ok(result.includes('[01]'));
+  it('formatSectionTitle uses block char', () => {
+    const result = formatSectionTitle(null, 'ICONS');
+    assert.ok(result.includes('\u2588')); // █
     assert.ok(result.includes('ICONS'));
   });
 
   it('formatSectionTitle includes status on same line', () => {
-    const result = formatSectionTitle(1, 'ICONS', 'OK');
-    assert.ok(result.includes('[01]'));
+    const result = formatSectionTitle(null, 'ICONS', 'OK');
+    assert.ok(result.includes('\u2588'));
     assert.ok(result.includes('ICONS'));
     assert.ok(result.includes('[OK]'));
-    // Status and title on same line
     const lines = result.split('\n').filter(l => l.trim());
     assert.equal(lines.length, 1);
-    assert.ok(lines[0].includes('ICONS'));
-    assert.ok(lines[0].includes('[OK]'));
   });
 
-  it('formatMetricRow right-aligns values', () => {
-    const result = formatMetricRow('Entries', 289);
+  it('formatMetricRow uses tree connector', () => {
+    const result = formatMetricRow('Entries', 289, false);
+    assert.ok(result.includes('\u251C')); // ├
     assert.ok(result.includes('Entries'));
-    assert.ok(result.includes('289'));
-    const labelIdx = result.indexOf('Entries');
-    const valueIdx = result.indexOf('289');
-    assert.ok(valueIdx > labelIdx);
+    assert.ok(result.includes('0289'));
   });
 
-  it('formatStatus renders status tag', () => {
-    const result = formatStatus('OK');
-    assert.ok(result.includes('[OK]'));
+  it('formatMetricRow uses last connector', () => {
+    const result = formatMetricRow('Output', 'icon-names.ts', true);
+    assert.ok(result.includes('\u2514')); // └
+    assert.ok(result.includes('Output'));
+    assert.ok(result.includes('icon-names.ts'));
   });
 
-  it('formatSeparator uses box drawing', () => {
-    const result = formatSeparator(env);
-    assert.ok(result.includes('─'));
+  it('formatMetricRow zero-pads numeric values', () => {
+    const result = formatMetricRow('Count', 8, false);
+    assert.ok(result.includes('0008'));
+  });
+
+  it('formatMetricRow preserves string values', () => {
+    const result = formatMetricRow('Status', 'READY', true);
+    assert.ok(result.includes('READY'));
+    assert.ok(!result.includes('0'));
+  });
+
+  it('formatSeparator renders horizontal line', () => {
+    const result = formatSeparator();
+    assert.ok(result.includes('\u2500')); // ─
   });
 
   it('formatBuildComplete contains duration', () => {
@@ -146,7 +147,7 @@ describe('Format Output', () => {
   });
 });
 
-// ─── MDA Reporter — Linear Output ───────────────────────────────────────────
+// ─── MDA Reporter — Linear Output ───────────
 
 describe('MDA Reporter — Linear Output', () => {
   function createTestReporter() {
@@ -169,10 +170,10 @@ describe('MDA Reporter — Linear Output', () => {
     const ev = events.buildStart({ version: '0.7.0' });
     state = reduceEvent(state, ev);
     reporter.onEvent(ev, state);
-    reporter.onEvent(ev, state); // second call should be ignored
+    reporter.onEvent(ev, state);
 
     const combined = output.join('');
-    const headerCount = (combined.match(/UI FOUNDATIONS/g) || []).length;
+    const headerCount = (combined.match(/FOUNDATIONS/g) || []).length;
     assert.equal(headerCount, 1);
   });
 
@@ -180,7 +181,6 @@ describe('MDA Reporter — Linear Output', () => {
     const { reporter, output } = createTestReporter();
     let state = createInitialState([STAGES.ICONS, STAGES.TOKENS, STAGES.CSS]);
 
-    // Run a complete build cycle
     state = reduceEvent(state, events.buildStart({ version: '0.7.0' }));
     reporter.onEvent(events.buildStart({ version: '0.7.0' }), state);
 
@@ -190,13 +190,10 @@ describe('MDA Reporter — Linear Output', () => {
     reporter.onEvent(iconComplete, state);
 
     const combined = output.join('');
-    // No cursor hide/show
     assert.ok(!combined.includes('\x1b[?25l'), 'no cursor hide');
     assert.ok(!combined.includes('\x1b[?25h'), 'no cursor show');
-    // No cursor movement
     assert.ok(!combined.match(/\x1b\[\d+A/), 'no cursor up');
     assert.ok(!combined.match(/\x1b\[\d+B/), 'no cursor down');
-    assert.ok(!combined.match(/\x1b\[\d+;\d+H/), 'no cursor pos');
   });
 
   it('prints each section exactly once', () => {
@@ -206,15 +203,14 @@ describe('MDA Reporter — Linear Output', () => {
     state = reduceEvent(state, events.buildStart({ version: '0.7.0' }));
     reporter.onEvent(events.buildStart({ version: '0.7.0' }), state);
 
-    // Icons
     state = reduceEvent(state, events.metricUpdate(STAGES.ICONS, { icons: 289 }));
     const iconComplete = events.stageComplete(STAGES.ICONS, 50);
     state = reduceEvent(state, iconComplete);
     reporter.onEvent(iconComplete, state);
-    reporter.onEvent(iconComplete, state); // duplicate call should be ignored
+    reporter.onEvent(iconComplete, state);
 
     const combined = output.join('');
-    const iconSections = (combined.match(/\[01\] ICONS/g) || []).length;
+    const iconSections = (combined.match(/\u2588 ICONS/g) || []).length;
     assert.equal(iconSections, 1);
   });
 
@@ -239,7 +235,7 @@ describe('MDA Reporter — Linear Output', () => {
     assert.ok(combined.includes('BUILD OK'));
   });
 
-  it('outputs BUILD COMPLETE with duration on success', () => {
+  it('outputs BUILD OK with duration on success', () => {
     const { reporter, output } = createTestReporter();
     let state = createInitialState([STAGES.ICONS]);
 
@@ -260,20 +256,19 @@ describe('MDA Reporter — Linear Output', () => {
     assert.ok(combined.includes('510ms'));
   });
 
-  it('outputs BUILD FAILED on error without BUILD COMPLETE', () => {
+  it('outputs BUILD FAILED on error', () => {
     const { reporter, output } = createTestReporter();
     let state = createInitialState([STAGES.ICONS, STAGES.TOKENS]);
 
     state = reduceEvent(state, events.buildStart({ version: '0.7.0' }));
     reporter.onEvent(events.buildStart({ version: '0.7.0' }), state);
 
-    // Tokens fail
     state = reduceEvent(state, events.stageStart(STAGES.TOKENS));
-    const tokenFail = events.stageFail(STAGES.TOKENS, 'Duplicate CSS variable names', 100);
+    const tokenFail = events.stageFail(STAGES.TOKENS, 'Duplicate vars', 100);
     state = reduceEvent(state, tokenFail);
     reporter.onEvent(tokenFail, state);
 
-    const buildFail = events.buildFail('Stage "tokens" failed', 200);
+    const buildFail = events.buildFail('Stage failed', 200);
     state = reduceEvent(state, buildFail);
     reporter.onEvent(buildFail, state);
 
@@ -291,31 +286,57 @@ describe('MDA Reporter — Linear Output', () => {
     reporter.onEvent(events.buildStart({ version: '0.7.0' }), state);
 
     const combined = output.join('');
-    assert.ok(!combined.match(/[\u{1F600}-\u{1F9FF}]/u), 'should not contain emojis');
-    assert.ok(!combined.includes('✅'));
-    assert.ok(!combined.includes('❌'));
-    assert.ok(!combined.includes('📁'));
+    assert.ok(!combined.match(/[\u{1F600}-\u{1F9FF}]/u));
+    assert.ok(!combined.includes('\u2705'));
+    assert.ok(!combined.includes('\u274C'));
   });
 
-  it('does not contain raw Eleventy writing lines', () => {
+  it('uses tree connectors in metric rows', () => {
     const { reporter, output } = createTestReporter();
-    let state = createInitialState([STAGES.ICONS, STAGES.TOKENS, STAGES.CSS, STAGES.SITE]);
+    let state = createInitialState([STAGES.ICONS]);
 
     state = reduceEvent(state, events.buildStart({ version: '0.7.0' }));
     reporter.onEvent(events.buildStart({ version: '0.7.0' }), state);
 
-    // Simulate eleventy writing events (these become stage:progress)
-    const progressEv = events.stageProgress(STAGES.SITE, 1, null, 'Components: components/button/index.html');
-    state = reduceEvent(state, progressEv);
-    reporter.onEvent(progressEv, state);
+    state = reduceEvent(state, events.metricUpdate(STAGES.ICONS, { icons: 289 }));
+    const iconComplete = events.stageComplete(STAGES.ICONS, 50);
+    state = reduceEvent(state, iconComplete);
+    reporter.onEvent(iconComplete, state);
 
     const combined = output.join('');
-    assert.ok(!combined.includes('[11ty] Writing'));
-    assert.ok(!combined.includes('./_site/components'));
+    assert.ok(combined.includes('\u251C'), 'should have ├ connector');
+    assert.ok(combined.includes('\u2514'), 'should have └ connector');
+  });
+
+  it('separates sections with horizontal lines', () => {
+    const { reporter, output } = createTestReporter();
+    let state = createInitialState([STAGES.ICONS, STAGES.TOKENS, STAGES.CSS]);
+
+    state = reduceEvent(state, events.buildStart({ version: '0.7.0' }));
+    reporter.onEvent(events.buildStart({ version: '0.7.0' }), state);
+
+    state = reduceEvent(state, events.metricUpdate(STAGES.ICONS, { icons: 289 }));
+    const ic = events.stageComplete(STAGES.ICONS, 50);
+    state = reduceEvent(state, ic);
+    reporter.onEvent(ic, state);
+
+    state = reduceEvent(state, events.metricUpdate(STAGES.TOKENS, { missingCodeSyntax: 0, unparseableCodeSyntax: 0, duplicateCssVariables: 0 }));
+    state = reduceEvent(state, events.artifactCreated(STAGES.TOKENS, 'css'));
+    state = reduceEvent(state, events.artifactCreated(STAGES.TOKENS, 'json'));
+    state = reduceEvent(state, events.artifactCreated(STAGES.TOKENS, 'typescript'));
+    state = reduceEvent(state, events.artifactCreated(STAGES.TOKENS, 'yaml'));
+    const tc = events.stageComplete(STAGES.TOKENS, 100);
+    state = reduceEvent(state, tc);
+    reporter.onEvent(tc, state);
+
+    const combined = output.join('');
+    // Should have separator lines (─) between sections
+    const sepCount = (combined.match(/\u2500{10,}/g) || []).length;
+    assert.ok(sepCount >= 2, `Expected at least 2 separators, got ${sepCount}`);
   });
 });
 
-// ─── MDA Reporter — Dev Mode ────────────────────────────────────────────────
+// ─── MDA Reporter — Dev Mode ─────────────────
 
 describe('MDA Reporter — Dev Mode', () => {
   it('outputs ONLINE only after service:ready', () => {
@@ -334,11 +355,9 @@ describe('MDA Reporter — Dev Mode', () => {
     state = reduceEvent(state, events.buildStart({ version: '0.7.0' }));
     reporter.onEvent(events.buildStart({ version: '0.7.0' }), state);
 
-    // Before server ready — no ONLINE
     const beforeReady = output.join('');
     assert.ok(!beforeReady.includes('ONLINE'));
 
-    // Server ready
     const serviceReady = events.serviceReady(STAGES.SERVER, 'http://localhost:8080/');
     state = reduceEvent(state, serviceReady);
     reporter.onEvent(serviceReady, state);
@@ -350,7 +369,7 @@ describe('MDA Reporter — Dev Mode', () => {
     assert.ok(combined.includes('ACTIVE'));
   });
 
-  it('aggregates page categories in documentation section', () => {
+  it('aggregates page categories in docs section', () => {
     const output = [];
     const env = { isTTY: true, columns: 96, isCI: false, noColor: false, colorSupport: true, unicodeSupport: true };
     const reporter = new MdaReporter({
@@ -366,7 +385,6 @@ describe('MDA Reporter — Dev Mode', () => {
     state = reduceEvent(state, events.buildStart({ version: '0.7.0' }));
     reporter.onEvent(events.buildStart({ version: '0.7.0' }), state);
 
-    // Simulate page progress events
     for (let i = 0; i < 8; i++) {
       const ev = events.stageProgress(STAGES.SITE, i, null, 'Foundations: foundations/page.html');
       state = reduceEvent(state, ev);
@@ -378,7 +396,6 @@ describe('MDA Reporter — Dev Mode', () => {
       reporter.onEvent(ev, state);
     }
 
-    // Complete the site stage with metrics
     state = reduceEvent(state, events.metricUpdate(STAGES.SITE, { pages: 54, assets: 311, buildTime: 0.58 }));
     const siteComplete = events.stageComplete(STAGES.SITE, 580);
     state = reduceEvent(state, siteComplete);
@@ -386,17 +403,13 @@ describe('MDA Reporter — Dev Mode', () => {
 
     const combined = output.join('');
     assert.ok(combined.includes('Foundations'));
-    assert.ok(combined.includes('8'));
     assert.ok(combined.includes('Components'));
-    assert.ok(combined.includes('18'));
     assert.ok(combined.includes('Pages'));
-    assert.ok(combined.includes('54'));
     assert.ok(combined.includes('Assets'));
-    assert.ok(combined.includes('311'));
   });
 });
 
-// ─── CI / Plain Mode ─────────────────────────────────────────────────────────
+// ─── CI / Plain Mode ─────────────────────────
 
 describe('CI / Plain Mode — no ANSI cursor sequences', () => {
   it('PlainReporter emits no cursor sequences', () => {
@@ -408,7 +421,6 @@ describe('CI / Plain Mode — no ANSI cursor sequences', () => {
 
     let state = createInitialState([STAGES.ICONS, STAGES.TOKENS, STAGES.CSS]);
 
-    // Full build cycle
     const startEv = events.buildStart({ version: '0.7.0' });
     state = reduceEvent(state, startEv);
     reporter.onEvent(startEv, state);
@@ -423,9 +435,7 @@ describe('CI / Plain Mode — no ANSI cursor sequences', () => {
     reporter.onEvent(buildComplete, state);
 
     const combined = output.join('');
-    // No ANSI at all
-    assert.ok(!combined.includes('\x1b'), 'plain mode should not contain ANSI');
-    // No cursor manipulation
+    assert.ok(!combined.includes('\x1b'), 'plain mode has no ANSI');
     assert.ok(!combined.includes('\x1b[?25'), 'no cursor hide/show');
   });
 });

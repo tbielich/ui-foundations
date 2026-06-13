@@ -9,7 +9,6 @@
  */
 
 import { STAGES, STAGE_LABELS, STAGE_STATUS, EVENT_TYPES } from '../events.mjs';
-import { getBoxChars } from '../environment.mjs';
 import { getTheme } from '../themes/mda.mjs';
 import { aggregatePages } from '../normalizer.mjs';
 import {
@@ -19,39 +18,20 @@ import {
   formatSeparator,
   formatBuildComplete,
   formatBuildFailed,
-  formatNote,
   formatOnline,
 } from '../format.mjs';
 
-// ─── Stage → Section Number ──────────────────────────────────────────────────
-
-const SECTION_NUMBERS = {
-  [STAGES.ICONS]: 1,
-  [STAGES.TOKENS]: 2,
-  [STAGES.CSS]: 3,
-  [STAGES.SITE]: 5,
-  [STAGES.SERVER]: 6,
-};
+// ─── Section Labels ──────────────────────────
 
 const SECTION_LABELS = {
   [STAGES.ICONS]: 'ICONS',
   [STAGES.TOKENS]: 'TOKENS',
-  [STAGES.CSS]: 'DISTRIBUTION',
+  [STAGES.CSS]: 'DIST',
   [STAGES.SITE]: 'DOCS',
   [STAGES.SERVER]: 'DEV SERVER',
 };
 
-// Build mode inserts a token integrity section [03] between tokens [02] and css [04]
-const BUILD_SECTION_NUMBERS = {
-  [STAGES.ICONS]: 1,
-  [STAGES.TOKENS]: 2,
-  // Token integrity is rendered as part of TOKENS stage completion
-  [STAGES.CSS]: 4,
-  [STAGES.SITE]: 5,
-  [STAGES.SERVER]: 6,
-};
-
-// ─── MDA Reporter ────────────────────────────────────────────────────────────
+// ─── MDA Reporter ────────────────────────────
 
 export class MdaReporter {
   constructor(options = {}) {
@@ -62,10 +42,10 @@ export class MdaReporter {
     this.buildMode = options.buildMode || 'build';
     this.verbose = options.verbose || false;
 
-    // Track which sections have been printed
     this._printedSections = new Set();
     this._siteProgressEvents = [];
     this._headerPrinted = false;
+    this._sectionCount = 0;
   }
 
   onEvent(event, state) {
@@ -84,7 +64,6 @@ export class MdaReporter {
         break;
 
       case EVENT_TYPES.STAGE_PROGRESS:
-        // Collect site progress events for aggregation
         if (event.stage === STAGES.SITE) {
           this._siteProgressEvents.push(event);
         }
@@ -113,7 +92,7 @@ export class MdaReporter {
     }
   }
 
-  // ─── Header ──────────────────────────────────────────────────────────
+  // ─── Header ────────────────────────────────
 
   _printHeader() {
     if (this._headerPrinted) return;
@@ -123,7 +102,7 @@ export class MdaReporter {
     this.write(`${c.emphasis}${formatHeader(this.version, this.env)}${c.reset}`);
   }
 
-  // ─── Stage Results ───────────────────────────────────────────────────
+  // ─── Stage Results ─────────────────────────
 
   _printStageResult(stageId, state) {
     if (this._printedSections.has(stageId)) return;
@@ -153,39 +132,46 @@ export class MdaReporter {
     }
   }
 
+  _sectionSep() {
+    if (this._sectionCount > 0) {
+      this.write(formatSeparator());
+    }
+    this._sectionCount++;
+  }
+
   _printIconSection(state, isFail, c) {
     const m = state.metrics;
     const status = isFail ? 'FAIL' : 'OK';
     const color = isFail ? c.error : c.success;
 
-    this.write(`${color}${formatSectionTitle(1, 'ICONS', status)}${c.reset}`);
-
-    if (m.icons != null) {
-      this.write(formatMetricRow('Entries', m.icons));
-    }
-    this.write(formatMetricRow('Output', 'icon-names.ts'));
+    this._sectionSep();
+    this.write(`${color}${formatSectionTitle(null, 'ICONS', status)}${c.reset}`);
+    this.write(formatMetricRow('Entries', m.icons ?? 0, false));
+    this.write(formatMetricRow('Output', 'icon-names.ts', true));
   }
 
   _printTokenSection(state, isFail, c) {
     const m = state.metrics;
     const a = state.artifacts;
 
-    // [02] TOKENS
-    this.write(formatSectionTitle(2, 'TOKENS'));
-    this.write(formatMetricRow('CSS', a.css ? 'READY' : 'PENDING'));
-    this.write(formatMetricRow('JSON', a.json ? 'READY' : 'PENDING'));
-    this.write(formatMetricRow('TypeScript', a.typescript ? 'READY' : 'PENDING'));
-    this.write(formatMetricRow('YAML', a.yaml ? 'READY' : 'PENDING'));
+    // TOKENS section (no status — integrity carries it)
+    this._sectionSep();
+    this.write(formatSectionTitle(null, 'TOKENS'));
+    this.write(formatMetricRow('CSS', a.css ? 'READY' : 'PENDING', false));
+    this.write(formatMetricRow('JSON', a.json ? 'READY' : 'PENDING', false));
+    this.write(formatMetricRow('TypeScript', a.typescript ? 'READY' : 'PENDING', false));
+    this.write(formatMetricRow('YAML', a.yaml ? 'READY' : 'PENDING', true));
 
-    // [03] INTEGRITY
+    // INTEGRITY section
     const hasIssues = (m.missingCodeSyntax > 0 || m.duplicateCssVariables > 0);
     const status = isFail ? 'FAIL' : hasIssues ? 'WARN' : 'OK';
     const color = isFail ? c.error : hasIssues ? c.warning : c.success;
 
-    this.write(`${color}${formatSectionTitle(3, 'INTEGRITY', status)}${c.reset}`);
-    this.write(formatMetricRow('Missing WEB', m.missingCodeSyntax ?? 0));
-    this.write(formatMetricRow('Unparseable WEB', m.unparseableCodeSyntax ?? 0));
-    this.write(formatMetricRow('Duplicate vars', m.duplicateCssVariables ?? 0));
+    this._sectionSep();
+    this.write(`${color}${formatSectionTitle(null, 'INTEGRITY', status)}${c.reset}`);
+    this.write(formatMetricRow('Missing WEB', m.missingCodeSyntax ?? 0, false));
+    this.write(formatMetricRow('Unparseable WEB', m.unparseableCodeSyntax ?? 0, false));
+    this.write(formatMetricRow('Duplicate vars', m.duplicateCssVariables ?? 0, true));
   }
 
   _printDistributionSection(state, isFail, c) {
@@ -195,10 +181,11 @@ export class MdaReporter {
     const status = isFail ? 'FAIL' : 'OK';
     const color = isFail ? c.error : c.success;
 
-    this.write(`${color}${formatSectionTitle(4, 'DIST', status)}${c.reset}`);
-    this.write(formatMetricRow('Token CSS', m.tokenFiles ?? 0));
-    this.write(formatMetricRow('Macros', a.macros ? 'READY' : 'PENDING'));
-    this.write(formatMetricRow('Bundles', a.css ? 'READY' : 'PENDING'));
+    this._sectionSep();
+    this.write(`${color}${formatSectionTitle(null, 'DIST', status)}${c.reset}`);
+    this.write(formatMetricRow('Token CSS', m.tokenFiles ?? 0, false));
+    this.write(formatMetricRow('Macros', a.macros ? 'READY' : 'PENDING', false));
+    this.write(formatMetricRow('Bundles', a.css ? 'READY' : 'PENDING', true));
   }
 
   _printDocumentationSection(state, isFail, c) {
@@ -207,48 +194,50 @@ export class MdaReporter {
     const status = isFail ? 'FAIL' : 'OK';
     const color = isFail ? c.error : c.success;
 
-    this.write(`${color}${formatSectionTitle(5, 'DOCS', status)}${c.reset}`);
+    this._sectionSep();
+    this.write(`${color}${formatSectionTitle(null, 'DOCS', status)}${c.reset}`);
 
-    // Aggregate pages by category
     const categories = aggregatePages(this._siteProgressEvents);
-    if (categories.Foundations > 0) this.write(formatMetricRow('Foundations', categories.Foundations));
-    if (categories.Components > 0) this.write(formatMetricRow('Components', categories.Components));
-    if (categories.Playgrounds > 0) this.write(formatMetricRow('Playgrounds', categories.Playgrounds));
-    if (categories.Examples > 0) this.write(formatMetricRow('Examples', categories.Examples));
+    const rows = [];
+    if (categories.Foundations > 0) rows.push(['Foundations', categories.Foundations]);
+    if (categories.Components > 0) rows.push(['Components', categories.Components]);
+    if (categories.Playgrounds > 0) rows.push(['Playgrounds', categories.Playgrounds]);
+    if (categories.Examples > 0) rows.push(['Examples', categories.Examples]);
     const systemPages = (categories.System || 0) + (categories.Tokens || 0);
-    if (systemPages > 0) this.write(formatMetricRow('System', systemPages));
+    if (systemPages > 0) rows.push(['System', systemPages]);
+    if (m.pages != null) rows.push(['Pages', m.pages]);
+    if (m.assets != null) rows.push(['Assets', m.assets]);
+    if (m.buildTime != null) rows.push(['Time', `${m.buildTime}s`]);
 
-    this.write('\n');
-    if (m.pages != null) this.write(formatMetricRow('Pages', m.pages));
-    if (m.assets != null) this.write(formatMetricRow('Assets', m.assets));
-    if (m.buildTime != null) this.write(formatMetricRow('Time', `${m.buildTime}s`));
+    rows.forEach(([label, value], i) => {
+      this.write(formatMetricRow(label, value, i === rows.length - 1));
+    });
   }
 
-  // ─── Server Ready ────────────────────────────────────────────────────
+  // ─── Server Ready ──────────────────────────
 
   _printServerReady(event, state) {
     const c = this.theme.colors;
 
-    this.write(`${c.success}${formatSectionTitle(6, 'DEV SERVER', 'RUN')}${c.reset}`);
-    this.write(formatMetricRow('URL', event.url || 'http://localhost:8080/'));
-    this.write(formatMetricRow('Watch', 'ACTIVE'));
+    this._sectionSep();
+    this.write(`${c.success}${formatSectionTitle(null, 'DEV SERVER', 'RUN')}${c.reset}`);
+    this.write(formatMetricRow('URL', event.url || 'http://localhost:8080/', false));
+    this.write(formatMetricRow('Watch', 'ACTIVE', true));
 
-    // Final online banner
-    this.write(formatSeparator(this.env));
+    this.write(formatSeparator());
     this.write(`${c.success}${formatOnline()}${c.reset}`);
   }
 
-  // ─── Build Complete / Failed ─────────────────────────────────────────
+  // ─── Build Complete / Failed ───────────────
 
   _printBuildComplete(state, durationMs) {
     const c = this.theme.colors;
-    this.write(formatSeparator(this.env));
+    this.write(formatSeparator());
     this.write(`${c.success}${formatBuildComplete(durationMs)}${c.reset}`);
   }
 
   _printBuildFailed(state, event) {
     const c = this.theme.colors;
-    // Find the failed stage
     const failedStage = Object.values(state.stages).find(
       (s) => s.status === STAGE_STATUS.FAIL
     );
@@ -256,17 +245,17 @@ export class MdaReporter {
       ? (SECTION_LABELS[failedStage.id] || STAGE_LABELS[failedStage.id] || failedStage.id)
       : 'UNKNOWN';
 
-    this.write(formatSeparator(this.env));
+    this.write(formatSeparator());
     this.write(`${c.error}${formatBuildFailed(stageName, 1, event.error)}${c.reset}`);
   }
 
-  // ─── Log Messages ───────────────────────────────────────────────────
+  // ─── Log Messages ─────────────────────────
 
   _printLogMessage(event) {
     const c = this.theme.colors;
     const levelColor = event.level === 'error' ? c.error
       : event.level === 'warn' ? c.warning
         : c.muted;
-    this.write(`${levelColor}  ${event.level.toUpperCase().padEnd(5)} ${event.message}${c.reset}\n`);
+    this.write(`${levelColor}${event.level.toUpperCase().padEnd(5)} ${event.message}${c.reset}\n`);
   }
 }
