@@ -70,7 +70,7 @@
     "tokens:build": "npm run tokens:generate",
     "build:css": "node scripts/build-css.mjs",
     "build:raw": "npm run icons:generate-list && npm run tokens:generate && npm run build:css",
-    "build:all": "node scripts/build-dashboard.mjs build",
+    "build:all": "node scripts/build.mjs",
     "build:verbose": "npm run build:raw",
     "build": "npm run build:all",
     "pack:check": "npm pack --dry-run",
@@ -82,7 +82,7 @@
     "release:publish": "npm publish",
     "docs:build": "eleventy",
     "docs:site": "npm run build:all && npm run docs:build",
-    "docs:dev": "node scripts/build-dashboard.mjs dev",
+    "docs:dev": "node scripts/build.mjs dev",
     "docs:dev:verbose": "npm run build:raw && eleventy --serve",
     "ci:check": "npm run lint && npm run test:unit && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run tokens:usage && npm run dtcg:validate && npm run assets:check && npm run rules:validate && npm run docs:build"
   },
@@ -93,8 +93,6 @@
     "fast-glob": "^3.3.3",
     "js-yaml": "^4.1.0",
     "jsonc-parser": "^3.3.1",
-    "prismjs": "^1.30.0",
-    "string-width": "^8.2.1",
-    "strip-ansi": "^7.2.0"
+    "prismjs": "^1.30.0"
   }
 }
