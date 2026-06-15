@@ -38,7 +38,7 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addCollection("componentsDocs", (collectionApi) => {
     return collectionApi
-      .getFilteredByGlob("site/components/**/*.md")
+      .getFilteredByGlob("site/patterns/**/*.md")
       .filter((entry) => !entry.data.isPlayground)
       .sort((a, b) => {
         const aOrder = Number(a.data.order || 999);
@@ -94,7 +94,7 @@ module.exports = function (eleventyConfig) {
       .getFilteredByGlob("site/foundations/**/*.md")
       .filter((page) => page.data.title);
     const components = collectionApi
-      .getFilteredByGlob("site/components/**/*.md")
+      .getFilteredByGlob("site/patterns/**/*.md")
       .filter((page) => !page.data.isPlayground && page.data.title);
 
     const entries = [];

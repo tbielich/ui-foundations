@@ -44,8 +44,8 @@ Figma exports are the source. Generated files in `dist/` are never edited direct
 | React exports | `src/react/index.js` |
 | Nunjucks macros | `site/_includes/macros/ui.njk` (source; `dist/macros/ui.njk` is build copy) |
 | Playground renderers | `site/assets/playground/renderers.js` |
-| Docs pages | `site/components/*.md` |
-| Playground pages | `site/components/*-playground.md` |
+| Docs pages | `site/patterns/*.md` |
+| Playground pages | `site/patterns/*-playground.md` |
 | Code Connect | `schemas/web-*.figma.ts` |
 | Token exports | `figma/exports/*.tokens.json` |
 | Brand overrides | `dist/tokens/css/themes-brands.tokens.*.css` |

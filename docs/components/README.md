@@ -11,7 +11,7 @@ docs pages, and Code Connect mappings.
 - `docs/agentic/assistant-behavior-rules.md`
 - `docs/foundations/foundation-009-component-boundaries-and-utility.md`
 - `docs/foundations/foundation-010-implementation-and-pipeline-workflow.md`
-- `site/components/*.md`
+- `site/patterns/*.md`
 
 ## Who should read this
 

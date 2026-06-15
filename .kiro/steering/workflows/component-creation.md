@@ -167,7 +167,7 @@ Create the docs page following the Component Doc Template.
 
 ### Checklist
 
-- [ ] File created: `site/components/{component}.md`
+- [ ] File created: `site/patterns/{component}.md`
 - [ ] All required sections present
 - [ ] Hero with brand/mode switches
 - [ ] States grid
@@ -184,7 +184,7 @@ Create the interactive playground page.
 
 - Add renderer to `site/assets/playground/renderers.js`
 - Add code generator to `site/assets/playground/code-generators.js`
-- Playground page: `site/components/{component}-playground.md`
+- Playground page: `site/patterns/{component}-playground.md`
 - Token table via `tokenCssPath`
 
 ### Checklist
@@ -256,11 +256,11 @@ npm run ci:check           # Full pipeline
 | 4 | Nunjucks Macro | `site/_includes/macros/ui.njk` |
 | 5 | React Wrapper | `src/react/{component}.js` |
 | 6 | React Index | `src/react/index.js` (add export) |
-| 7 | Docs Page | `site/components/{component}.md` |
-| 8 | Playground Page | `site/components/{component}-playground.md` |
+| 7 | Docs Page | `site/patterns/{component}.md` |
+| 8 | Playground Page | `site/patterns/{component}-playground.md` |
 | 9 | Playground Renderer | `site/assets/playground/renderers.js` |
 | 10 | Code Connect | `schemas/web-{component}.figma.ts` |
-| 11 | Components Index | `site/components/index.md` (add card) |
+| 11 | Components Index | `site/patterns/index.md` (add card) |
 
 ---
 
