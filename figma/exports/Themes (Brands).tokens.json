@@ -30,7 +30,7 @@
                 "$ref": "Color/Brand B/Green/600"
               },
               "Brand A": {
-                "$ref": "Color/Brand A/Green/600"
+                "$ref": "Color/Neutral/800"
               }
             }
           }
@@ -63,7 +63,7 @@
                 "$ref": "Color/Brand B/Red/600"
               },
               "Brand A": {
-                "$ref": "Color/Brand A/Red/600"
+                "$ref": "Color/Neutral/700"
               }
             }
           }
@@ -96,7 +96,7 @@
                 "$ref": "Color/Brand B/Purple/700"
               },
               "Brand A": {
-                "$ref": "Color/Brand A/Green/700"
+                "$ref": "Color/Neutral/900"
               }
             }
           }
@@ -129,7 +129,7 @@
                 "$ref": "Color/Brand B/Purple/900"
               },
               "Brand A": {
-                "$ref": "Color/Brand A/Green/900"
+                "$ref": "Color/Neutral/1000"
               }
             }
           }
@@ -163,7 +163,7 @@
               "$ref": "Color/Brand B/Purple/600"
             },
             "Brand A": {
-              "$ref": "Color/Brand A/Sand/700"
+              "$ref": "Color/Neutral/1000"
             }
           }
         }
@@ -196,7 +196,7 @@
               "$ref": "Color/Brand B/Green/400"
             },
             "Brand A": {
-              "$ref": "Color/Brand A/Green/400"
+              "$ref": "Color/Neutral/600"
             }
           }
         }
@@ -229,7 +229,7 @@
               "$ref": "Color/Brand B/Purple/800"
             },
             "Brand A": {
-              "$ref": "Color/Brand A/Sand/900"
+              "$ref": "Color/Neutral/1000"
             }
           }
         }
@@ -262,7 +262,7 @@
               "$ref": "Color/Brand B/Green/800"
             },
             "Brand A": {
-              "$ref": "Color/Brand A/Green/600"
+              "$ref": "Color/Neutral/800"
             }
           }
         }
