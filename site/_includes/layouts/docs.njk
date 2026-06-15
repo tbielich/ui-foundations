@@ -97,27 +97,24 @@
                   </a>
                 </li>
                 {% endfor %}
+                <li>
+                  <details class="docs-nav-subgroup"{% if page.url.indexOf("/primitives/") == 0 or page.url == "/foundations/design-tokens/" %} open{% endif %}>
+                    <summary><a href="/foundations/design-tokens/"{% if page.url == "/foundations/design-tokens/" %} aria-current="page"{% endif %}>Design Tokens</a></summary>
+                    <ul>
+                      {% for entry in collections.primitivesDocs %}
+                      <li>
+                        <a
+                          href="{{ entry.url }}"
+                          {% if entry.url == page.url %}aria-current="page"{% endif %}
+                        >
+                          {{ entry.data.navTitle or entry.data.title }}
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                </li>
               </ul>
-              <details class="docs-nav-subgroup"{% if page.url.indexOf("/primitives/") == 0 or page.url == "/foundations/design-tokens/" %} open{% endif %}>
-                <summary>
-                  <a
-                    href="/foundations/design-tokens/"
-                    {% if page.url == "/foundations/design-tokens/" %}aria-current="page"{% endif %}
-                  >Design Tokens</a>
-                </summary>
-                <ul>
-                  {% for entry in collections.primitivesDocs %}
-                  <li>
-                    <a
-                      href="{{ entry.url }}"
-                      {% if entry.url == page.url %}aria-current="page"{% endif %}
-                    >
-                      {{ entry.data.navTitle or entry.data.title }}
-                    </a>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </details>
             </details>
           </nav>
 
