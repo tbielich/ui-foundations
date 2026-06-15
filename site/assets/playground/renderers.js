@@ -681,6 +681,30 @@
     return { element: wrapper, code: codeLines.join("\n") };
   };
 
+  // ─── Divider ──────────────────────────────────
+
+  const renderVanillaDivider = ({ props }) => {
+    const variant = String(props.variant || "default");
+    const orientation = String(props.orientation || "horizontal");
+
+    const element = document.createElement("hr");
+    element.className = "divider";
+    if (variant === "subtle") element.classList.add("subtle");
+    if (orientation === "vertical") {
+      element.setAttribute("aria-orientation", "vertical");
+      element.style.display = "inline-block";
+      element.style.blockSize = "3rem";
+    }
+
+    const classes = ["divider"];
+    if (variant === "subtle") classes.push("subtle");
+    const attrs = [];
+    if (orientation === "vertical") attrs.push('aria-orientation="vertical"');
+    const code = `<hr class="${classes.join(" ")}"${attrs.length ? " " + attrs.join(" ") : ""} />`;
+
+    return { element, code };
+  };
+
   const renderVanillaForm = ({ props }) => {
     const borderless = asBoolean(props.borderless);
     const labelPosition = String(props.labelPosition || "top");
@@ -958,6 +982,7 @@
       button: renderVanillaButton,
       "button-group": renderVanillaButtonGroup,
       checkbox: renderVanillaCheckbox,
+      divider: renderVanillaDivider,
       icon: renderVanillaIcon,
       input: renderVanillaInput,
       label: renderVanillaLabel,

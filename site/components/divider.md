@@ -5,6 +5,8 @@ description: Dividers are visual separators that create clear boundaries between
 navTitle: Divider
 order: 16
 permalink: /patterns/divider/
+playgroundUrl: /patterns/divider-playground/
+playgroundLabel: Open Divider Playground
 ---
 {% import "macros/ui.njk" as ui %}
 
