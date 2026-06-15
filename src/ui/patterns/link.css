@@ -38,8 +38,8 @@
   .link.is-focus-visible {
     color: var(--link-text-color-hover);
     outline: none;
-    box-shadow: 0 0 0 var(--shadow-focus, 2px) var(--color-focus, transparent);
-    border-radius: 2px;
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
+    border-radius: var(--size-radius-100);
   }
 
   .link[aria-disabled="true"],
