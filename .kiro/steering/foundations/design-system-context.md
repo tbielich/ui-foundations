@@ -67,6 +67,22 @@ Planned: Calendar, DatePicker, ComboBox, Dialog, Table
 
 Components will live in `src/components/` (not yet created).
 
+## Atomic Design Model
+
+UI Foundations follows an Atomic Design approach using chemistry as its mental
+model. Each layer builds on the previous one through composition:
+
+| Layer | Chemistry | Definition | Example |
+|-------|-----------|------------|---------|
+| Tokens | Subatomic particles | Raw design values — the physical constants | `--color-neutral-800`, `--size-spacing-300` |
+| Patterns | Atoms | Smallest self-contained UI unit, CSS-only, stateless | `.button`, `.badge`, `.input` |
+| Components | Molecules | Multiple atoms bound together with state/JS | `<Calendar>`, `<Dialog>` |
+| Compositions | Organisms | Multiple molecules/atoms arranged for a task | Login Form, Pricing Card |
+
+**Key rule:** The "binding energy" that turns atoms into molecules is
+JavaScript and state management. A Pattern (atom) is stable on its own without
+JS. A Component (molecule) requires JS to function.
+
 ## Pattern vs. Component
 
 | | Pattern | Component |

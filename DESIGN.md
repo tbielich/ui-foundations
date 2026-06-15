@@ -22,7 +22,21 @@ guesswork.
 
 ## Token Architecture
 
-The system follows a layered model:
+The system follows a layered model inspired by Atomic Design, using chemistry
+as its mental model:
+
+| Layer | Chemistry | Definition |
+|-------|-----------|------------|
+| Tokens | Subatomic particles | Raw design values — the physical constants |
+| Patterns | Atoms | Smallest self-contained UI unit, CSS-only, stateless |
+| Components | Molecules | Multiple atoms bound with state and JavaScript |
+| Compositions | Organisms | Multiple molecules/atoms arranged for a use-case |
+
+The "binding energy" that turns atoms (patterns) into molecules (components) is
+JavaScript and state management. This boundary is the hard rule:
+no JS = pattern, needs JS = component.
+
+Token layers within the subatomic level:
 
 1. Core primitives
 2. Semantic tokens
