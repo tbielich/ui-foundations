@@ -46,4 +46,10 @@
   .badge > .icon {
     flex: 0 0 auto;
   }
+
+  /* ── Ensure children inherit color over base :where(span) rule ── */
+
+  .badge > * {
+    color: inherit;
+  }
 }
