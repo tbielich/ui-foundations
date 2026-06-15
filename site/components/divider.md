@@ -31,6 +31,9 @@ playgroundLabel: Open Divider Playground
     </div>
   </div>
   <div class="docs-hero-meta">
+    {% if playgroundUrl %}
+    <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
+    {% endif %}
     {% if figmaConnections and figmaConnections.urlsByName and figmaConnections.urlsByName[page.fileSlug] %}
     <a class="docs-page-link" href="{{ figmaConnections.urlsByName[page.fileSlug] }}" target="_blank" rel="noopener noreferrer">Open in Figma</a>
     {% endif %}
