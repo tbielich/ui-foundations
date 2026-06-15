@@ -4,7 +4,7 @@ title: Link Playground
 description: Interactive vanilla preview for the Link component.
 navTitle: Link Playground
 order: 61
-permalink: /components/link-playground/
+permalink: /patterns/link-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

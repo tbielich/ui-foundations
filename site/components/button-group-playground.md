@@ -4,7 +4,7 @@ title: Button Group Playground
 description: Interactive grouped button layouts for attached rows and toggle states.
 navTitle: Button Group Playground
 order: 21
-permalink: /components/button-group-playground/
+permalink: /patterns/button-group-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

@@ -4,8 +4,8 @@ title: Select
 description: Dropdown selection component for choosing a single option from a list. Supports placeholder text, option groups, disabled states, and keyboard navigation.
 navTitle: Select
 order: 45
-permalink: /components/select/
-playgroundUrl: /components/select-playground/
+permalink: /patterns/select/
+playgroundUrl: /patterns/select-playground/
 playgroundLabel: Open Select Playground
 ---
 

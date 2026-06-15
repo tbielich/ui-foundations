@@ -4,7 +4,7 @@ title: Tooltip Playground
 description: Interactive preview for the Tooltip component.
 navTitle: Tooltip Playground
 order: 21
-permalink: /components/tooltip-playground/
+permalink: /patterns/tooltip-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

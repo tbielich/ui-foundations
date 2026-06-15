@@ -4,7 +4,7 @@ title: Avatar Playground
 description: Interactive preview for the Avatar component.
 navTitle: Avatar Playground
 order: 18
-permalink: /components/avatar-playground/
+permalink: /patterns/avatar-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

@@ -4,7 +4,7 @@ title: Button Playground
 description: Interactive vanilla example with live button props.
 navTitle: Button Playground
 order: 20
-permalink: /components/button-playground/
+permalink: /patterns/button-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

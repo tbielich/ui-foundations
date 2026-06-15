@@ -4,7 +4,7 @@ title: Badge Playground
 description: Interactive vanilla preview for the Badge component.
 navTitle: Badge Playground
 order: 16
-permalink: /components/badge-playground/
+permalink: /patterns/badge-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

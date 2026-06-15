@@ -4,7 +4,7 @@ title: Switch Playground
 description: Interactive vanilla preview for switch states and checked behavior.
 navTitle: Switch Playground
 order: 48
-permalink: /components/switch-playground/
+permalink: /patterns/switch-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

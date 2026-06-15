@@ -4,7 +4,7 @@ title: Select Playground
 description: Interactive vanilla preview for select states and field properties.
 navTitle: Select Playground
 order: 46
-permalink: /components/select-playground/
+permalink: /patterns/select-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

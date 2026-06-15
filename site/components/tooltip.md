@@ -4,8 +4,8 @@ title: Tooltip
 description: Contextual help text that appears on hover or focus. Non-interactive, positioned relative to a trigger element.
 navTitle: Tooltip
 order: 21
-permalink: /components/tooltip/
-playgroundUrl: /components/tooltip-playground/
+permalink: /patterns/tooltip/
+playgroundUrl: /patterns/tooltip-playground/
 playgroundLabel: Open Tooltip Playground
 ---
 {% import "macros/ui.njk" as ui %}

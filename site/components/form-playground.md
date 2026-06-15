@@ -4,7 +4,7 @@ title: Form Playground
 description: Interactive preview for form layout, grouping, and validation patterns.
 navTitle: Form Playground
 order: 71
-permalink: /components/form-playground/
+permalink: /patterns/form-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

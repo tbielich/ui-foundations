@@ -4,8 +4,8 @@ title: Tabs
 description: Tabbed navigation for switching between related content panels. Keyboard accessible with ARIA tablist pattern.
 navTitle: Tabs
 order: 20
-permalink: /components/tabs/
-playgroundUrl: /components/tabs-playground/
+permalink: /patterns/tabs/
+playgroundUrl: /patterns/tabs-playground/
 playgroundLabel: Open Tabs Playground
 ---
 {% import "macros/ui.njk" as ui %}

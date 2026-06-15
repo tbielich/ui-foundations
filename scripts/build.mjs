@@ -146,8 +146,10 @@ function runStage(cmd, args, onLine) {
 // ─── Eleventy Page Categories ────────────────
 
 function categorize(path) {
+  if (path.startsWith('patterns/') && path.includes('-playground')) return 'Playgrounds';
+  if (path.startsWith('patterns/')) return 'Patterns';
   if (path.startsWith('components/') && path.includes('-playground')) return 'Playgrounds';
-  if (path.startsWith('components/')) return 'Components';
+  if (path.startsWith('components/')) return 'Patterns';
   if (path.startsWith('foundations/')) return 'Foundations';
   if (path.startsWith('examples/')) return 'Examples';
   return 'System';
@@ -171,7 +173,7 @@ const metrics = {
   assets: 0,
   buildTime: 0,
   serverUrl: null,
-  categories: { Foundations: 0, Components: 0, Playgrounds: 0, Examples: 0, System: 0 },
+  categories: { Foundations: 0, Patterns: 0, Playgrounds: 0, Examples: 0, System: 0 },
 };
 
 const buildStart = Date.now();
@@ -312,7 +314,7 @@ function printDocsSection() {
   out(`${c.green}${section('DOCS', 'OK')}${c.reset}`);
   const rows = [];
   if (cats.Foundations > 0) rows.push(['Foundations', cats.Foundations]);
-  if (cats.Components > 0) rows.push(['Components', cats.Components]);
+  if (cats.Patterns > 0) rows.push(['Patterns', cats.Patterns]);
   if (cats.Playgrounds > 0) rows.push(['Playgrounds', cats.Playgrounds]);
   if (cats.Examples > 0) rows.push(['Examples', cats.Examples]);
   if (cats.System > 0) rows.push(['System', cats.System]);

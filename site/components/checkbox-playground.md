@@ -4,7 +4,7 @@ title: Checkbox Playground
 description: Interactive vanilla preview for checkbox states and form behavior.
 navTitle: Checkbox Playground
 order: 46
-permalink: /components/checkbox-playground/
+permalink: /patterns/checkbox-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:

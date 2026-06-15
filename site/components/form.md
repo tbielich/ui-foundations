@@ -4,8 +4,8 @@ title: Form
 description: Form provides layout structure for grouping fields, labels, helper text, and actions into a cohesive form experience.
 navTitle: Form
 order: 70
-permalink: /components/form/
-playgroundUrl: /components/form-playground/
+permalink: /patterns/form/
+playgroundUrl: /patterns/form-playground/
 playgroundLabel: Open Form Playground
 ---
 

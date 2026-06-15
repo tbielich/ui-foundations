@@ -4,8 +4,8 @@ title: Accordion
 description: Expandable/collapsible content sections using native details/summary elements. Keyboard accessible by default.
 navTitle: Accordion
 order: 19
-permalink: /components/accordion/
-playgroundUrl: /components/accordion-playground/
+permalink: /patterns/accordion/
+playgroundUrl: /patterns/accordion-playground/
 playgroundLabel: Open Accordion Playground
 ---
 {% import "macros/ui.njk" as ui %}

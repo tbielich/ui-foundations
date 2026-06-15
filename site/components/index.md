@@ -1,10 +1,10 @@
 ---
 layout: layouts/docs.njk
-title: Components
-description: Interactive building blocks of the design system.
+title: Patterns
+description: CSS-only building blocks of the design system.
 navTitle: Overview
 order: 1
-permalink: /components/
+permalink: /patterns/
 ---
 
 {% import "macros/ui.njk" as ui %}

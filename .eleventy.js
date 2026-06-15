@@ -98,7 +98,7 @@ module.exports = function (eleventyConfig) {
         title: page.data.title,
         description: page.data.description || "",
         url: page.url,
-        type: "component",
+        type: "pattern",
       });
     }
 

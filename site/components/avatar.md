@@ -4,8 +4,8 @@ title: Avatar
 description: Thumbnail representation of a user or entity. Supports images and initials fallback with multiple sizes.
 navTitle: Avatar
 order: 18
-permalink: /components/avatar/
-playgroundUrl: /components/avatar-playground/
+permalink: /patterns/avatar/
+playgroundUrl: /patterns/avatar-playground/
 playgroundLabel: Open Avatar Playground
 ---
 {% import "macros/ui.njk" as ui %}

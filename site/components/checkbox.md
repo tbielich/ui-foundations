@@ -4,8 +4,8 @@ title: Checkbox
 description: Checkboxes allow users to select one or more options from a list, or toggle a single binary choice. They support checked, unchecked, and indeterminate states.
 navTitle: Checkbox
 order: 45
-permalink: /components/checkbox/
-playgroundUrl: /components/checkbox-playground/
+permalink: /patterns/checkbox/
+playgroundUrl: /patterns/checkbox-playground/
 playgroundLabel: Open Checkbox Playground
 ---
 

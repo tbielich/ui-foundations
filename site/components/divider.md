@@ -4,7 +4,7 @@ title: Divider
 description: Dividers are visual separators that create clear boundaries between content sections. They use semantic HTML and adapt across brands and modes.
 navTitle: Divider
 order: 16
-permalink: /components/divider/
+permalink: /patterns/divider/
 ---
 {% import "macros/ui.njk" as ui %}
 

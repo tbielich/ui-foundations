@@ -4,7 +4,7 @@ title: Icon Playground
 description: Interactive vanilla preview for decorative and accessible icon usage.
 navTitle: Icon Playground
 order: 21
-permalink: /components/icon-playground/
+permalink: /patterns/icon-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
