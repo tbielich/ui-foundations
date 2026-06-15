@@ -40,7 +40,7 @@ const useColor = isTTY && !noColor && !isCI;
 const c = useColor ? {
   reset: '\x1b[0m',
   bold: '\x1b[1m',
-  dim: '\x1b[2m',
+  dim: '\x1b[2;90m',
   green: '\x1b[32m',
   red: '\x1b[31m',
   yellow: '\x1b[33m',
@@ -325,7 +325,7 @@ function printDocsSection() {
 function printServerSection() {
   out(sep);
   out(`${c.green}${section('DEV SERVER', 'RUN')}${c.reset}`);
-  out(row('URL', metrics.serverUrl, false));
+  out(row('URL', `${c.green}${metrics.serverUrl}${c.reset}`, false));
   out(row('Watch', 'ACTIVE', true));
   out(sep);
   out(`${c.green}ONLINE \u00B7 SERVER \u00B7 WATCH${c.reset}`);
