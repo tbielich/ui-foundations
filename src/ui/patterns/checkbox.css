@@ -69,7 +69,7 @@
   .checkbox.is-indeterminate::after {
     inline-size: 0.75rem;
     block-size: var(--size-border-200);
-    border-radius: 999px;
+    border-radius: var(--size-radius-full);
     background: currentColor;
   }
 
