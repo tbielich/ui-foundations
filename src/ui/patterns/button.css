@@ -64,6 +64,8 @@
     background: var(--button-solid-container-background-focus);
     border-color: var(--button-solid-border-color-focus);
     color: var(--button-solid-text-color-default);
+    outline: none;
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
   .button.outline {
@@ -103,6 +105,8 @@
     background: var(--button-outline-container-background-focus);
     border-color: var(--button-outline-border-color-focus);
     color: var(--button-outline-text-color-default);
+    outline: none;
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
   .button.ghost {
@@ -142,6 +146,8 @@
     background: var(--button-ghost-container-background-focus);
     border-color: var(--button-ghost-border-color-focus);
     color: var(--button-ghost-text-color-default);
+    outline: none;
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
   .button:disabled,
