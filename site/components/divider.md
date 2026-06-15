@@ -4,7 +4,9 @@ title: Divider
 description: Dividers are visual separators that create clear boundaries between content sections. They use semantic HTML and adapt across brands and modes.
 navTitle: Divider
 order: 16
-permalink: /components/divider/
+permalink: /patterns/divider/
+playgroundUrl: /patterns/divider-playground/
+playgroundLabel: Open Divider Playground
 ---
 {% import "macros/ui.njk" as ui %}
 
@@ -29,7 +31,9 @@ permalink: /components/divider/
     </div>
   </div>
   <div class="docs-hero-meta">
-    <span class="docs-status" data-status="draft">Draft</span>
+    {% if playgroundUrl %}
+    <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
+    {% endif %}
     {% if figmaConnections and figmaConnections.urlsByName and figmaConnections.urlsByName[page.fileSlug] %}
     <a class="docs-page-link" href="{{ figmaConnections.urlsByName[page.fileSlug] }}" target="_blank" rel="noopener noreferrer">Open in Figma</a>
     {% endif %}

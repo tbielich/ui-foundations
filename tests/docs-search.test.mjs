@@ -12,7 +12,7 @@ const { filterIndex, navigateIndex } = require("../site/assets/search-utils.js")
 
 test("filterIndex: empty query returns empty array", () => {
   const index = [
-    { title: "Button", description: "Primary action", url: "/button/", type: "component" },
+    { title: "Button", description: "Primary action", url: "/button/", type: "pattern" },
   ];
   assert.deepEqual(filterIndex("", index), []);
 });
@@ -27,17 +27,17 @@ test("filterIndex: whitespace-only query returns empty array", () => {
 
 test("filterIndex: no-match query returns empty array", () => {
   const index = [
-    { title: "Button", description: "Primary action", url: "/button/", type: "component" },
-    { title: "Input", description: "Text field", url: "/input/", type: "component" },
+    { title: "Button", description: "Primary action", url: "/button/", type: "pattern" },
+    { title: "Input", description: "Text field", url: "/input/", type: "pattern" },
   ];
   assert.deepEqual(filterIndex("zzzzz", index), []);
 });
 
 test("filterIndex: matches on title (case-insensitive)", () => {
   const index = [
-    { title: "Button", description: "Primary action", url: "/button/", type: "component" },
-    { title: "Input", description: "Text field", url: "/input/", type: "component" },
-    { title: "Badge", description: "Status pill", url: "/badge/", type: "component" },
+    { title: "Button", description: "Primary action", url: "/button/", type: "pattern" },
+    { title: "Input", description: "Text field", url: "/input/", type: "pattern" },
+    { title: "Badge", description: "Status pill", url: "/badge/", type: "pattern" },
   ];
   const results = filterIndex("but", index);
   assert.equal(results.length, 1);
@@ -46,8 +46,8 @@ test("filterIndex: matches on title (case-insensitive)", () => {
 
 test("filterIndex: matches on description (case-insensitive)", () => {
   const index = [
-    { title: "Button", description: "Primary action", url: "/button/", type: "component" },
-    { title: "Input", description: "Text field", url: "/input/", type: "component" },
+    { title: "Button", description: "Primary action", url: "/button/", type: "pattern" },
+    { title: "Input", description: "Text field", url: "/input/", type: "pattern" },
   ];
   const results = filterIndex("TEXT", index);
   assert.equal(results.length, 1);
@@ -57,21 +57,21 @@ test("filterIndex: matches on description (case-insensitive)", () => {
 test("filterIndex: returns multiple matches", () => {
   const index = [
     { title: "Color tokens", description: "All colors", url: "/color/", type: "token" },
-    { title: "Button", description: "Colorful action", url: "/button/", type: "component" },
-    { title: "Icon", description: "SVG icons", url: "/icon/", type: "component" },
+    { title: "Button", description: "Colorful action", url: "/button/", type: "pattern" },
+    { title: "Icon", description: "SVG icons", url: "/icon/", type: "pattern" },
   ];
   const results = filterIndex("color", index);
   assert.equal(results.length, 2);
 });
 
 test("filterIndex: preserves entry structure", () => {
-  const entry = { title: "Tabs", description: "Tab navigation", url: "/tabs/", type: "component" };
+  const entry = { title: "Tabs", description: "Tab navigation", url: "/tabs/", type: "pattern" };
   const results = filterIndex("tab", [entry]);
   assert.equal(results.length, 1);
   assert.equal(results[0].title, "Tabs");
   assert.equal(results[0].description, "Tab navigation");
   assert.equal(results[0].url, "/tabs/");
-  assert.equal(results[0].type, "component");
+  assert.equal(results[0].type, "pattern");
 });
 
 test("navigateIndex: ArrowDown increments (clamped at end)", () => {
@@ -120,9 +120,9 @@ test("search index collection: includes foundation pages with title", () => {
 
 test("search index collection: excludes playground pages", () => {
   const pages = [
-    { data: { title: "Button", isPlayground: false }, url: "/components/button/" },
-    { data: { title: "Button Playground", isPlayground: true }, url: "/components/button-playground/" },
-    { data: { title: "Checkbox", isPlayground: undefined }, url: "/components/checkbox/" },
+    { data: { title: "Button", isPlayground: false }, url: "/patterns/button/" },
+    { data: { title: "Button Playground", isPlayground: true }, url: "/patterns/button-playground/" },
+    { data: { title: "Checkbox", isPlayground: undefined }, url: "/patterns/checkbox/" },
   ];
 
   const entries = pages
@@ -131,7 +131,7 @@ test("search index collection: excludes playground pages", () => {
       title: p.data.title,
       description: p.data.description || "",
       url: p.url,
-      type: "component",
+      type: "pattern",
     }));
 
   assert.equal(entries.length, 2);
@@ -147,7 +147,7 @@ const searchEntryArb = fc.record({
   title: fc.string({ minLength: 1, maxLength: 50 }),
   description: fc.string({ maxLength: 100 }),
   url: fc.webUrl(),
-  type: fc.constantFrom("token", "component"),
+  type: fc.constantFrom("token", "pattern"),
 });
 
 test("PBT Property 3: filterIndex returns only case-insensitive substring matches", () => {

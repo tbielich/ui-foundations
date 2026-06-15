@@ -4,14 +4,14 @@ title: Input Playground
 description: Interactive vanilla preview for input states and field properties.
 navTitle: Input Playground
 order: 41
-permalink: /components/input-playground/
+permalink: /patterns/input-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Input
-    url: /components/input/
+    url: /patterns/input/
   - label: Playground
 playground:
   id: input-playground

@@ -4,8 +4,8 @@ title: Icon
 description: Icons communicate meaning through simple, recognizable symbols. They reinforce labels, indicate actions, and provide visual cues that reduce cognitive load.
 navTitle: Icon
 order: 20
-permalink: /components/icon/
-playgroundUrl: /components/icon-playground/
+permalink: /patterns/icon/
+playgroundUrl: /patterns/icon-playground/
 playgroundLabel: Open Icon Playground
 ---
 {% import "macros/ui.njk" as ui %}

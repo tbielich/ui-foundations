@@ -4,14 +4,14 @@ title: Tabs Playground
 description: Interactive preview for the Tabs component.
 navTitle: Tabs Playground
 order: 20
-permalink: /components/tabs-playground/
+permalink: /patterns/tabs-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Tabs
-    url: /components/tabs/
+    url: /patterns/tabs/
   - label: Playground
 playground:
   id: tabs-playground

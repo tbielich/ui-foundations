@@ -64,6 +64,21 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("foundationsDocs", (collectionApi) => {
     return collectionApi
       .getFilteredByGlob("site/foundations/**/*.md")
+      .filter((entry) => entry.data.permalink !== "/foundations/" && !entry.data.excludeFromNav)
+      .sort((a, b) => {
+        const aOrder = Number(a.data.order || 999);
+        const bOrder = Number(b.data.order || 999);
+        if (aOrder !== bOrder) return aOrder - bOrder;
+        return String(a.data.title || "").localeCompare(
+          String(b.data.title || ""),
+        );
+      });
+  });
+
+  eleventyConfig.addCollection("primitivesDocs", (collectionApi) => {
+    return collectionApi
+      .getFilteredByGlob("site/primitives/**/*.md")
+      .filter((entry) => entry.data.permalink !== "/primitives/")
       .sort((a, b) => {
         const aOrder = Number(a.data.order || 999);
         const bOrder = Number(b.data.order || 999);
@@ -98,7 +113,7 @@ module.exports = function (eleventyConfig) {
         title: page.data.title,
         description: page.data.description || "",
         url: page.url,
-        type: "component",
+        type: "pattern",
       });
     }
 

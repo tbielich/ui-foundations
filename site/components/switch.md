@@ -4,8 +4,8 @@ title: Switch
 description: Switches toggle a single setting on or off with immediate effect. Use them for binary choices that take effect without a submit action.
 navTitle: Switch
 order: 47
-permalink: /components/switch/
-playgroundUrl: /components/switch-playground/
+permalink: /patterns/switch/
+playgroundUrl: /patterns/switch-playground/
 playgroundLabel: Open Switch Playground
 ---
 
@@ -29,7 +29,6 @@ playgroundLabel: Open Switch Playground
     </div>
   </div>
   <div class="docs-hero-meta">
-    <span class="docs-status" data-status="draft">Draft</span>
     {% if playgroundUrl %}
     <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
     {% endif %}

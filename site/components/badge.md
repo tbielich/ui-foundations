@@ -4,8 +4,8 @@ title: Badge
 description: Badges are small pill-shaped labels for status, counts, or highlights. Non-interactive, they adapt across brands and modes.
 navTitle: Badge
 order: 15
-permalink: /components/badge/
-playgroundUrl: /components/badge-playground/
+permalink: /patterns/badge/
+playgroundUrl: /patterns/badge-playground/
 playgroundLabel: Open Badge Playground
 ---
 {% import "macros/ui.njk" as ui %}
@@ -30,7 +30,6 @@ playgroundLabel: Open Badge Playground
     </div>
   </div>
   <div class="docs-hero-meta">
-    <span class="docs-status" data-status="draft">Draft</span>
     {% if playgroundUrl %}
     <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
     {% endif %}

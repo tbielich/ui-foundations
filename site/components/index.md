@@ -1,10 +1,10 @@
 ---
 layout: layouts/docs.njk
-title: Components
-description: Interactive building blocks of the design system.
+title: Patterns
+description: CSS-only building blocks of the design system.
 navTitle: Overview
 order: 1
-permalink: /components/
+permalink: /patterns/
 ---
 
 {% import "macros/ui.njk" as ui %}
@@ -23,7 +23,7 @@ permalink: /components/
   </div>
   <div class="docs-hero-preview-stage">
     <div class="docs-component-grid">
-  <a class="docs-component-card" href="/components/button/">
+  <a class="docs-component-card" href="/patterns/button/">
     <div class="docs-component-card-preview">
       {{ ui.button("Action") }}
       {{ ui.button("Secondary", "outline") }}
@@ -33,7 +33,7 @@ permalink: /components/
       <p>Solid, outline, and ghost variants for primary, secondary, and tertiary actions.</p>
     </div>
   </a>
-  <a class="docs-component-card" href="/components/icon/">
+  <a class="docs-component-card" href="/patterns/icon/">
     <div class="docs-component-card-preview">
       <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
       <span class="icon" style="--icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
@@ -45,7 +45,7 @@ permalink: /components/
       <p>SVG icons via CSS mask, inheriting color and size from the parent.</p>
     </div>
   </a>
-  <a class="docs-component-card" href="/components/badge/">
+  <a class="docs-component-card" href="/patterns/badge/">
     <div class="docs-component-card-preview">
       {{ ui.badge("Default") }}
       {{ ui.badge("Brand", variant="brand") }}
@@ -56,7 +56,7 @@ permalink: /components/
       <p>Pill-shaped labels for status, counts, or highlights.</p>
     </div>
   </a>
-  <a class="docs-component-card" href="/components/label/">
+  <a class="docs-component-card" href="/patterns/label/">
     <div class="docs-component-card-preview">
       <span class="label-content">
         <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
@@ -68,7 +68,7 @@ permalink: /components/
       <p>Text and icon primitives for components and form fields.</p>
     </div>
   </a>
-  <a class="docs-component-card" href="/components/input/">
+  <a class="docs-component-card" href="/patterns/input/">
     <div class="docs-component-card-preview">
       {{ ui.input(type="text", placeholder="Email address") }}
     </div>
@@ -77,7 +77,7 @@ permalink: /components/
       <p>Text input with token-driven states for data entry.</p>
     </div>
   </a>
-  <a class="docs-component-card" href="/components/checkbox/">
+  <a class="docs-component-card" href="/patterns/checkbox/">
     <div class="docs-component-card-preview">
       {{ ui.checkbox("Option A", true) }}
       {{ ui.checkbox("Option B") }}
@@ -87,7 +87,7 @@ permalink: /components/
       <p>Binary selection with checked, unchecked, and indeterminate states.</p>
     </div>
   </a>
-  <a class="docs-component-card" href="/components/radio/">
+  <a class="docs-component-card" href="/patterns/radio/">
     <div class="docs-component-card-preview">
       {{ ui.radio("Option A", true, false, "default", "", "", "", "ov-radio", "a") }}
       {{ ui.radio("Option B", false, false, "default", "", "", "", "ov-radio", "b") }}
@@ -97,7 +97,7 @@ permalink: /components/
       <p>Mutually exclusive choices within a group.</p>
     </div>
   </a>
-  <a class="docs-component-card" href="/components/switch/">
+  <a class="docs-component-card" href="/patterns/switch/">
     <div class="docs-component-card-preview">
       {{ ui.switch("Notifications", true) }}
     </div>
@@ -106,7 +106,7 @@ permalink: /components/
       <p>Binary toggle for immediate on/off settings.</p>
     </div>
   </a>
-  <a class="docs-component-card" href="/components/link/">
+  <a class="docs-component-card" href="/patterns/link/">
     <div class="docs-component-card-preview">
       <span class="link">Learn more</span>
     </div>
@@ -115,7 +115,7 @@ permalink: /components/
       <p>Inline and standalone navigation with token-driven states.</p>
     </div>
   </a>
-  <a class="docs-component-card" href="/components/select/">
+  <a class="docs-component-card" href="/patterns/select/">
     <div class="docs-component-card-preview">
       {{ ui.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}], placeholder="Choose an option") }}
     </div>

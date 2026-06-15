@@ -4,8 +4,8 @@ title: Tooltip
 description: Contextual help text that appears on hover or focus. Non-interactive, positioned relative to a trigger element.
 navTitle: Tooltip
 order: 21
-permalink: /components/tooltip/
-playgroundUrl: /components/tooltip-playground/
+permalink: /patterns/tooltip/
+playgroundUrl: /patterns/tooltip-playground/
 playgroundLabel: Open Tooltip Playground
 ---
 {% import "macros/ui.njk" as ui %}
@@ -30,7 +30,6 @@ playgroundLabel: Open Tooltip Playground
     </div>
   </div>
   <div class="docs-hero-meta">
-    <span class="docs-status" data-status="draft">Draft</span>
     {% if playgroundUrl %}
     <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
     {% endif %}

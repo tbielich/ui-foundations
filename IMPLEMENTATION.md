@@ -102,7 +102,7 @@ No:
 
 ---
 
-## Component Implementation
+## Pattern Implementation
 
 HTML patterns:
 
@@ -142,7 +142,7 @@ React (optional):
 
 ---
 
-## Component Workflow
+## Pattern Workflow
 
 1. Update Figma token exports
 2. Run: npm run build\:all

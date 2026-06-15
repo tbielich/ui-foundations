@@ -4,8 +4,8 @@ title: Radio
 description: Selection control for mutually exclusive choices within a group.
 navTitle: Radio
 order: 55
-permalink: /components/radio/
-playgroundUrl: /components/radio-playground/
+permalink: /patterns/radio/
+playgroundUrl: /patterns/radio-playground/
 playgroundLabel: Open Radio Playground
 ---
 

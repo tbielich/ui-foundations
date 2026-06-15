@@ -50,11 +50,33 @@ Figma exports are the source. Generated files in `dist/` are never edited direct
 | Token exports | `figma/exports/*.tokens.json` |
 | Brand overrides | `dist/tokens/css/themes-brands.tokens.*.css` |
 
-## Current Components
+## Current Patterns
 
-Label, Button (solid/outline/ghost), ButtonGroup, Input, Icon, Checkbox, Radio, Switch, Link, Badge, Divider, Textarea, Avatar, Accordion, Tabs, Tooltip, Select, Form (bordered/none), Form Group
+Patterns are CSS-only, stateless UI building blocks. No JavaScript required.
 
-Planned (not yet implemented): Slider
+Label, Button (solid/outline/ghost), Input, Icon, Checkbox, Radio, Switch,
+Link, Badge, Divider, Textarea, Avatar, Accordion, Tabs, Tooltip, Select,
+Form (bordered/none), Form Group
+
+## Components (planned)
+
+Components are functional units that add state, interactivity, or orchestration
+logic via JavaScript. They build on top of patterns.
+
+Planned: Calendar, DatePicker, ComboBox, Dialog, Table
+
+Components will live in `src/components/` (not yet created).
+
+## Pattern vs. Component
+
+| | Pattern | Component |
+|---|---|---|
+| CSS | ✓ | ✓ (uses patterns) |
+| JavaScript | – | ✓ |
+| State | – | ✓ |
+| Location | `src/ui/patterns/` | `src/components/` |
+| Token layer | `@layer components` | `@layer components` |
+| Example | `.button`, `.input` | `<Calendar>` |
 
 ## Environment Variables
 
@@ -67,22 +89,23 @@ Copy `.env.example` to `.env` for local use. Scripts that need `FIGMA_TOKEN`
 will fail with auth errors if it is missing. `NPM_TOKEN` is only needed for
 `npm publish`.
 
-## Component Promotion Workflow
+## Pattern Promotion Workflow
 
 When building examples, pages, or compositions that use UI patterns not yet in
-the component list above, follow this workflow:
+the pattern list above, follow this workflow:
 
 1. **Detect** — After finishing the requested work, review the markup for any
    repeated UI pattern (badge, list, card, tooltip, etc.) that is not an
-   existing system component.
-2. **Report** — At the end of your response, list each missing component with:
+   existing system pattern.
+2. **Report** — At the end of your response, list each missing pattern with:
    - Name and short purpose (e.g. "Badge — small status pill label").
    - Why it passes the utility test (reusable across multiple contexts).
+   - Whether it is a Pattern (CSS-only) or Component (needs JS/state).
    - Which of the 10 integration surfaces are needed (Rule 8).
-3. **Provide a follow-up prompt** — For each missing component, write a
+3. **Provide a follow-up prompt** — For each missing pattern, write a
    ready-to-copy prompt the user can paste in a new conversation to scaffold
-   that component. The prompt should include the component name, variants,
-   token naming, and a reference to the example where it was first used.
+   that pattern. The prompt should include the name, variants, token naming,
+   and a reference to the example where it was first used.
 4. **Do NOT auto-create** — Never scaffold all 10 surfaces in the same session
    unless the user explicitly asks. Keep the current task focused and
    token-efficient.
@@ -124,8 +147,8 @@ instances, and bind variables.
 
 ## Key Rules (from `docs/agentic/assistant-behavior-rules.md`)
 
-- Rule 8: New components require all 10 integration surfaces
-- Rule 9: Every component gets its own tokens — never reuse another component's
+- Rule 8: New patterns require all 10 integration surfaces
+- Rule 9: Every pattern gets its own tokens — never reuse another pattern's
 - Rule 10: Token `$ref` aliases must point to existing tokens
 - Rule 11: CSS class = bare name (`.slider` not `.ui-slider`), `@layer components`, logical properties
 - Rule 12: React = named `export function`, `React.createElement`, no JSX, no CSS imports

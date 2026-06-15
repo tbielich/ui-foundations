@@ -4,8 +4,8 @@ title: Tabs
 description: Tabbed navigation for switching between related content panels. Keyboard accessible with ARIA tablist pattern.
 navTitle: Tabs
 order: 20
-permalink: /components/tabs/
-playgroundUrl: /components/tabs-playground/
+permalink: /patterns/tabs/
+playgroundUrl: /patterns/tabs-playground/
 playgroundLabel: Open Tabs Playground
 ---
 {% import "macros/ui.njk" as ui %}
@@ -35,7 +35,6 @@ playgroundLabel: Open Tabs Playground
     </div>
   </div>
   <div class="docs-hero-meta">
-    <span class="docs-status" data-status="draft">Draft</span>
     {% if playgroundUrl %}
     <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
     {% endif %}

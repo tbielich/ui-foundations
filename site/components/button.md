@@ -4,8 +4,8 @@ title: Button
 description: Buttons allow users to perform an action or navigate to another page. They have multiple variants for various needs and are ideal for calling attention to where a user needs to act.
 navTitle: Button
 order: 10
-permalink: /components/button/
-playgroundUrl: /components/button-playground/
+permalink: /patterns/button/
+playgroundUrl: /patterns/button-playground/
 playgroundLabel: Open Button Playground
 ---
 
@@ -235,7 +235,7 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
   {% endcall %}
 </div>
 
-[Open Button Group Playground](/components/button-group-playground/)
+[Open Button Group Playground](/patterns/button-group-playground/)
 
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">

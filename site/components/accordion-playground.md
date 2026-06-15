@@ -4,14 +4,14 @@ title: Accordion Playground
 description: Interactive preview for the Accordion component.
 navTitle: Accordion Playground
 order: 19
-permalink: /components/accordion-playground/
+permalink: /patterns/accordion-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Accordion
-    url: /components/accordion/
+    url: /patterns/accordion/
   - label: Playground
 playground:
   id: accordion-playground

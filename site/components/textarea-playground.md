@@ -4,14 +4,14 @@ title: TextArea Playground
 description: Interactive preview for the TextArea component.
 navTitle: TextArea Playground
 order: 17
-permalink: /components/textarea-playground/
+permalink: /patterns/textarea-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: TextArea
-    url: /components/textarea/
+    url: /patterns/textarea/
   - label: Playground
 playground:
   id: textarea-playground

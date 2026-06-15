@@ -4,8 +4,8 @@ title: TextArea
 description: Multi-line text input for longer form content. Uses native textarea element with token-based styling.
 navTitle: TextArea
 order: 17
-permalink: /components/textarea/
-playgroundUrl: /components/textarea-playground/
+permalink: /patterns/textarea/
+playgroundUrl: /patterns/textarea-playground/
 playgroundLabel: Open TextArea Playground
 ---
 {% import "macros/ui.njk" as ui %}
@@ -28,7 +28,6 @@ playgroundLabel: Open TextArea Playground
     </div>
   </div>
   <div class="docs-hero-meta">
-    <span class="docs-status" data-status="draft">Draft</span>
     {% if playgroundUrl %}
     <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
     {% endif %}

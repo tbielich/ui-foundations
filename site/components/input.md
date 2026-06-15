@@ -4,8 +4,8 @@ title: Input
 description: Text inputs allow users to enter freeform text. They support multiple types, placeholder text, and validation states for structured data entry.
 navTitle: Input
 order: 40
-permalink: /components/input/
-playgroundUrl: /components/input-playground/
+permalink: /patterns/input/
+playgroundUrl: /patterns/input-playground/
 playgroundLabel: Open Input Playground
 ---
 

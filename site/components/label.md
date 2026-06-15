@@ -4,8 +4,8 @@ title: Label
 description: Text and icon label primitives for components and form fields.
 navTitle: Label
 order: 30
-permalink: /components/label/
-playgroundUrl: /components/label-playground/
+permalink: /patterns/label/
+playgroundUrl: /patterns/label-playground/
 playgroundLabel: Open Label Playground
 ---
 {% import "macros/ui.njk" as ui %}

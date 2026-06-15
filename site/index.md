@@ -57,7 +57,7 @@ permalink: /
       <h2>Tokens</h2>
       <p>Colors, typography, spacing, and other visual foundations.</p>
     </a>
-    <a class="docs-card" href="/components/">
+    <a class="docs-card" href="/patterns/">
       <h2>Components</h2>
       <p>Interactive components with API docs, playgrounds, and usage guidelines.</p>
     </a>

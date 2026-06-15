@@ -4,13 +4,13 @@ title: Link
 description: Inline navigation element for text-level links with optional icon slots, visited state, and accessible disabled handling.
 navTitle: Link
 order: 60
-permalink: /components/link/
-playgroundUrl: /components/link-playground/
+permalink: /patterns/link/
+playgroundUrl: /patterns/link-playground/
 playgroundLabel: Open Link Playground
 templateEngineOverride: njk
 breadcrumb:
   - label: Components
-    url: /components/
+    url: /patterns/
   - label: Link
 ---
 

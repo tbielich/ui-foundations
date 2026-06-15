@@ -50,7 +50,7 @@
     {% endif %}
 
     {# Task 2.4: JSON-LD structured data for component pages #}
-    {% if page.url.indexOf("/components/") == 0 and not isPlayground and page.url != "/components/" %}
+    {% if page.url.indexOf("/patterns/") == 0 and not isPlayground and page.url != "/patterns/" %}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -78,7 +78,7 @@
         <a class="docs-logo" href="/">UI Foundations</a>
 
         <div class="docs-search" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-owns="docs-search-results">
-          <input type="search" class="docs-search-input" placeholder="Search tokens & components" aria-label="Search documentation" aria-autocomplete="list" aria-controls="docs-search-results" autocomplete="off" />
+          <input type="search" class="docs-search-input" placeholder="Search tokens & patterns" aria-label="Search documentation" aria-autocomplete="list" aria-controls="docs-search-results" autocomplete="off" />
           <ul id="docs-search-results" class="docs-search-results" role="listbox" hidden></ul>
         </div>
 
@@ -101,9 +101,27 @@
             </details>
           </nav>
 
-          <nav class="docs-nav-group" aria-label="Components">
-            <details{% if page.url.indexOf("/components/") == 0 or page.url == "/components/" %} open{% endif %}>
-              <summary class="docs-nav-group-toggle">Components</summary>
+          <nav class="docs-nav-group" aria-label="Primitives">
+            <details{% if page.url.indexOf("/primitives/") == 0 %} open{% endif %}>
+              <summary class="docs-nav-group-toggle">Primitives</summary>
+              <ul>
+                {% for entry in collections.primitivesDocs %}
+                <li>
+                  <a
+                    href="{{ entry.url }}"
+                    {% if entry.url == page.url %}aria-current="page"{% endif %}
+                  >
+                    {{ entry.data.navTitle or entry.data.title }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </details>
+          </nav>
+
+          <nav class="docs-nav-group" aria-label="Patterns">
+            <details{% if page.url.indexOf("/patterns/") == 0 or page.url == "/patterns/" %} open{% endif %}>
+              <summary class="docs-nav-group-toggle">Patterns</summary>
               <ul>
                 {% for entry in collections.componentsDocs %}
                 <li>
@@ -193,16 +211,10 @@
             </ol>
           </nav>
           {% endif %}
-          {% set isComponentsOverview = page.url == "/components/" or page.url == "/components" %}
-          {% set isComponentDoc = page.url and page.url.indexOf("/components/") == 0 and not isPlayground and not isComponentsOverview %}
-          {% set hasFigmaConnection = figmaConnections and figmaConnections.byName and figmaConnections.byName[page.fileSlug] %}
-          {% set figmaComponentUrl = figmaConnections and figmaConnections.urlsByName and figmaConnections.urlsByName[page.fileSlug] %}
-          {% set showDraftPrefix = isComponentDoc and not hasFigmaConnection %}
+          {% set isComponentsOverview = page.url == "/patterns/" or page.url == "/patterns" %}
+          {% set isComponentDoc = page.url and page.url.indexOf("/patterns/") == 0 and not isPlayground and not isComponentsOverview %}
           {% if title and not compactTitleInBreadcrumb %}
-          <h1>
-            {% if showDraftPrefix %}<span class="docs-draft-stamp">!Draft</span>{% endif %}
-            {{ title }}
-          </h1>
+          <h1>{{ title }}</h1>
           {% endif %}
           {% if description and not isPlayground %}<p class="page-intro">{{ description }}</p>{% endif %}
           {{ content | safe }}

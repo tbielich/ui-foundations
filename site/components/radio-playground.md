@@ -4,14 +4,14 @@ title: Radio Playground
 description: Interactive vanilla preview for radio states and form behavior.
 navTitle: Radio Playground
 order: 56
-permalink: /components/radio-playground/
+permalink: /patterns/radio-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Radio
-    url: /components/radio/
+    url: /patterns/radio/
   - label: Playground
 playground:
   id: radio-playground

@@ -13,7 +13,7 @@ These are included in every prompt automatically:
 
 ## Task → Steering Map
 
-### Creating a component
+### Creating a pattern
 
 1. `workflows/component-creation.md`
 2. `components/component-patterns.md`

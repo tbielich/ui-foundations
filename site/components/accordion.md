@@ -4,8 +4,8 @@ title: Accordion
 description: Expandable/collapsible content sections using native details/summary elements. Keyboard accessible by default.
 navTitle: Accordion
 order: 19
-permalink: /components/accordion/
-playgroundUrl: /components/accordion-playground/
+permalink: /patterns/accordion/
+playgroundUrl: /patterns/accordion-playground/
 playgroundLabel: Open Accordion Playground
 ---
 {% import "macros/ui.njk" as ui %}
@@ -38,7 +38,6 @@ playgroundLabel: Open Accordion Playground
     </div>
   </div>
   <div class="docs-hero-meta">
-    <span class="docs-status" data-status="draft">Draft</span>
     {% if playgroundUrl %}
     <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
     {% endif %}

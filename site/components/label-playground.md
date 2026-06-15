@@ -4,14 +4,14 @@ title: Label Playground
 description: Interactive vanilla preview for LabelContent and FieldLabel patterns.
 navTitle: Label Playground
 order: 31
-permalink: /components/label-playground/
+permalink: /patterns/label-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Label
-    url: /components/label/
+    url: /patterns/label/
   - label: Playground
 playground:
   id: label-playground

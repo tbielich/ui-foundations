@@ -4,14 +4,14 @@ title: Badge Playground
 description: Interactive vanilla preview for the Badge component.
 navTitle: Badge Playground
 order: 16
-permalink: /components/badge-playground/
+permalink: /patterns/badge-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Badge
-    url: /components/badge/
+    url: /patterns/badge/
   - label: Playground
 playground:
   id: badge-playground
