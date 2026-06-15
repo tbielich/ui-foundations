@@ -84,7 +84,7 @@
 
         <nav class="docs-nav" aria-label="Documentation navigation">
           <nav class="docs-nav-group" aria-label="Foundations">
-            <details{% if page.url.indexOf("/foundations/") == 0 %} open{% endif %}>
+            <details{% if page.url.indexOf("/foundations/") == 0 or page.url.indexOf("/primitives/") == 0 %} open{% endif %}>
               <summary class="docs-nav-group-toggle">Foundations</summary>
               <ul>
                 {% for entry in collections.foundationsDocs %}
@@ -98,24 +98,29 @@
                 </li>
                 {% endfor %}
               </ul>
-            </details>
-          </nav>
-
-          <nav class="docs-nav-group" aria-label="Core Tokens">
-            <details{% if page.url.indexOf("/primitives/") == 0 %} open{% endif %}>
-              <summary class="docs-nav-group-toggle">Core Tokens</summary>
-              <ul>
-                {% for entry in collections.primitivesDocs %}
-                <li>
-                  <a
-                    href="{{ entry.url }}"
-                    {% if entry.url == page.url %}aria-current="page"{% endif %}
-                  >
-                    {{ entry.data.navTitle or entry.data.title }}
-                  </a>
-                </li>
-                {% endfor %}
-              </ul>
+              <details class="docs-nav-subgroup"{% if page.url.indexOf("/primitives/") == 0 or page.url == "/foundations/design-tokens/" %} open{% endif %}>
+                <summary class="docs-nav-group-toggle">Design Tokens</summary>
+                <ul>
+                  <li>
+                    <a
+                      href="/foundations/design-tokens/"
+                      {% if page.url == "/foundations/design-tokens/" %}aria-current="page"{% endif %}
+                    >
+                      Overview
+                    </a>
+                  </li>
+                  {% for entry in collections.primitivesDocs %}
+                  <li>
+                    <a
+                      href="{{ entry.url }}"
+                      {% if entry.url == page.url %}aria-current="page"{% endif %}
+                    >
+                      {{ entry.data.navTitle or entry.data.title }}
+                    </a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </details>
             </details>
           </nav>
 

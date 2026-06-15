@@ -2512,3 +2512,49 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
 .type-token-table__preview {
   color: var(--docs-text-0);
 }
+
+/* ─── Nested nav sub-group (Design Tokens inside Foundations) ─── */
+.docs-nav-subgroup {
+  margin: 4px 0 4px 8px;
+  padding-inline-start: 10px;
+  border-inline-start: 1px solid var(--docs-border);
+}
+
+.docs-nav-subgroup > .docs-nav-group-toggle {
+  font-size: 0.65rem;
+  padding: 4px 4px;
+}
+
+.docs-nav-subgroup ul {
+  list-style: none;
+  margin: 4px 0 8px;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.docs-nav-subgroup a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--docs-text-1);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 120ms ease;
+}
+
+.docs-nav-subgroup a:hover {
+  border-color: var(--docs-border);
+  background: #fff;
+  color: var(--docs-text-0);
+}
+
+.docs-nav-subgroup a[aria-current="page"] {
+  border-color: var(--docs-border-strong);
+  background: #fff;
+  color: var(--docs-text-0);
+  box-shadow: var(--docs-shadow-sm);
+  font-weight: 700;
+}
