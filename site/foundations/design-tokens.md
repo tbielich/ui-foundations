@@ -71,3 +71,7 @@ active token values without changing component markup.
 - Never mix token layers in a single declaration.
 - Never hardcode hex, rgb, or hsl values in component CSS.
 - Always use `var(--...)` for every visual property.
+
+## Reference
+
+- [All Tokens](/foundations/design-tokens/all/) — complete tabular index of all generated tokens

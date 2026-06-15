@@ -4,8 +4,9 @@ title: All Tokens
 description: Tabular overview of all tokens from the central YAML export.
 navTitle: All Tokens
 order: 12
-permalink: /foundations/all-tokens/
+permalink: /foundations/design-tokens/all/
 templateEngineOverride: njk
+excludeFromNav: true
 ---
 
 {% if tokensTable.rows and tokensTable.rows.length %}

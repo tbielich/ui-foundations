@@ -101,6 +101,24 @@
             </details>
           </nav>
 
+          <nav class="docs-nav-group" aria-label="Primitives">
+            <details{% if page.url.indexOf("/primitives/") == 0 %} open{% endif %}>
+              <summary class="docs-nav-group-toggle">Primitives</summary>
+              <ul>
+                {% for entry in collections.primitivesDocs %}
+                <li>
+                  <a
+                    href="{{ entry.url }}"
+                    {% if entry.url == page.url %}aria-current="page"{% endif %}
+                  >
+                    {{ entry.data.navTitle or entry.data.title }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </details>
+          </nav>
+
           <nav class="docs-nav-group" aria-label="Patterns">
             <details{% if page.url.indexOf("/patterns/") == 0 or page.url == "/patterns/" %} open{% endif %}>
               <summary class="docs-nav-group-toggle">Patterns</summary>

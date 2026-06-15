@@ -4,7 +4,7 @@ title: Typography Tokens
 description: Display of heading and text scales including token values.
 navTitle: Typography
 order: 11
-permalink: /foundations/typography/
+permalink: /primitives/typography/
 ---
 
 <section class="typography">

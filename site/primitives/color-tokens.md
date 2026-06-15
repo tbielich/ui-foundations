@@ -4,7 +4,7 @@ title: Color Tokens
 description: Brand, neutral, and overlay tokens including mode and brand switching.
 navTitle: Color
 order: 10
-permalink: /foundations/color/
+permalink: /primitives/color/
 ---
 
 {% import "macros/ui.njk" as ui %}
