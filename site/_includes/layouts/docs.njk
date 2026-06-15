@@ -99,16 +99,10 @@
                 {% endfor %}
               </ul>
               <details class="docs-nav-subgroup"{% if page.url.indexOf("/primitives/") == 0 or page.url == "/foundations/design-tokens/" %} open{% endif %}>
-                <summary class="docs-nav-group-toggle">Design Tokens</summary>
+                <summary class="docs-nav-subgroup-toggle">
+                  <a href="/foundations/design-tokens/"{% if page.url == "/foundations/design-tokens/" %} aria-current="page"{% endif %}>Design Tokens</a>
+                </summary>
                 <ul>
-                  <li>
-                    <a
-                      href="/foundations/design-tokens/"
-                      {% if page.url == "/foundations/design-tokens/" %}aria-current="page"{% endif %}
-                    >
-                      Overview
-                    </a>
-                  </li>
                   {% for entry in collections.primitivesDocs %}
                   <li>
                     <a
