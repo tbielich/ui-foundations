@@ -51,39 +51,64 @@ work with the system reliably.
 ### Token Flow
 
 ```
-Figma Variables
-      ↓
-figma/exports/*.tokens.json
-      ↓
-extract-tokens.js
-      ↓
-dist/
+ ┌─────────────────────────────────┐
+ │        Figma Variables          │
+ └───────────────┬─────────────────┘
+                 ▼
+ ┌─────────────────────────────────┐
+ │  figma/exports/*.tokens.json    │
+ └───────────────┬─────────────────┘
+                 ▼
+ ┌─────────────────────────────────┐
+ │       extract-tokens.js         │
+ └───────────────┬─────────────────┘
+     ┌───────────┼───────────┐
+     ▼           ▼           ▼
+ ┌───────┐  ┌───────┐  ┌───────┐
+ │  CSS  │  │ JSON  │  │ TS/YML│
+ └───────┘  └───────┘  └───────┘
 ```
 
-The pipeline outputs:
-
-- CSS custom properties (`dist/tokens/css/`)
-- DTCG-compliant JSON (`dist/tokens/json/`)
-- TypeScript constants (`dist/tokens/ts/`)
-- A flat YAML index (`dist/tokens/tokens.yaml`)
+```
+ dist/
+ ├── tokens/
+ │   ├── css/   ← Custom Properties
+ │   ├── json/  ← DTCG-compliant
+ │   ├── ts/    ← TypeScript constants
+ │   └── tokens.yaml ← Flat index
+ ├── core/      ← Reset + Base + Tokens
+ ├── ui/        ← Component patterns
+ ├── react/     ← Optional wrappers
+ └── main.css   ← Bundled (all layers)
+```
 
 ### Layering
 
-Tokens follow a strict hierarchy:
-
-1. **Core** — raw values (spacing, radii, colors, typography)
-2. **Semantic** — intent-based aliases (`--color-text-default`, `--color-fill-brand`)
-3. **Component** — scoped to one component (`--button-solid-container-background-hover`)
-4. **Theme** — brand and mode overrides via `data-brand` / `data-mode`
+```
+ ╔═══════════════════════════════════╗
+ ║  CORE       Raw values            ║
+ ╠═══════════════════════════════════╣
+ ║  SEMANTIC   Intent-based aliases  ║
+ ╠═══════════════════════════════════╣
+ ║  COMPONENT  Scoped per component  ║
+ ╠═══════════════════════════════════╣
+ ║  THEME      Brand + Mode overlay  ║
+ ╚═══════════════════════════════════╝
+```
 
 Components reference only Semantic or Core. Never raw values.
 
 ### Component Integration
 
 Every component ships with:
-CSS pattern, Nunjucks macro, playground page, docs page,
-and Code Connect mapping. React wrappers are available as an optional
-convenience layer but are not required — the CSS classes work in any framework.
+
+```
+ ┌────────────┬────────────┬────────────┐
+ │ CSS pattern│ Nunjucks   │ Playground │
+ ├────────────┼────────────┼────────────┤
+ │ Docs page  │ React wrap │ Code Conn. │
+ └────────────┴────────────┴────────────┘
+```
 
 All surfaces must be present for the component to work predictably across
 docs, playgrounds, and consumer apps.
@@ -160,8 +185,19 @@ to see it in action.
 
 ## Components
 
-Label, Button (solid / outline / ghost), ButtonGroup, Badge, Input, Icon, Checkbox,
-Radio, Switch, Link, Divider, TextArea, Avatar, Accordion, Tabs, Tooltip
+```
+ ┌──────────┬──────────┬──────────┬──────────┐
+ │ Button   │ Input    │ Checkbox │ Radio    │
+ ├──────────┼──────────┼──────────┼──────────┤
+ │ Switch   │ Tabs     │ Accordion│ Tooltip  │
+ ├──────────┼──────────┼──────────┼──────────┤
+ │ Badge    │ Avatar   │ Divider  │ Link     │
+ ├──────────┼──────────┼──────────┼──────────┤
+ │ Label    │ TextArea │ Icon     │ Select   │
+ ├──────────┼──────────┼──────────┼──────────┤
+ │ Form     │          │          │          │
+ └──────────┴──────────┴──────────┴──────────┘
+```
 
 Each component uses semantic tokens (or its own token layer for complex variants)
 and supports theming out of the box.
@@ -170,16 +206,21 @@ and supports theming out of the box.
 
 ## Agent Integration
 
-This repo is structured for agent consumption:
-
-| File | Purpose |
-|---|---|
-| `AGENTS.md` | Entry point — behavior rules and context loading order |
-| `docs/playbook.md` | Documentation hierarchy and operating model |
-| `DESIGN.md` | Executive design contract |
-| `docs/working-context.md` | Current priorities |
-| `docs/context-manifest.json` | Machine-readable file index |
-| `docs/agentic/modes/` | Task-specific modes (implementation, audit, pattern discovery, token proposal) |
+```
+ ┌─────────────────────────────────────────┐
+ │ AGENTS.md                               │
+ │ ├── DESIGN.md                           │
+ │ ├── docs/playbook.md                    │
+ │ ├── docs/working-context.md             │
+ │ ├── docs/ui-foundations-rules.md        │
+ │ ├── docs/agentic/modes/                 │
+ │ │   ├── implementation                  │
+ │ │   ├── audit                           │
+ │ │   ├── pattern-discovery               │
+ │ │   └── token-proposal                  │
+ │ └── docs/context-manifest.json          │
+ └─────────────────────────────────────────┘
+```
 
 Agents operate in modes:
 
@@ -191,16 +232,18 @@ Agents operate in modes:
 
 ## Documentation Structure
 
-| Directory | Content |
-|---|---|
-| `docs/foundations/` | Token layering, naming, theming, parity, and 12 foundation ADRs |
-| `docs/principles/` | Perception laws, heuristics, and accessibility intent |
-| `docs/patterns/` | Pattern-level composition guidance |
-| `docs/components/` | Component entry docs |
-| `docs/agentic/` | Agent behavior rules, modes, workflows, rule pipeline |
-| `docs/validation/` | CI pipeline, token parity, rule pipeline manifest |
-| `docs/token-pipeline.md` | Token generation pipeline and format reference |
-| `site/` | Docs site source (Eleventy) |
+```
+ docs/
+ ├── foundations/    ← Token layering, naming, 12 ADRs
+ ├── patterns/      ← Composition guidance
+ ├── agentic/       ← Agent rules, modes, workflows
+ ├── validation/    ← CI pipeline, parity checks
+ └── token-pipeline.md
+ site/
+ ├── components/    ← Component docs + playgrounds
+ ├── foundations/   ← Token and principle pages
+ └── examples/     ← Usage examples
+```
 
 ---
 
@@ -213,6 +256,36 @@ npm run build:all       # generate tokens + build CSS
 npm run docs:dev        # build + serve docs site
 ```
 
+### Build Output
+
+```
+╭──────────────────────────────────────╮
+│ ╻╻· │ FOUNDATIONS                    │
+│ ┗┛╹ │ BUILD 0.7.0                    │
+╰──────────────────────────────────────╯
+█ ICONS                             [OK]
+├ Entries                           0289
+└ Output                   icon-names.ts
+────────────────────────────────────────
+█ TOKENS
+├ CSS                              READY
+├ JSON                             READY
+├ TypeScript                       READY
+└ YAML                             READY
+────────────────────────────────────────
+█ INTEGRITY                         [OK]
+├ Missing WEB                       0000
+├ Unparseable WEB                   0000
+└ Duplicate vars                    0000
+────────────────────────────────────────
+█ DIST                              [OK]
+├ Token CSS                         0008
+├ Macros                           READY
+└ Bundles                          READY
+────────────────────────────────────────
+BUILD OK · READY · 503ms
+```
+
 ### Figma Sync
 
 ```bash
@@ -222,10 +295,6 @@ npm run build:all
 # Option B: Agent-assisted sync via MCP (recommended)
 npm run tokens:sync
 ```
-
-The `tokens:sync` command reads a `.figma-token-dump.json` file (generated by
-the agent via MCP `use_figma`) and rebuilds the export files, then runs the
-token pipeline. See `docs/token-sync-workflow.md` for the full workflow.
 
 ### Validation
 
@@ -242,6 +311,17 @@ npm run rules:validate  # rule pipeline traceability
 
 Figma integration uses the Model Context Protocol. Token exports live in
 `figma/exports/` and are processed by `npm run tokens:generate`.
+
+```
+ ┌────────────────────┐     ┌───────────────────┐
+ │   Figma Desktop    │────▶│  Local MCP Server │
+ └────────────────────┘     └────────┬──────────┘
+                                     │
+                                     ▼
+                            ┌───────────────────┐
+                            │  figma/exports/   │
+                            └───────────────────┘
+```
 
 - **Figma Desktop MCP** — local server via the Figma Desktop app (primary path)
 - **figma-developer-mcp** — REST API read access (requires `FIGMA_TOKEN` in `.env`)
@@ -268,9 +348,6 @@ Load the `#component-creation` steering file for the full 10-phase workflow.
 Key steps: semantic HTML first, then Figma tokens (bind variables, never hardcode),
 CSS pattern, Nunjucks macro, React wrapper, docs page, playground, Code Connect.
 
-See `.kiro/steering/workflows/component-creation.md` for details and
-`.kiro/steering/figma/figma-components.md` for Figma-specific rules.
-
 ---
 
 ## Release
@@ -285,7 +362,21 @@ npm run release:publish
 
 ## Tech Stack
 
-Vanilla CSS (Custom Properties, `@layer`) · Node.js · Eleventy · Nunjucks macros · Figma MCP · React (optional wrappers)
+```
+ ┌────────────────┬───────────────────────────┐
+ │ Tokens         │ CSS Custom Properties     │
+ ├────────────────┼───────────────────────────┤
+ │ Build          │ Node.js                   │
+ ├────────────────┼───────────────────────────┤
+ │ Docs           │ Eleventy + Nunjucks       │
+ ├────────────────┼───────────────────────────┤
+ │ Design         │ Figma + MCP               │
+ ├────────────────┼───────────────────────────┤
+ │ Components     │ Vanilla CSS (@layer)      │
+ ├────────────────┼───────────────────────────┤
+ │ Optional       │ React wrappers            │
+ └────────────────┴───────────────────────────┘
+```
 
 ---
 
