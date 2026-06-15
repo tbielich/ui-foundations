@@ -195,14 +195,8 @@
           {% endif %}
           {% set isComponentsOverview = page.url == "/patterns/" or page.url == "/patterns" %}
           {% set isComponentDoc = page.url and page.url.indexOf("/patterns/") == 0 and not isPlayground and not isComponentsOverview %}
-          {% set hasFigmaConnection = figmaConnections and figmaConnections.byName and figmaConnections.byName[page.fileSlug] %}
-          {% set figmaComponentUrl = figmaConnections and figmaConnections.urlsByName and figmaConnections.urlsByName[page.fileSlug] %}
-          {% set showDraftPrefix = isComponentDoc and not hasFigmaConnection %}
           {% if title and not compactTitleInBreadcrumb %}
-          <h1>
-            {% if showDraftPrefix %}<span class="docs-draft-stamp">!Draft</span>{% endif %}
-            {{ title }}
-          </h1>
+          <h1>{{ title }}</h1>
           {% endif %}
           {% if description and not isPlayground %}<p class="page-intro">{{ description }}</p>{% endif %}
           {{ content | safe }}

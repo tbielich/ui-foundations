@@ -235,7 +235,7 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
   {% endcall %}
 </div>
 
-[Open Button Group Playground](/components/button-group-playground/)
+[Open Button Group Playground](/patterns/button-group-playground/)
 
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">

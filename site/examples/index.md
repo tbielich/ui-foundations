@@ -44,8 +44,8 @@ Every new component needs all 10 surfaces:
 4. React export — `src/react/index.js`
 5. Nunjucks macro — `site/_includes/macros/ui.njk`
 6. Playground renderer — `site/assets/playground/renderers.js`
-7. Playground page — `site/components/<component>-playground.md`
-8. Docs page — `site/components/<component>.md`
+7. Playground page — `site/patterns/<component>-playground.md`
+8. Docs page — `site/patterns/<component>.md`
 9. Code Connect — `schemas/web-<component>.figma.ts`
 10. Code generator — `site/assets/playground/code-generators.js`
 

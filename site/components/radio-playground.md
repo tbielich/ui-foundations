@@ -8,10 +8,10 @@ permalink: /patterns/radio-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Radio
-    url: /components/radio/
+    url: /patterns/radio/
   - label: Playground
 playground:
   id: radio-playground

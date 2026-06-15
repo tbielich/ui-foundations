@@ -8,10 +8,10 @@ permalink: /patterns/input-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Input
-    url: /components/input/
+    url: /patterns/input/
   - label: Playground
 playground:
   id: input-playground

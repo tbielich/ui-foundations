@@ -8,10 +8,10 @@ permalink: /patterns/select-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Select
-    url: /components/select/
+    url: /patterns/select/
   - label: Playground
 playground:
   id: select-playground

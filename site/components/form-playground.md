@@ -8,10 +8,10 @@ permalink: /patterns/form-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Form
-    url: /components/form/
+    url: /patterns/form/
   - label: Playground
 playground:
   id: form-playground

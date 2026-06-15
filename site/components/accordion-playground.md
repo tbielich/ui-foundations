@@ -8,10 +8,10 @@ permalink: /patterns/accordion-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Accordion
-    url: /components/accordion/
+    url: /patterns/accordion/
   - label: Playground
 playground:
   id: accordion-playground

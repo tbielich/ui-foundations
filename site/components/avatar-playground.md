@@ -8,10 +8,10 @@ permalink: /patterns/avatar-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Avatar
-    url: /components/avatar/
+    url: /patterns/avatar/
   - label: Playground
 playground:
   id: avatar-playground

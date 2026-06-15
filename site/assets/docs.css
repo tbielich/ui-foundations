@@ -165,11 +165,14 @@ details[open] > .docs-nav-group-toggle::before {
   color: var(--docs-text-0);
 }
 
-.docs-nav-section a[aria-current="page"] {
+.docs-nav-section a[aria-current="page"],
+.docs-nav-group a[aria-current="page"],
+.docs-nav-top a[aria-current="page"] {
   border-color: var(--docs-border-strong);
   background: #fff;
   color: var(--docs-text-0);
   box-shadow: var(--docs-shadow-sm);
+  font-weight: 700;
 }
 
 .docs-main {
@@ -198,18 +201,6 @@ details[open] > .docs-nav-group-toggle::before {
   letter-spacing: -0.015em;
 }
 
-.docs-draft-stamp {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid rgba(255, 110, 77, 0.35);
-  border-radius: 999px;
-  padding: 3px 11px;
-  font-size: 0.7em;
-  font-weight: 800;
-  line-height: 1.2;
-  background: #fff2ee;
-  color: #b93e26;
-}
 
 .docs-breadcrumb {
   margin: 0 0 14px;

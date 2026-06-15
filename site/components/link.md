@@ -10,7 +10,7 @@ playgroundLabel: Open Link Playground
 templateEngineOverride: njk
 breadcrumb:
   - label: Components
-    url: /components/
+    url: /patterns/
   - label: Link
 ---
 

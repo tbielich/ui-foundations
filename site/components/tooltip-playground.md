@@ -8,10 +8,10 @@ permalink: /patterns/tooltip-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Components
-    url: /components/
+  - label: Patterns
+    url: /patterns/
   - label: Tooltip
-    url: /components/tooltip/
+    url: /patterns/tooltip/
   - label: Playground
 playground:
   id: tooltip-playground
