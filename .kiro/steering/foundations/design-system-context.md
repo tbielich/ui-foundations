@@ -147,8 +147,8 @@ instances, and bind variables.
 
 ## Key Rules (from `docs/agentic/assistant-behavior-rules.md`)
 
-- Rule 8: New components require all 10 integration surfaces
-- Rule 9: Every component gets its own tokens — never reuse another component's
+- Rule 8: New patterns require all 10 integration surfaces
+- Rule 9: Every pattern gets its own tokens — never reuse another pattern's
 - Rule 10: Token `$ref` aliases must point to existing tokens
 - Rule 11: CSS class = bare name (`.slider` not `.ui-slider`), `@layer components`, logical properties
 - Rule 12: React = named `export function`, `React.createElement`, no JSX, no CSS imports

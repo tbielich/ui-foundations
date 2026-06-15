@@ -39,12 +39,12 @@ Themes are orthogonal:
 - `data-brand`
 - `data-mode`
 
-Brand and appearance must not be hardcoded into components.
+Brand and appearance must not be hardcoded into patterns.
 
 ## Color Rules
 
 Use semantic tokens for UI decisions.
-Do not use raw hex values in components unless explicitly documented.
+Do not use raw hex values in patterns unless explicitly documented.
 
 ## Typography Rules
 
@@ -56,9 +56,9 @@ Do not infer font stacks, line heights, or weights from screenshots.
 Prefer semantic spacing intent where available.
 Avoid arbitrary pixel values.
 
-## Component Rules
+## Pattern Rules
 
-Components must:
+Patterns must:
 
 - use existing tokens
 - support theming
@@ -79,5 +79,5 @@ Before creating UI:
 1. Read this file.
 2. Read `AGENTS.md`.
 3. Inspect token exports.
-4. Reuse existing tokens/components.
+4. Reuse existing tokens/patterns.
 5. Validate with available scripts.
