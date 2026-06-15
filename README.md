@@ -84,19 +84,16 @@ work with the system reliably.
 
 ### Layering
 
-```
- ╔═══════════════════════════════════╗
- ║  CORE       Raw values            ║
- ╠═══════════════════════════════════╣
- ║  SEMANTIC   Intent-based aliases  ║
- ╠═══════════════════════════════════╣
- ║  COMPONENT  Scoped per component  ║
- ╠═══════════════════════════════════╣
- ║  THEME      Brand + Mode overlay  ║
- ╚═══════════════════════════════════╝
+Token layers from foundation to surface:
+
+``` 
+   ╱─ THEME        Brand + Mode
+  ╱── COMPONENT    Scoped tokens
+ ╱─── SEMANTIC     Intent aliases
+╱──── CORE         Raw values
 ```
 
-Components reference only Semantic or Core. Never raw values.
+Patterns consume Semantic or Core tokens. Never raw values.
 
 ### Component Integration
 
@@ -152,7 +149,7 @@ npm install ui-foundations
 @import "ui-foundations/ui.css";
 ```
 
-### Use Components (plain HTML)
+### Use Patterns (plain HTML)
 
 ```html
 <button class="button">Label</button>
@@ -183,7 +180,9 @@ to see it in action.
 
 ---
 
-## Components
+## Patterns
+
+CSS-only, stateless UI building blocks. No JavaScript required.
 
 ```
  ┌──────────┬──────────┬──────────┬──────────┐
@@ -195,12 +194,25 @@ to see it in action.
  ├──────────┼──────────┼──────────┼──────────┤
  │ Label    │ TextArea │ Icon     │ Select   │
  ├──────────┼──────────┼──────────┼──────────┤
- │ Form     │          │          │          │
+ │ Form     │ FormGroup│          │          │
  └──────────┴──────────┴──────────┴──────────┘
 ```
 
-Each component uses semantic tokens (or its own token layer for complex variants)
-and supports theming out of the box.
+Each pattern uses semantic tokens and supports theming out of the box.
+
+## Components (coming next)
+
+Functional units that add state and interactivity on top of patterns.
+
+```
+ ┌──────────┬──────────┬──────────┐
+ │ Calendar │ DatePckr │ ComboBox │
+ ├──────────┼──────────┼──────────┤
+ │ Dialog   │ Table    │   ...    │
+ └──────────┴──────────┴──────────┘
+```
+
+Components will live in `src/components/` and require JavaScript.
 
 ---
 
@@ -382,7 +394,8 @@ npm run release:publish
 
 ## Roadmap
 
-- **Web Components** — replace React wrappers with framework-agnostic custom elements (light DOM, no shadow DOM) so the library is truly platform-independent.
+- **Calendar Component** — first functional component with state, date logic, and keyboard navigation. Built on top of existing patterns.
+- **Web Components** — replace React wrappers with framework-agnostic custom elements (light DOM, no shadow DOM) so patterns are truly platform-independent (#104).
 
 ---
 
