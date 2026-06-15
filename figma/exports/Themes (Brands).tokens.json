@@ -63,7 +63,7 @@
                 "$ref": "Color/Brand B/Red/600"
               },
               "Brand A": {
-                "$ref": "Color/Neutral/700"
+                "$ref": "Color/Neutral/900"
               }
             }
           }
