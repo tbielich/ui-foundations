@@ -19,7 +19,7 @@ Define the stable implementation workflow for adding or updating UI foundations 
    - Add or update CSS pattern in `src/ui/patterns/`.
    - Export pattern in `src/ui/index.css`.
    - Add React wrapper only when needed.
-   - Add docs + playground pages in `site/components/`.
+   - Add docs + playground pages in `site/patterns/`.
 
 2. Keep changes token-first:
    - Components consume semantic/foundation tokens.

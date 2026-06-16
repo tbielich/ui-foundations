@@ -13,7 +13,7 @@ Use this when checking for drift between Figma design and code implementation.
 3. `schemas/web-*.figma.ts` — Code Connect mappings
 4. `src/ui/patterns/*.css` — CSS implementation
 5. `src/react/*.js` — React wrappers
-6. `site/components/` — docs and playground pages
+6. `site/patterns/` — docs and playground pages
 
 ## Checks
 

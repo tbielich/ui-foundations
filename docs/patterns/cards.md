@@ -13,4 +13,4 @@ and scoped actions.
 ## Related docs
 
 - `docs/principles/perception-laws.md`
-- `docs/components/button.md`
+- `docs/patterns/button.md`

@@ -71,6 +71,7 @@
     <link rel="stylesheet" href="/vendor/ui-foundations/main.css" />
     <link rel="stylesheet" href="/assets/vendor/prism/prism.css" />
     <link rel="stylesheet" href="/assets/docs.css" />
+    <link rel="stylesheet" href="/assets/docs-keytips.css" />
   </head>
   <body>
     <div class="docs-shell">
@@ -82,10 +83,10 @@
           <ul id="docs-search-results" class="docs-search-results" role="listbox" hidden></ul>
         </div>
 
-        <nav class="docs-nav" aria-label="Documentation navigation">
+        <nav class="docs-nav" aria-label="Documentation navigation" data-keytip-scope="main-nav">
           <nav class="docs-nav-group" aria-label="Foundations">
-            <details{% if page.url.indexOf("/foundations/") == 0 %} open{% endif %}>
-              <summary class="docs-nav-group-toggle">Foundations</summary>
+            <details{% if page.url.indexOf("/foundations/") == 0 or page.url.indexOf("/primitives/") == 0 %} open{% endif %}>
+              <summary class="docs-nav-group-toggle" data-keytip="1" aria-keyshortcuts="Alt 1">Foundations</summary>
               <ul>
                 {% for entry in collections.foundationsDocs %}
                 <li>
@@ -97,31 +98,47 @@
                   </a>
                 </li>
                 {% endfor %}
-              </ul>
-            </details>
-          </nav>
-
-          <nav class="docs-nav-group" aria-label="Primitives">
-            <details{% if page.url.indexOf("/primitives/") == 0 %} open{% endif %}>
-              <summary class="docs-nav-group-toggle">Primitives</summary>
-              <ul>
-                {% for entry in collections.primitivesDocs %}
                 <li>
-                  <a
-                    href="{{ entry.url }}"
-                    {% if entry.url == page.url %}aria-current="page"{% endif %}
-                  >
-                    {{ entry.data.navTitle or entry.data.title }}
-                  </a>
+                  <details class="docs-nav-subgroup"{% if page.url.indexOf("/primitives/") == 0 or page.url == "/foundations/design-tokens/" %} open{% endif %}>
+                    <summary><a href="/foundations/design-tokens/"{% if page.url == "/foundations/design-tokens/" %} aria-current="page"{% endif %}>Design Tokens</a></summary>
+                    <ul>
+                      {% for entry in collections.primitivesDocs %}
+                      <li>
+                        <a
+                          href="{{ entry.url }}"
+                          {% if entry.url == page.url %}aria-current="page"{% endif %}
+                        >
+                          {{ entry.data.navTitle or entry.data.title }}
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </details>
                 </li>
-                {% endfor %}
+                <li>
+                  <details class="docs-nav-subgroup"{% if page.url.indexOf("/foundations/governance") == 0 %} open{% endif %}>
+                    <summary><a href="/foundations/governance/"{% if page.url == "/foundations/governance/" %} aria-current="page"{% endif %}>Governance</a></summary>
+                    <ul>
+                      {% for entry in collections.governanceDocs %}
+                      <li>
+                        <a
+                          href="{{ entry.url }}"
+                          {% if entry.url == page.url %}aria-current="page"{% endif %}
+                        >
+                          {{ entry.data.navTitle or entry.data.title }}
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                </li>
               </ul>
             </details>
           </nav>
 
           <nav class="docs-nav-group" aria-label="Patterns">
             <details{% if page.url.indexOf("/patterns/") == 0 or page.url == "/patterns/" %} open{% endif %}>
-              <summary class="docs-nav-group-toggle">Patterns</summary>
+              <summary class="docs-nav-group-toggle" data-keytip="2" aria-keyshortcuts="Alt 2">Patterns</summary>
               <ul>
                 {% for entry in collections.componentsDocs %}
                 <li>
@@ -139,7 +156,7 @@
 
           <nav class="docs-nav-group" aria-label="Examples">
             <details{% if page.url.indexOf("/examples/") == 0 or page.url == "/examples/" %} open{% endif %}>
-              <summary class="docs-nav-group-toggle">Examples</summary>
+              <summary class="docs-nav-group-toggle" data-keytip="3" aria-keyshortcuts="Alt 3">Examples</summary>
               <ul>
                 {% for entry in collections.examplesDocs %}
                 <li>
@@ -160,6 +177,8 @@
               <a
                 href="/getting-started/"
                 {% if page.url == "/getting-started/" %}aria-current="page"{% endif %}
+                data-keytip="4"
+                aria-keyshortcuts="Alt 4"
               >
                 Getting Started
               </a>
@@ -228,6 +247,7 @@
 
     <script id="docs-search-index" type="application/json">{{ collections.searchIndex | dump | safe }}</script>
     <script src="/assets/docs-search.js"></script>
+    <script src="/assets/docs-keytips.js"></script>
 
     <script>
       // Right-side TOC: extract h2[id] headings and build nav + scroll spy

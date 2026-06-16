@@ -17,7 +17,7 @@ guessing which file owns which rule.
 ↓  
 `docs/patterns/*`  
 ↓  
-`docs/components/*`  
+`docs/patterns/*`  
 ↓  
 `docs/validation/*`
 

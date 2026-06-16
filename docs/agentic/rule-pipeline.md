@@ -20,7 +20,7 @@ This document explains ownership and handoffs. The executable inventory lives in
 | Principles | Cross-cutting design intent | `.kiro/steering/foundations/design-principles.md` |
 | Heuristics | Observable usability behavior | `.kiro/steering/foundations/usability-heuristics.md` |
 | Pattern rules | Composition rules for reusable UI patterns | `.kiro/steering/pattern-rules/*.md` |
-| Component rules | Local markup, token, API, and state rules | `.kiro/steering/components/component-rule-map.md`, `.kiro/steering/components/component-patterns.md`, `.kiro/steering/components/react-wrappers.md`, `docs/agentic/assistant-behavior-rules.md` |
+| Component rules | Local markup, token, API, and state rules | `.kiro/steering/patterns/pattern-rule-map.md`, `.kiro/steering/patterns/pattern-css-rules.md`, `.kiro/steering/patterns/react-wrappers.md`, `docs/agentic/assistant-behavior-rules.md` |
 | Validation | Deterministic checks grounded in upstream ids | `docs/validation/rule-pipeline.manifest.json`, `scripts/validate-rule-pipeline.mjs` |
 | CI | Required execution | `package.json`, `.github/workflows/ci.yml` |
 

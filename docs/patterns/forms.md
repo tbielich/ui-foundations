@@ -13,6 +13,6 @@ help text, errors, and action ordering.
 
 ## Related docs
 
-- `docs/components/input.md`
-- `docs/components/button.md`
+- `docs/patterns/input.md`
+- `docs/patterns/button.md`
 - `docs/principles/accessibility.md`

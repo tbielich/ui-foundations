@@ -1,6 +1,6 @@
 ---
 inclusion: fileMatch
-fileMatchPattern: "site/assets/playground/**,site/components/*-playground.md"
+fileMatchPattern: "site/assets/playground/**,site/patterns/*-playground.md"
 ---
 
 # Playground System Architecture
@@ -76,7 +76,7 @@ global.UIPlaygroundCodeGenerators = {
 
 ### 3. Create playground page
 
-`site/components/my-component-playground.md`:
+`site/patterns/my-component-playground.md`:
 
 ```yaml
 ---

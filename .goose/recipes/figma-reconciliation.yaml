@@ -17,7 +17,7 @@ instructions: |
   3. Code Connect mappings: schemas/*.figma.ts
   4. CSS implementation: src/ui/patterns/*.css
   5. React wrappers: src/react/*.js
-  6. Docs/playground: site/components/
+  6. Docs/playground: site/patterns/
 
   For each component, check:
   - Are all Figma tokens present in code?
