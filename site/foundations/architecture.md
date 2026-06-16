@@ -46,13 +46,15 @@ permalink: /foundations/architecture/
         <td><strong>Compositions</strong></td>
         <td>Organisms</td>
         <td>Multiple molecules and atoms arranged for a specific task or use-case.</td>
-        <td><code>site/examples/</code></td>
+        <td><code>site/examples/</code> (docs only, not shipped)</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <p>The binding energy that turns atoms into molecules is <strong>JavaScript and state management</strong>. If it works with pure CSS, it's a pattern. If it needs JS to function, it's a component.</p>
+
+<p class="section-description"><strong>Note:</strong> Compositions live in <code>site/examples/</code> on the documentation site — they are reference implementations, not shipped library code. The "Examples" section in the navigation corresponds to the Organisms layer.</p>
 
 <h2 id="token-layers-heading">Token Architecture</h2>
 
