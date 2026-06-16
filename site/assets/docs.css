@@ -2586,3 +2586,73 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   box-shadow: var(--docs-shadow-sm);
   font-weight: 700;
 }
+
+/* ─── Pipeline flow diagram (box design) ─── */
+.pipeline-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 1.5rem 0;
+}
+
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--docs-border-strong);
+  background: var(--docs-surface-1);
+  box-shadow: var(--docs-shadow-sm);
+  text-align: center;
+}
+
+.pipeline-step__label {
+  font-family: var(--docs-code-font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--docs-text-0);
+}
+
+.pipeline-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 0;
+  color: var(--docs-text-1);
+}
+
+.pipeline-arrow::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 12px;
+  background: var(--docs-border-strong);
+}
+
+.pipeline-arrow span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--docs-accent);
+  padding: 2px 0;
+}
+
+.pipeline-arrow::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--docs-border-strong);
+}
+
+@media (max-width: 980px) {
+  .pipeline-step {
+    min-width: 0;
+    width: 100%;
+  }
+}

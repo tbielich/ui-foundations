@@ -142,15 +142,27 @@ permalink: /foundations/architecture/
 
 <p>The system flows from Figma to production in a one-directional pipeline:</p>
 
-<pre><code>Figma Variables
-    ↓ export
-figma/exports/*.tokens.json
-    ↓ npm run tokens:generate
-dist/tokens/css/*.css + tokens.yaml
-    ↓ npm run build:css
-dist/main.css (bundled, layered)
-    ↓ npm run docs:site
-_site/ (documentation website)</code></pre>
+<div class="pipeline-flow">
+  <div class="pipeline-step">
+    <span class="pipeline-step__label">Figma Variables</span>
+  </div>
+  <div class="pipeline-arrow"><span>export</span></div>
+  <div class="pipeline-step">
+    <span class="pipeline-step__label">figma/exports/*.tokens.json</span>
+  </div>
+  <div class="pipeline-arrow"><span>npm run tokens:generate</span></div>
+  <div class="pipeline-step">
+    <span class="pipeline-step__label">dist/tokens/css/*.css + tokens.yaml</span>
+  </div>
+  <div class="pipeline-arrow"><span>npm run build:css</span></div>
+  <div class="pipeline-step">
+    <span class="pipeline-step__label">dist/main.css (bundled, layered)</span>
+  </div>
+  <div class="pipeline-arrow"><span>npm run docs:site</span></div>
+  <div class="pipeline-step">
+    <span class="pipeline-step__label">_site/ (documentation website)</span>
+  </div>
+</div>
 
 <p>Generated files in <code>dist/</code> are never edited directly. Changes flow from Figma exports through the pipeline.</p>
 
