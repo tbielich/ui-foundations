@@ -40,7 +40,7 @@ permalink: /foundations/architecture/
         <td><strong>Components</strong></td>
         <td>Molecules</td>
         <td>Multiple atoms bound together with vanilla JavaScript for state and interactivity.</td>
-        <td><code>src/components/</code> (planned)</td>
+        <td><code>src/ui/components/</code> (planned)</td>
       </tr>
       <tr>
         <td><strong>Compositions</strong></td>

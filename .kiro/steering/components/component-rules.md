@@ -20,7 +20,7 @@ If it works with pure CSS → it's a pattern, not a component.
 ## Architecture
 
 ```
-src/components/{name}/
+src/ui/components/{name}/
   ├── {name}.js          — vanilla JS class/module
   ├── {name}.css         — additional styles (if pattern CSS isn't enough)
   └── {name}.test.js     — unit tests
@@ -83,4 +83,4 @@ class MyComponent {
 
 Calendar, DatePicker, ComboBox, Dialog, Table
 
-Location: `src/components/` (not yet created)
+Location: `src/ui/components/` (not yet created)

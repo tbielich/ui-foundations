@@ -65,7 +65,7 @@ logic via JavaScript. They build on top of patterns.
 
 Planned: Calendar, DatePicker, ComboBox, Dialog, Table
 
-Components will live in `src/components/` (not yet created).
+Components will live in `src/ui/components/` (not yet created).
 
 ## Pattern vs. Component
 
@@ -74,7 +74,7 @@ Components will live in `src/components/` (not yet created).
 | CSS | ✓ | ✓ (uses patterns) |
 | JavaScript | – | ✓ |
 | State | – | ✓ |
-| Location | `src/ui/patterns/` | `src/components/` |
+| Location | `src/ui/patterns/` | `src/ui/components/` |
 | Token layer | `@layer components` | `@layer components` |
 | Example | `.button`, `.input` | `<Calendar>` |
 

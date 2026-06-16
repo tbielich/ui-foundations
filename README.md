@@ -212,7 +212,7 @@ Functional units that add state and interactivity on top of patterns.
  └──────────┴──────────┴──────────┘
 ```
 
-Components will live in `src/components/` and require JavaScript.
+Components will live in `src/ui/components/` and require JavaScript.
 
 ---
 
