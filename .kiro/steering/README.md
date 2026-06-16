@@ -15,24 +15,24 @@ These are included in every prompt automatically:
 
 ### Creating a pattern
 
-1. `workflows/component-creation.md`
-2. `components/component-patterns.md`
-3. `components/react-wrappers.md`
-4. `components/component-rule-map.md`
+1. `workflows/pattern-creation.md`
+2. `patterns/pattern-css-rules.md`
+3. `patterns/react-wrappers.md`
+4. `patterns/pattern-rule-map.md`
 5. `foundations/token-exports.md` (if token work needed)
-6. `components/playground-system.md` (for playground page)
+6. `patterns/playground-system.md` (for playground page)
 
 ### Writing documentation
 
-1. `components/component-doc-template.md`
+1. `patterns/pattern-doc-template.md`
 
 ### Working with the playground
 
-1. `components/playground-system.md`
+1. `patterns/playground-system.md`
 
 ### Working with site data files
 
-1. `components/site-data.md`
+1. `patterns/site-data.md`
 
 ### Pattern rule work
 

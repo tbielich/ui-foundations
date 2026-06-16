@@ -160,7 +160,7 @@ Create the docs page following the Component Doc Template.
 
 ### Rules
 
-- Follow `.kiro/steering/components/component-doc-template.md`
+- Follow `.kiro/steering/patterns/pattern-doc-template.md`
 - Sections: Hero, Anatomy, Options, Behaviors, Usage Guidelines,
   Content Standards, Keyboard, Accessibility, Theming, Design Checklist
 - Use docs CSS (Rule 13) — not brand theming

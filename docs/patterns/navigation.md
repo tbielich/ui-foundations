@@ -12,6 +12,6 @@ hierarchy, and recognisable destination structure.
 
 ## Related docs
 
-- `docs/components/button.md`
+- `docs/patterns/button.md`
 - `docs/principles/perception-laws.md`
 - `docs/validation/ci.md`
