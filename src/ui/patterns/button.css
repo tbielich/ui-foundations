@@ -183,7 +183,7 @@
   }
 
   .button-group[data-attached="true"] > .button {
-    border-radius: 0;
+    border-radius: var(--size-radius-000);
   }
 
   .button-group[data-attached="true"]:not([data-orientation="vertical"])
