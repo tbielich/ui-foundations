@@ -2512,3 +2512,79 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
 .type-token-table__preview {
   color: var(--docs-text-0);
 }
+
+/* ─── Nested nav sub-group (Design Tokens, Governance) ─── */
+.docs-nav-subgroup {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.docs-nav-subgroup > summary {
+  display: block;
+  list-style: none;
+}
+
+.docs-nav-subgroup > summary::-webkit-details-marker {
+  display: none;
+}
+
+.docs-nav-subgroup > summary > a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--docs-text-1);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 120ms ease;
+}
+
+.docs-nav-subgroup > summary > a:hover {
+  border-color: var(--docs-border);
+  background: #fff;
+  color: var(--docs-text-0);
+}
+
+.docs-nav-subgroup > summary > a[aria-current="page"] {
+  border-color: var(--docs-border-strong);
+  background: #fff;
+  color: var(--docs-text-0);
+  box-shadow: var(--docs-shadow-sm);
+  font-weight: 700;
+}
+
+.docs-nav-subgroup > ul {
+  list-style: none;
+  margin: 2px 0 0 12px;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.docs-nav-subgroup > ul a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--docs-text-1);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 120ms ease;
+}
+
+.docs-nav-subgroup > ul a:hover {
+  border-color: var(--docs-border);
+  background: #fff;
+  color: var(--docs-text-0);
+}
+
+.docs-nav-subgroup > ul a[aria-current="page"] {
+  border-color: var(--docs-border-strong);
+  background: #fff;
+  color: var(--docs-text-0);
+  box-shadow: var(--docs-shadow-sm);
+  font-weight: 700;
+}
