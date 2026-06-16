@@ -27,11 +27,11 @@ When creating a new component, ALL of these surfaces must be completed:
 | 4 | Nunjucks Macro | `site/_includes/macros/ui.njk` |
 | 5 | React Wrapper | `src/react/{component}.js` |
 | 6 | React Index | `src/react/index.js` (add export) |
-| 7 | Docs Page | `site/components/{component}.md` |
-| 8 | Playground Page | `site/components/{component}-playground.md` |
+| 7 | Docs Page | `site/patterns/{component}.md` |
+| 8 | Playground Page | `site/patterns/{component}-playground.md` |
 | 9 | Playground Renderer | `site/assets/playground/renderers.js` |
 | 10 | Code Connect | `schemas/web-{component}.figma.ts` |
-| 11 | Components Index | `site/components/index.md` (add card) |
+| 11 | Components Index | `site/patterns/index.md` (add card) |
 
 Missing any surface will cause broken pages or incomplete integration.
 
@@ -104,7 +104,7 @@ Follow existing macros in `site/_includes/macros/ui.njk`:
 
 ## Docs Page Template
 
-Follow the structure in existing component docs (e.g. `site/components/input.md`):
+Follow the structure in existing component docs (e.g. `site/patterns/input.md`):
 1. Hero with brand/mode switches
 2. Anatomy with numbered callouts
 3. Options (states grid + table)

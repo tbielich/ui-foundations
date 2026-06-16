@@ -25,8 +25,11 @@ permalink: /primitives/color/
 <p class="section-description">Raw color values from the Core layer. These are referenced by semantic and brand tokens — never used directly in components.</p>
 
 {% for palette in colorDocs.palettes %}
-<div class="color-family" id="family-{{ palette.family | slug }}">
-  <h3 id="palette-{{ palette.family | slug }}">{{ palette.family }}</h3>
+<details class="color-family" id="family-{{ palette.family | slug }}">
+  <summary class="color-family__summary" id="palette-{{ palette.family | slug }}">
+    <span class="color-family__name">{{ palette.family }}</span>
+    <span class="color-family__ramp">{% for step in palette.steps %}<span class="color-family__ramp-step" style="background: {{ step.hex }};"></span>{% endfor %}</span>
+  </summary>
   <div class="color-ramp">{% for step in palette.steps %}<div class="color-ramp__step" style="background: {{ step.hex }};" title="{{ step.name }} — {{ step.hex }}"></div>{% endfor %}</div>
   <div class="color-table-wrap">
     <table class="color-table">
@@ -50,7 +53,7 @@ permalink: /primitives/color/
       </tbody>
     </table>
   </div>
-</div>
+</details>
 {% endfor %}
 </section>
 
@@ -208,7 +211,7 @@ permalink: /primitives/color/
 
     var subUl = document.createElement("ul");
     subUl.className = "docs-toc-sidebar-sublist";
-    var families = document.querySelectorAll("#primitives h3[id]");
+    var families = document.querySelectorAll("#primitives summary[id]");
     families.forEach(function (h3) {
       var subLi = document.createElement("li");
       var subA = document.createElement("a");

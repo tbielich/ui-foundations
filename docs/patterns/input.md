@@ -6,7 +6,7 @@ Point to the existing input implementation and documentation surfaces.
 
 ## Canonical rules
 
-- `site/components/input.md`
+- `site/patterns/input.md`
 - `src/ui/patterns/input.css`
 - `src/react/input.js`
 - `schemas/web-input.figma.ts`

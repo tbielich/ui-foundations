@@ -27,10 +27,10 @@ type: agent-guide
    - Export in `src/react/index.js`
    - Nunjucks macro in `site/_includes/macros/ui.njk` (source of truth; `dist/macros/ui.njk` is copied during build)
    - Playground renderer in `site/assets/playground/renderers.js` — register the render function and add it to the `renderers` map
-   - Playground page in `site/components/<pattern>-playground.md` with `renderer: <pattern>` matching the key in the renderers map
-   - Docs page in `site/components/<pattern>.md`
+   - Playground page in `site/patterns/<pattern>-playground.md` with `renderer: <pattern>` matching the key in the renderers map
+   - Docs page in `site/patterns/<pattern>.md`
    - Code Connect file in `schemas/web-<pattern>.figma.ts`
-   - Pattern card in `site/components/index.md`
+   - Pattern card in `site/patterns/index.md`
    Missing any of these (especially the playground renderer) will cause broken pages.
 9. Every new pattern must have its own Component-layer tokens. Never reuse tokens from another pattern (e.g. do not use `--input-checkbox-*` for a radio).
    - Check `dist/tokens/css/components-ui.tokens.css` for existing tokens.

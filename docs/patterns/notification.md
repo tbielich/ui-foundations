@@ -6,7 +6,7 @@ Reserve a stable location for future notification-component documentation.
 
 ## Canonical rules
 
-- `docs/components/README.md`
+- `docs/patterns/README.md`
 - `docs/patterns/feedback.md`
 
 ## Related docs

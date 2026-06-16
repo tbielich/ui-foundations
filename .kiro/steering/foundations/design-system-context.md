@@ -44,8 +44,8 @@ Figma exports are the source. Generated files in `dist/` are never edited direct
 | React exports | `src/react/index.js` |
 | Nunjucks macros | `site/_includes/macros/ui.njk` (source; `dist/macros/ui.njk` is build copy) |
 | Playground renderers | `site/assets/playground/renderers.js` |
-| Docs pages | `site/components/*.md` |
-| Playground pages | `site/components/*-playground.md` |
+| Docs pages | `site/patterns/*.md` |
+| Playground pages | `site/patterns/*-playground.md` |
 | Code Connect | `schemas/web-*.figma.ts` |
 | Token exports | `figma/exports/*.tokens.json` |
 | Brand overrides | `dist/tokens/css/themes-brands.tokens.*.css` |
@@ -65,7 +65,7 @@ logic via JavaScript. They build on top of patterns.
 
 Planned: Calendar, DatePicker, ComboBox, Dialog, Table
 
-Components will live in `src/components/` (not yet created).
+Components will live in `src/ui/components/` (not yet created).
 
 ## Pattern vs. Component
 
@@ -74,7 +74,7 @@ Components will live in `src/components/` (not yet created).
 | CSS | ✓ | ✓ (uses patterns) |
 | JavaScript | – | ✓ |
 | State | – | ✓ |
-| Location | `src/ui/patterns/` | `src/components/` |
+| Location | `src/ui/patterns/` | `src/ui/components/` |
 | Token layer | `@layer components` | `@layer components` |
 | Example | `.button`, `.input` | `<Calendar>` |
 

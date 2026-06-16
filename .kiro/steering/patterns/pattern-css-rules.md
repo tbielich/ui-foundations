@@ -3,12 +3,12 @@ inclusion: fileMatch
 fileMatchPattern: "src/ui/patterns/**"
 ---
 
-# Component CSS Pattern Rules
+# Pattern CSS Rules
 
 When working with files in `src/ui/patterns/`, these rules apply:
 
 ## CSS Conventions (Rule 11)
-- Class name = bare component name: `.slider`, `.radio`, `.checkbox`
+- Class name = bare pattern name: `.slider`, `.radio`, `.checkbox`
 - Never use prefixes like `.ui-slider` or namespaces
 - Always wrap in `@layer components { }`
 - Use logical properties: `inline-size`/`block-size`, not `width`/`height`
@@ -20,15 +20,15 @@ When working with files in `src/ui/patterns/`, these rules apply:
 - Always implement both for playground compatibility
 
 ## Token Ownership (Rule 9)
-- Every component uses its own `--component-*` tokens
-- Never reference another component's tokens (e.g. don't use `--input-checkbox-*` in radio)
-- Component tokens are defined in `figma/exports/Components (UI).tokens.json`
+- Every pattern uses its own `--pattern-*` tokens
+- Never reference another pattern's tokens (e.g. don't use `--input-checkbox-*` in radio)
+- Pattern tokens are defined in `figma/exports/Components (UI).tokens.json`
 
 ## Focus Pattern
 ```css
-.component:focus-visible,
-.component.is-focus-visible {
-  border-color: var(--component-border-color-focus);
+.pattern:focus-visible,
+.pattern.is-focus-visible {
+  border-color: var(--pattern-border-color-focus);
   outline: none;
   box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
 }

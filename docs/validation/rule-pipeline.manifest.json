@@ -149,15 +149,15 @@
   "componentRules": [
     {
       "id": "component-rule-map",
-      "file": ".kiro/steering/components/component-rule-map.md"
+      "file": ".kiro/steering/patterns/pattern-rule-map.md"
     },
     {
       "id": "component-css-patterns",
-      "file": ".kiro/steering/components/component-patterns.md"
+      "file": ".kiro/steering/patterns/pattern-css-rules.md"
     },
     {
       "id": "react-wrappers",
-      "file": ".kiro/steering/components/react-wrappers.md"
+      "file": ".kiro/steering/patterns/react-wrappers.md"
     },
     {
       "id": "assistant-component-checklist",

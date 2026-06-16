@@ -5,8 +5,8 @@ inclusion: manual
 # Component Documentation Template (Spectrum-style)
 
 When writing or upgrading a component documentation page, follow this section
-structure. The Button (`site/components/button.md`), Icon
-(`site/components/icon.md`), and Checkbox (`site/components/checkbox.md`)
+structure. The Button (`site/patterns/button.md`), Icon
+(`site/patterns/icon.md`), and Checkbox (`site/patterns/checkbox.md`)
 pages are the reference implementations.
 
 ## Required sections (in order)
