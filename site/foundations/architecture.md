@@ -13,7 +13,7 @@ permalink: /foundations/architecture/
 
 <h2 id="layers-heading">Atomic Layers</h2>
 
-<div class="docs-table-wrap">
+<div class="arch-hero-table">
   <table class="docs-table">
     <thead>
       <tr>
