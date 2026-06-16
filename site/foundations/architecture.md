@@ -109,7 +109,7 @@ permalink: /foundations/architecture/
     </thead>
     <tbody>
       <tr>
-        <td><strong><a href="/foundations/principles/">Design Principles</a></strong></td>
+        <td><strong><a href="/foundations/governance/principles/">Design Principles</a></strong></td>
         <td>Cross-cutting composition intent — the "why" behind layout and structure</td>
         <td>Proximity, Hierarchy, Contrast, Affordance, Cognitive Load, Consistency</td>
       </tr>

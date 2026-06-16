@@ -13,7 +13,7 @@ excludeFromNav: true
 </p>
 
 <div class="docs-grid">
-  <a class="docs-card" href="/foundations/principles/">
+  <a class="docs-card" href="/foundations/governance/principles/">
     <h2>Design Principles</h2>
     <p>Cross-cutting composition intent — proximity, hierarchy, contrast, affordance, cognitive load, consistency.</p>
   </a>
