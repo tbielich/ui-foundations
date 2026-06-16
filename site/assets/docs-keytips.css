@@ -1,0 +1,56 @@
+/* ─── Navigation Key Tips ───
+ * Experimental PoC: visual key tips on main navigation links.
+ * Activated by a short Alt press; dismissed by Escape, Alt, pointer, or selection.
+ * Uses ::after pseudo-elements — no extra DOM nodes.
+ */
+
+/* Default: invisible, non-interactive */
+[data-keytip] {
+  position: relative;
+}
+
+[data-keytip]::after {
+  content: attr(data-keytip);
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 8px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  min-inline-size: 1.4em;
+  min-block-size: 1.4em;
+  padding: 0 0.3em;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  font-family: var(--docs-font-sans);
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--docs-surface-1);
+  background: var(--docs-accent);
+  border: 1px solid var(--docs-accent);
+  box-shadow: var(--docs-shadow-sm);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 120ms ease, visibility 0ms 120ms;
+  z-index: 1;
+}
+
+/* Active state — controlled via html[data-keytip-mode="active"] */
+html[data-keytip-mode="active"] [data-keytip]::after {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 120ms ease, visibility 0ms 0ms;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-keytip]::after {
+    transition: none;
+  }
+  html[data-keytip-mode="active"] [data-keytip]::after {
+    transition: none;
+  }
+}

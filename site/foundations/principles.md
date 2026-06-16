@@ -4,7 +4,8 @@ title: Principles
 description: UI Foundations is guided by a small set of principles that inform every pattern, component, and token decision.
 navTitle: Principles
 order: 2
-permalink: /foundations/principles/
+permalink: /foundations/governance/principles/
+excludeFromNav: true
 ---
 
 <div class="docs-principle-grid">

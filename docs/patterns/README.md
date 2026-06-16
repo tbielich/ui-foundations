@@ -19,5 +19,5 @@ composition logic without dropping directly into component implementation detail
 ## Related docs
 
 - `docs/principles/README.md`
-- `docs/components/README.md`
+- `docs/patterns/README.md`
 - `docs/validation/ci.md`

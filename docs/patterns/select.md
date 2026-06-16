@@ -6,7 +6,7 @@ Track where select-component documentation should live once the component exists
 
 ## Canonical rules
 
-- `docs/components/README.md`
+- `docs/patterns/README.md`
 - `docs/patterns/forms.md`
 
 ## Related docs

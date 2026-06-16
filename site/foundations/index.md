@@ -11,7 +11,7 @@ Foundations describe the shared intent behind every component and pattern in the
 system. They keep decisions consistent across teams, brands, and platforms.
 
 <div class="docs-grid">
-  <a class="docs-card" href="/foundations/principles/">
+  <a class="docs-card" href="/foundations/governance/principles/">
     <h2>Principles</h2>
     <p>The core beliefs that guide every design and implementation decision.</p>
   </a>

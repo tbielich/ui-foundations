@@ -14,7 +14,7 @@ details or local agent configuration.
 | `foundations/` | Token architecture, naming, theming, parity, and format guidance | `docs/foundations/README.md` |
 | `principles/` | Perception, heuristics, and accessibility intent | `docs/principles/README.md` |
 | `patterns/` | Pattern-level composition guidance | `docs/patterns/README.md` |
-| `components/` | Component-facing entry docs and TODO gaps | `docs/components/README.md` |
+| `components/` | Component-facing entry docs and TODO gaps | `docs/patterns/README.md` |
 | `agentic/` | Agent behavior, workflows, prompts, and migration context | `docs/agentic/README.md` |
 | `adr/` | Architecture decision records and documentation migration notes | `docs/adr/README.md` |
 | `validation/` | Validation checklists, CI, token parity, and accessibility checks | `docs/validation/README.md` |

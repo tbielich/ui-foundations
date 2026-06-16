@@ -62,7 +62,7 @@
       "purpose": "Pattern-level guidance"
     },
     "components": {
-      "path": "docs/components/",
+      "path": "docs/patterns/",
       "purpose": "Component entry docs"
     },
     "agentic": {

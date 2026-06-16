@@ -2513,6 +2513,176 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   color: var(--docs-text-0);
 }
 
+/* ─── Pipeline flow diagram (box design) ─── */
+.pipeline-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 1.5rem 0;
+}
+
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--docs-border-strong);
+  background: var(--docs-surface-1);
+  box-shadow: var(--docs-shadow-sm);
+  text-align: center;
+}
+
+.pipeline-step__label {
+  font-family: var(--docs-code-font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--docs-text-0);
+}
+
+.pipeline-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 0;
+  color: var(--docs-text-1);
+}
+
+.pipeline-arrow::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 12px;
+  background: var(--docs-border-strong);
+}
+
+.pipeline-arrow span {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--docs-accent);
+  padding: 2px 0;
+}
+
+.pipeline-arrow::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--docs-border-strong);
+}
+
+@media (max-width: 980px) {
+  .pipeline-step {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* ─── Collapsible color families ─── */
+details.color-family {
+  margin-bottom: 8px;
+  border: 1px solid var(--docs-border);
+  border-radius: 12px;
+  background: var(--docs-surface-1);
+  box-shadow: var(--docs-shadow-sm);
+  overflow: hidden;
+}
+
+details.color-family[open] {
+  margin-bottom: 16px;
+}
+
+.color-family__summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  transition: background 120ms ease;
+}
+
+.color-family__summary::-webkit-details-marker {
+  display: none;
+}
+
+.color-family__summary:hover {
+  background: var(--docs-surface-2);
+}
+
+.color-family__name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--docs-text-0);
+  min-width: 140px;
+}
+
+.color-family__ramp {
+  display: flex;
+  flex: 1;
+  height: 24px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.color-family__ramp-step {
+  flex: 1;
+  min-width: 0;
+}
+
+details.color-family > .color-ramp {
+  margin: 0 16px 12px;
+}
+
+details.color-family > .color-table-wrap {
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid var(--docs-border);
+  box-shadow: none;
+}
+
+/* ─── Section dividers between major color sections ─── */
+#primitives,
+#brands,
+#semantic-light,
+#semantic-dark {
+  padding-top: 2rem;
+  border-top: 2px solid var(--docs-border);
+  margin-top: 2rem;
+}
+
+#primitives {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* ─── Architecture hero table ─── */
+.arch-hero-table {
+  overflow-x: auto;
+  border: 2px solid var(--docs-accent);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.03), transparent);
+  box-shadow:
+    var(--docs-shadow-sm),
+    0 0 0 4px rgba(37, 99, 235, 0.06);
+}
+
+.arch-hero-table .docs-table th {
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.arch-hero-table .docs-table td:first-child {
+  font-size: 0.95rem;
+}
+
 /* ─── Nested nav sub-group (Design Tokens, Governance) ─── */
 .docs-nav-subgroup {
   margin: 0;
@@ -2557,7 +2727,7 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
 
 .docs-nav-subgroup > ul {
   list-style: none;
-  margin: 2px 0 0 12px;
+  margin: 2px 0 2px 14px;
   padding: 0;
   display: grid;
   gap: 2px;
@@ -2565,12 +2735,12 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
 
 .docs-nav-subgroup > ul a {
   display: block;
-  padding: 6px 10px;
-  border-radius: 8px;
+  padding: 7px 10px;
+  border-radius: 9px;
   border: 1px solid transparent;
   text-decoration: none;
   color: var(--docs-text-1);
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   font-weight: 600;
   transition: all 120ms ease;
 }

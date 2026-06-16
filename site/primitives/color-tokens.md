@@ -16,13 +16,6 @@ permalink: /primitives/color/
 
 {% if colorDocs.palettes and colorDocs.palettes.length %}
 
-<nav class="palette-nav" aria-label="Color sections">
-  <a href="#primitives">Primitives</a>
-  <a href="#brands">Brands</a>
-  <a href="#semantic-light">Semantic (Light)</a>
-  <a href="#semantic-dark">Semantic (Dark)</a>
-</nav>
-
 <!-- ═══════════════════════════════════════════════════
      PRIMITIVES
      ═══════════════════════════════════════════════════ -->
@@ -32,8 +25,11 @@ permalink: /primitives/color/
 <p class="section-description">Raw color values from the Core layer. These are referenced by semantic and brand tokens — never used directly in components.</p>
 
 {% for palette in colorDocs.palettes %}
-<div class="color-family" id="family-{{ palette.family | slug }}">
-  <h3 id="palette-{{ palette.family | slug }}">{{ palette.family }}</h3>
+<details class="color-family" id="family-{{ palette.family | slug }}">
+  <summary class="color-family__summary" id="palette-{{ palette.family | slug }}">
+    <span class="color-family__name">{{ palette.family }}</span>
+    <span class="color-family__ramp">{% for step in palette.steps %}<span class="color-family__ramp-step" style="background: {{ step.hex }};"></span>{% endfor %}</span>
+  </summary>
   <div class="color-ramp">{% for step in palette.steps %}<div class="color-ramp__step" style="background: {{ step.hex }};" title="{{ step.name }} — {{ step.hex }}"></div>{% endfor %}</div>
   <div class="color-table-wrap">
     <table class="color-table">
@@ -57,7 +53,7 @@ permalink: /primitives/color/
       </tbody>
     </table>
   </div>
-</div>
+</details>
 {% endfor %}
 </section>
 
@@ -198,81 +194,53 @@ permalink: /primitives/color/
   });
 })();
 
-// Enhanced TOC with nested color families
+// Enhanced TOC: add nested color families to the layout-generated TOC
 (function () {
-  // Remove the auto-generated TOC (from layout script) if present
-  var existing = document.querySelector(".docs-toc-sidebar");
-  if (existing) existing.remove();
+  // Wait for the layout script to build the TOC first
+  setTimeout(function () {
+    var toc = document.querySelector(".docs-toc-sidebar-list");
+    if (!toc) return;
 
-  var main = document.querySelector(".docs-main");
-  if (!main) return;
+    // Find the "Color Primitives" entry and append nested palette links
+    var links = toc.querySelectorAll("a");
+    var primitivesLi = null;
+    links.forEach(function (a) {
+      if (a.dataset.tocTarget === "primitives-heading") primitivesLi = a.parentElement;
+    });
+    if (!primitivesLi) return;
 
-  var aside = document.createElement("aside");
-  aside.className = "docs-toc-sidebar";
-  aside.setAttribute("aria-label", "On this page");
+    var subUl = document.createElement("ul");
+    subUl.className = "docs-toc-sidebar-sublist";
+    var families = document.querySelectorAll("#primitives summary[id]");
+    families.forEach(function (h3) {
+      var subLi = document.createElement("li");
+      var subA = document.createElement("a");
+      subA.href = "#" + h3.id;
+      subA.textContent = h3.textContent;
+      subA.dataset.tocTarget = h3.id;
+      subLi.appendChild(subA);
+      subUl.appendChild(subLi);
+    });
+    primitivesLi.appendChild(subUl);
 
-  var title = document.createElement("p");
-  title.className = "docs-toc-sidebar-title";
-  title.textContent = "On this page";
-  aside.appendChild(title);
-
-  var ul = document.createElement("ul");
-  ul.className = "docs-toc-sidebar-list";
-
-  // Build TOC: h2[id] as top-level, h3[id] inside #primitives as nested
-  var h2s = document.querySelectorAll(".docs-content h2[id]");
-  h2s.forEach(function (h2) {
-    var li = document.createElement("li");
-    var a = document.createElement("a");
-    a.href = "#" + h2.id;
-    a.textContent = h2.textContent;
-    a.dataset.tocTarget = h2.id;
-    li.appendChild(a);
-
-    // If this is the primitives heading, add nested palette links
-    if (h2.id === "primitives-heading") {
-      var subUl = document.createElement("ul");
-      subUl.className = "docs-toc-sidebar-sublist";
-      var families = document.querySelectorAll("#primitives h3[id]");
-      families.forEach(function (h3) {
-        var subLi = document.createElement("li");
-        var subA = document.createElement("a");
-        subA.href = "#" + h3.id;
-        subA.textContent = h3.textContent;
-        subA.dataset.tocTarget = h3.id;
-        subLi.appendChild(subA);
-        subUl.appendChild(subLi);
-      });
-      li.appendChild(subUl);
-    }
-
-    ul.appendChild(li);
-  });
-
-  aside.appendChild(ul);
-  main.appendChild(aside);
-
-  // Scroll spy for all links
-  var allLinks = ul.querySelectorAll("a[data-toc-target]");
-  var allTargets = [];
-  allLinks.forEach(function (l) {
-    var target = document.getElementById(l.dataset.tocTarget);
-    if (target) allTargets.push(target);
-  });
-
-  var observer = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          allLinks.forEach(function (l) { l.classList.remove("is-active"); });
-          var active = ul.querySelector('[data-toc-target="' + entry.target.id + '"]');
-          if (active) active.classList.add("is-active");
-        }
-      });
-    },
-    { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
-  );
-
-  allTargets.forEach(function (t) { observer.observe(t); });
+    // Extend scroll spy to include nested links
+    var newLinks = subUl.querySelectorAll("a[data-toc-target]");
+    var allTocLinks = toc.querySelectorAll("a[data-toc-target]");
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            allTocLinks.forEach(function (l) { l.classList.remove("is-active"); });
+            newLinks.forEach(function (l) { l.classList.remove("is-active"); });
+            var active = toc.querySelector('[data-toc-target="' + entry.target.id + '"]');
+            if (!active) active = subUl.querySelector('[data-toc-target="' + entry.target.id + '"]');
+            if (active) active.classList.add("is-active");
+          }
+        });
+      },
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+    );
+    families.forEach(function (h3) { observer.observe(h3); });
+  }, 0);
 })();
 </script>
