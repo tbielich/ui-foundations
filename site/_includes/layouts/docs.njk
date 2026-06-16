@@ -114,6 +114,23 @@
                     </ul>
                   </details>
                 </li>
+                <li>
+                  <details class="docs-nav-subgroup"{% if page.url.indexOf("/foundations/governance") == 0 %} open{% endif %}>
+                    <summary><a href="/foundations/governance/"{% if page.url == "/foundations/governance/" %} aria-current="page"{% endif %}>Governance</a></summary>
+                    <ul>
+                      {% for entry in collections.governanceDocs %}
+                      <li>
+                        <a
+                          href="{{ entry.url }}"
+                          {% if entry.url == page.url %}aria-current="page"{% endif %}
+                        >
+                          {{ entry.data.navTitle or entry.data.title }}
+                        </a>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                </li>
               </ul>
             </details>
           </nav>

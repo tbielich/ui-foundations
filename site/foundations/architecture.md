@@ -114,12 +114,12 @@ permalink: /foundations/architecture/
         <td>Proximity, Hierarchy, Contrast, Affordance, Cognitive Load, Consistency</td>
       </tr>
       <tr>
-        <td><strong>Usability Heuristics</strong></td>
+        <td><strong><a href="/foundations/governance/heuristics/">Usability Heuristics</a></strong></td>
         <td>Interaction quality rules — the "how" of user experience</td>
         <td>Feedback, Error Prevention, Recognition, User Control, Accessibility</td>
       </tr>
       <tr>
-        <td><strong>Design Intelligence</strong></td>
+        <td><strong><a href="/foundations/governance/intelligence/">Design Intelligence</a></strong></td>
         <td>Judgment layer — evaluates quality beyond compliance</td>
         <td>Appropriateness, Complexity, Trade-offs, Emotional Fit, Confidence</td>
       </tr>

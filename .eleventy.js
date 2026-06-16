@@ -64,7 +64,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("foundationsDocs", (collectionApi) => {
     return collectionApi
       .getFilteredByGlob("site/foundations/**/*.md")
-      .filter((entry) => entry.data.permalink !== "/foundations/" && entry.data.permalink !== "/foundations/design-tokens/" && !entry.data.excludeFromNav)
+      .filter((entry) => entry.data.permalink !== "/foundations/" && entry.data.permalink !== "/foundations/design-tokens/" && entry.data.permalink !== "/foundations/governance/" && !String(entry.data.permalink || "").startsWith("/foundations/governance/") && !entry.data.excludeFromNav)
       .sort((a, b) => {
         const aOrder = Number(a.data.order || 999);
         const bOrder = Number(b.data.order || 999);
@@ -79,6 +79,23 @@ module.exports = function (eleventyConfig) {
     return collectionApi
       .getFilteredByGlob("site/primitives/**/*.md")
       .filter((entry) => entry.data.permalink !== "/primitives/")
+      .sort((a, b) => {
+        const aOrder = Number(a.data.order || 999);
+        const bOrder = Number(b.data.order || 999);
+        if (aOrder !== bOrder) return aOrder - bOrder;
+        return String(a.data.title || "").localeCompare(
+          String(b.data.title || ""),
+        );
+      });
+  });
+
+  eleventyConfig.addCollection("governanceDocs", (collectionApi) => {
+    return collectionApi
+      .getAll()
+      .filter((entry) => {
+        const p = String(entry.data.permalink || "");
+        return p.startsWith("/foundations/governance/") && p !== "/foundations/governance/";
+      })
       .sort((a, b) => {
         const aOrder = Number(a.data.order || 999);
         const bOrder = Number(b.data.order || 999);
