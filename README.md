@@ -97,7 +97,7 @@ Patterns consume Semantic or Core tokens. Never raw values.
 
 ### Component Integration
 
-Every component ships with:
+Every pattern ships with:
 
 ```
  ┌────────────┬────────────┬────────────┐
@@ -107,7 +107,7 @@ Every component ships with:
  └────────────┴────────────┴────────────┘
 ```
 
-All surfaces must be present for the component to work predictably across
+All surfaces must be present for the pattern to work predictably across
 docs, playgrounds, and consumer apps.
 
 ---
@@ -252,7 +252,7 @@ Agents operate in modes:
  ├── validation/    ← CI pipeline, parity checks
  └── token-pipeline.md
  site/
- ├── components/    ← Component docs + playgrounds
+ ├── patterns/      ← Pattern docs + playgrounds
  ├── foundations/   ← Token and principle pages
  └── examples/     ← Usage examples
 ```
@@ -273,7 +273,7 @@ npm run docs:dev        # build + serve docs site
 ```
 ╭──────────────────────────────────────╮
 │ ╻╻· │ FOUNDATIONS                    │
-│ ┗┛╹ │ BUILD 0.7.0                    │
+│ ┗┛╹ │ BUILD 0.8.0                    │
 ╰──────────────────────────────────────╯
 █ ICONS                             [OK]
 ├ Entries                           0289
@@ -354,9 +354,9 @@ Figma integration uses the Model Context Protocol. Token exports live in
 - Validate before commit: `npm run ci:check`
 - Work on feature branches
 
-### Adding a New Component
+### Adding a New Pattern
 
-Load the `#component-creation` steering file for the full 10-phase workflow.
+Load the `#pattern-creation` steering file for the full 10-phase workflow.
 Key steps: semantic HTML first, then Figma tokens (bind variables, never hardcode),
 CSS pattern, Nunjucks macro, React wrapper, docs page, playground, Code Connect.
 
@@ -384,7 +384,7 @@ npm run release:publish
  ├────────────────┼───────────────────────────┤
  │ Design         │ Figma + MCP               │
  ├────────────────┼───────────────────────────┤
- │ Components     │ Vanilla CSS (@layer)      │
+ │ Patterns       │ Vanilla CSS (@layer)      │
  ├────────────────┼───────────────────────────┤
  │ Optional       │ React wrappers            │
  └────────────────┴───────────────────────────┘
@@ -395,6 +395,7 @@ npm run release:publish
 ## Roadmap
 
 - **Calendar Component** — first functional component with state, date logic, and keyboard navigation. Built on top of existing patterns.
+- **Navigation Key Tips** — experimental Alt-triggered keyboard shortcuts for fast docs navigation (available now).
 - **Web Components** — replace React wrappers with framework-agnostic custom elements (light DOM, no shadow DOM) so patterns are truly platform-independent (#104).
 
 ---
