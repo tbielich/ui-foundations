@@ -12,6 +12,7 @@ order: 90
 | Feature | Navigation Key Tips |
 | Scope | Main Navigation (sidebar) |
 | Trigger | Short press and release of `Alt` |
+| Search focus | `Alt` + `Space` |
 | Selection | `1`–`9` |
 | Dismiss | `Escape`, `Alt`, Pointer click, Navigation |
 | Status | **Experimental** |
@@ -24,6 +25,10 @@ Navigation Key Tips provide a fast keyboard shortcut to open or navigate to top-
 2. Numeric badges appear next to each navigable section.
 3. Press the corresponding number to activate that section or link.
 4. The mode auto-dismisses after selection, or can be cancelled with `Escape`, another `Alt` tap, or any pointer interaction.
+
+### Quick search
+
+Press `Alt` + `Space` at any time to jump directly into the search input. Any existing text is selected so you can immediately type a new query.
 
 ## Key assignments
 
@@ -72,8 +77,23 @@ Key tip badges are rendered via CSS `::after` pseudo-elements — no additional 
 - The `::after` content is presentational and does not alter the computed accessible name of links.
 - `prefers-reduced-motion` disables transitions.
 
+## Touch devices
+
+Key Tips rely on a physical keyboard and the `Alt` key. On touch-only devices (phones, tablets) the feature is inert — no activation path exists, and no UI is rendered. This is intentional: touch navigation uses direct tap targets and does not benefit from a shortcut overlay.
+
+## Scalability
+
+The current design supports up to 9 key tips per scope (digits `1`–`9`). If the navigation grows beyond 9 top-level sections, possible strategies include:
+
+- **Nested scopes**: activate a group first, then show sub-tips within it (two-step selection).
+- **Pagination**: show tips for the visible viewport section, scroll to reveal more.
+- **Priority assignment**: assign tips only to the most-used sections; leave the rest for standard keyboard navigation.
+
+No immediate action is needed — the documentation site currently has 4 sections.
+
 ## Limitations
 
 - Maximum 9 key tips per scope (digits 1–9).
 - Currently limited to the main navigation; not yet applied to sub-navigation or other components.
 - The Alt trigger may not fire reliably if the browser intercepts the keyup event (rare, mostly on Linux with certain window managers).
+- No activation path on touch-only devices (by design — see above).

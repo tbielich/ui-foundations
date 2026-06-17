@@ -97,8 +97,19 @@
         this._altDownTime = Date.now();
         this._altCombo = false;
       }
-      // Prevent default to suppress menu bar activation on Windows/Linux
-      // but only when we might use this as a key-tip trigger
+      // Prevent default to suppress menu bar activation on Windows/Linux.
+      // Safe: only fires on standalone Alt keydown, not combos.
+      e.preventDefault();
+      return;
+    }
+
+    // Alt+Space: focus the search input immediately.
+    // On macOS Alt+Space may produce a non-breaking space (code "Space" but key is \u00A0).
+    if (e.altKey && (e.code === "Space" || e.key === " ")) {
+      e.preventDefault();
+      e.stopPropagation();
+      this._altCombo = true;
+      this._focusSearch();
       return;
     }
 
@@ -155,6 +166,14 @@
     if (this._active) {
       this._deactivate();
     }
+  };
+
+  NavigationKeyTips.prototype._focusSearch = function () {
+    var input = document.querySelector(".docs-search-input");
+    if (!input) return;
+    this._deactivate();
+    input.focus();
+    input.select();
   };
 
   NavigationKeyTips.prototype._handleVisibilityChange = function () {
