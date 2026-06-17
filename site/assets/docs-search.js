@@ -131,6 +131,10 @@
       e.preventDefault();
       var entry = currentResults[activeIndex];
       if (entry) window.location.href = entry.url;
+    } else if (e.key === "Enter" && activeIndex < 0 && currentResults.length === 1) {
+      // Single result: navigate directly without explicit selection
+      e.preventDefault();
+      window.location.href = currentResults[0].url;
     } else if (e.key === "Escape") {
       e.preventDefault();
       hide();
