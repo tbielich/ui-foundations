@@ -273,7 +273,7 @@ npm run docs:dev        # build + serve docs site
 ```
 ╭──────────────────────────────────────╮
 │ ╻╻· │ FOUNDATIONS                    │
-│ ┗┛╹ │ BUILD 0.8.0                    │
+│ ┗┛╹ │ BUILD 0.8.1                    │
 ╰──────────────────────────────────────╯
 █ ICONS                             [OK]
 ├ Entries                           0289
