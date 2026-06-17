@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Validate After Task",
+      "description": "Run CI check after completing a spec task to catch regressions immediately.",
+      "trigger": "PostTaskExec",
+      "action": {
+        "type": "command",
+        "command": "npm run ci:check"
+      },
+      "enabled": false
+    }
+  ]
+}
