@@ -9,7 +9,7 @@ Use this when checking for drift between Figma design and code implementation.
 ## Surfaces to Review per Component
 
 1. `figma/exports/*.tokens.json` — token exports from Figma
-2. `dist/tokens/css/components-ui.tokens.css` — generated CSS tokens
+2. `dist/tokens/css/patterns-ui.tokens.css` — generated CSS tokens
 3. `schemas/web-*.figma.ts` — Code Connect mappings
 4. `src/ui/patterns/*.css` — CSS implementation
 5. `src/react/*.js` — React wrappers

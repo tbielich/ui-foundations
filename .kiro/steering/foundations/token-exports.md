@@ -20,10 +20,10 @@ When working with files in `figma/exports/`, these rules apply:
 - If a needed Semantic token doesn't exist, flag it for Figma creation — don't fake it
 
 ## Layer Rules (Foundation-001)
-- Component tokens (`Components (UI).tokens.json`) reference only Semantic or Core
+- Pattern tokens (`Patterns (UI).tokens.json`) reference only Semantic or Core
 - Semantic tokens reference only Core, Themes (Brands), or Appearance (Modes)
 - Never create cross-component references (e.g. Radio referencing Checkbox tokens)
-- **Components must NEVER reference Themes (Brands) or Appearance (Modes) directly**
+- **Patterns must NEVER reference Themes (Brands) or Appearance (Modes) directly**
 
 ### Corner Radius References (Common Mistake)
 
@@ -52,7 +52,7 @@ Semantics collection — do not bypass to Themes.
 
 ### Size References (Border Width, Spacing)
 
-Components must reference **Semantic Size tokens**, not Core `Size/*` directly:
+Patterns must reference **Semantic Size tokens**, not Core `Size/*` directly:
 
 | ✅ Correct `$ref` | ❌ Wrong `$ref` | Use for |
 |---|---|---|
@@ -73,6 +73,20 @@ creation** — do not reference `Size/*` Core tokens directly.
 ## After Changes
 - Run `npm run tokens:generate` and verify zero "missing alias targets"
 - Run `npm run ci:check` to validate the full pipeline
+
+## Creating New Semantic Tokens (CRITICAL)
+
+When adding new tokens to `figma/exports/Semantics (Roles).tokens.json`:
+
+- **NEVER invent `targetVariableId` values.** The pipeline resolves aliases
+  ID-first. A fake ID that collides with an existing token causes silent
+  mis-resolution (e.g. spacing resolving to font-size).
+- **Omit `targetVariableId`** from `com.figma.aliasData` if you don't know the
+  real Figma variable ID. The pipeline will fall back to path-based resolution
+  using the `$ref` value, which is always correct.
+- Only use real IDs from Figma dumps or the Figma Plugin API.
+- Keep `targetVariableName`, `targetVariableSetId`, and `targetVariableSetName`
+  for documentation, but they are not used for resolution.
 
 ## Code Syntax Naming (codeSyntax.WEB)
 

@@ -17,7 +17,7 @@ this project must be written in English. No exceptions.
 |---|---|---|
 | Core (Primitives) | Raw values: spacing, radii, borders, typography | `dist/tokens/css/core-primitives.tokens.css` |
 | Semantics (Roles) | Intent-based: `--color-text-default`, `--color-fill-surface`, `--corner-input-radius` | `dist/tokens/css/semantics-roles.tokens.css` |
-| Components (UI) | Component-specific: `--button-solid-border-color-default` | `dist/tokens/css/components-ui.tokens.css` |
+| Patterns (UI) | Pattern-specific: `--button-solid-border-color-default` | `dist/tokens/css/patterns-ui.tokens.css` |
 
 Resolution mechanisms (feed INTO Semantics, not independent layers):
 | Mechanism | Purpose | Location |
@@ -27,7 +27,7 @@ Resolution mechanisms (feed INTO Semantics, not independent layers):
 
 **Strict reference direction:**
 ```
-Components → Semantics or Core only (NEVER Themes/Modes directly)
+Patterns → Semantics or Core only (NEVER Themes/Modes directly)
 Semantics  → Core, Themes, or Modes
 Themes     → Core
 Modes      → Core

@@ -22,7 +22,7 @@ When working with files in `src/ui/patterns/`, these rules apply:
 ## Token Ownership (Rule 9)
 - Every pattern uses its own `--pattern-*` tokens
 - Never reference another pattern's tokens (e.g. don't use `--input-checkbox-*` in radio)
-- Pattern tokens are defined in `figma/exports/Components (UI).tokens.json`
+- Pattern tokens are defined in `figma/exports/Patterns (UI).tokens.json`
 
 ## Focus Pattern
 ```css

@@ -45,7 +45,7 @@ component meets the threshold for dedicated tokens.
 **Use component-specific tokens when ANY of these apply:**
 - The component has more than 2 visual variants (e.g. solid/outline/ghost)
 - The component needs brand-specific color overrides
-- The component has dedicated variables in the Figma "Components (UI)" collection
+- The component has dedicated variables in the Figma "Patterns (UI)" collection
 
 **Use semantic tokens directly when ALL of these apply:**
 - The component only uses standard colors, spacing, and borders
@@ -85,11 +85,11 @@ Follow `.kiro/steering/figma/figma-components.md` for all Figma component creati
 
 ### Checklist
 
-- [ ] Figma variables created in "Components (UI)" collection
+- [ ] Figma variables created in "Patterns (UI)" collection
 - [ ] Naming follows `--component-variant-part-property-state`
 - [ ] All references point to Semantic/Core tokens
 - [ ] Web syntax set
-- [ ] Token export updated: `figma/exports/Components (UI).tokens.json`
+- [ ] Token export updated: `figma/exports/Patterns (UI).tokens.json`
 
 ---
 
@@ -256,7 +256,7 @@ npm run ci:check           # Full pipeline
 
 | # | Surface | Path |
 |---|---------|------|
-| 1 | Component Tokens | `figma/exports/Components (UI).tokens.json` |
+| 1 | Component Tokens | `figma/exports/Patterns (UI).tokens.json` |
 | 2 | CSS Pattern | `src/ui/patterns/{component}.css` |
 | 3 | CSS Index | `src/ui/index.css` (add import) |
 | 4 | Nunjucks Macro | `site/_includes/macros/ui.njk` |
