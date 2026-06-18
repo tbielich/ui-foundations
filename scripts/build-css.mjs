@@ -57,6 +57,7 @@ function scopePriority(scope) {
   if (scope.bucket === "brand") return 1;
   if (scope.bucket === "other" && scope.id.includes("semantic")) return 2;
   if (scope.bucket === "other" && scope.id.includes("component")) return 3;
+  if (scope.bucket === "other" && scope.id.includes("pattern")) return 3;
   if (scope.bucket === "mode" && scope.id === "light") return 4;
   if (scope.bucket === "mode" && scope.id === "dark") return 5;
   return 9;
