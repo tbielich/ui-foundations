@@ -15,14 +15,15 @@
  */
 
 import { execSync } from "node:child_process";
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, unlinkSync } from "node:fs";
 import { resolve, join } from "node:path";
 
 const REPO_ROOT = resolve(import.meta.dirname, "..");
 const EXPORTS_DIR = join(REPO_ROOT, "figma", "exports");
 
-// Collection name → export filename mapping
+// Collection name → export filename mapping (1:1 with Figma collections)
 const COLLECTION_FILES = {
+  "Patterns (UI)": "Patterns (UI).tokens.json",
   "Components (UI)": "Components (UI).tokens.json",
   "Core (Primitives)": "Core (Primitives).tokens.json",
   "Semantics (Roles)": "Semantics (Roles).tokens.json",

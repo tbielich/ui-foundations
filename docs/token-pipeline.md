@@ -39,7 +39,7 @@ These files are never edited manually. They are replaced on each Figma export.
 | `Appearance (Modes).tokens.json` | Modes | Light/dark color assignments (references Core + Themes) |
 | `Semantics (Roles).tokens.json` | Semantic | Intent-based aliases: typography roles, corner radii |
 | `Themes (Brands).tokens.json` | Themes | Brand-specific overrides (references Core) |
-| `Components (UI).tokens.json` | Component | Component-specific tokens (references Semantic + Core) |
+| `Patterns (UI).tokens.json` | Patterns | Pattern-specific tokens (references Semantic + Core) |
 
 ## Pipeline Transforms
 
@@ -77,7 +77,7 @@ Files in `dist/tokens/json/` follow the DTCG Design Tokens Format Module:
 | `semantics-roles.tokens.json` | Semantic aliases |
 | `appearance-modes.tokens.mode-light.json` | Light mode colors |
 | `appearance-modes.tokens.mode-dark.json` | Dark mode colors |
-| `components-ui.tokens.json` | Component tokens |
+| `patterns-ui.tokens.json` | Pattern tokens |
 | `themes-brands.tokens.brand-a.json` | Brand A overrides |
 | `themes-brands.tokens.brand-b.json` | Brand B overrides |
 | `themes-brands.tokens.brand-c.json` | Brand C overrides |

@@ -700,7 +700,6 @@
           "WEB": "var(--corner-input-radius)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:2028:335",
           "targetVariableName": "Brand/Corner/Input",
           "targetVariableSetId": "VariableCollectionId:1:177",
           "targetVariableSetName": "Themes (Brands)"
@@ -722,7 +721,6 @@
           "WEB": "var(--corner-pill-radius)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:251",
           "targetVariableName": "Size/Radius/full",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
@@ -744,7 +742,6 @@
           "WEB": "var(--corner-content-radius)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:244",
           "targetVariableName": "Size/Radius/300",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
@@ -766,7 +763,6 @@
           "WEB": "var(--corner-container-radius)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:245",
           "targetVariableName": "Size/Radius/400",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
@@ -790,7 +786,6 @@
           "WEB": "var(--size-border-none)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:200",
           "targetVariableName": "Size/Border/000",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
@@ -812,7 +807,6 @@
           "WEB": "var(--size-border-default)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:201",
           "targetVariableName": "Size/Border/100",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
@@ -834,7 +828,6 @@
           "WEB": "var(--size-border-emphasis)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:202",
           "targetVariableName": "Size/Border/200",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
@@ -857,7 +850,6 @@
           "WEB": "var(--size-spacing-tight)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:210",
           "targetVariableName": "Size/Spacing/100",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
@@ -880,7 +872,6 @@
           "WEB": "var(--size-spacing-component)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:211",
           "targetVariableName": "Size/Spacing/200",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
@@ -903,7 +894,6 @@
           "WEB": "var(--size-spacing-comfortable)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:212",
           "targetVariableName": "Size/Spacing/300",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
@@ -926,7 +916,6 @@
           "WEB": "var(--size-spacing-spacious)"
         },
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:1:213",
           "targetVariableName": "Size/Spacing/400",
           "targetVariableSetId": "VariableCollectionId:1:200",
           "targetVariableSetName": "Core (Primitives)"
