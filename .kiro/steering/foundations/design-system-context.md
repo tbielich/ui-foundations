@@ -11,16 +11,29 @@ This is a token-first, Figma-aligned design system. Figma is the single source o
 All documentation, code comments, commit messages, and user-facing content in
 this project must be written in English. No exceptions.
 
-## Token Architecture (4 layers)
+## Token Architecture (3 layers + 2 resolution mechanisms)
 
 | Layer | Purpose | Location |
 |---|---|---|
 | Core (Primitives) | Raw values: spacing, radii, borders, typography | `dist/tokens/css/core-primitives.tokens.css` |
-| Color Modes | Light/dark color palettes, no semantics | `dist/tokens/css/appearance-modes.tokens.mode-*.css` |
-| Semantics (Roles) | Intent-based: `--color-text-default`, `--color-fill-surface` | `dist/tokens/css/semantics-roles.tokens.css` |
+| Semantics (Roles) | Intent-based: `--color-text-default`, `--color-fill-surface`, `--corner-input-radius` | `dist/tokens/css/semantics-roles.tokens.css` |
 | Components (UI) | Component-specific: `--button-solid-border-color-default` | `dist/tokens/css/components-ui.tokens.css` |
 
-Rules: Components reference only Semantic or Core. Never mix layers. Never hardcode values.
+Resolution mechanisms (feed INTO Semantics, not independent layers):
+| Mechanism | Purpose | Location |
+|---|---|---|
+| Themes (Brands) | Brand-specific palette/corner/font assignments | `dist/tokens/css/themes-brands.tokens.*.css` |
+| Appearance (Modes) | Light/dark color mappings | `dist/tokens/css/appearance-modes.tokens.mode-*.css` |
+
+**Strict reference direction:**
+```
+Components → Semantics or Core only (NEVER Themes/Modes directly)
+Semantics  → Core, Themes, or Modes
+Themes     → Core
+Modes      → Core
+```
+
+Rules: Components reference only Semantic or Core. Never Themes. Never Modes. Never hardcode values.
 
 ## Token Naming
 

@@ -48,7 +48,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Corner/Button"
+          "$ref": "Corner/Button Radius"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:3:14",
@@ -59,10 +59,10 @@
             "WEB": "var(--button-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:215",
-            "targetVariableName": "Brand/Corner/Button",
-            "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableId": "VariableID:77:80",
+            "targetVariableName": "Corner/Button Radius",
+            "targetVariableSetId": "VariableCollectionId:1:4",
+            "targetVariableSetName": "Semantics (Roles)"
           },
           "com.figma.isOverride": true
         }
@@ -1226,7 +1226,7 @@
       "Border Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Corner/Modal"
+          "$ref": "Corner/Modal Radius"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:77:79",
@@ -1237,10 +1237,10 @@
             "WEB": "var(--modal-surface-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:217",
-            "targetVariableName": "Brand/Corner/Modal",
-            "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableId": "VariableID:77:82",
+            "targetVariableName": "Corner/Modal Radius",
+            "targetVariableSetId": "VariableCollectionId:1:4",
+            "targetVariableSetName": "Semantics (Roles)"
           },
           "com.figma.isOverride": true
         }
@@ -1518,7 +1518,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Corner/Input"
+          "$ref": "Corner/Input Radius"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2028:310",
@@ -1529,10 +1529,10 @@
             "WEB": "var(--input-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2028:335",
-            "targetVariableName": "Brand/Corner/Input",
-            "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableId": "VariableID:2773:100",
+            "targetVariableName": "Corner/Input Radius",
+            "targetVariableSetId": "VariableCollectionId:1:4",
+            "targetVariableSetName": "Semantics (Roles)"
           },
           "com.figma.isOverride": true
         }
@@ -2058,7 +2058,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Corner/Card"
+          "$ref": "Corner/Form Radius"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2070:531",
@@ -2069,10 +2069,10 @@
             "WEB": "var(--form-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:216",
-            "targetVariableName": "Brand/Corner/Card",
-            "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableId": "VariableID:2070:527",
+            "targetVariableName": "Corner/Form Radius",
+            "targetVariableSetId": "VariableCollectionId:1:4",
+            "targetVariableSetName": "Semantics (Roles)"
           },
           "com.figma.isOverride": true
         }
@@ -4200,7 +4200,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Corner/Input"
+          "$ref": "Corner/Input Radius"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2773:45",
@@ -4211,10 +4211,10 @@
             "WEB": "var(--select-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2028:335",
-            "targetVariableName": "Brand/Corner/Input",
-            "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableId": "VariableID:2773:100",
+            "targetVariableName": "Corner/Input Radius",
+            "targetVariableSetId": "VariableCollectionId:1:4",
+            "targetVariableSetName": "Semantics (Roles)"
           },
           "com.figma.isOverride": true
         }

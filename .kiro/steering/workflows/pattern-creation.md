@@ -64,6 +64,12 @@ Examples:
 1. Token naming: `--component-variant-part-property-state`
    - Example: `--divider-container-border-color-default`
 2. Tokens reference only Semantic or Core layer (Foundation-001)
+   - **NEVER reference `Brand/Corner/*` or `Brand/Color/*` directly** — these
+     are Theme tokens. Use the Semantic indirection:
+     - Corner radius → use `Corner/*` tokens (e.g. `Corner/Input Radius`)
+     - Colors → use `Color/Text/*`, `Color/Fill/*`, `Color/Border/*`
+     - Typography → use `Typography/*`
+   - If no suitable Semantic token exists, stop and flag it for creation
 3. Each component gets its own tokens — never reference another component's
    tokens (Rule 9)
 4. States as last segment: `default`, `hover`, `active`, `focus`, `disabled`
