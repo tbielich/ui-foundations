@@ -50,6 +50,26 @@ Available Semantic Corner tokens (`--corner-*-radius`):
 If no suitable Semantic Corner token exists, **flag it for creation** in the
 Semantics collection — do not bypass to Themes.
 
+### Size References (Border Width, Spacing)
+
+Components must reference **Semantic Size tokens**, not Core `Size/*` directly:
+
+| ✅ Correct `$ref` | ❌ Wrong `$ref` | Use for |
+|---|---|---|
+| `Size/Border None` | `Size/Border/000` | Disabled borders (invisible) |
+| `Size/Border Default` | `Size/Border/100` | Standard border width |
+| `Size/Border Emphasis` | `Size/Border/200` | Active/hover/focus emphasis |
+| `Size/Spacing Tight` | `Size/Spacing/100` | Small gaps (badge, link) |
+| `Size/Spacing Component` | `Size/Spacing/200` | Internal padding/gaps |
+| `Size/Spacing Comfortable` | `Size/Spacing/300` | Medium padding |
+| `Size/Spacing Spacious` | `Size/Spacing/400` | Large padding/gaps |
+| `Corner/Pill Radius` | `Size/Radius/full` | Pill shapes (badge, avatar) |
+| `Corner/Content Radius` | `Size/Radius/300` | Content containers (textarea, tooltip) |
+| `Corner/Container Radius` | `Size/Radius/400` | Large containers (accordion) |
+
+If a component needs a size value not covered above, **flag it for Semantic
+creation** — do not reference `Size/*` Core tokens directly.
+
 ## After Changes
 - Run `npm run tokens:generate` and verify zero "missing alias targets"
 - Run `npm run ci:check` to validate the full pipeline
