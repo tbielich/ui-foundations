@@ -21,8 +21,34 @@ When working with files in `figma/exports/`, these rules apply:
 
 ## Layer Rules (Foundation-001)
 - Component tokens (`Components (UI).tokens.json`) reference only Semantic or Core
-- Semantic tokens reference only Core or Mode primitives
+- Semantic tokens reference only Core, Themes (Brands), or Appearance (Modes)
 - Never create cross-component references (e.g. Radio referencing Checkbox tokens)
+- **Components must NEVER reference Themes (Brands) or Appearance (Modes) directly**
+
+### Corner Radius References (Common Mistake)
+
+When a new component needs a border-radius, reference the **Semantic Corner
+token**, not the Brand/Corner source:
+
+| ✅ Correct `$ref` | ❌ Wrong `$ref` |
+|---|---|
+| `Corner/Button Radius` | `Brand/Corner/Button` |
+| `Corner/Input Radius` | `Brand/Corner/Input` |
+| `Corner/Card Radius` | `Brand/Corner/Card` |
+| `Corner/Modal Radius` | `Brand/Corner/Modal` |
+| `Corner/Form Radius` | `Brand/Corner/Card` |
+| `Corner/Checkbox Radius` | `Brand/Corner/Input` |
+
+Available Semantic Corner tokens (`--corner-*-radius`):
+- `Corner/Button Radius` → for buttons and pill-shaped controls
+- `Corner/Input Radius` → for inputs, selects, textareas
+- `Corner/Card Radius` → for cards and elevated surfaces
+- `Corner/Modal Radius` → for modals and dialogs
+- `Corner/Form Radius` → for form group containers
+- `Corner/Checkbox Radius` → for checkboxes
+
+If no suitable Semantic Corner token exists, **flag it for creation** in the
+Semantics collection — do not bypass to Themes.
 
 ## After Changes
 - Run `npm run tokens:generate` and verify zero "missing alias targets"

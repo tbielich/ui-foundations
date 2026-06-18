@@ -685,6 +685,28 @@
         },
         "com.figma.isOverride": true
       }
+    },
+    "Input Radius": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Corner/Input"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2773:100",
+        "com.figma.scopes": [
+          "CORNER_RADIUS"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--corner-input-radius)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2028:335",
+          "targetVariableName": "Brand/Corner/Input",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Themes (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
     }
   }
 }
