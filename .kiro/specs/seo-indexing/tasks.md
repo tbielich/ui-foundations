@@ -64,51 +64,51 @@ Add comprehensive search engine and AI agent discoverability to the UI Foundatio
   - Run `npx eleventy` and verify `_site/sitemap.xml`, `_site/robots.txt`, and `_site/llms.txt` are generated
   - Inspect a rendered component HTML page to verify all `<head>` SEO elements are present
 
-- [ ] 4. Write property-based and unit tests
-  - [ ]* 4.1 Write property test for sitemap page filtering
+- [x] 4. Write property-based and unit tests
+  - [x]* 4.1 Write property test for sitemap page filtering
     - **Property 1: Sitemap page filtering**
     - **Validates: Requirements 1.2, 1.3**
     - Create `tests/seo-indexing.property.test.mjs`
     - Use fast-check to generate page sets with random `isPlayground`, `noindex`, `eleventyExcludeFromCollections` combinations
     - Verify inclusion/exclusion matches the filtering logic
 
-  - [ ]* 4.2 Write property test for absolute URL construction
+  - [x]* 4.2 Write property test for absolute URL construction
     - **Property 2: Absolute URL construction**
     - **Validates: Requirements 1.5, 3.1, 3.2, 3.3, 5.4**
     - Use fast-check to generate valid base URLs (no trailing slash) and permalinks (with trailing slash)
     - Verify concatenation produces correct URLs with no double slashes
 
-  - [ ]* 4.3 Write property test for conditional lastmod rendering
+  - [x]* 4.3 Write property test for conditional lastmod rendering
     - **Property 3: Conditional lastmod rendering**
     - **Validates: Requirements 1.4**
     - Use fast-check to generate pages with/without `date`/`lastModified` values
     - Verify `<lastmod>` presence correlates exactly with date presence
 
-  - [ ]* 4.4 Write property test for title propagation
+  - [x]* 4.4 Write property test for title propagation
     - **Property 4: Title propagation**
     - **Validates: Requirements 4.3, 5.1**
     - Use fast-check to generate random title strings
     - Verify title tag format `{title} · UI Foundations Docs` and og:title value match
 
-  - [ ]* 4.5 Write property test for description propagation
+  - [x]* 4.5 Write property test for description propagation
     - **Property 5: Description propagation**
     - **Validates: Requirements 4.1, 4.2, 5.2**
     - Use fast-check to generate pages with/without descriptions
     - Verify meta description and og:description presence/absence is consistent
 
-  - [ ]* 4.6 Write property test for noindex meta rendering
+  - [x]* 4.6 Write property test for noindex meta rendering
     - **Property 6: Noindex meta rendering**
     - **Validates: Requirements 9.1, 9.2, 9.3**
     - Use fast-check to generate pages with various `noindex`/`isPlayground` combinations
     - Verify robots meta presence = (noindex OR isPlayground)
 
-  - [ ]* 4.7 Write property test for JSON-LD conditional rendering
+  - [x]* 4.7 Write property test for JSON-LD conditional rendering
     - **Property 7: JSON-LD conditional rendering and completeness**
     - **Validates: Requirements 6.1, 6.3, 6.5**
     - Use fast-check to generate pages with various URL patterns, isPlayground values, and descriptions
     - Verify JSON-LD is present only for qualifying component pages and fields are complete
 
-  - [ ]* 4.8 Write property test for LLMs.txt page listing completeness
+  - [x]* 4.8 Write property test for LLMs.txt page listing completeness
     - **Property 8: LLMs.txt page listing completeness**
     - **Validates: Requirements 7.4, 7.5**
     - Use fast-check to generate random page collections with titles and URLs
