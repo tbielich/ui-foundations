@@ -15,6 +15,9 @@ import { handleGetComponent } from '../tools/get-component.js';
 import { validateTokenNameHandler } from '../tools/validate-token-name.js';
 import { getPatternHandler } from '../tools/get-pattern.js';
 import { getRuleHandler } from '../tools/get-rule.js';
+import { diagnoseDriftHandler } from '../tools/diagnose-drift.js';
+import { applyTokenFixHandler } from '../tools/apply-token-fix.js';
+import { validateSystemHandler } from '../tools/validate-system.js';
 
 /**
  * Placeholder handler that throws until the real handler is wired in Task 8.
@@ -90,5 +93,42 @@ export const tools: ToolRegistryEntry[] = [
       name: z.string().min(1, 'Token name is required'),
     }),
     handler: validateTokenNameHandler,
+  },
+  {
+    name: 'diagnose_drift',
+    description:
+      'Compare Figma export tokens with generated code tokens to identify drift (missing tokens, value mismatches, naming differences). Use this as the first step in an agent loop to detect what needs fixing.',
+    inputSchema: z.object({
+      layer: z
+        .string()
+        .optional()
+        .describe('Optional filter to check only a specific Figma export file (substring match on filename)'),
+    }),
+    handler: diagnoseDriftHandler,
+  },
+  {
+    name: 'apply_token_fix',
+    description:
+      'Apply a token correction to a Figma export file. Supports rename, update_value, and remove actions. After applying, call validate_system to verify the fix.',
+    inputSchema: z.object({
+      token: z.string().min(1, 'CSS token name (without --) to target'),
+      action: z.enum(['rename', 'update_value', 'remove']),
+      newValue: z.unknown().optional().describe('New value for update_value action'),
+      newName: z.string().optional().describe('New CSS name (without --) for rename action'),
+      file: z.string().optional().describe('Target file in figma/exports/ (defaults to Semantics (Roles).tokens.json)'),
+    }),
+    handler: applyTokenFixHandler,
+  },
+  {
+    name: 'validate_system',
+    description:
+      'Run the project CI check pipeline and return structured pass/fail. Use after apply_token_fix to verify changes, or independently to check system health.',
+    inputSchema: z.object({
+      command: z
+        .string()
+        .optional()
+        .describe('Custom command to run (defaults to npm run ci:check)'),
+    }),
+    handler: validateSystemHandler,
   },
 ];

@@ -923,5 +923,25 @@
         "com.figma.isOverride": true
       }
     }
+  },
+  "Color": {
+    "Text": {
+      "Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Neutral/800"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--color-text-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Neutral/800",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          }
+        }
+      }
+    }
   }
 }
