@@ -151,12 +151,14 @@
   }
 
   .button:disabled,
-  .button[disabled] {
+  .button[disabled],
+  .button.is-disabled {
     cursor: not-allowed;
     opacity: 0.6;
     background: var(--button-container-background-disabled);
     border-color: var(--button-border-color-disabled);
     color: var(--button-text-color-disabled);
+    pointer-events: none;
   }
 
   .button-group {
