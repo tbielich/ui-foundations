@@ -76,6 +76,34 @@ The server exposes design system content via `uif://` URIs:
 | `get_pattern` | Get composition pattern docs |
 | `get_rule` | Get governance rule by category |
 | `validate_token_name` | Validate token naming conventions |
+| `diagnose_drift` | Compare Figma exports with generated tokens, report mismatches |
+| `apply_token_fix` | Apply a rename, value update, or removal to a Figma export token |
+| `validate_system` | Run CI check and return structured pass/fail |
+
+### Agent Loop
+
+The three tools `diagnose_drift`, `apply_token_fix`, and `validate_system` are designed to be called in sequence by any MCP client to form an autonomous agent loop:
+
+```
+┌─────────────────┐
+│ diagnose_drift  │ ← What's broken?
+└────────┬────────┘
+         │ drift found
+         ▼
+┌─────────────────┐
+│ apply_token_fix │ ← Fix it
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ validate_system │ ← Did it work?
+└────────┬────────┘
+         │ pass:false → loop back
+         │ pass:true  → done
+         ▼
+```
+
+The loop converges when `diagnose_drift` returns `driftCount: 0`. For drift types that `apply_token_fix` cannot resolve (e.g. `missing_in_code`), the agent receives enough context to decide on a different action (e.g. running `tokens:generate`).
 
 ## Prompts
 

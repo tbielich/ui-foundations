@@ -132,3 +132,16 @@ If unclear:
 - Kiro: `docs/agentic/kiro-workflow.md`
 - Goose: `docs/agentic/goose-workflow.md`
 - Codex: `docs/agentic/codex-workflow.md`
+
+---
+
+## Agent Loop (MCP)
+
+For autonomous token-drift resolution, use the MCP server tools in sequence:
+
+1. `diagnose_drift` → identifies mismatches between Figma exports and generated tokens
+2. `apply_token_fix` → corrects a single token (rename, update_value, remove)
+3. `validate_system` → runs ci:check to verify the fix
+
+Loop until `diagnose_drift` returns `driftCount: 0` or a non-fixable drift type.
+Max iterations: 5. If the loop does not converge, report remaining drift and stop.

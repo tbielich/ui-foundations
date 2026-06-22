@@ -1,5 +1,26 @@
 {
   "mcpServers": {
+    "ui-foundations": {
+      "command": "node",
+      "args": [
+        "./packages/mcp-server/dist/mcp/index.js",
+        "--root",
+        "."
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "diagnose_drift",
+        "apply_token_fix",
+        "validate_system",
+        "get_token",
+        "search_foundations",
+        "get_component",
+        "get_pattern",
+        "get_rule",
+        "validate_token_name",
+        "health_check"
+      ]
+    },
     "figma": {
       "url": "https://mcp.figma.com/mcp",
       "disabled": false,
