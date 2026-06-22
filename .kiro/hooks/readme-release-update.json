@@ -3,12 +3,12 @@
   "hooks": [
     {
       "name": "Update README on Release",
-      "description": "After a bash command runs, check if it was a version bump (npm version / release:minor etc.) and update the README accordingly.",
-      "trigger": "PostToolUse",
-      "matcher": "execute_bash",
+      "description": "When package.json is saved (e.g. after npm version bump), check if the version changed and update README accordingly.",
+      "trigger": "PostFileSave",
+      "matcher": "package\\.json$",
       "action": {
         "type": "agent",
-        "prompt": "A bash command just completed. Check if it was a version bump (e.g. npm version, release:patch, release:minor, release:major). If it was, read package.json for the new version, then review README.md and update it: update any version references, add newly introduced components or features to the feature list if applicable, and ensure installation instructions and links are current. Keep the README concise and aligned with the existing tone and structure. If the command was NOT a version bump, do nothing."
+        "prompt": "package.json was just saved. Check if the version field changed (compare git diff package.json). If it's a version bump, read the new version from package.json, then review README.md and update it: update any version references, add newly introduced components or features to the feature list if applicable, and ensure installation instructions and links are current. Keep the README concise and aligned with the existing tone and structure. If the version did NOT change, do nothing."
       },
       "enabled": true
     }
