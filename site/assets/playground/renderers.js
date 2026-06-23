@@ -308,11 +308,13 @@
     let controlIcons = [];
     if (type === "number") {
       controlIcons = [
-        { icon: "minus-circled", label: "Decrease value" },
-        { icon: "plus-circled", label: "Increase value" },
+        { icon: "minus-circled", label: "Decrease value", focusable: true },
+        { icon: "plus-circled", label: "Increase value", focusable: true },
       ];
     } else if (type === "password") {
-      controlIcons = [{ icon: "view", label: "Toggle password visibility" }];
+      controlIcons = [
+        { icon: "view", label: "Toggle password visibility", focusable: true, toggle: true },
+      ];
     } else if (
       type === "text" ||
       type === "email" ||
@@ -320,14 +322,15 @@
       type === "url" ||
       type === "tel"
     ) {
-      controlIcons = [{ icon: "cross-circled", label: "Clear input" }];
+      controlIcons = [{ icon: "cross-circled", label: "Clear input", focusable: false }];
     }
 
-    controlIcons.forEach(({ icon, label }) => {
+    controlIcons.forEach(({ icon, label, focusable, toggle }) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.setAttribute("aria-label", label);
-      btn.tabIndex = -1;
+      if (!focusable) btn.tabIndex = -1;
+      if (toggle) btn.setAttribute("aria-pressed", "false");
       if (isDisabled) btn.disabled = true;
       const iconEl = createIconElement({ name: icon, decorative: true });
       if (iconEl) btn.appendChild(iconEl);
@@ -344,10 +347,12 @@
     let controlCode = "";
     if (controlIcons.length) {
       controlCode = controlIcons
-        .map(
-          ({ icon, label }) =>
-            `<button type="button" aria-label="${quoteAttr(label)}" tabindex="-1">${iconCode({ name: icon, decorative: true })}</button>`,
-        )
+        .map(({ icon, label, focusable, toggle }) => {
+          const attrs = [`type="button"`, `aria-label="${quoteAttr(label)}"`];
+          if (!focusable) attrs.push(`tabindex="-1"`);
+          if (toggle) attrs.push(`aria-pressed="false"`);
+          return `<button ${attrs.join(" ")}>${iconCode({ name: icon, decorative: true })}</button>`;
+        })
         .join("\n    ");
     }
 

@@ -31,10 +31,10 @@
     {%- if type == "text" or type == "email" or type == "search" or type == "url" or type == "tel" -%}
     <button type="button" aria-label="Clear input" tabindex="-1"><span class="icon" style="--icon-src: url('/assets/icons/cross-circled.svg');" aria-hidden="true"></span></button>
     {%- elif type == "number" -%}
-    <button type="button" aria-label="Decrease value" tabindex="-1"><span class="icon" style="--icon-src: url('/assets/icons/minus-circled.svg');" aria-hidden="true"></span></button>
-    <button type="button" aria-label="Increase value" tabindex="-1"><span class="icon" style="--icon-src: url('/assets/icons/plus-circled.svg');" aria-hidden="true"></span></button>
+    <button type="button" aria-label="Decrease value"><span class="icon" style="--icon-src: url('/assets/icons/minus-circled.svg');" aria-hidden="true"></span></button>
+    <button type="button" aria-label="Increase value"><span class="icon" style="--icon-src: url('/assets/icons/plus-circled.svg');" aria-hidden="true"></span></button>
     {%- elif type == "password" -%}
-    <button type="button" aria-label="Toggle password visibility" tabindex="-1"><span class="icon" style="--icon-src: url('/assets/icons/view.svg');" aria-hidden="true"></span></button>
+    <button type="button" aria-label="Toggle password visibility" aria-pressed="false"><span class="icon" style="--icon-src: url('/assets/icons/view.svg');" aria-hidden="true"></span></button>
     {%- endif -%}
   </span>
 </div>

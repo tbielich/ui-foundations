@@ -6,17 +6,24 @@ function controlsForType(type) {
   switch (type) {
     case "number":
       return [
-        { icon: "minus-circled", label: "Decrease value" },
-        { icon: "plus-circled", label: "Increase value" },
+        { icon: "minus-circled", label: "Decrease value", focusable: true },
+        { icon: "plus-circled", label: "Increase value", focusable: true },
       ];
     case "password":
-      return [{ icon: "view", label: "Toggle password visibility" }];
+      return [
+        {
+          icon: "view",
+          label: "Toggle password visibility",
+          focusable: true,
+          toggle: true,
+        },
+      ];
     case "text":
     case "email":
     case "search":
     case "url":
     case "tel":
-      return [{ icon: "cross-circled", label: "Clear input" }];
+      return [{ icon: "cross-circled", label: "Clear input", focusable: false }];
     default:
       return [];
   }
@@ -50,16 +57,25 @@ export function Input({
     if (type === "password") handler = onToggleVisibility;
     if (item.icon === "cross-circled") handler = onClear;
 
+    var buttonProps = {
+      key: index,
+      type: "button",
+      "aria-label": item.label,
+      onClick: handler,
+      disabled: props.disabled,
+    };
+
+    if (!item.focusable) {
+      buttonProps.tabIndex = -1;
+    }
+
+    if (item.toggle) {
+      buttonProps["aria-pressed"] = "false";
+    }
+
     return React.createElement(
       "button",
-      {
-        key: index,
-        type: "button",
-        "aria-label": item.label,
-        tabIndex: -1,
-        onClick: handler,
-        disabled: props.disabled,
-      },
+      buttonProps,
       React.createElement(Icon, { name: item.icon, decorative: true }),
     );
   });
