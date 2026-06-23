@@ -51,7 +51,7 @@
     "./tokens/color-light.css": "./dist/tokens/css/appearance-modes.tokens.mode-light.css",
     "./tokens/color-dark.css": "./dist/tokens/css/appearance-modes.tokens.mode-dark.css",
     "./tokens/semantic.css": "./dist/tokens/css/semantics-roles.tokens.css",
-    "./tokens/components.css": "./dist/tokens/css/components-ui.tokens.css",
+    "./tokens/components.css": "./dist/tokens/css/patterns-ui.tokens.css",
     "./macros/ui.njk": "./dist/macros/ui.njk"
   },
   "scripts": {
