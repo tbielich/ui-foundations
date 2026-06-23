@@ -1,8 +1,57 @@
 @layer components {
+  /* --- .input: internal primitive (the <input> element itself) --- */
+
   .input {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    min-inline-size: 0;
+    font: inherit;
+    color: inherit;
+    line-height: inherit;
+  }
+
+  .input::placeholder {
+    color: var(--input-text-color-placeholder);
+  }
+
+  .input:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .input:disabled {
+    cursor: not-allowed;
+  }
+
+  /* Hide native number spinners (we use custom controls) */
+
+  .input[type="number"]::-webkit-inner-spin-button,
+  .input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
+  /* --- .input-field: the composed pattern (container + input + control) --- */
+
+  .input-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--input-gap);
     inline-size: 100%;
     block-size: var(--input-height, var(--size-spacing-800));
-    appearance: none;
     font-family: var(--input-font-family);
     font-weight: var(--input-font-weight);
     font-size: var(--input-font-size);
@@ -17,12 +66,57 @@
     padding-block: var(--input-padding-block);
   }
 
-  .input::placeholder {
-    color: var(--input-text-color-placeholder);
+  /* --- Control slot --- */
+
+  .input-field__control {
+    display: flex;
+    align-items: center;
+    gap: var(--input-gap);
+    flex-shrink: 0;
+    color: var(--input-text-color-default);
   }
 
-  .input:hover,
-  .input.is-hover {
+  .input-field__control:empty {
+    display: none;
+  }
+
+  /* Hide controls when input is empty (showing placeholder) */
+  .input-field:has(.input:placeholder-shown) .input-field__control {
+    visibility: hidden;
+  }
+
+  /* Hide controls when disabled */
+  .input-field:has(.input:disabled) .input-field__control,
+  .input-field.is-disabled .input-field__control {
+    visibility: hidden;
+  }
+
+  .input-field__control button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+    line-height: 1;
+  }
+
+  .input-field__control button:hover {
+    color: var(--input-text-color-hover);
+  }
+
+  .input-field__control .icon {
+    font-size: 1.5rem;
+  }
+
+  /* --- State: hover --- */
+
+  .input-field:hover,
+  .input-field.is-hover {
     background:
       linear-gradient(0deg, var(--input-overlay-hover), var(--input-overlay-hover)),
       var(--input-container-background-default);
@@ -39,8 +133,20 @@
     color: var(--input-text-color-hover);
   }
 
-  .input:active,
-  .input.is-active {
+  /* --- State: focus-within --- */
+
+  .input-field:focus-within,
+  .input-field.is-focus-visible {
+    background: var(--input-container-background-focus);
+    border-color: var(--input-border-color-focus);
+    outline: none;
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
+  }
+
+  /* --- State: active --- */
+
+  .input-field:has(.input:active),
+  .input-field.is-active {
     background:
       linear-gradient(0deg, var(--input-overlay-active), var(--input-overlay-active)),
       var(--input-container-background-default);
@@ -57,97 +163,40 @@
     color: var(--input-text-color-active);
   }
 
-  .input:focus-visible,
-  .input.is-focus-visible {
-    background: var(--input-container-background-focus);
-    border-color: var(--input-border-color-focus);
-    outline: none;
-    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
-  }
+  /* --- State: disabled --- */
 
-  .input:disabled,
-  .input[disabled],
-  .input.is-disabled {
+  .input-field:has(.input:disabled),
+  .input-field.is-disabled {
     cursor: not-allowed;
     color: var(--input-text-color-disabled);
     background: var(--input-container-background-disabled);
     border-color: var(--input-border-color-disabled);
   }
 
-  /* Date/time type inputs — picker indicator styling */
+  /* --- State: readonly --- */
 
-  .input[type="date"],
-  .input[type="time"],
-  .input[type="datetime-local"] {
-    cursor: pointer;
-  }
-
-  .input[type="date"]::-webkit-calendar-picker-indicator,
-  .input[type="time"]::-webkit-calendar-picker-indicator,
-  .input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    opacity: 0.7;
-  }
-
-  .input[type="date"]:hover::-webkit-calendar-picker-indicator,
-  .input[type="time"]:hover::-webkit-calendar-picker-indicator,
-  .input[type="datetime-local"]:hover::-webkit-calendar-picker-indicator {
-    opacity: 1;
-  }
-
-  .input[type="date"]:disabled::-webkit-calendar-picker-indicator,
-  .input[type="time"]:disabled::-webkit-calendar-picker-indicator,
-  .input[type="datetime-local"]:disabled::-webkit-calendar-picker-indicator {
-    opacity: 0.4;
-  }
-
-  /* Number type — spinner styling */
-
-  .input[type="number"]::-webkit-inner-spin-button,
-  .input[type="number"]::-webkit-outer-spin-button {
-    opacity: 0.7;
-    cursor: pointer;
-  }
-
-  .input[type="number"]:hover::-webkit-inner-spin-button,
-  .input[type="number"]:hover::-webkit-outer-spin-button {
-    opacity: 1;
-  }
-
-  .input[type="number"]:disabled::-webkit-inner-spin-button,
-  .input[type="number"]:disabled::-webkit-outer-spin-button {
-    opacity: 0.4;
-  }
-
-  /* Password type — reveal button styling */
-
-  .input[type="password"]::-ms-reveal,
-  .input[type="password"]::-webkit-credentials-auto-fill-button {
-    cursor: pointer;
-  }
-
-  /* Readonly state */
-
-  .input:read-only,
-  .input[readonly],
-  .input.is-readonly {
-    cursor: default;
-    background: var(--input-container-background-default);
+  .input-field:has(.input:read-only),
+  .input-field.is-readonly {
     border-style: dashed;
   }
 
-  /* Validation states */
-  .input.is-invalid,
-  .input[aria-invalid="true"],
-  .input:user-invalid {
+  .input-field:has(.input:read-only) .input-field__control button,
+  .input-field.is-readonly .input-field__control button {
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* --- State: invalid --- */
+
+  .input-field.is-invalid,
+  .input-field:has(.input[aria-invalid="true"]) {
     border-color: var(--input-border-color-invalid);
   }
 
-  .input.is-invalid:focus-visible,
-  .input[aria-invalid="true"]:focus-visible,
-  .input:user-invalid:focus-visible,
-  .input.is-invalid.is-focus-visible,
-  .input[aria-invalid="true"].is-focus-visible {
+  .input-field.is-invalid:focus-within,
+  .input-field:has(.input[aria-invalid="true"]):focus-within,
+  .input-field.is-invalid.is-focus-visible,
+  .input-field:has(.input[aria-invalid="true"]).is-focus-visible {
     border-color: var(--input-border-color-invalid);
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--input-border-color-invalid);
   }

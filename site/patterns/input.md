@@ -45,7 +45,7 @@ playgroundLabel: Open Input Playground
   <div class="docs-anatomy-preview">
     <div class="docs-anatomy-subject">
       <span class="docs-anatomy-outline"></span>
-      <span class="docs-anatomy-callout" data-dir="top" style="left: 30%; transform: translateX(-50%);">
+      <span class="docs-anatomy-callout" data-dir="top" style="left: 20%; transform: translateX(-50%);">
         <span class="docs-anatomy-badge">1</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
@@ -53,12 +53,17 @@ playgroundLabel: Open Input Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">2</span>
       </span>
-      {{ ui.input(type="text", placeholder="Placeholder text") }}
+      <span class="docs-anatomy-callout" data-dir="top" style="left: 85%; transform: translateX(-50%);">
+        <span class="docs-anatomy-badge">3</span>
+        <span class="docs-anatomy-callout-line"></span>
+      </span>
+      {{ ui.input(type="text", value="Input value") }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
     <li><span class="docs-anatomy-badge-inline">1</span> Container — border, background, and padding define the field area</li>
-    <li><span class="docs-anatomy-badge-inline">2</span> Text / placeholder — typed value or hint text</li>
+    <li><span class="docs-anatomy-badge-inline">2</span> Input primitive — text entry element (value or placeholder)</li>
+    <li><span class="docs-anatomy-badge-inline">3</span> Control — trailing action button(s) based on type (clear, +/-, visibility)</li>
   </ol>
 </div>
 
@@ -103,6 +108,33 @@ playgroundLabel: Open Input Playground
 <h2 id="behaviors">Behaviors</h2>
 
 <div class="docs-behavior-list">
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">
+      {{ ui.input(type="text", value="Input") }}
+    </div>
+    <div class="docs-behavior-body">
+      <h3>Text with clear control</h3>
+      <p>Text-type inputs include a clear button that allows users to reset the field value in one action.</p>
+    </div>
+  </div>
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">
+      {{ ui.input(type="number", value="0") }}
+    </div>
+    <div class="docs-behavior-body">
+      <h3>Number with increment/decrement</h3>
+      <p>Number inputs show minus and plus buttons for stepping the value without typing.</p>
+    </div>
+  </div>
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">
+      {{ ui.input(type="password", value="secret") }}
+    </div>
+    <div class="docs-behavior-body">
+      <h3>Password with visibility toggle</h3>
+      <p>Password inputs include a toggle button to reveal or hide the entered value.</p>
+    </div>
+  </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
       {{ ui.input(type="text", placeholder="Email address") }}
@@ -240,3 +272,5 @@ For the full theming architecture see [Foundations: Theming](/foundations/themin
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>All visual attributes are available as design tokens.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Figma component</strong><span>Component is available in the Figma library.</span></div></div>
 </div>
+
+<script type="module" src="/vendor/ui-foundations/components/input-field.js"></script>
