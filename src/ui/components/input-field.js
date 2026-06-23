@@ -90,6 +90,14 @@ function enhanceField(field) {
   const control = field.querySelector(".input-field__control");
   if (!control) return;
 
+  // Set aria-pressed on password toggle buttons during enhancement
+  const toggleBtn = control.querySelector(
+    'button[aria-label="Toggle password visibility"]',
+  );
+  if (toggleBtn && !toggleBtn.hasAttribute("aria-pressed")) {
+    toggleBtn.setAttribute("aria-pressed", "false");
+  }
+
   control.addEventListener("click", function (event) {
     const btn = event.target.closest("button");
     if (!btn) return;

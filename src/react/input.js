@@ -15,7 +15,6 @@ function controlsForType(type) {
           icon: "view",
           label: "Toggle password visibility",
           focusable: true,
-          toggle: true,
         },
       ];
     case "text":
@@ -67,10 +66,6 @@ export function Input({
 
     if (!item.focusable) {
       buttonProps.tabIndex = -1;
-    }
-
-    if (item.toggle) {
-      buttonProps["aria-pressed"] = "false";
     }
 
     return React.createElement(

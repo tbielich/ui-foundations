@@ -313,7 +313,7 @@
       ];
     } else if (type === "password") {
       controlIcons = [
-        { icon: "view", label: "Toggle password visibility", focusable: true, toggle: true },
+        { icon: "view", label: "Toggle password visibility", focusable: true },
       ];
     } else if (
       type === "text" ||
@@ -325,12 +325,11 @@
       controlIcons = [{ icon: "cross-circled", label: "Clear input", focusable: false }];
     }
 
-    controlIcons.forEach(({ icon, label, focusable, toggle }) => {
+    controlIcons.forEach(({ icon, label, focusable }) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.setAttribute("aria-label", label);
       if (!focusable) btn.tabIndex = -1;
-      if (toggle) btn.setAttribute("aria-pressed", "false");
       if (isDisabled) btn.disabled = true;
       const iconEl = createIconElement({ name: icon, decorative: true });
       if (iconEl) btn.appendChild(iconEl);
@@ -347,10 +346,9 @@
     let controlCode = "";
     if (controlIcons.length) {
       controlCode = controlIcons
-        .map(({ icon, label, focusable, toggle }) => {
+        .map(({ icon, label, focusable }) => {
           const attrs = [`type="button"`, `aria-label="${quoteAttr(label)}"`];
           if (!focusable) attrs.push(`tabindex="-1"`);
-          if (toggle) attrs.push(`aria-pressed="false"`);
           return `<button ${attrs.join(" ")}>${iconCode({ name: icon, decorative: true })}</button>`;
         })
         .join("\n    ");
