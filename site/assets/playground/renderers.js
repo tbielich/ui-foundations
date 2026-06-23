@@ -279,42 +279,10 @@
     const type = String(props.type || "text");
     const placeholder = String(props.placeholder || "");
     const value = String(props.value || "");
-    const hasControl = asBoolean(props.hasControl);
     const isDisabled = previewState === "disabled" || Boolean(props.disabled);
     const isReadonly = previewState === "readonly";
 
-    if (!hasControl) {
-      const element = document.createElement("input");
-      const classes = ["input"];
-
-      if (previewState === "hover") classes.push("is-hover");
-      if (previewState === "active") classes.push("is-active");
-      if (previewState === "focus") classes.push("is-focus-visible");
-      if (previewState === "disabled") classes.push("is-disabled");
-      if (previewState === "readonly") classes.push("is-readonly");
-      if (previewState === "invalid") classes.push("is-invalid");
-      if (props.className) classes.push(String(props.className));
-
-      element.className = classes.join(" ");
-      element.type = type;
-      element.placeholder = placeholder;
-      element.value = value;
-      element.disabled = isDisabled;
-      element.readOnly = isReadonly;
-
-      const attrs = [
-        `class="${quoteAttr(element.className)}"`,
-        `type="${quoteAttr(type)}"`,
-      ];
-      if (placeholder) attrs.push(`placeholder="${quoteAttr(placeholder)}"`);
-      if (value) attrs.push(`value="${quoteAttr(value)}"`);
-      if (isDisabled) attrs.push("disabled");
-
-      const code = `<input ${attrs.join(" ")} />`;
-      return { element, code };
-    }
-
-    // Wrapped input with control
+    // Always render as .input-field wrapper
     const wrapper = document.createElement("div");
     const wrapperClasses = ["input-field"];
     if (previewState === "hover") wrapperClasses.push("is-hover");
@@ -345,7 +313,13 @@
       ];
     } else if (type === "password") {
       controlIcons = [{ icon: "view", label: "Toggle password visibility" }];
-    } else {
+    } else if (
+      type === "text" ||
+      type === "email" ||
+      type === "search" ||
+      type === "url" ||
+      type === "tel"
+    ) {
       controlIcons = [{ icon: "cross-circled", label: "Clear input" }];
     }
 
@@ -367,12 +341,15 @@
     if (value) inputAttrs.push(`value="${quoteAttr(value)}"`);
     if (isDisabled) inputAttrs.push("disabled");
 
-    const controlCode = controlIcons
-      .map(
-        ({ icon, label }) =>
-          `<button type="button" aria-label="${quoteAttr(label)}" tabindex="-1">${iconCode({ name: icon, decorative: true })}</button>`,
-      )
-      .join("\n    ");
+    let controlCode = "";
+    if (controlIcons.length) {
+      controlCode = controlIcons
+        .map(
+          ({ icon, label }) =>
+            `<button type="button" aria-label="${quoteAttr(label)}" tabindex="-1">${iconCode({ name: icon, decorative: true })}</button>`,
+        )
+        .join("\n    ");
+    }
 
     const code = `<div class="${quoteAttr(wrapper.className)}">
   <input ${inputAttrs.join(" ")} />

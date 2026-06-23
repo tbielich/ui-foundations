@@ -35,11 +35,6 @@ playground:
         - date
         - time
         - number
-    - kind: toggle
-      name: hasControl
-      label: Has control
-      query: true
-      default: false
     - kind: text
       name: placeholder
       label: Placeholder

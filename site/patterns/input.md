@@ -45,7 +45,7 @@ playgroundLabel: Open Input Playground
   <div class="docs-anatomy-preview">
     <div class="docs-anatomy-subject">
       <span class="docs-anatomy-outline"></span>
-      <span class="docs-anatomy-callout" data-dir="top" style="left: 30%; transform: translateX(-50%);">
+      <span class="docs-anatomy-callout" data-dir="top" style="left: 20%; transform: translateX(-50%);">
         <span class="docs-anatomy-badge">1</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
@@ -53,12 +53,17 @@ playgroundLabel: Open Input Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">2</span>
       </span>
-      {{ ui.input(type="text", placeholder="Placeholder text") }}
+      <span class="docs-anatomy-callout" data-dir="top" style="left: 85%; transform: translateX(-50%);">
+        <span class="docs-anatomy-badge">3</span>
+        <span class="docs-anatomy-callout-line"></span>
+      </span>
+      {{ ui.input(type="text", value="Input value") }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
     <li><span class="docs-anatomy-badge-inline">1</span> Container — border, background, and padding define the field area</li>
-    <li><span class="docs-anatomy-badge-inline">2</span> Text / placeholder — typed value or hint text</li>
+    <li><span class="docs-anatomy-badge-inline">2</span> Input primitive — text entry element (value or placeholder)</li>
+    <li><span class="docs-anatomy-badge-inline">3</span> Control — trailing action button(s) based on type (clear, +/-, visibility)</li>
   </ol>
 </div>
 
@@ -96,7 +101,6 @@ playgroundLabel: Open Input Playground
     <tr><td>placeholder</td><td>text</td><td>—</td></tr>
     <tr><td>value</td><td>text</td><td>—</td></tr>
     <tr><td>disabled</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
-    <tr><td>hasControl</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
     <tr><td>state</td><td><code>default</code> / <code>hover</code> / <code>active</code> / <code>focus</code> / <code>disabled</code></td><td><code>default</code></td></tr>
   </tbody>
 </table>
@@ -106,16 +110,16 @@ playgroundLabel: Open Input Playground
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="text", value="Input", hasControl=true) }}
+      {{ ui.input(type="text", value="Input") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Text with clear control</h3>
-      <p>A clear button appears when <code>hasControl</code> is set. It allows users to reset the field value in one action.</p>
+      <p>Text-type inputs include a clear button that allows users to reset the field value in one action.</p>
     </div>
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="number", value="0", hasControl=true) }}
+      {{ ui.input(type="number", value="0") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Number with increment/decrement</h3>
@@ -124,7 +128,7 @@ playgroundLabel: Open Input Playground
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="password", value="secret", hasControl=true) }}
+      {{ ui.input(type="password", value="secret") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Password with visibility toggle</h3>

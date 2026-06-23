@@ -18,8 +18,7 @@
 <div class="{{ classes }}" role="group" data-orientation="{{ resolvedOrientation }}" data-attached="{{ "true" if attached else "false" }}" data-justify="{{ resolvedJustify }}"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>{{ caller() }}</div>
 {%- endmacro %}
 
-{% macro input(type='text', placeholder='', value='', state='default', disabled=false, className='', id='', name='', hasControl=false, dataPlaygroundControl=false, dataProp='', dataSource='', dataValueType='', dataQueryParam='') -%}
-{%- if hasControl -%}
+{% macro input(type='text', placeholder='', value='', state='default', disabled=false, className='', id='', name='', dataPlaygroundControl=false, dataProp='', dataSource='', dataValueType='', dataQueryParam='') -%}
 {%- set wrapperClasses = "input-field" -%}
 {%- if state == "hover" -%}{%- set wrapperClasses = wrapperClasses + " is-hover" -%}{%- endif -%}
 {%- if state == "active" -%}{%- set wrapperClasses = wrapperClasses + " is-active" -%}{%- endif -%}
@@ -39,15 +38,6 @@
     {%- endif -%}
   </span>
 </div>
-{%- else -%}
-{%- set classes = "input" -%}
-{%- if state == "hover" -%}{%- set classes = classes + " is-hover" -%}{%- endif -%}
-{%- if state == "active" -%}{%- set classes = classes + " is-active" -%}{%- endif -%}
-{%- if state == "focus" -%}{%- set classes = classes + " is-focus-visible" -%}{%- endif -%}
-{%- if state == "disabled" -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
-{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
-<input class="{{ classes }}" type="{{ type }}"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if dataPlaygroundControl %} data-playground-control{% endif %}{% if dataProp %} data-prop="{{ dataProp }}"{% endif %}{% if dataSource %} data-source="{{ dataSource }}"{% endif %}{% if dataValueType %} data-value-type="{{ dataValueType }}"{% endif %}{% if dataQueryParam %} data-query-param="{{ dataQueryParam }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
-{%- endif -%}
 {%- endmacro %}
 
 {% macro checkbox(label='Checkbox', checked=false, disabled=false, state='default', indeterminate=false, className='', wrapperClassName='', id='', name='', value='on') -%}

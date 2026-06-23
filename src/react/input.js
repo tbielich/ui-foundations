@@ -2,7 +2,7 @@ import React from "react";
 import { warnDev } from "./warn-dev.js";
 import { Icon } from "./icon.js";
 
-function controlIconsForType(type) {
+function controlsForType(type) {
   switch (type) {
     case "number":
       return [
@@ -25,7 +25,6 @@ function controlIconsForType(type) {
 export function Input({
   className = "",
   type = "text",
-  hasControl = false,
   onClear,
   onIncrement,
   onDecrement,
@@ -38,23 +37,13 @@ export function Input({
     );
   }
 
-  if (!hasControl) {
-    const classes = ["input"];
-    if (className) classes.push(className);
-    return React.createElement("input", {
-      type,
-      className: classes.join(" "),
-      ...props,
-    });
-  }
-
   const wrapperClasses = ["input-field"];
   if (className) wrapperClasses.push(className);
   if (props.disabled) wrapperClasses.push("is-disabled");
 
-  const icons = controlIconsForType(type);
+  const icons = controlsForType(type);
 
-  const controlButtons = icons.map(function (item, index) {
+  var controlButtons = icons.map(function (item, index) {
     var handler = null;
     if (type === "number" && item.icon === "minus-circled") handler = onDecrement;
     if (type === "number" && item.icon === "plus-circled") handler = onIncrement;
