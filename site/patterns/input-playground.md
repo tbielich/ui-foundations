@@ -63,3 +63,5 @@ playground:
 {% from "macros/playground.njk" import playground as uiPlayground with context %}
 
 {{ uiPlayground(playground) }}
+
+<script type="module" src="/vendor/ui-foundations/components/input-field.js"></script>

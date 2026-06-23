@@ -272,3 +272,5 @@ For the full theming architecture see [Foundations: Theming](/foundations/themin
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>All visual attributes are available as design tokens.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Figma component</strong><span>Component is available in the Figma library.</span></div></div>
 </div>
+
+<script type="module" src="/vendor/ui-foundations/components/input-field.js"></script>
