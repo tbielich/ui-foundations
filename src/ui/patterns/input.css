@@ -79,6 +79,17 @@
     display: none;
   }
 
+  /* Hide controls when input is empty (showing placeholder) */
+  .input-field:has(.input:placeholder-shown) .input-field__control {
+    visibility: hidden;
+  }
+
+  /* Hide controls when disabled */
+  .input-field:has(.input:disabled) .input-field__control,
+  .input-field.is-disabled .input-field__control {
+    visibility: hidden;
+  }
+
   .input-field__control button {
     display: inline-flex;
     align-items: center;
@@ -159,13 +170,6 @@
     color: var(--input-text-color-disabled);
     background: var(--input-container-background-disabled);
     border-color: var(--input-border-color-disabled);
-  }
-
-  .input-field:has(.input:disabled) .input-field__control button,
-  .input-field.is-disabled .input-field__control button {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.4;
   }
 
   /* --- State: readonly --- */
