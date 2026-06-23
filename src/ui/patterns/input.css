@@ -1,4 +1,163 @@
 @layer components {
+  /* --- Input Field wrapper (input + optional control) --- */
+
+  .input-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--input-gap);
+    inline-size: 100%;
+    block-size: var(--input-height, var(--size-spacing-800));
+    font-family: var(--input-font-family);
+    font-weight: var(--input-font-weight);
+    font-size: var(--input-font-size);
+    line-height: var(--input-line-height, var(--button-line-height, 1.5));
+    color: var(--input-text-color-default);
+    background: var(--input-container-background-default);
+    border-style: solid;
+    border-width: var(--input-border-size-default);
+    border-color: var(--input-border-color-default);
+    border-radius: var(--input-border-radius);
+    padding-inline: var(--input-padding-inline);
+    padding-block: var(--input-padding-block);
+  }
+
+  .input-field .input {
+    border: none;
+    background: transparent;
+    padding-inline: 0;
+    padding-block: 0;
+    block-size: auto;
+    border-radius: 0;
+    flex: 1;
+    min-inline-size: 0;
+    font: inherit;
+    color: inherit;
+  }
+
+  .input-field .input:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .input-field__control {
+    display: flex;
+    align-items: center;
+    gap: var(--input-gap);
+    flex-shrink: 0;
+    color: var(--input-text-color-default);
+  }
+
+  .input-field__control button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+    line-height: 1;
+  }
+
+  .input-field__control button:hover {
+    color: var(--input-text-color-hover);
+  }
+
+  .input-field__control .icon {
+    font-size: 1.5rem;
+  }
+
+  /* --- Wrapper state: hover --- */
+
+  .input-field:hover,
+  .input-field.is-hover {
+    background:
+      linear-gradient(0deg, var(--input-overlay-hover), var(--input-overlay-hover)),
+      var(--input-container-background-default);
+    border-width: var(--input-border-size-hover);
+    padding-inline: calc(
+      var(--input-padding-inline) + var(--input-border-size-default) -
+        var(--input-border-size-hover)
+    );
+    padding-block: calc(
+      var(--input-padding-block) + var(--input-border-size-default) -
+        var(--input-border-size-hover)
+    );
+    border-color: var(--input-border-color-hover);
+    color: var(--input-text-color-hover);
+  }
+
+  /* --- Wrapper state: focus-within --- */
+
+  .input-field:focus-within,
+  .input-field.is-focus-visible {
+    background: var(--input-container-background-focus);
+    border-color: var(--input-border-color-focus);
+    outline: none;
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
+  }
+
+  /* --- Wrapper state: active --- */
+
+  .input-field:has(.input:active),
+  .input-field.is-active {
+    background:
+      linear-gradient(0deg, var(--input-overlay-active), var(--input-overlay-active)),
+      var(--input-container-background-default);
+    border-width: var(--input-border-size-active);
+    padding-inline: calc(
+      var(--input-padding-inline) + var(--input-border-size-default) -
+        var(--input-border-size-active)
+    );
+    padding-block: calc(
+      var(--input-padding-block) + var(--input-border-size-default) -
+        var(--input-border-size-active)
+    );
+    border-color: var(--input-border-color-active);
+    color: var(--input-text-color-active);
+  }
+
+  /* --- Wrapper state: disabled --- */
+
+  .input-field:has(.input:disabled),
+  .input-field.is-disabled {
+    cursor: not-allowed;
+    color: var(--input-text-color-disabled);
+    background: var(--input-container-background-disabled);
+    border-color: var(--input-border-color-disabled);
+  }
+
+  .input-field.is-disabled .input-field__control button {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* --- Wrapper state: readonly --- */
+
+  .input-field:has(.input:read-only),
+  .input-field.is-readonly {
+    border-style: dashed;
+  }
+
+  /* --- Wrapper state: invalid --- */
+
+  .input-field.is-invalid,
+  .input-field:has(.input[aria-invalid="true"]) {
+    border-color: var(--input-border-color-invalid);
+  }
+
+  .input-field.is-invalid:focus-within,
+  .input-field:has(.input[aria-invalid="true"]):focus-within {
+    border-color: var(--input-border-color-invalid);
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--input-border-color-invalid);
+  }
+
+  /* --- Standalone input (without wrapper) --- */
+
   .input {
     inline-size: 100%;
     block-size: var(--input-height, var(--size-spacing-800));

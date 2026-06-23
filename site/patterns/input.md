@@ -96,6 +96,7 @@ playgroundLabel: Open Input Playground
     <tr><td>placeholder</td><td>text</td><td>—</td></tr>
     <tr><td>value</td><td>text</td><td>—</td></tr>
     <tr><td>disabled</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
+    <tr><td>hasControl</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
     <tr><td>state</td><td><code>default</code> / <code>hover</code> / <code>active</code> / <code>focus</code> / <code>disabled</code></td><td><code>default</code></td></tr>
   </tbody>
 </table>
@@ -103,6 +104,33 @@ playgroundLabel: Open Input Playground
 <h2 id="behaviors">Behaviors</h2>
 
 <div class="docs-behavior-list">
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">
+      {{ ui.input(type="text", value="Input", hasControl=true) }}
+    </div>
+    <div class="docs-behavior-body">
+      <h3>Text with clear control</h3>
+      <p>A clear button appears when <code>hasControl</code> is set. It allows users to reset the field value in one action.</p>
+    </div>
+  </div>
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">
+      {{ ui.input(type="number", value="0", hasControl=true) }}
+    </div>
+    <div class="docs-behavior-body">
+      <h3>Number with increment/decrement</h3>
+      <p>Number inputs show minus and plus buttons for stepping the value without typing.</p>
+    </div>
+  </div>
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">
+      {{ ui.input(type="password", value="secret", hasControl=true) }}
+    </div>
+    <div class="docs-behavior-body">
+      <h3>Password with visibility toggle</h3>
+      <p>Password inputs include a toggle button to reveal or hide the entered value.</p>
+    </div>
+  </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
       {{ ui.input(type="text", placeholder="Email address") }}

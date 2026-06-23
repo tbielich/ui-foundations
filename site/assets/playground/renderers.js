@@ -275,38 +275,113 @@
   };
 
   const renderVanillaInput = ({ props, meta }) => {
-    const element = document.createElement("input");
     const previewState = String(meta.state || "default");
     const type = String(props.type || "text");
     const placeholder = String(props.placeholder || "");
     const value = String(props.value || "");
-    const classes = ["input"];
+    const hasControl = asBoolean(props.hasControl);
+    const isDisabled = previewState === "disabled" || Boolean(props.disabled);
+    const isReadonly = previewState === "readonly";
 
-    if (previewState === "hover") classes.push("is-hover");
-    if (previewState === "active") classes.push("is-active");
-    if (previewState === "focus") classes.push("is-focus-visible");
-    if (previewState === "disabled") classes.push("is-disabled");
-    if (previewState === "readonly") classes.push("is-readonly");
-    if (previewState === "invalid") classes.push("is-invalid");
-    if (props.className) classes.push(String(props.className));
+    if (!hasControl) {
+      const element = document.createElement("input");
+      const classes = ["input"];
 
-    element.className = classes.join(" ");
-    element.type = type;
-    element.placeholder = placeholder;
-    element.value = value;
-    element.disabled = previewState === "disabled" || Boolean(props.disabled);
-    element.readOnly = previewState === "readonly";
+      if (previewState === "hover") classes.push("is-hover");
+      if (previewState === "active") classes.push("is-active");
+      if (previewState === "focus") classes.push("is-focus-visible");
+      if (previewState === "disabled") classes.push("is-disabled");
+      if (previewState === "readonly") classes.push("is-readonly");
+      if (previewState === "invalid") classes.push("is-invalid");
+      if (props.className) classes.push(String(props.className));
 
-    const attrs = [
-      `class="${quoteAttr(element.className)}"`,
-      `type="${quoteAttr(type)}"`,
-    ];
-    if (placeholder) attrs.push(`placeholder="${quoteAttr(placeholder)}"`);
-    if (value) attrs.push(`value="${quoteAttr(value)}"`);
-    if (element.disabled) attrs.push("disabled");
+      element.className = classes.join(" ");
+      element.type = type;
+      element.placeholder = placeholder;
+      element.value = value;
+      element.disabled = isDisabled;
+      element.readOnly = isReadonly;
 
-    const code = `<input ${attrs.join(" ")} />`;
-    return { element, code };
+      const attrs = [
+        `class="${quoteAttr(element.className)}"`,
+        `type="${quoteAttr(type)}"`,
+      ];
+      if (placeholder) attrs.push(`placeholder="${quoteAttr(placeholder)}"`);
+      if (value) attrs.push(`value="${quoteAttr(value)}"`);
+      if (isDisabled) attrs.push("disabled");
+
+      const code = `<input ${attrs.join(" ")} />`;
+      return { element, code };
+    }
+
+    // Wrapped input with control
+    const wrapper = document.createElement("div");
+    const wrapperClasses = ["input-field"];
+    if (previewState === "hover") wrapperClasses.push("is-hover");
+    if (previewState === "active") wrapperClasses.push("is-active");
+    if (previewState === "focus") wrapperClasses.push("is-focus-visible");
+    if (isDisabled) wrapperClasses.push("is-disabled");
+    if (previewState === "invalid") wrapperClasses.push("is-invalid");
+    if (props.className) wrapperClasses.push(String(props.className));
+    wrapper.className = wrapperClasses.join(" ");
+
+    const input = document.createElement("input");
+    input.className = "input";
+    input.type = type;
+    input.placeholder = placeholder;
+    input.value = value;
+    input.disabled = isDisabled;
+    input.readOnly = isReadonly;
+    wrapper.appendChild(input);
+
+    const control = document.createElement("span");
+    control.className = "input-field__control";
+
+    let controlIcons = [];
+    if (type === "number") {
+      controlIcons = [
+        { icon: "minus-circled", label: "Decrease value" },
+        { icon: "plus-circled", label: "Increase value" },
+      ];
+    } else if (type === "password") {
+      controlIcons = [{ icon: "view", label: "Toggle password visibility" }];
+    } else {
+      controlIcons = [{ icon: "cross-circled", label: "Clear input" }];
+    }
+
+    controlIcons.forEach(({ icon, label }) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.setAttribute("aria-label", label);
+      btn.tabIndex = -1;
+      if (isDisabled) btn.disabled = true;
+      const iconEl = createIconElement({ name: icon, decorative: true });
+      if (iconEl) btn.appendChild(iconEl);
+      control.appendChild(btn);
+    });
+    wrapper.appendChild(control);
+
+    // Generate code
+    const inputAttrs = [`class="input"`, `type="${quoteAttr(type)}"`];
+    if (placeholder) inputAttrs.push(`placeholder="${quoteAttr(placeholder)}"`);
+    if (value) inputAttrs.push(`value="${quoteAttr(value)}"`);
+    if (isDisabled) inputAttrs.push("disabled");
+
+    const controlCode = controlIcons
+      .map(
+        ({ icon, label }) =>
+          `<button type="button" aria-label="${quoteAttr(label)}" tabindex="-1">${iconCode({ name: icon, decorative: true })}</button>`,
+      )
+      .join("\n    ");
+
+    const code = `<div class="${quoteAttr(wrapper.className)}">
+  <input ${inputAttrs.join(" ")} />
+  <span class="input-field__control">
+    ${controlCode}
+  </span>
+</div>`;
+
+    return { element: wrapper, code };
   };
 
   const renderVanillaCheckbox = ({ props, meta }) => {
