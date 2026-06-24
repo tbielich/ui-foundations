@@ -40,7 +40,7 @@ if (!hasRequiredApis) {
     const mountNode = container.querySelector(`#${playgroundId}-root`);
     const codeNode = document.getElementById(`${playgroundId}-code`);
     const codeNjkNode = document.getElementById(`${playgroundId}-code-njk`);
-    const codeReactNode = document.getElementById(`${playgroundId}-code-react`);
+    const codeWcNode = document.getElementById(`${playgroundId}-code-wc`);
     const resetButton = form
       ? form.querySelector("[data-playground-reset]")
       : null;
@@ -48,7 +48,7 @@ if (!hasRequiredApis) {
 
     const codeGens = window.UIPlaygroundCodeGenerators || {};
     const njkGen = codeGens.njk && codeGens.njk[rendererId];
-    const reactGen = codeGens.react && codeGens.react[rendererId];
+    const wcGen = codeGens.wc && codeGens.wc[rendererId];
 
     const controls = Array.from(form.querySelectorAll("[data-playground-control]"));
     const queryControls = controls.filter(
@@ -94,8 +94,8 @@ if (!hasRequiredApis) {
       if (njkGen && codeNjkNode) {
         codeNjkNode.textContent = njkGen(state);
       }
-      if (reactGen && codeReactNode) {
-        codeReactNode.textContent = reactGen(state);
+      if (wcGen && codeWcNode) {
+        codeWcNode.textContent = wcGen(state);
       }
 
       syncColorPickersFromControls(form);
