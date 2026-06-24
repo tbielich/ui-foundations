@@ -3,6 +3,7 @@
     display: inline-flex;
     align-items: center;
     gap: var(--badge-gap, 0.25rem);
+    border: var(--badge-border-size-default) solid var(--badge-default-border-color);
     border-radius: var(--badge-border-radius, 625rem);
     font-family: var(--badge-font-family, inherit);
     font-weight: var(--badge-font-weight, 700);
@@ -13,6 +14,8 @@
     line-height: var(--badge-line-height-md);
     padding-inline: var(--badge-padding-inline-md);
     padding-block: var(--badge-padding-block-md);
+    min-block-size: var(--badge-height-min);
+    min-inline-size: var(--badge-width-min);
   }
 
   /* ── Sizes ── */
@@ -29,16 +32,26 @@
   .badge.brand {
     background: var(--badge-brand-container-background);
     color: var(--badge-brand-text-color);
+    border-color: var(--badge-brand-border-color);
   }
 
   .badge.success {
     background: var(--badge-success-container-background);
     color: var(--badge-success-text-color);
+    border-color: var(--badge-success-border-color);
   }
 
   .badge.danger {
     background: var(--badge-danger-container-background);
     color: var(--badge-danger-text-color);
+    border-color: var(--badge-danger-border-color);
+  }
+
+  /* ── Icon-only ── */
+
+  .badge.icon-only {
+    padding-inline: var(--badge-padding-inline-icon-only);
+    justify-content: center;
   }
 
   /* ── Icon slot ── */
