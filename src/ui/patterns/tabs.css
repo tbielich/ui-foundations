@@ -32,6 +32,7 @@
     border-block-end: var(--size-border-200) solid transparent;
     cursor: pointer;
     white-space: nowrap;
+    text-decoration: none;
     transition: border-color 0.15s ease, color 0.15s ease;
   }
 
@@ -42,7 +43,8 @@
   }
 
   .tab[aria-selected="true"],
-  .tab.is-selected {
+  .tab.is-selected,
+  .tab.is-active {
     color: var(--tabs-text-color-active);
     font-weight: var(--font-weight-600);
     border-block-end-color: var(--tabs-border-color-active);
@@ -55,12 +57,31 @@
   }
 
   .tab:disabled,
+  .tab[aria-disabled="true"],
   .tab.is-disabled {
     color: var(--tabs-text-color-disabled);
     cursor: not-allowed;
     border-block-end-color: transparent;
+    pointer-events: none;
   }
 
+  /* --- Panel container: CSS-only scroll-snap switching --- */
+
+  .tab-panels {
+    display: flex;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .tab-panels > .tab-panel {
+    flex: 0 0 100%;
+    min-inline-size: 100%;
+    scroll-snap-align: start;
+    padding-block: var(--size-spacing-400);
+  }
+
+  /* Legacy: standalone panel with hidden attribute (JS-driven) */
   .tab-panel {
     padding-block: var(--size-spacing-400);
   }
