@@ -178,18 +178,20 @@
   <section class="playground-code-panel">
     <div class="code-tabs">
       <div class="code-tabs-bar button-group" role="group" data-orientation="horizontal" data-attached="true" data-justify="start" aria-label="Code format">
-        <button class="button outline" type="button" data-lang="html" aria-pressed="true">HTML</button>
-        <button class="button outline" type="button" data-lang="njk" aria-pressed="false">Nunjucks</button>
-        <button class="button outline" type="button" data-lang="wc" aria-pressed="false">Web Component</button>
+        <a class="button outline" href="#{{ playgroundId }}-tab-html">HTML</a>
+        <a class="button outline" href="#{{ playgroundId }}-tab-njk">Nunjucks</a>
+        <a class="button outline" href="#{{ playgroundId }}-tab-wc">Web Component</a>
       </div>
-      <div class="code-tabs-panel" data-lang="html">
-        <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code"></code></pre>
-      </div>
-      <div class="code-tabs-panel" data-lang="njk">
-        <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code-njk"></code></pre>
-      </div>
-      <div class="code-tabs-panel" data-lang="wc">
-        <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code-wc"></code></pre>
+      <div class="code-tabs-panels">
+        <div class="code-tabs-panel" id="{{ playgroundId }}-tab-html">
+          <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code"></code></pre>
+        </div>
+        <div class="code-tabs-panel" id="{{ playgroundId }}-tab-njk">
+          <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code-njk"></code></pre>
+        </div>
+        <div class="code-tabs-panel" id="{{ playgroundId }}-tab-wc">
+          <pre class="playground-code language-markup"><code class="language-markup" id="{{ playgroundId }}-code-wc"></code></pre>
+        </div>
       </div>
     </div>
     {% if config.tokenCssPath %}
