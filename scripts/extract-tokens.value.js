@@ -136,6 +136,14 @@ function formatTokenValue(token, rawValue, tokenKey, segments) {
     }
   }
 
+  if (type === "dimension") {
+    if (rawValue && typeof rawValue === "object" && rawValue.value !== undefined) {
+      const num = Number(rawValue.value);
+      if (rawValue.unit === "rem") return `${num}rem`;
+      return formatLength(num);
+    }
+  }
+
   if (lowerKey.startsWith("zindex-") || lowerKey.startsWith("z-index-")) {
     return rawValue;
   }
