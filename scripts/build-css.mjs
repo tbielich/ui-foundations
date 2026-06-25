@@ -171,6 +171,10 @@ function buildReactBundle() {
   copyDir(path.join(REPO_ROOT, "src", "react"), path.join(DIST_DIR, "react"));
 }
 
+function buildElementsBundle() {
+  copyDir(path.join(REPO_ROOT, "src", "elements"), path.join(DIST_DIR, "elements"));
+}
+
 function buildAssetsBundle() {
   copyDir(path.join(REPO_ROOT, "src", "assets"), path.join(DIST_DIR, "assets"));
 }
@@ -193,6 +197,7 @@ function buildDocs() {
   buildCoreBundle(tokenFiles);
   buildUiBundle();
   buildReactBundle();
+  buildElementsBundle();
   buildAssetsBundle();
   buildMacrosBundle();
 

@@ -899,6 +899,21 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   display: block;
 }
 
+/* CSS-only tab switching via anchor scroll */
+.code-tabs-panels {
+  display: flex;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.code-tabs-panels > .code-tabs-panel {
+  display: block;
+  flex: 0 0 100%;
+  min-inline-size: 100%;
+  scroll-snap-align: start;
+}
+
 .code-tabs-panel pre {
   margin-top: 0;
   margin-bottom: 1rem;

@@ -391,20 +391,22 @@
       })();
     </script>
     <script>
-      // Code tab switcher — syncs all tab groups to the same language
+      // Code tab switcher — syncs all tab groups, scrolls panels via anchor
       (function() {
         var stored = localStorage.getItem("ui-foundations-code-tab") || "html";
         var groups = document.querySelectorAll(".code-tabs");
 
         function activate(group, lang) {
-          var buttons = group.querySelectorAll("[data-lang]");
-          var panels = group.querySelectorAll(".code-tabs-panel");
-          buttons.forEach(function(b) {
-            var active = b.dataset.lang === lang;
-            b.setAttribute("aria-pressed", active ? "true" : "false");
-            b.classList.toggle("is-active", active);
+          var links = group.querySelectorAll(".code-tabs-bar a");
+          links.forEach(function(a) {
+            var isActive = a.getAttribute("href").indexOf("-tab-" + lang) !== -1;
+            a.classList.toggle("is-active", isActive);
           });
-          panels.forEach(function(p) { p.classList.toggle("is-active", p.dataset.lang === lang); });
+          var panels = group.querySelector(".code-tabs-panels");
+          var target = group.querySelector("[id$='-tab-" + lang + "']");
+          if (panels && target) {
+            panels.scrollLeft = target.offsetLeft;
+          }
         }
 
         function switchAll(lang) {
@@ -416,8 +418,11 @@
         groups.forEach(function(g) {
           activate(g, stored);
           g.addEventListener("click", function(e) {
-            var btn = e.target.closest("[data-lang]");
-            if (btn) switchAll(btn.dataset.lang);
+            var link = e.target.closest(".code-tabs-bar a");
+            if (!link) return;
+            e.preventDefault();
+            var lang = link.getAttribute("href").replace(/.*-tab-/, "");
+            switchAll(lang);
           });
         });
       })();

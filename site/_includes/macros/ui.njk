@@ -199,9 +199,21 @@
 <div class="{{ classes }}" role="tablist" aria-orientation="{{ orientation }}"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>{{ caller() }}</div>
 {%- endmacro %}
 
-{% macro tab(label='', selected=false, disabled=false, controls='') -%}
+{% macro tab(label='', selected=false, disabled=false, controls='', href='') -%}
 {%- set classes = "tab" -%}
+{%- if selected -%}{%- set classes = classes + " is-active" -%}{%- endif -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if href -%}
+<a class="{{ classes }}" href="{{ href }}"{% if disabled %} aria-disabled="true" tabindex="-1"{% endif %}>{{ label }}</a>
+{%- else -%}
 <button class="{{ classes }}" role="tab" type="button" aria-selected="{{ "true" if selected else "false" }}"{% if controls %} aria-controls="{{ controls }}"{% endif %}{% if disabled %} disabled{% endif %} tabindex="{{ "0" if selected else "-1" }}">{{ label }}</button>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro tabPanels(className='') -%}
+{%- set classes = "tab-panels" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
 {%- endmacro %}
 
 {% macro tabPanel(id='', hidden=false) -%}
