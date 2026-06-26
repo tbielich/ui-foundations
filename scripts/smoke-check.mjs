@@ -42,6 +42,23 @@ function ensureTokenCssFiles(minCount = 5) {
   }
 }
 
+function ensureElementsBundle(minCount = 10) {
+  const elementsDir = path.join(REPO_ROOT, "dist", "elements");
+  if (!fs.existsSync(elementsDir)) {
+    fail("Missing dist/elements");
+  }
+
+  const files = fs
+    .readdirSync(elementsDir)
+    .filter((name) => name.endsWith(".js"));
+
+  if (files.length < minCount) {
+    fail(
+      `Expected at least ${minCount} element JS files in dist/elements, found ${files.length}`,
+    );
+  }
+}
+
 function run() {
   ensureFile("dist/main.css", { nonEmpty: true, mustInclude: ".button" });
   ensureFile("dist/tokens/tokens.yaml", {
@@ -52,7 +69,9 @@ function run() {
     nonEmpty: true,
   });
   ensureFile("dist/react/index.js", { nonEmpty: true });
+  ensureFile("dist/elements/index.js", { nonEmpty: true });
   ensureTokenCssFiles();
+  ensureElementsBundle();
 
   console.log("✅ Smoke checks passed");
 }
