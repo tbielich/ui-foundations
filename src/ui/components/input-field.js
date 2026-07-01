@@ -68,7 +68,7 @@ function handleToggleVisibility(field) {
   if (!input || input.disabled) return;
 
   const button = field.querySelector(
-    '.input-field__control button[aria-label="Toggle password visibility"]',
+    '.input-field-control button[aria-label="Toggle password visibility"]',
   );
   const isRevealed = input.type === "text";
 
@@ -87,7 +87,7 @@ function enhanceField(field) {
   if (field.dataset.enhanced) return;
   field.dataset.enhanced = "true";
 
-  const control = field.querySelector(".input-field__control");
+  const control = field.querySelector(".input-field-control");
   if (!control) return;
 
   // Set aria-pressed on password toggle buttons during enhancement

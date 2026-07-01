@@ -124,7 +124,7 @@ Use `data-label-position="side"` for horizontal label layout. Best suited for wi
 {% call ui.form() %}
   {% call ui.formField(labelPosition="side") %}
     {{ ui.fieldLabel("Username") }}
-    <div class="form-field__body">
+    <div class="form-field-body">
       {{ ui.input(placeholder="janedoe") }}
       {{ ui.formHelper("Visible to other users.") }}
     </div>

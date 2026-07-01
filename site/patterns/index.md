@@ -60,7 +60,7 @@ permalink: /patterns/
     <div class="docs-component-card-preview">
       <span class="label-content">
         <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-        <span class="label-content__text">Search</span>
+        <span class="label-content-text">Search</span>
       </span>
     </div>
     <div class="docs-component-card-body">

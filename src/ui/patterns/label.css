@@ -13,7 +13,7 @@
     flex: 0 0 auto;
   }
 
-  .label-content__text {
+  .label-content-text {
     line-height: inherit;
   }
 
@@ -30,12 +30,12 @@
     cursor: pointer;
   }
 
-  .field-label__required {
+  .field-label-required {
     color: var(--field-label-required-color, currentColor);
     font-weight: 700;
   }
 
-  .field-label__required-text {
+  .field-label-required-text {
     position: absolute;
     inline-size: 1px;
     block-size: 1px;

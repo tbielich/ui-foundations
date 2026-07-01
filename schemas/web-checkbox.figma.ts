@@ -86,7 +86,7 @@ figma.connect(
         checked="${checked}"
         disabled="${disabled}"
       />
-      <span class="checkbox-field__text">${text}</span>
+      <span class="checkbox-field-text">${text}</span>
     </label>`,
   },
 );

@@ -62,7 +62,7 @@
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
-  .accordion-item__content {
+  .accordion-item-content {
     padding-inline: var(--accordion-padding-inline);
     padding-block: var(--accordion-padding-block);
     font-family: var(--font-family-sans);

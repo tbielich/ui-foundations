@@ -21,6 +21,6 @@ figma.connect(
       text: figma.string("Text"),
     },
     example: ({ className, text }: BadgeProps) =>
-      html`<span class="${className}"><span class="badge__text">${text}</span></span>`,
+      html`<span class="${className}"><span class="badge-text">${text}</span></span>`,
   },
 );

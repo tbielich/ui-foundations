@@ -17,12 +17,12 @@ figma.connect(
       }),
     },
     example: ({ state, helperText }: FormProps) => html`<div
-      class="form__field"
+      class="form-field"
       data-state="${state}"
     >
       <label class="field-label" for="form-field-input" style="line-height: 24px;">
         <span class="label-content">
-          <span class="label-content__text">Field label</span>
+          <span class="label-content-text">Field label</span>
         </span>
       </label>
       <input
@@ -31,7 +31,7 @@ figma.connect(
         type="text"
         placeholder="Enter value"
       />
-      <p class="form__helper">
+      <p class="form-field-helper">
         ${helperText}
       </p>
     </div>`,

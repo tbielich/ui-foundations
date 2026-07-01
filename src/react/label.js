@@ -54,7 +54,7 @@ export function LabelContent({
   if (className) classes.push(className);
 
   const textNode = hasTextContent(content)
-    ? React.createElement("span", { className: "label-content__text" }, content)
+    ? React.createElement("span", { className: "label-content-text" }, content)
     : null;
 
   return React.createElement(
@@ -88,7 +88,7 @@ export function FieldLabel({
     ? React.createElement(
         "span",
         {
-          className: "field-label__required",
+          className: "field-label-required",
           "aria-hidden": true,
         },
         "*",
@@ -98,7 +98,7 @@ export function FieldLabel({
   const requiredA11yText = required
     ? React.createElement(
         "span",
-        { className: "field-label__required-text" },
+        { className: "field-label-required-text" },
         ` (${requiredText})`,
       )
     : null;

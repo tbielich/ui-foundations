@@ -30,7 +30,7 @@ class UIButton extends UIElement {
     const classes = ["button"];
     if (variant === "outline") classes.push("outline");
     if (variant === "ghost") classes.push("ghost");
-    if (iconOnly) classes.push("button--icon-only");
+    if (iconOnly) classes.push("icon-only");
 
     const text = this.textContent.trim();
     const labelContentClasses = ["label-content"];
@@ -43,7 +43,7 @@ class UIButton extends UIElement {
     }
 
     if (!iconOnly && text) {
-      inner += `<span class="label-content__text">${text}</span>`;
+      inner += `<span class="label-content-text">${text}</span>`;
     }
 
     if (endIcon && !iconOnly) {

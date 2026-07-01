@@ -27,7 +27,7 @@ class UIAvatar extends UIElement {
     const label = alt || initials;
     const inner = src
       ? `<img src="${src}" alt="${alt}" />`
-      : `<span class="avatar__initials">${initials}</span>`;
+      : `<span class="avatar-initials">${initials}</span>`;
 
     this.innerHTML = `<span class="${classes.join(" ")}" role="img" aria-label="${label}">${inner}</span>`;
   }

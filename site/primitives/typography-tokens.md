@@ -20,14 +20,14 @@ permalink: /primitives/typography/
 
 <div class="type-specimens">{% for family in typographyDocs.families %}
   <div class="type-specimen">
-    <div class="type-specimen__sample" style="font-family: var({{ family.cssVar }});">
-      <span class="type-specimen__large">Aa</span>
-      <span class="type-specimen__alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
-      <span class="type-specimen__alphabet">abcdefghijklmnopqrstuvwxyz 0123456789</span>
+    <div class="type-specimen-sample" style="font-family: var({{ family.cssVar }});">
+      <span class="type-specimen-large">Aa</span>
+      <span class="type-specimen-alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
+      <span class="type-specimen-alphabet">abcdefghijklmnopqrstuvwxyz 0123456789</span>
     </div>
-    <div class="type-specimen__meta">
-      <span class="type-specimen__name">{{ family.value }}</span>
-      <code class="type-specimen__token">{{ family.cssVar }}</code>
+    <div class="type-specimen-meta">
+      <span class="type-specimen-name">{{ family.value }}</span>
+      <code class="type-specimen-token">{{ family.cssVar }}</code>
     </div>
   </div>{% endfor %}
 </div>
@@ -50,9 +50,9 @@ permalink: /primitives/typography/
     </thead>
     <tbody>{% for item in typographyDocs.headingScale %}
       <tr>
-        <td class="type-scale-table__size">{{ item.label }}</td>
-        <td class="type-scale-table__class"><code>.{{ item.class }}</code> / <code>&lt;{{ item.element }}&gt;</code></td>
-        <td class="type-scale-table__sample"><span class="{{ item.class }}">The quick brown fox</span></td>
+        <td class="type-scale-table-size">{{ item.label }}</td>
+        <td class="type-scale-table-class"><code>.{{ item.class }}</code> / <code>&lt;{{ item.element }}&gt;</code></td>
+        <td class="type-scale-table-sample"><span class="{{ item.class }}">The quick brown fox</span></td>
       </tr>{% endfor %}
     </tbody>
   </table>
@@ -76,9 +76,9 @@ permalink: /primitives/typography/
     </thead>
     <tbody>{% for item in typographyDocs.textScale %}
       <tr>
-        <td class="type-scale-table__size">{{ item.label }}</td>
-        <td class="type-scale-table__class"><code>.{{ item.class }}</code></td>
-        <td class="type-scale-table__sample"><span class="{{ item.class }}">Clear schedules, gentle spacing, and readable copy for every screen.</span></td>
+        <td class="type-scale-table-size">{{ item.label }}</td>
+        <td class="type-scale-table-class"><code>.{{ item.class }}</code></td>
+        <td class="type-scale-table-sample"><span class="{{ item.class }}">Clear schedules, gentle spacing, and readable copy for every screen.</span></td>
       </tr>{% endfor %}
     </tbody>
   </table>
@@ -103,8 +103,8 @@ permalink: /primitives/typography/
     <tbody>{% for size in typographyDocs.sizes %}
       <tr>
         <td><code>{{ size.cssVar }}</code></td>
-        <td class="type-token-table__value">{{ size.value }}</td>
-        <td class="type-token-table__preview"><span style="font-size: var({{ size.cssVar }}); line-height: 1.2;">Ag</span></td>
+        <td class="type-token-table-value">{{ size.value }}</td>
+        <td class="type-token-table-preview"><span style="font-size: var({{ size.cssVar }}); line-height: 1.2;">Ag</span></td>
       </tr>{% endfor %}
     </tbody>
   </table>
@@ -129,8 +129,8 @@ permalink: /primitives/typography/
     <tbody>{% for weight in typographyDocs.weights %}
       <tr>
         <td><code>{{ weight.cssVar }}</code></td>
-        <td class="type-token-table__value">{{ weight.value }}</td>
-        <td class="type-token-table__preview"><span style="font-weight: var({{ weight.cssVar }});">The quick brown fox</span></td>
+        <td class="type-token-table-value">{{ weight.value }}</td>
+        <td class="type-token-table-preview"><span style="font-weight: var({{ weight.cssVar }});">The quick brown fox</span></td>
       </tr>{% endfor %}
     </tbody>
   </table>
@@ -155,8 +155,8 @@ permalink: /primitives/typography/
     <tbody>{% for lh in typographyDocs.lineHeights %}
       <tr>
         <td><code>{{ lh.cssVar }}</code></td>
-        <td class="type-token-table__value">{{ lh.value }}</td>
-        <td class="type-token-table__preview"><span style="line-height: var({{ lh.cssVar }}); display: inline-block; border-left: 2px solid var(--docs-accent); padding-left: 8px;">Line height<br>demonstration</span></td>
+        <td class="type-token-table-value">{{ lh.value }}</td>
+        <td class="type-token-table-preview"><span style="line-height: var({{ lh.cssVar }}); display: inline-block; border-left: 2px solid var(--docs-accent); padding-left: 8px;">Line height<br>demonstration</span></td>
       </tr>{% endfor %}
     </tbody>
   </table>

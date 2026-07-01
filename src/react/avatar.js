@@ -24,7 +24,7 @@ export function Avatar({
 
   const children = src
     ? React.createElement("img", { src, alt })
-    : React.createElement("span", { className: "avatar__initials" }, initials);
+    : React.createElement("span", { className: "avatar-initials" }, initials);
 
   return React.createElement(
     "span",

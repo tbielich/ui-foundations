@@ -18,6 +18,6 @@ figma.connect(
       initials: figma.string("Initials"),
     },
     example: ({ className, initials }: AvatarProps) =>
-      html`<span class="${className}" role="img" aria-label="${initials}"><span class="avatar__initials">${initials}</span></span>`,
+      html`<span class="${className}" role="img" aria-label="${initials}"><span class="avatar-initials">${initials}</span></span>`,
   },
 );

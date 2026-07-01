@@ -45,7 +45,7 @@ class UISwitch extends UIElement {
 
     this.innerHTML = `<label class="${wrapperClasses.join(" ")}">
   <input ${inputAttrs.join(" ")} />
-  <span class="switch-field__text">${label}</span>
+  <span class="switch-field-text">${label}</span>
 </label>`;
   }
 }

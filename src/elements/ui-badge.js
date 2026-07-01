@@ -29,7 +29,7 @@ class UIBadge extends UIElement {
       inner += `<span class="icon" style="--icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span>`;
     }
     if (text) {
-      inner += `<span class="badge__text">${text}</span>`;
+      inner += `<span class="badge-text">${text}</span>`;
     }
 
     this.innerHTML = `<span class="${classes.join(" ")}">${inner}</span>`;

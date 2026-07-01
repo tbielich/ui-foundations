@@ -31,6 +31,6 @@ export function AccordionItem({ title, open = false, disabled = false, className
     "details",
     { className: classes.join(" "), open, ...props },
     React.createElement("summary", null, title),
-    React.createElement("div", { className: "accordion-item__content" }, children)
+    React.createElement("div", { className: "accordion-item-content" }, children)
   );
 }

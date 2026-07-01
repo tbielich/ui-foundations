@@ -85,7 +85,7 @@ export function Input({
     }),
     React.createElement(
       "span",
-      { className: "input-field__control" },
+      { className: "input-field-control" },
       controlButtons,
     ),
   );

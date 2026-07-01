@@ -51,6 +51,6 @@ export function Checkbox({
       className: wrapperClasses.join(" "),
     },
     input,
-    React.createElement("span", { className: "checkbox-field__text" }, content),
+    React.createElement("span", { className: "checkbox-field-text" }, content),
   );
 }

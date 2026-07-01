@@ -41,7 +41,7 @@ export function FormGroup({ title = "", className = "", children, ...props }) {
     "fieldset",
     { className: classes.join(" "), ...props },
     title
-      ? React.createElement("legend", { className: "form-group__title" }, title)
+      ? React.createElement("legend", { className: "form-group-title" }, title)
       : null,
     children,
   );
@@ -82,7 +82,7 @@ export function FormField({
 export function FormHelper({ text, ...props }) {
   return React.createElement(
     "p",
-    { className: "form-field__helper", ...props },
+    { className: "form-field-helper", ...props },
     text,
   );
 }

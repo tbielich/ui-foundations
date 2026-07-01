@@ -146,23 +146,23 @@ permalink: /foundations/architecture/
 
 <div class="pipeline-flow">
   <div class="pipeline-step">
-    <span class="pipeline-step__label">Figma Variables</span>
+    <span class="pipeline-step-label">Figma Variables</span>
   </div>
   <div class="pipeline-arrow"><span>export</span></div>
   <div class="pipeline-step">
-    <span class="pipeline-step__label">figma/exports/*.tokens.json</span>
+    <span class="pipeline-step-label">figma/exports/*.tokens.json</span>
   </div>
   <div class="pipeline-arrow"><span>npm run tokens:generate</span></div>
   <div class="pipeline-step">
-    <span class="pipeline-step__label">dist/tokens/css/*.css + tokens.yaml</span>
+    <span class="pipeline-step-label">dist/tokens/css/*.css + tokens.yaml</span>
   </div>
   <div class="pipeline-arrow"><span>npm run build:css</span></div>
   <div class="pipeline-step">
-    <span class="pipeline-step__label">dist/main.css (bundled, layered)</span>
+    <span class="pipeline-step-label">dist/main.css (bundled, layered)</span>
   </div>
   <div class="pipeline-arrow"><span>npm run docs:site</span></div>
   <div class="pipeline-step">
-    <span class="pipeline-step__label">_site/ (documentation website)</span>
+    <span class="pipeline-step-label">_site/ (documentation website)</span>
   </div>
 </div>
 

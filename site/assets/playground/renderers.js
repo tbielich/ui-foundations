@@ -104,7 +104,7 @@
 
     if (variant === "outline") classes.push("outline");
     if (variant === "ghost") classes.push("ghost");
-    if (resolvedIconOnly) classes.push("button--icon-only");
+    if (resolvedIconOnly) classes.push("icon-only");
     if (previewState === "hover") classes.push("is-hover");
     if (previewState === "active") classes.push("is-active");
     if (previewState === "focus") classes.push("is-focus-visible");
@@ -127,7 +127,7 @@
 
     if (!resolvedIconOnly && hasText) {
       const textNode = document.createElement("span");
-      textNode.className = "label-content__text";
+      textNode.className = "label-content-text";
       textNode.textContent = rawLabel;
       content.append(textNode);
     }
@@ -149,7 +149,7 @@
     const codeContent = [
       labelIconCode(iconStart, "start"),
       !resolvedIconOnly && hasText
-        ? `<span class="label-content__text">${quoteAttr(rawLabel)}</span>`
+        ? `<span class="label-content-text">${quoteAttr(rawLabel)}</span>`
         : "",
       labelIconCode(iconEnd, "end"),
     ]
@@ -224,7 +224,7 @@
 
     if (!iconOnly && hasText) {
       const textElement = document.createElement("span");
-      textElement.className = "label-content__text";
+      textElement.className = "label-content-text";
       textElement.textContent = text;
       labelContent.append(textElement);
     }
@@ -236,13 +236,13 @@
 
     if (mode === "field" && required) {
       const requiredMarker = document.createElement("span");
-      requiredMarker.className = "field-label__required";
+      requiredMarker.className = "field-label-required";
       requiredMarker.setAttribute("aria-hidden", "true");
       requiredMarker.textContent = "*";
       host.append(requiredMarker);
 
       const requiredText = document.createElement("span");
-      requiredText.className = "field-label__required-text";
+      requiredText.className = "field-label-required-text";
       requiredText.textContent = " (required)";
       host.append(requiredText);
     }
@@ -255,7 +255,7 @@
     const contentMarkup = [
       labelIconCode(iconStart, "start"),
       !iconOnly && hasText
-        ? `<span class="label-content__text">${quoteAttr(text)}</span>`
+        ? `<span class="label-content-text">${quoteAttr(text)}</span>`
         : "",
       labelIconCode(iconEnd, "end"),
     ]
@@ -264,7 +264,7 @@
 
     if (mode === "field") {
       const requiredMarkup = required
-        ? '<span class="field-label__required" aria-hidden="true">*</span><span class="field-label__required-text"> (required)</span>'
+        ? '<span class="field-label-required" aria-hidden="true">*</span><span class="field-label-required-text"> (required)</span>'
         : "";
       const code = `<label for="${quoteAttr(forId)}" class="field-label" style="${quoteAttr(hostStyleEntries.join("; "))}"><span class="${quoteAttr(contentClasses.join(" "))}">${contentMarkup}</span>${requiredMarkup}</label>`;
       return { element: host, code };
@@ -303,7 +303,7 @@
     wrapper.appendChild(input);
 
     const control = document.createElement("span");
-    control.className = "input-field__control";
+    control.className = "input-field-control";
 
     let controlIcons = [];
     if (type === "number") {
@@ -356,7 +356,7 @@
 
     const code = `<div class="${quoteAttr(wrapper.className)}">
   <input ${inputAttrs.join(" ")} />
-  <span class="input-field__control">
+  <span class="input-field-control">
     ${controlCode}
   </span>
 </div>`;
@@ -395,7 +395,7 @@
     if (indeterminate) input.setAttribute("aria-checked", "mixed");
 
     const text = document.createElement("span");
-    text.className = "checkbox-field__text";
+    text.className = "checkbox-field-text";
     text.textContent = labelText;
 
     wrapper.append(input, text);
@@ -408,7 +408,7 @@
     if (indeterminate) attrs.push('aria-checked="mixed"');
     if (disabled) attrs.push("disabled");
 
-    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="checkbox-field__text">${quoteAttr(labelText)}</span></label>`;
+    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="checkbox-field-text">${quoteAttr(labelText)}</span></label>`;
     return { element: wrapper, code };
   };
 
@@ -440,7 +440,7 @@
     input.setAttribute("role", "switch");
 
     const text = document.createElement("span");
-    text.className = "switch-field__text";
+    text.className = "switch-field-text";
     text.textContent = labelText;
 
     wrapper.append(input, text);
@@ -453,7 +453,7 @@
     if (checked) attrs.push("checked");
     if (disabled) attrs.push("disabled");
 
-    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="switch-field__text">${quoteAttr(labelText)}</span></label>`;
+    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="switch-field-text">${quoteAttr(labelText)}</span></label>`;
     return { element: wrapper, code };
   };
 
@@ -558,7 +558,7 @@
     input.disabled = disabled;
 
     const text = document.createElement("span");
-    text.className = "radio-field__text";
+    text.className = "radio-field-text";
     text.textContent = labelText;
 
     wrapper.append(input, text);
@@ -570,7 +570,7 @@
     if (checked) attrs.push("checked");
     if (disabled) attrs.push("disabled");
 
-    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="radio-field__text">${quoteAttr(labelText)}</span></label>`;
+    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="radio-field-text">${quoteAttr(labelText)}</span></label>`;
     return { element: wrapper, code };
   };
 
@@ -593,13 +593,13 @@
     }
 
     const textSpan = document.createElement("span");
-    textSpan.className = "badge__text";
+    textSpan.className = "badge-text";
     textSpan.textContent = rawText;
     element.append(textSpan);
 
     const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
     const iconMarkup = startIcon ? iconCode({ name: startIcon, decorative: true }) : "";
-    const code = `<span class="${codeClasses}">${iconMarkup}<span class="badge__text">${quoteAttr(rawText)}</span></span>`;
+    const code = `<span class="${codeClasses}">${iconMarkup}<span class="badge-text">${quoteAttr(rawText)}</span></span>`;
 
     return { element, code };
   };
@@ -646,7 +646,7 @@
       element.append(img);
     } else {
       const span = document.createElement("span");
-      span.className = "avatar__initials";
+      span.className = "avatar-initials";
       span.textContent = initials;
       element.append(span);
     }
@@ -654,7 +654,7 @@
     const codeClasses = classes.join(" ");
     const inner = src
       ? `<img src="${quoteAttr(src)}" alt="${quoteAttr(initials)}" />`
-      : `<span class="avatar__initials">${quoteAttr(initials)}</span>`;
+      : `<span class="avatar-initials">${quoteAttr(initials)}</span>`;
     const code = `<span class="${codeClasses}" role="img" aria-label="${quoteAttr(initials)}">${inner}</span>`;
 
     return { element, code };
@@ -675,7 +675,7 @@
       const summary = document.createElement("summary");
       summary.textContent = `Item ${i + 1}`;
       const content = document.createElement("div");
-      content.className = "accordion-item__content";
+      content.className = "accordion-item-content";
       content.innerHTML = `<p>Content for item ${i + 1}</p>`;
       details.append(summary, content);
       wrapper.append(details);
@@ -683,7 +683,7 @@
       const openAttr = i === openIndex ? " open" : "";
       codeLines.push(`  <details class="accordion-item"${openAttr}>`);
       codeLines.push(`    <summary>Item ${i + 1}</summary>`);
-      codeLines.push(`    <div class="accordion-item__content"><p>Content for item ${i + 1}</p></div>`);
+      codeLines.push(`    <div class="accordion-item-content"><p>Content for item ${i + 1}</p></div>`);
       codeLines.push(`  </details>`);
     }
     codeLines.push("</div>");
@@ -781,7 +781,7 @@
 
     const label1 = document.createElement("label");
     label1.className = "field-label";
-    label1.innerHTML = '<span class="label-content"><span class="label-content__text">Email</span></span><span class="field-label__required" aria-hidden="true">*</span>';
+    label1.innerHTML = '<span class="label-content"><span class="label-content-text">Email</span></span><span class="field-label-required" aria-hidden="true">*</span>';
 
     const input1 = document.createElement("input");
     input1.className = "input";
@@ -790,11 +790,11 @@
 
     if (labelPosition === "side") {
       const body1 = document.createElement("div");
-      body1.className = "form-field__body";
+      body1.className = "form-field-body";
       body1.append(input1);
       if (invalid) {
         const helper = document.createElement("p");
-        helper.className = "form-field__helper";
+        helper.className = "form-field-helper";
         helper.textContent = "Please enter a valid email address.";
         body1.append(helper);
       }
@@ -803,7 +803,7 @@
       field1.append(label1, input1);
       if (invalid) {
         const helper = document.createElement("p");
-        helper.className = "form-field__helper";
+        helper.className = "form-field-helper";
         helper.textContent = "Please enter a valid email address.";
         field1.append(helper);
       }
@@ -816,7 +816,7 @@
 
     const label2 = document.createElement("label");
     label2.className = "field-label";
-    label2.innerHTML = '<span class="label-content"><span class="label-content__text">Password</span></span>';
+    label2.innerHTML = '<span class="label-content"><span class="label-content-text">Password</span></span>';
 
     const input2 = document.createElement("input");
     input2.className = "input";
@@ -824,7 +824,7 @@
 
     if (labelPosition === "side") {
       const body2 = document.createElement("div");
-      body2.className = "form-field__body";
+      body2.className = "form-field-body";
       body2.append(input2);
       field2.append(label2, body2);
     } else {
@@ -839,7 +839,7 @@
     const btn = document.createElement("button");
     btn.className = "button solid";
     btn.type = "submit";
-    btn.innerHTML = '<span class="label-content"><span class="label-content__text">Sign in</span></span>';
+    btn.innerHTML = '<span class="label-content"><span class="label-content-text">Sign in</span></span>';
     actions.append(btn);
 
     form.append(field1, field2, actions);
@@ -847,18 +847,18 @@
     const lp = labelPosition === "side" ? ' data-label-position="side"' : "";
     const inv = invalid ? " is-invalid" : "";
     const alignAttr = actionsAlign !== "end" ? ` data-align="${actionsAlign}"` : "";
-    const helperCode = invalid ? '\n    <p class="form-field__helper">Please enter a valid email address.</p>' : "";
+    const helperCode = invalid ? '\n    <p class="form-field-helper">Please enter a valid email address.</p>' : "";
     const code = `<form class="${formClasses.join(" ")}" novalidate>
   <div class="form-field${inv}"${lp}>
-    <label class="field-label"><span class="label-content"><span class="label-content__text">Email</span></span><span class="field-label__required" aria-hidden="true">*</span></label>
+    <label class="field-label"><span class="label-content"><span class="label-content-text">Email</span></span><span class="field-label-required" aria-hidden="true">*</span></label>
     <input class="input" type="email" placeholder="you@example.com" />${helperCode}
   </div>
   <div class="form-field"${lp}>
-    <label class="field-label"><span class="label-content"><span class="label-content__text">Password</span></span></label>
+    <label class="field-label"><span class="label-content"><span class="label-content-text">Password</span></span></label>
     <input class="input" type="password" />
   </div>
   <div class="form-actions"${alignAttr}>
-    <button class="button solid" type="submit"><span class="label-content"><span class="label-content__text">Sign in</span></span></button>
+    <button class="button solid" type="submit"><span class="label-content"><span class="label-content-text">Sign in</span></span></button>
   </div>
 </form>`;
 

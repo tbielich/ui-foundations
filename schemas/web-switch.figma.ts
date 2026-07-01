@@ -75,7 +75,7 @@ figma.connect(
         checked="${checked}"
         disabled="${disabled}"
       />
-      <span class="switch-field__text">${text}</span>
+      <span class="switch-field-text">${text}</span>
     </label>`,
   },
 );

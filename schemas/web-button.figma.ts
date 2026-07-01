@@ -19,9 +19,9 @@ figma.connect(
         }),
         figma.enum("Icon Only", {
           False: undefined,
-          True: "button--icon-only",
+          True: "icon-only",
           false: undefined,
-          true: "button--icon-only",
+          true: "icon-only",
         }),
       ]),
       disabled: figma.boolean("Disabled"),
@@ -40,7 +40,7 @@ figma.connect(
       aria-label="${ariaLabel}"
     >
       <span class="label-content">
-        <span class="label-content__text">${text}</span>
+        <span class="label-content-text">${text}</span>
       </span>
     </button>`,
   },
