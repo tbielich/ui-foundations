@@ -48,9 +48,13 @@
     return `
       <div class="calendar">
         <div class="calendar-header">
-          <button type="button" class="calendar-nav-prev" aria-label="Previous month"${disabledAttr}>‹</button>
+          <button type="button" class="button button--ghost" aria-label="Previous month"${disabledAttr}>
+            <span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span>
+          </button>
           <span class="calendar-title" aria-live="polite">${month}</span>
-          <button type="button" class="calendar-nav-next" aria-label="Next month"${disabledAttr}>›</button>
+          <button type="button" class="button button--ghost" aria-label="Next month"${disabledAttr}>
+            <span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span>
+          </button>
         </div>
         <table class="calendar-table" role="grid" aria-label="${month}">
           ${theadHtml}

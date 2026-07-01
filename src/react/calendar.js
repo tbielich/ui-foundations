@@ -140,23 +140,35 @@ export function Calendar({
   const rootClasses = ["calendar", className].filter(Boolean).join(" ");
 
   return React.createElement("div", { className: rootClasses, ...props },
-    // Header
+    // Header with icon-only ghost buttons (reusing Button + Icon patterns)
     React.createElement("div", { className: "calendar-header" },
       React.createElement("button", {
         type: "button",
-        className: "calendar-nav-prev",
+        className: "button button--ghost",
         "aria-label": "Previous month",
         onClick: prevMonth,
         disabled,
-      }, "‹"),
+      },
+        React.createElement("span", {
+          className: "icon",
+          style: { "--icon-src": "url('/assets/icons/chevron--left.svg')" },
+          "aria-hidden": "true",
+        }),
+      ),
       React.createElement("span", { className: "calendar-title", "aria-live": "polite" }, monthLabel),
       React.createElement("button", {
         type: "button",
-        className: "calendar-nav-next",
+        className: "button button--ghost",
         "aria-label": "Next month",
         onClick: nextMonth,
         disabled,
-      }, "›"),
+      },
+        React.createElement("span", {
+          className: "icon",
+          style: { "--icon-src": "url('/assets/icons/chevron.svg')" },
+          "aria-hidden": "true",
+        }),
+      ),
     ),
     // Semantic table
     React.createElement("table", { className: "calendar-table", role: "grid", "aria-label": monthLabel },
