@@ -127,3 +127,71 @@ The Date Input requires `src/ui/components/date-input.js` for:
   document.querySelectorAll('.date-input').forEach(el => new DateInput(el));
 </script>
 ```
+
+<script>
+(function() {
+  // Inline progressive enhancement for the docs preview
+  document.querySelectorAll('.date-input').forEach(function(root) {
+    var input = root.querySelector('input.input');
+    var trigger = root.querySelector("[aria-label='Open calendar']");
+    var calendar = root.querySelector('.calendar');
+    var isOpen = false;
+
+    function open() {
+      isOpen = true;
+      root.classList.add('is-open');
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      var first = calendar && calendar.querySelector('[tabindex="0"]');
+      if (first) first.focus();
+    }
+
+    function close() {
+      isOpen = false;
+      root.classList.remove('is-open');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    if (trigger) {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (isOpen) close(); else open();
+      });
+    }
+
+    if (input && input.readOnly) {
+      input.addEventListener('click', function() { if (!isOpen) open(); });
+    }
+
+    root.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isOpen) { e.preventDefault(); close(); if (trigger) trigger.focus(); }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (isOpen && !root.contains(e.target)) close();
+    });
+
+    // Cell selection
+    if (calendar) {
+      calendar.addEventListener('click', function(e) {
+        var btn = e.target.closest('button.calendar-cell');
+        if (!btn || btn.disabled) return;
+        // Deselect all
+        calendar.querySelectorAll('.calendar-cell').forEach(function(c) {
+          c.classList.remove('is-selected');
+          c.setAttribute('aria-selected', 'false');
+        });
+        // Select this one
+        btn.classList.add('is-selected');
+        btn.setAttribute('aria-selected', 'true');
+        // Update input
+        if (input) input.value = btn.textContent.trim() + '/07/2026';
+        close();
+        if (input) input.focus();
+      });
+    }
+
+    // Start closed
+    close();
+  });
+})();
+</script>
