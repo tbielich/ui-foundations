@@ -56,6 +56,60 @@ playground:
   var calendar = document.querySelector('.playground-stage .calendar');
   if (!calendar) return;
 
+  // Month navigation
+  var currentYear = 2026, currentMonth = 6;
+  var prevBtn = calendar.querySelector("[aria-label='Previous month']");
+  var nextBtn = calendar.querySelector("[aria-label='Next month']");
+  var titleEl = calendar.querySelector('.calendar-title');
+
+  function rebuildGrid() {
+    var tbody = calendar.querySelector('tbody');
+    if (!tbody) return;
+    var firstDay = new Date(currentYear, currentMonth, 1);
+    var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    var startDow = (firstDay.getDay() + 6) % 7;
+    var today = new Date(); today.setHours(0,0,0,0);
+
+    var monthName = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' }).format(firstDay);
+    if (titleEl) titleEl.textContent = monthName;
+
+    var html = '', day = 1, started = false;
+    for (var week = 0; week < 6; week++) {
+      if (day > daysInMonth) break;
+      html += '<tr>';
+      for (var dow = 0; dow < 7; dow++) {
+        if (!started && dow < startDow) {
+          html += '<td></td>';
+        } else if (day <= daysInMonth) {
+          started = true;
+          var classes = ['button', 'ghost', 'calendar-cell'];
+          var d = new Date(currentYear, currentMonth, day);
+          if (d.toDateString() === today.toDateString()) classes.push('is-today');
+          var tabindex = (day === 1) ? '0' : '-1';
+          html += '<td><button type="button" class="' + classes.join(' ') + '" aria-selected="false" tabindex="' + tabindex + '">' + day + '</button></td>';
+          day++;
+        } else {
+          html += '<td></td>';
+        }
+      }
+      html += '</tr>';
+    }
+    tbody.innerHTML = html;
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    currentMonth--;
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+    rebuildGrid();
+  });
+  if (nextBtn) nextBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    currentMonth++;
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    rebuildGrid();
+  });
+
   // Keyboard navigation
   calendar.addEventListener('keydown', function(e) {
     var btn = e.target.closest('button.calendar-cell');
