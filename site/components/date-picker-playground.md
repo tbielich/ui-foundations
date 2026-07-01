@@ -1,17 +1,17 @@
 ---
 layout: layouts/docs.njk
-title: Date Input Playground
-description: Interactive preview for the Date Input component with segmented fields and calendar dropdown.
-navTitle: Date Input Playground
+title: Date Picker Playground
+description: Interactive preview for the Date Picker component with segmented fields and calendar dropdown.
+navTitle: Date Picker Playground
 order: 11
-permalink: /components/date-input-playground/
+permalink: /components/date-picker-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
   - label: Components
     url: /components/
-  - label: Date Input
-    url: /components/date-input/
+  - label: Date Picker
+    url: /components/date-picker/
   - label: Playground
 ---
 

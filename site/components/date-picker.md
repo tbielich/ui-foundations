@@ -1,12 +1,12 @@
 ---
 layout: layouts/docs.njk
-title: Date Input
-description: A date selection component combining an input field with a calendar dropdown. Supports keyboard navigation, single date and range selection, min/max constraints, and full accessibility.
-navTitle: Date Input
+title: Date Picker
+description: A date picker component combining segmented input field with a calendar dropdown. Supports keyboard navigation, single date and range selection, min/max constraints, and full accessibility.
+navTitle: Date Picker
 order: 10
-permalink: /components/date-input/
-playgroundUrl: /components/date-input-playground/
-playgroundLabel: Open Date Input Playground
+permalink: /components/date-picker/
+playgroundUrl: /components/date-picker-playground/
+playgroundLabel: Open Date Picker Playground
 ---
 
 {% import "macros/ui.njk" as ui %}
@@ -46,7 +46,7 @@ playgroundLabel: Open Date Input Playground
 
 ## Overview
 
-The Date Input component combines two patterns into an interactive widget:
+The Date Picker component combines two patterns into an interactive widget:
 - **Input** — displays the selected date and accepts typed input
 - **Calendar** — a dropdown grid for visual date selection
 
@@ -140,7 +140,7 @@ This component is a progressive enhancement: it provides a superior experience w
 
 ## JavaScript
 
-The Date Input requires `src/ui/components/date-input.js` for:
+The Date Picker requires `src/ui/components/date-input.js` for:
 - Opening/closing the calendar popover
 - Synchronizing input value ↔ calendar selection
 - Keyboard event handling (Escape to close, Enter to select)
