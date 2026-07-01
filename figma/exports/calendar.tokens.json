@@ -1,0 +1,23 @@
+{
+  "$type": "color",
+  "$description": "Calendar component tokens — placeholder until Figma export is available",
+  "calendar": {
+    "cell": {
+      "background": {
+        "default": { "$value": "transparent" },
+        "hover": { "$value": "{color.fill.subtle}" },
+        "selected": { "$value": "{color.fill.brand}" },
+        "range": { "$value": "{color.fill.subtle}" }
+      },
+      "text-color": {
+        "default": { "$value": "{color.text.default}" },
+        "selected": { "$value": "{color.text.inverse}" },
+        "disabled": { "$value": "{color.text.disabled}" },
+        "outside": { "$value": "{color.text.subtle}" }
+      },
+      "border-color": {
+        "today": { "$value": "{color.border.brand}" }
+      }
+    }
+  }
+}

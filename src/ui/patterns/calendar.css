@@ -1,0 +1,127 @@
+@layer components {
+  /* ─── Calendar ─────────────────────────────────────────────────── */
+
+  .calendar {
+    display: grid;
+    gap: var(--spacing-200);
+    inline-size: fit-content;
+  }
+
+  /* Header: month/year label + prev/next navigation */
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-200);
+  }
+
+  .calendar-title {
+    font: var(--typography-label-large);
+    color: var(--color-text-default);
+  }
+
+  .calendar-nav {
+    display: flex;
+    gap: var(--spacing-100);
+  }
+
+  /* Weekday labels row */
+  .calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--spacing-050);
+    text-align: center;
+  }
+
+  .calendar-weekday {
+    font: var(--typography-label-small);
+    color: var(--color-text-subtle);
+    padding-block: var(--spacing-100);
+  }
+
+  /* Day grid */
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--spacing-050);
+  }
+
+  /* Individual day cell */
+  .calendar-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    block-size: var(--spacing-800);
+    inline-size: var(--spacing-800);
+    border-radius: var(--corner-medium);
+    background: var(--calendar-cell-background-default, transparent);
+    color: var(--calendar-cell-text-color-default, var(--color-text-default));
+    font: var(--typography-body);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+
+  /* States: hover */
+  .calendar-cell:hover,
+  .calendar-cell.is-hover {
+    background: var(--calendar-cell-background-hover, var(--color-fill-subtle));
+  }
+
+  /* States: focus */
+  .calendar-cell:focus-visible,
+  .calendar-cell.is-focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--shadow-focus, 2px) var(--color-focus, currentColor);
+  }
+
+  /* States: selected */
+  .calendar-cell[aria-selected="true"],
+  .calendar-cell.is-selected {
+    background: var(--calendar-cell-background-selected, var(--color-fill-brand));
+    color: var(--calendar-cell-text-color-selected, var(--color-text-inverse));
+  }
+
+  /* States: today marker */
+  .calendar-cell.is-today {
+    border: 1px solid var(--calendar-cell-border-color-today, var(--color-border-brand));
+  }
+
+  /* States: disabled (past dates, out-of-range) */
+  .calendar-cell:disabled,
+  .calendar-cell.is-disabled {
+    color: var(--calendar-cell-text-color-disabled, var(--color-text-disabled));
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* States: outside current month */
+  .calendar-cell.is-outside-month {
+    color: var(--calendar-cell-text-color-outside, var(--color-text-subtle));
+  }
+
+  /* Range selection: start, middle, end */
+  .calendar-cell.is-range-start {
+    border-start-start-radius: var(--corner-medium);
+    border-end-start-radius: var(--corner-medium);
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+    background: var(--calendar-cell-background-selected, var(--color-fill-brand));
+    color: var(--calendar-cell-text-color-selected, var(--color-text-inverse));
+  }
+
+  .calendar-cell.is-range-middle {
+    border-radius: 0;
+    background: var(--calendar-cell-background-range, var(--color-fill-subtle));
+    color: var(--calendar-cell-text-color-default, var(--color-text-default));
+  }
+
+  .calendar-cell.is-range-end {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    border-start-end-radius: var(--corner-medium);
+    border-end-end-radius: var(--corner-medium);
+    background: var(--calendar-cell-background-selected, var(--color-fill-brand));
+    color: var(--calendar-cell-text-color-selected, var(--color-text-inverse));
+  }
+}

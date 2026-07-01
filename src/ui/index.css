@@ -15,3 +15,4 @@
 @import url("./patterns/select.css") layer(components);
 @import url("./patterns/link.css") layer(components);
 @import url("./patterns/form.css") layer(components);
+@import url("./patterns/calendar.css") layer(components);
