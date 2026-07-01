@@ -285,3 +285,10 @@
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <div class="{{ classes }}"{% if align != "end" %} data-align="{{ align }}"{% endif %}>{{ caller() }}</div>
 {%- endmacro %}
+
+{# ─── Re-export Calendar macro ────────────────────────────────────── #}
+
+{%- from "macros/calendar.njk" import calendar as _cal -%}
+{%- macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, className='') -%}
+{{- _cal(month, selectedDate, todayDate, state, disabled, className) }}
+{%- endmacro -%}

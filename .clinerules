@@ -1,0 +1,99 @@
+# UI Foundations — Cline Rules
+
+## Project
+
+Token-first, Figma-aligned design system. Figma is the single source of truth.
+
+## Token Architecture (4 layers)
+
+| Layer | Purpose |
+|---|---|
+| Core (Primitives) | Raw values: spacing, radii, borders, typography |
+| Appearance Modes | Light/dark color palettes |
+| Semantics (Roles) | Intent-based: `--color-text-default`, `--color-fill-surface` |
+| Components (UI) | Component-specific: `--button-solid-border-color-default` |
+
+Rules: Components reference only Semantic or Core. Never hardcode values.
+
+## Class Naming (Foundation-013)
+
+- Root: `.component` (bare name)
+- Parts: `.component-part` (hyphen-compound)
+- Variants: `.component.variant` (multi-class)
+- States: `.is-state` prefix
+- NO double-underscores (`__`)
+- NO BEM modifiers (`--`)
+- NO namespace prefixes
+
+## CSS Conventions
+
+- Always wrap in `@layer components { }`
+- Use logical properties: `inline-size`, `block-size`, not `width`, `height`
+- Use `var(--token-name)` for all values — never hardcode
+- States: both pseudo-classes (`:hover`) and fallback classes (`.is-hover`)
+- Reuse existing patterns: icon-only buttons use `.button.ghost` + `.icon`
+
+## Token Naming
+
+`--component-variant-part-property-state`
+
+Examples:
+- `--button-solid-container-background-hover`
+- `--calendar-cell-text-color-disabled`
+
+States always last: `default`, `hover`, `active`, `focus`, `disabled`
+
+## Component Integration (10 Surfaces)
+
+Every component needs ALL of these:
+
+1. CSS pattern: `src/ui/patterns/<name>.css`
+2. CSS import: `src/ui/index.css`
+3. React wrapper: `src/react/<name>.js`
+4. React export: `src/react/index.js`
+5. Nunjucks macro: `site/_includes/macros/ui.njk`
+6. Playground renderer: `site/assets/playground/renderers.js`
+7. Docs page: `site/patterns/<name>.md`
+8. Playground page: `site/patterns/<name>-playground.md`
+9. Code Connect: `schemas/web-<name>.figma.ts`
+10. Token definitions: `figma/exports/Components (UI).tokens.json`
+
+## MCP Tools Available
+
+Use the ui-foundations MCP server for project queries:
+- `search_foundations` — full-text search across all docs
+- `get_component` — component details
+- `get_token` — token lookup
+- `get_pattern` — CSS pattern info
+- `get_rule` — governance rule details
+- `validate_token_name` — check if a token name is valid
+- `diagnose_drift` — check Figma/CSS alignment
+
+## Commands
+
+```bash
+npm run build          # Full build
+npm run lint           # JS lint
+npm run test:unit      # Unit tests
+npm run smoke:check    # Dist artifact verification
+npm run tokens:generate # Regenerate CSS from Figma exports
+```
+
+## Key Files
+
+| Surface | Path |
+|---|---|
+| CSS patterns | `src/ui/patterns/*.css` |
+| React wrappers | `src/react/*.js` |
+| Nunjucks macros | `site/_includes/macros/ui.njk` |
+| Playground renderers | `site/assets/playground/renderers.js` |
+| Token exports | `figma/exports/*.tokens.json` |
+| Docs pages | `site/patterns/*.md` |
+
+## Rules
+
+- Never invent token names. Use `get_token` to verify.
+- Never use `width`/`height` — use `inline-size`/`block-size`.
+- Never hardcode colors, spacing, or typography values.
+- Always run `npm run lint && npm run test:unit` after changes.
+- Keep Brand and Appearance orthogonal via `data-brand` and `data-mode`.
