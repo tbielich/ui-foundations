@@ -5,6 +5,8 @@ description: A date selection component combining an input field with a calendar
 navTitle: Date Input
 order: 10
 permalink: /components/date-input/
+playgroundUrl: /components/date-input-playground/
+playgroundLabel: Open Date Input Playground
 ---
 
 {% import "macros/ui.njk" as ui %}
@@ -119,6 +121,22 @@ Reuses tokens from the composed patterns:
 - Calendar tokens (`--calendar-cell-*`)
 
 No additional component-specific tokens needed — the composition inherits from its parts.
+
+## Why Custom?
+
+The native `<input type="date">` has real accessibility and UX limitations:
+
+| Issue | Native | This Component |
+|-------|--------|----------------|
+| Touch targets | Under 44px (browser controls) | 44×44px minimum per cell |
+| Keyboard navigation | Inconsistent across browsers | Full arrow/Home/End/PageUp/PageDown |
+| Styling | Shadow DOM, not themeable | Token-based, Brand/Mode aware |
+| Range selection | Not supported | Prepared (`.is-range-start`, `.is-range-middle`, `.is-range-end`) |
+| Cross-browser consistency | Safari ≠ Chrome ≠ Firefox | Identical behavior everywhere |
+| Screen reader experience | Varies, often poor | Explicit aria-label per cell, aria-live for month changes |
+| Segment navigation | Browser-dependent | Tab between DD/MM/YYYY, ArrowUp/Down to increment |
+
+This component is a progressive enhancement: it provides a superior experience while maintaining the same semantics and data format as the native date input.
 
 ## JavaScript
 
