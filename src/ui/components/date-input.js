@@ -100,8 +100,32 @@ export class DateInput {
   }
 
   _handleSegmentKeydown(e, index) {
+    const seg = this.segments[index];
+
+    // ArrowUp / ArrowDown → increment/decrement value by 1
+    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+      e.preventDefault();
+      const delta = e.key === "ArrowUp" ? 1 : -1;
+      const current = parseInt(seg.value, 10) || 0;
+      const next = current + delta;
+
+      // Clamp based on segment type
+      let min = 1;
+      let max = 31;
+      if (seg === this.monthEl) { min = 1; max = 12; }
+      else if (seg === this.yearEl) { min = 1900; max = 2100; }
+
+      if (next >= min && next <= max) {
+        const pad = seg === this.yearEl ? 4 : 2;
+        seg.value = String(next).padStart(pad, "0");
+        this._validate();
+        this._dispatchChange();
+      }
+      return;
+    }
+
     // Backspace on empty → go to previous segment
-    if (e.key === "Backspace" && !this.segments[index].value && index > 0) {
+    if (e.key === "Backspace" && !seg.value && index > 0) {
       e.preventDefault();
       const prev = this.segments[index - 1];
       prev.focus();
@@ -109,13 +133,12 @@ export class DateInput {
     }
 
     // ArrowLeft at position 0 → previous segment
-    if (e.key === "ArrowLeft" && this.segments[index].selectionStart === 0 && index > 0) {
+    if (e.key === "ArrowLeft" && seg.selectionStart === 0 && index > 0) {
       e.preventDefault();
       this.segments[index - 1].focus();
     }
 
     // ArrowRight at end → next segment
-    const seg = this.segments[index];
     if (e.key === "ArrowRight" && seg.selectionStart >= seg.value.length && index < this.segments.length - 1) {
       e.preventDefault();
       this.segments[index + 1].focus();

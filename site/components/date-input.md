@@ -160,6 +160,17 @@ The Date Input requires `src/ui/components/date-input.js` for:
           e.preventDefault();
           segments[i + 1].focus();
         }
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          var delta = e.key === 'ArrowUp' ? 1 : -1;
+          var current = parseInt(seg.value, 10) || 0;
+          var next = current + delta;
+          var min = 1, max = seg.maxLength === 4 ? 2100 : (i === 1 ? 12 : 31);
+          var minVal = seg.maxLength === 4 ? 1900 : 1;
+          if (next >= minVal && next <= max) {
+            seg.value = String(next).padStart(seg.maxLength, '0');
+          }
+        }
       });
       seg.addEventListener('focus', function() { seg.select(); });
     });
