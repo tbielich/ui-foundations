@@ -1,181 +1,203 @@
 /**
  * Date Input — Progressive Enhancement
  *
- * Composes .input-field + .calendar into a dropdown date picker.
- * Handles: open/close, input↔calendar sync, keyboard, focus management.
+ * Enhances a segmented .input-field.date with:
+ * - Auto-tab between DD/MM/YYYY segments on completion
+ * - Backspace navigates to previous segment
+ * - Calendar dropdown toggle via trigger button
+ * - Sync between calendar selection and segment values
+ * - Validation per segment (day 1-31, month 1-12, year 1900-2100)
  *
- * Usage:
- *   import { DateInput } from './components/date-input.js';
- *   document.querySelectorAll('.date-input').forEach(el => new DateInput(el));
+ * HTML structure:
+ *   .input-field.date
+ *     .date-segments
+ *       input.date-segment.day [maxlength=2, inputmode=numeric]
+ *       span.date-separator "/"
+ *       input.date-segment.month [maxlength=2, inputmode=numeric]
+ *       span.date-separator "/"
+ *       input.date-segment.year [maxlength=4, inputmode=numeric]
+ *     .input-field-control
+ *       button (calendar trigger)
+ *     .calendar (dropdown)
  */
 
 import { Calendar } from "./calendar.js";
 
 export class DateInput {
-  /**
-   * @param {HTMLElement} root - The .date-input element to enhance
-   * @param {object} [options]
-   * @param {string} [options.locale] - Intl locale (default: "en-GB")
-   * @param {string} [options.format] - Date format for the input (default: "dd/mm/yyyy")
-   * @param {Date} [options.min] - Earliest selectable date
-   * @param {Date} [options.max] - Latest selectable date
-   */
   constructor(root, options = {}) {
     this.root = root;
     this.locale = options.locale || "en-GB";
-    this.format = options.format || "dd/mm/yyyy";
-    this.min = options.min || null;
-    this.max = options.max || null;
+    this.onSelect = options.onSelect || null;
 
-    this.isOpen = false;
-    this.selectedDate = null;
+    // Segments
+    this.dayEl = root.querySelector(".date-segment.day");
+    this.monthEl = root.querySelector(".date-segment.month");
+    this.yearEl = root.querySelector(".date-segment.year");
+    this.segments = [this.dayEl, this.monthEl, this.yearEl].filter(Boolean);
 
-    // DOM references
-    this.input = root.querySelector("input.input");
+    // Calendar
     this.trigger = root.querySelector("[aria-label='Open calendar']");
     this.calendarEl = root.querySelector(".calendar");
+    this.isOpen = false;
 
-    // Initialize the calendar with progressive enhancement
-    this.calendar = new Calendar(this.calendarEl, {
-      locale: this.locale,
-      min: this.min,
-      max: this.max,
-      onSelect: (date) => this._onDateSelect(date),
-    });
+    if (this.calendarEl) {
+      this.calendar = new Calendar(this.calendarEl, {
+        locale: this.locale,
+        onSelect: (date) => this._onCalendarSelect(date),
+      });
+    }
 
     this._bindEvents();
-    this._setInitialState();
+    this._close();
   }
 
-  // ─── Event Binding ──────────────────────────────────────────────
+  // ─── Events ─────────────────────────────────────────────────────
 
   _bindEvents() {
-    // Toggle on trigger click
-    this.trigger?.addEventListener("click", (e) => {
-      e.preventDefault();
-      this.toggle();
+    // Auto-tab on segment completion
+    this.segments.forEach((seg, i) => {
+      seg.addEventListener("input", () => this._handleSegmentInput(seg, i));
+      seg.addEventListener("keydown", (e) => this._handleSegmentKeydown(e, i));
+      seg.addEventListener("focus", () => seg.select());
     });
 
-    // Open on input focus (optional: only if readonly)
-    if (this.input?.readOnly) {
-      this.input.addEventListener("click", () => this.open());
-    }
+    // Calendar toggle
+    this.trigger?.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.isOpen ? this._close() : this._open();
+    });
 
     // Close on Escape
     this.root.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && this.isOpen) {
         e.preventDefault();
-        this.close();
+        this._close();
         this.trigger?.focus();
       }
     });
 
     // Close on click outside
     document.addEventListener("click", (e) => {
-      if (this.isOpen && !this.root.contains(e.target)) {
-        this.close();
-      }
-    });
-
-    // Close on tab out of calendar
-    this.calendarEl?.addEventListener("focusout", (e) => {
-      requestAnimationFrame(() => {
-        if (this.isOpen && !this.root.contains(document.activeElement)) {
-          this.close();
-        }
-      });
+      if (this.isOpen && !this.root.contains(e.target)) this._close();
     });
   }
 
-  // ─── Open / Close ───────────────────────────────────────────────
+  // ─── Segment Logic ──────────────────────────────────────────────
 
-  open() {
-    if (this.isOpen) return;
+  _handleSegmentInput(seg, index) {
+    // Strip non-numeric
+    seg.value = seg.value.replace(/\D/g, "");
+
+    // Auto-advance when segment is full
+    const max = seg.maxLength;
+    if (seg.value.length >= max && index < this.segments.length - 1) {
+      this.segments[index + 1].focus();
+    }
+
+    // Validate and dispatch
+    this._validate();
+    this._dispatchChange();
+  }
+
+  _handleSegmentKeydown(e, index) {
+    // Backspace on empty → go to previous segment
+    if (e.key === "Backspace" && !this.segments[index].value && index > 0) {
+      e.preventDefault();
+      const prev = this.segments[index - 1];
+      prev.focus();
+      prev.value = prev.value.slice(0, -1);
+    }
+
+    // ArrowLeft at position 0 → previous segment
+    if (e.key === "ArrowLeft" && this.segments[index].selectionStart === 0 && index > 0) {
+      e.preventDefault();
+      this.segments[index - 1].focus();
+    }
+
+    // ArrowRight at end → next segment
+    const seg = this.segments[index];
+    if (e.key === "ArrowRight" && seg.selectionStart >= seg.value.length && index < this.segments.length - 1) {
+      e.preventDefault();
+      this.segments[index + 1].focus();
+    }
+
+    // Slash or dot → advance to next segment
+    if ((e.key === "/" || e.key === ".") && index < this.segments.length - 1) {
+      e.preventDefault();
+      this.segments[index + 1].focus();
+    }
+  }
+
+  _validate() {
+    const day = parseInt(this.dayEl?.value, 10);
+    const month = parseInt(this.monthEl?.value, 10);
+    const year = parseInt(this.yearEl?.value, 10);
+
+    // Visual invalid state
+    if (this.dayEl?.value && (day < 1 || day > 31)) {
+      this.dayEl.setAttribute("aria-invalid", "true");
+    } else {
+      this.dayEl?.removeAttribute("aria-invalid");
+    }
+
+    if (this.monthEl?.value && (month < 1 || month > 12)) {
+      this.monthEl.setAttribute("aria-invalid", "true");
+    } else {
+      this.monthEl?.removeAttribute("aria-invalid");
+    }
+
+    if (this.yearEl?.value && this.yearEl.value.length === 4 && (year < 1900 || year > 2100)) {
+      this.yearEl.setAttribute("aria-invalid", "true");
+    } else {
+      this.yearEl?.removeAttribute("aria-invalid");
+    }
+  }
+
+  // ─── Calendar ───────────────────────────────────────────────────
+
+  _open() {
     this.isOpen = true;
     this.root.classList.add("is-open");
     this.trigger?.setAttribute("aria-expanded", "true");
-
-    // Focus the selected or today cell
     requestAnimationFrame(() => {
-      const focused =
-        this.calendarEl.querySelector("[tabindex='0']") ||
-        this.calendarEl.querySelector("button.calendar-cell");
-      focused?.focus();
+      const cell = this.calendarEl?.querySelector("[tabindex='0']");
+      cell?.focus();
     });
   }
 
-  close() {
-    if (!this.isOpen) return;
+  _close() {
     this.isOpen = false;
     this.root.classList.remove("is-open");
     this.trigger?.setAttribute("aria-expanded", "false");
   }
 
-  toggle() {
-    if (this.isOpen) {
-      this.close();
-    } else {
-      this.open();
-    }
+  _onCalendarSelect(date) {
+    if (this.dayEl) this.dayEl.value = String(date.getDate()).padStart(2, "0");
+    if (this.monthEl) this.monthEl.value = String(date.getMonth() + 1).padStart(2, "0");
+    if (this.yearEl) this.yearEl.value = String(date.getFullYear());
+    this._close();
+    this.dayEl?.focus();
+    this._dispatchChange();
   }
 
-  // ─── Selection ──────────────────────────────────────────────────
+  // ─── Public ─────────────────────────────────────────────────────
 
-  _onDateSelect(date) {
-    this.selectedDate = date;
-    this._updateInput(date);
-    this.close();
-    this.input?.focus();
-
-    // Dispatch event
-    this.root.dispatchEvent(
-      new CustomEvent("date-input:change", { detail: { date }, bubbles: true }),
-    );
-  }
-
-  _updateInput(date) {
-    if (!this.input || !date) return;
-
-    const formatter = new Intl.DateTimeFormat(this.locale, {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    this.input.value = formatter.format(date);
-  }
-
-  // ─── Initial State ──────────────────────────────────────────────
-
-  _setInitialState() {
-    // Ensure calendar is hidden initially
-    this.root.classList.remove("is-open");
-    this.trigger?.setAttribute("aria-expanded", "false");
-
-    // If input has a value, try to parse it
-    if (this.input?.value) {
-      const parsed = this._parseDate(this.input.value);
-      if (parsed) {
-        this.selectedDate = parsed;
-      }
-    }
-  }
-
-  _parseDate(str) {
-    // Try common formats: dd/mm/yyyy, yyyy-mm-dd
-    const parts = str.split(/[\/\-\.]/);
-    if (parts.length === 3) {
-      let d, m, y;
-      if (parts[0].length === 4) {
-        // yyyy-mm-dd
-        [y, m, d] = parts.map(Number);
-      } else {
-        // dd/mm/yyyy
-        [d, m, y] = parts.map(Number);
-      }
+  getDate() {
+    const d = parseInt(this.dayEl?.value, 10);
+    const m = parseInt(this.monthEl?.value, 10);
+    const y = parseInt(this.yearEl?.value, 10);
+    if (d && m && y) {
       const date = new Date(y, m - 1, d);
       if (!isNaN(date.getTime())) return date;
     }
     return null;
+  }
+
+  _dispatchChange() {
+    const date = this.getDate();
+    this.root.dispatchEvent(
+      new CustomEvent("date-input:change", { detail: { date }, bubbles: true }),
+    );
   }
 }
 
@@ -183,7 +205,7 @@ export class DateInput {
 if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     document
-      .querySelectorAll(".date-input:not([data-enhanced])")
+      .querySelectorAll(".input-field.date:not([data-enhanced])")
       .forEach((el) => {
         el.setAttribute("data-enhanced", "");
         new DateInput(el);

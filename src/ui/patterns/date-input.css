@@ -1,15 +1,58 @@
 @layer components {
   /* ─── Date Input ───────────────────────────────────────────────── */
-  /* Composes: .input-field + .calendar into a dropdown widget        */
+  /* Variant of .input-field with segmented DD/MM/YYYY fields         */
+  /* Composes: .input-field + .calendar                               */
 
-  .date-input {
+  .input-field.date {
     position: relative;
-    display: inline-grid;
-    inline-size: fit-content;
   }
 
-  /* Calendar is hidden by default, shown when open */
-  .date-input .calendar {
+  /* Segmented input container (replaces single <input>) */
+  .date-segments {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+  }
+
+  /* Individual segment (DD, MM, YYYY) */
+  .date-segment {
+    border: none;
+    background: transparent;
+    text-align: center;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    outline: none;
+  }
+
+  .date-segment.day,
+  .date-segment.month {
+    inline-size: 2ch;
+  }
+
+  .date-segment.year {
+    inline-size: 4ch;
+  }
+
+  .date-segment::placeholder {
+    color: var(--color-text-subtle);
+  }
+
+  .date-segment:focus {
+    background: var(--color-fill-subtle);
+    border-radius: var(--corner-small, 2px);
+  }
+
+  /* Separator between segments */
+  .date-separator {
+    color: var(--color-text-subtle);
+    padding-inline: var(--spacing-050);
+    user-select: none;
+  }
+
+  /* Calendar dropdown positioning */
+  .input-field.date .calendar {
     display: none;
     position: absolute;
     inset-block-start: 100%;
@@ -24,7 +67,7 @@
   }
 
   /* Open state */
-  .date-input.is-open .calendar {
+  .input-field.date.is-open .calendar {
     display: grid;
   }
 }
