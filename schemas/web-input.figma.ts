@@ -36,7 +36,7 @@ figma.connect(
     readonly="${readonlyAttr}"
     disabled="${disabled}"
   />
-  <span class="input-field__control">
+  <span class="input-field-control">
     <!-- Control buttons rendered by type -->
   </span>
 </div>`,

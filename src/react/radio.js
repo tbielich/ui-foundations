@@ -40,6 +40,6 @@ export function Radio({
       className: wrapperClasses.join(" "),
     },
     input,
-    React.createElement("span", { className: "radio-field__text" }, content),
+    React.createElement("span", { className: "radio-field-text" }, content),
   );
 }

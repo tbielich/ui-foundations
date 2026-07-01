@@ -37,7 +37,7 @@ class UIFormGroup extends UIElement {
     const title = this.getAttr("title");
     const children = this.innerHTML;
 
-    const legend = title ? `<legend class="form-group__title">${title}</legend>` : "";
+    const legend = title ? `<legend class="form-group-title">${title}</legend>` : "";
     this.innerHTML = `<fieldset class="form-group">${legend}${children}</fieldset>`;
   }
 }
@@ -77,7 +77,7 @@ export { UIFormField };
 class UIFormHelper extends UIElement {
   render() {
     const text = this.textContent.trim();
-    this.innerHTML = `<p class="form-field__helper">${text}</p>`;
+    this.innerHTML = `<p class="form-field-helper">${text}</p>`;
   }
 }
 

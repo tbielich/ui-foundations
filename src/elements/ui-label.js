@@ -29,11 +29,11 @@ class UIFieldLabel extends UIElement {
 
     let requiredHtml = "";
     if (required) {
-      requiredHtml = `<span class="field-label__required" aria-hidden="true">*</span><span class="field-label__required-text"> (required)</span>`;
+      requiredHtml = `<span class="field-label-required" aria-hidden="true">*</span><span class="field-label-required-text"> (required)</span>`;
     }
 
     this.innerHTML = `<label ${labelAttrs.join(" ")}>
-  <span class="label-content">${iconHtml}<span class="label-content__text">${text}</span></span>${requiredHtml}
+  <span class="label-content">${iconHtml}<span class="label-content-text">${text}</span></span>${requiredHtml}
 </label>`;
   }
 }

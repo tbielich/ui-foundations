@@ -26,16 +26,16 @@ permalink: /primitives/color/
 
 {% for palette in colorDocs.palettes %}
 <details class="color-family" id="family-{{ palette.family | slug }}">
-  <summary class="color-family__summary" id="palette-{{ palette.family | slug }}">
-    <span class="color-family__name">{{ palette.family }}</span>
-    <span class="color-family__ramp">{% for step in palette.steps %}<span class="color-family__ramp-step" style="background: {{ step.hex }};"></span>{% endfor %}</span>
+  <summary class="color-family-summary" id="palette-{{ palette.family | slug }}">
+    <span class="color-family-name">{{ palette.family }}</span>
+    <span class="color-family-ramp">{% for step in palette.steps %}<span class="color-family-ramp-step" style="background: {{ step.hex }};"></span>{% endfor %}</span>
   </summary>
-  <div class="color-ramp">{% for step in palette.steps %}<div class="color-ramp__step" style="background: {{ step.hex }};" title="{{ step.name }} — {{ step.hex }}"></div>{% endfor %}</div>
+  <div class="color-ramp">{% for step in palette.steps %}<div class="color-ramp-step" style="background: {{ step.hex }};" title="{{ step.name }} — {{ step.hex }}"></div>{% endfor %}</div>
   <div class="color-table-wrap">
     <table class="color-table">
       <thead>
         <tr>
-          <th class="color-table__preview"></th>
+          <th class="color-table-preview"></th>
           <th>Name</th>
           <th>Token</th>
           <th>Contrast <span class="th-hint">:1</span></th>
@@ -44,11 +44,11 @@ permalink: /primitives/color/
       </thead>
       <tbody>{% for step in palette.steps %}
         <tr>
-          <td class="color-table__preview"><span class="color-dot" style="background: {{ step.hex }};"></span></td>
-          <td class="color-table__name">{{ palette.family }} {{ step.step }}</td>
-          <td class="color-table__token"><code>{{ step.cssVar }}</code></td>
-          <td class="color-table__contrast">{{ step.contrast }}</td>
-          <td class="color-table__hex"><code>{{ step.hex }}</code></td>
+          <td class="color-table-preview"><span class="color-dot" style="background: {{ step.hex }};"></span></td>
+          <td class="color-table-name">{{ palette.family }} {{ step.step }}</td>
+          <td class="color-table-token"><code>{{ step.cssVar }}</code></td>
+          <td class="color-table-contrast">{{ step.contrast }}</td>
+          <td class="color-table-hex"><code>{{ step.hex }}</code></td>
         </tr>{% endfor %}
       </tbody>
     </table>
@@ -80,7 +80,7 @@ permalink: /primitives/color/
     <table class="color-table">
       <thead>
         <tr>
-          <th class="color-table__preview"></th>
+          <th class="color-table-preview"></th>
           <th>Role</th>
           <th>Token</th>
           <th>Resolved Value</th>
@@ -88,10 +88,10 @@ permalink: /primitives/color/
       </thead>
       <tbody>{% for token in brand.tokens %}
         <tr>
-          <td class="color-table__preview"><span class="color-dot" style="background: var({{ token.cssVar }});"></span></td>
-          <td class="color-table__name">{{ token.name | replace("brand-color-", "") }}</td>
-          <td class="color-table__token"><code>{{ token.cssVar }}</code></td>
-          <td class="color-table__hex"><code>{{ token.value }}</code></td>
+          <td class="color-table-preview"><span class="color-dot" style="background: var({{ token.cssVar }});"></span></td>
+          <td class="color-table-name">{{ token.name | replace("brand-color-", "") }}</td>
+          <td class="color-table-token"><code>{{ token.cssVar }}</code></td>
+          <td class="color-table-hex"><code>{{ token.value }}</code></td>
         </tr>{% endfor %}
       </tbody>
     </table>
@@ -115,7 +115,7 @@ permalink: /primitives/color/
     <table class="color-table">
       <thead>
         <tr>
-          <th class="color-table__preview"></th>
+          <th class="color-table-preview"></th>
           <th>Name</th>
           <th>Token</th>
           <th>Value</th>
@@ -123,10 +123,10 @@ permalink: /primitives/color/
       </thead>
       <tbody>{% for token in group.tokens %}
         <tr>
-          <td class="color-table__preview"><span class="color-dot" style="background: var({{ token.cssVar }});"></span></td>
-          <td class="color-table__name">{{ token.name | replace("color-", "") }}</td>
-          <td class="color-table__token"><code>{{ token.cssVar }}</code></td>
-          <td class="color-table__hex"><code>{{ token.value }}</code></td>
+          <td class="color-table-preview"><span class="color-dot" style="background: var({{ token.cssVar }});"></span></td>
+          <td class="color-table-name">{{ token.name | replace("color-", "") }}</td>
+          <td class="color-table-token"><code>{{ token.cssVar }}</code></td>
+          <td class="color-table-hex"><code>{{ token.value }}</code></td>
         </tr>{% endfor %}
       </tbody>
     </table>
@@ -150,7 +150,7 @@ permalink: /primitives/color/
     <table class="color-table">
       <thead>
         <tr>
-          <th class="color-table__preview"></th>
+          <th class="color-table-preview"></th>
           <th>Name</th>
           <th>Token</th>
           <th>Value</th>
@@ -158,10 +158,10 @@ permalink: /primitives/color/
       </thead>
       <tbody>{% for token in group.tokens %}
         <tr>
-          <td class="color-table__preview"><span class="color-dot" style="background: var({{ token.cssVar }});"></span></td>
-          <td class="color-table__name">{{ token.name | replace("color-", "") }}</td>
-          <td class="color-table__token"><code>{{ token.cssVar }}</code></td>
-          <td class="color-table__hex"><code>{{ token.value }}</code></td>
+          <td class="color-table-preview"><span class="color-dot" style="background: var({{ token.cssVar }});"></span></td>
+          <td class="color-table-name">{{ token.name | replace("color-", "") }}</td>
+          <td class="color-table-token"><code>{{ token.cssVar }}</code></td>
+          <td class="color-table-hex"><code>{{ token.value }}</code></td>
         </tr>{% endfor %}
       </tbody>
     </table>

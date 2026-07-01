@@ -67,7 +67,7 @@ class UIInput extends UIElement {
 
     this.innerHTML = `<div class="${wrapperClasses.join(" ")}">
   <input ${inputAttrs.join(" ")} />
-  <span class="input-field__control">${controlHTML}</span>
+  <span class="input-field-control">${controlHTML}</span>
 </div>`;
   }
 }

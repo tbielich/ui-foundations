@@ -34,7 +34,7 @@
     min-inline-size: 0;
   }
 
-  .form-group__title {
+  .form-group-title {
     font-family: var(--typography-heading-font-family);
     font-weight: var(--typography-heading-font-weight);
     font-size: var(--typography-heading-font-size-sm);
@@ -64,7 +64,7 @@
     padding-block-start: var(--size-spacing-200);
   }
 
-  .form-field[data-label-position="side"] > .form-field__body {
+  .form-field[data-label-position="side"] > .form-field-body {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@
    * Helper and error text
    * ---------------------------------------------------------------- */
 
-  .form-field__helper {
+  .form-field-helper {
     font-family: var(--typography-body-font-family);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-sm);
@@ -83,17 +83,17 @@
     margin: 0;
   }
 
-  .form-field.is-invalid .form-field__helper {
+  .form-field.is-invalid .form-field-helper {
     color: var(--form-field-helper-text-color-invalid);
   }
 
-  .form-field__link {
+  .form-field-link {
     font-size: var(--font-size-sm);
     color: var(--color-text-brand);
     text-decoration: none;
   }
 
-  .form-field__link:hover {
+  .form-field-link:hover {
     text-decoration: underline;
   }
 

@@ -41,6 +41,6 @@ export function Switch({
       className: wrapperClasses.join(" "),
     },
     input,
-    React.createElement("span", { className: "switch-field__text" }, content),
+    React.createElement("span", { className: "switch-field-text" }, content),
   );
 }

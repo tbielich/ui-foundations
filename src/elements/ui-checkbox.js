@@ -46,7 +46,7 @@ class UICheckbox extends UIElement {
 
     this.innerHTML = `<label class="${wrapperClasses.join(" ")}">
   <input ${inputAttrs.join(" ")} />
-  <span class="checkbox-field__text">${label}</span>
+  <span class="checkbox-field-text">${label}</span>
 </label>`;
   }
 }

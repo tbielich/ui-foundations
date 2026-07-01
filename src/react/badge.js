@@ -35,7 +35,7 @@ export function Badge({
     },
     iconElement,
     content != null
-      ? React.createElement("span", { className: "badge__text" }, content)
+      ? React.createElement("span", { className: "badge-text" }, content)
       : null,
   );
 }

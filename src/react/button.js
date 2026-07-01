@@ -34,7 +34,7 @@ export function Button({
   const iconStart = resolvedIconOnly ? startIcon || endIcon : startIcon;
   const iconEnd = resolvedIconOnly ? undefined : endIcon;
 
-  if (resolvedIconOnly) classes.push("button--icon-only");
+  if (resolvedIconOnly) classes.push("icon-only");
 
   const buttonProps = {
     type,

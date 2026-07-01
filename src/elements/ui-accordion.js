@@ -44,7 +44,7 @@ class UIAccordionItem extends UIElement {
 
     this.innerHTML = `<details ${detailsAttrs.join(" ")}>
   <summary>${title}</summary>
-  <div class="accordion-item__content">${content}</div>
+  <div class="accordion-item-content">${content}</div>
 </details>`;
   }
 }

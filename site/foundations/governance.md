@@ -33,15 +33,15 @@ excludeFromNav: true
 
 <div class="pipeline-flow">
   <div class="pipeline-step">
-    <span class="pipeline-step__label">Design Principles — the "why" of composition</span>
+    <span class="pipeline-step-label">Design Principles — the "why" of composition</span>
   </div>
   <div class="pipeline-arrow"><span>informs</span></div>
   <div class="pipeline-step">
-    <span class="pipeline-step__label">Usability Heuristics — the "how" of interaction</span>
+    <span class="pipeline-step-label">Usability Heuristics — the "how" of interaction</span>
   </div>
   <div class="pipeline-arrow"><span>evaluated by</span></div>
   <div class="pipeline-step">
-    <span class="pipeline-step__label">Design Intelligence — the "is this good?" judgment</span>
+    <span class="pipeline-step-label">Design Intelligence — the "is this good?" judgment</span>
   </div>
 </div>
 

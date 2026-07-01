@@ -13,7 +13,7 @@ figma.connect(
     },
     example: ({ className, text }: LabelProps) => html`<span style="line-height: 24px;">
       <span class="${className}">
-        <span class="label-content__text">${text}</span>
+        <span class="label-content-text">${text}</span>
       </span>
     </span>`,
   },

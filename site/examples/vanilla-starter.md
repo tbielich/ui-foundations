@@ -49,14 +49,14 @@ document.querySelector("#app").innerHTML = `
 
     <label class="field-label" for="email">
       <span class="label-content">
-        <span class="label-content__text">Email</span>
+        <span class="label-content-text">Email</span>
       </span>
     </label>
     <input class="input" id="email" type="email" placeholder="name@example.com" />
 
     <div style="height: 0.75rem"></div>
     <button class="button" type="button">
-      <span class="label-content"><span class="label-content__text">Submit</span></span>
+      <span class="label-content"><span class="label-content-text">Submit</span></span>
     </button>
   </main>
 `;

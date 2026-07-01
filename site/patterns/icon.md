@@ -148,7 +148,7 @@ needed.
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      <span class="label-content"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content__text">Search</span></span>
+      <span class="label-content"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content-text">Search</span></span>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>

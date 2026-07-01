@@ -11,7 +11,7 @@ figma.connect(
     example: ({ open, title }: AccordionItemProps) =>
       html`<details class="accordion-item" ${open}>
   <summary>${title}</summary>
-  <div class="accordion-item__content">
+  <div class="accordion-item-content">
     <p>Content</p>
   </div>
 </details>`,

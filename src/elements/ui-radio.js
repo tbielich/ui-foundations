@@ -45,7 +45,7 @@ class UIRadio extends UIElement {
 
     this.innerHTML = `<label class="${wrapperClasses.join(" ")}">
   <input ${inputAttrs.join(" ")} />
-  <span class="radio-field__text">${label}</span>
+  <span class="radio-field-text">${label}</span>
 </label>`;
   }
 }

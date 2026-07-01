@@ -27,7 +27,7 @@
 {%- if className -%}{%- set wrapperClasses = wrapperClasses + " " + className -%}{%- endif -%}
 <div class="{{ wrapperClasses }}">
   <input class="input" type="{{ type }}"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if dataPlaygroundControl %} data-playground-control{% endif %}{% if dataProp %} data-prop="{{ dataProp }}"{% endif %}{% if dataSource %} data-source="{{ dataSource }}"{% endif %}{% if dataValueType %} data-value-type="{{ dataValueType }}"{% endif %}{% if dataQueryParam %} data-query-param="{{ dataQueryParam }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
-  <span class="input-field__control">
+  <span class="input-field-control">
     {%- if type == "text" or type == "email" or type == "search" or type == "url" or type == "tel" -%}
     <button type="button" aria-label="Clear input" tabindex="-1"><span class="icon" style="--icon-src: url('/assets/icons/cross-circled.svg');" aria-hidden="true"></span></button>
     {%- elif type == "number" -%}
@@ -56,7 +56,7 @@
 {%- if wrapperClassName -%}{%- set fieldClasses = fieldClasses + " " + wrapperClassName -%}{%- endif -%}
 <label class="{{ fieldClasses }}">
   <input class="{{ checkboxClasses }}" type="checkbox"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if checked %} checked{% endif %}{% if indeterminate or state == "indeterminate" %} aria-checked="mixed"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
-  <span class="checkbox-field__text">{{ label }}</span>
+  <span class="checkbox-field-text">{{ label }}</span>
 </label>
 {%- endmacro %}
 
@@ -75,7 +75,7 @@
 {%- if wrapperClassName -%}{%- set fieldClasses = fieldClasses + " " + wrapperClassName -%}{%- endif -%}
 <label class="{{ fieldClasses }}">
   <input class="{{ radioClasses }}" type="radio"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if checked %} checked{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
-  <span class="radio-field__text">{{ label }}</span>
+  <span class="radio-field-text">{{ label }}</span>
 </label>
 {%- endmacro %}
 
@@ -94,7 +94,7 @@
 {%- if wrapperClassName -%}{%- set fieldClasses = fieldClasses + " " + wrapperClassName -%}{%- endif -%}
 <label class="{{ fieldClasses }}">
   <input class="{{ switchClasses }}" type="checkbox" role="switch"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if checked %} checked{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
-  <span class="switch-field__text">{{ label }}</span>
+  <span class="switch-field-text">{{ label }}</span>
 </label>
 {%- endmacro %}
 
@@ -114,7 +114,7 @@
 {% macro labelContent(text='', startIcon='', endIcon='', iconOnly=false) -%}
 <span class="label-content{% if iconOnly %} is-icon-only{% endif %}">
   {%- if startIcon %}<span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
-  {%- if not iconOnly %}<span class="label-content__text">{{ text }}</span>{% endif -%}
+  {%- if not iconOnly %}<span class="label-content-text">{{ text }}</span>{% endif -%}
   {%- if endIcon %}<span class="icon" data-slot="end" style="--icon-src: url('/assets/icons/{{ endIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
 </span>
 {%- endmacro %}
@@ -123,11 +123,11 @@
 <label class="field-label"{% if htmlFor %} for="{{ htmlFor }}"{% endif %}>
   <span class="label-content">
     {%- if startIcon %}<span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
-    <span class="label-content__text">{{ text }}</span>
+    <span class="label-content-text">{{ text }}</span>
   </span>
   {%- if required %}
-  <span class="field-label__required" aria-hidden="true">*</span>
-  <span class="field-label__required-text"> (required)</span>
+  <span class="field-label-required" aria-hidden="true">*</span>
+  <span class="field-label-required-text"> (required)</span>
   {%- endif %}
 </label>
 {%- endmacro %}
@@ -149,7 +149,7 @@
 {%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
 <span class="{{ classes }}">
   {%- if startIcon %}<span class="icon" style="--icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
-  <span class="badge__text">{{ text }}</span>
+  <span class="badge-text">{{ text }}</span>
 </span>
 {%- endmacro %}
 
@@ -174,7 +174,7 @@
 {%- if size and size != "md" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <span class="{{ classes }}" role="img" aria-label="{{ alt or initials }}">
-  {%- if src -%}<img src="{{ src }}" alt="{{ alt }}" />{%- else -%}<span class="avatar__initials">{{ initials }}</span>{%- endif -%}
+  {%- if src -%}<img src="{{ src }}" alt="{{ alt }}" />{%- else -%}<span class="avatar-initials">{{ initials }}</span>{%- endif -%}
 </span>
 {%- endmacro %}
 
@@ -189,7 +189,7 @@
 {%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
 <details class="{{ classes }}"{% if open %} open{% endif %}>
   <summary>{{ title }}</summary>
-  <div class="accordion-item__content">{{ caller() }}</div>
+  <div class="accordion-item-content">{{ caller() }}</div>
 </details>
 {%- endmacro %}
 
@@ -237,7 +237,7 @@
 {%- set classes = "form-group" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <fieldset class="{{ classes }}">
-  {%- if title %}<legend class="form-group__title">{{ title }}</legend>{% endif -%}
+  {%- if title %}<legend class="form-group-title">{{ title }}</legend>{% endif -%}
   {{ caller() }}
 </fieldset>
 {%- endmacro %}
@@ -277,7 +277,7 @@
 {%- endmacro %}
 
 {% macro formHelper(text='') -%}
-<p class="form-field__helper">{{ text }}</p>
+<p class="form-field-helper">{{ text }}</p>
 {%- endmacro %}
 
 {% macro formActions(align='end', className='') -%}

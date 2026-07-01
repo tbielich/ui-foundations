@@ -68,7 +68,7 @@
 
   /* --- Control slot --- */
 
-  .input-field__control {
+  .input-field-control {
     display: flex;
     align-items: center;
     gap: var(--input-gap);
@@ -76,22 +76,22 @@
     color: var(--input-text-color-default);
   }
 
-  .input-field__control:empty {
+  .input-field-control:empty {
     display: none;
   }
 
   /* Hide controls when input is empty (showing placeholder) */
-  .input-field:has(.input:placeholder-shown) .input-field__control {
+  .input-field:has(.input:placeholder-shown) .input-field-control {
     visibility: hidden;
   }
 
   /* Hide controls when disabled */
-  .input-field:has(.input:disabled) .input-field__control,
-  .input-field.is-disabled .input-field__control {
+  .input-field:has(.input:disabled) .input-field-control,
+  .input-field.is-disabled .input-field-control {
     visibility: hidden;
   }
 
-  .input-field__control button {
+  .input-field-control button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -105,11 +105,11 @@
     line-height: 1;
   }
 
-  .input-field__control button:hover {
+  .input-field-control button:hover {
     color: var(--input-text-color-hover);
   }
 
-  .input-field__control .icon {
+  .input-field-control .icon {
     font-size: 1.5rem;
   }
 
@@ -180,8 +180,8 @@
     border-style: dashed;
   }
 
-  .input-field:has(.input:read-only) .input-field__control button,
-  .input-field.is-readonly .input-field__control button {
+  .input-field:has(.input:read-only) .input-field-control button,
+  .input-field.is-readonly .input-field-control button {
     pointer-events: none;
     opacity: 0.4;
   }

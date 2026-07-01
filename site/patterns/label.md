@@ -26,7 +26,7 @@ playgroundLabel: Open Label Playground
     <div class="docs-hero-preview-stage">
       <span class="label-content">
         <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-        <span class="label-content__text">Search</span>
+        <span class="label-content-text">Search</span>
       </span>
     </div>
   </div>
@@ -57,7 +57,7 @@ playgroundLabel: Open Label Playground
       </span>
       <span class="label-content">
         <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-        <span class="label-content__text">Search</span>
+        <span class="label-content-text">Search</span>
       </span>
     </div>
   </div>
@@ -88,7 +88,7 @@ playgroundLabel: Open Label Playground
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <span class="label-content"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content__text">Search</span></span>
+      <span class="label-content"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content-text">Search</span></span>
     </div>
     <div class="docs-behavior-body">
       <h3>Icon + text composition</h3>

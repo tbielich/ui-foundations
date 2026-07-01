@@ -54,13 +54,13 @@ breadcrumb:
     transform: translate(-50%, -50%);
   }
 
-  .pricing-card__header {
+  .pricing-card-header {
     display: grid;
     gap: var(--size-spacing-200);
     text-align: center;
   }
 
-  .pricing-card__plan {
+  .pricing-card-plan {
     margin: 0;
     font-family: var(--typography-heading-font-family);
     font-size: var(--typography-heading-font-size-md);
@@ -69,7 +69,7 @@ breadcrumb:
     color: var(--color-text-default);
   }
 
-  .pricing-card__price {
+  .pricing-card-price {
     margin: 0;
     font-family: var(--typography-heading-font-family);
     font-size: var(--typography-heading-font-size-xl);
@@ -78,20 +78,20 @@ breadcrumb:
     color: var(--color-text-default);
   }
 
-  .pricing-card__price-period {
+  .pricing-card-price-period {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-400);
     color: var(--color-text-subtle);
   }
 
-  .pricing-card__subtitle {
+  .pricing-card-subtitle {
     margin: 0;
     font-size: var(--font-size-sm);
     line-height: var(--line-height-sm);
     color: var(--color-text-subtle);
   }
 
-  .pricing-card__features {
+  .pricing-card-features {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -100,7 +100,7 @@ breadcrumb:
     flex: 1;
   }
 
-  .pricing-card__feature {
+  .pricing-card-feature {
     display: flex;
     align-items: flex-start;
     gap: var(--size-spacing-200);
@@ -109,16 +109,16 @@ breadcrumb:
     color: var(--color-text-default);
   }
 
-  .pricing-card__feature .icon {
+  .pricing-card-feature .icon {
     flex-shrink: 0;
     color: var(--color-text-success);
   }
 
-  .pricing-card__cta {
+  .pricing-card-cta {
     margin-block-start: auto;
   }
 
-  .pricing-card__cta .button {
+  .pricing-card-cta .button {
     inline-size: 100%;
     justify-content: center;
   }
@@ -144,30 +144,30 @@ breadcrumb:
 
   {# ── Starter ── #}
   <article class="pricing-card" role="listitem">
-    <div class="pricing-card__header">
-      <h3 class="pricing-card__plan">Starter</h3>
-      <p class="pricing-card__price">$9<span class="pricing-card__price-period"> / mo</span></p>
-      <p class="pricing-card__subtitle">For individuals getting started.</p>
+    <div class="pricing-card-header">
+      <h3 class="pricing-card-plan">Starter</h3>
+      <p class="pricing-card-price">$9<span class="pricing-card-price-period"> / mo</span></p>
+      <p class="pricing-card-subtitle">For individuals getting started.</p>
     </div>
-    <ul class="pricing-card__features">
-      <li class="pricing-card__feature">
+    <ul class="pricing-card-features">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>5 projects</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>1 GB storage</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>Email support</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>Basic analytics</span>
       </li>
     </ul>
-    <div class="pricing-card__cta">
+    <div class="pricing-card-cta">
       {{ ui.button(label="Get Started", variant="outline") }}
     </div>
   </article>
@@ -175,72 +175,72 @@ breadcrumb:
   {# ── Pro (recommended) ── #}
   <article class="pricing-card pricing-card--recommended" role="listitem">
     {{ ui.badge("Recommended", variant="brand", size="sm") }}
-    <div class="pricing-card__header">
-      <h3 class="pricing-card__plan">Pro</h3>
-      <p class="pricing-card__price">$29<span class="pricing-card__price-period"> / mo</span></p>
-      <p class="pricing-card__subtitle">For growing teams that need more.</p>
+    <div class="pricing-card-header">
+      <h3 class="pricing-card-plan">Pro</h3>
+      <p class="pricing-card-price">$29<span class="pricing-card-price-period"> / mo</span></p>
+      <p class="pricing-card-subtitle">For growing teams that need more.</p>
     </div>
-    <ul class="pricing-card__features">
-      <li class="pricing-card__feature">
+    <ul class="pricing-card-features">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>Unlimited projects</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>50 GB storage</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>Priority support</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>Advanced analytics</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>Custom integrations</span>
       </li>
     </ul>
-    <div class="pricing-card__cta">
+    <div class="pricing-card-cta">
       {{ ui.button(label="Get Started", variant="solid") }}
     </div>
   </article>
 
   {# ── Business ── #}
   <article class="pricing-card" role="listitem">
-    <div class="pricing-card__header">
-      <h3 class="pricing-card__plan">Business</h3>
-      <p class="pricing-card__price">$79<span class="pricing-card__price-period"> / mo</span></p>
-      <p class="pricing-card__subtitle">For organizations at scale.</p>
+    <div class="pricing-card-header">
+      <h3 class="pricing-card-plan">Business</h3>
+      <p class="pricing-card-price">$79<span class="pricing-card-price-period"> / mo</span></p>
+      <p class="pricing-card-subtitle">For organizations at scale.</p>
     </div>
-    <ul class="pricing-card__features">
-      <li class="pricing-card__feature">
+    <ul class="pricing-card-features">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>Unlimited projects</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>500 GB storage</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>Dedicated support</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>Advanced analytics</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>SSO &amp; audit logs</span>
       </li>
-      <li class="pricing-card__feature">
+      <li class="pricing-card-feature">
         {{ ui.icon("shield-check", "Included") }}
         <span>SLA guarantee</span>
       </li>
     </ul>
-    <div class="pricing-card__cta">
+    <div class="pricing-card-cta">
       {{ ui.button(label="Contact Sales", variant="outline") }}
     </div>
   </article>

@@ -64,7 +64,7 @@ figma.connect(
         checked="${checked}"
         disabled="${disabled}"
       />
-      <span class="radio-field__text">${text}</span>
+      <span class="radio-field-text">${text}</span>
     </label>`,
   },
 );

@@ -25,13 +25,13 @@
     -webkit-text-fill-color: currentColor;
   }
 
-  .button .label-content__text,
+  .button .label-content-text,
   .button .icon {
     color: inherit;
     -webkit-text-fill-color: currentColor;
   }
 
-  .button.button--icon-only {
+  .button.icon-only {
     padding-inline: var(--button-padding-block);
   }
 
