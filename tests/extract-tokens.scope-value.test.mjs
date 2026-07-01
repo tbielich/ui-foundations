@@ -95,3 +95,24 @@ test("resolveTokenOutputValue falls back to CSS var for unresolved non-font alia
     "var(--color-text-default)",
   );
 });
+
+test("formatTokenValue handles DTCG dimension objects", () => {
+  assert.equal(
+    formatTokenValue(
+      { type: "dimension" },
+      { value: 40, unit: "px" },
+      "select-height",
+      ["Select", "Height"],
+    ),
+    "2.5rem",
+  );
+  assert.equal(
+    formatTokenValue(
+      { type: "dimension" },
+      { value: 1.5, unit: "rem" },
+      "select-height",
+      ["Select", "Height"],
+    ),
+    "1.5rem",
+  );
+});
