@@ -8,11 +8,11 @@
 
 <div class="{{ calendarClasses }}">
   <div class="calendar-header">
-    <button type="button" class="button button--ghost" aria-label="Previous month"{{ " disabled" if disabled }}>
+    <button type="button" class="button ghost" aria-label="Previous month"{{ " disabled" if disabled }}>
       <span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span>
     </button>
     <span class="calendar-title" aria-live="polite">{{ month }}</span>
-    <button type="button" class="button button--ghost" aria-label="Next month"{{ " disabled" if disabled }}>
+    <button type="button" class="button ghost" aria-label="Next month"{{ " disabled" if disabled }}>
       <span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span>
     </button>
   </div>
@@ -30,7 +30,7 @@
         {%- for dow in range(0, 7) %}
         {%- set i = week * 7 + dow + 1 -%}
         {%- if i <= 31 %}
-        {%- set cellClasses = "calendar-cell" -%}
+        {%- set cellClasses = "button ghost calendar-cell" -%}
         {%- if state == "hover" and i == 15 -%}{%- set cellClasses = cellClasses + " is-hover" -%}{%- endif -%}
         {%- if state == "focus" and i == 15 -%}{%- set cellClasses = cellClasses + " is-focus-visible" -%}{%- endif -%}
         {%- if selectedDate and i == selectedDate | int -%}{%- set cellClasses = cellClasses + " is-selected" -%}{%- endif -%}

@@ -26,7 +26,7 @@
       tbodyHtml += "<tr>";
       for (let dow = 0; dow < 7; dow++) {
         if (day <= 31) {
-          const classes = ["calendar-cell"];
+          const classes = ["button", "ghost", "calendar-cell"];
           if (state === "hover" && day === 15) classes.push("is-hover");
           if (state === "focus" && day === 15) classes.push("is-focus-visible");
           if (String(selectedDate) === String(day)) classes.push("is-selected");
@@ -48,11 +48,11 @@
     return `
       <div class="calendar">
         <div class="calendar-header">
-          <button type="button" class="button button--ghost" aria-label="Previous month"${disabledAttr}>
+          <button type="button" class="button ghost" aria-label="Previous month"${disabledAttr}>
             <span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span>
           </button>
           <span class="calendar-title" aria-live="polite">${month}</span>
-          <button type="button" class="button button--ghost" aria-label="Next month"${disabledAttr}>
+          <button type="button" class="button ghost" aria-label="Next month"${disabledAttr}>
             <span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span>
           </button>
         </div>

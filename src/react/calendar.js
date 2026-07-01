@@ -88,7 +88,7 @@ export function Calendar({
   }
 
   function getCellClasses(cell) {
-    const classes = ["calendar-cell"];
+    const classes = ["button", "ghost", "calendar-cell"];
     if (cell.outside) classes.push("is-outside-month");
     if (isSameDay(cell.date, today)) classes.push("is-today");
     if (isSameDay(cell.date, value)) classes.push("is-selected");
@@ -144,7 +144,7 @@ export function Calendar({
     React.createElement("div", { className: "calendar-header" },
       React.createElement("button", {
         type: "button",
-        className: "button button--ghost",
+        className: "button ghost",
         "aria-label": "Previous month",
         onClick: prevMonth,
         disabled,
@@ -158,7 +158,7 @@ export function Calendar({
       React.createElement("span", { className: "calendar-title", "aria-live": "polite" }, monthLabel),
       React.createElement("button", {
         type: "button",
-        className: "button button--ghost",
+        className: "button ghost",
         "aria-label": "Next month",
         onClick: nextMonth,
         disabled,

@@ -46,7 +46,7 @@
     text-align: center;
   }
 
-  /* Individual day button */
+  /* Individual day button — extends .button.ghost */
   .calendar-cell {
     display: flex;
     align-items: center;
@@ -54,28 +54,11 @@
     block-size: var(--spacing-800);
     inline-size: var(--spacing-800);
     border-radius: var(--corner-medium);
-    background: var(--calendar-cell-background-default, transparent);
-    color: var(--calendar-cell-text-color-default, var(--color-text-default));
     font: var(--typography-body);
-    cursor: pointer;
-    border: none;
     padding: 0;
   }
 
-  /* States: hover */
-  .calendar-cell:hover,
-  .calendar-cell.is-hover {
-    background: var(--calendar-cell-background-hover, var(--color-fill-subtle));
-  }
-
-  /* States: focus */
-  .calendar-cell:focus-visible,
-  .calendar-cell.is-focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 var(--shadow-focus, 2px) var(--color-focus, currentColor);
-  }
-
-  /* States: selected */
+  /* States: selected (overrides ghost defaults) */
   .calendar-cell[aria-selected="true"],
   .calendar-cell.is-selected {
     background: var(--calendar-cell-background-selected, var(--color-fill-brand));
@@ -85,14 +68,6 @@
   /* States: today marker */
   .calendar-cell.is-today {
     border: 1px solid var(--calendar-cell-border-color-today, var(--color-border-brand));
-  }
-
-  /* States: disabled (past dates, out-of-range) */
-  .calendar-cell:disabled,
-  .calendar-cell.is-disabled {
-    color: var(--calendar-cell-text-color-disabled, var(--color-text-disabled));
-    cursor: not-allowed;
-    pointer-events: none;
   }
 
   /* States: outside current month */
