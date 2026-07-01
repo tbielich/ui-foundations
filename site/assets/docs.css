@@ -939,7 +939,7 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   box-shadow:
     var(--docs-shadow-sm),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .docs-hero-preview-controls {
@@ -948,6 +948,8 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   gap: 8px;
   padding: 8px 14px;
   border-block-end: 1px solid var(--docs-border);
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
   background: rgba(255, 255, 255, 0.5);
   font-size: 0.72rem;
   font-weight: 700;
@@ -1006,6 +1008,9 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   gap: 12px;
   min-height: 180px;
   padding: 40px 32px;
+  overflow: visible;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
   background: var(--color-fill-surface, #fff);
   transition: background 200ms ease, color 200ms ease;
 }
