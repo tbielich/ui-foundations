@@ -15,9 +15,32 @@
     gap: var(--spacing-200);
   }
 
-  .calendar-title {
+  .calendar-selectors {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-100);
+  }
+
+  .calendar-month-select,
+  .calendar-year-select {
     font: var(--typography-label-large);
     color: var(--color-text-default);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-050) var(--spacing-100);
+    border-radius: var(--corner-small, 4px);
+  }
+
+  .calendar-month-select:hover,
+  .calendar-year-select:hover {
+    background: var(--color-fill-subtle);
+  }
+
+  .calendar-month-select:focus-visible,
+  .calendar-year-select:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--shadow-focus, 2px) var(--color-focus, currentColor);
   }
 
   .calendar-nav {

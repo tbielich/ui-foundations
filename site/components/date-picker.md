@@ -228,22 +228,27 @@ The Date Picker requires `src/ui/components/date-input.js` for:
     // Cell selection → fill segments
     if (calendar) {
       // Month navigation
-      var currentYear = 2026, currentMonth = 6; // July 2026 (0-indexed)
+      var currentYear = 2026, currentMonth = 6;
       var prevBtn = calendar.querySelector("[aria-label='Previous month']");
       var nextBtn = calendar.querySelector("[aria-label='Next month']");
-      var titleEl = calendar.querySelector('.calendar-title');
+      var monthSelect = calendar.querySelector('.calendar-month-select');
+      var yearSelect = calendar.querySelector('.calendar-year-select');
 
       function rebuildGrid() {
         var tbody = calendar.querySelector('tbody');
         if (!tbody) return;
         var firstDay = new Date(currentYear, currentMonth, 1);
         var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-        var startDow = (firstDay.getDay() + 6) % 7; // Monday=0
+        var startDow = (firstDay.getDay() + 6) % 7;
         var today = new Date(); today.setHours(0,0,0,0);
 
-        // Update title
-        var monthName = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' }).format(firstDay);
-        if (titleEl) titleEl.textContent = monthName;
+        if (monthSelect) monthSelect.value = currentMonth;
+        if (yearSelect) yearSelect.value = currentYear;
+        var table = calendar.querySelector('.calendar-table');
+        if (table) {
+          var label = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' }).format(firstDay);
+          table.setAttribute('aria-label', label);
+        }
 
         var html = '', day = 1, started = false;
         for (var week = 0; week < 6; week++) {
@@ -281,6 +286,14 @@ The Date Picker requires `src/ui/components/date-input.js` for:
         if (currentMonth > 11) { currentMonth = 0; currentYear++; }
         rebuildGrid();
       });
+      if (monthSelect) monthSelect.addEventListener('change', function() {
+        currentMonth = parseInt(monthSelect.value, 10);
+        rebuildGrid();
+      });
+      if (yearSelect) yearSelect.addEventListener('change', function() {
+        currentYear = parseInt(yearSelect.value, 10);
+        rebuildGrid();
+      });
 
       // Keyboard navigation in the grid (roving tabindex)
       calendar.addEventListener('keydown', function(e) {
@@ -298,6 +311,16 @@ The Date Picker requires `src/ui/components/date-input.js` for:
           case 'ArrowDown': target = idx + 7; break;
           case 'Home': target = idx - (idx % 7); break;
           case 'End': target = idx - (idx % 7) + 6; break;
+          case 'PageUp':
+            e.preventDefault();
+            if (e.shiftKey) { currentYear--; } else { currentMonth--; if (currentMonth < 0) { currentMonth = 11; currentYear--; } }
+            rebuildGrid();
+            return;
+          case 'PageDown':
+            e.preventDefault();
+            if (e.shiftKey) { currentYear++; } else { currentMonth++; if (currentMonth > 11) { currentMonth = 0; currentYear++; } }
+            rebuildGrid();
+            return;
           case 'Enter': case ' ':
             e.preventDefault();
             btn.click();

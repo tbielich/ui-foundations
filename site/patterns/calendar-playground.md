@@ -61,6 +61,8 @@ playground:
   var prevBtn = calendar.querySelector("[aria-label='Previous month']");
   var nextBtn = calendar.querySelector("[aria-label='Next month']");
   var titleEl = calendar.querySelector('.calendar-title');
+  var monthSelect = calendar.querySelector('.calendar-month-select');
+  var yearSelect = calendar.querySelector('.calendar-year-select');
 
   function rebuildGrid() {
     var tbody = calendar.querySelector('tbody');
@@ -70,8 +72,15 @@ playground:
     var startDow = (firstDay.getDay() + 6) % 7;
     var today = new Date(); today.setHours(0,0,0,0);
 
-    var monthName = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' }).format(firstDay);
-    if (titleEl) titleEl.textContent = monthName;
+    // Update selects
+    if (monthSelect) monthSelect.value = currentMonth;
+    if (yearSelect) yearSelect.value = currentYear;
+    // Update aria-label on table
+    var table = calendar.querySelector('.calendar-table');
+    if (table) {
+      var label = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' }).format(firstDay);
+      table.setAttribute('aria-label', label);
+    }
 
     var html = '', day = 1, started = false;
     for (var week = 0; week < 6; week++) {
@@ -109,6 +118,14 @@ playground:
     if (currentMonth > 11) { currentMonth = 0; currentYear++; }
     rebuildGrid();
   });
+  if (monthSelect) monthSelect.addEventListener('change', function() {
+    currentMonth = parseInt(monthSelect.value, 10);
+    rebuildGrid();
+  });
+  if (yearSelect) yearSelect.addEventListener('change', function() {
+    currentYear = parseInt(yearSelect.value, 10);
+    rebuildGrid();
+  });
 
   // Keyboard navigation
   calendar.addEventListener('keydown', function(e) {
@@ -126,6 +143,16 @@ playground:
       case 'ArrowDown': target = idx + 7; break;
       case 'Home': target = idx - (idx % 7); break;
       case 'End': target = idx - (idx % 7) + 6; break;
+      case 'PageUp':
+        e.preventDefault();
+        if (e.shiftKey) { currentYear--; } else { currentMonth--; if (currentMonth < 0) { currentMonth = 11; currentYear--; } }
+        rebuildGrid();
+        return;
+      case 'PageDown':
+        e.preventDefault();
+        if (e.shiftKey) { currentYear++; } else { currentMonth++; if (currentMonth > 11) { currentMonth = 0; currentYear++; } }
+        rebuildGrid();
+        return;
       case 'Enter': case ' ':
         e.preventDefault();
         btn.click();
