@@ -51,11 +51,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    block-size: var(--spacing-800);
+    aspect-ratio: 1;
     inline-size: var(--spacing-800);
+    min-height: unset;
+    padding: 0;
     border-radius: var(--corner-medium);
     font: var(--typography-body);
-    padding: 0;
   }
 
   /* States: selected (overrides ghost defaults) */
