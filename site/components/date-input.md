@@ -209,6 +209,37 @@ The Date Input requires `src/ui/components/date-input.js` for:
 
     // Cell selection → fill segments
     if (calendar) {
+      // Keyboard navigation in the grid (roving tabindex)
+      calendar.addEventListener('keydown', function(e) {
+        var btn = e.target.closest('button.calendar-cell');
+        if (!btn) return;
+        var cells = Array.from(calendar.querySelectorAll('button.calendar-cell'));
+        var idx = cells.indexOf(btn);
+        if (idx === -1) return;
+
+        var target = null;
+        switch (e.key) {
+          case 'ArrowLeft': target = idx - 1; break;
+          case 'ArrowRight': target = idx + 1; break;
+          case 'ArrowUp': target = idx - 7; break;
+          case 'ArrowDown': target = idx + 7; break;
+          case 'Home': target = idx - (idx % 7); break;
+          case 'End': target = idx - (idx % 7) + 6; break;
+          case 'Enter': case ' ':
+            e.preventDefault();
+            btn.click();
+            return;
+          default: return;
+        }
+        e.preventDefault();
+        if (target >= 0 && target < cells.length && !cells[target].disabled) {
+          // Roving tabindex
+          btn.setAttribute('tabindex', '-1');
+          cells[target].setAttribute('tabindex', '0');
+          cells[target].focus();
+        }
+      });
+
       calendar.addEventListener('click', function(e) {
         var btn = e.target.closest('button.calendar-cell');
         if (!btn || btn.disabled) return;
