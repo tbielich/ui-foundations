@@ -173,6 +173,9 @@ The Date Input requires `src/ui/components/date-input.js` for:
         }
       });
       seg.addEventListener('focus', function() { seg.select(); });
+      seg.addEventListener('blur', function() {
+        if (seg.value) seg.value = seg.value.padStart(seg.maxLength, '0');
+      });
     });
 
     // Calendar open/close

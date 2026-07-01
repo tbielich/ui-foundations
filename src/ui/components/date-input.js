@@ -59,6 +59,7 @@ export class DateInput {
       seg.addEventListener("input", () => this._handleSegmentInput(seg, i));
       seg.addEventListener("keydown", (e) => this._handleSegmentKeydown(e, i));
       seg.addEventListener("focus", () => seg.select());
+      seg.addEventListener("blur", () => this._padSegment(seg));
     });
 
     // Calendar toggle
@@ -149,6 +150,12 @@ export class DateInput {
       e.preventDefault();
       this.segments[index + 1].focus();
     }
+  }
+
+  _padSegment(seg) {
+    if (!seg.value) return;
+    const pad = seg === this.yearEl ? 4 : 2;
+    seg.value = seg.value.padStart(pad, "0");
   }
 
   _validate() {
