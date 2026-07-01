@@ -154,9 +154,27 @@
             </details>
           </nav>
 
+          <nav class="docs-nav-group" aria-label="Components">
+            <details{% if page.url.indexOf("/components/") == 0 %} open{% endif %}>
+              <summary class="docs-nav-group-toggle" data-keytip="3" aria-keyshortcuts="Alt 3">Components</summary>
+              <ul>
+                {% for entry in collections.interactiveComponentsDocs %}
+                <li>
+                  <a
+                    href="{{ entry.url }}"
+                    {% if entry.url == page.url %}aria-current="page"{% endif %}
+                  >
+                    {{ entry.data.navTitle or entry.data.title }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </details>
+          </nav>
+
           <nav class="docs-nav-group" aria-label="Examples">
             <details{% if page.url.indexOf("/examples/") == 0 or page.url == "/examples/" %} open{% endif %}>
-              <summary class="docs-nav-group-toggle" data-keytip="3" aria-keyshortcuts="Alt 3">Examples</summary>
+              <summary class="docs-nav-group-toggle" data-keytip="4" aria-keyshortcuts="Alt 4">Examples</summary>
               <ul>
                 {% for entry in collections.examplesDocs %}
                 <li>
