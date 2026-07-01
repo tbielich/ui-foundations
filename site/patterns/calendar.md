@@ -72,12 +72,16 @@ The Calendar component enables date selection in forms, filters, and booking flo
 .calendar
 ├── .calendar-header
 │   ├── button.calendar-nav-prev
-│   ├── span.calendar-title
+│   ├── span.calendar-title [aria-live="polite"]
 │   └── button.calendar-nav-next
-├── .calendar-weekdays
-│   └── span.calendar-weekday (×7)
-└── .calendar-grid
-    └── button.calendar-cell (×28–42)
+└── table.calendar-table [role="grid"]
+    ├── thead
+    │   └── tr
+    │       └── th[scope="col"] (×7)
+    └── tbody
+        └── tr (×5–6 weeks)
+            └── td
+                └── button.calendar-cell [aria-selected, aria-label]
 ```
 
 ## Tokens

@@ -1,20 +1,10 @@
 import React from "react";
 
 /**
- * Calendar — A date selection component supporting single date and range selection.
+ * Calendar — A date selection component using a semantic <table>.
  *
- * @param {object} props
- * @param {string} [props.className] - Additional CSS classes
- * @param {Date} [props.value] - Currently selected date
- * @param {Date} [props.rangeStart] - Start of selected range
- * @param {Date} [props.rangeEnd] - End of selected range
- * @param {Date} [props.min] - Earliest selectable date
- * @param {Date} [props.max] - Latest selectable date
- * @param {Date} [props.month] - Month to display (defaults to current)
- * @param {string} [props.locale] - Locale for formatting (default: "en-GB")
- * @param {boolean} [props.disabled] - Disable all interactions
- * @param {function} [props.onSelect] - Callback when a date is selected
- * @param {function} [props.onMonthChange] - Callback when month navigation occurs
+ * Uses <table> with <thead>/<tbody> because a calendar IS tabular data:
+ * days organized into weeks (rows) by weekdays (columns).
  */
 export function Calendar({
   className = "",
@@ -36,7 +26,6 @@ export function Calendar({
   );
 
   const currentMonth = controlledMonth || displayMonth;
-
   const year = currentMonth.getFullYear();
   const monthIndex = currentMonth.getMonth();
 
@@ -59,12 +48,18 @@ export function Calendar({
     cells.push({ day: d, outside: false, date: new Date(year, monthIndex, d) });
   }
 
-  // Next month fill
+  // Next month fill to complete last row
   const remaining = 7 - (cells.length % 7);
   if (remaining < 7) {
     for (let d = 1; d <= remaining; d++) {
       cells.push({ day: d, outside: true, date: new Date(year, monthIndex + 1, d) });
     }
+  }
+
+  // Split into weeks (rows of 7)
+  const weeks = [];
+  for (let i = 0; i < cells.length; i += 7) {
+    weeks.push(cells.slice(i, i + 7));
   }
 
   // Navigation
@@ -99,7 +94,6 @@ export function Calendar({
     if (isSameDay(cell.date, value)) classes.push("is-selected");
     if (isDisabled(cell.date)) classes.push("is-disabled");
 
-    // Range
     if (rangeStart && rangeEnd) {
       if (isSameDay(cell.date, rangeStart)) classes.push("is-range-start");
       else if (isSameDay(cell.date, rangeEnd)) classes.push("is-range-end");
@@ -109,37 +103,43 @@ export function Calendar({
     return classes.join(" ");
   }
 
-  // Keyboard navigation
-  function handleKeyDown(e, cellIndex) {
+  // Keyboard navigation within the grid
+  function handleKeyDown(e, weekIdx, dayIdx) {
+    const flatIdx = weekIdx * 7 + dayIdx;
     let target = null;
+
     switch (e.key) {
-      case "ArrowLeft": target = cellIndex - 1; break;
-      case "ArrowRight": target = cellIndex + 1; break;
-      case "ArrowUp": target = cellIndex - 7; break;
-      case "ArrowDown": target = cellIndex + 7; break;
-      case "Home": target = cellIndex - (cellIndex % 7); break;
-      case "End": target = cellIndex - (cellIndex % 7) + 6; break;
+      case "ArrowLeft": target = flatIdx - 1; break;
+      case "ArrowRight": target = flatIdx + 1; break;
+      case "ArrowUp": target = flatIdx - 7; break;
+      case "ArrowDown": target = flatIdx + 7; break;
+      case "Home": target = weekIdx * 7; break;
+      case "End": target = weekIdx * 7 + 6; break;
+      case "PageUp": prevMonth(); return;
+      case "PageDown": nextMonth(); return;
       default: return;
     }
+
     e.preventDefault();
-    const grid = e.currentTarget.closest(".calendar-grid");
-    const buttons = grid?.querySelectorAll("button.calendar-cell");
+    const table = e.currentTarget.closest(".calendar-table");
+    const buttons = table?.querySelectorAll("button.calendar-cell");
     if (buttons?.[target]) buttons[target].focus();
   }
 
-  // Weekday labels
+  // Weekday labels (Monday-based)
   const weekdays = [];
-  const formatter = new Intl.DateTimeFormat(locale, { weekday: "short" });
+  const shortFormatter = new Intl.DateTimeFormat(locale, { weekday: "short" });
+  const narrowFormatter = new Intl.DateTimeFormat(locale, { weekday: "narrow" });
   for (let i = 0; i < 7; i++) {
-    // Monday-based: Jan 5 2026 is a Monday
-    weekdays.push(formatter.format(new Date(2026, 0, 5 + i)));
+    const d = new Date(2026, 0, 5 + i); // Jan 5 2026 = Monday
+    weekdays.push({ short: shortFormatter.format(d), narrow: narrowFormatter.format(d) });
   }
 
   const monthLabel = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric" }).format(currentMonth);
-
+  const dateFormatter = new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric" });
   const rootClasses = ["calendar", className].filter(Boolean).join(" ");
 
-  return React.createElement("div", { className: rootClasses, role: "group", "aria-label": monthLabel, ...props },
+  return React.createElement("div", { className: rootClasses, ...props },
     // Header
     React.createElement("div", { className: "calendar-header" },
       React.createElement("button", {
@@ -158,27 +158,35 @@ export function Calendar({
         disabled,
       }, "›"),
     ),
-    // Weekday labels
-    React.createElement("div", { className: "calendar-weekdays", role: "row" },
-      ...weekdays.map((wd) =>
-        React.createElement("span", { key: wd, className: "calendar-weekday", role: "columnheader" }, wd),
+    // Semantic table
+    React.createElement("table", { className: "calendar-table", role: "grid", "aria-label": monthLabel },
+      React.createElement("thead", null,
+        React.createElement("tr", null,
+          ...weekdays.map((wd) =>
+            React.createElement("th", { key: wd.short, scope: "col", abbr: wd.short }, wd.short),
+          ),
+        ),
       ),
-    ),
-    // Day grid
-    React.createElement("div", { className: "calendar-grid", role: "grid" },
-      ...cells.map((cell, i) =>
-        React.createElement("button", {
-          key: `${cell.date.toISOString()}`,
-          type: "button",
-          className: getCellClasses(cell),
-          "aria-selected": isSameDay(cell.date, value) ? "true" : undefined,
-          "aria-label": new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric" }).format(cell.date),
-          "aria-disabled": isDisabled(cell.date) ? "true" : undefined,
-          disabled: isDisabled(cell.date),
-          tabIndex: isSameDay(cell.date, value || today) ? 0 : -1,
-          onClick: () => !isDisabled(cell.date) && onSelect?.(cell.date),
-          onKeyDown: (e) => handleKeyDown(e, i),
-        }, cell.day),
+      React.createElement("tbody", null,
+        ...weeks.map((week, weekIdx) =>
+          React.createElement("tr", { key: weekIdx },
+            ...week.map((cell, dayIdx) =>
+              React.createElement("td", { key: dayIdx },
+                React.createElement("button", {
+                  type: "button",
+                  className: getCellClasses(cell),
+                  "aria-selected": isSameDay(cell.date, value) ? "true" : "false",
+                  "aria-label": dateFormatter.format(cell.date),
+                  "aria-disabled": isDisabled(cell.date) ? "true" : undefined,
+                  disabled: isDisabled(cell.date),
+                  tabIndex: isSameDay(cell.date, value || today) ? 0 : -1,
+                  onClick: () => !isDisabled(cell.date) && onSelect?.(cell.date),
+                  onKeyDown: (e) => handleKeyDown(e, weekIdx, dayIdx),
+                }, cell.day),
+              ),
+            ),
+          ),
+        ),
       ),
     ),
   );

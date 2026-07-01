@@ -1,5 +1,4 @@
 {# ─── Calendar Macro ────────────────────────────────────────────── #}
-{# Append to site/_includes/macros/ui.njk or import separately #}
 
 {% macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, className='') -%}
 {%- set calendarClasses = "calendar" -%}
@@ -7,27 +6,42 @@
 
 {%- set weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] -%}
 
-<div class="{{ calendarClasses }}" role="group" aria-label="Calendar">
+<div class="{{ calendarClasses }}">
   <div class="calendar-header">
     <button type="button" class="calendar-nav-prev" aria-label="Previous month"{{ " disabled" if disabled }}>‹</button>
     <span class="calendar-title" aria-live="polite">{{ month }}</span>
     <button type="button" class="calendar-nav-next" aria-label="Next month"{{ " disabled" if disabled }}>›</button>
   </div>
-  <div class="calendar-weekdays" role="row">
-    {%- for day in weekdays %}
-    <span class="calendar-weekday" role="columnheader">{{ day }}</span>
-    {%- endfor %}
-  </div>
-  <div class="calendar-grid" role="grid">
-    {%- for i in range(1, 32) %}
-    {%- set cellClasses = "calendar-cell" -%}
-    {%- if state == "hover" and i == 15 -%}{%- set cellClasses = cellClasses + " is-hover" -%}{%- endif -%}
-    {%- if state == "focus" and i == 15 -%}{%- set cellClasses = cellClasses + " is-focus-visible" -%}{%- endif -%}
-    {%- if selectedDate and i == selectedDate | int -%}{%- set cellClasses = cellClasses + " is-selected" -%}{%- endif -%}
-    {%- if todayDate and i == todayDate | int -%}{%- set cellClasses = cellClasses + " is-today" -%}{%- endif -%}
-    {%- if disabled -%}{%- set cellClasses = cellClasses + " is-disabled" -%}{%- endif -%}
-    <button type="button" class="{{ cellClasses }}"{{ " disabled" if disabled }} tabindex="{{ 0 if i == 1 else -1 }}">{{ i }}</button>
-    {%- endfor %}
-  </div>
+  <table class="calendar-table" role="grid" aria-label="{{ month }}">
+    <thead>
+      <tr>
+        {%- for day in weekdays %}
+        <th scope="col" abbr="{{ day }}">{{ day }}</th>
+        {%- endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {%- for week in range(0, 5) %}
+      <tr>
+        {%- for dow in range(0, 7) %}
+        {%- set i = week * 7 + dow + 1 -%}
+        {%- if i <= 31 %}
+        {%- set cellClasses = "calendar-cell" -%}
+        {%- if state == "hover" and i == 15 -%}{%- set cellClasses = cellClasses + " is-hover" -%}{%- endif -%}
+        {%- if state == "focus" and i == 15 -%}{%- set cellClasses = cellClasses + " is-focus-visible" -%}{%- endif -%}
+        {%- if selectedDate and i == selectedDate | int -%}{%- set cellClasses = cellClasses + " is-selected" -%}{%- endif -%}
+        {%- if todayDate and i == todayDate | int -%}{%- set cellClasses = cellClasses + " is-today" -%}{%- endif -%}
+        {%- if disabled -%}{%- set cellClasses = cellClasses + " is-disabled" -%}{%- endif -%}
+        <td>
+          <button type="button" class="{{ cellClasses }}"{{ " disabled" if disabled }} aria-selected="{{ 'true' if selectedDate and i == selectedDate | int else 'false' }}" tabindex="{{ 0 if i == 1 else -1 }}">{{ i }}</button>
+        </td>
+        {%- else %}
+        <td></td>
+        {%- endif %}
+        {%- endfor %}
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
 </div>
 {%- endmacro %}

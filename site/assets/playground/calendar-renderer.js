@@ -1,8 +1,5 @@
 /**
- * Calendar Playground Renderer
- *
- * Append this to site/assets/playground/renderers.js or register
- * separately via the playground runtime.
+ * Calendar Playground Renderer — semantic <table> version
  */
 
 (function registerCalendarRenderer(global) {
@@ -19,34 +16,46 @@
     } = props;
 
     const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const disabledAttr = disabled ? " disabled" : "";
 
-    const weekdayHtml = weekdays
-      .map((d) => `<span class="calendar-weekday" role="columnheader">${d}</span>`)
-      .join("");
+    const theadHtml = `<thead><tr>${weekdays.map((d) => `<th scope="col" abbr="${d}">${d}</th>`).join("")}</tr></thead>`;
 
-    let cellsHtml = "";
-    for (let i = 1; i <= 31; i++) {
-      const classes = ["calendar-cell"];
-      if (state === "hover" && i === 15) classes.push("is-hover");
-      if (state === "focus" && i === 15) classes.push("is-focus-visible");
-      if (String(selectedDate) === String(i)) classes.push("is-selected");
-      if (String(todayDate) === String(i)) classes.push("is-today");
-      if (disabled) classes.push("is-disabled");
+    let tbodyHtml = "<tbody>";
+    let day = 1;
+    for (let week = 0; week < 5; week++) {
+      tbodyHtml += "<tr>";
+      for (let dow = 0; dow < 7; dow++) {
+        if (day <= 31) {
+          const classes = ["calendar-cell"];
+          if (state === "hover" && day === 15) classes.push("is-hover");
+          if (state === "focus" && day === 15) classes.push("is-focus-visible");
+          if (String(selectedDate) === String(day)) classes.push("is-selected");
+          if (String(todayDate) === String(day)) classes.push("is-today");
+          if (disabled) classes.push("is-disabled");
 
-      const attrs = disabled ? " disabled" : "";
-      const tabindex = i === 1 ? '0' : '-1';
-      cellsHtml += `<button type="button" class="${classes.join(" ")}" tabindex="${tabindex}"${attrs}>${i}</button>`;
+          const selected = String(selectedDate) === String(day) ? "true" : "false";
+          const tabindex = day === 1 ? "0" : "-1";
+          tbodyHtml += `<td><button type="button" class="${classes.join(" ")}" aria-selected="${selected}" tabindex="${tabindex}"${disabledAttr}>${day}</button></td>`;
+          day++;
+        } else {
+          tbodyHtml += "<td></td>";
+        }
+      }
+      tbodyHtml += "</tr>";
     }
+    tbodyHtml += "</tbody>";
 
     return `
-      <div class="calendar" role="group" aria-label="Calendar">
+      <div class="calendar">
         <div class="calendar-header">
-          <button type="button" class="calendar-nav-prev" aria-label="Previous month"${disabled ? " disabled" : ""}>‹</button>
+          <button type="button" class="calendar-nav-prev" aria-label="Previous month"${disabledAttr}>‹</button>
           <span class="calendar-title" aria-live="polite">${month}</span>
-          <button type="button" class="calendar-nav-next" aria-label="Next month"${disabled ? " disabled" : ""}>›</button>
+          <button type="button" class="calendar-nav-next" aria-label="Next month"${disabledAttr}>›</button>
         </div>
-        <div class="calendar-weekdays" role="row">${weekdayHtml}</div>
-        <div class="calendar-grid" role="grid">${cellsHtml}</div>
+        <table class="calendar-table" role="grid" aria-label="${month}">
+          ${theadHtml}
+          ${tbodyHtml}
+        </table>
       </div>
     `;
   };
