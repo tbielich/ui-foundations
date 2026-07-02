@@ -29,6 +29,12 @@ playgroundLabel: Open Calendar Playground
       {{ cal.calendar("July 2026", selectedDate="15", todayDate="1") }}
     </div>
   </div>
+  <div class="docs-hero-meta">
+    <span class="docs-status" data-status="stable">Stable</span>
+    {% if playgroundUrl %}
+    <a class="docs-page-link docs-page-link--playground" href="{{ playgroundUrl }}">{{ playgroundLabel or "Open Playground" }}</a>
+    {% endif %}
+  </div>
 </div>
 
 ## Usage

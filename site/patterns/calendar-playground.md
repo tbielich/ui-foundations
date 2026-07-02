@@ -25,12 +25,12 @@ playground:
       label: Month
       query: true
       default: "2026-07"
-    - kind: number
+    - kind: text
       name: selectedDate
       label: Selected day
       query: true
       default: ""
-    - kind: number
+    - kind: text
       name: todayDate
       label: Today
       query: true
