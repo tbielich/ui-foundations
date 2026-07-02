@@ -41,13 +41,13 @@
 
   .date-segment:focus {
     background: var(--color-fill-subtle);
-    border-radius: var(--corner-small, 2px);
+    border-radius: var(--corner-input-radius);
   }
 
   /* Separator between segments */
   .date-separator {
     color: var(--color-text-subtle);
-    padding-inline: var(--spacing-050);
+    padding-inline: var(--size-spacing-100);
     user-select: none;
   }
 
@@ -58,12 +58,12 @@
     inset-block-start: 100%;
     inset-inline-start: 0;
     z-index: var(--zindex-dropdown, 1000);
-    margin-block-start: var(--spacing-100);
-    padding: var(--spacing-200);
+    margin-block-start: var(--size-spacing-100);
+    padding: var(--size-spacing-200);
     background: var(--color-fill-surface);
     border: 1px solid var(--color-border-default);
-    border-radius: var(--corner-medium);
-    box-shadow: var(--shadow-elevated, 0 4px 12px rgba(0, 0, 0, 0.1));
+    border-radius: var(--corner-container-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   /* Open state */
