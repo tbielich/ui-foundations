@@ -1032,18 +1032,31 @@
   };
 
   // ─── Calendar ─────────────────────────────────────────────────────
-  function renderVanillaCalendar(props) {
-    const {
-      month = "2026-07",
-      selectedDate = "",
-      todayDate = "",
-      state = "default",
-      disabled = false,
-    } = props;
+  const renderVanillaCalendar = ({ props, meta }) => {
+    const month = String(props.month || "2026-07");
+    const selectedDate = String(props.selectedDate || "");
+    const todayDate = String(props.todayDate || "1");
+    const previewState = String(meta.state || "default");
+    const disabled = asBoolean(props.disabled);
 
     const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-    const disabledAttr = asBoolean(disabled) ? " disabled" : "";
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const disabledAttr = disabled ? " disabled" : "";
 
+    // Build header with selects
+    let headerHtml = `<div class="calendar-header">`;
+    headerHtml += `<button type="button" class="button ghost" aria-label="Previous month"${disabledAttr}><span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
+    headerHtml += `<span class="calendar-selectors">`;
+    headerHtml += `<select class="calendar-month-select" aria-label="Month"${disabledAttr}>`;
+    months.forEach((m, i) => { headerHtml += `<option value="${i}"${i === 6 ? " selected" : ""}>${m}</option>`; });
+    headerHtml += `</select>`;
+    headerHtml += `<select class="calendar-year-select" aria-label="Year"${disabledAttr}>`;
+    for (let y = 2020; y <= 2030; y++) { headerHtml += `<option value="${y}"${y === 2026 ? " selected" : ""}>${y}</option>`; }
+    headerHtml += `</select></span>`;
+    headerHtml += `<button type="button" class="button ghost" aria-label="Next month"${disabledAttr}><span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
+    headerHtml += `</div>`;
+
+    // Build table
     const theadHtml = `<thead><tr>${weekdays.map((d) => `<th scope="col" abbr="${d}">${d}</th>`).join("")}</tr></thead>`;
 
     let tbodyHtml = "<tbody>";
@@ -1053,13 +1066,13 @@
       for (let dow = 0; dow < 7; dow++) {
         if (day <= 31) {
           const classes = ["button", "ghost", "calendar-cell"];
-          if (state === "hover" && day === 15) classes.push("is-hover");
-          if (state === "focus" && day === 15) classes.push("is-focus-visible");
-          if (String(selectedDate) === String(day)) classes.push("is-selected");
-          if (String(todayDate) === String(day)) classes.push("is-today");
-          if (asBoolean(disabled)) classes.push("is-disabled");
+          if (previewState === "hover" && day === 15) classes.push("is-hover");
+          if (previewState === "focus" && day === 15) classes.push("is-focus-visible");
+          if (selectedDate === String(day)) classes.push("is-selected");
+          if (todayDate === String(day)) classes.push("is-today");
+          if (disabled) classes.push("is-disabled");
 
-          const selected = String(selectedDate) === String(day) ? "true" : "false";
+          const selected = selectedDate === String(day) ? "true" : "false";
           const tabindex = day === 1 ? "0" : "-1";
           tbodyHtml += `<td><button type="button" class="${classes.join(" ")}" aria-selected="${selected}" tabindex="${tabindex}"${disabledAttr}>${day}</button></td>`;
           day++;
@@ -1071,23 +1084,62 @@
     }
     tbodyHtml += "</tbody>";
 
-    return `
-      <div class="calendar">
-        <div class="calendar-header">
-          <button type="button" class="button ghost" aria-label="Previous month"${disabledAttr}>
-            <span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span>
-          </button>
-          <span class="calendar-title" aria-live="polite">${quoteAttr(month)}</span>
-          <button type="button" class="button ghost" aria-label="Next month"${disabledAttr}>
-            <span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span>
-          </button>
-        </div>
-        <table class="calendar-table" role="grid" aria-label="${quoteAttr(month)}">
-          ${theadHtml}
-          ${tbodyHtml}
-        </table>
-      </div>`;
-  }
+    const html = `<div class="calendar">${headerHtml}<table class="calendar-table" role="grid" aria-label="${quoteAttr(month)}">${theadHtml}${tbodyHtml}</table></div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+
+    const code = html;
+    return { element, code };
+  };
+
+  // ─── Date Picker ──────────────────────────────────────────────────
+  const renderVanillaDatePicker = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const isOpen = previewState === "open";
+    const disabled = previewState === "disabled";
+    const day = String(props.day || "");
+    const month = String(props.month || "");
+    const year = String(props.year || "");
+    const disabledAttr = disabled ? " disabled" : "";
+
+    const rootClasses = ["input-field", "date"];
+    if (isOpen) rootClasses.push("is-open");
+
+    let html = `<div class="${rootClasses.join(" ")}">`;
+    html += `<div class="date-segments">`;
+    html += `<input class="date-segment day" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day" value="${quoteAttr(day)}"${disabledAttr}>`;
+    html += `<span class="date-separator">/</span>`;
+    html += `<input class="date-segment month" type="text" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Month" value="${quoteAttr(month)}"${disabledAttr}>`;
+    html += `<span class="date-separator">/</span>`;
+    html += `<input class="date-segment year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year" value="${quoteAttr(year)}"${disabledAttr}>`;
+    html += `</div>`;
+    html += `<span class="input-field-control">`;
+    html += `<button type="button" class="button ghost" aria-label="Open calendar" aria-expanded="${isOpen}"${disabledAttr}>`;
+    html += `<span class="icon" style="--icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>`;
+    html += `</button></span>`;
+    html += `<div class="calendar"><div class="calendar-header">`;
+    html += `<button type="button" class="button ghost" aria-label="Previous month"><span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
+    html += `<span class="calendar-selectors"><select class="calendar-month-select" aria-label="Month">`;
+    ["January","February","March","April","May","June","July","August","September","October","November","December"].forEach((m, i) => { html += `<option value="${i}"${i === 6 ? " selected" : ""}>${m}</option>`; });
+    html += `</select><select class="calendar-year-select" aria-label="Year">`;
+    for (let y = 2020; y <= 2030; y++) { html += `<option value="${y}"${y === 2026 ? " selected" : ""}>${y}</option>`; }
+    html += `</select></span>`;
+    html += `<button type="button" class="button ghost" aria-label="Next month"><span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
+    html += `</div><table class="calendar-table" role="grid" aria-label="July 2026"><thead><tr>`;
+    ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach((d) => { html += `<th scope="col">${d}</th>`; });
+    html += `</tr></thead><tbody>`;
+    let d = 1;
+    for (let w = 0; w < 5; w++) { html += "<tr>"; for (let dow = 0; dow < 7; dow++) { if (d <= 31) { html += `<td><button type="button" class="button ghost calendar-cell" tabindex="-1">${d}</button></td>`; d++; } else { html += "<td></td>"; } } html += "</tr>"; }
+    html += `</tbody></table></div></div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+
+    return { element, code: html };
+  };
 
   global.UIPlaygroundRenderers = {
     renderers: {
@@ -1110,6 +1162,7 @@
       select: renderVanillaSelect,
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
+      datePicker: renderVanillaDatePicker,
     },
   };
 })(window);
