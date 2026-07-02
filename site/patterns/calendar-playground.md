@@ -51,6 +51,12 @@ playground:
   {{ cal.calendar("July 2026", todayDate="1") }}
 </div>
 
+<h2>Range View</h2>
+
+<div class="playground-stage" style="padding: 2rem;">
+  {{ cal.rangeCalendar("July 2026") }}
+</div>
+
 <script>
 (function() {
   var calendar = document.querySelector('.playground-stage .calendar');
@@ -178,5 +184,83 @@ playground:
     btn.classList.add('is-selected');
     btn.setAttribute('aria-selected', 'true');
   });
+
+  // ─── Range View ─────────────────────────────────────────────────
+  var rangeView = document.querySelector('.calendar.range-view');
+  if (rangeView) {
+    var rvYear = 2026, rvMonth = 6;
+    var rvPrev = rangeView.querySelector("[aria-label='Previous month']");
+    var rvNext = rangeView.querySelector("[aria-label='Next month']");
+    var rvMonthSelect = rangeView.querySelector('.calendar-month-select');
+    var rvYearSelect = rangeView.querySelector('.calendar-year-select');
+    var leftPanel = rangeView.querySelector("[data-panel='left']");
+    var rightPanel = rangeView.querySelector("[data-panel='right']");
+    var rangeStart = null, rangeEnd = null;
+
+    function buildMonth(panel, year, month) {
+      var firstDay = new Date(year, month, 1);
+      var daysInMonth = new Date(year, month + 1, 0).getDate();
+      var startDow = (firstDay.getDay() + 6) % 7;
+      var label = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' }).format(firstDay);
+      var labelEl = panel.querySelector('.calendar-month-label');
+      var table = panel.querySelector('.calendar-table');
+      var tbody = panel.querySelector('tbody');
+      if (labelEl) labelEl.textContent = label;
+      if (table) table.setAttribute('aria-label', label);
+
+      var html = '', day = 1, started = false;
+      for (var week = 0; week < 6; week++) {
+        if (day > daysInMonth) break;
+        html += '<tr>';
+        for (var dow = 0; dow < 7; dow++) {
+          if (!started && dow < startDow) { html += '<td></td>'; }
+          else if (day <= daysInMonth) {
+            started = true;
+            var classes = ['button', 'ghost', 'calendar-cell'];
+            var d = new Date(year, month, day);
+            if (rangeStart && rangeEnd) {
+              if (d.getTime() === rangeStart.getTime()) classes.push('is-range-start');
+              else if (d.getTime() === rangeEnd.getTime()) classes.push('is-range-end');
+              else if (d > rangeStart && d < rangeEnd) classes.push('is-range-middle');
+            }
+            html += '<td><button type="button" class="' + classes.join(' ') + '" data-date="' + d.toISOString().slice(0,10) + '" aria-selected="false" tabindex="-1">' + day + '</button></td>';
+            day++;
+          } else { html += '<td></td>'; }
+        }
+        html += '</tr>';
+      }
+      tbody.innerHTML = html;
+    }
+
+    function rebuildRange() {
+      if (rvMonthSelect) rvMonthSelect.value = rvMonth;
+      if (rvYearSelect) rvYearSelect.value = rvYear;
+      buildMonth(leftPanel, rvYear, rvMonth);
+      var rightMonth = rvMonth + 1, rightYear = rvYear;
+      if (rightMonth > 11) { rightMonth = 0; rightYear++; }
+      buildMonth(rightPanel, rightYear, rightMonth);
+    }
+
+    if (rvPrev) rvPrev.addEventListener('click', function(e) { e.preventDefault(); rvMonth--; if (rvMonth < 0) { rvMonth = 11; rvYear--; } rebuildRange(); });
+    if (rvNext) rvNext.addEventListener('click', function(e) { e.preventDefault(); rvMonth++; if (rvMonth > 11) { rvMonth = 0; rvYear++; } rebuildRange(); });
+    if (rvMonthSelect) rvMonthSelect.addEventListener('change', function() { rvMonth = parseInt(rvMonthSelect.value, 10); rebuildRange(); });
+    if (rvYearSelect) rvYearSelect.addEventListener('change', function() { rvYear = parseInt(rvYearSelect.value, 10); rebuildRange(); });
+
+    // Range selection: first click = start, second click = end
+    rangeView.addEventListener('click', function(e) {
+      var btn = e.target.closest('button.calendar-cell');
+      if (!btn) return;
+      var date = new Date(btn.dataset.date);
+      if (!rangeStart || rangeEnd) {
+        rangeStart = date; rangeEnd = null;
+      } else {
+        if (date < rangeStart) { rangeEnd = rangeStart; rangeStart = date; }
+        else { rangeEnd = date; }
+      }
+      rebuildRange();
+    });
+
+    rebuildRange();
+  }
 })();
 </script>

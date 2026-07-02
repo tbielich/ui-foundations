@@ -124,3 +124,25 @@
     color: var(--calendar-cell-text-color-selected, var(--color-text-inverse));
   }
 }
+
+  /* ─── Range View (two-column) ────────────────────────────────── */
+
+  .calendar.range-view {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-400);
+  }
+
+  .calendar.range-view .calendar-header {
+    grid-column: 1 / -1;
+  }
+
+  .calendar-month-panel {
+    display: grid;
+    gap: var(--spacing-200);
+  }
+
+  .calendar-month-panel .calendar-month-label {
+    font: var(--typography-label-large);
+    color: var(--color-text-default);
+    text-align: center;
+  }
