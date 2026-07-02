@@ -69,8 +69,8 @@
     text-align: center;
   }
 
-  /* Individual day button — extends .button.ghost */
-  .calendar-cell {
+  /* Individual day button — extends .button.ghost, must match specificity */
+  .button.calendar-cell {
     display: flex;
     align-items: center;
     justify-content: center;
