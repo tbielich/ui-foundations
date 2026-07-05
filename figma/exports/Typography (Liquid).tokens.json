@@ -1,5 +1,5 @@
 {
-  "$collection": "Typography Scale",
+  "$collection": "Typography (Liquid)",
   "$modes": ["Min", "Max"],
   "Font Size": {
     "lg": {

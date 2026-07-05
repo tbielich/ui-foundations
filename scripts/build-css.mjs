@@ -54,13 +54,14 @@ function scopePriority(scope) {
   if (scope.bucket === "other" && scope.id === "core") return 0;
   if (scope.bucket === "other" && scope.id === "core-primitives") return 0;
   if (scope.bucket === "other" && scope.id === "primitives") return 0;
-  if (scope.bucket === "mode" && scope.id === "light") return 1;
-  if (scope.bucket === "mode" && scope.id === "dark") return 2;
-  if (scope.bucket === "mode") return 2;
-  if (scope.bucket === "brand") return 3;
-  if (scope.bucket === "other" && scope.id.includes("semantic")) return 3;
-  if (scope.bucket === "other" && scope.id.includes("component")) return 4;
-  if (scope.bucket === "other" && scope.id.includes("pattern")) return 4;
+  if (scope.bucket === "other" && scope.id.includes("typography-liquid")) return 1;
+  if (scope.bucket === "mode" && scope.id === "light") return 2;
+  if (scope.bucket === "mode" && scope.id === "dark") return 3;
+  if (scope.bucket === "mode") return 3;
+  if (scope.bucket === "brand") return 4;
+  if (scope.bucket === "other" && scope.id.includes("semantic")) return 4;
+  if (scope.bucket === "other" && scope.id.includes("component")) return 5;
+  if (scope.bucket === "other" && scope.id.includes("pattern")) return 5;
   return 9;
 }
 
