@@ -451,6 +451,62 @@ details[open] > .docs-nav-group-toggle::before {
   gap: 0;
 }
 
+.docs-calendar-anatomy-subject {
+  inline-size: fit-content;
+}
+
+.docs-calendar-anatomy-target {
+  position: absolute;
+  z-index: 1;
+  border: 1px dashed var(--docs-accent);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.docs-calendar-anatomy-target--container {
+  inset: -4px;
+}
+
+.docs-calendar-anatomy-target--header {
+  inset-block-start: 12px;
+  inset-inline: 12px;
+  block-size: 40px;
+}
+
+.docs-calendar-anatomy-target--weekdays {
+  inset-block-start: 58px;
+  inset-inline: 12px;
+  block-size: 32px;
+}
+
+.docs-calendar-anatomy-target--day {
+  inset-block-start: 188px;
+  inset-inline-start: calc(50% - 20px);
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: var(--calendar-cell-border-radius);
+}
+
+.docs-calendar-anatomy-callout--container {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.docs-calendar-anatomy-callout--header {
+  top: 32px;
+  transform: translateY(-50%);
+}
+
+.docs-calendar-anatomy-callout--weekdays {
+  top: 74px;
+  transform: translateY(-50%);
+}
+
+.docs-calendar-anatomy-callout--day {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .docs-stack {
   display: flex;
   flex-wrap: wrap;

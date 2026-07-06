@@ -93,15 +93,35 @@ The Calendar component enables date selection in forms, filters, and booking flo
   </table>
 </div>
 
-## Keyboard Navigation
+<h2 id="keyboard-interactions">Keyboard interactions</h2>
 
-| Key | Action |
-|-----|--------|
-| Arrow Left/Right | Move one day |
-| Arrow Up/Down | Move one week |
-| Home/End | Move to start/end of week |
-| Page Up/Down | Move to previous/next month |
-| Enter/Space | Select the focused date |
+<table class="docs-keyboard-table">
+  <thead>
+    <tr><th>Key</th><th>Interaction</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>ArrowLeft</kbd> or <kbd>ArrowRight</kbd></td>
+      <td>Moves focus one day backward or forward.</td>
+    </tr>
+    <tr>
+      <td><kbd>ArrowUp</kbd> or <kbd>ArrowDown</kbd></td>
+      <td>Moves focus one week backward or forward.</td>
+    </tr>
+    <tr>
+      <td><kbd>Home</kbd> or <kbd>End</kbd></td>
+      <td>Moves focus to the first or last day in the current week.</td>
+    </tr>
+    <tr>
+      <td><kbd>PageUp</kbd> or <kbd>PageDown</kbd></td>
+      <td>Moves focus to the previous or next month.</td>
+    </tr>
+    <tr>
+      <td><kbd>Enter</kbd> or <kbd>Space</kbd></td>
+      <td>Selects the focused date.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Accessibility
 
@@ -115,21 +135,24 @@ The Calendar component enables date selection in forms, filters, and booking flo
 
 <div class="docs-anatomy">
   <div class="docs-anatomy-preview">
-    <div class="docs-anatomy-subject" style="inline-size: fit-content;">
-      <span class="docs-anatomy-outline"></span>
-      <span class="docs-anatomy-callout" data-dir="top" style="left: 50%; transform: translateX(-50%);">
+    <div class="docs-anatomy-subject docs-calendar-anatomy-subject">
+      <span class="docs-calendar-anatomy-target docs-calendar-anatomy-target--container"></span>
+      <span class="docs-calendar-anatomy-target docs-calendar-anatomy-target--header"></span>
+      <span class="docs-calendar-anatomy-target docs-calendar-anatomy-target--weekdays"></span>
+      <span class="docs-calendar-anatomy-target docs-calendar-anatomy-target--day"></span>
+      <span class="docs-anatomy-callout docs-calendar-anatomy-callout docs-calendar-anatomy-callout--container" data-dir="top">
         <span class="docs-anatomy-badge">1</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
-      <span class="docs-anatomy-callout" data-dir="left" style="top: 13%; transform: translateY(-50%);">
+      <span class="docs-anatomy-callout docs-calendar-anatomy-callout docs-calendar-anatomy-callout--header" data-dir="left">
         <span class="docs-anatomy-badge">2</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
-      <span class="docs-anatomy-callout" data-dir="right" style="top: 32%; transform: translateY(-50%);">
+      <span class="docs-anatomy-callout docs-calendar-anatomy-callout docs-calendar-anatomy-callout--weekdays" data-dir="right">
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">3</span>
       </span>
-      <span class="docs-anatomy-callout" data-dir="bottom" style="left: 50%; transform: translateX(-50%);">
+      <span class="docs-anatomy-callout docs-calendar-anatomy-callout docs-calendar-anatomy-callout--day" data-dir="bottom">
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">4</span>
       </span>

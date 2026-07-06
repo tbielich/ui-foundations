@@ -27,6 +27,9 @@ exists.
 
 - Use `docs-anatomy` for component anatomy. Do not use ASCII trees, plain
   bullet lists, or screenshots as the primary anatomy view.
+- Anatomy callouts must point to the named part, not only to the component's
+  outer frame. For complex components, add part-specific target overlays or
+  callout classes when the generic anatomy callout positions are not precise.
 - Use `docs-options-table` for property/variant tables.
 - Use `docs-keyboard-table` for keyboard interaction tables.
 - Use `docs-table` inside `docs-table-wrap` for generic structured tables such
