@@ -70,11 +70,6 @@ The Calendar component enables date selection in forms, filters, and booking flo
         <td>Active selected date.</td>
       </tr>
       <tr>
-        <td><div class="docs-calendar-day-preview">{{ cal.calendarDay("01", today=true) }}</div></td>
-        <td>Today</td>
-        <td>Highlighted current date.</td>
-      </tr>
-      <tr>
         <td><div class="docs-calendar-day-preview docs-calendar-day-preview--range">{{ cal.calendarDay("01", rangeStart=true) }}{{ cal.calendarDay("02", rangeMiddle=true) }}{{ cal.calendarDay("03", rangeEnd=true) }}</div></td>
         <td>Range</td>
         <td>Start, middle, and end cells for date range selection.</td>
