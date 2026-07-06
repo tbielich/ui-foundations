@@ -32,7 +32,7 @@
 
   .field-label-required {
     color: var(--field-label-required-color, currentColor);
-    font-weight: 700;
+    font-weight: var(--font-weight-700);
   }
 
   .field-label-required-text {
