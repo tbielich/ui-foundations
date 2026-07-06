@@ -106,14 +106,22 @@ The Calendar component enables date selection in forms, filters, and booking flo
 
 ## Options
 
-| Option | Description |
-|--------|-------------|
-| `container` | Adds the bordered calendar surface with padding and background. Use `false` when another component already provides the surface. |
-| `selectedDate` | Marks one day as selected. |
-| `rangeStart` / `rangeEnd` | Marks a continuous range with start, middle, and end cell states. |
-| `todayDate` | Marks the current day with the today indicator. |
-| `state` | Preview state for documentation examples: `default`, `hover`, or `focus`. |
-| `disabled` | Disables all day cells and header controls. |
+### Table of options
+
+<table class="docs-options-table">
+  <thead>
+    <tr><th>Property</th><th>Values</th><th>Default</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>container</td><td><code>true</code> / <code>false</code></td><td><code>true</code></td></tr>
+    <tr><td>selectedDate</td><td>day number / none</td><td>—</td></tr>
+    <tr><td>rangeStart</td><td>day number / none</td><td>—</td></tr>
+    <tr><td>rangeEnd</td><td>day number / none</td><td>—</td></tr>
+    <tr><td>todayDate</td><td>day number / none</td><td><code>1</code></td></tr>
+    <tr><td>state</td><td><code>default</code> / <code>hover</code> / <code>focus</code></td><td><code>default</code></td></tr>
+    <tr><td>disabled</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
+  </tbody>
+</table>
 
 ## Variants
 
@@ -138,26 +146,33 @@ The Calendar component enables date selection in forms, filters, and booking flo
 
 ## Tokens
 
-| Token | Purpose |
-|-------|---------|
-| `--calendar-container-padding` | Container padding |
-| `--calendar-container-border-radius` | Container border radius |
-| `--calendar-container-border-color` | Container border color |
-| `--calendar-container-border-size` | Container border width |
-| `--calendar-container-background` | Container background |
-| `--calendar-container-gap` | Vertical gap between calendar sections |
-| `--calendar-header-gap` | Gap between header controls |
-| `--calendar-weekday-text-color` | Weekday label color |
-| `--calendar-weekday-font-size` | Weekday label font size |
-| `--calendar-weekday-height` | Weekday label row height |
-| `--calendar-cell-gap` | Spacing around day cells |
-| `--calendar-cell-min-size` | Minimum day cell touch target |
-| `--calendar-cell-border-radius` | Day cell radius |
-| `--calendar-cell-text-color-default` | Default day cell text |
-| `--calendar-cell-text-color-active` | Selected day cell text |
-| `--calendar-cell-text-color-disabled` | Disabled and outside-month text |
-| `--calendar-cell-background-active` | Selected day cell background |
-| `--calendar-cell-background-hover` | Hover state |
-| `--calendar-cell-range-border-color` | Range and today indicator border color |
-| `--calendar-cell-range-border-size` | Range and today indicator border width |
-| `--calendar-cell-range-border-radius` | Range start/end radius |
+<div class="docs-table-wrap">
+  <table class="docs-table">
+    <thead>
+      <tr><th>Token</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>--calendar-container-padding</code></td><td>Container padding</td></tr>
+      <tr><td><code>--calendar-container-border-radius</code></td><td>Container border radius</td></tr>
+      <tr><td><code>--calendar-container-border-color</code></td><td>Container border color</td></tr>
+      <tr><td><code>--calendar-container-border-size</code></td><td>Container border width</td></tr>
+      <tr><td><code>--calendar-container-background</code></td><td>Container background</td></tr>
+      <tr><td><code>--calendar-container-gap</code></td><td>Vertical gap between calendar sections</td></tr>
+      <tr><td><code>--calendar-header-gap</code></td><td>Gap between header controls</td></tr>
+      <tr><td><code>--calendar-weekday-text-color</code></td><td>Weekday label color</td></tr>
+      <tr><td><code>--calendar-weekday-font-size</code></td><td>Weekday label font size</td></tr>
+      <tr><td><code>--calendar-weekday-height</code></td><td>Weekday label row height</td></tr>
+      <tr><td><code>--calendar-cell-gap</code></td><td>Spacing around day cells</td></tr>
+      <tr><td><code>--calendar-cell-min-size</code></td><td>Minimum day cell touch target</td></tr>
+      <tr><td><code>--calendar-cell-border-radius</code></td><td>Day cell radius</td></tr>
+      <tr><td><code>--calendar-cell-text-color-default</code></td><td>Default day cell text</td></tr>
+      <tr><td><code>--calendar-cell-text-color-active</code></td><td>Selected day cell text</td></tr>
+      <tr><td><code>--calendar-cell-text-color-disabled</code></td><td>Disabled and outside-month text</td></tr>
+      <tr><td><code>--calendar-cell-background-active</code></td><td>Selected day cell background</td></tr>
+      <tr><td><code>--calendar-cell-background-hover</code></td><td>Hover state</td></tr>
+      <tr><td><code>--calendar-cell-range-border-color</code></td><td>Range and today indicator border color</td></tr>
+      <tr><td><code>--calendar-cell-range-border-size</code></td><td>Range and today indicator border width</td></tr>
+      <tr><td><code>--calendar-cell-range-border-radius</code></td><td>Range start/end radius</td></tr>
+    </tbody>
+  </table>
+</div>
