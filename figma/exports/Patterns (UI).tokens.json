@@ -86,7 +86,7 @@
       "Size Active": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Size/Border/Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2016:1880",
@@ -97,7 +97,7 @@
             "WEB": "var(--button-border-size-active)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Brand/Size/Border/Emphasis",
+            "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
@@ -1646,7 +1646,7 @@
       "Size Active": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Size/Border/Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2028:309",
@@ -1657,7 +1657,7 @@
             "WEB": "var(--input-border-size-active)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Brand/Size/Border/Emphasis",
+            "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
@@ -2404,7 +2404,7 @@
       "Size Active": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Size/Border/Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2773:44",
@@ -2415,7 +2415,7 @@
             "WEB": "var(--select-border-size-active)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Brand/Size/Border/Emphasis",
+            "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
@@ -3306,7 +3306,7 @@
       "Size Hover": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Size/Border/Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2287:831",
@@ -3317,7 +3317,7 @@
             "WEB": "var(--checkbox-border-size-hover)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Brand/Size/Border/Emphasis",
+            "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
@@ -3680,7 +3680,7 @@
       "Size Hover": {
         "$type": "number",
         "$value": {
-          "$ref": "Brand/Size/Border/Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2327:11",
@@ -3691,7 +3691,7 @@
             "WEB": "var(--radio-border-size-hover)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Brand/Size/Border/Emphasis",
+            "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true

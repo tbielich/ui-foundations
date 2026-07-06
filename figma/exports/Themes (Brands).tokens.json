@@ -1393,7 +1393,7 @@
               "STROKE_FLOAT"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--brand-size-border-emphasis)"
+              "WEB": "var(--brand-size-border-thick)"
             },
             "com.figma.modeValues": {
               "Brand C": {
