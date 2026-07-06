@@ -443,6 +443,7 @@ details[open] > .docs-nav-group-toggle::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: var(--calendar-cell-gap);
   min-inline-size: 48px;
 }
 
