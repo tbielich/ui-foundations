@@ -239,7 +239,7 @@
         "Brand": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Neutral/000"
+            "$ref": "Brand/Color/Text/On Brand"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2616:2",
@@ -250,18 +250,16 @@
               "WEB": "var(--color-text-on-brand)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:175",
-              "targetVariableName": "Color/Neutral/000",
-              "targetVariableSetId": "VariableCollectionId:1:200",
-              "targetVariableSetName": "Core (Primitives)"
+              "targetVariableName": "Brand/Color/Text/On Brand",
+              "targetVariableSetName": "Themes (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Light Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Brand"
               },
               "Dark Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Brand Dark"
               }
             }
           }
@@ -269,7 +267,7 @@
         "Danger": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Neutral/000"
+            "$ref": "Brand/Color/Text/On Danger"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2616:3",
@@ -280,18 +278,16 @@
               "WEB": "var(--color-text-on-danger)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:175",
-              "targetVariableName": "Color/Neutral/000",
-              "targetVariableSetId": "VariableCollectionId:1:200",
-              "targetVariableSetName": "Core (Primitives)"
+              "targetVariableName": "Brand/Color/Text/On Danger",
+              "targetVariableSetName": "Themes (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Light Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Danger"
               },
               "Dark Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Danger Dark"
               }
             }
           }
@@ -299,7 +295,7 @@
         "Success": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Neutral/000"
+            "$ref": "Brand/Color/Text/On Success"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2616:4",
@@ -310,18 +306,16 @@
               "WEB": "var(--color-text-on-success)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:175",
-              "targetVariableName": "Color/Neutral/000",
-              "targetVariableSetId": "VariableCollectionId:1:200",
-              "targetVariableSetName": "Core (Primitives)"
+              "targetVariableName": "Brand/Color/Text/On Success",
+              "targetVariableSetName": "Themes (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Light Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Success"
               },
               "Dark Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Success Dark"
               }
             }
           }
@@ -359,7 +353,7 @@
         "Active": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Neutral/000"
+            "$ref": "Brand/Color/Text/On Active"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2616:6",
@@ -370,18 +364,16 @@
               "WEB": "var(--color-text-on-active)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:175",
-              "targetVariableName": "Color/Neutral/000",
-              "targetVariableSetId": "VariableCollectionId:1:200",
-              "targetVariableSetName": "Core (Primitives)"
+              "targetVariableName": "Brand/Color/Text/On Active",
+              "targetVariableSetName": "Themes (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Light Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Active"
               },
               "Dark Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Active Dark"
               }
             }
           }

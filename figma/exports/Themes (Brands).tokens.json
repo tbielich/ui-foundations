@@ -8,14 +8,22 @@
             "$ref": "Color/Neutral/800"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-text-default)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/800" },
-              "Brand B": { "$ref": "Color/Neutral/800" },
-              "Brand A": { "$ref": "Color/Neutral/800" }
+              "Brand C": {
+                "$ref": "Color/Neutral/800"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/800"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/800"
+              }
             }
           }
         },
@@ -25,14 +33,22 @@
             "$ref": "Color/Neutral/200"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-text-default-dark)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/200" },
-              "Brand B": { "$ref": "Color/Neutral/200" },
-              "Brand A": { "$ref": "Color/Neutral/200" }
+              "Brand C": {
+                "$ref": "Color/Neutral/200"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/200"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/200"
+              }
             }
           }
         },
@@ -42,14 +58,22 @@
             "$ref": "Color/Neutral/1000"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-text-strong)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/1000" },
-              "Brand B": { "$ref": "Color/Neutral/1000" },
-              "Brand A": { "$ref": "Color/Neutral/1000" }
+              "Brand C": {
+                "$ref": "Color/Neutral/1000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/1000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/1000"
+              }
             }
           }
         },
@@ -59,14 +83,22 @@
             "$ref": "Color/Neutral/000"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-text-strong-dark)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/000" },
-              "Brand B": { "$ref": "Color/Neutral/000" },
-              "Brand A": { "$ref": "Color/Neutral/000" }
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
             }
           }
         },
@@ -76,14 +108,22 @@
             "$ref": "Color/Neutral/600"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-text-disabled)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/600" },
-              "Brand B": { "$ref": "Color/Neutral/600" },
-              "Brand A": { "$ref": "Color/Neutral/600" }
+              "Brand C": {
+                "$ref": "Color/Neutral/600"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/600"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/600"
+              }
             }
           }
         },
@@ -93,14 +133,22 @@
             "$ref": "Color/Neutral/400"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-text-disabled-dark)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/400" },
-              "Brand B": { "$ref": "Color/Neutral/400" },
-              "Brand A": { "$ref": "Color/Neutral/400" }
+              "Brand C": {
+                "$ref": "Color/Neutral/400"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/400"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/400"
+              }
             }
           }
         },
@@ -110,14 +158,22 @@
             "$ref": "Color/Neutral/800"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-text-on-disabled)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/800" },
-              "Brand B": { "$ref": "Color/Neutral/800" },
-              "Brand A": { "$ref": "Color/Neutral/800" }
+              "Brand C": {
+                "$ref": "Color/Neutral/800"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/800"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/800"
+              }
             }
           }
         },
@@ -127,14 +183,222 @@
             "$ref": "Color/Neutral/200"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-text-on-disabled-dark)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/200" },
-              "Brand B": { "$ref": "Color/Neutral/200" },
-              "Brand A": { "$ref": "Color/Neutral/200" }
+              "Brand C": {
+                "$ref": "Color/Neutral/200"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/200"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/200"
+              }
+            }
+          }
+        },
+        "On Brand": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Neutral/000"
+          },
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--brand-color-text-on-brand)"
+            },
+            "com.figma.modeValues": {
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
+            }
+          }
+        },
+        "On Brand Dark": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Neutral/000"
+          },
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--brand-color-text-on-brand-dark)"
+            },
+            "com.figma.modeValues": {
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
+            }
+          }
+        },
+        "On Danger": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Neutral/000"
+          },
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--brand-color-text-on-danger)"
+            },
+            "com.figma.modeValues": {
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
+            }
+          }
+        },
+        "On Danger Dark": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Neutral/000"
+          },
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--brand-color-text-on-danger-dark)"
+            },
+            "com.figma.modeValues": {
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
+            }
+          }
+        },
+        "On Success": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Neutral/000"
+          },
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--brand-color-text-on-success)"
+            },
+            "com.figma.modeValues": {
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
+            }
+          }
+        },
+        "On Success Dark": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Neutral/000"
+          },
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--brand-color-text-on-success-dark)"
+            },
+            "com.figma.modeValues": {
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
+            }
+          }
+        },
+        "On Active": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Neutral/000"
+          },
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--brand-color-text-on-active)"
+            },
+            "com.figma.modeValues": {
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
+            }
+          }
+        },
+        "On Active Dark": {
+          "$type": "color",
+          "$value": {
+            "$ref": "Color/Neutral/000"
+          },
+          "$extensions": {
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--brand-color-text-on-active-dark)"
+            },
+            "com.figma.modeValues": {
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
             }
           }
         }
@@ -146,14 +410,22 @@
             "$ref": "Color/Neutral/000"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-fill-surface)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/000" },
-              "Brand B": { "$ref": "Color/Neutral/000" },
-              "Brand A": { "$ref": "Color/Neutral/000" }
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
             }
           }
         },
@@ -163,14 +435,22 @@
             "$ref": "Color/Neutral/1000"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-fill-surface-dark)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/1000" },
-              "Brand B": { "$ref": "Color/Neutral/1000" },
-              "Brand A": { "$ref": "Color/Neutral/1000" }
+              "Brand C": {
+                "$ref": "Color/Neutral/1000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/1000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/1000"
+              }
             }
           }
         },
@@ -180,14 +460,22 @@
             "$ref": "Color/Neutral/300"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-fill-disabled)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/300" },
-              "Brand B": { "$ref": "Color/Neutral/300" },
-              "Brand A": { "$ref": "Color/Neutral/300" }
+              "Brand C": {
+                "$ref": "Color/Neutral/300"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/300"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/300"
+              }
             }
           }
         },
@@ -197,14 +485,22 @@
             "$ref": "Color/Neutral/700"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-fill-disabled-dark)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/700" },
-              "Brand B": { "$ref": "Color/Neutral/700" },
-              "Brand A": { "$ref": "Color/Neutral/700" }
+              "Brand C": {
+                "$ref": "Color/Neutral/700"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/700"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/700"
+              }
             }
           }
         }
@@ -216,14 +512,22 @@
             "$ref": "Color/Neutral/800"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-border-default)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/800" },
-              "Brand B": { "$ref": "Color/Neutral/800" },
-              "Brand A": { "$ref": "Color/Neutral/800" }
+              "Brand C": {
+                "$ref": "Color/Neutral/800"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/800"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/800"
+              }
             }
           }
         },
@@ -233,14 +537,22 @@
             "$ref": "Color/Neutral/200"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-border-default-dark)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/200" },
-              "Brand B": { "$ref": "Color/Neutral/200" },
-              "Brand A": { "$ref": "Color/Neutral/200" }
+              "Brand C": {
+                "$ref": "Color/Neutral/200"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/200"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/200"
+              }
             }
           }
         },
@@ -250,14 +562,22 @@
             "$ref": "Color/Neutral/1000"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-border-strong)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/1000" },
-              "Brand B": { "$ref": "Color/Neutral/1000" },
-              "Brand A": { "$ref": "Color/Neutral/1000" }
+              "Brand C": {
+                "$ref": "Color/Neutral/1000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/1000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/1000"
+              }
             }
           }
         },
@@ -267,14 +587,22 @@
             "$ref": "Color/Neutral/000"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-border-strong-dark)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/000" },
-              "Brand B": { "$ref": "Color/Neutral/000" },
-              "Brand A": { "$ref": "Color/Neutral/000" }
+              "Brand C": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/000"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/000"
+              }
             }
           }
         },
@@ -284,14 +612,22 @@
             "$ref": "Color/Neutral/500"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-border-disabled)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/500" },
-              "Brand B": { "$ref": "Color/Neutral/500" },
-              "Brand A": { "$ref": "Color/Neutral/500" }
+              "Brand C": {
+                "$ref": "Color/Neutral/500"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/500"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/500"
+              }
             }
           }
         },
@@ -301,14 +637,22 @@
             "$ref": "Color/Neutral/400"
           },
           "$extensions": {
-            "com.figma.scopes": ["ALL_SCOPES"],
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ],
             "com.figma.codeSyntax": {
               "WEB": "var(--brand-color-border-disabled-dark)"
             },
             "com.figma.modeValues": {
-              "Brand C": { "$ref": "Color/Neutral/400" },
-              "Brand B": { "$ref": "Color/Neutral/400" },
-              "Brand A": { "$ref": "Color/Neutral/400" }
+              "Brand C": {
+                "$ref": "Color/Neutral/400"
+              },
+              "Brand B": {
+                "$ref": "Color/Neutral/400"
+              },
+              "Brand A": {
+                "$ref": "Color/Neutral/400"
+              }
             }
           }
         }
