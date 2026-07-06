@@ -1037,21 +1037,25 @@
     const selectedDate = String(props.selectedDate || "");
     const todayDate = String(props.todayDate || "1");
     const previewState = String(meta.state || "default");
+    const hasContainer = props.container !== false;
     const disabled = asBoolean(props.disabled);
 
     const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const [yearValue, monthValue] = month.split("-");
+    const selectedYear = Number(yearValue) || 2026;
+    const selectedMonth = Math.max(0, Math.min(11, (Number(monthValue) || 7) - 1));
     const disabledAttr = disabled ? " disabled" : "";
 
     // Build header with selects
     let headerHtml = `<div class="calendar-header">`;
     headerHtml += `<button type="button" class="button ghost" aria-label="Previous month"${disabledAttr}><span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
     headerHtml += `<span class="calendar-selectors">`;
-    headerHtml += `<select class="calendar-month-select" aria-label="Month"${disabledAttr}>`;
-    months.forEach((m, i) => { headerHtml += `<option value="${i}"${i === 6 ? " selected" : ""}>${m}</option>`; });
+    headerHtml += `<select class="select calendar-header-select" name="month" aria-label="Month"${disabledAttr}>`;
+    months.forEach((m, i) => { headerHtml += `<option value="${i}"${i === selectedMonth ? " selected" : ""}>${m}</option>`; });
     headerHtml += `</select>`;
-    headerHtml += `<select class="calendar-year-select" aria-label="Year"${disabledAttr}>`;
-    for (let y = 2020; y <= 2030; y++) { headerHtml += `<option value="${y}"${y === 2026 ? " selected" : ""}>${y}</option>`; }
+    headerHtml += `<select class="select calendar-header-select" name="year" aria-label="Year"${disabledAttr}>`;
+    for (let y = 2020; y <= 2030; y++) { headerHtml += `<option value="${y}"${y === selectedYear ? " selected" : ""}>${y}</option>`; }
     headerHtml += `</select></span>`;
     headerHtml += `<button type="button" class="button ghost" aria-label="Next month"${disabledAttr}><span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
     headerHtml += `</div>`;
@@ -1084,7 +1088,9 @@
     }
     tbodyHtml += "</tbody>";
 
-    const html = `<div class="calendar">${headerHtml}<table class="calendar-table" role="grid" aria-label="${quoteAttr(month)}">${theadHtml}${tbodyHtml}</table></div>`;
+    const calendarClasses = ["calendar"];
+    if (hasContainer) calendarClasses.push("has-container");
+    const html = `<div class="${calendarClasses.join(" ")}">${headerHtml}<table class="calendar-table" role="grid" aria-label="${quoteAttr(month)}">${theadHtml}${tbodyHtml}</table></div>`;
 
     const wrapper = document.createElement("div");
     wrapper.innerHTML = html;

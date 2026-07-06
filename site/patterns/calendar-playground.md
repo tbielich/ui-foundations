@@ -45,6 +45,12 @@ playground:
         - hover
         - focus
     - kind: boolean
+      name: container
+      label: Container
+      valueType: boolean
+      query: true
+      default: true
+    - kind: boolean
       name: disabled
       label: Disabled
       valueType: boolean
