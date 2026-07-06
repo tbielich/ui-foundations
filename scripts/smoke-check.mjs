@@ -59,6 +59,32 @@ function ensureElementsBundle(minCount = 10) {
   }
 }
 
+function ensureCoreIndexIntegrity() {
+  const coreIndex = path.join(REPO_ROOT, "dist", "core", "index.css");
+  if (!fs.existsSync(coreIndex)) {
+    fail("Missing dist/core/index.css");
+  }
+
+  const content = fs.readFileSync(coreIndex, "utf8");
+  if (!content.includes("layer(tokens)")) {
+    fail("dist/core/index.css does not import any token files");
+  }
+
+  // Verify every referenced token CSS file actually exists
+  const importPattern = /@import\s+url\(["']([^"']+)["']\)/g;
+  const baseDir = path.dirname(coreIndex);
+  let match;
+  while ((match = importPattern.exec(content)) !== null) {
+    const importPath = match[1];
+    const resolved = path.resolve(baseDir, importPath);
+    if (!fs.existsSync(resolved)) {
+      fail(
+        `dist/core/index.css references missing file: ${importPath}`,
+      );
+    }
+  }
+}
+
 function run() {
   ensureFile("dist/main.css", { nonEmpty: true, mustInclude: ".button" });
   ensureFile("dist/tokens/tokens.yaml", {
@@ -77,6 +103,7 @@ function run() {
   });
   ensureTokenCssFiles();
   ensureElementsBundle();
+  ensureCoreIndexIntegrity();
 
   console.log("✅ Smoke checks passed");
 }
