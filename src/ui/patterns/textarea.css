@@ -28,7 +28,7 @@
   .textarea:focus-visible,
   .textarea.is-focus-visible {
     border-color: var(--textarea-border-color-focus);
-    outline: none;
+    outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 

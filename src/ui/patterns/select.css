@@ -155,7 +155,7 @@
   .select.is-focus-visible {
     background: var(--select-container-background-focus);
     border-color: var(--select-border-color-focus);
-    outline: none;
+    outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 

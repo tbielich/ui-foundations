@@ -37,7 +37,7 @@
   .link:focus-visible,
   .link.is-focus-visible {
     color: var(--link-text-color-hover);
-    outline: none;
+    outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
     border-radius: var(--size-radius-100);
   }
