@@ -4758,7 +4758,9 @@
     },
     "Padding Block SM": {
       "$type": "number",
-      "$value": 2,
+      "$value": {
+        "$ref": "Size/Spacing/050"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2579:7",
         "com.figma.scopes": [
@@ -4766,7 +4768,12 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-padding-block-sm)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Spacing/050",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     }
   },

@@ -230,6 +230,21 @@
             "WEB": "var(--size-spacing-000)"
           }
         }
+      },
+      "050": {
+        "$type": "number",
+        "$value": 2,
+        "$extensions": {
+          "com.figma.scopes": [
+            "GAP",
+            "EFFECT_FLOAT",
+            "PARAGRAPH_SPACING",
+            "PARAGRAPH_INDENT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-spacing-050)"
+          }
+        }
       }
     },
     "Radius": {
