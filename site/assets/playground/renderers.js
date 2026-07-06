@@ -1035,6 +1035,9 @@
   const renderVanillaCalendar = ({ props, meta }) => {
     const month = String(props.month || "2026-07");
     const selectedDate = String(props.selectedDate || "");
+    const rangeStart = Number(props.rangeStart || 0);
+    const rangeEnd = Number(props.rangeEnd || 0);
+    const hasRange = rangeStart > 0 && rangeEnd >= rangeStart;
     const todayDate = String(props.todayDate || "1");
     const previewState = String(meta.state || "default");
     const hasContainer = props.container !== false;
@@ -1073,10 +1076,13 @@
           if (previewState === "hover" && day === 15) classes.push("is-hover");
           if (previewState === "focus" && day === 15) classes.push("is-focus-visible");
           if (selectedDate === String(day)) classes.push("is-selected");
+          if (hasRange && day === rangeStart) classes.push("is-range-start");
+          if (hasRange && day > rangeStart && day < rangeEnd) classes.push("is-range-middle");
+          if (hasRange && day === rangeEnd) classes.push("is-range-end");
           if (todayDate === String(day)) classes.push("is-today");
           if (disabled) classes.push("is-disabled");
 
-          const selected = selectedDate === String(day) ? "true" : "false";
+          const selected = selectedDate === String(day) || (hasRange && day >= rangeStart && day <= rangeEnd) ? "true" : "false";
           const tabindex = day === 1 ? "0" : "-1";
           tbodyHtml += `<td><button type="button" class="${classes.join(" ")}" aria-selected="${selected}" tabindex="${tabindex}"${disabledAttr}>${day}</button></td>`;
           day++;

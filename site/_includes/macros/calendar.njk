@@ -14,7 +14,7 @@
 </select>
 {%- endmacro %}
 
-{% macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='') -%}
+{% macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='', rangeStart='', rangeEnd='') -%}
 {%- set calendarClasses = "calendar" -%}
 {%- if container -%}{%- set calendarClasses = calendarClasses + " has-container" -%}{%- endif -%}
 {%- if className -%}{%- set calendarClasses = calendarClasses + " " + className -%}{%- endif -%}
@@ -61,10 +61,13 @@
         {%- if state == "hover" and i == 15 -%}{%- set cellClasses = cellClasses + " is-hover" -%}{%- endif -%}
         {%- if state == "focus" and i == 15 -%}{%- set cellClasses = cellClasses + " is-focus-visible" -%}{%- endif -%}
         {%- if selectedDate and i == selectedDate | int -%}{%- set cellClasses = cellClasses + " is-selected" -%}{%- endif -%}
+        {%- if rangeStart and rangeEnd and i == rangeStart | int -%}{%- set cellClasses = cellClasses + " is-range-start" -%}{%- endif -%}
+        {%- if rangeStart and rangeEnd and i > rangeStart | int and i < rangeEnd | int -%}{%- set cellClasses = cellClasses + " is-range-middle" -%}{%- endif -%}
+        {%- if rangeStart and rangeEnd and i == rangeEnd | int -%}{%- set cellClasses = cellClasses + " is-range-end" -%}{%- endif -%}
         {%- if todayDate and i == todayDate | int -%}{%- set cellClasses = cellClasses + " is-today" -%}{%- endif -%}
         {%- if disabled -%}{%- set cellClasses = cellClasses + " is-disabled" -%}{%- endif -%}
         <td>
-          <button type="button" class="{{ cellClasses }}"{{ " disabled" if disabled }} aria-selected="{{ 'true' if selectedDate and i == selectedDate | int else 'false' }}" tabindex="{{ 0 if i == 1 else -1 }}">{{ i }}</button>
+          <button type="button" class="{{ cellClasses }}"{{ " disabled" if disabled }} aria-selected="{{ 'true' if (selectedDate and i == selectedDate | int) or (rangeStart and rangeEnd and i >= rangeStart | int and i <= rangeEnd | int) else 'false' }}" tabindex="{{ 0 if i == 1 else -1 }}">{{ i }}</button>
         </td>
         {%- else %}
         <td></td>

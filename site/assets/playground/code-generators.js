@@ -230,6 +230,8 @@
     var parts = [];
     if (p.month && p.month !== "2026-07") parts.push('month="' + quoteAttr(p.month) + '"');
     if (p.selectedDate) parts.push('selectedDate="' + quoteAttr(p.selectedDate) + '"');
+    if (p.rangeStart) parts.push('rangeStart="' + quoteAttr(p.rangeStart) + '"');
+    if (p.rangeEnd) parts.push('rangeEnd="' + quoteAttr(p.rangeEnd) + '"');
     if (p.todayDate && p.todayDate !== "1") parts.push('todayDate="' + quoteAttr(p.todayDate) + '"');
     if (state.meta.state && state.meta.state !== "default") parts.push('state="' + quoteAttr(state.meta.state) + '"');
     if (p.disabled === true) parts.push("disabled=true");

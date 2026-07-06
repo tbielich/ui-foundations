@@ -31,6 +31,16 @@ playground:
       query: true
       default: ""
     - kind: text
+      name: rangeStart
+      label: Range start
+      query: true
+      default: ""
+    - kind: text
+      name: rangeEnd
+      label: Range end
+      query: true
+      default: ""
+    - kind: text
       name: todayDate
       label: Today
       query: true
