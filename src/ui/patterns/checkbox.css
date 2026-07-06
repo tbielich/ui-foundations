@@ -26,7 +26,7 @@
     border-style: solid;
     border-width: var(--checkbox-border-size-default);
     border-color: var(--checkbox-border-color-default);
-    border-radius: var(--corner-checkbox-radius);
+    border-radius: var(--brand-corner-input);
     background: var(--checkbox-container-background-default);
     color: var(--checkbox-text-color-active);
     cursor: pointer;

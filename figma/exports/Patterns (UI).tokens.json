@@ -46,7 +46,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Button Radius"
+          "$ref": "Brand/Corner/Button"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:3:14",
@@ -57,9 +57,8 @@
             "WEB": "var(--button-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Button Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Button",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1679,7 +1678,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Input Radius"
+          "$ref": "Brand/Corner/Input"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2028:310",
@@ -1690,9 +1689,8 @@
             "WEB": "var(--input-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Input Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Input",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2445,7 +2443,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Input Radius"
+          "$ref": "Brand/Corner/Input"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2773:45",
@@ -2456,9 +2454,8 @@
             "WEB": "var(--select-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Input Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Input",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2953,16 +2950,15 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Content Radius"
+          "$ref": "Size/Radius/300"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--textarea-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Content Radius",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Size/Radius/300",
+            "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true
         }
@@ -4444,7 +4440,7 @@
     "Border Radius": {
       "$type": "number",
       "$value": {
-        "$ref": "Corner/Pill Radius"
+        "$ref": "Size/Radius/full"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2385:1186",
@@ -4455,9 +4451,8 @@
           "WEB": "var(--badge-border-radius)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Corner/Pill Radius",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Size/Radius/full",
+          "targetVariableSetName": "Core (Primitives)"
         },
         "com.figma.isOverride": true
       }
@@ -4818,16 +4813,15 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Content Radius"
+          "$ref": "Size/Radius/300"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--tooltip-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Content Radius",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Size/Radius/300",
+            "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true
         }
@@ -4919,7 +4913,7 @@
       "Border Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Modal Radius"
+          "$ref": "Brand/Corner/Modal"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:77:79",
@@ -4930,9 +4924,8 @@
             "WEB": "var(--modal-surface-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Modal Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Modal",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -4977,16 +4970,15 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Container Radius"
+          "$ref": "Size/Radius/400"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--accordion-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Container Radius",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Size/Radius/400",
+            "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true
         }
@@ -5322,7 +5314,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Form Radius"
+          "$ref": "Brand/Corner/Card"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2070:531",
@@ -5333,9 +5325,8 @@
             "WEB": "var(--form-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Form Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Card",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5538,16 +5529,15 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Pill Radius"
+          "$ref": "Size/Radius/full"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--avatar-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Pill Radius",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Size/Radius/full",
+            "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true
         }
@@ -6135,194 +6125,6 @@
           },
           "com.figma.isOverride": true
         }
-      }
-    }
-  },
-  "Corner": {
-    "Button Radius": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Brand/Corner/Button"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:77:80",
-        "com.figma.scopes": [],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--corner-button-radius)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableId": "VariableID:2006:215",
-          "targetVariableName": "Brand/Corner/Button",
-          "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Card Radius": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Brand/Corner/Card"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:77:81",
-        "com.figma.scopes": [],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--corner-card-radius)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableId": "VariableID:2006:216",
-          "targetVariableName": "Brand/Corner/Card",
-          "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Modal Radius": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Brand/Corner/Modal"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:77:82",
-        "com.figma.scopes": [],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--corner-modal-radius)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableId": "VariableID:2006:217",
-          "targetVariableName": "Brand/Corner/Modal",
-          "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Form Radius": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Brand/Corner/Card"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2070:527",
-        "com.figma.scopes": [],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--corner-form-radius)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableId": "VariableID:2006:216",
-          "targetVariableName": "Brand/Corner/Card",
-          "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Checkbox Radius": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Brand/Corner/Input"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2142:566",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--corner-checkbox-radius)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableId": "VariableID:2028:335",
-          "targetVariableName": "Brand/Corner/Input",
-          "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Input Radius": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Brand/Corner/Input"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2773:100",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--corner-input-radius)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableName": "Brand/Corner/Input",
-          "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Pill Radius": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Size/Radius/full"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2773:101",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--corner-pill-radius)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableName": "Size/Radius/full",
-          "targetVariableSetId": "VariableCollectionId:1:200",
-          "targetVariableSetName": "Core (Primitives)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Content Radius": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Size/Radius/300"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2773:102",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--corner-content-radius)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableName": "Size/Radius/300",
-          "targetVariableSetId": "VariableCollectionId:1:200",
-          "targetVariableSetName": "Core (Primitives)"
-        },
-        "com.figma.isOverride": true
-      }
-    },
-    "Container Radius": {
-      "$type": "number",
-      "$value": {
-        "$ref": "Size/Radius/400"
-      },
-      "$extensions": {
-        "com.figma.variableId": "VariableID:2773:103",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
-        "com.figma.codeSyntax": {
-          "WEB": "var(--corner-container-radius)"
-        },
-        "com.figma.aliasData": {
-          "targetVariableName": "Size/Radius/400",
-          "targetVariableSetId": "VariableCollectionId:1:200",
-          "targetVariableSetName": "Core (Primitives)"
-        },
-        "com.figma.isOverride": true
       }
     }
   },
