@@ -36,6 +36,18 @@
     gap: var(--calendar-header-gap);
   }
 
+  /* Header selects: use Select pattern with calendar-specific overrides (no border, transparent) */
+  .calendar-header .select {
+    border-color: transparent;
+    background: transparent;
+    min-block-size: auto;
+    padding-block: 0;
+  }
+
+  .calendar-header .select:hover {
+    background: var(--calendar-cell-background-hover);
+  }
+
   /* ─── Weekday Header ─────────────────────────────────────────── */
 
   .calendar-table {
