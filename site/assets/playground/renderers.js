@@ -1107,23 +1107,25 @@
     const rootClasses = ["input-field", "date"];
     if (isOpen) rootClasses.push("is-open");
 
-    let html = `<div class="${rootClasses.join(" ")}">`;
+    let html = `<div class="form-field date-picker-field">`;
+    html += `<label class="field-label" id="date-picker-playground-label" for="date-picker-playground-day"><span class="label-content"><span class="label-content-text">Travel date</span></span></label>`;
+    html += `<div class="${rootClasses.join(" ")}" role="group" aria-labelledby="date-picker-playground-label">`;
     html += `<div class="date-segments">`;
-    html += `<input class="date-segment day" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day" value="${quoteAttr(day)}"${disabledAttr}>`;
+    html += `<input class="date-segment day" id="date-picker-playground-day" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day" value="${quoteAttr(day)}"${disabledAttr}>`;
     html += `<span class="date-separator">/</span>`;
-    html += `<input class="date-segment month" type="text" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Month" value="${quoteAttr(month)}"${disabledAttr}>`;
+    html += `<input class="date-segment month" id="date-picker-playground-month" type="text" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Month" value="${quoteAttr(month)}"${disabledAttr}>`;
     html += `<span class="date-separator">/</span>`;
-    html += `<input class="date-segment year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year" value="${quoteAttr(year)}"${disabledAttr}>`;
+    html += `<input class="date-segment year" id="date-picker-playground-year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year" value="${quoteAttr(year)}"${disabledAttr}>`;
     html += `</div>`;
     html += `<span class="input-field-control">`;
-    html += `<button type="button" class="button ghost" aria-label="Open calendar" aria-expanded="${isOpen}"${disabledAttr}>`;
+    html += `<button type="button" class="button ghost" aria-label="Open calendar" aria-expanded="${isOpen}" aria-haspopup="grid" aria-controls="date-picker-playground-calendar"${disabledAttr}>`;
     html += `<span class="icon" style="--icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>`;
     html += `</button></span>`;
-    html += `<div class="calendar"><div class="calendar-header">`;
+    html += `<div class="calendar" id="date-picker-playground-calendar"><div class="calendar-header">`;
     html += `<button type="button" class="button ghost" aria-label="Previous month"><span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
-    html += `<span class="calendar-selectors"><select class="calendar-month-select" aria-label="Month">`;
+    html += `<span class="calendar-selectors"><select class="select calendar-header-select" name="month" aria-label="Month">`;
     ["January","February","March","April","May","June","July","August","September","October","November","December"].forEach((m, i) => { html += `<option value="${i}"${i === 6 ? " selected" : ""}>${m}</option>`; });
-    html += `</select><select class="calendar-year-select" aria-label="Year">`;
+    html += `</select><select class="select calendar-header-select" name="year" aria-label="Year">`;
     for (let y = 2020; y <= 2030; y++) { html += `<option value="${y}"${y === 2026 ? " selected" : ""}>${y}</option>`; }
     html += `</select></span>`;
     html += `<button type="button" class="button ghost" aria-label="Next month"><span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
@@ -1131,8 +1133,8 @@
     ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach((d) => { html += `<th scope="col">${d}</th>`; });
     html += `</tr></thead><tbody>`;
     let d = 1;
-    for (let w = 0; w < 5; w++) { html += "<tr>"; for (let dow = 0; dow < 7; dow++) { if (d <= 31) { html += `<td><button type="button" class="button ghost calendar-cell" tabindex="-1">${d}</button></td>`; d++; } else { html += "<td></td>"; } } html += "</tr>"; }
-    html += `</tbody></table></div></div>`;
+    for (let w = 0; w < 5; w++) { html += "<tr>"; for (let dow = 0; dow < 7; dow++) { if (d <= 31) { html += `<td><button type="button" class="calendar-cell" tabindex="-1">${d}</button></td>`; d++; } else { html += "<td></td>"; } } html += "</tr>"; }
+    html += `</tbody></table></div></div></div>`;
 
     const wrapper = document.createElement("div");
     wrapper.innerHTML = html;

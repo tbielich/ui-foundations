@@ -1,0 +1,142 @@
+{
+  "Font Size": {
+    "lg": {
+      "$type": "number",
+      "$value": 20,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2986:5526",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--fluid-font-size-lg)"
+        },
+        "com.figma.modeValues": {
+          "Min": 20,
+          "Max": 36
+        }
+      }
+    },
+    "xl": {
+      "$type": "number",
+      "$value": 24,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2986:5527",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--fluid-font-size-xl)"
+        },
+        "com.figma.modeValues": {
+          "Min": 24,
+          "Max": 40
+        }
+      }
+    },
+    "xxl": {
+      "$type": "number",
+      "$value": 32,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2986:5528",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--fluid-font-size-xxl)"
+        },
+        "com.figma.modeValues": {
+          "Min": 32,
+          "Max": 48
+        }
+      }
+    },
+    "xxxl": {
+      "$type": "number",
+      "$value": 40,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2986:5529",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--fluid-font-size-xxxl)"
+        },
+        "com.figma.modeValues": {
+          "Min": 40,
+          "Max": 56
+        }
+      }
+    }
+  },
+  "Line Height": {
+    "lg": {
+      "$type": "number",
+      "$value": 28,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2986:5530",
+        "com.figma.scopes": [
+          "LINE_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--fluid-line-height-lg)"
+        },
+        "com.figma.modeValues": {
+          "Min": 28,
+          "Max": 44
+        }
+      }
+    },
+    "xl": {
+      "$type": "number",
+      "$value": 32,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2986:5531",
+        "com.figma.scopes": [
+          "LINE_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--fluid-line-height-xl)"
+        },
+        "com.figma.modeValues": {
+          "Min": 32,
+          "Max": 48
+        }
+      }
+    },
+    "xxl": {
+      "$type": "number",
+      "$value": 44,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2986:5532",
+        "com.figma.scopes": [
+          "LINE_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--fluid-line-height-xxl)"
+        },
+        "com.figma.modeValues": {
+          "Min": 44,
+          "Max": 60
+        }
+      }
+    },
+    "xxxl": {
+      "$type": "number",
+      "$value": 56,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2986:5533",
+        "com.figma.scopes": [
+          "LINE_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--fluid-line-height-xxxl)"
+        },
+        "com.figma.modeValues": {
+          "Min": 56,
+          "Max": 72
+        }
+      }
+    }
+  }
+}

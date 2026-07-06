@@ -121,7 +121,7 @@ async function buildExports() {
 async function buildTokenNode(variable, defaultValue, modeValues, collection) {
   var $type = ({ COLOR:'color', FLOAT:'number', STRING:'string', BOOLEAN:'boolean' })[variable.resolvedType] || 'string';
   var $value = await formatExportValue(variable.resolvedType, defaultValue);
-  var ext = { 'com.figma.variableId': variable.id, 'com.figma.scopes': variable.scopes || [] };
+  var ext = { 'com.figma.variableId': variable.id, 'com.figma.scopes': variable.scopes || [], 'com.figma.hiddenFromPublishing': variable.hiddenFromPublishing === true };
   if (variable.codeSyntax && variable.codeSyntax.WEB) ext['com.figma.codeSyntax'] = { WEB: variable.codeSyntax.WEB };
   if (defaultValue && typeof defaultValue === 'object' && defaultValue.type === 'VARIABLE_ALIAS') {
     var ref = await figma.variables.getVariableByIdAsync(defaultValue.id);

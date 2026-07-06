@@ -102,6 +102,7 @@ function buildTokenEntry(v) {
   const extensions = {
     "com.figma.variableId": v.id,
     "com.figma.scopes": v.scopes || ["ALL_SCOPES"],
+    "com.figma.hiddenFromPublishing": v.hiddenFromPublishing === true,
     "com.figma.codeSyntax": { WEB: v.webSyntax || "" },
   };
 

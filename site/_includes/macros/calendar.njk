@@ -1,31 +1,46 @@
 {# ─── Calendar Macro ────────────────────────────────────────────── #}
 
-{% macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, className='') -%}
+{% macro calendarIcon(name) -%}
+<span class="icon" style="--icon-src: url('/assets/icons/{{ name }}.svg');" aria-hidden="true"></span>
+{%- endmacro %}
+
+{% macro calendarSelect(options=[], value='', disabled=false, className='', name='') -%}
+{%- set classes = "select" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<select class="{{ classes }}"{% if name %} name="{{ name }}"{% endif %}{% if disabled %} disabled{% endif %}>
+  {%- for opt in options %}
+  <option value="{{ opt.value }}"{% if opt.value == value %} selected{% endif %}>{{ opt.label }}</option>
+  {%- endfor %}
+</select>
+{%- endmacro %}
+
+{% macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='') -%}
 {%- set calendarClasses = "calendar" -%}
+{%- if container -%}{%- set calendarClasses = calendarClasses + " has-container" -%}{%- endif -%}
 {%- if className -%}{%- set calendarClasses = calendarClasses + " " + className -%}{%- endif -%}
 
 {%- set weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] -%}
-{%- set months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] -%}
+{%- set monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] -%}
+{%- set monthOptions = [] -%}
+{%- for m in monthNames -%}
+  {%- set monthOptions = (monthOptions.push({value: loop.index0 | string, label: m}), monthOptions) -%}
+{%- endfor -%}
+{%- set yearOptions = [] -%}
+{%- for y in range(2020, 2031) -%}
+  {%- set yearOptions = (yearOptions.push({value: y | string, label: y | string}), yearOptions) -%}
+{%- endfor -%}
 
-<div class="{{ calendarClasses }}">
+<div class="{{ calendarClasses }}"{% if id %} id="{{ id }}"{% endif %}>
   <div class="calendar-header">
     <button type="button" class="button ghost" aria-label="Previous month"{{ " disabled" if disabled }}>
-      <span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span>
+      {{ calendarIcon('chevron--left') }}
     </button>
     <span class="calendar-selectors">
-      <select class="calendar-month-select" aria-label="Month"{{ " disabled" if disabled }}>
-        {%- for m in months %}
-        <option value="{{ loop.index0 }}"{{ " selected" if loop.index == 7 }}>{{ m }}</option>
-        {%- endfor %}
-      </select>
-      <select class="calendar-year-select" aria-label="Year"{{ " disabled" if disabled }}>
-        {%- for y in range(2020, 2031) %}
-        <option value="{{ y }}"{{ " selected" if y == 2026 }}>{{ y }}</option>
-        {%- endfor %}
-      </select>
+      {{ calendarSelect(options=monthOptions, value='6', disabled=disabled, className='calendar-header-select', name='month') }}
+      {{ calendarSelect(options=yearOptions, value='2026', disabled=disabled, className='calendar-header-select', name='year') }}
     </span>
     <button type="button" class="button ghost" aria-label="Next month"{{ " disabled" if disabled }}>
-      <span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span>
+      {{ calendarIcon('chevron') }}
     </button>
   </div>
   <table class="calendar-table" role="grid" aria-label="{{ month }}">
@@ -42,7 +57,7 @@
         {%- for dow in range(0, 7) %}
         {%- set i = week * 7 + dow + 1 -%}
         {%- if i <= 31 %}
-        {%- set cellClasses = "button ghost calendar-cell" -%}
+        {%- set cellClasses = "calendar-cell" -%}
         {%- if state == "hover" and i == 15 -%}{%- set cellClasses = cellClasses + " is-hover" -%}{%- endif -%}
         {%- if state == "focus" and i == 15 -%}{%- set cellClasses = cellClasses + " is-focus-visible" -%}{%- endif -%}
         {%- if selectedDate and i == selectedDate | int -%}{%- set cellClasses = cellClasses + " is-selected" -%}{%- endif -%}
@@ -65,32 +80,33 @@
 
 {# ─── Range Calendar (two months side by side) ─────────────────── #}
 
-{% macro rangeCalendar(month='2026-07', disabled=false, className='') -%}
+{% macro rangeCalendar(month='2026-07', disabled=false, container=true, className='', id='') -%}
 {%- set calendarClasses = "calendar range-view" -%}
+{%- if container -%}{%- set calendarClasses = calendarClasses + " has-container" -%}{%- endif -%}
 {%- if className -%}{%- set calendarClasses = calendarClasses + " " + className -%}{%- endif -%}
 
 {%- set weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] -%}
-{%- set months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] -%}
+{%- set monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] -%}
+{%- set monthOptions = [] -%}
+{%- for m in monthNames -%}
+  {%- set monthOptions = (monthOptions.push({value: loop.index0 | string, label: m}), monthOptions) -%}
+{%- endfor -%}
+{%- set yearOptions = [] -%}
+{%- for y in range(2020, 2031) -%}
+  {%- set yearOptions = (yearOptions.push({value: y | string, label: y | string}), yearOptions) -%}
+{%- endfor -%}
 
-<div class="{{ calendarClasses }}">
+<div class="{{ calendarClasses }}"{% if id %} id="{{ id }}"{% endif %}>
   <div class="calendar-header">
     <button type="button" class="button ghost" aria-label="Previous month"{{ " disabled" if disabled }}>
-      <span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span>
+      {{ calendarIcon('chevron--left') }}
     </button>
     <span class="calendar-selectors">
-      <select class="calendar-month-select" aria-label="Month"{{ " disabled" if disabled }}>
-        {%- for m in months %}
-        <option value="{{ loop.index0 }}"{{ " selected" if loop.index == 7 }}>{{ m }}</option>
-        {%- endfor %}
-      </select>
-      <select class="calendar-year-select" aria-label="Year"{{ " disabled" if disabled }}>
-        {%- for y in range(2020, 2031) %}
-        <option value="{{ y }}"{{ " selected" if y == 2026 }}>{{ y }}</option>
-        {%- endfor %}
-      </select>
+      {{ calendarSelect(options=monthOptions, value='6', disabled=disabled, className='calendar-header-select', name='month') }}
+      {{ calendarSelect(options=yearOptions, value='2026', disabled=disabled, className='calendar-header-select', name='year') }}
     </span>
     <button type="button" class="button ghost" aria-label="Next month"{{ " disabled" if disabled }}>
-      <span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span>
+      {{ calendarIcon('chevron') }}
     </button>
   </div>
 
@@ -101,7 +117,7 @@
       <thead><tr>{%- for day in weekdays %}<th scope="col" abbr="{{ day }}">{{ day }}</th>{%- endfor %}</tr></thead>
       <tbody>
         {%- for week in range(0, 5) %}
-        <tr>{%- for dow in range(0, 7) %}{%- set i = week * 7 + dow + 1 -%}{%- if i <= 31 %}<td><button type="button" class="button ghost calendar-cell" aria-selected="false" tabindex="{{ 0 if i == 1 else -1 }}">{{ i }}</button></td>{%- else %}<td></td>{%- endif %}{%- endfor %}</tr>
+        <tr>{%- for dow in range(0, 7) %}{%- set i = week * 7 + dow + 1 -%}{%- if i <= 31 %}<td><button type="button" class="calendar-cell" aria-selected="false" tabindex="{{ 0 if i == 1 else -1 }}">{{ i }}</button></td>{%- else %}<td></td>{%- endif %}{%- endfor %}</tr>
         {%- endfor %}
       </tbody>
     </table>
@@ -114,7 +130,7 @@
       <thead><tr>{%- for day in weekdays %}<th scope="col" abbr="{{ day }}">{{ day }}</th>{%- endfor %}</tr></thead>
       <tbody>
         {%- for week in range(0, 5) %}
-        <tr>{%- for dow in range(0, 7) %}{%- set i = week * 7 + dow + 1 -%}{%- if i <= 31 %}<td><button type="button" class="button ghost calendar-cell" aria-selected="false" tabindex="-1">{{ i }}</button></td>{%- else %}<td></td>{%- endif %}{%- endfor %}</tr>
+        <tr>{%- for dow in range(0, 7) %}{%- set i = week * 7 + dow + 1 -%}{%- if i <= 31 %}<td><button type="button" class="calendar-cell" aria-selected="false" tabindex="-1">{{ i }}</button></td>{%- else %}<td></td>{%- endif %}{%- endfor %}</tr>
         {%- endfor %}
       </tbody>
     </table>

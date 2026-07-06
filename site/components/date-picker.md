@@ -25,20 +25,27 @@ playgroundLabel: Open Date Picker Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      <div class="input-field date" id="date-input-demo">
-        <div class="date-segments">
-          <input class="date-segment day" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day">
-          <span class="date-separator">/</span>
-          <input class="date-segment month" type="text" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Month">
-          <span class="date-separator">/</span>
-          <input class="date-segment year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year">
+      <div class="form-field date-picker-field">
+        <label class="field-label" id="date-input-demo-label" for="date-input-demo-day">
+          <span class="label-content">
+            <span class="label-content-text">Travel date</span>
+          </span>
+        </label>
+        <div class="input-field date" id="date-input-demo" role="group" aria-labelledby="date-input-demo-label">
+          <div class="date-segments">
+            <input class="date-segment day" id="date-input-demo-day" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day">
+            <span class="date-separator">/</span>
+            <input class="date-segment month" id="date-input-demo-month" type="text" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Month">
+            <span class="date-separator">/</span>
+            <input class="date-segment year" id="date-input-demo-year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year">
+          </div>
+          <span class="input-field-control">
+            <button type="button" class="button ghost" aria-label="Open calendar" aria-expanded="false" aria-haspopup="grid" aria-controls="date-input-demo-calendar">
+              <span class="icon" style="--icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>
+            </button>
+          </span>
+          {{ ui.calendar("July 2026", todayDate="1", id="date-input-demo-calendar") }}
         </div>
-        <span class="input-field-control">
-          <button type="button" class="button ghost" aria-label="Open calendar" aria-expanded="false">
-            <span class="icon" style="--icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>
-          </button>
-        </span>
-        {{ ui.calendar("July 2026", todayDate="1") }}
       </div>
     </div>
   </div>
@@ -55,19 +62,21 @@ Together they form a component that can be opened, navigated, and dismissed — 
 ## Composition
 
 ```
-.input-field.date
-├── .date-segments
-│   ├── input.date-segment.day [maxlength=2, inputmode=numeric, aria-label="Day"]
-│   ├── span.date-separator  "/"
-│   ├── input.date-segment.month [maxlength=2, inputmode=numeric, aria-label="Month"]
-│   ├── span.date-separator  "/"
-│   └── input.date-segment.year [maxlength=4, inputmode=numeric, aria-label="Year"]
-├── .input-field-control
-│   └── button.button.ghost [aria-label="Open calendar", aria-expanded]
-│       └── span.icon (calendar icon)
-└── .calendar [hidden until opened]
-    ├── .calendar-header
-    └── table.calendar-table [role="grid"]
+.form-field.date-picker-field
+├── label.field-label [for="date-day"]
+└── .input-field.date [role="group", aria-labelledby]
+    ├── .date-segments
+    │   ├── input.date-segment.day [maxlength=2, inputmode=numeric, aria-label="Day"]
+    │   ├── span.date-separator  "/"
+    │   ├── input.date-segment.month [maxlength=2, inputmode=numeric, aria-label="Month"]
+    │   ├── span.date-separator  "/"
+    │   └── input.date-segment.year [maxlength=4, aria-label="Year"]
+    ├── .input-field-control
+    │   └── button.button.ghost [aria-label="Open calendar", aria-expanded, aria-controls]
+    │       └── span.icon (calendar icon)
+    └── .calendar [hidden until opened]
+        ├── .calendar-header
+        └── table.calendar-table [role="grid"]
 ```
 
 ## Patterns Used
@@ -89,8 +98,11 @@ Together they form a component that can be opened, navigated, and dismissed — 
 | Backspace on empty segment | Moves focus to previous segment |
 | Arrow Left at start of segment | Moves to previous segment |
 | Arrow Right at end of segment | Moves to next segment |
+| Click label | Focuses Day and opens the calendar |
+| Click field surface | Focuses the nearest segment and opens the calendar |
 | Click calendar icon | Open/close the calendar dropdown |
 | Click a day cell | Fill segments, close calendar |
+| Alt + Arrow Down in a segment | Opens the calendar and moves focus to the grid |
 | Escape (while calendar open) | Close calendar without selecting |
 | Tab | Moves between segments, then to calendar trigger |
 
@@ -106,9 +118,11 @@ Together they form a component that can be opened, navigated, and dismissed — 
 
 ## Accessibility
 
+- The visible label is associated with the Day segment and names the grouped field
 - Calendar trigger button has `aria-label="Open calendar"`
-- Calendar has `aria-expanded` on the trigger
-- Focus moves into the calendar on open, returns to trigger on close
+- Calendar state is exposed with `aria-expanded` and `aria-controls` on the trigger
+- Pointer-open from the label or field keeps focus in the editable segments
+- Button/keyboard-open can move focus into the calendar grid
 - All day cells have `aria-label` with full date
 - Escape closes without selecting
 - Works entirely via keyboard (no mouse required)
@@ -159,6 +173,8 @@ The Date Picker requires `src/ui/components/date-input.js` for:
     var segments = root.querySelectorAll('.date-segment');
     var trigger = root.querySelector("[aria-label='Open calendar']");
     var calendar = root.querySelector('.calendar');
+    var field = root.closest('.date-picker-field');
+    var label = field && field.querySelector('.field-label');
     var isOpen = false;
 
     // Auto-tab between segments
@@ -179,6 +195,11 @@ The Date Picker requires `src/ui/components/date-input.js` for:
           segments[i + 1].focus();
         }
         if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          if (e.altKey && e.key === 'ArrowDown') {
+            e.preventDefault();
+            open({ focusCalendar: true });
+            return;
+          }
           e.preventDefault();
           var delta = e.key === 'ArrowUp' ? 1 : -1;
           var current = parseInt(seg.value, 10) || 0;
@@ -197,12 +218,22 @@ The Date Picker requires `src/ui/components/date-input.js` for:
     });
 
     // Calendar open/close
-    function open() {
+    function isDisabled() {
+      return trigger && trigger.disabled;
+    }
+    function focusFirstSegment() {
+      if (segments[0]) segments[0].focus();
+    }
+    function open(options) {
+      if (isDisabled()) return;
+      options = options || {};
       isOpen = true;
       root.classList.add('is-open');
       if (trigger) trigger.setAttribute('aria-expanded', 'true');
-      var first = calendar && calendar.querySelector('[tabindex="0"]');
-      if (first) first.focus();
+      if (options.focusCalendar) {
+        var first = calendar && calendar.querySelector('[tabindex="0"]');
+        if (first) first.focus();
+      }
     }
     function close() {
       isOpen = false;
@@ -213,16 +244,34 @@ The Date Picker requires `src/ui/components/date-input.js` for:
     if (trigger) {
       trigger.addEventListener('click', function(e) {
         e.preventDefault();
-        if (isOpen) close(); else open();
+        if (isOpen) close(); else open({ focusCalendar: true });
       });
     }
+
+    if (label) {
+      label.addEventListener('click', function() {
+        if (isDisabled()) return;
+        focusFirstSegment();
+        open({ focusCalendar: false });
+      });
+    }
+
+    root.addEventListener('pointerdown', function(e) {
+      if (trigger && trigger.contains(e.target)) return;
+      if (calendar && calendar.contains(e.target)) return;
+      open({ focusCalendar: false });
+      if (!e.target.closest('.date-segment')) {
+        focusFirstSegment();
+      }
+    });
 
     root.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && isOpen) { e.preventDefault(); close(); if (trigger) trigger.focus(); }
     });
 
     document.addEventListener('click', function(e) {
-      if (isOpen && !root.contains(e.target)) close();
+      var containsTarget = field ? field.contains(e.target) : root.contains(e.target);
+      if (isOpen && !containsTarget) close();
     });
 
     // Cell selection → fill segments
@@ -231,8 +280,8 @@ The Date Picker requires `src/ui/components/date-input.js` for:
       var currentYear = 2026, currentMonth = 6;
       var prevBtn = calendar.querySelector("[aria-label='Previous month']");
       var nextBtn = calendar.querySelector("[aria-label='Next month']");
-      var monthSelect = calendar.querySelector('.calendar-month-select');
-      var yearSelect = calendar.querySelector('.calendar-year-select');
+      var monthSelect = calendar.querySelector('[name="month"]');
+      var yearSelect = calendar.querySelector('[name="year"]');
 
       function rebuildGrid() {
         var tbody = calendar.querySelector('tbody');
@@ -259,7 +308,7 @@ The Date Picker requires `src/ui/components/date-input.js` for:
               html += '<td></td>';
             } else if (day <= daysInMonth) {
               started = true;
-              var classes = ['button', 'ghost', 'calendar-cell'];
+              var classes = ['calendar-cell'];
               var d = new Date(currentYear, currentMonth, day);
               if (d.toDateString() === today.toDateString()) classes.push('is-today');
               var tabindex = (day === 1) ? '0' : '-1';

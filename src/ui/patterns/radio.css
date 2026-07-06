@@ -45,7 +45,6 @@
   .radio.is-checked {
     border-color: var(--radio-border-color-active);
     background: var(--radio-container-background-default);
-    color: var(--radio-text-color-active);
   }
 
   .radio:checked::after,
@@ -60,7 +59,6 @@
     background:
       linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
       var(--radio-container-background-hover);
-    color: var(--radio-text-color-hover);
     border-color: var(--radio-border-color-hover);
     border-width: var(--radio-border-size-hover);
   }
