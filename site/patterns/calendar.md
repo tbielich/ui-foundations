@@ -67,39 +67,97 @@ The Calendar component enables date selection in forms, filters, and booking flo
 
 - Uses `role="grid"` for the day grid
 - Each cell has an `aria-label` with the full date (e.g. "15 July 2026")
-- Month changes announce via `aria-live="polite"`
 - Focus management follows roving tabindex pattern
 - Minimum 44×44px touch target per cell
 - Contrast validated for all states and modes
 
-## Anatomy
+<h2 id="anatomy">Anatomy</h2>
 
-```
-.calendar
-├── .calendar-header
-│   ├── button.calendar-nav-prev
-│   ├── span.calendar-title [aria-live="polite"]
-│   └── button.calendar-nav-next
-└── table.calendar-table [role="grid"]
-    ├── thead
-    │   └── tr
-    │       └── th[scope="col"] (×7)
-    └── tbody
-        └── tr (×5–6 weeks)
-            └── td
-                └── button.calendar-cell [aria-selected, aria-label]
-```
+<div class="docs-anatomy">
+  <div class="docs-anatomy-preview">
+    <div class="docs-anatomy-subject" style="inline-size: fit-content;">
+      <span class="docs-anatomy-outline"></span>
+      <span class="docs-anatomy-callout" data-dir="top" style="left: 50%; transform: translateX(-50%);">
+        <span class="docs-anatomy-badge">1</span>
+        <span class="docs-anatomy-callout-line"></span>
+      </span>
+      <span class="docs-anatomy-callout" data-dir="left" style="top: 13%; transform: translateY(-50%);">
+        <span class="docs-anatomy-badge">2</span>
+        <span class="docs-anatomy-callout-line"></span>
+      </span>
+      <span class="docs-anatomy-callout" data-dir="right" style="top: 32%; transform: translateY(-50%);">
+        <span class="docs-anatomy-callout-line"></span>
+        <span class="docs-anatomy-badge">3</span>
+      </span>
+      <span class="docs-anatomy-callout" data-dir="bottom" style="left: 50%; transform: translateX(-50%);">
+        <span class="docs-anatomy-callout-line"></span>
+        <span class="docs-anatomy-badge">4</span>
+      </span>
+      {{ cal.calendar("July 2026", rangeStart="12", rangeEnd="18", todayDate="1") }}
+    </div>
+  </div>
+  <ol class="docs-anatomy-footnotes">
+    <li><span class="docs-anatomy-badge-inline">1</span> Calendar container — optional bordered surface added with <code>.has-container</code></li>
+    <li><span class="docs-anatomy-badge-inline">2</span> Header — previous/next actions and month/year selects</li>
+    <li><span class="docs-anatomy-badge-inline">3</span> Weekday row — column labels for the grid</li>
+    <li><span class="docs-anatomy-badge-inline">4</span> Day cell — selectable date button with selected, today, disabled, and range states</li>
+  </ol>
+</div>
+
+## Options
+
+| Option | Description |
+|--------|-------------|
+| `container` | Adds the bordered calendar surface with padding and background. Use `false` when another component already provides the surface. |
+| `selectedDate` | Marks one day as selected. |
+| `rangeStart` / `rangeEnd` | Marks a continuous range with start, middle, and end cell states. |
+| `todayDate` | Marks the current day with the today indicator. |
+| `state` | Preview state for documentation examples: `default`, `hover`, or `focus`. |
+| `disabled` | Disables all day cells and header controls. |
+
+## Variants
+
+<div class="docs-states-grid" style="--docs-states-cols: 2">
+  <div class="docs-states-grid-item">
+    <div class="docs-states-grid-item-preview">{{ cal.calendar("July 2026", selectedDate="15", todayDate="1") }}</div>
+    <span class="docs-states-grid-item-label">Container</span>
+  </div>
+  <div class="docs-states-grid-item">
+    <div class="docs-states-grid-item-preview">{{ cal.calendar("July 2026", selectedDate="15", todayDate="1", container=false) }}</div>
+    <span class="docs-states-grid-item-label">No container</span>
+  </div>
+  <div class="docs-states-grid-item">
+    <div class="docs-states-grid-item-preview">{{ cal.calendar("July 2026", rangeStart="12", rangeEnd="18", todayDate="1") }}</div>
+    <span class="docs-states-grid-item-label">Range</span>
+  </div>
+  <div class="docs-states-grid-item">
+    <div class="docs-states-grid-item-preview">{{ cal.calendar("July 2026", selectedDate="15", todayDate="1", disabled=true) }}</div>
+    <span class="docs-states-grid-item-label">Disabled</span>
+  </div>
+</div>
 
 ## Tokens
 
 | Token | Purpose |
 |-------|---------|
-| `--calendar-cell-background-default` | Default cell background |
+| `--calendar-container-padding` | Container padding |
+| `--calendar-container-border-radius` | Container border radius |
+| `--calendar-container-border-color` | Container border color |
+| `--calendar-container-border-size` | Container border width |
+| `--calendar-container-background` | Container background |
+| `--calendar-container-gap` | Vertical gap between calendar sections |
+| `--calendar-header-gap` | Gap between header controls |
+| `--calendar-weekday-text-color` | Weekday label color |
+| `--calendar-weekday-font-size` | Weekday label font size |
+| `--calendar-weekday-height` | Weekday label row height |
+| `--calendar-cell-gap` | Spacing around day cells |
+| `--calendar-cell-min-size` | Minimum day cell touch target |
+| `--calendar-cell-border-radius` | Day cell radius |
+| `--calendar-cell-text-color-default` | Default day cell text |
+| `--calendar-cell-text-color-active` | Selected day cell text |
+| `--calendar-cell-text-color-disabled` | Disabled and outside-month text |
+| `--calendar-cell-background-active` | Selected day cell background |
 | `--calendar-cell-background-hover` | Hover state |
-| `--calendar-cell-background-selected` | Selected date |
-| `--calendar-cell-background-range` | Range middle cells |
-| `--calendar-cell-text-color-default` | Default text |
-| `--calendar-cell-text-color-selected` | Selected text |
-| `--calendar-cell-text-color-disabled` | Disabled text |
-| `--calendar-cell-text-color-outside` | Outside-month text |
-| `--calendar-cell-border-color-today` | Today indicator |
+| `--calendar-cell-range-border-color` | Range and today indicator border color |
+| `--calendar-cell-range-border-size` | Range and today indicator border width |
+| `--calendar-cell-range-border-radius` | Range start/end radius |
