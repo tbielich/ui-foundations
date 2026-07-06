@@ -230,6 +230,59 @@
             "WEB": "var(--size-spacing-000)"
           }
         }
+      },
+      "050": {
+        "$type": "number",
+        "$value": 2,
+        "$extensions": {
+          "com.figma.scopes": [
+            "GAP",
+            "EFFECT_FLOAT",
+            "PARAGRAPH_SPACING",
+            "PARAGRAPH_INDENT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-spacing-050)"
+          }
+        }
+      }
+    },
+    "Target": {
+      "Default": {
+        "$type": "number",
+        "$value": 40,
+        "$extensions": {
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-target-default)"
+          }
+        }
+      },
+      "Compact": {
+        "$type": "number",
+        "$value": 32,
+        "$extensions": {
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-target-compact)"
+          }
+        }
+      },
+      "Large": {
+        "$type": "number",
+        "$value": 48,
+        "$extensions": {
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-target-large)"
+          }
+        }
       }
     },
     "Radius": {

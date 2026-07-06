@@ -4,7 +4,7 @@
       "Default": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Neutral/800"
+          "$ref": "Brand/Color/Text/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:326",
@@ -15,18 +15,16 @@
             "WEB": "var(--color-text-default)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:169",
-            "targetVariableName": "Color/Neutral/800",
-            "targetVariableSetId": "VariableCollectionId:1:200",
-            "targetVariableSetName": "Core (Primitives)"
+            "targetVariableName": "Brand/Color/Text/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "$ref": "Color/Neutral/800"
+              "$ref": "Brand/Color/Text/Default"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/800"
+              "$ref": "Brand/Color/Text/Default Dark"
             }
           }
         }
@@ -64,7 +62,7 @@
       "Disabled": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Neutral/600"
+          "$ref": "Brand/Color/Text/Disabled"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:328",
@@ -75,18 +73,16 @@
             "WEB": "var(--color-text-disabled)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2039:351",
-            "targetVariableName": "Color/Neutral/600",
-            "targetVariableSetId": "VariableCollectionId:1:200",
-            "targetVariableSetName": "Core (Primitives)"
+            "targetVariableName": "Brand/Color/Text/Disabled",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "$ref": "Color/Neutral/600"
+              "$ref": "Brand/Color/Text/Disabled"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/600"
+              "$ref": "Brand/Color/Text/Disabled Dark"
             }
           }
         }
@@ -154,7 +150,7 @@
       "Strong": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Neutral/1000"
+          "$ref": "Brand/Color/Text/Strong"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:355",
@@ -165,18 +161,16 @@
             "WEB": "var(--color-text-strong)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:167",
-            "targetVariableName": "Color/Neutral/1000",
-            "targetVariableSetId": "VariableCollectionId:1:200",
-            "targetVariableSetName": "Core (Primitives)"
+            "targetVariableName": "Brand/Color/Text/Strong",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "$ref": "Color/Neutral/1000"
+              "$ref": "Brand/Color/Text/Strong"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/1000"
+              "$ref": "Brand/Color/Text/Strong Dark"
             }
           }
         }
@@ -245,7 +239,7 @@
         "Brand": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Neutral/000"
+            "$ref": "Brand/Color/Text/On Brand"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2616:2",
@@ -256,18 +250,16 @@
               "WEB": "var(--color-text-on-brand)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:175",
-              "targetVariableName": "Color/Neutral/000",
-              "targetVariableSetId": "VariableCollectionId:1:200",
-              "targetVariableSetName": "Core (Primitives)"
+              "targetVariableName": "Brand/Color/Text/On Brand",
+              "targetVariableSetName": "Themes (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Light Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Brand"
               },
               "Dark Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Brand Dark"
               }
             }
           }
@@ -275,7 +267,7 @@
         "Danger": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Neutral/000"
+            "$ref": "Brand/Color/Text/On Danger"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2616:3",
@@ -286,18 +278,16 @@
               "WEB": "var(--color-text-on-danger)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:175",
-              "targetVariableName": "Color/Neutral/000",
-              "targetVariableSetId": "VariableCollectionId:1:200",
-              "targetVariableSetName": "Core (Primitives)"
+              "targetVariableName": "Brand/Color/Text/On Danger",
+              "targetVariableSetName": "Themes (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Light Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Danger"
               },
               "Dark Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Danger Dark"
               }
             }
           }
@@ -305,7 +295,7 @@
         "Success": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Neutral/000"
+            "$ref": "Brand/Color/Text/On Success"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2616:4",
@@ -316,18 +306,16 @@
               "WEB": "var(--color-text-on-success)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:175",
-              "targetVariableName": "Color/Neutral/000",
-              "targetVariableSetId": "VariableCollectionId:1:200",
-              "targetVariableSetName": "Core (Primitives)"
+              "targetVariableName": "Brand/Color/Text/On Success",
+              "targetVariableSetName": "Themes (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Light Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Success"
               },
               "Dark Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Success Dark"
               }
             }
           }
@@ -365,7 +353,7 @@
         "Active": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Neutral/000"
+            "$ref": "Brand/Color/Text/On Active"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2616:6",
@@ -376,18 +364,16 @@
               "WEB": "var(--color-text-on-active)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:175",
-              "targetVariableName": "Color/Neutral/000",
-              "targetVariableSetId": "VariableCollectionId:1:200",
-              "targetVariableSetName": "Core (Primitives)"
+              "targetVariableName": "Brand/Color/Text/On Active",
+              "targetVariableSetName": "Themes (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Light Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Active"
               },
               "Dark Mode": {
-                "$ref": "Color/Neutral/000"
+                "$ref": "Brand/Color/Text/On Active Dark"
               }
             }
           }
@@ -395,7 +381,7 @@
         "Disabled": {
           "$type": "color",
           "$value": {
-            "$ref": "Color/Neutral/800"
+            "$ref": "Brand/Color/Text/On Disabled"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2624:2",
@@ -406,18 +392,16 @@
               "WEB": "var(--color-text-on-disabled)"
             },
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2006:169",
-              "targetVariableName": "Color/Neutral/800",
-              "targetVariableSetId": "VariableCollectionId:1:200",
-              "targetVariableSetName": "Core (Primitives)"
+              "targetVariableName": "Brand/Color/Text/On Disabled",
+              "targetVariableSetName": "Themes (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
               "Light Mode": {
-                "$ref": "Color/Neutral/800"
+                "$ref": "Brand/Color/Text/On Disabled"
               },
               "Dark Mode": {
-                "$ref": "Color/Neutral/800"
+                "$ref": "Brand/Color/Text/On Disabled Dark"
               }
             }
           }
@@ -428,7 +412,7 @@
       "Surface": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Neutral/000"
+          "$ref": "Brand/Color/Fill/Surface"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:329",
@@ -439,18 +423,16 @@
             "WEB": "var(--color-fill-surface)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:175",
-            "targetVariableName": "Color/Neutral/000",
-            "targetVariableSetId": "VariableCollectionId:1:200",
-            "targetVariableSetName": "Core (Primitives)"
+            "targetVariableName": "Brand/Color/Fill/Surface",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "$ref": "Color/Neutral/000"
+              "$ref": "Brand/Color/Fill/Surface"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/1000"
+              "$ref": "Brand/Color/Fill/Surface Dark"
             }
           }
         }
@@ -458,7 +440,7 @@
       "Disabled": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Neutral/300"
+          "$ref": "Brand/Color/Fill/Disabled"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:330",
@@ -469,18 +451,16 @@
             "WEB": "var(--color-fill-disabled)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2039:353",
-            "targetVariableName": "Color/Neutral/300",
-            "targetVariableSetId": "VariableCollectionId:1:200",
-            "targetVariableSetName": "Core (Primitives)"
+            "targetVariableName": "Brand/Color/Fill/Disabled",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "$ref": "Color/Neutral/300"
+              "$ref": "Brand/Color/Fill/Disabled"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/300"
+              "$ref": "Brand/Color/Fill/Disabled Dark"
             }
           }
         }
@@ -670,7 +650,7 @@
       "Default": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Neutral/800"
+          "$ref": "Brand/Color/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:342",
@@ -681,18 +661,16 @@
             "WEB": "var(--color-border-default)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:169",
-            "targetVariableName": "Color/Neutral/800",
-            "targetVariableSetId": "VariableCollectionId:1:200",
-            "targetVariableSetName": "Core (Primitives)"
+            "targetVariableName": "Brand/Color/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "$ref": "Color/Neutral/800"
+              "$ref": "Brand/Color/Border/Default"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/800"
+              "$ref": "Brand/Color/Border/Default Dark"
             }
           }
         }
@@ -730,7 +708,7 @@
       "Strong": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Neutral/1000"
+          "$ref": "Brand/Color/Border/Strong"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:344",
@@ -741,18 +719,16 @@
             "WEB": "var(--color-border-strong)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:167",
-            "targetVariableName": "Color/Neutral/1000",
-            "targetVariableSetId": "VariableCollectionId:1:200",
-            "targetVariableSetName": "Core (Primitives)"
+            "targetVariableName": "Brand/Color/Border/Strong",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "$ref": "Color/Neutral/1000"
+              "$ref": "Brand/Color/Border/Strong"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/1000"
+              "$ref": "Brand/Color/Border/Strong Dark"
             }
           }
         }
@@ -790,7 +766,7 @@
       "Disabled": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Neutral/500"
+          "$ref": "Brand/Color/Border/Disabled"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:346",
@@ -801,18 +777,16 @@
             "WEB": "var(--color-border-disabled)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2006:171",
-            "targetVariableName": "Color/Neutral/500",
-            "targetVariableSetId": "VariableCollectionId:1:200",
-            "targetVariableSetName": "Core (Primitives)"
+            "targetVariableName": "Brand/Color/Border/Disabled",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "$ref": "Color/Neutral/500"
+              "$ref": "Brand/Color/Border/Disabled"
             },
             "Dark Mode": {
-              "$ref": "Color/Neutral/500"
+              "$ref": "Brand/Color/Border/Disabled Dark"
             }
           }
         }

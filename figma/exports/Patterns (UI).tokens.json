@@ -4,7 +4,7 @@
       "Size Hover": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:1:267",
@@ -15,9 +15,8 @@
             "WEB": "var(--button-border-size-hover)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -25,7 +24,7 @@
       "Size Default": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:1:281",
@@ -36,9 +35,8 @@
             "WEB": "var(--button-border-size-default)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -46,7 +44,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Button Radius"
+          "$ref": "Brand/Corner/Button"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:3:14",
@@ -57,9 +55,8 @@
             "WEB": "var(--button-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Button Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Button",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -89,7 +86,7 @@
       "Size Active": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2016:1880",
@@ -100,9 +97,8 @@
             "WEB": "var(--button-border-size-active)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Emphasis",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Thick",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -943,7 +939,7 @@
     "Padding Inline": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Spacious"
+        "$ref": "Brand/Size/Spacing/Spacious"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:3:21",
@@ -954,9 +950,8 @@
           "WEB": "var(--button-padding-inline)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Spacious",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Spacious",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -964,7 +959,7 @@
     "Gap": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:9:8",
@@ -975,9 +970,8 @@
           "WEB": "var(--button-gap)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -985,7 +979,7 @@
     "Padding Block": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:9:9",
@@ -996,9 +990,8 @@
           "WEB": "var(--button-padding-block)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1098,7 +1091,7 @@
     "Padding Inline Icon Only": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2026:2178",
@@ -1109,16 +1102,17 @@
           "WEB": "var(--button-padding-inline-icon-only)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
     },
     "Height Min": {
       "$type": "number",
-      "$value": 40,
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2056:368",
         "com.figma.scopes": [
@@ -1126,14 +1120,19 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--button-height-min)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     },
     "Group": {
       "Gap": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Spacing Component"
+          "$ref": "Brand/Size/Spacing/Component"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2075:348",
@@ -1144,9 +1143,8 @@
             "WEB": "var(--button-group-gap)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Spacing Component",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Spacing/Component",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1154,7 +1152,9 @@
     },
     "Width Min": {
       "$type": "number",
-      "$value": 40,
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2228:502",
         "com.figma.scopes": [
@@ -1162,7 +1162,12 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--button-width-min)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     }
   },
@@ -1378,7 +1383,7 @@
     "Gap": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Tight"
+        "$ref": "Brand/Size/Spacing/Tight"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2777:38",
@@ -1389,9 +1394,8 @@
           "WEB": "var(--link-gap)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Tight",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Tight",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1602,7 +1606,7 @@
       "Size Default": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2028:306",
@@ -1613,9 +1617,8 @@
             "WEB": "var(--input-border-size-default)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1623,7 +1626,7 @@
       "Size Hover": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2028:307",
@@ -1634,9 +1637,8 @@
             "WEB": "var(--input-border-size-hover)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1644,7 +1646,7 @@
       "Size Active": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2028:309",
@@ -1655,9 +1657,8 @@
             "WEB": "var(--input-border-size-active)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Emphasis",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Thick",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1665,7 +1666,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Input Radius"
+          "$ref": "Brand/Corner/Input"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2028:310",
@@ -1676,9 +1677,8 @@
             "WEB": "var(--input-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Input Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Input",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1953,7 +1953,7 @@
     "Padding Inline": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2028:326",
@@ -1964,9 +1964,8 @@
           "WEB": "var(--input-padding-inline)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1974,7 +1973,7 @@
     "Padding Inline Icon Only": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2028:327",
@@ -1985,9 +1984,8 @@
           "WEB": "var(--input-padding-inline-icon-only)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1995,7 +1993,7 @@
     "Padding Block": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2028:328",
@@ -2006,9 +2004,8 @@
           "WEB": "var(--input-padding-block)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -2016,7 +2013,7 @@
     "Gap": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2028:329",
@@ -2027,9 +2024,8 @@
           "WEB": "var(--input-gap)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -2080,7 +2076,9 @@
     },
     "Height": {
       "$type": "number",
-      "$value": 40,
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2056:364",
         "com.figma.scopes": [
@@ -2088,12 +2086,19 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--input-height)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     },
     "Height Min": {
       "$type": "number",
-      "$value": 40,
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2228:321",
         "com.figma.scopes": [
@@ -2101,7 +2106,12 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--input-height-min)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     }
   },
@@ -2354,7 +2364,7 @@
       "Size Default": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2773:42",
@@ -2365,9 +2375,8 @@
             "WEB": "var(--select-border-size-default)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2375,7 +2384,7 @@
       "Size Hover": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2773:43",
@@ -2386,9 +2395,8 @@
             "WEB": "var(--select-border-size-hover)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2396,7 +2404,7 @@
       "Size Active": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2773:44",
@@ -2407,9 +2415,8 @@
             "WEB": "var(--select-border-size-active)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Emphasis",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Thick",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2417,7 +2424,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Input Radius"
+          "$ref": "Brand/Corner/Input"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2773:45",
@@ -2428,9 +2435,8 @@
             "WEB": "var(--select-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Input Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Input",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2639,7 +2645,7 @@
     "Padding Inline": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2774:35",
@@ -2650,9 +2656,8 @@
           "WEB": "var(--select-padding-inline)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -2660,7 +2665,7 @@
     "Padding Block": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2774:36",
@@ -2671,9 +2676,8 @@
           "WEB": "var(--select-padding-block)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -2771,8 +2775,7 @@
     "Height": {
       "$type": "dimension",
       "$value": {
-        "value": 40,
-        "unit": "px"
+        "$ref": "Size/Target/Default"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2774:41",
@@ -2781,7 +2784,12 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--select-height)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     }
   },
@@ -2904,16 +2912,15 @@
       "Size Default": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--textarea-border-size-default)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2921,16 +2928,15 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Content Radius"
+          "$ref": "Size/Radius/300"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--textarea-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Content Radius",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Size/Radius/300",
+            "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true
         }
@@ -3021,16 +3027,15 @@
     "Padding Inline": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Comfortable"
+        "$ref": "Brand/Size/Spacing/Comfortable"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
           "WEB": "var(--textarea-padding-inline)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Comfortable",
-          "targetVariableSetName": "Semantics (Roles)",
-          "targetVariableSetId": "VariableCollectionId:1:4"
+          "targetVariableName": "Brand/Size/Spacing/Comfortable",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -3038,16 +3043,15 @@
     "Padding Block": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Comfortable"
+        "$ref": "Brand/Size/Spacing/Comfortable"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
           "WEB": "var(--textarea-padding-block)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Comfortable",
-          "targetVariableSetName": "Semantics (Roles)",
-          "targetVariableSetId": "VariableCollectionId:1:4"
+          "targetVariableName": "Brand/Size/Spacing/Comfortable",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -3302,7 +3306,7 @@
       "Size Hover": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2287:831",
@@ -3313,9 +3317,8 @@
             "WEB": "var(--checkbox-border-size-hover)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Emphasis",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Thick",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -3323,7 +3326,7 @@
       "Size Disabled": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border None"
+          "$ref": "Brand/Size/Border/None"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2287:832",
@@ -3334,9 +3337,8 @@
             "WEB": "var(--checkbox-border-size-disabled)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border None",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/None",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -3344,7 +3346,7 @@
       "Size Default": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2287:833",
@@ -3355,9 +3357,8 @@
             "WEB": "var(--checkbox-border-size-default)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -3659,7 +3660,7 @@
       "Size Default": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2327:10",
@@ -3670,9 +3671,8 @@
             "WEB": "var(--radio-border-size-default)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -3680,7 +3680,7 @@
       "Size Hover": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Emphasis"
+          "$ref": "Brand/Size/Border/Thick"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2327:11",
@@ -3691,9 +3691,8 @@
             "WEB": "var(--radio-border-size-hover)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Emphasis",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Thick",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -3701,7 +3700,7 @@
       "Size Disabled": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border None"
+          "$ref": "Brand/Size/Border/None"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2327:12",
@@ -3712,9 +3711,8 @@
             "WEB": "var(--radio-border-size-disabled)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border None",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/None",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -4391,7 +4389,7 @@
     "Border Size Default": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Border Default"
+        "$ref": "Brand/Size/Border/Default"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2385:1181",
@@ -4402,9 +4400,8 @@
           "WEB": "var(--badge-border-size-default)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Border Default",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Border/Default",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4412,7 +4409,7 @@
     "Border Radius": {
       "$type": "number",
       "$value": {
-        "$ref": "Corner/Pill Radius"
+        "$ref": "Size/Radius/full"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2385:1186",
@@ -4423,9 +4420,8 @@
           "WEB": "var(--badge-border-radius)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Corner/Pill Radius",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Size/Radius/full",
+          "targetVariableSetName": "Core (Primitives)"
         },
         "com.figma.isOverride": true
       }
@@ -4433,7 +4429,7 @@
     "Padding Inline MD": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Comfortable"
+        "$ref": "Brand/Size/Spacing/Comfortable"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2385:1201",
@@ -4444,9 +4440,8 @@
           "WEB": "var(--badge-padding-inline-md)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Comfortable",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Comfortable",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4454,7 +4449,7 @@
     "Padding Inline Icon Only": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2385:1202",
@@ -4465,9 +4460,8 @@
           "WEB": "var(--badge-padding-inline-icon-only)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4475,7 +4469,7 @@
     "Padding Block MD": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Tight"
+        "$ref": "Brand/Size/Spacing/Tight"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2385:1203",
@@ -4486,9 +4480,8 @@
           "WEB": "var(--badge-padding-block-md)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Tight",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Tight",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4496,7 +4489,7 @@
     "Gap": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Tight"
+        "$ref": "Brand/Size/Spacing/Tight"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2385:1204",
@@ -4507,16 +4500,17 @@
           "WEB": "var(--badge-gap)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Tight",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Tight",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
     },
     "Height Min": {
       "$type": "number",
-      "$value": 40,
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2385:1211",
         "com.figma.scopes": [
@@ -4524,12 +4518,19 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-height-min)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     },
     "Width Min": {
       "$type": "number",
-      "$value": 40,
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2385:1212",
         "com.figma.scopes": [
@@ -4537,7 +4538,12 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-width-min)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     },
     "Danger": {
@@ -4612,7 +4618,9 @@
     },
     "Font Size SM": {
       "$type": "number",
-      "$value": 12,
+      "$value": {
+        "$ref": "Font/Size/xs"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2579:2",
         "com.figma.scopes": [
@@ -4620,12 +4628,19 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-font-size-sm)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Font/Size/xs",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     },
     "Font Size MD": {
       "$type": "number",
-      "$value": 14,
+      "$value": {
+        "$ref": "Font/Size/sm"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2579:3",
         "com.figma.scopes": [
@@ -4633,12 +4648,19 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-font-size-md)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Font/Size/sm",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     },
     "Line Height SM": {
       "$type": "number",
-      "$value": 16,
+      "$value": {
+        "$ref": "Line Height/xs"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2579:4",
         "com.figma.scopes": [
@@ -4646,12 +4668,19 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-line-height-sm)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Line Height/xs",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     },
     "Line Height MD": {
       "$type": "number",
-      "$value": 20,
+      "$value": {
+        "$ref": "Line Height/sm"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2579:5",
         "com.figma.scopes": [
@@ -4659,12 +4688,19 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-line-height-md)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Line Height/sm",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     },
     "Padding Inline SM": {
       "$type": "number",
-      "$value": 8,
+      "$value": {
+        "$ref": "Size/Spacing/200"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2579:6",
         "com.figma.scopes": [
@@ -4672,12 +4708,19 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-padding-inline-sm)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Spacing/200",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     },
     "Padding Block SM": {
       "$type": "number",
-      "$value": 2,
+      "$value": {
+        "$ref": "Size/Spacing/050"
+      },
       "$extensions": {
         "com.figma.variableId": "VariableID:2579:7",
         "com.figma.scopes": [
@@ -4685,7 +4728,12 @@
         ],
         "com.figma.codeSyntax": {
           "WEB": "var(--badge-padding-block-sm)"
-        }
+        },
+        "com.figma.aliasData": {
+          "targetVariableName": "Size/Spacing/050",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
       }
     }
   },
@@ -4730,16 +4778,15 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Content Radius"
+          "$ref": "Size/Radius/300"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--tooltip-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Content Radius",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Size/Radius/300",
+            "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true
         }
@@ -4748,16 +4795,15 @@
     "Padding Inline": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Comfortable"
+        "$ref": "Brand/Size/Spacing/Comfortable"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
           "WEB": "var(--tooltip-padding-inline)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Comfortable",
-          "targetVariableSetName": "Semantics (Roles)",
-          "targetVariableSetId": "VariableCollectionId:1:4"
+          "targetVariableName": "Brand/Size/Spacing/Comfortable",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4765,16 +4811,15 @@
     "Padding Block": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
           "WEB": "var(--tooltip-padding-block)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetName": "Semantics (Roles)",
-          "targetVariableSetId": "VariableCollectionId:1:4"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4831,7 +4876,7 @@
       "Border Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Modal Radius"
+          "$ref": "Brand/Corner/Modal"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:77:79",
@@ -4842,9 +4887,8 @@
             "WEB": "var(--modal-surface-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Modal Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Modal",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -4872,16 +4916,15 @@
       "Size Default": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--accordion-border-size-default)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -4889,16 +4932,15 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Container Radius"
+          "$ref": "Size/Radius/400"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--accordion-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Container Radius",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Size/Radius/400",
+            "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true
         }
@@ -4941,16 +4983,15 @@
     "Padding Inline": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Spacious"
+        "$ref": "Brand/Size/Spacing/Spacious"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
           "WEB": "var(--accordion-padding-inline)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Spacious",
-          "targetVariableSetName": "Semantics (Roles)",
-          "targetVariableSetId": "VariableCollectionId:1:4"
+          "targetVariableName": "Brand/Size/Spacing/Spacious",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4958,16 +4999,15 @@
     "Padding Block": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Comfortable"
+        "$ref": "Brand/Size/Spacing/Comfortable"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
           "WEB": "var(--accordion-padding-block)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Comfortable",
-          "targetVariableSetName": "Semantics (Roles)",
-          "targetVariableSetId": "VariableCollectionId:1:4"
+          "targetVariableName": "Brand/Size/Spacing/Comfortable",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4975,16 +5015,15 @@
     "Gap": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Component"
+        "$ref": "Brand/Size/Spacing/Component"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
           "WEB": "var(--accordion-gap)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Component",
-          "targetVariableSetName": "Semantics (Roles)",
-          "targetVariableSetId": "VariableCollectionId:1:4"
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5110,16 +5149,15 @@
     "Padding Inline": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Spacious"
+        "$ref": "Brand/Size/Spacing/Spacious"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
           "WEB": "var(--tabs-padding-inline)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Spacious",
-          "targetVariableSetName": "Semantics (Roles)",
-          "targetVariableSetId": "VariableCollectionId:1:4"
+          "targetVariableName": "Brand/Size/Spacing/Spacious",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5127,16 +5165,15 @@
     "Padding Block": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Comfortable"
+        "$ref": "Brand/Size/Spacing/Comfortable"
       },
       "$extensions": {
         "com.figma.codeSyntax": {
           "WEB": "var(--tabs-padding-block)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Comfortable",
-          "targetVariableSetName": "Semantics (Roles)",
-          "targetVariableSetId": "VariableCollectionId:1:4"
+          "targetVariableName": "Brand/Size/Spacing/Comfortable",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5147,7 +5184,7 @@
       "Gap": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Spacing Spacious"
+          "$ref": "Brand/Size/Spacing/Spacious"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2070:486",
@@ -5158,9 +5195,8 @@
             "WEB": "var(--form-group-gap)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Spacing Spacious",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Spacing/Spacious",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5191,7 +5227,7 @@
     "Padding Inline": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Spacious"
+        "$ref": "Brand/Size/Spacing/Spacious"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2070:487",
@@ -5202,9 +5238,8 @@
           "WEB": "var(--form-padding-inline)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Spacious",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Spacious",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5212,7 +5247,7 @@
     "Padding Block": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Spacious"
+        "$ref": "Brand/Size/Spacing/Spacious"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2070:488",
@@ -5223,9 +5258,8 @@
           "WEB": "var(--form-padding-block)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Spacious",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Spacious",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5234,7 +5268,7 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Form Radius"
+          "$ref": "Brand/Corner/Card"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2070:531",
@@ -5245,9 +5279,8 @@
             "WEB": "var(--form-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Form Radius",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Corner/Card",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5255,7 +5288,7 @@
       "Size": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Border Default"
+          "$ref": "Brand/Size/Border/Default"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2070:593",
@@ -5266,9 +5299,8 @@
             "WEB": "var(--form-border-size)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Border Default",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5277,7 +5309,7 @@
     "Gap": {
       "$type": "number",
       "$value": {
-        "$ref": "Size/Spacing Spacious"
+        "$ref": "Brand/Size/Spacing/Spacious"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:2070:588",
@@ -5288,9 +5320,8 @@
           "WEB": "var(--form-gap)"
         },
         "com.figma.aliasData": {
-          "targetVariableName": "Size/Spacing Spacious",
-          "targetVariableSetId": "VariableCollectionId:1:4",
-          "targetVariableSetName": "Semantics (Roles)"
+          "targetVariableName": "Brand/Size/Spacing/Spacious",
+          "targetVariableSetName": "Themes (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5299,7 +5330,7 @@
       "Gap": {
         "$type": "number",
         "$value": {
-          "$ref": "Size/Spacing Component"
+          "$ref": "Brand/Size/Spacing/Component"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2070:589",
@@ -5310,9 +5341,8 @@
             "WEB": "var(--form-field-gap)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Size/Spacing Component",
-            "targetVariableSetId": "VariableCollectionId:1:4",
-            "targetVariableSetName": "Semantics (Roles)"
+            "targetVariableName": "Brand/Size/Spacing/Component",
+            "targetVariableSetName": "Themes (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5450,16 +5480,599 @@
       "Radius": {
         "$type": "number",
         "$value": {
-          "$ref": "Corner/Pill Radius"
+          "$ref": "Size/Radius/full"
         },
         "$extensions": {
           "com.figma.codeSyntax": {
             "WEB": "var(--avatar-border-radius)"
           },
           "com.figma.aliasData": {
-            "targetVariableName": "Corner/Pill Radius",
-            "targetVariableSetName": "Semantics (Roles)",
-            "targetVariableSetId": "VariableCollectionId:1:4"
+            "targetVariableName": "Size/Radius/full",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    }
+  },
+  "Typography": {
+    "Heading": {
+      "Font Family": {
+        "$type": "string",
+        "$value": {
+          "$ref": "Brand/Font/Lead"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:8",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-heading-font-family)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2006:214",
+            "targetVariableName": "Brand/Font/Lead",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Themes (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Font Size": {
+        "md": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Font/Size/md"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:3:16",
+            "com.figma.scopes": [
+              "FONT_SIZE"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-font-size-md)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:1:204",
+              "targetVariableName": "Font/Size/md",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "xs": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Font/Size/xs"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:74",
+            "com.figma.scopes": [
+              "FONT_SIZE"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-font-size-xs)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:1:205",
+              "targetVariableName": "Font/Size/xs",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "sm": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Font/Size/sm"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:75",
+            "com.figma.scopes": [
+              "FONT_SIZE"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-font-size-sm)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:1:206",
+              "targetVariableName": "Font/Size/sm",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "lg": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Font/Size/lg"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:77",
+            "com.figma.scopes": [
+              "FONT_SIZE"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-font-size-lg)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:1:208",
+              "targetVariableName": "Font/Size/lg",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "xl": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Font/Size/xl"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:78",
+            "com.figma.scopes": [
+              "FONT_SIZE"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-font-size-xl)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:1:209",
+              "targetVariableName": "Font/Size/xl",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "xxl": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Font/Size/xxl"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:79",
+            "com.figma.scopes": [
+              "FONT_SIZE"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-font-size-xxl)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:1:210",
+              "targetVariableName": "Font/Size/xxl",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "xxxl": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Font/Size/xxxl"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:80",
+            "com.figma.scopes": [
+              "FONT_SIZE"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-font-size-xxxl)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:1:211",
+              "targetVariableName": "Font/Size/xxxl",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        }
+      },
+      "Font Weight": {
+        "$type": "string",
+        "$value": {
+          "$ref": "Font/Weight/700"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3:17",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-heading-font-weight)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:219",
+            "targetVariableName": "Font/Weight/700",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Line Height": {
+        "md": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Line Height/md"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:3:18",
+            "com.figma.scopes": [
+              "LINE_HEIGHT"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-line-height-md)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:15:58",
+              "targetVariableName": "Line Height/md",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "xs": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Line Height/xs"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:81",
+            "com.figma.scopes": [
+              "LINE_HEIGHT"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-line-height-xs)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:15:56",
+              "targetVariableName": "Line Height/xs",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "sm": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Line Height/sm"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:82",
+            "com.figma.scopes": [
+              "LINE_HEIGHT"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-line-height-sm)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:15:57",
+              "targetVariableName": "Line Height/sm",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "lg": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Line Height/lg"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:83",
+            "com.figma.scopes": [
+              "LINE_HEIGHT"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-line-height-lg)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:15:60",
+              "targetVariableName": "Line Height/lg",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "xl": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Line Height/xl"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:84",
+            "com.figma.scopes": [
+              "LINE_HEIGHT"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-line-height-xl)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:15:61",
+              "targetVariableName": "Line Height/xl",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "xxl": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Line Height/xxl"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:85",
+            "com.figma.scopes": [
+              "LINE_HEIGHT"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-line-height-xxl)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:15:62",
+              "targetVariableName": "Line Height/xxl",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        },
+        "xxxl": {
+          "$type": "number",
+          "$value": {
+            "$ref": "Line Height/xxxl"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:68:86",
+            "com.figma.scopes": [
+              "LINE_HEIGHT"
+            ],
+            "com.figma.codeSyntax": {
+              "WEB": "var(--typography-heading-line-height-xxxl)"
+            },
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:15:63",
+              "targetVariableName": "Line Height/xxxl",
+              "targetVariableSetId": "VariableCollectionId:1:200",
+              "targetVariableSetName": "Core (Primitives)"
+            },
+            "com.figma.isOverride": true
+          }
+        }
+      }
+    },
+    "Code": {
+      "$type": "string",
+      "$value": {
+        "$ref": "Font/Family/Mono"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:10",
+        "com.figma.scopes": [
+          "FONT_FAMILY"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--typography-code)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3:7",
+          "targetVariableName": "Font/Family/Mono",
+          "targetVariableSetId": "VariableCollectionId:1:200",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Label": {
+      "Font Family": {
+        "$type": "string",
+        "$value": {
+          "$ref": "Brand/Font/Lead"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15:35",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-label-font-family)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2006:214",
+            "targetVariableName": "Brand/Font/Lead",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Themes (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Font Weight": {
+        "$type": "string",
+        "$value": {
+          "$ref": "Font/Weight/600"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15:36",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-label-font-weight)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:218",
+            "targetVariableName": "Font/Weight/600",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Font Size": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Font/Size/md"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15:37",
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-label-font-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:204",
+            "targetVariableName": "Font/Size/md",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Line Height": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Line Height/md"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15:38",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-label-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:15:58",
+            "targetVariableName": "Line Height/md",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Gap": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Spacing/200"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2026:915",
+          "com.figma.scopes": [
+            "GAP"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-label-gap)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:230",
+            "targetVariableName": "Size/Spacing/200",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Body": {
+      "Font Family": {
+        "$type": "string",
+        "$value": {
+          "$ref": "Brand/Font/Base"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15:39",
+          "com.figma.scopes": [
+            "FONT_FAMILY"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-body-font-family)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2006:213",
+            "targetVariableName": "Brand/Font/Base",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Themes (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Font Weight": {
+        "$type": "string",
+        "$value": {
+          "$ref": "Font/Weight/400"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15:40",
+          "com.figma.scopes": [
+            "FONT_STYLE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-body-font-weight)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:216",
+            "targetVariableName": "Font/Weight/400",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Font Size": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Font/Size/md"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15:41",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-body-font-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:204",
+            "targetVariableName": "Font/Size/md",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Line Height": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Line Height/md"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:15:42",
+          "com.figma.scopes": [
+            "LINE_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--typography-body-line-height)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:15:58",
+            "targetVariableName": "Line Height/md",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
           },
           "com.figma.isOverride": true
         }
