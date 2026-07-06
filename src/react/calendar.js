@@ -88,7 +88,7 @@ export function Calendar({
   }
 
   function getCellClasses(cell) {
-    const classes = ["button", "ghost", "calendar-cell"];
+    const classes = ["calendar-cell"];
     if (cell.outside) classes.push("is-outside-month");
     if (isSameDay(cell.date, today)) classes.push("is-today");
     if (isSameDay(cell.date, value)) classes.push("is-selected");

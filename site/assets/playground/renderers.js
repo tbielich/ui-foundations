@@ -1065,7 +1065,7 @@
       tbodyHtml += "<tr>";
       for (let dow = 0; dow < 7; dow++) {
         if (day <= 31) {
-          const classes = ["button", "ghost", "calendar-cell"];
+          const classes = ["calendar-cell"];
           if (previewState === "hover" && day === 15) classes.push("is-hover");
           if (previewState === "focus" && day === 15) classes.push("is-focus-visible");
           if (selectedDate === String(day)) classes.push("is-selected");

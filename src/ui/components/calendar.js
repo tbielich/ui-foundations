@@ -201,7 +201,7 @@ export class Calendar {
       html += "<tr>";
       for (let j = i; j < i + 7 && j < cells.length; j++) {
         const cell = cells[j];
-        const classes = ["button", "ghost", "calendar-cell"];
+        const classes = ["calendar-cell"];
         const isSelected = this._isSameDay(cell.date, this.selectedDate);
         const isToday = this._isSameDay(cell.date, this.today);
         const isDisabled = this._isDisabled(cell.date);
