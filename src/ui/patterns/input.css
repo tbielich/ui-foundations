@@ -22,7 +22,7 @@
   }
 
   .input:focus-visible {
-    outline: none;
+    outline: 2px solid transparent;
     box-shadow: none;
   }
 
@@ -139,7 +139,7 @@
   .input-field.is-focus-visible {
     background: var(--input-container-background-focus);
     border-color: var(--input-border-color-focus);
-    outline: none;
+    outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
