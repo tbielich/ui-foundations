@@ -37,11 +37,11 @@ playgroundLabel: Open Calendar Playground
   </div>
 </div>
 
-## Usage
+<h2 id="usage">Usage</h2>
 
 The Calendar component enables date selection in forms, filters, and booking flows. It supports single date selection and date range selection.
 
-## States
+<h2 id="states">States</h2>
 
 <div class="docs-table-wrap">
   <table class="docs-table docs-calendar-states-table">
@@ -123,7 +123,7 @@ The Calendar component enables date selection in forms, filters, and booking flo
   </tbody>
 </table>
 
-## Accessibility
+<h2 id="accessibility">Accessibility</h2>
 
 - Uses `role="grid"` for the day grid
 - Each cell has an `aria-label` with the full date (e.g. "15 July 2026")
@@ -167,7 +167,7 @@ The Calendar component enables date selection in forms, filters, and booking flo
   </ol>
 </div>
 
-## Options
+<h2 id="options">Options</h2>
 
 ### Table of options
 
@@ -186,7 +186,7 @@ The Calendar component enables date selection in forms, filters, and booking flo
   </tbody>
 </table>
 
-## Variants
+<h2 id="variants">Variants</h2>
 
 <div class="docs-states-grid" style="--docs-states-cols: 2">
   <div class="docs-states-grid-item">
@@ -207,7 +207,7 @@ The Calendar component enables date selection in forms, filters, and booking flo
   </div>
 </div>
 
-## Tokens
+<h2 id="tokens">Tokens</h2>
 
 <div class="docs-table-wrap">
   <table class="docs-table">

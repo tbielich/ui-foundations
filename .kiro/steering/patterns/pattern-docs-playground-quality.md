@@ -25,6 +25,9 @@ exists.
 
 ## Documentation markup
 
+- Use explicit `<h2 id="...">Section title</h2>` for every top-level docs
+  section so the right-side "On this page" navigation is complete. Do not use
+  Markdown `##` headings for top-level pattern sections.
 - Use `docs-anatomy` for component anatomy. Do not use ASCII trees, plain
   bullet lists, or screenshots as the primary anatomy view.
 - Anatomy callouts must point to the named part, not only to the component's
