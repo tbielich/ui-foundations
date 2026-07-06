@@ -6348,6 +6348,63 @@
           },
           "com.figma.isOverride": true
         }
+      },
+      "Range Border Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-range-border-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Border/Brand",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Range Border Size": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "STROKE_FLOAT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-range-border-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Range Border Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Radius/800"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "CORNER_RADIUS"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-range-border-radius)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Size/Radius/800",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
       }
     },
     "Weekday": {
