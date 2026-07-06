@@ -431,6 +431,26 @@ details[open] > .docs-nav-group-toggle::before {
   border-bottom: 0;
 }
 
+.docs-calendar-states-table {
+  min-width: 720px;
+}
+
+.docs-calendar-states-table td:first-child {
+  width: 180px;
+}
+
+.docs-calendar-day-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 48px;
+}
+
+.docs-calendar-day-preview--range {
+  min-inline-size: 144px;
+  gap: 0;
+}
+
 .docs-stack {
   display: flex;
   flex-wrap: wrap;

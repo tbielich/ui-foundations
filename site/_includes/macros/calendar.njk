@@ -14,6 +14,21 @@
 </select>
 {%- endmacro %}
 
+{% macro calendarDay(label='1', selected=false, today=false, disabled=false, outsideMonth=false, hover=false, focus=false, rangeStart=false, rangeMiddle=false, rangeEnd=false, tabindex='-1') -%}
+{%- set cellClasses = "calendar-cell" -%}
+{%- if hover -%}{%- set cellClasses = cellClasses + " is-hover" -%}{%- endif -%}
+{%- if focus -%}{%- set cellClasses = cellClasses + " is-focus-visible" -%}{%- endif -%}
+{%- if selected -%}{%- set cellClasses = cellClasses + " is-selected" -%}{%- endif -%}
+{%- if today -%}{%- set cellClasses = cellClasses + " is-today" -%}{%- endif -%}
+{%- if disabled -%}{%- set cellClasses = cellClasses + " is-disabled" -%}{%- endif -%}
+{%- if outsideMonth -%}{%- set cellClasses = cellClasses + " is-outside-month" -%}{%- endif -%}
+{%- if rangeStart -%}{%- set cellClasses = cellClasses + " is-range-start" -%}{%- endif -%}
+{%- if rangeMiddle -%}{%- set cellClasses = cellClasses + " is-range-middle" -%}{%- endif -%}
+{%- if rangeEnd -%}{%- set cellClasses = cellClasses + " is-range-end" -%}{%- endif -%}
+{%- set ariaSelected = selected or rangeStart or rangeMiddle or rangeEnd -%}
+<button type="button" class="{{ cellClasses }}"{{ " disabled" if disabled }} aria-selected="{{ 'true' if ariaSelected else 'false' }}" tabindex="{{ tabindex }}">{{ label }}</button>
+{%- endmacro %}
+
 {% macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='', rangeStart='', rangeEnd='') -%}
 {%- set calendarClasses = "calendar" -%}
 {%- if container -%}{%- set calendarClasses = calendarClasses + " has-container" -%}{%- endif -%}
@@ -57,17 +72,19 @@
         {%- for dow in range(0, 7) %}
         {%- set i = week * 7 + dow + 1 -%}
         {%- if i <= 31 %}
-        {%- set cellClasses = "calendar-cell" -%}
-        {%- if state == "hover" and i == 15 -%}{%- set cellClasses = cellClasses + " is-hover" -%}{%- endif -%}
-        {%- if state == "focus" and i == 15 -%}{%- set cellClasses = cellClasses + " is-focus-visible" -%}{%- endif -%}
-        {%- if selectedDate and i == selectedDate | int -%}{%- set cellClasses = cellClasses + " is-selected" -%}{%- endif -%}
-        {%- if rangeStart and rangeEnd and i == rangeStart | int -%}{%- set cellClasses = cellClasses + " is-range-start" -%}{%- endif -%}
-        {%- if rangeStart and rangeEnd and i > rangeStart | int and i < rangeEnd | int -%}{%- set cellClasses = cellClasses + " is-range-middle" -%}{%- endif -%}
-        {%- if rangeStart and rangeEnd and i == rangeEnd | int -%}{%- set cellClasses = cellClasses + " is-range-end" -%}{%- endif -%}
-        {%- if todayDate and i == todayDate | int -%}{%- set cellClasses = cellClasses + " is-today" -%}{%- endif -%}
-        {%- if disabled -%}{%- set cellClasses = cellClasses + " is-disabled" -%}{%- endif -%}
         <td>
-          <button type="button" class="{{ cellClasses }}"{{ " disabled" if disabled }} aria-selected="{{ 'true' if (selectedDate and i == selectedDate | int) or (rangeStart and rangeEnd and i >= rangeStart | int and i <= rangeEnd | int) else 'false' }}" tabindex="{{ 0 if i == 1 else -1 }}">{{ i }}</button>
+          {{ calendarDay(
+            i,
+            selected=selectedDate and i == selectedDate | int,
+            today=todayDate and i == todayDate | int,
+            disabled=disabled,
+            hover=state == "hover" and i == 15,
+            focus=state == "focus" and i == 15,
+            rangeStart=rangeStart and rangeEnd and i == rangeStart | int,
+            rangeMiddle=rangeStart and rangeEnd and i > rangeStart | int and i < rangeEnd | int,
+            rangeEnd=rangeStart and rangeEnd and i == rangeEnd | int,
+            tabindex=0 if i == 1 else -1
+          ) }}
         </td>
         {%- else %}
         <td></td>

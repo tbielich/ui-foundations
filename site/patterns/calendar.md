@@ -43,15 +43,55 @@ The Calendar component enables date selection in forms, filters, and booking flo
 
 ## States
 
-| State | Description |
-|-------|-------------|
-| Default | Neutral day cell |
-| Hover | Visual feedback on pointer hover |
-| Focus | Visible focus ring for keyboard navigation |
-| Selected | Active selected date(s) |
-| Today | Highlighted current date |
-| Disabled | Dates outside the selectable range |
-| Outside month | Dates from previous/next month shown for context |
+<div class="docs-table-wrap">
+  <table class="docs-table docs-calendar-states-table">
+    <thead>
+      <tr><th>Preview</th><th>State</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="docs-calendar-day-preview">{{ cal.calendarDay("01") }}</div></td>
+        <td>Default</td>
+        <td>Neutral day cell.</td>
+      </tr>
+      <tr>
+        <td><div class="docs-calendar-day-preview">{{ cal.calendarDay("01", hover=true) }}</div></td>
+        <td>Hover</td>
+        <td>Visual feedback on pointer hover.</td>
+      </tr>
+      <tr>
+        <td><div class="docs-calendar-day-preview">{{ cal.calendarDay("01", focus=true) }}</div></td>
+        <td>Focus</td>
+        <td>Visible focus ring for keyboard navigation.</td>
+      </tr>
+      <tr>
+        <td><div class="docs-calendar-day-preview">{{ cal.calendarDay("01", selected=true) }}</div></td>
+        <td>Selected</td>
+        <td>Active selected date.</td>
+      </tr>
+      <tr>
+        <td><div class="docs-calendar-day-preview">{{ cal.calendarDay("01", today=true) }}</div></td>
+        <td>Today</td>
+        <td>Highlighted current date.</td>
+      </tr>
+      <tr>
+        <td><div class="docs-calendar-day-preview docs-calendar-day-preview--range">{{ cal.calendarDay("01", rangeStart=true) }}{{ cal.calendarDay("02", rangeMiddle=true) }}{{ cal.calendarDay("03", rangeEnd=true) }}</div></td>
+        <td>Range</td>
+        <td>Start, middle, and end cells for date range selection.</td>
+      </tr>
+      <tr>
+        <td><div class="docs-calendar-day-preview">{{ cal.calendarDay("01", outsideMonth=true) }}</div></td>
+        <td>Outside month</td>
+        <td>Date from the previous or next month shown for context.</td>
+      </tr>
+      <tr>
+        <td><div class="docs-calendar-day-preview">{{ cal.calendarDay("01", disabled=true) }}</div></td>
+        <td>Disabled</td>
+        <td>Date outside the selectable range.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Keyboard Navigation
 
