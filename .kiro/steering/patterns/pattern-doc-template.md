@@ -153,7 +153,8 @@ Auto-generated from URL. No "Home" crumb.
 
 ## Playground pages
 
-Code panel has HTML/Nunjucks/React tabs + used tokens table. Add `tokenCssPath`:
+Code panel has HTML/Nunjucks/Web Component tabs + used tokens table. Add
+`tokenCssPath`:
 
 ```yaml
 playground:

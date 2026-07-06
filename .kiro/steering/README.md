@@ -21,14 +21,17 @@ These are included in every prompt automatically:
 4. `patterns/pattern-rule-map.md`
 5. `foundations/token-exports.md` (if token work needed)
 6. `patterns/playground-system.md` (for playground page)
+7. `patterns/pattern-docs-playground-quality.md` (docs/playground quality gate)
 
 ### Writing documentation
 
 1. `patterns/pattern-doc-template.md`
+2. `patterns/pattern-docs-playground-quality.md`
 
 ### Working with the playground
 
 1. `patterns/playground-system.md`
+2. `patterns/pattern-docs-playground-quality.md`
 
 ### Working with site data files
 

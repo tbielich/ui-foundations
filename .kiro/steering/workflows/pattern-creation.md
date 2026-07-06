@@ -196,7 +196,7 @@ Create the interactive playground page.
 ### Checklist
 
 - [ ] Renderer created
-- [ ] Code generator (HTML/Nunjucks/React tabs)
+- [ ] Code generator (HTML/Nunjucks/Web Component tabs)
 - [ ] Playground page with controls
 - [ ] Token table works
 
@@ -302,4 +302,4 @@ Before building, resolve these questions. They prevent rework mid-session:
 ### Playground page template
 - Always use `{% from "macros/playground.njk" import playground as uiPlayground with context %}`
   and `{{ uiPlayground(playground) }}` — never a raw `<div>` stage.
-- Don't forget code generators in `code-generators.js` for Nunjucks/React tabs.
+- Don't forget code generators in `code-generators.js` for Nunjucks/Web Component tabs.
