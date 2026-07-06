@@ -13,70 +13,81 @@ When working with files in `figma/exports/`, these rules apply:
 - `$value.$ref` creates an alias to another token
 
 ## Alias Validation (Rule 10)
-- Every `$ref` must point to a token that exists in Core, Modes, or Semantics
+- Every `$ref` must point to a token that exists in Core, Themes, or Modes
 - Check `dist/tokens/css/core-primitives.tokens.css` for available Core tokens
-- Check `dist/tokens/css/appearance-modes.tokens.mode-*.css` for available Semantic color tokens
-- Never invent token names that don't exist (e.g. `Color/Fill/Muted`, `Size/Spacing/50`)
-- If a needed Semantic token doesn't exist, flag it for Figma creation — don't fake it
+- Check `dist/tokens/css/themes-brands.tokens.brand-*.css` for available Theme tokens
+- Check `dist/tokens/css/appearance-modes.tokens.mode-*.css` for available Mode tokens
+- Never invent token names that don't exist
+- If a needed token doesn't exist, flag it for Figma creation — don't fake it
 
-## Layer Rules (Foundation-001)
-- Pattern tokens (`Patterns (UI).tokens.json`) reference only Semantic or Core
-- Semantic tokens reference only Core, Themes (Brands), or Appearance (Modes)
-- Never create cross-component references (e.g. Radio referencing Checkbox tokens)
-- **Patterns must NEVER reference Themes (Brands) or Appearance (Modes) directly**
+## Layer Rules
 
-### Corner Radius References (Common Mistake)
+Pattern tokens (`Patterns (UI).tokens.json`) may reference:
+- **Core (Primitives)** — raw values (font sizes, radii, spacing primitives)
+- **Themes (Brands)** — brand-controlled decisions (corners, spacing semantics, border weights, fonts)
+- **Appearance (Modes)** — mode-switched colors (text, fill, border, overlay)
 
-When a new component needs a border-radius, reference the **Semantic Corner
-token**, not the Brand/Corner source:
+Pattern tokens must **NEVER**:
+- Reference other Pattern tokens (no cross-component coupling)
+- Reference the Typography (Liquid) collection directly (use Core font-size tokens which get overridden by fluid output)
+- Contain hardcoded raw values (every number/color must be an alias)
 
-| ✅ Correct `$ref` | ❌ Wrong `$ref` |
+### No Cross-Pattern References (STRICT)
+
+A pattern token must never alias another pattern's token. Each component owns
+its tokens independently and references only downstream layers.
+
+| ✅ Correct | ❌ Wrong |
 |---|---|
-| `Corner/Button Radius` | `Brand/Corner/Button` |
-| `Corner/Input Radius` | `Brand/Corner/Input` |
-| `Corner/Card Radius` | `Brand/Corner/Card` |
-| `Corner/Modal Radius` | `Brand/Corner/Modal` |
-| `Corner/Form Radius` | `Brand/Corner/Card` |
-| `Corner/Checkbox Radius` | `Brand/Corner/Input` |
+| `Calendar/Cell/Border Radius` → `Brand/Corner/Button` | `Calendar/Cell/Border Radius` → `Button/Border Radius` |
+| `Calendar/Container/Border Size` → `Brand/Size/Border/Default` | `Calendar/Container/Border Size` → `Button/Border/Size Default` |
+| `Select/Border Radius` → `Brand/Corner/Input` | `Select/Border Radius` → `Input/Border Radius` |
 
-Available Semantic Corner tokens (`--corner-*-radius`):
-- `Corner/Button Radius` → for buttons and pill-shaped controls
-- `Corner/Input Radius` → for inputs, selects, textareas
-- `Corner/Card Radius` → for cards and elevated surfaces
-- `Corner/Modal Radius` → for modals and dialogs
-- `Corner/Form Radius` → for form group containers
-- `Corner/Checkbox Radius` → for checkboxes
+If two components need the same value, they both reference the same
+Brand/Core/Modes source independently.
 
-If no suitable Semantic Corner token exists, **flag it for creation** in the
-Semantics collection — do not bypass to Themes.
+### Corner Radius References
 
+Reference Brand/Corner tokens directly:
+
+| `$ref` | Use for |
+|---|---|
+| `Brand/Corner/Button` | Buttons, calendar cells, pill-shaped controls |
+| `Brand/Corner/Input` | Inputs, selects, checkboxes |
+| `Brand/Corner/Card` | Cards, forms, elevated surfaces |
+| `Brand/Corner/Modal` | Modals, dialogs |
+| `Size/Radius/full` | Badges, avatars (always pill) |
+| `Size/Radius/300` | Textareas, tooltips (content containers) |
+| `Size/Radius/400` | Accordions (large containers) |
 ### Size References (Border Width, Spacing)
 
-Patterns must reference **Semantic Size tokens**, not Core `Size/*` directly:
+Patterns reference **Theme Size tokens** for brand-controlled sizing:
 
-| ✅ Correct `$ref` | ❌ Wrong `$ref` | Use for |
+| `$ref` | CSS output | Use for |
 |---|---|---|
-| `Size/Border None` | `Size/Border/000` | Disabled borders (invisible) |
-| `Size/Border Default` | `Size/Border/100` | Standard border width |
-| `Size/Border Emphasis` | `Size/Border/200` | Active/hover/focus emphasis |
-| `Size/Spacing Tight` | `Size/Spacing/100` | Small gaps (badge, link) |
-| `Size/Spacing Component` | `Size/Spacing/200` | Internal padding/gaps |
-| `Size/Spacing Comfortable` | `Size/Spacing/300` | Medium padding |
-| `Size/Spacing Spacious` | `Size/Spacing/400` | Large padding/gaps |
-| `Corner/Pill Radius` | `Size/Radius/full` | Pill shapes (badge, avatar) |
-| `Corner/Content Radius` | `Size/Radius/300` | Content containers (textarea, tooltip) |
-| `Corner/Container Radius` | `Size/Radius/400` | Large containers (accordion) |
+| `Brand/Size/Border/None` | `--brand-size-border-none` | Disabled borders (invisible) |
+| `Brand/Size/Border/Default` | `--brand-size-border-default` | Standard border width |
+| `Brand/Size/Border/Thick` | `--brand-size-border-thick` | Active/hover/focus emphasis |
+| `Brand/Size/Spacing/Tight` | `--brand-size-spacing-tight` | Small gaps (badge, link) |
+| `Brand/Size/Spacing/Component` | `--brand-size-spacing-component` | Internal padding/gaps |
+| `Brand/Size/Spacing/Comfortable` | `--brand-size-spacing-comfortable` | Medium padding |
+| `Brand/Size/Spacing/Spacious` | `--brand-size-spacing-spacious` | Large padding/gaps |
 
-If a component needs a size value not covered above, **flag it for Semantic
-creation** — do not reference `Size/*` Core tokens directly.
+For target sizes (min-height/width), use Core directly:
+
+| `$ref` | Use for |
+|---|---|
+| `Size/Target/Default` | Standard touch target (40px) |
+| `Size/Target/Compact` | Small variant (32px) |
+| `Size/Target/Large` | Large variant (48px) |
 
 ## After Changes
 - Run `npm run tokens:generate` and verify zero "missing alias targets"
 - Run `npm run ci:check` to validate the full pipeline
 
-## Creating New Semantic Tokens (CRITICAL)
+## Creating New Pattern Tokens (CRITICAL)
 
-When adding new tokens to `figma/exports/Semantics (Roles).tokens.json`:
+When adding new tokens to `figma/exports/Patterns (UI).tokens.json`:
 
 - **NEVER invent `targetVariableId` values.** The pipeline resolves aliases
   ID-first. A fake ID that collides with an existing token causes silent
