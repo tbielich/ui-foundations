@@ -32,7 +32,7 @@
     border: none;
     cursor: pointer;
     padding: var(--size-spacing-100) var(--size-spacing-100);
-    border-radius: var(--corner-input-radius);
+    border-radius: var(--brand-corner-input);
   }
 
   .calendar-month-select:hover,
@@ -83,7 +83,7 @@
     inline-size: var(--size-spacing-800);
     min-height: unset;
     padding: 0;
-    border-radius: var(--corner-content-radius);
+    border-radius: var(--size-radius-300);
     font-family: var(--typography-body-font-family);
     font-size: var(--typography-body-font-size);
     font-weight: var(--typography-body-font-weight);
@@ -109,8 +109,8 @@
 
   /* Range selection: start, middle, end */
   .calendar-cell.is-range-start {
-    border-start-start-radius: var(--corner-content-radius);
-    border-end-start-radius: var(--corner-content-radius);
+    border-start-start-radius: var(--size-radius-300);
+    border-end-start-radius: var(--size-radius-300);
     border-start-end-radius: 0;
     border-end-end-radius: 0;
     background: var(--calendar-cell-background-selected, var(--color-fill-brand));
@@ -126,8 +126,8 @@
   .calendar-cell.is-range-end {
     border-start-start-radius: 0;
     border-end-start-radius: 0;
-    border-start-end-radius: var(--corner-content-radius);
-    border-end-end-radius: var(--corner-content-radius);
+    border-start-end-radius: var(--size-radius-300);
+    border-end-end-radius: var(--size-radius-300);
     background: var(--calendar-cell-background-selected, var(--color-fill-brand));
     color: var(--calendar-cell-text-color-selected, var(--color-text-inverse));
   }

@@ -41,7 +41,7 @@
 
   .date-segment:focus {
     background: var(--color-fill-subtle);
-    border-radius: var(--corner-input-radius);
+    border-radius: var(--brand-corner-input);
   }
 
   /* Separator between segments */
@@ -62,7 +62,7 @@
     padding: var(--size-spacing-200);
     background: var(--color-fill-surface);
     border: 1px solid var(--color-border-default);
-    border-radius: var(--corner-container-radius);
+    border-radius: var(--size-radius-400);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
