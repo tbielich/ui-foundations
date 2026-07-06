@@ -6078,5 +6078,350 @@
         }
       }
     }
+  },
+  "Calendar": {
+    "Container": {
+      "Padding": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Spacing/Component"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-container-padding)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Brand/Size/Spacing/Component",
+            "targetVariableSetName": "Themes (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Radius/900"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "CORNER_RADIUS"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-container-border-radius)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Size/Radius/900",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Subtle"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-container-border-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Border/Subtle",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Size": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "STROKE_FLOAT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-container-border-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetName": "Themes (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-container-background)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Gap": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Spacing/Component"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "GAP"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-container-gap)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Brand/Size/Spacing/Component",
+            "targetVariableSetName": "Themes (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Cell": {
+      "Gap": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Spacing/050"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "GAP"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-gap)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Size/Spacing/050",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Min Size": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Target/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-min-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Size/Target/Default",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Corner/Button"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "CORNER_RADIUS"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-border-radius)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Brand/Corner/Button",
+            "targetVariableSetName": "Themes (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Text Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-text-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Text Color Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/On/Brand"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-text-color-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Text/On/Brand",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Text Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-text-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Text/Disabled",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Brand"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-background-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Fill/Brand",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Overlay/Hover"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-cell-background-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Overlay/Hover",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Weekday": {
+      "Text Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Subtle"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-weekday-text-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Color/Text/Subtle",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Font Size": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Font/Size/xs"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "FONT_SIZE"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-weekday-font-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Font/Size/xs",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Height": {
+        "$type": "number",
+        "$value": 28,
+        "$extensions": {
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-weekday-height)"
+          }
+        }
+      }
+    },
+    "Header": {
+      "Gap": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Spacing/Component"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "GAP"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--calendar-header-gap)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableName": "Brand/Size/Spacing/Component",
+            "targetVariableSetName": "Themes (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    }
   }
 }
