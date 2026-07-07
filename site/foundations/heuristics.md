@@ -9,10 +9,19 @@ excludeFromNav: true
 ---
 
 <p class="page-intro">
-  These heuristics define what "good interaction" means in UI Foundations. Every pattern rule must cite at least one heuristic ID.
+  Canonical design foundation knowledge is maintained in the UI Foundations Vault. This repository only documents implementation-specific usage.
 </p>
 
-<h2 id="heuristics-heading">Heuristics</h2>
+<p>
+  Vault reference: <a href="{{ 'foundations/usability-heuristics.md' | vaultDocumentationUrl }}">configured vault usability heuristics</a>
+</p>
+
+<h2 id="heuristics-heading">Local heuristic IDs</h2>
+
+<p>
+  These IDs are implementation hooks for pattern-rule citations and validation.
+  The durable heuristic definitions live in the vault.
+</p>
 
 <div class="docs-table-wrap">
   <table class="docs-table">
@@ -20,39 +29,39 @@ excludeFromNav: true
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Definition</th>
+        <th>Implementation usage</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><code>heuristic.feedback</code></td>
         <td>Feedback</td>
-        <td>User actions must produce visible, semantic, or assistive feedback through states, messages, focus, or updated content.</td>
+        <td>Used when a pattern must expose state, messages, focus, or updated content.</td>
       </tr>
       <tr>
         <td><code>heuristic.consistency</code></td>
         <td>Consistency</td>
-        <td>Similar controls and patterns must behave, read, and respond consistently across surfaces.</td>
+        <td>Used when related controls must share naming, placement, state, or interaction behavior.</td>
       </tr>
       <tr>
         <td><code>heuristic.error-prevention</code></td>
         <td>Error Prevention</td>
-        <td>Structure should prevent avoidable mistakes before they happen through clear labels, grouping, required/optional cues, disabled states, and constrained choices.</td>
+        <td>Used when labels, grouping, required cues, disabled states, or constraints reduce avoidable mistakes.</td>
       </tr>
       <tr>
         <td><code>heuristic.recognition</code></td>
         <td>Recognition</td>
-        <td>Interfaces should make available actions and context visible instead of relying on memory, hidden conventions, or implied relationships.</td>
+        <td>Used when actions and context must be visible rather than hidden behind memory or convention.</td>
       </tr>
       <tr>
         <td><code>heuristic.user-control</code></td>
         <td>User Control</td>
-        <td>Users should be able to understand the current state, change reversible choices, cancel where appropriate, and recover from mistakes.</td>
+        <td>Used when a pattern needs reversible choices, cancellation, recovery, or clear current state.</td>
       </tr>
       <tr>
         <td><code>heuristic.accessibility</code></td>
         <td>Accessibility</td>
-        <td>Patterns must preserve semantic HTML, programmatic names, keyboard access, visible focus, and assistive-technology state communication.</td>
+        <td>Used when semantic HTML, accessible names, keyboard access, visible focus, or assistive state communication are required.</td>
       </tr>
     </tbody>
   </table>

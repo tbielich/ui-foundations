@@ -2,15 +2,24 @@
 
 ## Purpose
 
-Document the usability expectations that pattern and component rules should be
-able to implement and validation should eventually check.
+Document the local heuristic IDs that pattern and component rules can cite in
+this repository.
+
+Canonical design foundation knowledge is maintained in the UI Foundations Vault. This repository only documents implementation-specific usage.
+
+Vault reference:
+
+- `config/site.js` -> `vault.documentation`
 
 ## Canonical rules
 
-- `.kiro/steering/foundations/usability-heuristics.md`
+- Vault documentation path: `foundations/usability-heuristics.md`
 - `docs/agentic/rule-pipeline.md`
 
-Current heuristic set:
+## Local implementation IDs
+
+The current local heuristic IDs are used for pattern-rule traceability and rule
+pipeline validation:
 
 - feedback
 - consistency
@@ -21,6 +30,5 @@ Current heuristic set:
 
 ## Related docs
 
-- `docs/principles/perception-laws.md`
 - `docs/patterns/forms.md`
 - `docs/validation/ci.md`
