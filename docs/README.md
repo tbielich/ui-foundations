@@ -18,6 +18,7 @@ details or local agent configuration.
 | `agentic/` | Agent behavior, workflows, prompts, and migration context | `docs/agentic/README.md` |
 | `adr/` | Architecture decision records and documentation migration notes | `docs/adr/README.md` |
 | `validation/` | Validation checklists, CI, token parity, and accessibility checks | `docs/validation/README.md` |
+| `linking-strategy.md` | Vault link ownership and centralized documentation linking policy | `docs/linking-strategy.md` |
 
 ## Legacy docs kept in place
 

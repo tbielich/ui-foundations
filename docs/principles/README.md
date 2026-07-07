@@ -2,16 +2,23 @@
 
 ## Purpose
 
-This section explains the upstream design intent that should shape patterns,
-components, tokens, validation, and CI.
+This section explains how design foundation knowledge is used by the
+`ui-foundations` implementation repository.
+
+Canonical design foundation knowledge is maintained in the UI Foundations Vault. This repository only documents implementation-specific usage.
+
+Vault reference:
+
+- `config/site.js` -> `vault.documentation`
 
 ## Canonical rules
 
-- `usability-heuristics.md`
+- Vault documentation path: `foundations/design-principles.md`
+- Vault documentation path: `foundations/usability-heuristics.md`
+- Vault documentation path: `foundations/gestalt-principles.md`
 
-These docs summarise and point to the more detailed source material in
-`DESIGN.md`, `docs/ui-foundations-rules.md`, `.kiro/steering/`, and the
-component and validation docs.
+Local docs should describe how those foundations are applied to patterns,
+components, tokens, validation, and CI in this repository.
 
 ## Who should read this
 
@@ -23,4 +30,4 @@ component and validation docs.
 
 - `docs/foundations/README.md`
 - `docs/patterns/README.md`
-- `docs/validation/accessibility.md`
+- `docs/validation/README.md`

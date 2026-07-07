@@ -13,12 +13,22 @@ The UI Foundations rule pipeline is:
 This document explains ownership and handoffs. The executable inventory lives in
 `docs/validation/rule-pipeline.manifest.json`.
 
+Canonical design foundation knowledge is maintained in the UI Foundations Vault. This repository only documents implementation-specific usage.
+
+Vault reference:
+
+- `config/site.js` -> `vault.documentation`
+
+In this repository, the rule pipeline owns implementation traceability: local
+IDs, pattern-rule citations, component-rule surfaces, deterministic validation,
+and CI checks.
+
 ## Layer Responsibilities
 
 | Layer | Responsibility | Source artifacts |
 |---|---|---|
-| Principles | Cross-cutting design intent | `.kiro/steering/foundations/design-principles.md` |
-| Heuristics | Observable usability behavior | `.kiro/steering/foundations/usability-heuristics.md` |
+| Principles | Local implementation IDs for cross-cutting design intent | Vault foundations, surfaced through local docs and rule IDs |
+| Heuristics | Local implementation IDs for observable usability behavior | Vault foundations, surfaced through local docs and rule IDs |
 | Pattern rules | Composition rules for reusable UI patterns | `.kiro/steering/pattern-rules/*.md` |
 | Component rules | Local markup, token, API, and state rules | `.kiro/steering/patterns/pattern-rule-map.md`, `.kiro/steering/patterns/pattern-css-rules.md`, `.kiro/steering/patterns/react-wrappers.md`, `docs/agentic/assistant-behavior-rules.md` |
 | Validation | Deterministic checks grounded in upstream ids | `docs/validation/rule-pipeline.manifest.json`, `scripts/validate-rule-pipeline.mjs` |

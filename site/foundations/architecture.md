@@ -8,7 +8,17 @@ permalink: /foundations/architecture/
 ---
 
 <p class="page-intro">
-  UI Foundations follows an Atomic Design model using chemistry as its mental model. Each layer builds on the previous through composition, governed by principles and heuristics.
+  UI Foundations is the implementation repository for the runtime design system.
+  It documents how tokens, patterns, components, build output, validation, and CI
+  work together.
+</p>
+
+<p>
+  Canonical design foundation knowledge is maintained in the UI Foundations Vault. This repository only documents implementation-specific usage.
+</p>
+
+<p>
+  Vault reference: <a href="{{ 'foundations/' | vaultDocumentationUrl }}">configured vault foundations</a>
 </p>
 
 <h2 id="layers-heading">Atomic Layers</h2>
@@ -96,7 +106,11 @@ permalink: /foundations/architecture/
 
 <h2 id="governance-heading">Governance &amp; Quality</h2>
 
-<p>Every pattern and component decision is guided by three governance layers that form a quality net above the implementation:</p>
+<p>
+  Every pattern and component decision is informed by durable foundation
+  knowledge in the vault and implemented through local rule IDs, pattern rules,
+  component rules, validation, and CI.
+</p>
 
 <div class="docs-table-wrap">
   <table class="docs-table">
@@ -110,18 +124,18 @@ permalink: /foundations/architecture/
     <tbody>
       <tr>
         <td><strong><a href="/foundations/governance/principles/">Design Principles</a></strong></td>
-        <td>Cross-cutting composition intent — the "why" behind layout and structure</td>
-        <td>Proximity, Hierarchy, Contrast, Affordance, Cognitive Load, Consistency</td>
+        <td>Vault-owned foundation knowledge applied through local implementation rules</td>
+        <td>Pattern-rule citations and component documentation</td>
       </tr>
       <tr>
         <td><strong><a href="/foundations/governance/heuristics/">Usability Heuristics</a></strong></td>
-        <td>Interaction quality rules — the "how" of user experience</td>
-        <td>Feedback, Error Prevention, Recognition, User Control, Accessibility</td>
+        <td>Vault-owned usability knowledge surfaced as local traceability IDs</td>
+        <td>Rule pipeline and validation manifest</td>
       </tr>
       <tr>
         <td><strong><a href="/foundations/governance/intelligence/">Design Intelligence</a></strong></td>
-        <td>Judgment layer — evaluates quality beyond compliance</td>
-        <td>Appropriateness, Complexity, Trade-offs, Emotional Fit, Confidence</td>
+        <td>Vault-owned reasoning model used as an implementation review lens</td>
+        <td>Pattern, component, and docs review</td>
       </tr>
     </tbody>
   </table>

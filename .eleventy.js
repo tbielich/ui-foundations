@@ -1,7 +1,38 @@
 const { renderComponentTokenTable } = require("./site/lib/component-token-table.js");
+const siteConfig = require("./config/site.js");
+
+function trimTrailingSlash(value) {
+  return String(value || "").replace(/\/+$/, "");
+}
+
+function trimLeadingSlash(value) {
+  return String(value || "").replace(/^\/+/, "");
+}
+
+function isGitHubRepositoryUrl(value) {
+  return /^https:\/\/github\.com\/[^/]+\/[^/]+\/?$/.test(String(value || ""));
+}
+
+function vaultDocumentationUrl(path = "") {
+  const documentationUrl = trimTrailingSlash(siteConfig.vault.documentation);
+  const branch = siteConfig.vault.branch;
+  const normalizedPath = trimLeadingSlash(path);
+
+  if (!normalizedPath) {
+    return documentationUrl;
+  }
+
+  if (isGitHubRepositoryUrl(documentationUrl)) {
+    const pathType = normalizedPath.endsWith("/") ? "tree" : "blob";
+    return `${documentationUrl}/${pathType}/${branch}/${normalizedPath.replace(/\/+$/, "")}`;
+  }
+
+  return `${documentationUrl}/${normalizedPath}`;
+}
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode("componentTokenTable", renderComponentTokenTable);
+  eleventyConfig.addFilter("vaultDocumentationUrl", vaultDocumentationUrl);
   eleventyConfig.addPassthroughCopy({
     "dist/main.css": "vendor/ui-foundations/main.css",
   });

@@ -7,18 +7,15 @@ order: 3
 permalink: /foundations/accessibility/
 ---
 
-Accessibility is a baseline requirement, not an optional enhancement. Every
-component in the system is built to meet these standards.
+Canonical design foundation knowledge is maintained in the UI Foundations Vault. This repository only documents implementation-specific usage.
 
-## Guiding standards
+Vault reference: <a href="{{ 'foundations/accessibility-principles.md' | vaultDocumentationUrl }}">configured vault accessibility principles</a>
 
-- WCAG 2.1 AA as the minimum conformance target.
-- Semantic HTML before ARIA — use native elements when they exist.
-- Keyboard operability for every interactive control.
-- Visible focus indicators that meet 3:1 contrast.
-- Color is never the only means of conveying information.
+## Local implementation expectations
 
-## What every component provides
+Accessibility is a baseline requirement for shipped patterns, components,
+examples, and documentation in this repository. Local implementation guidance
+focuses on how accessibility principles are expressed in code and validation.
 
 ### Semantic markup
 

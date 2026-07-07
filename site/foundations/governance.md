@@ -9,39 +9,47 @@ excludeFromNav: true
 ---
 
 <p class="page-intro">
-  Every pattern and component decision is guided by three governance layers that form a quality net above the implementation.
+  Canonical design foundation knowledge is maintained in the UI Foundations Vault. This repository only documents implementation-specific usage.
+</p>
+
+<p>
+  Vault reference: <a href="{{ 'foundations/' | vaultDocumentationUrl }}">configured vault foundations</a>
 </p>
 
 <div class="docs-grid">
   <a class="docs-card" href="/foundations/governance/principles/">
     <h2>Design Principles</h2>
-    <p>Cross-cutting composition intent — proximity, hierarchy, contrast, affordance, cognitive load, consistency.</p>
+    <p>Local usage notes for applying vault principles to patterns and components.</p>
   </a>
   <a class="docs-card" href="/foundations/governance/heuristics/">
     <h2>Usability Heuristics</h2>
-    <p>Interaction quality rules — feedback, error prevention, recognition, user control, accessibility.</p>
+    <p>Local heuristic IDs for rule-pipeline traceability and validation.</p>
   </a>
   <a class="docs-card" href="/foundations/governance/intelligence/">
     <h2>Design Intelligence</h2>
-    <p>Judgment layer — evaluates quality beyond compliance through structured reasoning and critique.</p>
+    <p>Local implementation review lens for system fit, reuse, and quality.</p>
   </a>
 </div>
 
 <h2 id="how-heading">How They Work Together</h2>
 
-<p>The layers stack from concrete to abstract:</p>
+<p>
+  Durable knowledge lives in the vault. This repository keeps the implementation
+  contract that connects that knowledge to pattern rules, component rules,
+  validation, and CI.
+</p>
 
 <div class="pipeline-flow">
   <div class="pipeline-step">
-    <span class="pipeline-step-label">Design Principles — the "why" of composition</span>
+    <span class="pipeline-step-label">Vault foundations</span>
   </div>
   <div class="pipeline-arrow"><span>informs</span></div>
   <div class="pipeline-step">
-    <span class="pipeline-step-label">Usability Heuristics — the "how" of interaction</span>
+    <span class="pipeline-step-label">Local rule IDs and pattern guidance</span>
   </div>
-  <div class="pipeline-arrow"><span>evaluated by</span></div>
+  <div class="pipeline-arrow"><span>validated by</span></div>
   <div class="pipeline-step">
-    <span class="pipeline-step-label">Design Intelligence — the "is this good?" judgment</span>
+    <span class="pipeline-step-label">Rule pipeline and CI</span>
   </div>
 </div>
 
