@@ -6568,7 +6568,7 @@
       "Text Color Active": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Text/On/Brand"
+          "$ref": "Color/Text/On/Active"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:3024:12",
@@ -6579,8 +6579,8 @@
             "WEB": "var(--calendar-cell-text-color-active)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2616:2",
-            "targetVariableName": "Color/Text/On/Brand",
+            "targetVariableId": "VariableID:2616:6",
+            "targetVariableName": "Color/Text/On/Active",
             "targetVariableSetId": "VariableCollectionId:2007:325",
             "targetVariableSetName": "Appearance (Modes)"
           },
@@ -6612,7 +6612,7 @@
       "Background Active": {
         "$type": "color",
         "$value": {
-          "$ref": "Color/Fill/Brand"
+          "$ref": "Color/Fill/Active"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:3024:14",
@@ -6623,8 +6623,8 @@
             "WEB": "var(--calendar-cell-background-active)"
           },
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2007:337",
-            "targetVariableName": "Color/Fill/Brand",
+            "targetVariableId": "VariableID:2007:339",
+            "targetVariableName": "Color/Fill/Active",
             "targetVariableSetId": "VariableCollectionId:2007:325",
             "targetVariableSetName": "Appearance (Modes)"
           },

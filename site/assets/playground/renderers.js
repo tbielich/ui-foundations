@@ -315,6 +315,10 @@
       controlIcons = [
         { icon: "view", label: "Toggle password visibility", focusable: true },
       ];
+    } else if (type === "date") {
+      controlIcons = [
+        { icon: "calendar", label: "Open date picker", focusable: true },
+      ];
     } else if (
       type === "text" ||
       type === "email" ||
@@ -1115,6 +1119,19 @@
     const month = String(props.month || "");
     const year = String(props.year || "");
     const disabledAttr = disabled ? " disabled" : "";
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDay = Number(day);
+    const selectedMonth = Number(month);
+    const selectedYear = Number(year);
+    const visibleYear = selectedYear >= 1900 && selectedYear <= 2100
+      ? selectedYear
+      : today.getFullYear();
+    const visibleMonth = selectedMonth >= 1 && selectedMonth <= 12
+      ? selectedMonth - 1
+      : today.getMonth();
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const weekdayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 
     const rootClasses = ["input-field", "date"];
     if (isOpen) rootClasses.push("is-open");
@@ -1130,22 +1147,48 @@
     html += `<input class="date-segment year" id="date-picker-playground-year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year" value="${quoteAttr(year)}"${disabledAttr}>`;
     html += `</div>`;
     html += `<span class="input-field-control">`;
-    html += `<button type="button" class="button ghost" aria-label="Open calendar" aria-expanded="${isOpen}" aria-haspopup="grid" aria-controls="date-picker-playground-calendar"${disabledAttr}>`;
+    html += `<button type="button" aria-label="Open calendar" aria-expanded="${isOpen}" aria-haspopup="grid" aria-controls="date-picker-playground-calendar"${disabledAttr}>`;
     html += `<span class="icon" style="--icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>`;
     html += `</button></span>`;
     html += `<div class="calendar" id="date-picker-playground-calendar"><div class="calendar-header">`;
     html += `<button type="button" class="button ghost" aria-label="Previous month"><span class="icon" style="--icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
     html += `<span class="calendar-selectors"><select class="select calendar-header-select" name="month" aria-label="Month">`;
-    ["January","February","March","April","May","June","July","August","September","October","November","December"].forEach((m, i) => { html += `<option value="${i}"${i === 6 ? " selected" : ""}>${m}</option>`; });
+    monthNames.forEach((m, i) => { html += `<option value="${i}"${i === visibleMonth ? " selected" : ""}>${m}</option>`; });
     html += `</select><select class="select calendar-header-select" name="year" aria-label="Year">`;
-    for (let y = 2020; y <= 2030; y++) { html += `<option value="${y}"${y === 2026 ? " selected" : ""}>${y}</option>`; }
+    for (let y = 2020; y <= 2030; y++) { html += `<option value="${y}"${y === visibleYear ? " selected" : ""}>${y}</option>`; }
     html += `</select></span>`;
     html += `<button type="button" class="button ghost" aria-label="Next month"><span class="icon" style="--icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
-    html += `</div><table class="calendar-table" role="grid" aria-label="July 2026"><thead><tr>`;
-    ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach((d) => { html += `<th scope="col">${d}</th>`; });
+    const monthLabel = `${monthNames[visibleMonth]} ${visibleYear}`;
+    html += `</div><table class="calendar-table" role="grid" aria-label="${monthLabel}"><thead><tr>`;
+    weekdayNames.forEach((d) => { html += `<th scope="col">${d}</th>`; });
     html += `</tr></thead><tbody>`;
+    const firstDay = new Date(visibleYear, visibleMonth, 1);
+    const daysInMonth = new Date(visibleYear, visibleMonth + 1, 0).getDate();
+    const startDow = (firstDay.getDay() + 6) % 7;
     let d = 1;
-    for (let w = 0; w < 5; w++) { html += "<tr>"; for (let dow = 0; dow < 7; dow++) { if (d <= 31) { html += `<td><button type="button" class="calendar-cell" tabindex="-1">${d}</button></td>`; d++; } else { html += "<td></td>"; } } html += "</tr>"; }
+    let started = false;
+    for (let w = 0; w < 6; w++) {
+      if (d > daysInMonth) break;
+      html += "<tr>";
+      for (let dow = 0; dow < 7; dow++) {
+        if (!started && dow < startDow) {
+          html += "<td></td>";
+        } else if (d <= daysInMonth) {
+          started = true;
+          const date = new Date(visibleYear, visibleMonth, d);
+          const classes = ["calendar-cell"];
+          const isSelected = selectedDay === d && selectedMonth === visibleMonth + 1 && selectedYear === visibleYear;
+          const isToday = date.toDateString() === today.toDateString();
+          if (isSelected) classes.push("is-selected");
+          if (isToday) classes.push("is-today");
+          html += `<td><button type="button" class="${classes.join(" ")}" aria-selected="${isSelected ? "true" : "false"}" tabindex="${d === 1 ? "0" : "-1"}">${d}</button></td>`;
+          d++;
+        } else {
+          html += "<td></td>";
+        }
+      }
+      html += "</tr>";
+    }
     html += `</tbody></table></div></div></div>`;
 
     const wrapper = document.createElement("div");

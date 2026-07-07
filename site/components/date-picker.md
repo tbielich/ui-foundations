@@ -40,7 +40,7 @@ playgroundLabel: Open Date Picker Playground
             <input class="date-segment year" id="date-input-demo-year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year">
           </div>
           <span class="input-field-control">
-            <button type="button" class="button ghost" aria-label="Open calendar" aria-expanded="false" aria-haspopup="grid" aria-controls="date-input-demo-calendar">
+            <button type="button" aria-label="Open calendar" aria-expanded="false" aria-haspopup="grid" aria-controls="date-input-demo-calendar">
               <span class="icon" style="--icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>
             </button>
           </span>
@@ -72,7 +72,7 @@ Together they form a component that can be opened, navigated, and dismissed — 
     │   ├── span.date-separator  "/"
     │   └── input.date-segment.year [maxlength=4, aria-label="Year"]
     ├── .input-field-control
-    │   └── button.button.ghost [aria-label="Open calendar", aria-expanded, aria-controls]
+    │   └── button [aria-label="Open calendar", aria-expanded, aria-controls]
     │       └── span.icon (calendar icon)
     └── .calendar [hidden until opened]
         ├── .calendar-header
@@ -84,7 +84,8 @@ Together they form a component that can be opened, navigated, and dismissed — 
 | Pattern | Role |
 |---------|------|
 | [Input](/patterns/input/) | Text field showing the formatted date |
-| [Button ghost](/patterns/button/) | Calendar toggle trigger + month navigation |
+| Input control button | Calendar toggle trigger, matching clear and increment controls |
+| [Button ghost](/patterns/button/) | Calendar month navigation |
 | [Icon](/patterns/icon/) | Calendar and chevron icons |
 | [Calendar](/patterns/calendar/) | Date grid with selection and keyboard nav |
 
@@ -131,7 +132,7 @@ Together they form a component that can be opened, navigated, and dismissed — 
 
 Reuses tokens from the composed patterns:
 - Input tokens (`--input-*`)
-- Button ghost tokens (`--button-ghost-*`)
+- Input control button behavior from `.input-field-control`
 - Calendar tokens (`--calendar-cell-*`)
 
 No additional component-specific tokens needed — the composition inherits from its parts.
@@ -277,19 +278,39 @@ The Date Picker requires `src/ui/components/date-input.js` for:
     // Cell selection → fill segments
     if (calendar) {
       // Month navigation
-      var currentYear = 2026, currentMonth = 6;
       var prevBtn = calendar.querySelector("[aria-label='Previous month']");
       var nextBtn = calendar.querySelector("[aria-label='Next month']");
       var monthSelect = calendar.querySelector('[name="month"]');
       var yearSelect = calendar.querySelector('[name="year"]');
+      var currentYear = parseInt(segments[2] && segments[2].value, 10) || new Date().getFullYear();
+      var currentMonth = ((parseInt(segments[1] && segments[1].value, 10) || (new Date().getMonth() + 1)) - 1);
+      currentMonth = Math.max(0, Math.min(11, currentMonth));
+
+      function selectedDateParts() {
+        return {
+          day: parseInt(segments[0] && segments[0].value, 10),
+          month: (parseInt(segments[1] && segments[1].value, 10) || 0) - 1,
+          year: parseInt(segments[2] && segments[2].value, 10)
+        };
+      }
+
+      function syncVisibleMonthFromSegments() {
+        var parts = selectedDateParts();
+        if (parts.year >= 1900 && parts.year <= 2100 && parts.month >= 0 && parts.month <= 11) {
+          currentYear = parts.year;
+          currentMonth = parts.month;
+        }
+      }
 
       function rebuildGrid() {
         var tbody = calendar.querySelector('tbody');
         if (!tbody) return;
+        syncVisibleMonthFromSegments();
         var firstDay = new Date(currentYear, currentMonth, 1);
         var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
         var startDow = (firstDay.getDay() + 6) % 7;
         var today = new Date(); today.setHours(0,0,0,0);
+        var selected = selectedDateParts();
 
         if (monthSelect) monthSelect.value = currentMonth;
         if (yearSelect) yearSelect.value = currentYear;
@@ -311,8 +332,10 @@ The Date Picker requires `src/ui/components/date-input.js` for:
               var classes = ['calendar-cell'];
               var d = new Date(currentYear, currentMonth, day);
               if (d.toDateString() === today.toDateString()) classes.push('is-today');
+              var isSelected = selected.day === day && selected.month === currentMonth && selected.year === currentYear;
+              if (isSelected) classes.push('is-selected');
               var tabindex = (day === 1) ? '0' : '-1';
-              html += '<td><button type="button" class="' + classes.join(' ') + '" aria-selected="false" tabindex="' + tabindex + '">' + day + '</button></td>';
+              html += '<td><button type="button" class="' + classes.join(' ') + '" aria-selected="' + (isSelected ? 'true' : 'false') + '" tabindex="' + tabindex + '">' + day + '</button></td>';
               day++;
             } else {
               html += '<td></td>';
@@ -327,21 +350,30 @@ The Date Picker requires `src/ui/components/date-input.js` for:
         e.preventDefault();
         currentMonth--;
         if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+        if (segments[1]) segments[1].value = String(currentMonth + 1).padStart(2, '0');
+        if (segments[2]) segments[2].value = String(currentYear);
         rebuildGrid();
       });
       if (nextBtn) nextBtn.addEventListener('click', function(e) {
         e.preventDefault();
         currentMonth++;
         if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+        if (segments[1]) segments[1].value = String(currentMonth + 1).padStart(2, '0');
+        if (segments[2]) segments[2].value = String(currentYear);
         rebuildGrid();
       });
       if (monthSelect) monthSelect.addEventListener('change', function() {
         currentMonth = parseInt(monthSelect.value, 10);
+        if (segments[1]) segments[1].value = String(currentMonth + 1).padStart(2, '0');
         rebuildGrid();
       });
       if (yearSelect) yearSelect.addEventListener('change', function() {
         currentYear = parseInt(yearSelect.value, 10);
+        if (segments[2]) segments[2].value = String(currentYear);
         rebuildGrid();
+      });
+      segments.forEach(function(seg) {
+        seg.addEventListener('blur', rebuildGrid);
       });
 
       // Keyboard navigation in the grid (roving tabindex)
@@ -396,11 +428,12 @@ The Date Picker requires `src/ui/components/date-input.js` for:
         btn.setAttribute('aria-selected', 'true');
         var day = btn.textContent.trim().padStart(2, '0');
         if (segments[0]) segments[0].value = day;
-        if (segments[1]) segments[1].value = '07';
-        if (segments[2]) segments[2].value = '2026';
+        if (segments[1]) segments[1].value = String(currentMonth + 1).padStart(2, '0');
+        if (segments[2]) segments[2].value = String(currentYear);
         close();
         if (segments[0]) segments[0].focus();
       });
+      rebuildGrid();
     }
 
     close();

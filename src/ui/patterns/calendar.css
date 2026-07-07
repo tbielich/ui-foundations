@@ -23,12 +23,15 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--calendar-header-gap);
+    min-inline-size: 0;
   }
 
   .calendar-selectors {
     display: flex;
     align-items: center;
     gap: var(--calendar-header-gap);
+    flex: 0 1 auto;
+    min-inline-size: 0;
   }
 
   .calendar-nav {
@@ -38,10 +41,20 @@
 
   /* Header selects: reuse Select pattern with calendar-specific overrides (no border, transparent) */
   .calendar-header .select.calendar-header-select {
+    flex: 0 0 auto;
+    inline-size: auto;
     border-color: transparent;
     background: transparent;
     min-block-size: auto;
     padding-block: 0;
+  }
+
+  .calendar-header .select.calendar-header-select[name="month"] {
+    min-inline-size: 12ch;
+  }
+
+  .calendar-header .select.calendar-header-select[name="year"] {
+    min-inline-size: 7ch;
   }
 
   .calendar-header .select.calendar-header-select:hover {

@@ -17,6 +17,14 @@ function controlsForType(type) {
           focusable: true,
         },
       ];
+    case "date":
+      return [
+        {
+          icon: "calendar",
+          label: "Open date picker",
+          focusable: true,
+        },
+      ];
     case "text":
     case "email":
     case "search":
@@ -35,6 +43,7 @@ export function Input({
   onIncrement,
   onDecrement,
   onToggleVisibility,
+  onOpenPicker,
   ...props
 }) {
   if (!props["aria-label"] && !props["aria-labelledby"] && !props.id) {
@@ -54,6 +63,7 @@ export function Input({
     if (type === "number" && item.icon === "minus-circled") handler = onDecrement;
     if (type === "number" && item.icon === "plus-circled") handler = onIncrement;
     if (type === "password") handler = onToggleVisibility;
+    if (type === "date") handler = onOpenPicker;
     if (item.icon === "cross-circled") handler = onClear;
 
     var buttonProps = {
