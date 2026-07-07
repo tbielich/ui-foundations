@@ -34,8 +34,8 @@ Three density values:
 
 ### Token Architecture
 
-Density is a **Semantic-layer resolution mechanism** (like Themes and Modes),
-not an independent layer:
+Density is an **Appearance-layer mode axis** (like light/dark mode), not an
+arbitrary brand-semantic variant:
 
 ```
 Core (raw spacing scale: 100=4px, 200=8px, 300=12px, 400=16px ...)
@@ -149,4 +149,4 @@ The library ships the token overrides; the consumer activates them.
 | T-shirt sizes in Core (sm/md/lg) | Conflates scale step with density intent |
 | Media queries in tokens | Creates parallel responsive system, conflicts with container queries |
 | Component-level density props | Doesn't scale; every component needs its own density logic |
-| Density as a Theme variant | Themes are for brand, not spatial adaptation |
+| Density as a brand-semantic variant | Semantics (Brands) is for brand-scoped semantic meaning, not spatial adaptation |

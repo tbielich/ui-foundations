@@ -32,7 +32,7 @@ pages are the reference implementations.
 9. **Theming** — Short paragraph + link to `/foundations/theming/`. The hero
    preview switches already demonstrate theming inline.
 10. **Design checklist** — `docs-checklist` grid with items: interactive states,
-    color themes, accessible color (1.4.1), accessible contrast text (1.4.3),
+    brand/mode contexts, accessible color (1.4.1), accessible contrast text (1.4.3),
     accessible contrast UI (1.4.11), content standards, defined options,
     defined behaviors, usage guidelines, keyboard interactions, design tokens,
     Figma component.

@@ -8,24 +8,24 @@ type: adr
 
 ## Context
 
-Component tokens (`Components (UI).tokens.json`) referenced `Brand/Corner/*`
-tokens from the Themes (Brands) collection directly, bypassing the Semantic
+Component tokens (`Patterns (UI).tokens.json`) referenced `Brand/Corner/*`
+tokens from the Semantics (Brands) collection directly, bypassing the Semantic
 layer. This violated the governance rule that Components may only reference
 Semantics or Core.
 
 The Semantic layer already contained Corner tokens (`Corner/Button Radius`,
 `Corner/Card Radius`, `Corner/Modal Radius`, `Corner/Form Radius`,
-`Corner/Checkbox Radius`) that pointed to the same Themes values — they were
+`Corner/Checkbox Radius`) that pointed to the same brand semantics — they were
 simply not being used by Components.
 
 ## Decision
 
 1. Rewire all Component corner-radius tokens to reference Semantic Corner
-   tokens instead of Themes directly.
+   tokens instead of brand semantics directly.
 2. Add `Corner/Input Radius` to Semantics (was missing — Input and Select
    need a shared semantic role distinct from Checkbox).
-3. Document Themes and Modes as **resolution mechanisms** within the Semantic
-   boundary, not as independent abstraction layers (Foundation-001 update).
+3. Document brand semantics and appearance modes as named token layers, not as
+   an arbitrary visual-skin layer (Foundation-001 update).
 
 ## Changes
 
@@ -44,10 +44,10 @@ New Semantic token added:
 
 - The governance rule "Components reference only Semantics or Core" is now
   enforceable without exceptions for corner radii.
-- Future corner-radius changes for a brand only need to update Themes — the
+- Future corner-radius changes for a brand only need to update Semantics (Brands) — the
   Semantic layer propagates automatically.
 - If a new component needs a radius, the decision is clear: find or create
-  a Semantic Corner token, never reference Themes directly.
+  a Semantic Corner token, never reference brand semantics directly.
 - Figma must mirror this change: reassign the variable references in the
   Components collection to point to the Semantics collection variables.
 

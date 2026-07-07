@@ -7,7 +7,7 @@ This Figma file is the single source of truth for the UI Foundations design syst
 | Page | Content |
 |---|---|
 | README | This overview |
-| Tokens | Variable collections (Primitives, Brands, Modes, Semantics, Components) |
+| Tokens | Variable collections (Primitives, Appearance, Semantics (Brands), Typography, Patterns) |
 | Components | Button, Input, Checkbox, Switch, Icon, Label, Link |
 | Examples | Composed layouts and usage patterns |
 | Assets | Icons and other exportable assets |
@@ -17,10 +17,10 @@ This Figma file is the single source of truth for the UI Foundations design syst
 | Collection | Purpose | Modes |
 |---|---|---|
 | Core (Primitives) | Raw color, spacing, typography, radius values | — |
-| Themes (Brands) | Brand-specific overrides | Brand A, Brand B |
-| Appearance (Modes) | Light/dark semantic mappings | Light Mode, Dark Mode |
-| Semantics (Roles) | Role-based tokens (text, fill, border) | — |
-| Components (UI) | Component-specific tokens (button, input, etc.) | — |
+| Appearance (Modes) | Mode-dependent rendering decisions such as light/dark color mappings | Light Mode, Dark Mode |
+| Semantics (Brands) | Brand-scoped semantic token roles | Brand A, Brand B, Brand C |
+| Typography (Fluid) | Fluid typography min/max values | Min, Max |
+| Patterns (UI) | Pattern-specific tokens (button, input, etc.) | — |
 
 ## Token Naming
 

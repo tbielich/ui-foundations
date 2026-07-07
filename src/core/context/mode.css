@@ -1,4 +1,4 @@
-@layer themes {
+@layer context {
   /* Mode switch is controlled by JS via :root[data-mode="..."] token scopes. */
   /* This layer only advertises supported color schemes to the browser UI. */
   :root {

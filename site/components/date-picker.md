@@ -144,7 +144,7 @@ The native `<input type="date">` has real accessibility and UX limitations:
 |-------|--------|----------------|
 | Touch targets | Under 44px (browser controls) | 44×44px minimum per cell |
 | Keyboard navigation | Inconsistent across browsers | Full arrow/Home/End/PageUp/PageDown |
-| Styling | Shadow DOM, not themeable | Token-based, Brand/Mode aware |
+| Styling | Shadow DOM, not brand/mode adaptable | Token-based, Brand/Mode aware |
 | Range selection | Not supported | Prepared (`.is-range-start`, `.is-range-middle`, `.is-range-end`) |
 | Cross-browser consistency | Safari ≠ Chrome ≠ Firefox | Identical behavior everywhere |
 | Screen reader experience | Varies, often poor | Explicit aria-label per cell, aria-live for month changes |

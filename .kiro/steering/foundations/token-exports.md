@@ -13,10 +13,10 @@ When working with files in `figma/exports/`, these rules apply:
 - `$value.$ref` creates an alias to another token
 
 ## Alias Validation (Rule 10)
-- Every `$ref` must point to a token that exists in Core, Themes, or Modes
+- Every `$ref` must point to a token that exists in Core, Appearance, or Semantics (Brands)
 - Check `dist/tokens/css/core-primitives.tokens.css` for available Core tokens
-- Check `dist/tokens/css/themes-brands.tokens.brand-*.css` for available Theme tokens
-- Check `dist/tokens/css/appearance-modes.tokens.mode-*.css` for available Mode tokens
+- Check `dist/tokens/css/appearance-modes.tokens.mode-*.css` for available Appearance tokens
+- Check `dist/tokens/css/semantics-brands.tokens.brand-*.css` for available brand-semantic tokens
 - Never invent token names that don't exist
 - If a needed token doesn't exist, flag it for Figma creation — don't fake it
 
@@ -24,8 +24,8 @@ When working with files in `figma/exports/`, these rules apply:
 
 Pattern tokens (`Patterns (UI).tokens.json`) may reference:
 - **Core (Primitives)** — raw values (font sizes, radii, spacing primitives)
-- **Themes (Brands)** — brand-controlled decisions (corners, spacing semantics, border weights, fonts)
 - **Appearance (Modes)** — mode-switched colors (text, fill, border, overlay)
+- **Semantics (Brands)** — brand-scoped semantic roles (corners, spacing semantics, border weights, fonts)
 
 Pattern tokens must **NEVER**:
 - Reference other Pattern tokens (no cross-component coupling)
@@ -44,7 +44,7 @@ its tokens independently and references only downstream layers.
 | `Select/Border Radius` → `Brand/Corner/Input` | `Select/Border Radius` → `Input/Border Radius` |
 
 If two components need the same value, they both reference the same
-Brand/Core/Modes source independently.
+Semantics (Brands), Appearance, or Core source independently.
 
 ### Corner Radius References
 
@@ -61,7 +61,7 @@ Reference Brand/Corner tokens directly:
 | `Size/Radius/400` | Accordions (large containers) |
 ### Size References (Border Width, Spacing)
 
-Patterns reference **Theme Size tokens** for brand-controlled sizing:
+Patterns reference **brand-semantic size tokens** for brand-controlled sizing:
 
 | `$ref` | CSS output | Use for |
 |---|---|---|

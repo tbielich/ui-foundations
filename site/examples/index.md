@@ -30,7 +30,7 @@ When building examples or pages that use a UI pattern not yet in the system
 ### Which steering to use
 
 Reference `#component-doc-template` in your prompt. It contains the full
-Spectrum-style section structure, hero markup with inline theme switches,
+Spectrum-style section structure, hero markup with inline brand and mode switches,
 behavior grid, do/don't blocks, and all CSS class names needed to build a
 complete component page.
 

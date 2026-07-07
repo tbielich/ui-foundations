@@ -653,7 +653,7 @@ async function extractTokens() {
             webSyntax: `var(--${slugifyName(segments.join("-"))})`,
             cssVar: null,
             cssVarRef: null,
-            sourceScope: "global:components-ui",
+            sourceScope: "global:patterns-ui",
             sourceFile: "mock",
             sourceFileName: "mock",
             _modeValues: null,

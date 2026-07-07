@@ -17,9 +17,9 @@ Support dark mode in a reusable way without forcing activation behavior on consu
    - Dark tokens at `:root[data-mode="dark"]`
    - Brand tokens scoped by `data-brand`
 
-2. Core theme layer remains neutral:
-   - `src/core/themes/mode.css` keeps non-invasive base behavior (`color-scheme`)
-   - no hard-coded dark token overrides in core theme CSS
+2. Core context layer remains neutral:
+   - `src/core/context/mode.css` keeps non-invasive base behavior (`color-scheme`)
+   - no hard-coded dark token overrides in core context CSS
 
 3. Each consumer owns mode policy:
    - whether dark mode is available

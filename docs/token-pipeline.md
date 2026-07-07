@@ -36,10 +36,10 @@ These files are never edited manually. They are replaced on each Figma export.
 | File | Layer | Content |
 |---|---|---|
 | `Core (Primitives).tokens.json` | Core | Raw values: spacing, radii, borders, typography, colors |
-| `Appearance (Modes).tokens.json` | Modes | Light/dark color assignments (references Core + Themes) |
-| `Semantics (Roles).tokens.json` | Semantic | Intent-based aliases: typography roles, corner radii |
-| `Themes (Brands).tokens.json` | Themes | Brand-specific overrides (references Core) |
-| `Patterns (UI).tokens.json` | Patterns | Pattern-specific tokens (references Semantic + Core) |
+| `Appearance (Modes).tokens.json` | Appearance | Mode-dependent decisions such as light/dark color assignments |
+| `Semantics (Brands).tokens.json` | Brand semantics | Brand-scoped semantic roles (references Core and Appearance) |
+| `Patterns (UI).tokens.json` | Patterns | Pattern-specific tokens (references Semantics (Brands), Appearance, or Core) |
+| `Typography (Fluid).tokens.json` | Typography | Fluid typography mode values |
 
 ## Pipeline Transforms
 
@@ -74,13 +74,37 @@ Files in `dist/tokens/json/` follow the DTCG Design Tokens Format Module:
 | File | Scope |
 |---|---|
 | `core-primitives.tokens.json` | All primitives |
-| `semantics-roles.tokens.json` | Semantic aliases |
 | `appearance-modes.tokens.mode-light.json` | Light mode colors |
 | `appearance-modes.tokens.mode-dark.json` | Dark mode colors |
 | `patterns-ui.tokens.json` | Pattern tokens |
-| `themes-brands.tokens.brand-a.json` | Brand A overrides |
-| `themes-brands.tokens.brand-b.json` | Brand B overrides |
-| `themes-brands.tokens.brand-c.json` | Brand C overrides |
+| `semantics-brands.tokens.brand-a.json` | Brand A semantic roles |
+| `semantics-brands.tokens.brand-b.json` | Brand B semantic roles |
+| `semantics-brands.tokens.brand-c.json` | Brand C semantic roles |
+| `typography-fluid.tokens.mode-min.json` | Minimum fluid typography values |
+| `typography-fluid.tokens.mode-max.json` | Maximum fluid typography values |
+
+## Naming Migration And Compatibility
+
+`Semantics (Brands)` replaces the former `Themes (Brands)` collection concept.
+This is a naming migration for the collection and generated internal filenames,
+not a token-name migration.
+
+Compatibility decisions:
+
+- **Internal rename**: `Themes (Brands).tokens.json` moved to
+  `Semantics (Brands).tokens.json`.
+- **Generated rename**: `themes-brands.tokens.*` moved to
+  `semantics-brands.tokens.*`.
+- **Backwards-compatible package API**: existing package exports such as
+  `ui-foundations/tokens/brand-a.css` and `ui-foundations/tokens/brand-a.json`
+  remain available and now point to the `semantics-brands` files.
+- **New explicit aliases**: `ui-foundations/tokens/brand-semantics-a.css` and
+  matching JSON exports are available for code that wants the new terminology.
+- **Sync compatibility**: `scripts/sync-figma-tokens.mjs` still accepts an old
+  dump key named `Themes (Brands)` and writes it to the new
+  `Semantics (Brands).tokens.json` file.
+- **Deferred**: CSS custom property names such as `--brand-*` remain stable to
+  avoid unnecessary downstream breakage.
 
 ## Validation
 

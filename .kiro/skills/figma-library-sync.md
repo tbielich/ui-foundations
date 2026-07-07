@@ -40,11 +40,11 @@ Collections and modes by layer:
 
 | Layer | Figma Collection | Modes |
 |---|---|---|
-| Core Primitives | `Core Primitives` | Default |
-| Brand Themes | `Brand Themes` | Brand A, Brand B, Brand C |
-| Appearance Modes | `Appearance Modes` | Light, Dark |
-| Semantics Roles | `Semantics Roles` | Default |
-| Components UI | `Components UI` | Default |
+| Core | `Core (Primitives)` | Default |
+| Appearance | `Appearance (Modes)` | Light Mode, Dark Mode |
+| Semantics (Brands) | `Semantics (Brands)` | Brand A, Brand B, Brand C |
+| Typography | `Typography (Fluid)` | Min, Max |
+| Patterns | `Patterns (UI)` | Default |
 
 ### Step 2: Create Variable Collections
 
@@ -85,8 +85,8 @@ Use `figma.variables.setBoundVariableForPaint()` for fills and strokes.
 Use `node.setBoundVariable()` for `strokeWeight`, `topLeftRadius`, `paddingLeft`,
 `itemSpacing`, etc.
 
-Each component variant must bind to its own component-layer tokens, never to
-semantic or core tokens directly.
+Each component variant must bind to its own pattern-layer tokens, never to
+another pattern's tokens directly.
 
 ### Step 6: Add Code Snippets
 

@@ -21,15 +21,24 @@ import { resolve, join } from "node:path";
 const REPO_ROOT = resolve(import.meta.dirname, "..");
 const EXPORTS_DIR = join(REPO_ROOT, "figma", "exports");
 
-// Collection name → export filename mapping (1:1 with Figma collections)
+// Collection name → export filename mapping (1:1 with current Figma collections)
 const COLLECTION_FILES = {
   "Patterns (UI)": "Patterns (UI).tokens.json",
-  "Components (UI)": "Components (UI).tokens.json",
   "Core (Primitives)": "Core (Primitives).tokens.json",
-  "Semantics (Roles)": "Semantics (Roles).tokens.json",
   "Appearance (Modes)": "Appearance (Modes).tokens.json",
-  "Themes (Brands)": "Themes (Brands).tokens.json",
+  "Semantics (Brands)": "Semantics (Brands).tokens.json",
+  "Typography (Fluid)": "Typography (Fluid).tokens.json",
 };
+
+// Backwards-compatible input aliases for dumps produced before the collection rename.
+// The export filename remains the new Semantics (Brands) contract.
+const COLLECTION_ALIASES = {
+  "Themes (Brands)": "Semantics (Brands)",
+};
+
+function normalizeCollectionName(collectionName) {
+  return COLLECTION_ALIASES[collectionName] || collectionName;
+}
 
 /**
  * Parse the raw variable dump from Figma into DTCG-formatted JSON.
@@ -75,7 +84,7 @@ function buildTokenEntry(v) {
       targetVariableId: v.alias.targetId,
       targetVariableName: v.alias.targetName,
       targetVariableSetId: v.alias.targetCollectionId,
-      targetVariableSetName: v.alias.targetCollectionName,
+      targetVariableSetName: normalizeCollectionName(v.alias.targetCollectionName),
     };
   } else if (typeof v.value === "number") {
     // Check if it should be a dimension (height/width tokens)
@@ -141,7 +150,10 @@ function main() {
   let filesWritten = 0;
 
   for (const [collectionName, fileName] of Object.entries(COLLECTION_FILES)) {
-    const variables = dump[collectionName];
+    const aliasNames = Object.entries(COLLECTION_ALIASES)
+      .filter(([, targetName]) => targetName === collectionName)
+      .map(([aliasName]) => aliasName);
+    const variables = dump[collectionName] || aliasNames.map((aliasName) => dump[aliasName]).find(Boolean);
     if (!variables || variables.length === 0) {
       // Skip silently — partial sync is fine
       continue;

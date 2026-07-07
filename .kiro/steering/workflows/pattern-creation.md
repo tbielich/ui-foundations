@@ -65,7 +65,7 @@ Examples:
    - Example: `--divider-container-border-color-default`
 2. Tokens reference only Semantic or Core layer (Foundation-001)
    - **NEVER reference `Brand/Corner/*` or `Brand/Color/*` directly** — these
-     are Theme tokens. Use the Semantic indirection:
+     are brand-semantic tokens. Use the semantic role indirection:
      - Corner radius → use `Corner/*` tokens (e.g. `Corner/Input Radius`)
      - Colors → use `Color/Text/*`, `Color/Fill/*`, `Color/Border/*`
      - Typography → use `Typography/*`

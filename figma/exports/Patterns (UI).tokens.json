@@ -18,7 +18,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -40,7 +40,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -62,7 +62,7 @@
             "targetVariableId": "VariableID:2006:215",
             "targetVariableName": "Brand/Corner/Button",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -106,7 +106,7 @@
             "targetVariableId": "VariableID:3022:8",
             "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -873,7 +873,7 @@
           "targetVariableId": "VariableID:2006:214",
           "targetVariableName": "Brand/Font/Lead",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -961,7 +961,7 @@
           "targetVariableId": "VariableID:3022:5",
           "targetVariableName": "Brand/Size/Spacing/Spacious",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -983,7 +983,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1005,7 +1005,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1119,7 +1119,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1164,7 +1164,7 @@
             "targetVariableId": "VariableID:3022:3",
             "targetVariableName": "Brand/Size/Spacing/Component",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1258,7 +1258,7 @@
             "targetVariableId": "VariableID:2006:217",
             "targetVariableName": "Brand/Corner/Modal",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1484,7 +1484,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1506,7 +1506,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1528,7 +1528,7 @@
             "targetVariableId": "VariableID:3022:8",
             "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1550,7 +1550,7 @@
             "targetVariableId": "VariableID:2028:335",
             "targetVariableName": "Brand/Corner/Input",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -1639,7 +1639,7 @@
           "targetVariableId": "VariableID:2006:213",
           "targetVariableName": "Brand/Font/Base",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1839,7 +1839,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1861,7 +1861,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1883,7 +1883,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -1905,7 +1905,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -2018,7 +2018,7 @@
             "targetVariableId": "VariableID:3022:5",
             "targetVariableName": "Brand/Size/Spacing/Spacious",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2063,7 +2063,7 @@
           "targetVariableId": "VariableID:3022:5",
           "targetVariableName": "Brand/Size/Spacing/Spacious",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -2085,7 +2085,7 @@
           "targetVariableId": "VariableID:3022:5",
           "targetVariableName": "Brand/Size/Spacing/Spacious",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -2130,7 +2130,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2153,7 +2153,7 @@
           "targetVariableId": "VariableID:3022:5",
           "targetVariableName": "Brand/Size/Spacing/Spacious",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -2176,7 +2176,7 @@
             "targetVariableId": "VariableID:3022:3",
             "targetVariableName": "Brand/Size/Spacing/Component",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2536,7 +2536,7 @@
             "targetVariableId": "VariableID:3022:8",
             "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2558,7 +2558,7 @@
             "targetVariableId": "VariableID:3022:6",
             "targetVariableName": "Brand/Size/Border/None",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2580,7 +2580,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2852,7 +2852,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2874,7 +2874,7 @@
             "targetVariableId": "VariableID:3022:8",
             "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -2896,7 +2896,7 @@
             "targetVariableId": "VariableID:3022:6",
             "targetVariableName": "Brand/Size/Border/None",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -3221,7 +3221,7 @@
           "targetVariableId": "VariableID:2006:214",
           "targetVariableName": "Brand/Font/Lead",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -3265,7 +3265,7 @@
           "targetVariableId": "VariableID:3022:7",
           "targetVariableName": "Brand/Size/Border/Default",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -3309,7 +3309,7 @@
           "targetVariableId": "VariableID:3022:4",
           "targetVariableName": "Brand/Size/Spacing/Comfortable",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -3331,7 +3331,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -3353,7 +3353,7 @@
           "targetVariableId": "VariableID:3022:2",
           "targetVariableName": "Brand/Size/Spacing/Tight",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -3375,7 +3375,7 @@
           "targetVariableId": "VariableID:3022:2",
           "targetVariableName": "Brand/Size/Spacing/Tight",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4158,7 +4158,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -4180,7 +4180,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -4202,7 +4202,7 @@
             "targetVariableId": "VariableID:3022:8",
             "targetVariableName": "Brand/Size/Border/Thick",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -4224,7 +4224,7 @@
             "targetVariableId": "VariableID:2028:335",
             "targetVariableName": "Brand/Corner/Input",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -4359,7 +4359,7 @@
           "targetVariableId": "VariableID:2006:213",
           "targetVariableName": "Brand/Font/Base",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4447,7 +4447,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4469,7 +4469,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4743,7 +4743,7 @@
           "targetVariableId": "VariableID:2006:213",
           "targetVariableName": "Brand/Font/Base",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4787,7 +4787,7 @@
           "targetVariableId": "VariableID:3022:2",
           "targetVariableName": "Brand/Size/Spacing/Tight",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -4994,7 +4994,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5016,7 +5016,7 @@
             "targetVariableId": "VariableID:2028:335",
             "targetVariableName": "Brand/Corner/Input",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5085,7 +5085,7 @@
           "targetVariableId": "VariableID:2006:213",
           "targetVariableName": "Brand/Font/Base",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5151,7 +5151,7 @@
           "targetVariableId": "VariableID:3022:4",
           "targetVariableName": "Brand/Size/Spacing/Comfortable",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5173,7 +5173,7 @@
           "targetVariableId": "VariableID:3022:4",
           "targetVariableName": "Brand/Size/Spacing/Comfortable",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5220,7 +5220,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5242,7 +5242,7 @@
             "targetVariableId": "VariableID:3032:2244",
             "targetVariableName": "Brand/Corner/Container",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5311,7 +5311,7 @@
           "targetVariableId": "VariableID:3022:5",
           "targetVariableName": "Brand/Size/Spacing/Spacious",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5333,7 +5333,7 @@
           "targetVariableId": "VariableID:3022:4",
           "targetVariableName": "Brand/Size/Spacing/Comfortable",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5355,7 +5355,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5537,7 +5537,7 @@
           "targetVariableId": "VariableID:3022:5",
           "targetVariableName": "Brand/Size/Spacing/Spacious",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5559,7 +5559,7 @@
           "targetVariableId": "VariableID:3022:4",
           "targetVariableName": "Brand/Size/Spacing/Comfortable",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5632,7 +5632,7 @@
             "targetVariableId": "VariableID:3038:2847",
             "targetVariableName": "Brand/Corner/Tooltip",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -5655,7 +5655,7 @@
           "targetVariableId": "VariableID:3022:4",
           "targetVariableName": "Brand/Size/Spacing/Comfortable",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5677,7 +5677,7 @@
           "targetVariableId": "VariableID:3022:3",
           "targetVariableName": "Brand/Size/Spacing/Component",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true
       }
@@ -5776,7 +5776,7 @@
             "targetVariableId": "VariableID:2006:214",
             "targetVariableName": "Brand/Font/Lead",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -6156,7 +6156,7 @@
             "targetVariableId": "VariableID:2006:214",
             "targetVariableName": "Brand/Font/Lead",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -6268,7 +6268,7 @@
             "targetVariableId": "VariableID:2006:213",
             "targetVariableName": "Brand/Font/Base",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -6360,7 +6360,7 @@
             "targetVariableId": "VariableID:3022:3",
             "targetVariableName": "Brand/Size/Spacing/Component",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -6426,7 +6426,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -6470,7 +6470,7 @@
             "targetVariableId": "VariableID:3022:3",
             "targetVariableName": "Brand/Size/Spacing/Component",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -6692,7 +6692,7 @@
             "targetVariableId": "VariableID:3022:7",
             "targetVariableName": "Brand/Size/Border/Default",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }
@@ -6797,7 +6797,7 @@
             "targetVariableId": "VariableID:3022:3",
             "targetVariableName": "Brand/Size/Spacing/Component",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true
         }

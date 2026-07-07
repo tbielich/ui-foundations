@@ -76,7 +76,8 @@ Each variable object in the dump has this shape:
 
 - `value` is set for raw values (numbers, strings, color objects)
 - `alias` is set for variable aliases (references to other tokens)
-- `modeValues` is added for multi-mode collections (Themes, Appearance)
+- `modeValues` is added for multi-mode collections such as Semantics (Brands),
+  Appearance, and Typography (Fluid)
 
 ## Safety Guarantees
 
