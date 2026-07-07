@@ -15,8 +15,10 @@
             "WEB": "var(--color-text-default)"
           },
           "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3011:2",
             "targetVariableName": "Brand/Color/Text/Default",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -73,8 +75,10 @@
             "WEB": "var(--color-text-disabled)"
           },
           "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3011:6",
             "targetVariableName": "Brand/Color/Text/Disabled",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -104,7 +108,7 @@
             "targetVariableId": "VariableID:2006:200",
             "targetVariableName": "Brand/Color/Primary",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -134,7 +138,7 @@
             "targetVariableId": "VariableID:2012:292",
             "targetVariableName": "Brand/Color/Subtle",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -161,8 +165,10 @@
             "WEB": "var(--color-text-strong)"
           },
           "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3011:4",
             "targetVariableName": "Brand/Color/Text/Strong",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -192,7 +198,7 @@
             "targetVariableId": "VariableID:2006:206",
             "targetVariableName": "Brand/Color/Functional/Danger",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -222,7 +228,7 @@
             "targetVariableId": "VariableID:2006:198",
             "targetVariableName": "Brand/Color/Functional/Success",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -250,8 +256,10 @@
               "WEB": "var(--color-text-on-brand)"
             },
             "com.figma.aliasData": {
+              "targetVariableId": "VariableID:3018:2",
               "targetVariableName": "Brand/Color/Text/On Brand",
-              "targetVariableSetName": "Themes (Brands)"
+              "targetVariableSetId": "VariableCollectionId:1:177",
+              "targetVariableSetName": "Semantics (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
@@ -278,8 +286,10 @@
               "WEB": "var(--color-text-on-danger)"
             },
             "com.figma.aliasData": {
+              "targetVariableId": "VariableID:3018:4",
               "targetVariableName": "Brand/Color/Text/On Danger",
-              "targetVariableSetName": "Themes (Brands)"
+              "targetVariableSetId": "VariableCollectionId:1:177",
+              "targetVariableSetName": "Semantics (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
@@ -306,8 +316,10 @@
               "WEB": "var(--color-text-on-success)"
             },
             "com.figma.aliasData": {
+              "targetVariableId": "VariableID:3018:6",
               "targetVariableName": "Brand/Color/Text/On Success",
-              "targetVariableSetName": "Themes (Brands)"
+              "targetVariableSetId": "VariableCollectionId:1:177",
+              "targetVariableSetName": "Semantics (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
@@ -337,7 +349,7 @@
               "targetVariableId": "VariableID:2006:200",
               "targetVariableName": "Brand/Color/Primary",
               "targetVariableSetId": "VariableCollectionId:1:177",
-              "targetVariableSetName": "Themes (Brands)"
+              "targetVariableSetName": "Semantics (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
@@ -364,8 +376,10 @@
               "WEB": "var(--color-text-on-active)"
             },
             "com.figma.aliasData": {
+              "targetVariableId": "VariableID:3018:8",
               "targetVariableName": "Brand/Color/Text/On Active",
-              "targetVariableSetName": "Themes (Brands)"
+              "targetVariableSetId": "VariableCollectionId:1:177",
+              "targetVariableSetName": "Semantics (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
@@ -392,8 +406,10 @@
               "WEB": "var(--color-text-on-disabled)"
             },
             "com.figma.aliasData": {
+              "targetVariableId": "VariableID:3011:8",
               "targetVariableName": "Brand/Color/Text/On Disabled",
-              "targetVariableSetName": "Themes (Brands)"
+              "targetVariableSetId": "VariableCollectionId:1:177",
+              "targetVariableSetName": "Semantics (Brands)"
             },
             "com.figma.isOverride": true,
             "com.figma.modeValues": {
@@ -423,8 +439,10 @@
             "WEB": "var(--color-fill-surface)"
           },
           "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3011:10",
             "targetVariableName": "Brand/Color/Fill/Surface",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -451,8 +469,10 @@
             "WEB": "var(--color-fill-disabled)"
           },
           "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3011:12",
             "targetVariableName": "Brand/Color/Fill/Disabled",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -512,7 +532,7 @@
             "targetVariableId": "VariableID:2006:200",
             "targetVariableName": "Brand/Color/Primary",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -542,7 +562,7 @@
             "targetVariableId": "VariableID:2028:242",
             "targetVariableName": "Brand/Color/Subtle Light",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -572,7 +592,7 @@
             "targetVariableId": "VariableID:2006:203",
             "targetVariableName": "Brand/Color/Accent",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -602,7 +622,7 @@
             "targetVariableId": "VariableID:2006:206",
             "targetVariableName": "Brand/Color/Functional/Danger",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -632,7 +652,7 @@
             "targetVariableId": "VariableID:2006:198",
             "targetVariableName": "Brand/Color/Functional/Success",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -661,8 +681,10 @@
             "WEB": "var(--color-border-default)"
           },
           "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3011:14",
             "targetVariableName": "Brand/Color/Border/Default",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -692,7 +714,7 @@
             "targetVariableId": "VariableID:2012:292",
             "targetVariableName": "Brand/Color/Subtle",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -719,8 +741,10 @@
             "WEB": "var(--color-border-strong)"
           },
           "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3011:16",
             "targetVariableName": "Brand/Color/Border/Strong",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -750,7 +774,7 @@
             "targetVariableId": "VariableID:2006:200",
             "targetVariableName": "Brand/Color/Primary",
             "targetVariableSetId": "VariableCollectionId:1:177",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -777,8 +801,10 @@
             "WEB": "var(--color-border-disabled)"
           },
           "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3011:18",
             "targetVariableName": "Brand/Color/Border/Disabled",
-            "targetVariableSetName": "Themes (Brands)"
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
           },
           "com.figma.isOverride": true,
           "com.figma.modeValues": {
@@ -794,14 +820,7 @@
       "Danger": {
         "$type": "color",
         "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            1,
-            0,
-            0
-          ],
-          "alpha": 1,
-          "hex": "#FF0000"
+          "$ref": "Brand/Color/Functional/Danger"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:2007:356",
@@ -811,16 +830,16 @@
           "com.figma.codeSyntax": {
             "WEB": "var(--color-border-danger)"
           },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2006:206",
+            "targetVariableName": "Brand/Color/Functional/Danger",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true,
           "com.figma.modeValues": {
             "Light Mode": {
-              "colorSpace": "srgb",
-              "components": [
-                1,
-                0,
-                0
-              ],
-              "alpha": 1,
-              "hex": "#FF0000"
+              "$ref": "Brand/Color/Functional/Danger"
             },
             "Dark Mode": {
               "$ref": "Brand/Color/Functional/Danger"
@@ -968,7 +987,7 @@
           "targetVariableId": "VariableID:2006:200",
           "targetVariableName": "Brand/Color/Primary",
           "targetVariableSetId": "VariableCollectionId:1:177",
-          "targetVariableSetName": "Themes (Brands)"
+          "targetVariableSetName": "Semantics (Brands)"
         },
         "com.figma.isOverride": true,
         "com.figma.modeValues": {

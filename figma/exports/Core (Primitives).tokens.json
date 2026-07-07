@@ -61,6 +61,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:229",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -77,6 +78,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:230",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -93,6 +95,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:231",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -109,6 +112,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:232",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -125,6 +129,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:233",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -141,6 +146,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:234",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -157,6 +163,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:235",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -173,6 +180,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:236",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -189,6 +197,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:237",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -205,6 +214,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:238",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -221,6 +231,7 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:1:228",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -235,7 +246,9 @@
         "$type": "number",
         "$value": 2,
         "$extensions": {
+          "com.figma.variableId": "VariableID:2983:462",
           "com.figma.scopes": [
+            "WIDTH_HEIGHT",
             "GAP",
             "EFFECT_FLOAT",
             "PARAGRAPH_SPACING",
@@ -243,44 +256,6 @@
           ],
           "com.figma.codeSyntax": {
             "WEB": "var(--size-spacing-050)"
-          }
-        }
-      }
-    },
-    "Target": {
-      "Default": {
-        "$type": "number",
-        "$value": 40,
-        "$extensions": {
-          "com.figma.scopes": [
-            "WIDTH_HEIGHT"
-          ],
-          "com.figma.codeSyntax": {
-            "WEB": "var(--size-target-default)"
-          }
-        }
-      },
-      "Compact": {
-        "$type": "number",
-        "$value": 32,
-        "$extensions": {
-          "com.figma.scopes": [
-            "WIDTH_HEIGHT"
-          ],
-          "com.figma.codeSyntax": {
-            "WEB": "var(--size-target-compact)"
-          }
-        }
-      },
-      "Large": {
-        "$type": "number",
-        "$value": 48,
-        "$extensions": {
-          "com.figma.scopes": [
-            "WIDTH_HEIGHT"
-          ],
-          "com.figma.codeSyntax": {
-            "WEB": "var(--size-target-large)"
           }
         }
       }
@@ -392,7 +367,7 @@
       },
       "900": {
         "$type": "number",
-        "$value": 32,
+        "$value": 28,
         "$extensions": {
           "com.figma.variableId": "VariableID:1:250",
           "com.figma.scopes": [
@@ -400,6 +375,19 @@
           ],
           "com.figma.codeSyntax": {
             "WEB": "var(--size-radius-900)"
+          }
+        }
+      },
+      "1000": {
+        "$type": "number",
+        "$value": 32,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2985:3048",
+          "com.figma.scopes": [
+            "CORNER_RADIUS"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-radius-1000)"
           }
         }
       },
@@ -426,6 +414,47 @@
           ],
           "com.figma.codeSyntax": {
             "WEB": "var(--size-radius-full)"
+          }
+        }
+      }
+    },
+    "Target": {
+      "Default": {
+        "$type": "number",
+        "$value": 40,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3020:2",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-target-default)"
+          }
+        }
+      },
+      "Compact": {
+        "$type": "number",
+        "$value": 32,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3020:3",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-target-compact)"
+          }
+        }
+      },
+      "Large": {
+        "$type": "number",
+        "$value": 48,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3020:4",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--size-target-large)"
           }
         }
       }

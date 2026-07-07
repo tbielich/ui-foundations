@@ -1,0 +1,73 @@
+@layer components {
+  /* ─── Date Input ───────────────────────────────────────────────── */
+  /* Variant of .input-field with segmented DD/MM/YYYY fields         */
+  /* Composes: .input-field + .calendar                               */
+
+  .input-field.date {
+    position: relative;
+  }
+
+  /* Segmented input container (replaces single <input>) */
+  .date-segments {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+  }
+
+  /* Individual segment (DD, MM, YYYY) */
+  .date-segment {
+    border: none;
+    background: transparent;
+    text-align: center;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    outline: none;
+  }
+
+  .date-segment.day,
+  .date-segment.month {
+    inline-size: 2ch;
+  }
+
+  .date-segment.year {
+    inline-size: 4ch;
+  }
+
+  .date-segment::placeholder {
+    color: var(--color-text-subtle);
+  }
+
+  .date-segment:focus {
+    background: var(--color-fill-subtle);
+    border-radius: var(--brand-corner-input);
+  }
+
+  /* Separator between segments */
+  .date-separator {
+    color: var(--color-text-subtle);
+    padding-inline: var(--size-spacing-100);
+    user-select: none;
+  }
+
+  /* Calendar dropdown positioning */
+  .input-field.date .calendar {
+    display: none;
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline-start: 0;
+    z-index: var(--zindex-dropdown, 1000);
+    margin-block-start: var(--size-spacing-100);
+    padding: var(--size-spacing-200);
+    background: var(--color-fill-surface);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--size-radius-400);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Open state */
+  .input-field.date.is-open .calendar {
+    display: grid;
+  }
+}

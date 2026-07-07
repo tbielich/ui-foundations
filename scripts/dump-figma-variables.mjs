@@ -43,6 +43,7 @@ for (const col of collections) {
       name: variable.name,
       resolvedType: variable.resolvedType,
       scopes: variable.scopes,
+      hiddenFromPublishing: variable.hiddenFromPublishing === true,
       webSyntax: webSyntax,
       value: null,
       alias: null

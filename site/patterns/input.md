@@ -97,7 +97,7 @@ playgroundLabel: Open Input Playground
     <tr><th>Property</th><th>Values</th><th>Default</th></tr>
   </thead>
   <tbody>
-    <tr><td>type</td><td><code>text</code> / <code>email</code> / <code>password</code> / <code>number</code> / <code>tel</code> / <code>url</code> / <code>search</code></td><td><code>text</code></td></tr>
+    <tr><td>type</td><td><code>text</code> / <code>email</code> / <code>password</code> / <code>number</code> / <code>tel</code> / <code>url</code> / <code>search</code> / <code>date</code> / <code>time</code></td><td><code>text</code></td></tr>
     <tr><td>placeholder</td><td>text</td><td>—</td></tr>
     <tr><td>value</td><td>text</td><td>—</td></tr>
     <tr><td>disabled</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
@@ -133,6 +133,15 @@ playgroundLabel: Open Input Playground
     <div class="docs-behavior-body">
       <h3>Password with visibility toggle</h3>
       <p>Password inputs include a toggle button to reveal or hide the entered value.</p>
+    </div>
+  </div>
+  <div class="docs-behavior-item">
+    <div class="docs-behavior-preview">
+      {{ ui.input(type="date", value="2026-07-20") }}
+    </div>
+    <div class="docs-behavior-body">
+      <h3>Date with picker affordance</h3>
+      <p>Date inputs use the same trailing input control slot and open the native date picker where supported.</p>
     </div>
   </div>
   <div class="docs-behavior-item">
@@ -260,7 +269,7 @@ For the full theming architecture see [Foundations: Theming](/foundations/themin
 
 <div class="docs-checklist">
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All interactive states</strong><span>Hover, active, focus, and disabled states are implemented.</span></div></div>
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All color themes</strong><span>Works across light and dark modes for all brands.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All brand/mode contexts</strong><span>Works across light and dark modes for all brands.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Accessible use of color</strong><span>Color is not the only visual means of conveying information (WCAG 1.4.1).</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Accessible contrast for text</strong><span>Text contrast ratio of at least 4.5:1 (WCAG 1.4.3).</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Accessible contrast for UI</strong><span>UI component contrast ratio of at least 3:1 (WCAG 1.4.11).</span></div></div>

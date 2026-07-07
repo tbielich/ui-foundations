@@ -1,0 +1,204 @@
+@layer components {
+  /* ─── Calendar ─────────────────────────────────────────────────── */
+
+  .calendar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--calendar-container-gap);
+    inline-size: fit-content;
+  }
+
+  /* Container variant: bordered card */
+  .calendar.has-container {
+    padding: var(--calendar-container-padding);
+    background: var(--calendar-container-background);
+    border: var(--calendar-container-border-size) solid var(--calendar-container-border-color);
+    border-radius: var(--calendar-container-border-radius);
+  }
+
+  /* ─── Header ─────────────────────────────────────────────────── */
+
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--calendar-header-gap);
+    min-inline-size: 0;
+  }
+
+  .calendar-selectors {
+    display: flex;
+    align-items: center;
+    gap: var(--calendar-header-gap);
+    flex: 0 1 auto;
+    min-inline-size: 0;
+  }
+
+  .calendar-nav {
+    display: flex;
+    gap: var(--calendar-header-gap);
+  }
+
+  /* Header selects: reuse Select pattern with calendar-specific overrides (no border, transparent) */
+  .calendar-header .select.calendar-header-select {
+    flex: 0 0 auto;
+    inline-size: auto;
+    border-color: transparent;
+    background: transparent;
+    min-block-size: auto;
+    padding-block: 0;
+  }
+
+  .calendar-header .select.calendar-header-select[name="month"] {
+    min-inline-size: 12ch;
+  }
+
+  .calendar-header .select.calendar-header-select[name="year"] {
+    min-inline-size: 7ch;
+  }
+
+  .calendar-header .select.calendar-header-select:hover {
+    background: var(--calendar-cell-background-hover);
+  }
+
+  /* ─── Weekday Header ─────────────────────────────────────────── */
+
+  .calendar-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    inline-size: 100%;
+  }
+
+  .calendar-table th {
+    block-size: var(--calendar-weekday-height);
+    font-size: var(--calendar-weekday-font-size);
+    font-weight: normal;
+    color: var(--calendar-weekday-text-color);
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  /* ─── Day Cells ──────────────────────────────────────────────── */
+
+  .calendar-table td {
+    padding: var(--calendar-cell-gap);
+    text-align: center;
+  }
+
+  .calendar-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: var(--calendar-cell-min-size);
+    min-block-size: var(--calendar-cell-min-size);
+    border-radius: var(--calendar-cell-border-radius);
+    border: var(--calendar-cell-range-border-size) solid transparent;
+    background: transparent;
+    color: var(--calendar-cell-text-color-default);
+    font-family: var(--typography-label-font-family);
+    font-size: var(--typography-label-font-size);
+    font-weight: var(--typography-label-font-weight);
+    line-height: var(--typography-label-line-height);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  /* Hover */
+  .calendar-cell:hover,
+  .calendar-cell.is-hover {
+    background: var(--calendar-cell-background-hover);
+  }
+
+  /* Focus */
+  .calendar-cell:focus-visible,
+  .calendar-cell.is-focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--shadow-focus, 0) var(--color-focus, transparent);
+  }
+
+  /* Selected (single day) */
+  .calendar-cell[aria-selected="true"],
+  .calendar-cell.is-selected {
+    background: var(--calendar-cell-background-active);
+    color: var(--calendar-cell-text-color-active);
+  }
+
+  /* Today marker */
+  .calendar-cell.is-today {
+    border-color: var(--calendar-cell-range-border-color);
+  }
+
+  /* Disabled / outside month */
+  .calendar-cell:disabled,
+  .calendar-cell.is-disabled,
+  .calendar-cell.is-outside-month {
+    color: var(--calendar-cell-text-color-disabled);
+    cursor: default;
+  }
+
+  .calendar-cell:disabled:hover,
+  .calendar-cell.is-disabled:hover {
+    background: transparent;
+  }
+
+  /* ─── Range Selection ────────────────────────────────────────── */
+
+  /* Range start */
+  .calendar-cell.is-range-start {
+    background: var(--calendar-cell-background-active);
+    color: var(--calendar-cell-text-color-active);
+    border-color: var(--calendar-cell-range-border-color);
+    border-start-start-radius: var(--calendar-cell-range-border-radius);
+    border-end-start-radius: var(--calendar-cell-range-border-radius);
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  /* Range middle */
+  .calendar-cell.is-range-middle {
+    background: transparent;
+    color: var(--calendar-cell-text-color-default);
+    border-color: var(--calendar-cell-range-border-color);
+    border-radius: 0;
+    border-inline-start: none;
+    border-inline-end: none;
+  }
+
+  /* Range end */
+  .calendar-cell.is-range-end {
+    background: var(--calendar-cell-background-active);
+    color: var(--calendar-cell-text-color-active);
+    border-color: var(--calendar-cell-range-border-color);
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    border-start-end-radius: var(--calendar-cell-range-border-radius);
+    border-end-end-radius: var(--calendar-cell-range-border-radius);
+  }
+
+  /* ─── Range View (two-column) ────────────────────────────────── */
+
+  .calendar.range-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--calendar-container-gap);
+  }
+
+  .calendar.range-view .calendar-header {
+    grid-column: 1 / -1;
+  }
+
+  .calendar-month-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--calendar-container-gap);
+  }
+
+  .calendar-month-label {
+    font-family: var(--typography-label-font-family);
+    font-size: var(--typography-label-font-size);
+    font-weight: var(--typography-label-font-weight);
+    line-height: var(--typography-label-line-height);
+    color: var(--calendar-cell-text-color-default);
+    text-align: center;
+  }
+}

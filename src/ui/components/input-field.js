@@ -5,6 +5,7 @@
  * - Clear (text/email/search/url/tel): clears the input value
  * - Increment/Decrement (number): steps the value up/down
  * - Toggle visibility (password): switches between password and text type
+ * - Open date picker (date): opens the native picker where supported
  *
  * Usage:
  *   import { enhanceInputFields } from 'ui-foundations/ui/components/input-field.js';
@@ -83,6 +84,16 @@ function handleToggleVisibility(field) {
   input.focus();
 }
 
+function handleOpenDatePicker(field) {
+  const input = getInput(field);
+  if (!input || input.disabled || input.readOnly) return;
+
+  input.focus();
+  if (typeof input.showPicker === "function") {
+    input.showPicker();
+  }
+}
+
 function enhanceField(field) {
   if (field.dataset.enhanced) return;
   field.dataset.enhanced = "true";
@@ -112,6 +123,8 @@ function enhanceField(field) {
       handleIncrement(field);
     } else if (label === "Toggle password visibility") {
       handleToggleVisibility(field);
+    } else if (label === "Open date picker") {
+      handleOpenDatePicker(field);
     }
   });
 }

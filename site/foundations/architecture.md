@@ -76,19 +76,19 @@ permalink: /foundations/architecture/
         <td><code>--color-neutral-800</code>, <code>--size-spacing-300</code></td>
       </tr>
       <tr>
-        <td><strong>Semantic</strong></td>
-        <td>Intent-based — what a value means, not what it looks like</td>
-        <td><code>--color-fill-brand</code>, <code>--color-text-danger</code></td>
+        <td><strong>Appearance</strong></td>
+        <td>Mode-dependent decisions such as light and dark rendering context</td>
+        <td><code>:root</code>, <code>:root[data-mode="dark"]</code></td>
       </tr>
       <tr>
-        <td><strong>Component</strong></td>
-        <td>Pattern-specific — scoped to a single UI element</td>
+        <td><strong>Semantics (Brands)</strong></td>
+        <td>Brand-scoped semantic roles for color, corner, font, and size decisions</td>
+        <td><code>:root[data-brand="a"]</code>, <code>--brand-corner-button</code></td>
+      </tr>
+      <tr>
+        <td><strong>Patterns / Components</strong></td>
+        <td>Pattern-specific usage tokens scoped to a UI element or interactive component</td>
         <td><code>--button-solid-background-hover</code></td>
-      </tr>
-      <tr>
-        <td><strong>Brand/Mode</strong></td>
-        <td>Contextual overrides — adapts per brand or light/dark mode</td>
-        <td><code>:root[data-brand="a"]</code>, <code>:root[data-mode="dark"]</code></td>
       </tr>
     </tbody>
   </table>
@@ -129,7 +129,7 @@ permalink: /foundations/architecture/
 
 <p>Pattern rules must cite principle and heuristic IDs. Component rules must preserve the cited pattern intent. This traceability ensures every visual decision can be traced back to a documented rationale.</p>
 
-<h2 id="theming-heading">Theming Model</h2>
+<h2 id="context-heading">Brand And Mode Context</h2>
 
 <p>Brand and appearance mode are orthogonal concerns applied via data attributes:</p>
 
@@ -138,7 +138,7 @@ permalink: /foundations/architecture/
   <li><code>data-mode="light|dark"</code> — switches semantic color mappings</li>
 </ul>
 
-<p>Patterns never hardcode brand or mode values. They reference semantic tokens that resolve differently per context.</p>
+<p>Patterns never hardcode brand or mode values. They reference semantic roles that resolve differently per context.</p>
 
 <h2 id="pipeline-heading">Build Pipeline</h2>
 

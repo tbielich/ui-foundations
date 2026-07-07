@@ -5,7 +5,7 @@ type: governance
 applies_to:
   - token-architecture
   - naming
-  - theming
+  - brand-mode-context
   - design-to-code
   - review
   - agent-guidance
@@ -17,7 +17,7 @@ applies_to:
 
 This is the governing rules document for UI Foundations.
 
-Use it as the default decision framework for structure, naming, theming, review, and system evolution.
+Use it as the default decision framework for structure, naming, brand/mode context, review, and system evolution.
 Use `docs/foundations/` for topic-specific architecture decisions and supporting detail.
 Use `IMPLEMENTATION.md` for repository-specific implementation guidance.
 
@@ -40,8 +40,8 @@ Use `IMPLEMENTATION.md` for repository-specific implementation guidance.
 5. **Structure for scale**  
    Optimise for brands, modes, components, and teams — not one-off local convenience.
 
-6. **Theme intentionally**  
-   Keep brand and mode predictable and apply theme logic at the correct layer.
+6. **Apply context intentionally**  
+   Keep brand and mode predictable and apply context logic at the correct layer.
 
 7. **Reduce interpretation gaps**  
    The system should make meaning obvious for humans and agents.
@@ -97,11 +97,11 @@ Avoid:
 
 ---
 
-## Theming Rules
+## Brand And Mode Context Rules
 
 - Keep brand and mode orthogonal where possible.
-- Theme at the correct layer.
-- Avoid unnecessary duplication across themes.
+- Apply brand semantics and appearance modes at the correct layer.
+- Avoid unnecessary duplication across brands and modes.
 - Use component tokens as controlled extension points, not as a replacement for semantic structure.
 - Keep CSS outputs predictable and traceable.
 
@@ -145,7 +145,7 @@ When reviewing tokens, naming, theming, refactors, or structural changes, ask:
 - Is the correct layer being used?
 - Is the naming explicit and stable?
 - Is the semantic intent clear?
-- Is theming handled at the right layer?
+- Is brand/mode context handled at the right layer?
 - Does this improve or harm design-to-code parity?
 - Is this necessary and reusable enough to exist?
 - Does this reduce or increase ambiguity?
@@ -158,7 +158,7 @@ Avoid:
 - mixing layers
 - tokens without a clear purpose
 - appearance-only naming where semantic meaning matters
-- solving global theme problems only inside components
+- solving global brand or mode problems only inside components
 - undocumented one-off exceptions
 - aliases that add indirection without meaning
 - local optimisation that harms long-term system clarity

@@ -225,6 +225,20 @@
     return lines.join("\n");
   }
 
+  function njkCalendar(state) {
+    var p = state.props;
+    var parts = [];
+    if (p.month && p.month !== "2026-07") parts.push('month="' + quoteAttr(p.month) + '"');
+    if (p.selectedDate) parts.push('selectedDate="' + quoteAttr(p.selectedDate) + '"');
+    if (p.rangeStart) parts.push('rangeStart="' + quoteAttr(p.rangeStart) + '"');
+    if (p.rangeEnd) parts.push('rangeEnd="' + quoteAttr(p.rangeEnd) + '"');
+    if (p.todayDate && p.todayDate !== "1") parts.push('todayDate="' + quoteAttr(p.todayDate) + '"');
+    if (state.meta.state && state.meta.state !== "default") parts.push('state="' + quoteAttr(state.meta.state) + '"');
+    if (p.disabled === true) parts.push("disabled=true");
+    if (p.container === false) parts.push("container=false");
+    return "{{ ui.calendar(" + parts.join(", ") + ") }}";
+  }
+
   global.UIPlaygroundCodeGenerators = {
     njk: {
       button: njkButton, input: njkInput, checkbox: njkCheckbox,
@@ -233,6 +247,7 @@
       "button-group": function () { return '{% call ui.buttonGroup() %}...{% endcall %}'; },
       select: njkSelect,
       form: njkForm,
+      calendar: njkCalendar,
       divider: function (state) {
         var p = state.props;
         var parts = [];
@@ -285,6 +300,9 @@
       "button-group": function () { return "<ui-button-group>...</ui-button-group>"; },
       select: wcSelect,
       form: wcForm,
+      calendar: function () {
+        return "<!-- Calendar is provided as Nunjucks/static HTML in this package. -->";
+      },
       divider: function (state) {
         var p = state.props;
         var attrs = [];

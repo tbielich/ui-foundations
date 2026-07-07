@@ -57,13 +57,17 @@ export const tools: ToolRegistryEntry[] = [
   {
     name: 'get_token',
     description:
-      'Look up tokens by name or partial name. Performs case-insensitive substring matching and returns up to 50 results with name, value, layer, type, and CSS custom property.',
+      'Look up published tokens by name, partial name, or CSS custom property. Performs case-insensitive substring matching and returns up to 50 results with name, value, layer, type, and CSS custom property.',
     inputSchema: z.object({
       query: z.string().min(1, 'Token query is required'),
       layer: z
         .enum(['core', 'semantic', 'component', 'mode', 'brand'])
         .optional()
         .describe('Optional layer filter to restrict results to a specific token layer'),
+      includeUnpublished: z
+        .boolean()
+        .optional()
+        .describe('Include variables marked hiddenFromPublishing in Figma exports. Defaults to false.'),
     }),
     handler: getTokenHandler,
   },

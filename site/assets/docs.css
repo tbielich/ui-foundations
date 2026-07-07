@@ -431,6 +431,83 @@ details[open] > .docs-nav-group-toggle::before {
   border-bottom: 0;
 }
 
+.docs-calendar-states-table {
+  min-width: 720px;
+}
+
+.docs-calendar-states-table td:first-child {
+  width: 180px;
+}
+
+.docs-calendar-day-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--calendar-cell-gap);
+  min-inline-size: 48px;
+}
+
+.docs-calendar-day-preview--range {
+  min-inline-size: 144px;
+  gap: 0;
+}
+
+.docs-calendar-anatomy-subject {
+  inline-size: fit-content;
+}
+
+.docs-calendar-anatomy-target {
+  position: absolute;
+  z-index: 1;
+  border: 1px dashed var(--docs-accent);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.docs-calendar-anatomy-target--container {
+  inset: -4px;
+}
+
+.docs-calendar-anatomy-target--header {
+  inset-block-start: 12px;
+  inset-inline: 12px;
+  block-size: 40px;
+}
+
+.docs-calendar-anatomy-target--weekdays {
+  inset-block-start: 58px;
+  inset-inline: 12px;
+  block-size: 32px;
+}
+
+.docs-calendar-anatomy-target--day {
+  inset-block-start: 188px;
+  inset-inline-start: calc(50% - 20px);
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: var(--calendar-cell-border-radius);
+}
+
+.docs-calendar-anatomy-callout--container {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.docs-calendar-anatomy-callout--header {
+  top: 32px;
+  transform: translateY(-50%);
+}
+
+.docs-calendar-anatomy-callout--weekdays {
+  top: 74px;
+  transform: translateY(-50%);
+}
+
+.docs-calendar-anatomy-callout--day {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .docs-stack {
   display: flex;
   flex-wrap: wrap;
@@ -939,7 +1016,7 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   box-shadow:
     var(--docs-shadow-sm),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .docs-hero-preview-controls {
@@ -948,6 +1025,8 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   gap: 8px;
   padding: 8px 14px;
   border-block-end: 1px solid var(--docs-border);
+  border-start-start-radius: 16px;
+  border-start-end-radius: 16px;
   background: rgba(255, 255, 255, 0.5);
   font-size: 0.72rem;
   font-weight: 700;
@@ -1006,6 +1085,9 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   gap: 12px;
   min-height: 180px;
   padding: 40px 32px;
+  overflow: visible;
+  border-end-start-radius: 16px;
+  border-end-end-radius: 16px;
   background: var(--color-fill-surface, #fff);
   transition: background 200ms ease, color 200ms ease;
 }

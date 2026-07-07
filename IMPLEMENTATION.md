@@ -3,7 +3,7 @@
 This file provides implementation details for working in this repository.
 
 Follow `AGENTS.md` for operational rules and source priority.
-Follow `docs/ui-foundations-rules.md` for the canonical governance model covering token layering, naming, theming, design-to-code parity, review criteria, and agent-readiness.
+Follow `docs/ui-foundations-rules.md` for the canonical governance model covering token layering, naming, brand/mode context, design-to-code parity, review criteria, and agent-readiness.
 This file should add implementation detail, not redefine those rules.
 
 ---
@@ -52,24 +52,20 @@ entry file and `tests/plugin-code.test.mjs` covers its color utilities.
 Four layers:
 
 - Core (Primitives)
-- Color Modes
-- Semantics (Roles)
-- Components (UI)
+- Appearance (Modes)
+- Semantics (Brands)
+- Patterns (UI) / Components
 
 Locations:
 
 - Core: `dist/tokens/css/core-primitives.tokens.css`
-- Modes: `dist/tokens/css/appearance-modes.tokens.*.css`
-- Semantics: `dist/tokens/css/semantics-roles.tokens.css`
-- Components: `dist/tokens/css/components-ui.tokens.css`
-
-Brand overrides:
-
-- `dist/tokens/css/themes-brands.tokens.*.css`
+- Appearance: `dist/tokens/css/appearance-modes.tokens.mode-*.css`
+- Brand semantics: `dist/tokens/css/semantics-brands.tokens.brand-*.css`
+- Patterns: `dist/tokens/css/patterns-ui.tokens.css`
 
 Notes:
 
-- Components reference only Semantic or Core tokens
+- Pattern and component tokens reference semantic roles or Core tokens
 - Typography tokens never include color
 - Generated files in `dist/` are not edited directly
 
@@ -78,7 +74,7 @@ Notes:
 ## Token Naming
 
 - Component: `Component.variant.part.property.state` → `--component-variant-part-property-state`
-- Semantic: Role-based (e.g. `Color.Text.Default`)
+- Brand semantic: role-based and brand-scoped (e.g. `Brand.Color.*`, `Brand.Corner.*`)
 - States: `default`, `hover`, `active`, `focus`, `disabled`
 - CSS variables: kebab-case with `--`
 
@@ -87,7 +83,7 @@ Notes:
 ## CSS Methodology
 
 - Use CSS Custom Properties: `var(--token-name)`
-- Use CSS Layers: `reset → base → tokens → themes → components`
+- Use CSS Layers: `reset → base → tokens → context → components`
 
 Runtime switching:
 

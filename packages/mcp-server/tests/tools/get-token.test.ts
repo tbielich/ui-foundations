@@ -8,6 +8,7 @@ import { getTokenHandler } from '../../src/tools/get-token.js';
 describe('getTokenHandler', () => {
   let testDir: string;
   const tokenDir = 'dist/tokens/json';
+  const figmaExportDir = 'figma/exports';
 
   beforeEach(async () => {
     testDir = join(tmpdir(), `get-token-test-${Date.now()}-${Math.random().toString(36).slice(2)}`);
@@ -233,5 +234,132 @@ describe('getTokenHandler', () => {
     const parsed = JSON.parse(result.content[0].text);
     assert.ok(parsed.results.length > 0);
     assert.ok(parsed.results.every((t: { layer: string }) => t.layer === 'core'));
+  });
+
+  // -------------------------------------------------------------------------
+  // Figma export source of truth
+  // -------------------------------------------------------------------------
+
+  it('indexes Pattern UI tokens from Figma exports', async () => {
+    await mkdir(join(testDir, figmaExportDir), { recursive: true });
+    await writeFile(
+      join(testDir, figmaExportDir, 'Patterns (UI).tokens.json'),
+      JSON.stringify({
+        Typography: {
+          Heading: {
+            'Font Family': {
+              $type: 'string',
+              $value: { $ref: 'Brand/Font/Lead' },
+              $extensions: {
+                'com.figma.codeSyntax': {
+                  WEB: 'var(--typography-heading-font-family)',
+                },
+              },
+            },
+          },
+        },
+      }),
+      'utf8',
+    );
+
+    const result = await getTokenHandler({ query: 'heading' }, testDir);
+
+    const parsed = JSON.parse(result.content[0].text);
+    assert.equal(parsed.results.length, 1);
+    assert.equal(parsed.results[0].name, 'Typography.Heading.Font Family');
+    assert.equal(parsed.results[0].cssProperty, '--typography-heading-font-family');
+    assert.equal(parsed.results[0].layer, 'component');
+    assert.deepEqual(parsed.results[0].value, { $ref: 'Brand/Font/Lead' });
+  });
+
+  it('matches Figma export tokens by CSS custom property', async () => {
+    await mkdir(join(testDir, figmaExportDir), { recursive: true });
+    await writeFile(
+      join(testDir, figmaExportDir, 'Themes (Brands).tokens.json'),
+      JSON.stringify({
+        Brand: {
+          Font: {
+            Lead: {
+              $type: 'string',
+              $value: { $ref: 'Font/Family/Serif' },
+              $extensions: {
+                'com.figma.codeSyntax': {
+                  WEB: 'var(--brand-font-lead)',
+                },
+              },
+            },
+          },
+        },
+      }),
+      'utf8',
+    );
+
+    const result = await getTokenHandler({ query: '--brand-font-lead' }, testDir);
+
+    const parsed = JSON.parse(result.content[0].text);
+    assert.equal(parsed.results.length, 1);
+    assert.equal(parsed.results[0].name, 'Brand.Font.Lead');
+    assert.equal(parsed.results[0].cssProperty, '--brand-font-lead');
+    assert.equal(parsed.results[0].layer, 'brand');
+  });
+
+  it('excludes Figma variables hidden from publishing by default', async () => {
+    await mkdir(join(testDir, figmaExportDir), { recursive: true });
+    await writeFile(
+      join(testDir, figmaExportDir, 'Patterns (UI).tokens.json'),
+      JSON.stringify({
+        Internal: {
+          Debug: {
+            $type: 'string',
+            $value: 'draft',
+            $extensions: {
+              'com.figma.hiddenFromPublishing': true,
+              'com.figma.codeSyntax': {
+                WEB: 'var(--internal-debug)',
+              },
+            },
+          },
+        },
+      }),
+      'utf8',
+    );
+
+    const result = await getTokenHandler({ query: 'internal' }, testDir);
+
+    const parsed = JSON.parse(result.content[0].text);
+    assert.deepEqual(parsed.results, []);
+  });
+
+  it('includes Figma variables hidden from publishing when requested', async () => {
+    await mkdir(join(testDir, figmaExportDir), { recursive: true });
+    await writeFile(
+      join(testDir, figmaExportDir, 'Patterns (UI).tokens.json'),
+      JSON.stringify({
+        Internal: {
+          Debug: {
+            $type: 'string',
+            $value: 'draft',
+            $extensions: {
+              'com.figma.hiddenFromPublishing': true,
+              'com.figma.codeSyntax': {
+                WEB: 'var(--internal-debug)',
+              },
+            },
+          },
+        },
+      }),
+      'utf8',
+    );
+
+    const result = await getTokenHandler(
+      { query: 'internal', includeUnpublished: true },
+      testDir,
+    );
+
+    const parsed = JSON.parse(result.content[0].text);
+    assert.equal(parsed.results.length, 1);
+    assert.equal(parsed.results[0].name, 'Internal.Debug');
+    assert.equal(parsed.results[0].hiddenFromPublishing, true);
+    assert.equal(parsed.includeUnpublished, true);
   });
 });

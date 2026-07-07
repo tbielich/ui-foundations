@@ -26,3 +26,4 @@ figma/plugin/plugin-meta.json
 
 # Local Netlify folder
 .netlify
+cline-ui.sh

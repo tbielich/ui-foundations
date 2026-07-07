@@ -11,7 +11,7 @@ The detailed foundation ADRs are the source of truth:
 
 | File | Topic |
 |---|---|
-| `foundation-001-token-layering.md` | Core -> Color Modes -> Semantics -> Components token layering |
+| `foundation-001-token-layering.md` | Core -> Appearance -> Semantics (Brands) -> Patterns/Components token layering |
 | `foundation-002-naming-and-grouping.md` | Token naming, grouping, and variant-first structure |
 | `foundation-003-color-semantics-and-status.md` | Semantic color roles, status vs interaction state |
 | `foundation-004-typography-scale-and-line-height.md` | Typography scale, line height, and role composition |

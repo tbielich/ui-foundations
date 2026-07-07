@@ -376,7 +376,7 @@ For the full theming architecture — brands, modes, and how tokens cascade — 
   <div class="docs-checklist-item" data-done="true">
     <div class="docs-checklist-icon">✓</div>
     <div class="docs-checklist-text">
-      <strong>All color themes</strong>
+      <strong>All brand/mode contexts</strong>
       <span>Works across light and dark modes for all brands.</span>
     </div>
   </div>

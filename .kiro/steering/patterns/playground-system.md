@@ -19,7 +19,7 @@ rendering.
 | `site/assets/playground/state.js` | Control state management (read form inputs, sync to URL params, conditional visibility) |
 | `site/assets/playground/code.js` | HTML formatting + Prism.js syntax highlighting |
 | `site/assets/playground/renderers.js` | Component render functions → returns `{ element, code }` |
-| `site/assets/playground/code-generators.js` | Nunjucks/React code snippet generators per component |
+| `site/assets/playground/code-generators.js` | Nunjucks/Web Component code snippet generators per component |
 
 Load order matters: `shared.js` → `state.js` → `code.js` → `renderers.js` →
 `code-generators.js`
@@ -59,18 +59,18 @@ function njkMyComponent(state) {
   return '{{ ui.myComponent("' + quoteAttr(p.label) + '") }}';
 }
 
-function reactMyComponent(state) {
+function wcMyComponent(state) {
   var p = state.props;
-  return '<MyComponent label="' + quoteAttr(p.label) + '" />';
+  return '<ui-my-component label="' + quoteAttr(p.label) + '"></ui-my-component>';
 }
 ```
 
-Register in both `njk` and `react` maps:
+Register in both `njk` and `wc` maps:
 
 ```js
 global.UIPlaygroundCodeGenerators = {
   njk: { ..., "my-component": njkMyComponent },
-  react: { ..., "my-component": reactMyComponent },
+  wc: { ..., "my-component": wcMyComponent },
 };
 ```
 
@@ -89,12 +89,12 @@ playground:
   controls:
     - name: label
       label: Label text
-      type: text
+      kind: text
       default: "Hello"
       source: prop
     - name: disabled
       label: Disabled
-      type: checkbox
+      kind: boolean
       default: false
       valueType: boolean
       source: meta
@@ -109,7 +109,7 @@ Each control in the `controls` array:
 |----------|----------|-------------|
 | `name` | yes | Form input name and prop key |
 | `label` | yes | UI label shown in the control panel |
-| `type` | yes | `text`, `select`, `checkbox`, `number`, `color` |
+| `kind` | yes | `text`, `select`, `boolean`, `number`, `color` |
 | `default` | yes | Initial value |
 | `source` | no | `prop` (default), `meta`, or `children` |
 | `valueType` | no | `string` (default), `boolean`, `number` |
@@ -123,7 +123,7 @@ Each control in the `controls` array:
 3. State object `{ props, children, meta }` is passed to the renderer
 4. Renderer returns `{ element, code }` — element goes to preview, code to
    code panel
-5. Code generators produce Nunjucks/React tabs from the same state
+5. Code generators produce Nunjucks/Web Component tabs from the same state
 6. URL params update via `replaceState` for shareable links
 
 ## Renderer Contract

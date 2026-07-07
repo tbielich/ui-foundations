@@ -8,7 +8,7 @@ The final `dist/main.css` bundle applies CSS in this layer cascade:
 @layer reset;    → src/core/base/reset.css
 @layer base;     → src/core/base/fonts.css, base.css, typography.css
 @layer tokens;   → dist/tokens/css/*.tokens.css (generated — never edit)
-@layer themes;   → src/core/themes/mode.css (color-scheme declaration)
+@layer context;  → src/core/context/mode.css (color-scheme declaration)
 @layer components; → src/ui/patterns/*.css (all component styles)
 ```
 
@@ -35,7 +35,7 @@ npm run build:all
 
 This script:
 1. Reads all `*.tokens.css` files from `dist/tokens/css/`
-2. Sorts them by priority: core → brands → semantics → components → modes
+2. Sorts them by priority: core → appearance modes → brand semantics → patterns/components
 3. Copies `src/core/` to `dist/core/` and rewrites `index.css` with correct
    token imports
 4. Copies `src/ui/` to `dist/ui/`
@@ -57,7 +57,7 @@ this ordering automatically.
 | `src/core/base/fonts.css` | @font-face declarations | base |
 | `src/core/base/base.css` | Body defaults, root variables | base |
 | `src/core/base/typography.css` | Heading/body type defaults | base |
-| `src/core/themes/mode.css` | `color-scheme: light dark` declaration | themes |
+| `src/core/context/mode.css` | `color-scheme: light dark` declaration | context |
 | `src/core/recipes/layout.css` | Reusable layout utilities (not imported into main bundle) | — |
 | `src/ui/patterns/*.css` | All component CSS patterns | components |
 
@@ -81,9 +81,8 @@ passthrough copy configured in `.eleventy.js`.
 
 | File | Scope | Priority |
 |------|-------|----------|
-| `core.tokens.css` | Primitives | 0 (first) |
-| `brand-*.tokens.css` | Brand overrides | 1 |
-| `semantic.tokens.css` | Role-based aliases | 2 |
-| `component.tokens.css` | Component-specific | 3 |
-| `color.light.tokens.css` | Light mode colors | 4 |
-| `color.dark.tokens.css` | Dark mode colors | 5 |
+| `core-primitives.tokens.css` | Primitives | 0 (first) |
+| `appearance-modes.tokens.mode-light.css` | Light mode colors | 1 |
+| `appearance-modes.tokens.mode-dark.css` | Dark mode colors | 2 |
+| `semantics-brands.tokens.brand-*.css` | Brand semantic roles | 3 |
+| `patterns-ui.tokens.css` | Pattern-specific tokens | 4 |

@@ -2,8 +2,8 @@
 @import url("./base/fonts.css") layer(base);
 @import url("./base/base.css") layer(base);
 @import url("./base/typography.css") layer(base);
-@import url("../../dist/tokens/css/core.tokens.css") layer(tokens);
-@import url("../../dist/tokens/css/color.light.tokens.css") layer(tokens);
-@import url("../../dist/tokens/css/semantic.tokens.css") layer(tokens);
-@import url("../../dist/tokens/css/component.tokens.css") layer(tokens);
-@import url("./themes/mode.css") layer(themes);
+@import url("../../dist/tokens/css/core-primitives.tokens.css") layer(tokens);
+@import url("../../dist/tokens/css/appearance-modes.tokens.mode-light.css") layer(tokens);
+@import url("../../dist/tokens/css/semantics-brands.tokens.brand-a.css") layer(tokens);
+@import url("../../dist/tokens/css/patterns-ui.tokens.css") layer(tokens);
+@import url("./context/mode.css") layer(context);

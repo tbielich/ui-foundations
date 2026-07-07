@@ -54,12 +54,13 @@ function scopePriority(scope) {
   if (scope.bucket === "other" && scope.id === "core") return 0;
   if (scope.bucket === "other" && scope.id === "core-primitives") return 0;
   if (scope.bucket === "other" && scope.id === "primitives") return 0;
-  if (scope.bucket === "brand") return 1;
-  if (scope.bucket === "other" && scope.id.includes("semantic")) return 2;
-  if (scope.bucket === "other" && scope.id.includes("component")) return 3;
-  if (scope.bucket === "other" && scope.id.includes("pattern")) return 3;
-  if (scope.bucket === "mode" && scope.id === "light") return 4;
-  if (scope.bucket === "mode" && scope.id === "dark") return 5;
+  if (scope.bucket === "mode" && scope.id === "light") return 1;
+  if (scope.bucket === "mode" && scope.id === "dark") return 2;
+  if (scope.bucket === "mode") return 2;
+  if (scope.bucket === "brand") return 3;
+  if (scope.bucket === "other" && scope.id.includes("semantic")) return 3;
+  if (scope.bucket === "other" && scope.id.includes("component")) return 4;
+  if (scope.bucket === "other" && scope.id.includes("pattern")) return 4;
   return 9;
 }
 
@@ -71,9 +72,24 @@ function parseScopeFromTokenCss(fileName) {
     return { bucket: "brand", id: brandMatch[1] };
   }
 
+  const brandSemanticsMatch = lower.match(/^semantics-brands\.tokens\.brand-([a-z0-9-]+)\.css$/);
+  if (brandSemanticsMatch) {
+    return { bucket: "brand", id: brandSemanticsMatch[1] };
+  }
+
   const modeColorMatch = lower.match(/^color\.([a-z0-9-]+)\.tokens\.css$/);
   if (modeColorMatch) {
     return { bucket: "mode", id: modeColorMatch[1] };
+  }
+
+  const appearanceModeMatch = lower.match(/^appearance-modes\.tokens\.mode-([a-z0-9-]+)\.css$/);
+  if (appearanceModeMatch) {
+    return { bucket: "mode", id: appearanceModeMatch[1] };
+  }
+
+  const typographyModeMatch = lower.match(/^typography-fluid\.tokens\.mode-([a-z0-9-]+)\.css$/);
+  if (typographyModeMatch) {
+    return { bucket: "mode", id: typographyModeMatch[1] };
   }
 
   const modeMatch = lower.match(/^mode\.([a-z0-9-]+)\.tokens\.css$/);
@@ -124,13 +140,13 @@ function getTokenCssFilesFromDist() {
 }
 
 function writeModeCssBaseline() {
-  const modePath = path.join(DIST_DIR, "core", "themes", "mode.css");
+  const modePath = path.join(DIST_DIR, "core", "context", "mode.css");
   if (!fs.existsSync(modePath)) return;
 
   writeFile(
     modePath,
     [
-      "@layer themes {",
+      "@layer context {",
       "  :root {",
       "    color-scheme: light dark;",
       "  }",
@@ -155,7 +171,7 @@ function buildCoreBundle(tokenFiles) {
       '@import url("./base/base.css") layer(base);',
       '@import url("./base/typography.css") layer(base);',
       ...tokenImports,
-      '@import url("./themes/mode.css") layer(themes);',
+      '@import url("./context/mode.css") layer(context);',
       "",
     ].join("\n"),
   );

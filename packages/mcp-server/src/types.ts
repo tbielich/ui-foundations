@@ -116,6 +116,7 @@ export interface TokenData {
   value: unknown;
   type: string;
   layer: TokenLayer;
+  hiddenFromPublishing?: boolean;
 }
 
 /** Composition pattern metadata and documentation. */

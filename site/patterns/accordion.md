@@ -32,7 +32,7 @@ playgroundLabel: Open Accordion Playground
           <p>Install via npm: <code>npm install ui-foundations</code></p>
         {% endcall %}
         {% call ui.accordionItem(title="Can I customize the tokens?") %}
-          <p>Yes — override semantic tokens or add brand-specific theme files.</p>
+          <p>Yes — override semantic tokens or add brand semantic token files.</p>
         {% endcall %}
       {% endcall %}
     </div>
@@ -103,7 +103,7 @@ playgroundLabel: Open Accordion Playground
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All color themes</strong><span>Works across light and dark modes.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All brand/mode contexts</strong><span>Works across light and dark modes.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Keyboard interactions</strong><span>Native details/summary behavior.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--accordion-*</code>).</span></div></div>
 </div>

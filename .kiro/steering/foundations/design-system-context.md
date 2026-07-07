@@ -11,29 +11,24 @@ This is a token-first, Figma-aligned design system. Figma is the single source o
 All documentation, code comments, commit messages, and user-facing content in
 this project must be written in English. No exceptions.
 
-## Token Architecture (3 layers + 2 resolution mechanisms)
+## Token Architecture
 
 | Layer | Purpose | Location |
 |---|---|---|
 | Core (Primitives) | Raw values: spacing, radii, borders, typography | `dist/tokens/css/core-primitives.tokens.css` |
-| Semantics (Roles) | Intent-based: `--color-text-default`, `--color-fill-surface`, `--corner-input-radius` | `dist/tokens/css/semantics-roles.tokens.css` |
+| Appearance (Modes) | Mode-dependent decisions: light/dark color mappings, future density modes | `dist/tokens/css/appearance-modes.tokens.mode-*.css` |
+| Semantics (Brands) | Brand-scoped semantic roles: `--brand-corner-button`, `--brand-color-*` | `dist/tokens/css/semantics-brands.tokens.brand-*.css` |
 | Patterns (UI) | Pattern-specific: `--button-solid-border-color-default` | `dist/tokens/css/patterns-ui.tokens.css` |
-
-Resolution mechanisms (feed INTO Semantics, not independent layers):
-| Mechanism | Purpose | Location |
-|---|---|---|
-| Themes (Brands) | Brand-specific palette/corner/font assignments | `dist/tokens/css/themes-brands.tokens.*.css` |
-| Appearance (Modes) | Light/dark color mappings | `dist/tokens/css/appearance-modes.tokens.mode-*.css` |
 
 **Strict reference direction:**
 ```
-Patterns → Semantics or Core only (NEVER Themes/Modes directly)
-Semantics  → Core, Themes, or Modes
-Themes     → Core
-Modes      → Core
+Patterns   → Semantics (Brands), Appearance, or Core
+Semantics  → Core or Appearance
+Appearance → Core
+Core       → raw values only
 ```
 
-Rules: Components reference only Semantic or Core. Never Themes. Never Modes. Never hardcode values.
+Rules: Pattern and component tokens consume semantic roles or Core tokens. Never hardcode values.
 
 ## Token Naming
 
@@ -61,7 +56,7 @@ Figma exports are the source. Generated files in `dist/` are never edited direct
 | Playground pages | `site/patterns/*-playground.md` |
 | Code Connect | `schemas/web-*.figma.ts` |
 | Token exports | `figma/exports/*.tokens.json` |
-| Brand overrides | `dist/tokens/css/themes-brands.tokens.*.css` |
+| Brand semantics | `dist/tokens/css/semantics-brands.tokens.brand-*.css` |
 
 ## Current Patterns
 

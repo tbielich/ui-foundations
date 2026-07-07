@@ -12,7 +12,7 @@ Figma exports through a build pipeline into CSS custom properties.
 
 ## Token layers
 
-The system uses four layers. Each layer references only the layer above it.
+The system uses four layers. Each layer references only the layer below it.
 
 <table class="docs-options-table">
   <thead>
@@ -25,22 +25,22 @@ The system uses four layers. Each layer references only the layer above it.
   <tbody>
     <tr>
       <td>Core (Primitives)</td>
-      <td>Raw values — spacing, radii, borders, typography</td>
+      <td>Primitive/reference values — spacing, radii, borders, typography</td>
       <td><code>--size-spacing-200</code></td>
     </tr>
     <tr>
-      <td>Color Modes</td>
-      <td>Light and dark color palettes, no semantics</td>
-      <td><code>--color-blue-500</code></td>
+      <td>Appearance (Modes)</td>
+      <td>Mode-dependent decisions such as light and dark color mappings</td>
+      <td><code>--color-fill-surface</code></td>
     </tr>
     <tr>
-      <td>Semantics (Roles)</td>
-      <td>Intent-based names for surfaces, text, borders</td>
-      <td><code>--color-text-default</code></td>
+      <td>Semantics (Brands)</td>
+      <td>Brand-scoped semantic roles for color, corner, font, and size decisions</td>
+      <td><code>--brand-corner-button</code></td>
     </tr>
     <tr>
-      <td>Components (UI)</td>
-      <td>Component-specific tokens referencing semantics</td>
+      <td>Patterns / Components</td>
+      <td>Implementation tokens consuming semantic roles or Core tokens</td>
       <td><code>--button-solid-background-default</code></td>
     </tr>
   </tbody>
@@ -61,9 +61,9 @@ Generated files in `dist/` are never edited directly.
 
 ## Brand and mode
 
-Brand and color mode are orthogonal concerns controlled by `data-brand` and
-`data-mode` attributes on the root element. Switching either attribute swaps the
-active token values without changing component markup.
+Brand and appearance mode are orthogonal concerns controlled by `data-brand`
+and `data-mode` attributes on the root element. Switching either attribute swaps
+the active token values without changing component markup.
 
 ## Rules
 

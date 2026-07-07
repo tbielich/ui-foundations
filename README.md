@@ -37,7 +37,7 @@ work with the system reliably.
 
 ## Key Features
 
-- **Token-first architecture** — Core → Semantic → Component → Theme, strictly separated
+- **Token-first architecture** — Core → Appearance → Semantics (Brands) → Patterns/Components, strictly separated
 - **Figma ↔ code alignment** — `codeSyntax.WEB` maps Figma names directly to CSS
 - **Multi-brand and dark mode** — `data-brand` and `data-mode` switch independently
 - **Agent-ready documentation** — deterministic context for AI-assisted workflows
@@ -87,13 +87,13 @@ work with the system reliably.
 Token layers from foundation to surface:
 
 ``` 
-   ╱─ THEME        Brand + Mode
-  ╱── COMPONENT    Scoped tokens
- ╱─── SEMANTIC     Intent aliases
-╱──── CORE         Raw values
+   ╱─ PATTERN/COMPONENT   Scoped usage tokens
+  ╱── SEMANTICS (BRANDS)  Brand-scoped semantic roles
+ ╱─── APPEARANCE          Mode-dependent decisions
+╱──── CORE                Primitive/reference values
 ```
 
-Patterns consume Semantic or Core tokens. Never raw values.
+Patterns consume semantic roles or Core tokens. Never raw values.
 
 ### Component Integration
 
@@ -124,7 +124,7 @@ docs, playgrounds, and consumer apps.
 
 - Use generated CSS custom properties — `var(--color-text-default)`
 - No hardcoded values — everything comes from tokens
-- Theming via `data-brand` and `data-mode` attributes on the root element
+- Brand and appearance context via `data-brand` and `data-mode` attributes on the root element
 
 ### Agents
 

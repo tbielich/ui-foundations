@@ -10,29 +10,30 @@ type: foundation-decision
 
 Define a stable token architecture that:
 - aligns Figma Variables with CSS custom properties
-- supports Light/Dark modes and multiple brands
+- supports appearance modes and multiple brands
 - scales across components without duplication
 - remains maintainable and code-aligned
 
 ## Rules
 
-1. Use three abstraction layers with strict downward-only references:
+1. Use four abstraction layers with strict downward-only references:
    - **Core (Primitives)**: raw physical values (spacing, radii, borders, typography primitives, layout constants)
-   - **Semantics (Roles)**: meaning-based roles (`Color.Text.*`, `Color.Fill.*`, `Color.Border.*`, `Typography.*`, `Corner.*`)
-   - **Components (APIs)**: variants/parts/properties/states, referencing Semantic or Core tokens only
+   - **Appearance (Modes)**: mode-dependent decisions such as light/dark or compact/regular/expanded values
+   - **Semantics (Brands)**: brand-scoped semantic roles (`Brand/Color/*`, `Brand/Corner/*`, `Brand/Font/*`, `Brand/Size/*`)
+   - **Patterns / Components (APIs)**: variants/parts/properties/states, consuming semantic roles or Core tokens
 
-2. Modes and Themes are **resolution mechanisms** within the Semantic layer, not independent abstraction layers:
-   - **Themes (Brands)**: brand-specific value assignments (`Brand/Corner/*`, `Brand/Color/*`, `Brand/Font/*`) that Semantics consumes
-   - **Appearance (Modes)**: light/dark color mappings that resolve Semantic color roles per mode
-   - Both feed *into* the Semantic layer — they do not sit above or beside it
+2. `Semantics (Brands)` replaces the old `Themes (Brands)` concept:
+   - use **Semantics (Brands)** for the Figma/token collection label
+   - use **brand semantics** for explanatory prose
+   - do not describe these tokens as arbitrary visual skins
 
 3. Reference direction (strict):
    ```
-   Core ← Themes/Modes ← Semantics ← Components
+   Core ← Appearance ← Semantics (Brands) ← Patterns/Components
    ```
-   Components must **never** reference Themes or Modes directly. All brand/mode variation reaches Components through Semantic tokens.
+   Pattern and component tokens consume semantic roles, not raw primitive values.
 
-4. Components must not introduce raw values for color, typography, or layout fundamentals.
+4. Pattern and component tokens must not introduce raw values for color, typography, or layout fundamentals.
 
 5. Typography color must stay in semantic color roles, not inside typography role definitions.
 
@@ -41,22 +42,20 @@ Define a stable token architecture that:
 ```
 ┌─────────────────────────────────────────────┐
 │              Components (APIs)               │
-│  references: Semantics, Core                │
+│  references: Semantics (Brands), Core        │
 └───────────────────┬─────────────────────────┘
                     │ $ref
 ┌───────────────────▼─────────────────────────┐
-│              Semantics (Roles)               │
-│  references: Core, Themes, Modes            │
-│  ┌─────────────────┐  ┌─────────────────┐  │
-│  │ Themes (Brands) │  │ Appearance      │  │
-│  │ resolution by   │  │ (Modes)         │  │
-│  │ data-brand      │  │ resolution by   │  │
-│  │                 │  │ data-mode       │  │
-│  └────────┬────────┘  └────────┬────────┘  │
-│           │ $ref                │ $ref       │
-└───────────┼─────────────────────┼───────────┘
-            │                     │
-┌───────────▼─────────────────────▼───────────┐
+│           Semantics (Brands)                 │
+│  brand-scoped semantic roles via data-brand  │
+└───────────┬─────────────────────────────────┘
+            │ $ref
+┌───────────▼─────────────────────────────────┐
+│              Appearance (Modes)              │
+│  mode-dependent decisions via data-mode      │
+└───────────┬─────────────────────────────────┘
+            │ $ref
+┌───────────▼─────────────────────────────────┐
 │              Core (Primitives)               │
 │  raw values: no references                  │
 └─────────────────────────────────────────────┘
@@ -64,7 +63,7 @@ Define a stable token architecture that:
 
 ## Implications
 
-- Brand/mode changes happen in Themes/Modes, propagate through Semantics automatically.
+- Brand changes happen in Semantics (Brands); appearance changes happen in Appearance (Modes).
 - Component APIs remain stable while underlying values evolve.
 - Layout constants (breakpoints, containers, z-index) stay centralized in Core.
 - Agents and developers can determine allowed references by checking only the layer above and below — never sideways.

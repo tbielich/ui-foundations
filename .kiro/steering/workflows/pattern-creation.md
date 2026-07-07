@@ -65,7 +65,7 @@ Examples:
    - Example: `--divider-container-border-color-default`
 2. Tokens reference only Semantic or Core layer (Foundation-001)
    - **NEVER reference `Brand/Corner/*` or `Brand/Color/*` directly** — these
-     are Theme tokens. Use the Semantic indirection:
+     are brand-semantic tokens. Use the semantic role indirection:
      - Corner radius → use `Corner/*` tokens (e.g. `Corner/Input Radius`)
      - Colors → use `Color/Text/*`, `Color/Fill/*`, `Color/Border/*`
      - Typography → use `Typography/*`
@@ -196,7 +196,7 @@ Create the interactive playground page.
 ### Checklist
 
 - [ ] Renderer created
-- [ ] Code generator (HTML/Nunjucks/React tabs)
+- [ ] Code generator (HTML/Nunjucks/Web Component tabs)
 - [ ] Playground page with controls
 - [ ] Token table works
 
@@ -302,4 +302,4 @@ Before building, resolve these questions. They prevent rework mid-session:
 ### Playground page template
 - Always use `{% from "macros/playground.njk" import playground as uiPlayground with context %}`
   and `{{ uiPlayground(playground) }}` — never a raw `<div>` stage.
-- Don't forget code generators in `code-generators.js` for Nunjucks/React tabs.
+- Don't forget code generators in `code-generators.js` for Nunjucks/Web Component tabs.

@@ -25,16 +25,16 @@ guesswork.
 The system follows a layered model:
 
 1. Core primitives
-2. Semantic tokens
-3. Component tokens
-4. Brand / mode / theme application
+2. Appearance mode decisions
+3. Semantics (Brands)
+4. Pattern and component tokens
 
 Agents must never invent token names.
 Use existing CSS custom properties from `codeSyntax.WEB` or exported token files.
 
-## Theming Model
+## Context Model
 
-Themes are orthogonal:
+Brand and appearance mode are orthogonal:
 
 - `data-brand`
 - `data-mode`
