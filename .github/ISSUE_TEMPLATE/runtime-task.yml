@@ -86,7 +86,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: validation-expectations
+    id: validation
     attributes:
       label: Validation expectations
       description: State what must be checked, who or what can check it, required evidence, and the repository or layer boundary to preserve.
