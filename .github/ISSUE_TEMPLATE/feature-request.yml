@@ -1,0 +1,88 @@
+name: Feature request
+about: Suggest an idea or improvement for this project
+title: ''
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: A short, descriptive summary of the requested feature.
+      placeholder: "e.g. Add an empty-state for the select pattern"
+    validations:
+      required: true
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: User problem
+      description: Describe the user problem or need this feature addresses.
+      placeholder: "Why is this feature needed?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-outcome
+    attributes:
+      label: Proposed outcome
+      description: Describe the desired outcome or user-facing change.
+      placeholder: "A clear description of the solution or behavior."
+    validations:
+      required: false
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Define what is included and what is out of scope for this request.
+      placeholder: "Include affected artifacts, boundaries, and non-goals."
+    validations:
+      required: false
+
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Non-goals (optional)
+      description: Explicitly state what this request will not do.
+      placeholder: "Optional. Helps prevent scope creep."
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: Describe observable completion, including outcome and evidence.
+      placeholder: |
+        Outcome:
+        Evidence:
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation-expectations
+    attributes:
+      label: Validation expectations
+      description: State how the change should be validated and required evidence.
+      placeholder: |
+        Checks:
+        Evidence:
+    validations:
+      required: false
+
+  - type: textarea
+    id: implementation-ideas
+    attributes:
+      label: Implementation ideas (optional)
+      description: Notes on possible implementation approaches, links, or constraints.
+      placeholder: "Optional. High-level ideas or links to references."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add mockups, links, or other context that will help reviewers.
+      placeholder: "Optional. Add links, screenshots, or notes."
+    validations:
+      required: false
