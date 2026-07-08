@@ -1,0 +1,103 @@
+name: Token work
+description: Create, change, review, or retire UI Foundations runtime token assets.
+title: "[Runtime] <token artifact>: <short outcome>"
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: State the token outcome this issue should achieve.
+      placeholder: "Example: Resolve drift between the Figma export and generated semantic token output."
+    validations:
+      required: true
+  - type: textarea
+    id: runtime-change
+    attributes:
+      label: Runtime change
+      description: Describe the runtime token asset being created, changed, reviewed, or retired.
+      placeholder: "Example: Update generated token outputs after a governed Figma token export change."
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Define the affected token layer, export, generated output, and boundaries.
+      placeholder: "Include Core, Appearance, Semantics (Brands), Patterns (UI), themes, docs, or build surfaces as applicable."
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      description: The architectural layer that owns this work.
+      options:
+        - Runtime
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      description: The stable Runtime responsibility area.
+      options:
+        - Token
+        - Theme
+        - Build
+        - Documentation
+    validations:
+      required: true
+  - type: input
+    id: artifact
+    attributes:
+      label: Artifact
+      description: Identify the concrete token, theme, export, generated output, or build artifact.
+      placeholder: "Example: Color.Text.Default, Brand A token export, patterns-ui.tokens.css"
+    validations:
+      required: true
+  - type: input
+    id: implementation
+    attributes:
+      label: Implementation
+      description: Identify the runtime repository path, token path, build target, documentation surface, or use "Not yet selected".
+      placeholder: "Example: figma/exports/Semantics Brands.tokens.json"
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Required references
+      description: Link or name governing vault knowledge, affected token artifacts, related themes, generated outputs, docs, build outputs, or validation requirements.
+      placeholder: "Use stable document identifiers, repository paths, artifact names, or 'No existing reference' with an explanation."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: Describe observable completion, including outcome, evidence, and boundary check.
+      placeholder: |
+        Outcome:
+        Evidence:
+        Boundary check:
+    validations:
+      required: true
+  - type: textarea
+    id: validation-expectations
+    attributes:
+      label: Validation expectations
+      description: State what must be checked, who or what can check it, required evidence, and the repository or layer boundary to preserve.
+      placeholder: |
+        Checks:
+        Evidence:
+        Boundary:
+    validations:
+      required: true
+  - type: textarea
+    id: optional-notes
+    attributes:
+      label: Optional notes
+      description: Add context, non-goals, compatibility, migration, visual or behavioral evidence, release impact, or handoff notes when relevant.
+      placeholder: "Optional."
+    validations:
+      required: false
