@@ -1,0 +1,106 @@
+name: Runtime task
+description: Create, change, review, or retire UI Foundations runtime assets.
+title: "[Runtime] <artifact>: <short outcome>"
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: State the runtime outcome this issue should achieve.
+      placeholder: "Example: Align the button focus behavior with the governed accessibility expectations."
+    validations:
+      required: true
+  - type: textarea
+    id: runtime-change
+    attributes:
+      label: Runtime change
+      description: Describe the executable or consumable UI Foundations asset being created, changed, reviewed, or retired.
+      placeholder: "Example: Update the runtime documentation surface for the button pattern."
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Define what is included and, when useful, what is outside this issue.
+      placeholder: "Include affected assets, boundaries, and non-goals."
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      description: The architectural layer that owns this work.
+      options:
+        - Runtime
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      description: The stable Runtime responsibility area.
+      options:
+        - Component
+        - Token
+        - Pattern
+        - Theme
+        - Documentation
+        - Build
+        - Accessibility
+    validations:
+      required: true
+  - type: input
+    id: artifact
+    attributes:
+      label: Artifact
+      description: Identify the concrete thing being changed.
+      placeholder: "Example: Button pattern, Color.Text.Default token, docs site build"
+    validations:
+      required: true
+  - type: input
+    id: implementation
+    attributes:
+      label: Implementation
+      description: Identify the runtime path, package, component, token path, build target, documentation surface, or use "Not yet selected".
+      placeholder: "Example: src/ui/patterns/button.css"
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Required references
+      description: Link or name governing vault knowledge, affected runtime artifacts, related patterns, tokens, docs, builds, or accessibility requirements.
+      placeholder: "Use stable document identifiers, repository paths, artifact names, or 'No existing reference' with an explanation."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: Describe observable completion, including outcome, evidence, and boundary check.
+      placeholder: |
+        Outcome:
+        Evidence:
+        Boundary check:
+    validations:
+      required: true
+  - type: textarea
+    id: validation-expectations
+    attributes:
+      label: Validation expectations
+      description: State what must be checked, who or what can check it, required evidence, and the repository or layer boundary to preserve.
+      placeholder: |
+        Checks:
+        Evidence:
+        Boundary:
+    validations:
+      required: true
+  - type: textarea
+    id: optional-notes
+    attributes:
+      label: Optional notes
+      description: Add context, compatibility, accessibility, migration, visual or behavioral evidence, release impact, or handoff notes when relevant.
+      placeholder: "Optional."
+    validations:
+      required: false

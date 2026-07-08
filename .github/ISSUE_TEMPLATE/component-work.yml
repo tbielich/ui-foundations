@@ -1,0 +1,103 @@
+name: Component work
+description: Create, change, review, or retire a UI Foundations component or pattern.
+title: "[Runtime] <component>: <short outcome>"
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: State the component or pattern outcome this issue should achieve.
+      placeholder: "Example: Add a documented empty state for the select pattern."
+    validations:
+      required: true
+  - type: textarea
+    id: runtime-change
+    attributes:
+      label: Runtime change
+      description: Describe the component, pattern, wrapper, docs, or accessibility behavior being created, changed, reviewed, or retired.
+      placeholder: "Example: Update the checkbox pattern documentation and validation examples."
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Define the affected component surface and boundaries.
+      placeholder: "Include CSS pattern, React wrapper, macros, docs, playground, Code Connect, or accessibility surfaces as applicable."
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      description: The architectural layer that owns this work.
+      options:
+        - Runtime
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      description: The stable Runtime responsibility area.
+      options:
+        - Component
+        - Pattern
+        - Accessibility
+        - Documentation
+    validations:
+      required: true
+  - type: input
+    id: artifact
+    attributes:
+      label: Artifact
+      description: Identify the concrete component or pattern artifact.
+      placeholder: "Example: Button component, Radio pattern, Accordion accessibility behavior"
+    validations:
+      required: true
+  - type: input
+    id: implementation
+    attributes:
+      label: Implementation
+      description: Identify the runtime path, component name, docs surface, or use "Not yet selected".
+      placeholder: "Example: src/ui/patterns/radio.css"
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Required references
+      description: Link or name governing vault knowledge, affected runtime artifacts, related components, tokens, patterns, docs, or accessibility requirements.
+      placeholder: "Use stable document identifiers, repository paths, artifact names, or 'No existing reference' with an explanation."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance criteria
+      description: Describe observable completion, including outcome, evidence, and boundary check.
+      placeholder: |
+        Outcome:
+        Evidence:
+        Boundary check:
+    validations:
+      required: true
+  - type: textarea
+    id: validation-expectations
+    attributes:
+      label: Validation expectations
+      description: State what must be checked, who or what can check it, required evidence, and the repository or layer boundary to preserve.
+      placeholder: |
+        Checks:
+        Evidence:
+        Boundary:
+    validations:
+      required: true
+  - type: textarea
+    id: optional-notes
+    attributes:
+      label: Optional notes
+      description: Add context, non-goals, compatibility, accessibility, migration, visual or behavioral evidence, release impact, or handoff notes when relevant.
+      placeholder: "Optional."
+    validations:
+      required: false
