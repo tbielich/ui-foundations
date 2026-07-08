@@ -80,7 +80,7 @@ body:
       required: true
 
   - type: textarea
-    id: validation-expectations
+    id: validation
     attributes:
       label: Validation notes
       description: How to validate the fix and what evidence is required.

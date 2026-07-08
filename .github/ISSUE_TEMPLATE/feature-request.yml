@@ -59,7 +59,7 @@ body:
       required: true
 
   - type: textarea
-    id: validation-expectations
+    id: validation
     attributes:
       label: Validation expectations
       description: State how the change should be validated and required evidence.
