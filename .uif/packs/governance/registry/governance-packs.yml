@@ -1,0 +1,85 @@
+---
+id: registry.governance-packs
+title: Governance Pack Registry
+type: registry
+status: draft
+owners:
+  - ui-foundations
+created: 2026-07-09
+updated: 2026-07-09
+authority: source
+summary: Declares publishable governance packs, versions, channels, and consuming repository expectations.
+
+version: 0.1
+
+versioning_policy:
+  scheme: semantic
+  major: Breaking change to governance meaning, required consumer behavior, or protected boundaries.
+  minor: New governance artifact, new recommended rule, or expanded consuming-repo guidance.
+  patch: Editorial clarification that does not change governance meaning.
+
+channels:
+  - name: draft
+    description: Pack is available for review but should not be treated as stable consumer input.
+  - name: review
+    description: Pack is ready for consuming-repo evaluation.
+  - name: stable
+    description: Pack is approved for reviewed consumption by runtime repositories.
+  - name: deprecated
+    description: Pack remains available for traceability but should not be adopted by new consumers.
+
+packs:
+  - id: governance-pack
+    title: Governance Pack
+    current_version: 0.6.0
+    channel: draft
+    manifest: exports/governance-pack/pack.yml
+    changelog: exports/governance-pack/CHANGELOG.md
+    owner: ui-foundations
+    compatible_repo_types:
+      - runtime
+      - docs
+      - package
+      - experiment
+    provided_artifacts:
+      - naming-rule
+      - token-governance
+      - component-governance
+      - accessibility-baseline
+    protected_boundaries:
+      - no runtime implementation
+      - no dependency changes
+      - no CI or deployment changes
+      - no automatic synchronization
+    releases:
+      - version: 0.6.0
+        channel: draft
+        date: 2026-07-09
+        git_ref: pending-review
+        manifest: exports/governance-pack/pack.yml
+        notes: Agent-readable Pattern Governance release with canonical implementation naming contracts and pilot pattern alignment.
+      - version: 0.1.0
+        channel: draft
+        date: 2026-07-09
+        git_ref: pending-review
+        manifest: exports/governance-pack/pack.yml
+        notes: Initial publishable governance pack structure for runtime-repo review.
+    consumers:
+      - repo: ui-foundations
+        expected_channel: review
+        consumption_mode: reviewed_patch
+        required_review:
+          - runtime owner
+          - governance owner
+      - repo: ui-foundations-studio
+        expected_channel: review
+        consumption_mode: reviewed_patch
+        required_review:
+          - runtime owner
+          - governance owner
+      - repo: ui-foundations-intelligence
+        expected_channel: review
+        consumption_mode: documentation_reference
+        required_review:
+          - agent owner
+          - governance owner

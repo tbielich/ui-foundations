@@ -73,7 +73,7 @@ Requirements:
 - Variants: default, brand
 - Positioning: top, bottom, left, right
 - Trigger: hover and focus
-- Token naming: --tooltip-<part>-<property>-<state>
+- Token naming: --uif-tooltip-<part>-<property>-<state>
 - Reference the Button and Icon docs pages as models for section depth
 
 Complete all 10 integration surfaces per Rule 8.
@@ -83,5 +83,5 @@ Do NOT auto-create the Figma token export — propose token names only.
 ### Token ownership (Rule 9)
 
 Every new component must have its own tokens. Never reuse tokens from another
-component. Follow the naming pattern `--<component>-<part>-<property>-<state>`
+component. Follow the naming pattern `--uif-<component>-<part>-<property>-<state>`
 and reference only Semantic or Core tokens.

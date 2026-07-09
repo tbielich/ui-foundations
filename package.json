@@ -98,6 +98,8 @@
     "assets:check": "node scripts/check-asset-refs.mjs",
     "rules:validate": "node scripts/validate-rule-pipeline.mjs",
     "uif:sync-check": "node scripts/uif-sync-check.mjs",
+    "naming:generate": "node scripts/generate-vault-naming-contract.mjs",
+    "naming:check": "node scripts/check-vault-naming-contract.mjs",
     "tokens:generate": "node scripts/extract-tokens.js",
     "tokens:sync": "node scripts/sync-figma-tokens.mjs",
     "tokens:dump": "node scripts/dump-figma-variables.mjs",
@@ -121,7 +123,7 @@
     "docs:site": "npm run build:all && npm run docs:build",
     "docs:dev": "node scripts/build.mjs dev",
     "docs:dev:verbose": "npm run build:raw && eleventy --serve",
-    "ci:check": "npm run lint && npm run test:unit && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run tokens:usage && npm run dtcg:validate && npm run assets:check && npm run rules:validate && npm run docs:build"
+    "ci:check": "npm run lint && npm run test:unit && npm run naming:check && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run tokens:usage && npm run dtcg:validate && npm run assets:check && npm run rules:validate && npm run docs:build"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",

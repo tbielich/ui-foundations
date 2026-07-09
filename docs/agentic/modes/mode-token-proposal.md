@@ -12,7 +12,8 @@ Token rules from `AGENTS.md` (Token Workflow, Design System Rules).
 ## Delta
 
 - Propose only — do not create tokens directly
-- Follow naming convention: `--component-variant-part-property-state`
+- Follow the Vault naming convention for public pattern slots:
+  `--uif-component-variant-part-property-state`
 - If a needed semantic token does not exist, flag it for Figma creation
 
 ## Output

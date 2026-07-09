@@ -41,14 +41,14 @@ The system uses four layers. Each layer references only the layer below it.
     <tr>
       <td>Patterns / Components</td>
       <td>Implementation tokens consuming semantic roles or Core tokens</td>
-      <td><code>--button-solid-background-default</code></td>
+      <td><code>--uif-button-solid-background-default</code></td>
     </tr>
   </tbody>
 </table>
 
 ## Naming convention
 
-- Component tokens: `--component-variant-part-property-state`
+- Public pattern tokens: `--uif-component-variant-part-property-state`
 - Semantic tokens: role-based (e.g. `--color-text-default`, `--color-fill-brand`)
 - States are always the last segment: `default`, `hover`, `active`, `focus`, `disabled`
 

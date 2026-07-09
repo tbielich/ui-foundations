@@ -33,6 +33,10 @@ test("classifyTokenGroup maps tokens by path/prefix", () => {
     classifyTokenGroup({ pathSegments: ["Input", "Text"], cssVar: "--input-text-color" }),
     "components",
   );
+  assert.equal(
+    classifyTokenGroup({ pathSegments: ["Button", "Text"], cssVar: "--uif-button-text-color" }),
+    "components",
+  );
 });
 
 test("formatTokenValue preserves layout columns and z-index numbers", () => {

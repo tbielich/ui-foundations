@@ -34,15 +34,18 @@ type: agent-guide
    Missing any of these (especially the playground renderer) will cause broken pages.
 9. Every new pattern must have its own pattern-layer tokens. Never reuse tokens from another pattern (e.g. do not use `--input-checkbox-*` for a radio).
    - Check `dist/tokens/css/patterns-ui.tokens.css` for existing tokens.
-   - If the pattern has no tokens in Figma yet, propose new ones following the naming pattern `--<pattern>-<part>-<property>-<state>` and add them to the `Patterns (UI)` collection, referencing only Semantics (Brands), Appearance, or Core tokens.
+   - If the pattern has no tokens in Figma yet, propose new public token slots following the Vault naming pattern `--uif-<pattern>-<part>-<property>-<state>` and add them to the `Patterns (UI)` collection, referencing only Semantics (Brands), Appearance, or Core tokens.
+   - Existing unscoped pattern tokens such as `--button-*` are deprecated legacy compatibility and should be migrated with explicit warnings.
    - This keeps patterns independently adaptable across brand/mode context and avoids hidden coupling.
 10. Token alias references must point to tokens that actually exist in the system.
     - Before adding a `$ref`, verify the target exists in `dist/tokens/css/` (Core, Appearance, Semantics (Brands)).
     - Run `npm run tokens:generate` and check for "missing alias targets" warnings.
     - Never invent Semantic/Core token names (e.g. `Color/Fill/Muted`, `Size/Spacing/50`) — use only what the system provides.
     - If a needed Semantic token does not exist, flag it for creation in Figma first.
-11. CSS class naming must follow the project convention: bare pattern name (e.g. `.slider`, `.radio`, `.checkbox`).
-    - Never prefix with `.ui-` or other namespaces.
+11. CSS class naming must follow the consumed Vault Naming Contract from `.uif/packs/governance/contracts/naming-contract.json`; runtime generates its local naming contract from that artifact.
+    - Local examples such as `.uif-slider`, `.uif-radio`, and `.uif-checkbox` are examples only, not source rules.
+    - Existing bare pattern classes such as `.button`, `.radio`, and `.checkbox` are deprecated legacy compatibility and should warn during migration.
+    - Never use `.ui-` or other non-Vault namespaces.
     - CSS patterns must be wrapped in `@layer components { }`.
 12. React wrappers must follow the existing pattern:
     - Named `export function` (not `export const`)

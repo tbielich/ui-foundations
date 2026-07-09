@@ -1,5 +1,6 @@
 const { toKebabCase, formatLength } = require("./extract-tokens.utils.js");
 const { resolveAliasRef } = require("./extract-tokens.lookup.js");
+const { classifyPatternTokenName } = require("./vault-naming-contract.js");
 
 function normalizeColor(value) {
   if (typeof value === "string") {
@@ -242,6 +243,10 @@ function classifyTokenGroup(token) {
 
   if (category === "container" || prefix.startsWith("--container-")) {
     return "containers";
+  }
+
+  if (["canonical", "deprecated"].includes(classifyPatternTokenName(prefix).status)) {
+    return "components";
   }
 
   return "components";
