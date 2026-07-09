@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "source.schema.json",
+  "title": "UIF Source Registry",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "metadata", "vault", "consumption", "localRuntimeBoundaries"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "kind": { "const": "UIFSourceRegistry" },
+    "metadata": {
+      "type": "object",
+      "required": ["repository", "repositoryType", "version"],
+      "properties": {
+        "repositoryType": { "const": "runtime" }
+      }
+    },
+    "vault": {
+      "type": "object",
+      "required": ["repository", "remote", "ref", "sourceOfTruthFor"],
+      "properties": {
+        "repository": { "const": "ui-foundations-vault" },
+        "remote": { "type": "string", "minLength": 1 },
+        "ref": {
+          "type": "object",
+          "required": ["strategy", "current", "branchPolicy"],
+          "properties": {
+            "strategy": {
+              "type": "object",
+              "required": ["stable", "snapshot", "experimental"],
+              "properties": {
+                "stable": { "const": "git-tag" },
+                "snapshot": { "const": "git-sha" },
+                "experimental": { "const": "branch" }
+              }
+            },
+            "current": {
+              "type": "object",
+              "required": ["type", "value", "status"],
+              "properties": {
+                "type": { "enum": ["tag", "sha", "branch"] },
+                "status": { "enum": ["stable", "snapshot", "experimental"] }
+              }
+            }
+          }
+        }
+      }
+    },
+    "consumption": {
+      "type": "object",
+      "required": ["mode", "automaticSync", "consumedPacks"],
+      "properties": {
+        "mode": { "const": "reviewed-manual" },
+        "automaticSync": { "const": false },
+        "consumedPacks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "path", "lastKnownVersion", "versionStatus", "versionRef", "description"],
+            "properties": {
+              "id": { "enum": ["agent", "governance", "runtime"] },
+              "versionStatus": { "enum": ["stable", "snapshot", "experimental"] },
+              "versionRef": {
+                "type": "object",
+                "required": ["type", "value"],
+                "properties": {
+                  "type": { "enum": ["tag", "sha", "branch"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

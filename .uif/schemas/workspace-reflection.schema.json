@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "workspace-reflection.schema.json",
+  "title": "UIF Reflection Frontmatter",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "id", "status", "date", "owner", "trigger", "relatedPacks", "promotionCandidate"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "kind": { "const": "UIFReflection" },
+    "status": { "enum": ["draft", "proposed", "approved", "rejected", "promoted"] },
+    "relatedPacks": { "type": "array" },
+    "promotionCandidate": { "type": "boolean" }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "workspace-override.schema.json",
+  "title": "UIF Override Frontmatter",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "id", "status", "date", "owner", "sourcePack", "sourceRule", "affectedArtifacts", "reviewRequired", "promotionCandidate"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "kind": { "const": "UIFOverride" },
+    "status": { "enum": ["draft", "proposed", "approved", "rejected", "promoted"] },
+    "affectedArtifacts": { "type": "array" },
+    "reviewRequired": { "type": "boolean" },
+    "promotionCandidate": { "type": "boolean" }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sync-policy.schema.json",
+  "title": "UIF Sync Policy",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "metadata", "policy", "versioning", "localOwnership", "overrideRules", "conflicts", "review", "promotion"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "kind": { "const": "UIFSyncPolicy" },
+    "metadata": {
+      "type": "object",
+      "required": ["repository", "repositoryType", "mode"],
+      "properties": {
+        "repositoryType": { "const": "runtime" },
+        "mode": { "const": "governance-consumption" }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": ["automaticSyncAllowed", "fileMutationAllowed", "importsAllowed", "importsNotAllowed"],
+      "properties": {
+        "automaticSyncAllowed": { "const": false },
+        "fileMutationAllowed": { "const": false }
+      }
+    },
+    "versioning": {
+      "type": "object",
+      "required": ["packVersioning", "unknownVersionAllowedOnlyWhenStatus", "requiredPackFields"]
+    },
+    "conflicts": {
+      "type": "object",
+      "required": ["strategy", "priority", "requiredAction"],
+      "properties": {
+        "priority": {
+          "const": [
+            "local-runtime-safety-rules",
+            "local-documented-overrides",
+            "consumed-vault-packs",
+            "generic-agent-rules"
+          ]
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["owners", "requiredFor"]
+    },
+    "promotion": {
+      "type": "object",
+      "required": ["candidateStatuses", "process"],
+      "properties": {
+        "candidateStatuses": {
+          "const": ["draft", "proposed", "approved", "rejected", "promoted"]
+        }
+      }
+    }
+  }
+}
