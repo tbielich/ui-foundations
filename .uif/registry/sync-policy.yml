@@ -1,0 +1,95 @@
+schemaVersion: 1
+kind: UIFSyncPolicy
+metadata:
+  repository: ui-foundations
+  repositoryType: runtime
+  mode: governance-consumption
+policy:
+  automaticSyncAllowed: false
+  fileMutationAllowed: false
+  importsAllowed:
+    - governance-documents
+    - agent-guidance
+    - runtime-boundary-guidance
+    - reviewed-knowledge-pack-indexes
+  importsNotAllowed:
+    - runtime-code
+    - components
+    - css
+    - token-values
+    - generated-output
+    - build-output
+    - unreviewed-tool-specific-instructions
+versioning:
+  packVersioning:
+    stable:
+      refType: tag
+      requiredFor: reviewed-pack-consumption
+    snapshot:
+      refType: sha
+      requiredFor: reproducible-snapshot-consumption
+    experimental:
+      refType: branch
+      allowedFor: exploration-only
+  unknownVersionAllowedOnlyWhenStatus: experimental
+  requiredPackFields:
+    - id
+    - path
+    - lastKnownVersion
+    - versionStatus
+    - versionRef
+localOwnership:
+  workspace:
+    path: ../workspace
+    owner: ui-foundations-runtime
+    rule: Local workspace artifacts are owned by this repository.
+  implementation:
+    owner: ui-foundations-runtime
+    rule: Runtime implementation decisions remain local unless promoted.
+overrideRules:
+  allowedWhen:
+    - local-runtime-boundary-is-documented
+    - override-has-owner
+    - override-has-rationale
+    - override-has-review-status
+  requiredLocation: ../workspace/overrides
+  forbidden:
+    - silent-governance-changes
+    - undocumented-exceptions
+    - direct-edits-to-imported-pack-content
+conflicts:
+  strategy: local-documented-decision-wins-until-reviewed
+  priority:
+    - local-runtime-safety-rules
+    - local-documented-overrides
+    - consumed-vault-packs
+    - generic-agent-rules
+  requiredAction:
+    - record-conflict
+    - identify-affected-pack
+    - identify-local-owner
+    - decide-adopt-override-or-promote
+review:
+  owners:
+    governance: TODO-governance-owner
+    runtime: TODO-runtime-owner
+    agent: TODO-agent-owner
+  requiredFor:
+    - new-imported-pack-version
+    - governance-rule-change
+    - override-change
+    - promotion-candidate
+promotion:
+  candidateStatuses:
+    - draft
+    - proposed
+    - approved
+    - rejected
+    - promoted
+  process:
+    - capture-lesson-or-reflection-locally
+    - classify-as-runtime-specific-or-reusable
+    - create-promotion-candidate
+    - review-with-maintainers
+    - submit-to-vault
+    - consume-back-only-after-vault-version-update

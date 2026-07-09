@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "workspace-lesson.schema.json",
+  "title": "UIF Lesson Frontmatter",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "id", "status", "date", "owner", "relatedPacks", "affectedArtifacts", "shouldPromoteToVault"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "kind": { "const": "UIFLesson" },
+    "status": { "enum": ["draft", "proposed", "approved", "rejected", "promoted"] },
+    "relatedPacks": { "type": "array" },
+    "affectedArtifacts": { "type": "array" },
+    "shouldPromoteToVault": { "enum": ["unknown", true, false] }
+  }
+}

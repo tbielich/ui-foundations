@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "workspace-decision.schema.json",
+  "title": "UIF Decision Frontmatter",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "id", "status", "date", "owner", "relatedPacks", "affectedArtifacts", "promotionCandidate"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "kind": { "const": "UIFDecisionRecord" },
+    "status": { "enum": ["draft", "proposed", "approved", "rejected", "promoted"] },
+    "relatedPacks": { "type": "array" },
+    "affectedArtifacts": { "type": "array" },
+    "promotionCandidate": { "type": "boolean" }
+  }
+}

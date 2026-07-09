@@ -94,6 +94,16 @@ Do not edit generated files in `dist/`.
 
 ---
 
+## UIF Governance Consumption
+
+- `.uif/packs/` contains consumed governance from the UI Foundations Vault.
+- `.uif/workspace/` belongs only to this repository and stores local decisions, overrides, lessons, and reflection.
+- Governance must never be changed silently; document the owner, rationale, and review status.
+- New insights start locally in `.uif/workspace/lessons/` or `.uif/workspace/reflection/`.
+- Only reviewed promotion candidates can become Vault governance.
+
+---
+
 ## Validation (REQUIRED)
 
 Before completion:
