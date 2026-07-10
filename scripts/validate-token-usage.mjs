@@ -9,6 +9,10 @@
 
 import fs from "fs";
 import path from "path";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const { classifyPatternTokenName } = require("./vault-naming-contract.js");
 
 const REPO_ROOT = path.resolve(import.meta.dirname, "..");
 const PATTERNS_DIR = path.join(REPO_ROOT, "src", "ui", "patterns");
@@ -73,11 +77,19 @@ function run() {
   const defined = getDefinedTokens();
   const usage = getUsedTokens();
   const errors = [];
+  const warnings = [];
 
   for (const ref of usage) {
     if (defined.has(ref.token)) continue;
     if (ALLOWLIST.has(ref.token)) continue;
     errors.push(ref);
+  }
+
+  for (const ref of usage) {
+    const classification = classifyPatternTokenName(ref.token);
+    if (classification.status === "deprecated") {
+      warnings.push({ ...ref, message: classification.message });
+    }
   }
 
   if (errors.length > 0) {
@@ -90,6 +102,13 @@ function run() {
     console.error(`  2. Rename the var() reference to match an existing token`);
     console.error(`  3. Add to ALLOWLIST in this script if intentionally code-only`);
     process.exit(1);
+  }
+
+  const uniqueWarnings = [
+    ...new Map(warnings.map((warning) => [`${warning.file}:${warning.line}:${warning.token}`, warning])).values(),
+  ];
+  for (const warning of uniqueWarnings) {
+    console.warn(`⚠️  ${warning.file}:${warning.line} → ${warning.message}`);
   }
 
   console.log(`✅ Token usage validated (${usage.length} references, ${defined.size} defined tokens)`);

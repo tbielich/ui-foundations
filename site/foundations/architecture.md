@@ -98,7 +98,7 @@ permalink: /foundations/architecture/
       <tr>
         <td><strong>Patterns / Components</strong></td>
         <td>Pattern-specific usage tokens scoped to a UI element or interactive component</td>
-        <td><code>--button-solid-background-hover</code></td>
+        <td><code>--uif-button-solid-background-hover</code></td>
       </tr>
     </tbody>
   </table>

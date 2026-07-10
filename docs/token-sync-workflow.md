@@ -63,7 +63,7 @@ Each variable object in the dump has this shape:
   "name": "Button/Solid/Text Color Default",
   "resolvedType": "COLOR",
   "scopes": ["ALL_SCOPES"],
-  "webSyntax": "var(--button-solid-text-color-default)",
+  "webSyntax": "var(--uif-button-solid-text-color-default)",
   "value": null,
   "alias": {
     "targetId": "VariableID:2616:2",

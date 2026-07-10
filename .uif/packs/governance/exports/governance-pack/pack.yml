@@ -1,0 +1,112 @@
+---
+id: export-pack.governance.manifest
+title: Governance Pack Manifest
+type: export-pack
+status: draft
+owners:
+  - ui-foundations
+created: 2026-07-09
+updated: 2026-07-09
+authority: derived
+summary: Machine-readable manifest for the publishable UI Foundations governance pack.
+
+pack:
+  id: governance-pack
+  title: Governance Pack
+  version: 0.6.0
+  channel: draft
+  release_date: 2026-07-09
+  owner: ui-foundations
+  registry: registry/governance-packs.yml
+  changelog: exports/governance-pack/CHANGELOG.md
+
+purpose:
+  - Provide reviewed governance guidance that runtime repositories may consume.
+  - Keep governance guidance versioned, traceable, and separate from runtime implementation.
+  - Make consuming-repo review obligations explicit before adoption.
+
+compatibility:
+  repo_types:
+    - runtime
+    - docs
+    - package
+    - experiment
+  minimum_contract: registry/sync-contract.yml
+  consumption_modes:
+    - reviewed_patch
+    - manual_copy
+    - documentation_reference
+
+artifacts:
+  - id: governance-pack.naming-rules
+    title: Naming Rules
+    type: naming-rule
+    path: exports/governance-pack/naming-rules.md
+    status: draft
+    review_required: true
+    source_references:
+      - reference.terminology
+      - registry.sync-contract
+
+  - id: governance-pack.token-governance
+    title: Token Governance
+    type: token-governance
+    path: exports/governance-pack/token-governance.md
+    status: draft
+    review_required: true
+    source_references:
+      - registry.sync-contract
+
+  - id: governance-pack.component-governance
+    title: Component Governance
+    type: component-governance
+    path: exports/governance-pack/component-governance.md
+    status: draft
+    review_required: true
+    source_references:
+      - registry.sync-contract
+
+  - id: governance-pack.accessibility-baseline
+    title: Accessibility Baseline
+    type: accessibility-baseline
+    path: exports/governance-pack/accessibility-baseline.md
+    status: draft
+    review_required: true
+    source_references:
+      - registry.sync-contract
+
+protected_boundaries:
+  never_include:
+    - runtime implementation code
+    - package dependency declarations
+    - lockfiles
+    - CI execution workflows
+    - deployment configuration
+    - generated build output
+    - secrets or environment configuration
+  never_overwrite:
+    - repository-owned AGENTS.md sections outside explicit vault-managed markers
+    - source directories
+    - tests
+    - package manifests
+    - workflow files
+
+review:
+  required_for_publish:
+    - governance owner
+    - affected runtime owner when a consuming repo is named
+  required_for_consumption:
+    - target repository owner
+    - governance owner
+  manual_review_required_for:
+    - governance meaning changes
+    - token semantics
+    - component lifecycle or API expectations
+    - accessibility baseline changes
+    - package boundary expectations
+
+validation:
+  schema: schemas/governance-pack.schema.yml
+  local_validator: schemas/validate-governance-packs.rb
+  validation_is_advisory: true
+  validation_does_not_sync: true

@@ -1,0 +1,194 @@
+{
+  "$schema": "../../../schemas/naming-contract.schema.yml",
+  "contract_id": "governance-pack.naming-contract",
+  "title": "Naming Contract",
+  "type": "naming-contract",
+  "status": "draft",
+  "authority": "derived",
+  "owner": "ui-foundations",
+  "schema_version": "1.0.0",
+  "contract_version": "0.1.0",
+  "governance_pack_version": "0.7.0",
+  "channel": "draft",
+  "release_date": "2026-07-09",
+  "updated": "2026-07-09",
+  "normativity": {
+    "rules_are_normative": true,
+    "examples_are_normative": false,
+    "examples_label": "non-normative example",
+    "runtime_consumption": "Runtime repositories should consume this JSON contract as the portable machine-readable naming source. Markdown documentation may explain the rules but must not redefine them for runtime consumption."
+  },
+  "source_metadata": {
+    "pack_manifest": "exports/governance-pack/pack.yml",
+    "pack_changelog": "exports/governance-pack/CHANGELOG.md",
+    "canonical_sources": [
+      {
+        "id": "specification.pattern.schema",
+        "path": "patterns/schemas/pattern.schema.md",
+        "sections": [
+          "Implementation Naming Contract",
+          "CSS Class Contract",
+          "Token Contract",
+          "Data Attribute Contract",
+          "Native / ARIA Precedence",
+          "Agent Freedom Boundary"
+        ]
+      },
+      {
+        "id": "template.pattern.base",
+        "path": "patterns/templates/base-pattern.template.md",
+        "sections": [
+          "Implementation Naming Contract"
+        ]
+      },
+      {
+        "id": "template.pattern.composition",
+        "path": "patterns/templates/composition-pattern.template.md",
+        "sections": [
+          "Implementation Naming Contract"
+        ]
+      },
+      {
+        "id": "template.pattern.product",
+        "path": "patterns/templates/product-pattern.template.md",
+        "sections": [
+          "Implementation Naming Contract"
+        ]
+      },
+      {
+        "id": "registry.governance-packs",
+        "path": "registry/governance-packs.yml",
+        "sections": [
+          "versioning_policy",
+          "channels"
+        ]
+      },
+      {
+        "id": "governance.lifecycle",
+        "path": "governance/lifecycle.md",
+        "sections": [
+          "Deprecated",
+          "Archived"
+        ]
+      }
+    ]
+  },
+  "rules": {
+    "css_class_prefix": {
+      "prefix": "uif-",
+      "selector_prefix": ".uif-",
+      "scope": "public_component_classes",
+      "required": true,
+      "class_model": "class_name_chains",
+      "variant_model": "chained_classes",
+      "authored_state_prefix": "is-",
+      "native_state_policy": "Use native pseudo-classes for native states where possible.",
+      "forbidden": [
+        "BEM modifier syntax",
+        "BEM element syntax",
+        "unscoped public component classes"
+      ]
+    },
+    "css_custom_property_prefix": {
+      "prefix": "--uif-",
+      "scope": "UIF-owned public CSS custom properties",
+      "required": true,
+      "component_token_slot_pattern": "--uif-[component]-*",
+      "forbidden": [
+        "unscoped public tokens such as --button-*"
+      ]
+    },
+    "proof_token_prefix": {
+      "prefix": "--uif-proof-",
+      "scope": "experimental unresolved proof tokens",
+      "required_for": "experimental tokens used to validate pattern or implementation feasibility before final token approval"
+    },
+    "assumption_token_prefix": {
+      "prefix": "--uif-assumption-",
+      "scope": "experimental unresolved assumption tokens",
+      "required_for": "placeholder tokens that expose unresolved assumptions without presenting them as approved final token names"
+    },
+    "pattern_id_prefixes": {
+      "base_pattern": "pattern.base.",
+      "composition_pattern": "pattern.composition.",
+      "product_pattern": "pattern.product.",
+      "slug_policy": "Append a stable lowercase slug after the prefix."
+    },
+    "data_attributes": {
+      "role": "secondary metadata or state hooks",
+      "must_document_allowed_attributes": true,
+      "must_not_replace": [
+        "public component classes",
+        "tokens",
+        "native semantics",
+        "ARIA",
+        "focus management",
+        "ownership contracts"
+      ]
+    },
+    "native_and_aria_precedence": {
+      "native_attributes": "win where available",
+      "aria": "used for accessibility semantics and relationships",
+      "data_attributes": "may mirror component state but must not be the only semantic source"
+    },
+    "agent_freedom_boundary": {
+      "not_agent_freedom": [
+        "CSS naming",
+        "token scoping",
+        "native semantics",
+        "accessibility semantics"
+      ],
+      "new_naming_or_data_attribute_ideas": "must be explicitly marked as proposed or recorded in Open Questions"
+    },
+    "compatibility_and_deprecation_policy": {
+      "versioning_scheme": "semantic",
+      "major": "Breaking change to governance meaning, required consumer behavior, or protected boundaries.",
+      "minor": "New governance artifact, new recommended rule, or expanded consuming-repo guidance.",
+      "patch": "Editorial clarification that does not change governance meaning.",
+      "deprecated_names": "Deprecated naming guidance must remain traceable, state the reason for deprecation, and point to replacement guidance when available.",
+      "runtime_adoption": "Runtime repositories adopt naming contract changes only through reviewed local changes. Consumption does not authorize automatic synchronization or cross-repo writes."
+    }
+  },
+  "non_normative_examples": [
+    {
+      "label": "non-normative example",
+      "kind": "public_component_class",
+      "value": "uif-button"
+    },
+    {
+      "label": "non-normative example",
+      "kind": "variant_class_chain",
+      "value": "uif-button uif-button-primary"
+    },
+    {
+      "label": "non-normative example",
+      "kind": "authored_state_class_chain",
+      "value": "uif-button is-loading"
+    },
+    {
+      "label": "non-normative example",
+      "kind": "component_token_slot",
+      "value": "--uif-button-background"
+    },
+    {
+      "label": "non-normative example",
+      "kind": "proof_token",
+      "value": "--uif-proof-button-focus-ring"
+    },
+    {
+      "label": "non-normative example",
+      "kind": "assumption_token",
+      "value": "--uif-assumption-button-gap"
+    },
+    {
+      "label": "non-normative example",
+      "kind": "base_pattern_id",
+      "value": "pattern.base.button"
+    },
+    {
+      "label": "non-normative example",
+      "kind": "composition_pattern_id",
+      "value": "pattern.composition.date-picker"
+    }
+  ]
+}

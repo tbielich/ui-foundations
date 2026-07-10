@@ -9,56 +9,67 @@ permalink: /foundations/class-naming/
 
 ## Convention
 
-ui-foundations uses **flat compound classes** — no BEM double-underscores, no namespace prefixes.
+ui-foundations consumes the Vault Naming Contract for public pattern classes.
+The canonical source is
+`.uif/packs/governance/contracts/naming-contract.json`; runtime generates its
+local contract module from that artifact.
+
+The examples below illustrate the consumed contract. They are not source rules.
+At the time of this consumed pack, public component classes use the generated
+class prefix and flat class chains: no BEM double-underscores and no non-Vault
+namespace prefixes.
 
 ### Structure
 
 ```
-.component                     → root element
-.component-part                → structural child (compound with hyphen)
-.component-part.variant        → variant as modifier class (multi-class)
-.component.variant             → root-level variant
-.component.is-state            → state class (always .is- prefix)
+.uif-component                 → root element
+.uif-component-part            → structural child (compound with hyphen)
+.uif-component-part.variant    → variant as modifier class (multi-class)
+.uif-component.variant         → root-level variant
+.uif-component.is-state        → state class (always .is- prefix)
 ```
 
 ### Rules
 
-1. **Root class = bare component name**: `.calendar`, `.button`, `.checkbox`
-2. **Parts use hyphen-compound**: `.calendar-header`, `.calendar-cell`, `.input-field`
-3. **Variants are additional classes**: `.button.ghost`, `.badge.brand`, `.divider.subtle`
+1. **Root class = `uif-` + component name**: `.uif-calendar`, `.uif-button`, `.uif-checkbox`
+2. **Parts use hyphen-compound under the same prefix**: `.uif-calendar-header`, `.uif-calendar-cell`, `.uif-input-field`
+3. **Variants are additional classes**: `.uif-button.ghost`, `.uif-badge.brand`, `.uif-divider.subtle`
 4. **States use `.is-` prefix**: `.is-hover`, `.is-selected`, `.is-disabled`, `.is-today`
 5. **No double-underscores** (`__`): use hyphen-compound instead
-6. **No namespace prefixes**: never `.ui-calendar` or `.uif-button`
-7. **No BEM modifiers** (`--`): use multi-class instead (`.button.ghost` not `.button--ghost`)
+6. **No non-Vault namespace prefixes**: never `.ui-calendar`
+7. **No BEM modifiers** (`--`): use multi-class instead (`.uif-button.ghost` not `.uif-button--ghost`)
 
 ### Examples
 
 ```css
-/* ✓ Correct */
-.calendar { }
-.calendar-header { }
-.calendar-cell { }
-.calendar-cell.is-selected { }
-.calendar-cell.is-today { }
-.button.ghost { }
-.input-field { }
-.form-field { }
+/* Example: canonical */
+.uif-calendar { }
+.uif-calendar-header { }
+.uif-calendar-cell { }
+.uif-calendar-cell.is-selected { }
+.uif-calendar-cell.is-today { }
+.uif-button.ghost { }
+.uif-input-field { }
+.uif-form-field { }
 
-/* ✗ Incorrect */
+/* Example: invalid */
 .calendar__header { }       /* no double-underscore */
 .calendar-cell--selected { } /* no BEM modifier */
-.ui-calendar { }            /* no namespace */
-.button--ghost { }          /* use multi-class */
+.ui-calendar { }            /* no non-Vault namespace */
+.uif-button--ghost { }      /* use multi-class */
 ```
 
 ### Why
 
-- **Readability**: `.calendar-cell.is-selected` reads as plain English
+- **Readability**: `.uif-calendar-cell.is-selected` reads as plain English
 - **Flat specificity**: all selectors stay at one or two class levels
-- **Composable**: `.button.ghost.calendar-cell` works — stack as needed
+- **Composable**: `.uif-button.ghost.uif-calendar-cell` works — stack as needed
 - **Scannable**: in DevTools you see the full state without decoding BEM conventions
-- **Consistent with token naming**: tokens use hyphen-compound too (`--calendar-cell-background-hover`)
+- **Consistent with token naming**: tokens use the same public prefix (`--uif-calendar-cell-background-hover`)
 
 ### Migration Note
 
-Some older components still use `__` (e.g. `.accordion-item__content`, `.form-field__helper`). New components must use hyphen-compound. Existing components will be migrated incrementally.
+Existing runtime artifacts still use bare classes such as `.button`, `.input`,
+and `.calendar-cell`. These are deprecated legacy compatibility classes. Runtime
+validation should warn with migration guidance rather than fail existing
+artifacts without context.

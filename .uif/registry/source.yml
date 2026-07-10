@@ -14,7 +14,7 @@ vault:
       experimental: branch
     current:
       type: sha
-      value: fbeb803e51f11d5c372ece8ced4405f37f999fb3
+      value: 10f78061cd65e6ad6d7304376ead27d44efc01b3
       status: snapshot
     branchPolicy: Branch refs are allowed only for experiments and must not be used for stable pack consumption.
   sourceOfTruthFor:
@@ -35,11 +35,11 @@ consumption:
       description: Tool-independent agent operating guidance.
     - id: governance
       path: ../packs/governance
-      lastKnownVersion: 0.1.0
+      lastKnownVersion: 0.7.0
       versionStatus: snapshot
       versionRef:
         type: sha
-        value: fbeb803e51f11d5c372ece8ced4405f37f999fb3
+        value: 10f78061cd65e6ad6d7304376ead27d44efc01b3
       description: Reusable governance rules and review criteria.
     - id: runtime
       path: ../packs/runtime
