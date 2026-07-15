@@ -76,7 +76,7 @@ export function ButtonGroup({
   children,
   ...props
 }) {
-  const classes = ["uif-button-group"];
+  const classes = ["button-group"];
   if (className) classes.push(className);
 
   return React.createElement(

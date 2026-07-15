@@ -24,8 +24,7 @@ test("ButtonGroup Figma export contains canonical tokens without legacy aliases"
 });
 
 test("ButtonGroup-owned emitters produce the canonical root class", async () => {
-  const [react, element, macro, renderer, schema, documentation] = await Promise.all([
-    read("src/react/button.js"),
+  const [element, macro, renderer, schema, documentation] = await Promise.all([
     read("src/elements/ui-button.js"),
     read("site/_includes/macros/ui.njk"),
     read("site/assets/playground/renderers.js"),
@@ -33,13 +32,19 @@ test("ButtonGroup-owned emitters produce the canonical root class", async () => 
     read("site/patterns/button.md"),
   ]);
 
-  for (const source of [react, element, macro, renderer, schema, documentation]) {
+  for (const source of [element, macro, renderer, schema, documentation]) {
     assert.match(source, /uif-button-group/);
   }
 
-  assert.doesNotMatch(react, /const classes = \["button-group"\]/);
   assert.doesNotMatch(element, /class="button-group"/);
   assert.doesNotMatch(macro, /set classes = "button-group"/);
   assert.doesNotMatch(renderer, /class(?:Name)? = "button-group"/);
   assert.doesNotMatch(schema, /class="button-group"/);
+});
+
+test("ButtonGroup migration leaves deprecated React wrappers unchanged", async () => {
+  const react = await read("src/react/button.js");
+
+  assert.match(react, /const classes = \["button-group"\]/);
+  assert.doesNotMatch(react, /const classes = \["uif-button-group"\]/);
 });
