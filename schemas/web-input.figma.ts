@@ -5,7 +5,7 @@ figma.connect(
   {
     props: {
       wrapperClassName: figma.className([
-        "input-field",
+        "uif-input-field",
         figma.enum("State", {
           Default: undefined,
           Hover: "is-hover",
@@ -30,13 +30,13 @@ figma.connect(
     },
     example: ({ wrapperClassName, disabled, type, readonlyAttr, placeholder }) => html`<div class="${wrapperClassName}">
   <input
-    class="input"
+    class="uif-input"
     type="${type}"
     placeholder="${placeholder}"
     readonly="${readonlyAttr}"
     disabled="${disabled}"
   />
-  <span class="input-field-control">
+  <span class="uif-input-field-control">
     <!-- Control buttons rendered by type -->
   </span>
 </div>`,

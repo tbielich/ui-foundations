@@ -281,9 +281,9 @@
     const isDisabled = previewState === "disabled" || Boolean(props.disabled);
     const isReadonly = previewState === "readonly";
 
-    // Always render as .input-field wrapper
+    // Always render as the UIF Input field wrapper
     const wrapper = document.createElement("div");
-    const wrapperClasses = ["input-field"];
+    const wrapperClasses = ["uif-input-field"];
     if (previewState === "hover") wrapperClasses.push("is-hover");
     if (previewState === "active") wrapperClasses.push("is-active");
     if (previewState === "focus") wrapperClasses.push("is-focus-visible");
@@ -293,7 +293,7 @@
     wrapper.className = wrapperClasses.join(" ");
 
     const input = document.createElement("input");
-    input.className = "input";
+    input.className = "uif-input";
     input.type = type;
     input.placeholder = placeholder;
     input.value = value;
@@ -302,7 +302,7 @@
     wrapper.appendChild(input);
 
     const control = document.createElement("span");
-    control.className = "input-field-control";
+    control.className = "uif-input-field-control";
 
     let controlIcons = [];
     if (type === "number") {
@@ -341,7 +341,7 @@
     wrapper.appendChild(control);
 
     // Generate code
-    const inputAttrs = [`class="input"`, `type="${quoteAttr(type)}"`];
+    const inputAttrs = [`class="uif-input"`, `type="${quoteAttr(type)}"`];
     if (placeholder) inputAttrs.push(`placeholder="${quoteAttr(placeholder)}"`);
     if (value) inputAttrs.push(`value="${quoteAttr(value)}"`);
     if (isDisabled) inputAttrs.push("disabled");
@@ -359,7 +359,7 @@
 
     const code = `<div class="${quoteAttr(wrapper.className)}">
   <input ${inputAttrs.join(" ")} />
-  <span class="input-field-control">
+  <span class="uif-input-field-control">
     ${controlCode}
   </span>
 </div>`;
@@ -787,7 +787,7 @@
     label1.innerHTML = '<span class="uif-label-content"><span class="uif-label-content-text">Email</span></span><span class="uif-field-label-required" aria-hidden="true">*</span>';
 
     const input1 = document.createElement("input");
-    input1.className = "input";
+    input1.className = "uif-input";
     input1.type = "email";
     input1.placeholder = "you@example.com";
 
@@ -822,7 +822,7 @@
     label2.innerHTML = '<span class="uif-label-content"><span class="uif-label-content-text">Password</span></span>';
 
     const input2 = document.createElement("input");
-    input2.className = "input";
+    input2.className = "uif-input";
     input2.type = "password";
 
     if (labelPosition === "side") {
@@ -854,11 +854,11 @@
     const code = `<form class="${formClasses.join(" ")}" novalidate>
   <div class="form-field${inv}"${lp}>
     <label class="uif-field-label"><span class="uif-label-content"><span class="uif-label-content-text">Email</span></span><span class="uif-field-label-required" aria-hidden="true">*</span></label>
-    <input class="input" type="email" placeholder="you@example.com" />${helperCode}
+    <input class="uif-input" type="email" placeholder="you@example.com" />${helperCode}
   </div>
   <div class="form-field"${lp}>
     <label class="uif-field-label"><span class="uif-label-content"><span class="uif-label-content-text">Password</span></span></label>
-    <input class="input" type="password" />
+    <input class="uif-input" type="password" />
   </div>
   <div class="form-actions"${alignAttr}>
     <button class="uif-button solid" type="submit"><span class="uif-label-content"><span class="uif-label-content-text">Sign in</span></span></button>
@@ -1132,7 +1132,7 @@
     const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     const weekdayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 
-    const rootClasses = ["input-field", "date"];
+    const rootClasses = ["uif-input-field", "date"];
     if (isOpen) rootClasses.push("is-open");
 
     let html = `<div class="form-field date-picker-field">`;
@@ -1145,7 +1145,7 @@
     html += `<span class="date-separator">/</span>`;
     html += `<input class="date-segment year" id="date-picker-playground-year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year" value="${quoteAttr(year)}"${disabledAttr}>`;
     html += `</div>`;
-    html += `<span class="input-field-control">`;
+    html += `<span class="uif-input-field-control">`;
     html += `<button type="button" aria-label="Open calendar" aria-expanded="${isOpen}" aria-haspopup="grid" aria-controls="date-picker-playground-calendar"${disabledAttr}>`;
     html += `<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>`;
     html += `</button></span>`;

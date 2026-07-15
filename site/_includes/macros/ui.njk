@@ -19,15 +19,15 @@
 {%- endmacro %}
 
 {% macro input(type='text', placeholder='', value='', state='default', disabled=false, className='', id='', name='', dataPlaygroundControl=false, dataProp='', dataSource='', dataValueType='', dataQueryParam='') -%}
-{%- set wrapperClasses = "input-field" -%}
+{%- set wrapperClasses = "uif-input-field" -%}
 {%- if state == "hover" -%}{%- set wrapperClasses = wrapperClasses + " is-hover" -%}{%- endif -%}
 {%- if state == "active" -%}{%- set wrapperClasses = wrapperClasses + " is-active" -%}{%- endif -%}
 {%- if state == "focus" -%}{%- set wrapperClasses = wrapperClasses + " is-focus-visible" -%}{%- endif -%}
 {%- if state == "disabled" or disabled -%}{%- set wrapperClasses = wrapperClasses + " is-disabled" -%}{%- endif -%}
 {%- if className -%}{%- set wrapperClasses = wrapperClasses + " " + className -%}{%- endif -%}
 <div class="{{ wrapperClasses }}">
-  <input class="input" type="{{ type }}"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if dataPlaygroundControl %} data-playground-control{% endif %}{% if dataProp %} data-prop="{{ dataProp }}"{% endif %}{% if dataSource %} data-source="{{ dataSource }}"{% endif %}{% if dataValueType %} data-value-type="{{ dataValueType }}"{% endif %}{% if dataQueryParam %} data-query-param="{{ dataQueryParam }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
-  <span class="input-field-control">
+  <input class="uif-input" type="{{ type }}"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if dataPlaygroundControl %} data-playground-control{% endif %}{% if dataProp %} data-prop="{{ dataProp }}"{% endif %}{% if dataSource %} data-source="{{ dataSource }}"{% endif %}{% if dataValueType %} data-value-type="{{ dataValueType }}"{% endif %}{% if dataQueryParam %} data-query-param="{{ dataQueryParam }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
+  <span class="uif-input-field-control">
     {%- if type == "text" or type == "email" or type == "search" or type == "url" or type == "tel" -%}
     <button type="button" aria-label="Clear input" tabindex="-1"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross-circled.svg');" aria-hidden="true"></span></button>
     {%- elif type == "number" -%}

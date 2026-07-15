@@ -1301,7 +1301,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-color-default)"
+            "WEB": "var(--uif-input-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -1323,7 +1323,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-color-hover)"
+            "WEB": "var(--uif-input-text-color-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:340",
@@ -1345,7 +1345,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-color-active)"
+            "WEB": "var(--uif-input-text-color-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -1367,7 +1367,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-color-disabled)"
+            "WEB": "var(--uif-input-text-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:328",
@@ -1389,7 +1389,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-text-color-placeholder)"
+            "WEB": "var(--uif-input-text-color-placeholder)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:341",
@@ -1413,7 +1413,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-color-default)"
+            "WEB": "var(--uif-input-border-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:342",
@@ -1435,7 +1435,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-color-hover)"
+            "WEB": "var(--uif-input-border-color-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -1457,7 +1457,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-color-active)"
+            "WEB": "var(--uif-input-border-color-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -1479,7 +1479,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-color-focus)"
+            "WEB": "var(--uif-input-border-color-focus)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -1501,7 +1501,7 @@
             "STROKE_FLOAT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-size-default)"
+            "WEB": "var(--uif-input-border-size-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:7",
@@ -1523,7 +1523,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-size-hover)"
+            "WEB": "var(--uif-input-border-size-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:7",
@@ -1545,7 +1545,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-size-active)"
+            "WEB": "var(--uif-input-border-size-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:8",
@@ -1567,7 +1567,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-radius)"
+            "WEB": "var(--uif-input-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2028:335",
@@ -1589,7 +1589,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-color-disabled)"
+            "WEB": "var(--uif-input-border-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:346",
@@ -1611,7 +1611,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-color-invalid)"
+            "WEB": "var(--uif-input-border-color-invalid)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:356",
@@ -1633,7 +1633,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-border-color-valid)"
+            "WEB": "var(--uif-input-border-color-valid)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:344",
@@ -1656,7 +1656,7 @@
           "FONT_FAMILY"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-font-family)"
+          "WEB": "var(--uif-input-font-family)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:2006:213",
@@ -1678,7 +1678,7 @@
           "FONT_STYLE"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-font-weight)"
+          "WEB": "var(--uif-input-font-weight)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3014:12",
@@ -1700,7 +1700,7 @@
           "FONT_SIZE"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-font-size)"
+          "WEB": "var(--uif-input-font-size)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3014:9",
@@ -1722,7 +1722,7 @@
           "LINE_HEIGHT"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-line-height)"
+          "WEB": "var(--uif-input-line-height)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3014:14",
@@ -1745,7 +1745,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-container-background-default)"
+            "WEB": "var(--uif-input-container-background-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -1767,7 +1767,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-container-background-hover)"
+            "WEB": "var(--uif-input-container-background-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -1789,7 +1789,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-container-background-focus)"
+            "WEB": "var(--uif-input-container-background-focus)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -1811,7 +1811,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-container-background-active)"
+            "WEB": "var(--uif-input-container-background-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -1833,7 +1833,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--input-container-background-disabled)"
+            "WEB": "var(--uif-input-container-background-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:330",
@@ -1856,7 +1856,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-padding-inline)"
+          "WEB": "var(--uif-input-padding-inline)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:3",
@@ -1878,7 +1878,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-padding-inline-icon-only)"
+          "WEB": "var(--uif-input-padding-inline-icon-only)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:3",
@@ -1900,7 +1900,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-padding-block)"
+          "WEB": "var(--uif-input-padding-block)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:3",
@@ -1922,7 +1922,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-gap)"
+          "WEB": "var(--uif-input-gap)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:3",
@@ -1944,7 +1944,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-overlay-hover)"
+          "WEB": "var(--uif-input-overlay-hover)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:2006:195",
@@ -1966,7 +1966,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-overlay-active)"
+          "WEB": "var(--uif-input-overlay-active)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:2006:195",
@@ -1988,7 +1988,7 @@
           "WIDTH_HEIGHT"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-height)"
+          "WEB": "var(--uif-input-height)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3020:2",
@@ -2010,7 +2010,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--input-height-min)"
+          "WEB": "var(--uif-input-height-min)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3020:2",

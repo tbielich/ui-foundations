@@ -1,7 +1,7 @@
 /**
  * Input Field — Progressive Enhancement
  *
- * Activates control buttons inside .input-field elements:
+ * Activates control buttons inside `.uif-input-field` elements:
  * - Clear (text/email/search/url/tel): clears the input value
  * - Increment/Decrement (number): steps the value up/down
  * - Toggle visibility (password): switches between password and text type
@@ -9,12 +9,16 @@
  *
  * Usage:
  *   import { enhanceInputFields } from 'ui-foundations/ui/components/input-field.js';
- *   enhanceInputFields();           // enhances all .input-field on the page
+ *   enhanceInputFields();           // enhances all .uif-input-field on the page
  *   enhanceInputFields(container);  // enhances only within a container
  */
 
+const INPUT_FIELD_SELECTOR = ":is(.uif-input-field, .input-field)";
+const INPUT_SELECTOR = "input:is(.uif-input, .input)";
+const INPUT_CONTROL_SELECTOR = ":is(.uif-input-field-control, .input-field-control)";
+
 function getInput(field) {
-  return field.querySelector("input.input");
+  return field.querySelector(INPUT_SELECTOR);
 }
 
 function getStep(input) {
@@ -69,7 +73,7 @@ function handleToggleVisibility(field) {
   if (!input || input.disabled) return;
 
   const button = field.querySelector(
-    '.input-field-control button[aria-label="Toggle password visibility"]',
+    `${INPUT_CONTROL_SELECTOR} button[aria-label="Toggle password visibility"]`,
   );
   const isRevealed = input.type === "text";
 
@@ -98,7 +102,7 @@ function enhanceField(field) {
   if (field.dataset.enhanced) return;
   field.dataset.enhanced = "true";
 
-  const control = field.querySelector(".input-field-control");
+  const control = field.querySelector(INPUT_CONTROL_SELECTOR);
   if (!control) return;
 
   // Set aria-pressed on password toggle buttons during enhancement
@@ -130,17 +134,17 @@ function enhanceField(field) {
 }
 
 /**
- * Enhance all .input-field elements within a root.
+ * Enhance all `.uif-input-field` elements within a root.
  * @param {Element|Document} [root=document] - Container to search within
  */
 export function enhanceInputFields(root) {
   const container = root || document;
-  const fields = container.querySelectorAll(".input-field");
+  const fields = container.querySelectorAll(INPUT_FIELD_SELECTOR);
   fields.forEach(enhanceField);
 }
 
 /**
- * Observe a root for dynamically added .input-field elements.
+ * Observe a root for dynamically added `.uif-input-field` elements.
  * @param {Element|Document} [root=document.body]
  */
 export function observeInputFields(root) {
@@ -149,11 +153,11 @@ export function observeInputFields(root) {
     for (const mutation of mutations) {
       for (const node of mutation.addedNodes) {
         if (node.nodeType !== 1) continue;
-        if (node.matches && node.matches(".input-field")) {
+        if (node.matches && node.matches(INPUT_FIELD_SELECTOR)) {
           enhanceField(node);
         }
         if (node.querySelectorAll) {
-          node.querySelectorAll(".input-field").forEach(enhanceField);
+          node.querySelectorAll(INPUT_FIELD_SELECTOR).forEach(enhanceField);
         }
       }
     }

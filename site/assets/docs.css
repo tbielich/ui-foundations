@@ -599,7 +599,7 @@ details[open] > .docs-nav-group-toggle::before {
   font-weight: 700;
 }
 
-.playground-field input:not(.input),
+.playground-field input:not(.uif-input):not(.input),
 .playground-field select {
   border-radius: 10px;
   border: 1px solid var(--docs-border);
