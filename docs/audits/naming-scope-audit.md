@@ -366,18 +366,18 @@ This audit intentionally does not define:
 
 - migration mechanics
 - compatibility alias strategy
-- implementation order beyond risk grouping
+- exact file-by-file implementation steps
 
 Those decisions belong to [#145](https://github.com/tbielich/ui-foundations/issues/145).
 Any solution should follow the established token-first architecture and originate from
-the Figma export and token generation pipeline.
+the Figma export and token generation pipeline. This audit recommends a high-level,
+risk-gated planning order below without prescribing implementation details.
 
 ---
 
 ## Risk Groupings
 
-The findings above fall into the following risk groups. Sequencing and implementation
-strategy are deferred to #145.
+The findings above fall into the following risk groups.
 
 | Group | Risk |
 |---|---|
@@ -386,6 +386,24 @@ strategy are deferred to #145.
 | Cross-pattern token coupling | Silent fallback loss if Input and Button tokens are not addressed together |
 | Tests and tooling fixtures | False confidence if test fixtures are not updated in the same migration wave |
 | Generated output (`dist/`) | Cannot be audited until built; must be verified as part of #145 |
+
+---
+
+## Recommended Safe Migration Order
+
+The migration plan in #145 should address the identified risks in this order:
+
+1. Confirm the canonical naming and consumer compatibility requirements.
+2. Build and inspect generated/package output to complete the affected-file inventory.
+3. Plan runtime classes, component tokens, and cross-pattern dependencies as one
+   coordinated scope.
+4. Coordinate emitters, macros, documentation, and test-fixture updates with the
+   runtime migration plan.
+5. Define validation, consumer migration, deprecation, and release gates before any
+   implementation begins.
+
+This sequence defines risk gates only. Exact token aliases, CSS changes, compatibility
+mechanics, and implementation waves remain decisions for #145.
 
 ---
 
