@@ -1,12 +1,12 @@
 @layer components {
-  .avatar {
+  :is(.uif-avatar, .avatar) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--avatar-border-radius);
+    border-radius: var(--uif-avatar-border-radius);
     overflow: hidden;
-    background: var(--avatar-container-background-default);
-    color: var(--avatar-text-color-default);
+    background: var(--uif-avatar-container-background-default);
+    color: var(--uif-avatar-text-color-default);
     font-family: var(--font-family-sans);
     font-weight: var(--font-weight-600);
     inline-size: 2.5rem;
@@ -16,25 +16,25 @@
 
   /* ── Sizes ── */
 
-  .avatar.xs {
+  :is(.uif-avatar, .avatar).xs {
     inline-size: 1.5rem;
     block-size: 1.5rem;
     font-size: var(--font-size-xs);
   }
 
-  .avatar.sm {
+  :is(.uif-avatar, .avatar).sm {
     inline-size: 2rem;
     block-size: 2rem;
     font-size: var(--font-size-xs);
   }
 
-  .avatar.lg {
+  :is(.uif-avatar, .avatar).lg {
     inline-size: 3rem;
     block-size: 3rem;
     font-size: var(--font-size-md);
   }
 
-  .avatar.xl {
+  :is(.uif-avatar, .avatar).xl {
     inline-size: 4rem;
     block-size: 4rem;
     font-size: var(--font-size-lg);
@@ -42,7 +42,7 @@
 
   /* ── Image ── */
 
-  .avatar > img {
+  :is(.uif-avatar, .avatar) > img {
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
@@ -50,7 +50,7 @@
 
   /* ── Initials ── */
 
-  .avatar-initials {
+  :is(.uif-avatar-initials, .avatar-initials) {
     user-select: none;
     text-transform: uppercase;
   }

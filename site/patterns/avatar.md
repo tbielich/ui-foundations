@@ -114,10 +114,14 @@ playgroundLabel: Open Avatar Playground
 - Image avatars include `alt` text on the `<img>` element.
 - Initials are decorative — the `aria-label` on the container provides the accessible name.
 
+<h2 id="v1-naming-migration">v1 naming migration</h2>
+
+Avatar emitters now produce the canonical `.uif-avatar` and `.uif-avatar-initials` classes. The legacy `.avatar` and `.avatar-initials` selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-avatar-*`; library-owned legacy `--avatar-*` token aliases are not provided. The existing `<ui-avatar>` registration and package export remain unchanged by this component-family migration.
+
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All brand/mode contexts</strong><span>Works across light and dark modes.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Defined options</strong><span>Sizes and content types documented.</span></div></div>
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--avatar-*</code>).</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--uif-avatar-*</code>).</span></div></div>
 </div>

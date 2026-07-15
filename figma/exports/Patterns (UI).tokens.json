@@ -5719,7 +5719,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--avatar-container-background-default)"
+            "WEB": "var(--uif-avatar-container-background-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:338",
@@ -5743,7 +5743,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--avatar-text-color-default)"
+            "WEB": "var(--uif-avatar-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -5767,7 +5767,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--avatar-border-radius)"
+            "WEB": "var(--uif-avatar-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:1:251",

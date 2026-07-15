@@ -21,13 +21,13 @@ class UIAvatar extends UIElement {
     const initials = this.getAttr("initials");
     const size = this.getAttr("size", "md");
 
-    const classes = ["avatar"];
+    const classes = ["uif-avatar"];
     if (size && size !== "md") classes.push(size);
 
     const label = alt || initials;
     const inner = src
       ? `<img src="${src}" alt="${alt}" />`
-      : `<span class="avatar-initials">${initials}</span>`;
+      : `<span class="uif-avatar-initials">${initials}</span>`;
 
     this.innerHTML = `<span class="${classes.join(" ")}" role="img" aria-label="${label}">${inner}</span>`;
   }

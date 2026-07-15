@@ -172,11 +172,11 @@
 {%- endmacro %}
 
 {% macro avatar(src='', alt='', initials='', size='', className='') -%}
-{%- set classes = "avatar" -%}
+{%- set classes = "uif-avatar" -%}
 {%- if size and size != "md" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <span class="{{ classes }}" role="img" aria-label="{{ alt or initials }}">
-  {%- if src -%}<img src="{{ src }}" alt="{{ alt }}" />{%- else -%}<span class="avatar-initials">{{ initials }}</span>{%- endif -%}
+  {%- if src -%}<img src="{{ src }}" alt="{{ alt }}" />{%- else -%}<span class="uif-avatar-initials">{{ initials }}</span>{%- endif -%}
 </span>
 {%- endmacro %}
 
