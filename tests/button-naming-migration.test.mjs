@@ -19,7 +19,6 @@ test("Button token export uses UIF names without legacy token aliases", async ()
 
   assert.match(tokenExport, /var\(--uif-button-/);
   assert.doesNotMatch(tokenExport, /var\(--button-(?!group-)/);
-  assert.match(tokenExport, /var\(--button-group-gap\)/);
 });
 
 test("Button-owned emitters use the canonical root and explicit solid variant", async () => {

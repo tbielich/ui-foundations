@@ -13,7 +13,7 @@
 {% macro buttonGroup(attached=false, orientation='horizontal', justify='start', ariaLabel='', className='') -%}
 {%- set resolvedOrientation = "vertical" if orientation == "vertical" else "horizontal" -%}
 {%- set resolvedJustify = "stretch" if justify == "stretch" else "start" -%}
-{%- set classes = "button-group" -%}
+{%- set classes = "uif-button-group" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <div class="{{ classes }}" role="group" data-orientation="{{ resolvedOrientation }}" data-attached="{{ "true" if attached else "false" }}" data-justify="{{ resolvedJustify }}"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>{{ caller() }}</div>
 {%- endmacro %}

@@ -267,7 +267,7 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
 
 ```html
 <div
-  class="button-group"
+  class="uif-button-group"
   role="group"
   aria-label="Travel dates"
   data-orientation="horizontal"

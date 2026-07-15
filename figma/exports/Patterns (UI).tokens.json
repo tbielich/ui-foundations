@@ -1158,13 +1158,36 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--button-group-gap)"
+            "WEB": "var(--uif-button-group-gap)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:3",
             "targetVariableName": "Brand/Size/Spacing/Component",
             "targetVariableSetId": "VariableCollectionId:1:177",
             "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Button/Border/Radius"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3083:2",
+          "com.figma.scopes": [
+            "CORNER_RADIUS"
+          ],
+          "com.figma.hiddenFromPublishing": false,
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-button-group-border-radius)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3:14",
+            "targetVariableName": "Button/Border/Radius",
+            "targetVariableSetId": "VariableCollectionId:1:264",
+            "targetVariableSetName": "Patterns (UI)"
           },
           "com.figma.isOverride": true
         }
