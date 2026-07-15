@@ -21,6 +21,6 @@ figma.connect(
       endIcon: figma.boolean("End Icon"),
     },
     example: ({ className, text, href, startIcon, endIcon }: LinkProps) =>
-      html`<a class="${className}" href="${href}">${startIcon && html`<span class="icon" data-slot="start" aria-hidden="true"></span>`}${text}${endIcon && html`<span class="icon" data-slot="end" aria-hidden="true"></span>`}</a>`,
+      html`<a class="${className}" href="${href}">${startIcon && html`<span class="uif-icon" data-slot="start" aria-hidden="true"></span>`}${text}${endIcon && html`<span class="uif-icon" data-slot="end" aria-hidden="true"></span>`}</a>`,
   },
 );

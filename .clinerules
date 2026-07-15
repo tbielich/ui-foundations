@@ -31,7 +31,7 @@ Rules: Components reference only Semantic or Core. Never hardcode values.
 - Use logical properties: `inline-size`, `block-size`, not `width`, `height`
 - Use `var(--token-name)` for all values — never hardcode
 - States: both pseudo-classes (`:hover`) and fallback classes (`.is-hover`)
-- Reuse existing patterns: icon-only buttons use `.button.ghost` + `.icon`
+- Reuse existing patterns: icon-only buttons use `.uif-button.ghost` + `.uif-icon`
 
 ## Token Naming
 

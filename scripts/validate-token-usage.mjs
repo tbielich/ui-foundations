@@ -24,7 +24,7 @@ const ALLOWLIST = new Set([
   "--field-label-gap",
   "--field-label-line-height",
   "--field-label-required-color",
-  "--icon-src",
+  "--uif-icon-src",
   // Calendar component extension points (pending Figma export)
   "--calendar-cell-background-selected",
   "--calendar-cell-background-range",

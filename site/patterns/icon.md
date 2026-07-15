@@ -24,9 +24,9 @@ playgroundLabel: Open Icon Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-      <span class="icon" style="--icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span>
-      <span class="icon" style="--icon-src: url('/assets/icons/plus.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/plus.svg');" aria-hidden="true"></span>
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -50,7 +50,7 @@ playgroundLabel: Open Icon Playground
         <span class="docs-anatomy-badge">1</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
-      <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -67,9 +67,9 @@ from assistive technology with `aria-hidden="true"`. When an icon is the only
 content (no adjacent label), it must have an accessible name via `aria-label`.
 
 <div class="docs-stack docs-icon-line-height">
-  <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-  <span class="icon docs-icon-color-brand" style="--icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
-  <span class="icon docs-icon-color-danger" style="--icon-src: url('/assets/icons/login.svg');" aria-hidden="true"></span>
+  <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+  <span class="uif-icon docs-icon-color-brand" style="--uif-icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
+  <span class="uif-icon docs-icon-color-danger" style="--uif-icon-src: url('/assets/icons/login.svg');" aria-hidden="true"></span>
 </div>
 
 ### Color
@@ -91,7 +91,7 @@ needed.
     <tr><th>Property</th><th>Values</th><th>Default</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>--icon-src</code></td><td>icon URL path</td><td>—</td></tr>
+    <tr><td><code>--uif-icon-src</code></td><td>icon URL path</td><td>—</td></tr>
     <tr><td>color</td><td>Inherited from <code>currentColor</code></td><td>parent text color</td></tr>
     <tr><td>size</td><td>Inherited from parent <code>line-height</code></td><td><code>1lh</code></td></tr>
     <tr><td><code>aria-hidden</code></td><td><code>true</code> (decorative) / omitted (meaningful)</td><td><code>true</code></td></tr>
@@ -99,12 +99,20 @@ needed.
   </tbody>
 </table>
 
+### v1 naming migration
+
+Use `.uif-icon` with `--uif-icon-src` in all new and migrated markup. The
+legacy `.icon` selector remains available throughout v1.x, but the legacy
+`--icon-src` custom property has no library-owned alias or fallback. Consumers
+must rename both public API names together. Removal of the legacy class selector
+is deferred to Wave 4 in v2.0 or later.
+
 <h2 id="behaviors">Behaviors</h2>
 
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
     </div>
     <div class="docs-behavior-body">
       <h3>Color inheritance</h3>
@@ -113,7 +121,7 @@ needed.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview docs-icon-line-height">
-      <span class="icon" style="--icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
     </div>
     <div class="docs-behavior-body">
       <h3>Size from line-height</h3>
@@ -122,7 +130,7 @@ needed.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
       <span>Search</span>
     </div>
     <div class="docs-behavior-body">
@@ -132,7 +140,7 @@ needed.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
     </div>
     <div class="docs-behavior-body">
       <h3>CSS mask rendering</h3>
@@ -148,7 +156,7 @@ needed.
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      <span class="label-content"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content-text">Search</span></span>
+      <span class="label-content"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content-text">Search</span></span>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
@@ -157,7 +165,7 @@ needed.
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
@@ -171,7 +179,7 @@ needed.
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      <span class="icon docs-icon-color-brand" style="--icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
+      <span class="uif-icon docs-icon-color-brand" style="--uif-icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
@@ -180,7 +188,7 @@ needed.
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      <span class="icon docs-dont-custom-color" style="--icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
+      <span class="uif-icon docs-dont-custom-color" style="--uif-icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>

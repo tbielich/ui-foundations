@@ -30,7 +30,7 @@
   }
 
   :is(.uif-button, .button) .label-content-text,
-  :is(.uif-button, .button) .icon {
+  :is(.uif-button, .button) :is(.uif-icon, .icon) {
     color: inherit;
     -webkit-text-fill-color: currentColor;
   }

@@ -6,7 +6,7 @@
     line-height: inherit;
   }
 
-  .label-content > .icon[data-slot] {
+  .label-content > :is(.uif-icon, .icon)[data-slot] {
     display: inline-flex;
     align-items: center;
     line-height: inherit;

@@ -56,7 +56,7 @@
 
   /* ── Icon slot ── */
 
-  .link > .icon {
+  .link > :is(.uif-icon, .icon) {
     flex: 0 0 auto;
   }
 }

@@ -57,12 +57,12 @@ class UIInput extends UIElement {
     const TEXT_TYPES = ["text", "email", "search", "url", "tel"];
 
     if (TEXT_TYPES.includes(type)) {
-      controlHTML = `<button type="button" aria-label="Clear input" tabindex="-1"><span class="icon" style="--icon-src: url('/assets/icons/cross-circled.svg')" aria-hidden="true"></span></button>`;
+      controlHTML = `<button type="button" aria-label="Clear input" tabindex="-1"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross-circled.svg')" aria-hidden="true"></span></button>`;
     } else if (type === "number") {
-      controlHTML = `<button type="button" aria-label="Decrease value"><span class="icon" style="--icon-src: url('/assets/icons/minus-circled.svg')" aria-hidden="true"></span></button>
-      <button type="button" aria-label="Increase value"><span class="icon" style="--icon-src: url('/assets/icons/plus-circled.svg')" aria-hidden="true"></span></button>`;
+      controlHTML = `<button type="button" aria-label="Decrease value"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/minus-circled.svg')" aria-hidden="true"></span></button>
+      <button type="button" aria-label="Increase value"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/plus-circled.svg')" aria-hidden="true"></span></button>`;
     } else if (type === "password") {
-      controlHTML = `<button type="button" aria-label="Toggle password visibility"><span class="icon" style="--icon-src: url('/assets/icons/view.svg')" aria-hidden="true"></span></button>`;
+      controlHTML = `<button type="button" aria-label="Toggle password visibility"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/view.svg')" aria-hidden="true"></span></button>`;
     }
 
     this.innerHTML = `<div class="${wrapperClasses.join(" ")}">

@@ -41,7 +41,7 @@ playgroundLabel: Open Date Picker Playground
           </div>
           <span class="input-field-control">
             <button type="button" aria-label="Open calendar" aria-expanded="false" aria-haspopup="grid" aria-controls="date-input-demo-calendar">
-              <span class="icon" style="--icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>
+              <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>
             </button>
           </span>
           {{ ui.calendar("July 2026", todayDate="1", id="date-input-demo-calendar") }}
@@ -73,7 +73,7 @@ Together they form a component that can be opened, navigated, and dismissed — 
     │   └── input.date-segment.year [maxlength=4, aria-label="Year"]
     ├── .input-field-control
     │   └── button [aria-label="Open calendar", aria-expanded, aria-controls]
-    │       └── span.icon (calendar icon)
+    │       └── span.uif-icon (calendar icon)
     └── .calendar [hidden until opened]
         ├── .calendar-header
         └── table.calendar-table [role="grid"]

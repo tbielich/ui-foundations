@@ -25,7 +25,7 @@ playgroundLabel: Open Label Playground
     </div>
     <div class="docs-hero-preview-stage">
       <span class="label-content">
-        <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+        <span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
         <span class="label-content-text">Search</span>
       </span>
     </div>
@@ -56,7 +56,7 @@ playgroundLabel: Open Label Playground
         <span class="docs-anatomy-badge">2</span>
       </span>
       <span class="label-content">
-        <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+        <span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
         <span class="label-content-text">Search</span>
       </span>
     </div>
@@ -88,7 +88,7 @@ playgroundLabel: Open Label Playground
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <span class="label-content"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content-text">Search</span></span>
+      <span class="label-content"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content-text">Search</span></span>
     </div>
     <div class="docs-behavior-body">
       <h3>Icon + text composition</h3>
@@ -97,7 +97,7 @@ playgroundLabel: Open Label Playground
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <span class="label-content is-icon-only"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span></span>
+      <span class="label-content is-icon-only"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span></span>
     </div>
     <div class="docs-behavior-body">
       <h3>Icon-only mode</h3>

@@ -33,11 +33,11 @@ class UILink extends UIElement {
 
     let inner = "";
     if (startIcon) {
-      inner += `<span class="icon" style="--icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span> `;
+      inner += `<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span> `;
     }
     inner += text;
     if (endIcon) {
-      inner += ` <span class="icon" style="--icon-src: url('/assets/icons/${endIcon}.svg')" aria-hidden="true"></span>`;
+      inner += ` <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/${endIcon}.svg')" aria-hidden="true"></span>`;
     }
 
     this.innerHTML = `<a ${attrs.join(" ")}>${inner}</a>`;

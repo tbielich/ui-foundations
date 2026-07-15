@@ -38,7 +38,7 @@ class UIButton extends UIElement {
     let inner = "";
 
     if (startIcon) {
-      inner += `<span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span>`;
+      inner += `<span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span>`;
     }
 
     if (!iconOnly && text) {
@@ -46,7 +46,7 @@ class UIButton extends UIElement {
     }
 
     if (endIcon && !iconOnly) {
-      inner += `<span class="icon" data-slot="end" style="--icon-src: url('/assets/icons/${endIcon}.svg')" aria-hidden="true"></span>`;
+      inner += `<span class="uif-icon" data-slot="end" style="--uif-icon-src: url('/assets/icons/${endIcon}.svg')" aria-hidden="true"></span>`;
     }
 
     const btnAttrs = [

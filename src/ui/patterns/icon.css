@@ -1,5 +1,9 @@
 @layer components {
-  .icon {
+  /*
+   * `.icon` is a deprecated v1.x compatibility selector.
+   * UIF-owned emitters use `.uif-icon`; remove the alias no earlier than v2.0.
+   */
+  :is(.uif-icon, .icon) {
     display: inline-block;
     inline-size: 1em;
     block-size: 1em;
@@ -7,8 +11,8 @@
     block-size: 1lh;
     line-height: inherit;
     background-color: currentColor;
-    -webkit-mask-image: var(--icon-src);
-    mask-image: var(--icon-src);
+    -webkit-mask-image: var(--uif-icon-src);
+    mask-image: var(--uif-icon-src);
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     -webkit-mask-position: center;

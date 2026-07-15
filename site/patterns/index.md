@@ -35,10 +35,10 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/icon/">
     <div class="docs-component-card-preview">
-      <span class="icon" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-      <span class="icon" style="--icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
-      <span class="icon" style="--icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span>
-      <span class="icon" style="--icon-src: url('/assets/icons/plus.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/star.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span>
+      <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/plus.svg');" aria-hidden="true"></span>
     </div>
     <div class="docs-component-card-body">
       <h2>Icon</h2>
@@ -59,7 +59,7 @@ permalink: /patterns/
   <a class="docs-component-card" href="/patterns/label/">
     <div class="docs-component-card-preview">
       <span class="label-content">
-        <span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+        <span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
         <span class="label-content-text">Search</span>
       </span>
     </div>
