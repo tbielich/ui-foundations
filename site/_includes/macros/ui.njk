@@ -63,8 +63,8 @@
 {%- endmacro %}
 
 {% macro radio(label='Option', checked=false, disabled=false, state='default', className='', wrapperClassName='', id='', name='', value='') -%}
-{%- set radioClasses = "radio" -%}
-{%- set fieldClasses = "radio-field" -%}
+{%- set radioClasses = "uif-radio" -%}
+{%- set fieldClasses = "uif-radio-field" -%}
 {%- if checked -%}{%- set radioClasses = radioClasses + " is-checked" -%}{%- endif -%}
 {%- if state == "hover" -%}{%- set radioClasses = radioClasses + " is-hover" -%}{%- endif -%}
 {%- if state == "active" -%}{%- set radioClasses = radioClasses + " is-active" -%}{%- endif -%}
@@ -77,7 +77,7 @@
 {%- if wrapperClassName -%}{%- set fieldClasses = fieldClasses + " " + wrapperClassName -%}{%- endif -%}
 <label class="{{ fieldClasses }}">
   <input class="{{ radioClasses }}" type="radio"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if checked %} checked{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
-  <span class="radio-field-text">{{ label }}</span>
+  <span class="uif-radio-field-text">{{ label }}</span>
 </label>
 {%- endmacro %}
 

@@ -28,7 +28,7 @@ class UIRadio extends UIElement {
       this.warnDev("[ui-foundations] <ui-radio> should have a label or aria-label.");
     }
 
-    const inputAttrs = ['type="radio"', 'class="radio"'];
+    const inputAttrs = ['type="radio"', 'class="uif-radio"'];
     if (checked) inputAttrs.push("checked");
     if (disabled) inputAttrs.push("disabled");
     if (name) inputAttrs.push(`name="${name}"`);
@@ -40,12 +40,12 @@ class UIRadio extends UIElement {
       return;
     }
 
-    const wrapperClasses = ["radio-field"];
+    const wrapperClasses = ["uif-radio-field"];
     if (disabled) wrapperClasses.push("is-disabled");
 
     this.innerHTML = `<label class="${wrapperClasses.join(" ")}">
   <input ${inputAttrs.join(" ")} />
-  <span class="radio-field-text">${label}</span>
+  <span class="uif-radio-field-text">${label}</span>
 </label>`;
   }
 }
