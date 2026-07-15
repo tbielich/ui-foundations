@@ -63,7 +63,7 @@ The examples below illustrate the consumed contract. They are not source rules.
 
 ## Migration
 
-Some runtime artifacts still use bare classes such as `.input` and `.link`.
+Some runtime artifacts still use bare classes such as `.input` and `.select`.
 Button emitters now use `.uif-button`; `.button` remains a
 deprecated CSS-only compatibility selector through v1.x. Runtime validation
 warns with migration guidance while the migration is in progress.

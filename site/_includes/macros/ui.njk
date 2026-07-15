@@ -135,7 +135,7 @@
 {%- endmacro %}
 
 {% macro link(text, href='#', startIcon='', endIcon='', state='', disabled=false) -%}
-{%- set classes = "link" -%}
+{%- set classes = "uif-link" -%}
 {%- if state -%}{%- set classes = classes + " is-" + state -%}{%- endif -%}
 {%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
 <a class="{{ classes }}" href="{{ href }}"{% if disabled %} aria-disabled="true"{% endif %}>

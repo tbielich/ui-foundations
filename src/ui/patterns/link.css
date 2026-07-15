@@ -1,14 +1,18 @@
 @layer components {
-  .link {
+  /*
+   * `.link` is a deprecated v1.x compatibility selector. UIF-owned emitters
+   * use `.uif-link`; remove the alias no earlier than v2.0.
+   */
+  :is(.uif-link, .link) {
     display: inline-flex;
     align-items: center;
-    gap: var(--link-gap, 0.25rem);
-    font-family: var(--link-font-family, inherit);
-    font-weight: var(--link-font-weight, inherit);
-    font-size: var(--link-font-size, inherit);
-    line-height: var(--link-line-height, inherit);
-    color: var(--link-text-color-default);
-    text-decoration: var(--link-text-decoration-default, underline);
+    gap: var(--uif-link-gap, 0.25rem);
+    font-family: var(--uif-link-font-family, inherit);
+    font-weight: var(--uif-link-font-weight, inherit);
+    font-size: var(--uif-link-font-size, inherit);
+    line-height: var(--uif-link-line-height, inherit);
+    color: var(--uif-link-text-color-default);
+    text-decoration: var(--uif-link-text-decoration-default, underline);
     cursor: pointer;
     border: none;
     background: none;
@@ -18,45 +22,45 @@
 
   /* ── States ── */
 
-  .link:hover,
-  .link.is-hover {
-    color: var(--link-text-color-hover);
-    text-decoration: var(--link-text-decoration-hover, underline);
+  :is(.uif-link, .link):hover,
+  :is(.uif-link, .link).is-hover {
+    color: var(--uif-link-text-color-hover);
+    text-decoration: var(--uif-link-text-decoration-hover, underline);
   }
 
-  .link:active,
-  .link.is-active {
-    color: var(--link-text-color-active);
+  :is(.uif-link, .link):active,
+  :is(.uif-link, .link).is-active {
+    color: var(--uif-link-text-color-active);
   }
 
-  .link:visited,
-  .link.is-visited {
-    color: var(--link-text-color-visited);
+  :is(.uif-link, .link):visited,
+  :is(.uif-link, .link).is-visited {
+    color: var(--uif-link-text-color-visited);
   }
 
-  .link:focus-visible,
-  .link.is-focus-visible {
-    color: var(--link-text-color-hover);
+  :is(.uif-link, .link):focus-visible,
+  :is(.uif-link, .link).is-focus-visible {
+    color: var(--uif-link-text-color-hover);
     outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
     border-radius: var(--size-radius-100);
   }
 
-  .link[aria-disabled="true"],
-  .link.is-disabled {
-    color: var(--link-text-color-disabled);
+  :is(.uif-link, .link)[aria-disabled="true"],
+  :is(.uif-link, .link).is-disabled {
+    color: var(--uif-link-text-color-disabled);
     cursor: not-allowed;
     text-decoration: line-through;
   }
 
-  .link[aria-disabled="true"]:hover,
-  .link.is-disabled:hover {
-    color: var(--link-text-color-disabled);
+  :is(.uif-link, .link)[aria-disabled="true"]:hover,
+  :is(.uif-link, .link).is-disabled:hover {
+    color: var(--uif-link-text-color-disabled);
   }
 
   /* ── Icon slot ── */
 
-  .link > :is(.uif-icon, .icon) {
+  :is(.uif-link, .link) > :is(.uif-icon, .icon) {
     flex: 0 0 auto;
   }
 }

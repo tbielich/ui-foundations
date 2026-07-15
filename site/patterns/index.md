@@ -108,7 +108,7 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/link/">
     <div class="docs-component-card-preview">
-      <span class="link">Learn more</span>
+      <span class="uif-link">Learn more</span>
     </div>
     <div class="docs-component-card-body">
       <h2>Link</h2>
