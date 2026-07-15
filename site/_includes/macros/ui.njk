@@ -181,17 +181,17 @@
 {%- endmacro %}
 
 {% macro accordion(className='') -%}
-{%- set classes = "accordion" -%}
+{%- set classes = "uif-accordion" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <div class="{{ classes }}">{{ caller() }}</div>
 {%- endmacro %}
 
 {% macro accordionItem(title='', open=false, disabled=false) -%}
-{%- set classes = "accordion-item" -%}
+{%- set classes = "uif-accordion-item" -%}
 {%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
 <details class="{{ classes }}"{% if open %} open{% endif %}>
   <summary>{{ title }}</summary>
-  <div class="accordion-item-content">{{ caller() }}</div>
+  <div class="uif-accordion-item-content">{{ caller() }}</div>
 </details>
 {%- endmacro %}
 

@@ -44,6 +44,14 @@ playgroundLabel: Open Accordion Playground
   </div>
 </div>
 
+### v1 naming migration
+
+Use `.uif-accordion`, `.uif-accordion-item`, and
+`.uif-accordion-item-content` with `--uif-accordion-*` tokens. Unprefixed
+Accordion selectors remain compatible throughout v1.x, but legacy
+`--accordion-*` token aliases are not provided. Wave 4 selector removal remains
+v2.0-or-later work.
+
 <h2 id="anatomy">Anatomy</h2>
 
 <div class="docs-anatomy">
@@ -105,5 +113,5 @@ playgroundLabel: Open Accordion Playground
 <div class="docs-checklist">
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All brand/mode contexts</strong><span>Works across light and dark modes.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Keyboard interactions</strong><span>Native details/summary behavior.</span></div></div>
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--accordion-*</code>).</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--uif-accordion-*</code>).</span></div></div>
 </div>
