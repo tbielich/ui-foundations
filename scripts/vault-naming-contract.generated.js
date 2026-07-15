@@ -93,9 +93,10 @@ const VAULT_NAMING_CONTRACT = Object.freeze({
   },
   "source": {
     "packId": "governance-pack",
-    "packVersion": "0.7.0",
+    "packVersion": "0.8.0",
     "sourceArtifacts": [
       ".uif/packs/governance/contracts/naming-contract.json",
+      ".uif/packs/governance/decisions/uif-public-api-namespace.md",
       ".uif/packs/governance/exports/governance-pack/pack.yml",
       ".uif/packs/governance/governance/lifecycle.md",
       ".uif/packs/governance/patterns/schemas/pattern.schema.md",
