@@ -636,7 +636,7 @@
     const src = String(props.src || "");
 
     const element = document.createElement("span");
-    const classes = ["avatar"];
+    const classes = ["uif-avatar"];
     if (size && size !== "md") classes.push(size);
     element.className = classes.join(" ");
     element.setAttribute("role", "img");
@@ -649,7 +649,7 @@
       element.append(img);
     } else {
       const span = document.createElement("span");
-      span.className = "avatar-initials";
+      span.className = "uif-avatar-initials";
       span.textContent = initials;
       element.append(span);
     }
@@ -657,7 +657,7 @@
     const codeClasses = classes.join(" ");
     const inner = src
       ? `<img src="${quoteAttr(src)}" alt="${quoteAttr(initials)}" />`
-      : `<span class="avatar-initials">${quoteAttr(initials)}</span>`;
+      : `<span class="uif-avatar-initials">${quoteAttr(initials)}</span>`;
     const code = `<span class="${codeClasses}" role="img" aria-label="${quoteAttr(initials)}">${inner}</span>`;
 
     return { element, code };
