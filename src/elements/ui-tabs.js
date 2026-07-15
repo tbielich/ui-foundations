@@ -20,7 +20,7 @@ class UITabList extends UIElement {
     const children = this.innerHTML;
 
     const attrs = [
-      'class="tab-list"',
+      'class="uif-tab-list"',
       'role="tablist"',
       `aria-orientation="${orientation}"`,
     ];
@@ -54,7 +54,7 @@ class UITab extends UIElement {
     const controls = this.getAttr("controls");
 
     const attrs = [
-      'class="tab"',
+      'class="uif-tab"',
       'role="tab"',
       'type="button"',
       `aria-selected="${selected}"`,
@@ -86,7 +86,7 @@ class UITabPanel extends UIElement {
     const content = this.innerHTML;
     const id = this.id;
 
-    const attrs = ['class="tab-panel"', 'role="tabpanel"', 'tabindex="0"'];
+    const attrs = ['class="uif-tab-panel"', 'role="tabpanel"', 'tabindex="0"'];
     if (id) attrs.push(`id="${id}"`);
     if (hidden) attrs.push("hidden");
 
