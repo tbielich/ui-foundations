@@ -163,6 +163,10 @@ Dividers are non-interactive and not focusable. They are skipped by keyboard nav
 
 Divider adapts across brands and modes through semantic color tokens (`--color-border-default`, `--color-border-subtle`). Use the hero switches above to preview.
 
+<h2 id="v1-naming-migration">v1 naming migration</h2>
+
+Divider emitters now produce the canonical `.uif-divider` class. The legacy `.divider` selector remains supported during the v1 compatibility period. Divider currently has no component-scoped Figma variables; its local runtime input is namespaced as `--uif-divider-color`, and no library-owned legacy `--divider-color` alias is provided. The existing `<ui-divider>` registration and package export remain unchanged by this component-family migration.
+
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">

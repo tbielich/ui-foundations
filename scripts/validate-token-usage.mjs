@@ -20,7 +20,7 @@ const TOKENS_CSS_DIR = path.join(REPO_ROOT, "dist", "tokens", "css");
 
 // Tokens that are intentionally code-only (set dynamically or use CSS fallbacks)
 const ALLOWLIST = new Set([
-  "--divider-color",
+  "--uif-divider-color",
   "--uif-field-label-gap",
   "--uif-field-label-line-height",
   "--uif-field-label-required-color",

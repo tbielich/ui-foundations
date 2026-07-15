@@ -17,7 +17,7 @@ class UIDivider extends UIElement {
     const orientation = this.getAttr("orientation", "horizontal");
     const variant = this.getAttr("variant");
 
-    const classes = ["divider"];
+    const classes = ["uif-divider"];
     if (variant) classes.push(variant);
 
     const attrs = [`class="${classes.join(" ")}"`];
