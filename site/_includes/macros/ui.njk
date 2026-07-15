@@ -196,13 +196,13 @@
 {%- endmacro %}
 
 {% macro tabList(orientation='horizontal', ariaLabel='', className='') -%}
-{%- set classes = "tab-list" -%}
+{%- set classes = "uif-tab-list" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <div class="{{ classes }}" role="tablist" aria-orientation="{{ orientation }}"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>{{ caller() }}</div>
 {%- endmacro %}
 
 {% macro tab(label='', selected=false, disabled=false, controls='', href='') -%}
-{%- set classes = "tab" -%}
+{%- set classes = "uif-tab" -%}
 {%- if selected -%}{%- set classes = classes + " is-active" -%}{%- endif -%}
 {%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
 {%- if href -%}
@@ -213,13 +213,13 @@
 {%- endmacro %}
 
 {% macro tabPanels(className='') -%}
-{%- set classes = "tab-panels" -%}
+{%- set classes = "uif-tab-panels" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <div class="{{ classes }}">{{ caller() }}</div>
 {%- endmacro %}
 
 {% macro tabPanel(id='', hidden=false) -%}
-<div class="tab-panel" role="tabpanel"{% if id %} id="{{ id }}"{% endif %}{% if hidden %} hidden{% endif %} tabindex="0">{{ caller() }}</div>
+<div class="uif-tab-panel" role="tabpanel"{% if id %} id="{{ id }}"{% endif %}{% if hidden %} hidden{% endif %} tabindex="0">{{ caller() }}</div>
 {%- endmacro %}
 
 {% macro tooltip(text='', placement='top', className='') -%}

@@ -5,9 +5,7 @@ figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2535-286&m=dev",
   {
     props: {
-      className: figma.className([
-        "tab",
-      ]),
+      className: figma.className(["uif-tab"]),
       selected: figma.boolean("Selected", { true: "true", false: "false" }),
       label: figma.string("Label"),
     },
