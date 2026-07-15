@@ -39,6 +39,14 @@ playgroundLabel: Open Input Playground
   </div>
 </div>
 
+### v1 naming migration
+
+Use `.uif-input`, `.uif-input-field`, and `.uif-input-field-control` with
+`--uif-input-*` tokens in new and migrated markup. The unprefixed Input class
+selectors remain compatible throughout v1.x, but legacy `--input-*` token
+aliases are not provided. Consumers must migrate classes and tokens together.
+Legacy selector removal remains Wave 4 work for v2.0 or later.
+
 <h2 id="anatomy">Anatomy</h2>
 
 <div class="docs-anatomy">

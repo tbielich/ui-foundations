@@ -37,10 +37,10 @@ class UIInput extends UIElement {
       this.warnDev("[ui-foundations] <ui-input> should have an id, aria-label, or aria-labelledby.");
     }
 
-    const wrapperClasses = ["input-field"];
+    const wrapperClasses = ["uif-input-field"];
     if (disabled) wrapperClasses.push("is-disabled");
 
-    const inputAttrs = ['class="input"', `type="${type}"`];
+    const inputAttrs = ['class="uif-input"', `type="${type}"`];
     if (placeholder) inputAttrs.push(`placeholder="${placeholder}"`);
     if (value) inputAttrs.push(`value="${value}"`);
     if (disabled) inputAttrs.push("disabled");
@@ -67,7 +67,7 @@ class UIInput extends UIElement {
 
     this.innerHTML = `<div class="${wrapperClasses.join(" ")}">
   <input ${inputAttrs.join(" ")} />
-  <span class="input-field-control">${controlHTML}</span>
+  <span class="uif-input-field-control">${controlHTML}</span>
 </div>`;
   }
 }

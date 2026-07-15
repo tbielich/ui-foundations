@@ -66,7 +66,7 @@ generation, and framework-agnostic Custom Elements.
 
 ```html
 <button class="uif-button solid" type="button">Label</button>
-<input class="input" type="text" placeholder="Email" />
+<input class="uif-input" type="text" placeholder="Email" />
 <a href="/page" class="uif-link">Go to page</a>
 ```
 

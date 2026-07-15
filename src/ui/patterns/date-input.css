@@ -1,9 +1,9 @@
 @layer components {
   /* ─── Date Input ───────────────────────────────────────────────── */
-  /* Variant of .input-field with segmented DD/MM/YYYY fields         */
-  /* Composes: .input-field + Calendar                              */
+  /* Variant of Input field with segmented DD/MM/YYYY fields         */
+  /* Composes: Input field + Calendar                                */
 
-  .input-field.date {
+  :is(.uif-input-field, .input-field).date {
     position: relative;
   }
 
@@ -52,7 +52,7 @@
   }
 
   /* Calendar dropdown positioning */
-  .input-field.date :is(.uif-calendar, .calendar) {
+  :is(.uif-input-field, .input-field).date :is(.uif-calendar, .calendar) {
     display: none;
     position: absolute;
     inset-block-start: 100%;
@@ -67,7 +67,7 @@
   }
 
   /* Open state */
-  .input-field.date.is-open :is(.uif-calendar, .calendar) {
+  :is(.uif-input-field, .input-field).date.is-open :is(.uif-calendar, .calendar) {
     display: grid;
   }
 }

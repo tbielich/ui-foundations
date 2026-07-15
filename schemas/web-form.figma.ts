@@ -26,7 +26,7 @@ figma.connect(
         </span>
       </label>
       <input
-        class="input"
+        class="uif-input"
         id="form-field-input"
         type="text"
         placeholder="Enter value"

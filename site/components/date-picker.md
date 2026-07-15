@@ -31,7 +31,7 @@ playgroundLabel: Open Date Picker Playground
             <span class="uif-label-content-text">Travel date</span>
           </span>
         </label>
-        <div class="input-field date" id="date-input-demo" role="group" aria-labelledby="date-input-demo-label">
+        <div class="uif-input-field date" id="date-input-demo" role="group" aria-labelledby="date-input-demo-label">
           <div class="date-segments">
             <input class="date-segment day" id="date-input-demo-day" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day">
             <span class="date-separator">/</span>
@@ -39,7 +39,7 @@ playgroundLabel: Open Date Picker Playground
             <span class="date-separator">/</span>
             <input class="date-segment year" id="date-input-demo-year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year">
           </div>
-          <span class="input-field-control">
+          <span class="uif-input-field-control">
             <button type="button" aria-label="Open calendar" aria-expanded="false" aria-haspopup="grid" aria-controls="date-input-demo-calendar">
               <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>
             </button>
@@ -64,14 +64,14 @@ Together they form a component that can be opened, navigated, and dismissed — 
 ```
 .form-field.date-picker-field
 ├── label.uif-field-label [for="date-day"]
-└── .input-field.date [role="group", aria-labelledby]
+└── .uif-input-field.date [role="group", aria-labelledby]
     ├── .date-segments
     │   ├── input.date-segment.day [maxlength=2, inputmode=numeric, aria-label="Day"]
     │   ├── span.date-separator  "/"
     │   ├── input.date-segment.month [maxlength=2, inputmode=numeric, aria-label="Month"]
     │   ├── span.date-separator  "/"
     │   └── input.date-segment.year [maxlength=4, aria-label="Year"]
-    ├── .input-field-control
+    ├── .uif-input-field-control
     │   └── button [aria-label="Open calendar", aria-expanded, aria-controls]
     │       └── span.uif-icon (calendar icon)
     └── .uif-calendar [hidden until opened]
@@ -131,8 +131,8 @@ Together they form a component that can be opened, navigated, and dismissed — 
 ## Tokens
 
 Reuses tokens from the composed patterns:
-- Input tokens (`--input-*`)
-- Input control button behavior from `.input-field-control`
+- Input tokens (`--uif-input-*`)
+- Input control button behavior from `.uif-input-field-control`
 - Calendar tokens (`--uif-calendar-cell-*`)
 
 No additional component-specific tokens needed — the composition inherits from its parts.
@@ -170,7 +170,7 @@ The Date Picker requires `src/ui/components/date-input.js` for:
 
 <script>
 (function() {
-  document.querySelectorAll('.input-field.date').forEach(function(root) {
+  document.querySelectorAll('.uif-input-field.date').forEach(function(root) {
     var segments = root.querySelectorAll('.date-segment');
     var trigger = root.querySelector("[aria-label='Open calendar']");
     var calendar = root.querySelector('.uif-calendar');

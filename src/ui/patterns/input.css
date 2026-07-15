@@ -1,7 +1,8 @@
 @layer components {
-  /* --- .input: internal primitive (the <input> element itself) --- */
+  /* --- Input primitive (the <input> element itself) --- */
+  /* Unprefixed Input classes are deprecated v1.x compatibility selectors. */
 
-  .input {
+  :is(.uif-input, .input) {
     display: block;
     inline-size: 100%;
     block-size: auto;
@@ -17,81 +18,84 @@
     line-height: inherit;
   }
 
-  .input::placeholder {
-    color: var(--input-text-color-placeholder);
+  :is(.uif-input, .input)::placeholder {
+    color: var(--uif-input-text-color-placeholder);
   }
 
-  .input:focus-visible {
+  :is(.uif-input, .input):focus-visible {
     outline: 2px solid transparent;
     box-shadow: none;
   }
 
-  .input:disabled {
+  :is(.uif-input, .input):disabled {
     cursor: not-allowed;
   }
 
   /* Hide native number spinners (we use custom controls) */
 
-  .input[type="number"]::-webkit-inner-spin-button,
-  .input[type="number"]::-webkit-outer-spin-button {
+  :is(.uif-input, .input)[type="number"]::-webkit-inner-spin-button,
+  :is(.uif-input, .input)[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
 
-  .input[type="number"] {
+  :is(.uif-input, .input)[type="number"] {
     appearance: textfield;
     -moz-appearance: textfield;
   }
 
-  /* --- .input-field: the composed pattern (container + input + control) --- */
+  /* --- Input field: the composed pattern (container + input + control) --- */
 
-  .input-field {
+  :is(.uif-input-field, .input-field) {
     position: relative;
     display: flex;
     align-items: center;
-    gap: var(--input-gap);
+    gap: var(--uif-input-gap);
     inline-size: 100%;
-    block-size: var(--input-height, var(--size-spacing-800));
-    font-family: var(--input-font-family);
-    font-weight: var(--input-font-weight);
-    font-size: var(--input-font-size);
-    line-height: var(--input-line-height, var(--typography-body-line-height));
-    color: var(--input-text-color-default);
-    background: var(--input-container-background-default);
+    block-size: var(--uif-input-height, var(--size-spacing-800));
+    font-family: var(--uif-input-font-family);
+    font-weight: var(--uif-input-font-weight);
+    font-size: var(--uif-input-font-size);
+    line-height: var(--uif-input-line-height, var(--typography-body-line-height));
+    color: var(--uif-input-text-color-default);
+    background: var(--uif-input-container-background-default);
     border-style: solid;
-    border-width: var(--input-border-size-default);
-    border-color: var(--input-border-color-default);
-    border-radius: var(--input-border-radius);
-    padding-inline: var(--input-padding-inline);
-    padding-block: var(--input-padding-block);
+    border-width: var(--uif-input-border-size-default);
+    border-color: var(--uif-input-border-color-default);
+    border-radius: var(--uif-input-border-radius);
+    padding-inline: var(--uif-input-padding-inline);
+    padding-block: var(--uif-input-padding-block);
   }
 
   /* --- Control slot --- */
 
-  .input-field-control {
+  :is(.uif-input-field-control, .input-field-control) {
     display: flex;
     align-items: center;
-    gap: var(--input-gap);
+    gap: var(--uif-input-gap);
     flex-shrink: 0;
-    color: var(--input-text-color-default);
+    color: var(--uif-input-text-color-default);
   }
 
-  .input-field-control:empty {
+  :is(.uif-input-field-control, .input-field-control):empty {
     display: none;
   }
 
   /* Hide controls when input is empty (showing placeholder) */
-  .input-field:has(.input:placeholder-shown) .input-field-control {
+  :is(.uif-input-field, .input-field):has(:is(.uif-input, .input):placeholder-shown)
+    :is(.uif-input-field-control, .input-field-control) {
     visibility: hidden;
   }
 
   /* Hide controls when disabled */
-  .input-field:has(.input:disabled) .input-field-control,
-  .input-field.is-disabled .input-field-control {
+  :is(.uif-input-field, .input-field):has(:is(.uif-input, .input):disabled)
+    :is(.uif-input-field-control, .input-field-control),
+  :is(.uif-input-field, .input-field).is-disabled
+    :is(.uif-input-field-control, .input-field-control) {
     visibility: hidden;
   }
 
-  .input-field-control button {
+  :is(.uif-input-field-control, .input-field-control) button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -105,99 +109,101 @@
     line-height: 1;
   }
 
-  .input-field-control button:hover {
-    color: var(--input-text-color-hover);
+  :is(.uif-input-field-control, .input-field-control) button:hover {
+    color: var(--uif-input-text-color-hover);
   }
 
-  .input-field-control :is(.uif-icon, .icon) {
+  :is(.uif-input-field-control, .input-field-control) :is(.uif-icon, .icon) {
     font-size: 1.5rem;
   }
 
   /* --- State: hover --- */
 
-  .input-field:hover,
-  .input-field.is-hover {
+  :is(.uif-input-field, .input-field):hover,
+  :is(.uif-input-field, .input-field).is-hover {
     background:
-      linear-gradient(0deg, var(--input-overlay-hover), var(--input-overlay-hover)),
-      var(--input-container-background-default);
-    border-width: var(--input-border-size-hover);
+      linear-gradient(0deg, var(--uif-input-overlay-hover), var(--uif-input-overlay-hover)),
+      var(--uif-input-container-background-default);
+    border-width: var(--uif-input-border-size-hover);
     padding-inline: calc(
-      var(--input-padding-inline) + var(--input-border-size-default) -
-        var(--input-border-size-hover)
+      var(--uif-input-padding-inline) + var(--uif-input-border-size-default) -
+        var(--uif-input-border-size-hover)
     );
     padding-block: calc(
-      var(--input-padding-block) + var(--input-border-size-default) -
-        var(--input-border-size-hover)
+      var(--uif-input-padding-block) + var(--uif-input-border-size-default) -
+        var(--uif-input-border-size-hover)
     );
-    border-color: var(--input-border-color-hover);
-    color: var(--input-text-color-hover);
+    border-color: var(--uif-input-border-color-hover);
+    color: var(--uif-input-text-color-hover);
   }
 
   /* --- State: focus-within --- */
 
-  .input-field:focus-within,
-  .input-field.is-focus-visible {
-    background: var(--input-container-background-focus);
-    border-color: var(--input-border-color-focus);
+  :is(.uif-input-field, .input-field):focus-within,
+  :is(.uif-input-field, .input-field).is-focus-visible {
+    background: var(--uif-input-container-background-focus);
+    border-color: var(--uif-input-border-color-focus);
     outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
   /* --- State: active --- */
 
-  .input-field:has(.input:active),
-  .input-field.is-active {
+  :is(.uif-input-field, .input-field):has(:is(.uif-input, .input):active),
+  :is(.uif-input-field, .input-field).is-active {
     background:
-      linear-gradient(0deg, var(--input-overlay-active), var(--input-overlay-active)),
-      var(--input-container-background-default);
-    border-width: var(--input-border-size-active);
+      linear-gradient(0deg, var(--uif-input-overlay-active), var(--uif-input-overlay-active)),
+      var(--uif-input-container-background-default);
+    border-width: var(--uif-input-border-size-active);
     padding-inline: calc(
-      var(--input-padding-inline) + var(--input-border-size-default) -
-        var(--input-border-size-active)
+      var(--uif-input-padding-inline) + var(--uif-input-border-size-default) -
+        var(--uif-input-border-size-active)
     );
     padding-block: calc(
-      var(--input-padding-block) + var(--input-border-size-default) -
-        var(--input-border-size-active)
+      var(--uif-input-padding-block) + var(--uif-input-border-size-default) -
+        var(--uif-input-border-size-active)
     );
-    border-color: var(--input-border-color-active);
-    color: var(--input-text-color-active);
+    border-color: var(--uif-input-border-color-active);
+    color: var(--uif-input-text-color-active);
   }
 
   /* --- State: disabled --- */
 
-  .input-field:has(.input:disabled),
-  .input-field.is-disabled {
+  :is(.uif-input-field, .input-field):has(:is(.uif-input, .input):disabled),
+  :is(.uif-input-field, .input-field).is-disabled {
     cursor: not-allowed;
-    color: var(--input-text-color-disabled);
-    background: var(--input-container-background-disabled);
-    border-color: var(--input-border-color-disabled);
+    color: var(--uif-input-text-color-disabled);
+    background: var(--uif-input-container-background-disabled);
+    border-color: var(--uif-input-border-color-disabled);
   }
 
   /* --- State: readonly --- */
 
-  .input-field:has(.input:read-only),
-  .input-field.is-readonly {
+  :is(.uif-input-field, .input-field):has(:is(.uif-input, .input):read-only),
+  :is(.uif-input-field, .input-field).is-readonly {
     border-style: dashed;
   }
 
-  .input-field:has(.input:read-only) .input-field-control button,
-  .input-field.is-readonly .input-field-control button {
+  :is(.uif-input-field, .input-field):has(:is(.uif-input, .input):read-only)
+    :is(.uif-input-field-control, .input-field-control) button,
+  :is(.uif-input-field, .input-field).is-readonly
+    :is(.uif-input-field-control, .input-field-control) button {
     pointer-events: none;
     opacity: 0.4;
   }
 
   /* --- State: invalid --- */
 
-  .input-field.is-invalid,
-  .input-field:has(.input[aria-invalid="true"]) {
-    border-color: var(--input-border-color-invalid);
+  :is(.uif-input-field, .input-field).is-invalid,
+  :is(.uif-input-field, .input-field):has(:is(.uif-input, .input)[aria-invalid="true"]) {
+    border-color: var(--uif-input-border-color-invalid);
   }
 
-  .input-field.is-invalid:focus-within,
-  .input-field:has(.input[aria-invalid="true"]):focus-within,
-  .input-field.is-invalid.is-focus-visible,
-  .input-field:has(.input[aria-invalid="true"]).is-focus-visible {
-    border-color: var(--input-border-color-invalid);
-    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--input-border-color-invalid);
+  :is(.uif-input-field, .input-field).is-invalid:focus-within,
+  :is(.uif-input-field, .input-field):has(:is(.uif-input, .input)[aria-invalid="true"]):focus-within,
+  :is(.uif-input-field, .input-field).is-invalid.is-focus-visible,
+  :is(.uif-input-field, .input-field):has(:is(.uif-input, .input)[aria-invalid="true"]).is-focus-visible {
+    border-color: var(--uif-input-border-color-invalid);
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--uif-input-border-color-invalid);
   }
 }

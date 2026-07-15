@@ -1,7 +1,7 @@
 /**
  * Date Input — Progressive Enhancement
  *
- * Enhances a segmented .input-field.date with:
+ * Enhances a segmented `.uif-input-field.date` with:
  * - Auto-tab between DD/MM/YYYY segments on completion
  * - Backspace navigates to previous segment
  * - Calendar dropdown toggle via trigger button
@@ -9,14 +9,14 @@
  * - Validation per segment (day 1-31, month 1-12, year 1900-2100)
  *
  * HTML structure:
- *   .input-field.date
+ *   .uif-input-field.date
  *     .date-segments
  *       input.date-segment.day [maxlength=2, inputmode=numeric]
  *       span.date-separator "/"
  *       input.date-segment.month [maxlength=2, inputmode=numeric]
  *       span.date-separator "/"
  *       input.date-segment.year [maxlength=4, inputmode=numeric]
- *     .input-field-control
+ *     .uif-input-field-control
  *       button (calendar trigger)
  *     .uif-calendar (dropdown)
  */
@@ -235,7 +235,7 @@ export class DateInput {
 if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     document
-      .querySelectorAll(".input-field.date:not([data-enhanced])")
+      .querySelectorAll(":is(.uif-input-field, .input-field).date:not([data-enhanced])")
       .forEach((el) => {
         el.setAttribute("data-enhanced", "");
         new DateInput(el);

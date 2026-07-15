@@ -69,7 +69,7 @@ namespace prefixes.
 
 ### Migration Note
 
-Some runtime artifacts still use bare classes such as `.input` and `.select`.
+Some runtime artifacts still use bare classes such as `.select` and `.checkbox`.
 Button emitters now use `.uif-button`; `.button` remains a
 deprecated CSS-only compatibility selector through v1.x. Runtime validation
 should warn with migration guidance rather than fail existing artifacts without
