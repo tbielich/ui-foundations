@@ -27,9 +27,8 @@ class UIButton extends UIElement {
     const endIcon = this.getAttr("end-icon");
     const ariaLabel = this.getAttr("aria-label");
 
-    const classes = ["button"];
-    if (variant === "outline") classes.push("outline");
-    if (variant === "ghost") classes.push("ghost");
+    const resolvedVariant = variant === "outline" || variant === "ghost" ? variant : "solid";
+    const classes = ["uif-button", resolvedVariant];
     if (iconOnly) classes.push("icon-only");
 
     const text = this.textContent.trim();

@@ -69,7 +69,8 @@ namespace prefixes.
 
 ### Migration Note
 
-Existing runtime artifacts still use bare classes such as `.button`, `.input`,
-and `.calendar-cell`. These are deprecated legacy compatibility classes. Runtime
-validation should warn with migration guidance rather than fail existing
-artifacts without context.
+Some runtime artifacts still use bare classes such as `.input` and
+`.calendar-cell`. Button emitters now use `.uif-button`; `.button` remains a
+deprecated CSS-only compatibility selector through v1.x. Runtime validation
+should warn with migration guidance rather than fail existing artifacts without
+context.

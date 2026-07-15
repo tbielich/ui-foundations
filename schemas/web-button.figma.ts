@@ -6,9 +6,9 @@ figma.connect(
   {
     props: {
       className: figma.className([
-        "button",
+        "uif-button",
         figma.enum("Variant", {
-          Solid: undefined,
+          Solid: "solid",
           Outline: "outline",
           Ghost: "ghost",
         }),

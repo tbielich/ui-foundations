@@ -86,7 +86,7 @@ function ensureCoreIndexIntegrity() {
 }
 
 function run() {
-  ensureFile("dist/main.css", { nonEmpty: true, mustInclude: ".button" });
+  ensureFile("dist/main.css", { nonEmpty: true, mustInclude: ".uif-button" });
   ensureFile("dist/tokens/tokens.yaml", {
     nonEmpty: true,
     mustInclude: "tokens:",

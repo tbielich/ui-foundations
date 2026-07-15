@@ -74,20 +74,27 @@ function parseFrontmatter(content: string): Record<string, string> {
 
 /**
  * Extracts variant class names from a CSS pattern file.
- * Looks for `.component.variant` selectors (e.g., `.button.outline`, `.button.ghost`).
+ * Looks for canonical or legacy component variant selectors (for example,
+ * `.uif-button.outline` or `.button.outline`).
  */
 function extractVariants(cssContent: string, componentName: string): string[] {
   const variants = new Set<string>();
-  // Match patterns like .componentName.variantName (including kebab-case variants)
+  // Match canonical and legacy class chains, including compatibility :is() groups.
   const baseClass = componentName.replace(/-/g, '[-]?');
-  const regex = new RegExp(`\\.${baseClass}\\.([a-z][a-z0-9-]*)`, 'g');
-  let match: RegExpExecArray | null;
+  const classSelector = `\\.(?:uif-)?${baseClass}`;
+  const regexes = [
+    new RegExp(`${classSelector}\\.([a-z][a-z0-9-]*)`, 'g'),
+    new RegExp(`:is\\([^)]*${classSelector}[^)]*\\)\\.([a-z][a-z0-9-]*)`, 'g'),
+  ];
 
-  while ((match = regex.exec(cssContent)) !== null) {
-    const variant = match[1];
-    // Skip state classes (is-hover, is-active, etc.)
-    if (!variant.startsWith('is-')) {
-      variants.add(variant);
+  for (const regex of regexes) {
+    let match: RegExpExecArray | null;
+    while ((match = regex.exec(cssContent)) !== null) {
+      const variant = match[1];
+      // Skip state classes (is-hover, is-active, etc.)
+      if (!variant.startsWith('is-')) {
+        variants.add(variant);
+      }
     }
   }
 
@@ -126,14 +133,20 @@ function extractStates(cssContent: string): string[] {
  * Extracts an HTML pattern example from the CSS file or generates a basic one
  * based on the component's class name.
  */
-function generateHtmlPattern(componentName: string, cssContent: string): string {
-  // Determine the primary class name from the CSS (first class selector found)
+function extractPrimaryClassName(componentName: string, cssContent: string): string {
+  const canonicalClassName = `uif-${componentName}`;
+  if (cssContent.includes(`.${canonicalClassName}`)) return canonicalClassName;
+
   const classMatch = cssContent.match(/^\s*\.([a-z][a-z0-9-]*)\s*\{/m);
-  const className = classMatch ? classMatch[1] : componentName;
+  return classMatch ? classMatch[1] : componentName;
+}
+
+function generateHtmlPattern(componentName: string, cssContent: string): string {
+  const className = extractPrimaryClassName(componentName, cssContent);
 
   // Generate a basic HTML pattern based on component type
   if (componentName === 'button') {
-    return `<button class="${className}" type="button">Label</button>`;
+    return `<button class="${className} solid" type="button">Label</button>`;
   }
   if (componentName === 'input') {
     return `<input class="${className}" type="text" />`;
@@ -227,11 +240,7 @@ async function buildComponentData(
   try {
     const cssResult = await reader.read(`${CSS_PATTERNS_DIR}/${componentName}.css`);
     cssContent = cssResult.content;
-    // Extract the primary class name from the CSS
-    const classMatch = cssContent.match(/^\s*\.([a-z][a-z0-9-]*)\s*\{/m);
-    if (classMatch) {
-      cssClassName = classMatch[1];
-    }
+    cssClassName = extractPrimaryClassName(componentName, cssContent);
   } catch {
     // CSS file may not exist for all components
   }

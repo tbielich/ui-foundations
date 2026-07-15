@@ -100,10 +100,9 @@
       ? startIcon || endIcon || "none"
       : startIcon;
     const iconEnd = resolvedIconOnly ? "" : endIcon;
-    const classes = ["button"];
-
-    if (variant === "outline") classes.push("outline");
-    if (variant === "ghost") classes.push("ghost");
+    const resolvedVariant =
+      variant === "outline" || variant === "ghost" ? variant : "solid";
+    const classes = ["uif-button", resolvedVariant];
     if (resolvedIconOnly) classes.push("icon-only");
     if (previewState === "hover") classes.push("is-hover");
     if (previewState === "active") classes.push("is-active");
@@ -862,7 +861,7 @@
     <input class="input" type="password" />
   </div>
   <div class="form-actions"${alignAttr}>
-    <button class="button solid" type="submit"><span class="label-content"><span class="label-content-text">Sign in</span></span></button>
+    <button class="uif-button solid" type="submit"><span class="label-content"><span class="label-content-text">Sign in</span></span></button>
   </div>
 </form>`;
 
