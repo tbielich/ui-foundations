@@ -20,7 +20,7 @@ Tech stack:
 - Vanilla CSS (Custom Properties + @layer)
 - Node.js
 - Eleventy (11ty)
-- React (optional wrappers)
+- Light-DOM Web Components
 - Nunjucks macros
 
 ---
@@ -126,10 +126,10 @@ Nunjucks:
 {{ ui.input(type="text") }}
 ```
 
-React (optional):
+Web Component (optional convenience layer):
 
-```js
-<Button variant="outline" />
+```html
+<ui-button variant="outline">Label</ui-button>
 ```
 
 ---
@@ -137,7 +137,7 @@ React (optional):
 ## File Locations
 
 - CSS patterns: `src/ui/patterns/*.css`
-- React: `src/react/*.js`
+- Web Components: `src/elements/*.js`
 - Macros: `site/_includes/macros/ui.njk` (source), `dist/macros/ui.njk` (generated copy)
 - Code Connect: `schemas/*.figma.ts`
 - Token exports: `figma/exports/*.tokens.json`
@@ -154,7 +154,7 @@ React (optional):
 2. Run: npm run build\:all
 3. Add CSS pattern
 4. Export pattern
-5. Add React wrapper (if needed)
+5. Add or update the light-DOM Web Component (if needed)
 6. Add Code Connect file
 7. Add docs page
 

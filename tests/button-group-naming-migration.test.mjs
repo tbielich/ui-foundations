@@ -41,10 +41,3 @@ test("ButtonGroup-owned emitters produce the canonical root class", async () => 
   assert.doesNotMatch(renderer, /class(?:Name)? = "button-group"/);
   assert.doesNotMatch(schema, /class="button-group"/);
 });
-
-test("ButtonGroup migration leaves deprecated React wrappers unchanged", async () => {
-  const react = await read("src/react/button.js");
-
-  assert.match(react, /const classes = \["button-group"\]/);
-  assert.doesNotMatch(react, /const classes = \["uif-button-group"\]/);
-});

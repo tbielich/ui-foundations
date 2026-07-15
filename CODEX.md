@@ -25,8 +25,8 @@ When creating a new component, ALL of these surfaces must be completed:
 | 2 | CSS Pattern | `src/ui/patterns/{component}.css` |
 | 3 | CSS Index | `src/ui/index.css` (add import) |
 | 4 | Nunjucks Macro | `site/_includes/macros/ui.njk` |
-| 5 | React Wrapper | `src/react/{component}.js` |
-| 6 | React Index | `src/react/index.js` (add export) |
+| 5 | Web Component | `src/elements/{element}.js` |
+| 6 | Element Exports | `src/elements/index.js`, `package.json` |
 | 7 | Docs Page | `site/patterns/{component}.md` |
 | 8 | Playground Page | `site/patterns/{component}-playground.md` |
 | 9 | Playground Renderer | `site/assets/playground/renderers.js` |
@@ -48,18 +48,13 @@ Missing any surface will cause broken pages or incomplete integration.
 
 ---
 
-## React Wrapper Rules (Rule 12)
+## Web Component Rules (Rule 12)
 
-- Named `export function` — never `export const` with arrow
-- Use `React.createElement` — never JSX
-- No CSS imports in React files
-- Class array pattern:
-  ```js
-  const classes = ["component"];
-  if (className) classes.push(className);
-  ```
-- Warn when interactive components lack `aria-label` or `aria-labelledby`
-- Use `warnDev()` helper from `./warn-dev.js`
+- Extend the shared `UIElement` base and register with `define()`
+- Use light DOM; never attach a shadow root
+- Render semantic markup aligned with the CSS pattern
+- Document attributes, properties, events, and content behavior
+- Keep aggregate and individual package exports aligned
 
 ---
 
@@ -88,7 +83,7 @@ Follow existing macros in `site/_includes/macros/ui.njk`:
 1. Add renderer function to `site/assets/playground/renderers.js`
 2. Register in the `renderers` map at the bottom of that file
 3. Add code generators to `site/assets/playground/code-generators.js`
-4. Register in both `njk` and `react` maps
+4. Register in both `njk` and `wc` maps
 5. Playground page YAML must have `renderer: {component}` matching the key
 
 ---

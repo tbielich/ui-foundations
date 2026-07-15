@@ -73,7 +73,7 @@ permalink: /
   <div class="docs-resource-grid">
     <a class="docs-resource-card" href="https://www.npmjs.com/package/ui-foundations" target="_blank" rel="noopener noreferrer">
       <strong>npm Package</strong>
-      <span>CSS and React components ready for production use.</span>
+      <span>CSS patterns and light-DOM Web Components ready for production use.</span>
     </a>
     <a class="docs-resource-card" href="https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations" target="_blank" rel="noopener noreferrer">
       <strong>Figma Library</strong>

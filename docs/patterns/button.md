@@ -8,7 +8,7 @@ Point to the existing button implementation and documentation surfaces.
 
 - `site/patterns/button.md`
 - `src/ui/patterns/button.css`
-- `src/react/button.js`
+- `src/elements/ui-button.js`
 - `schemas/web-button.figma.ts`
 
 ## Related docs

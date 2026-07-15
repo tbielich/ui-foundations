@@ -139,24 +139,26 @@ Create the macro in `site/_includes/macros/ui.njk`.
 
 ---
 
-## Phase 5 — React Wrapper
+## Phase 5 — Web Component
 
-Create the React wrapper in `src/react/`.
+Create or update the light-DOM Custom Element in `src/elements/` when the
+pattern benefits from a convenience API.
 
 ### Rules (Rule 12)
 
-1. Named `export function` — no default export
-2. `React.createElement` — no JSX
-3. No CSS imports in the React file
-4. Document props interface
+1. Extend the shared `UIElement` base and register with `define()`
+2. Use light DOM; do not attach a shadow root
+3. Render the same semantic markup and classes as the CSS pattern
+4. Document attributes, properties, events, and content behavior
+5. Keep `src/elements/index.js` and `package.json` exports aligned
 
 ### Checklist
 
-- [ ] File created: `src/react/{component}.js`
-- [ ] Export added to `src/react/index.js`
-- [ ] `React.createElement` used
-- [ ] No CSS imports
-- [ ] Props documented
+- [ ] File created or updated: `src/elements/{element}.js`
+- [ ] Aggregate and individual exports added
+- [ ] Light-DOM semantic markup verified
+- [ ] Attributes, properties, events, and content documented
+- [ ] Framework-neutral usage verified
 
 ---
 
@@ -260,8 +262,8 @@ npm run ci:check           # Full pipeline
 | 2 | CSS Pattern | `src/ui/patterns/{component}.css` |
 | 3 | CSS Index | `src/ui/index.css` (add import) |
 | 4 | Nunjucks Macro | `site/_includes/macros/ui.njk` |
-| 5 | React Wrapper | `src/react/{component}.js` |
-| 6 | React Index | `src/react/index.js` (add export) |
+| 5 | Web Component | `src/elements/{element}.js` |
+| 6 | Element Exports | `src/elements/index.js`, `package.json` |
 | 7 | Docs Page | `site/patterns/{component}.md` |
 | 8 | Playground Page | `site/patterns/{component}-playground.md` |
 | 9 | Playground Renderer | `site/assets/playground/renderers.js` |

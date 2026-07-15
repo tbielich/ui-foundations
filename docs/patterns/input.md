@@ -8,7 +8,7 @@ Point to the existing input implementation and documentation surfaces.
 
 - `site/patterns/input.md`
 - `src/ui/patterns/input.css`
-- `src/react/input.js`
+- `src/elements/ui-input.js`
 - `schemas/web-input.figma.ts`
 
 ## Related docs

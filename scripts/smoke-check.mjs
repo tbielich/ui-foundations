@@ -94,7 +94,6 @@ function run() {
   ensureFile("dist/tokens/json/patterns-ui.tokens.json", {
     nonEmpty: true,
   });
-  ensureFile("dist/react/index.js", { nonEmpty: true });
   ensureFile("dist/elements/index.js", { nonEmpty: true });
   ensureFile("dist/macros/ui.njk", { nonEmpty: true, mustInclude: "macro" });
   ensureFile("dist/ui/index.css", {

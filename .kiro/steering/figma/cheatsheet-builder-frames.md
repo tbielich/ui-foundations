@@ -112,7 +112,7 @@ Load `#cheatsheet-builder-rules` for layout, style, and validation rules.
 - Full width: Step flow cards showing the complete pipeline:
   1. Figma export (JSON)
   2. Token transform (CSS generation)
-  3. Component build (patterns + React)
+  3. Component build (patterns + Web Components)
   4. Docs build (11ty)
   5. CI validation
 - Below flow: Output files key-value card listing generated artifacts
@@ -122,7 +122,7 @@ Load `#cheatsheet-builder-rules` for layout, style, and validation rules.
 
 **Header:** Light, icon: `code`
 **Body:**
-- Left: 10-surface checklist card (tokens, CSS pattern, React wrapper, macro,
+- Left: 10-surface checklist card (tokens, CSS pattern, Web Component, macro,
   docs page, playground, Code Connect, Figma component, tests, icon)
 - Right: CSS anatomy code card showing `@layer components`, custom properties,
   state selectors, logical properties

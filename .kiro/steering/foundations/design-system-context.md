@@ -48,8 +48,8 @@ Figma exports are the source. Generated files in `dist/` are never edited direct
 |---|---|
 | CSS patterns | `src/ui/patterns/*.css` |
 | CSS index | `src/ui/index.css` |
-| React wrappers | `src/react/*.js` |
-| React exports | `src/react/index.js` |
+| Web Components | `src/elements/*.js` |
+| Web Component exports | `src/elements/index.js`, `package.json` |
 | Nunjucks macros | `site/_includes/macros/ui.njk` (source; `dist/macros/ui.njk` is build copy) |
 | Playground renderers | `site/assets/playground/renderers.js` |
 | Docs pages | `site/patterns/*.md` |
@@ -159,7 +159,7 @@ instances, and bind variables.
 - Rule 9: Every pattern gets its own tokens — never reuse another pattern's
 - Rule 10: Token `$ref` aliases must point to existing tokens
 - Rule 11: CSS class = bare name (`.slider` not `.ui-slider`), `@layer components`, logical properties
-- Rule 12: React = named `export function`, `React.createElement`, no JSX, no CSS imports
+- Rule 12: Web Components use the shared base, light DOM, semantic markup, and aligned exports
 - Rule 13: Docs UI uses docs-specific CSS, not brand theming
 
 ## Governance Sources (read in this order)

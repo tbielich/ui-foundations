@@ -78,7 +78,7 @@ work with the system reliably.
  │   └── tokens.yaml ← Flat index
  ├── core/      ← Reset + Base + Tokens
  ├── ui/        ← Component patterns
- ├── react/     ← Optional wrappers
+ ├── elements/  ← Light-DOM Web Components
  └── main.css   ← Bundled (all layers)
 ```
 
@@ -103,7 +103,7 @@ Every pattern ships with:
  ┌────────────┬────────────┬────────────┐
  │ CSS pattern│ Nunjucks   │ Playground │
  ├────────────┼────────────┼────────────┤
- │ Docs page  │ React wrap │ Code Conn. │
+ │ Docs page  │ Web Comp.  │ Code Conn. │
  └────────────┴────────────┴────────────┘
 ```
 
@@ -157,15 +157,20 @@ npm install ui-foundations
 <input class="input" type="text" />
 ```
 
-### Optional: React Wrappers
+### Optional: Web Components
 
 ```js
-import { Button } from "ui-foundations/react/button";
+import "ui-foundations/elements/ui-button";
 ```
 
-The React wrappers are thin convenience layers that apply CSS classes and
-add dev-mode accessibility warnings. They contain no framework-specific
-logic — the same result is achievable with plain HTML + CSS classes.
+```html
+<ui-button variant="outline">Label</ui-button>
+```
+
+The light-DOM Custom Elements are the canonical convenience layer. They render
+the same semantic HTML used by the CSS patterns and work across frameworks.
+Consumers upgrading to v1 should follow the
+[React removal migration guide](docs/migrations/react-to-web-components.md).
 
 ### Apply Theming
 
@@ -358,7 +363,7 @@ Figma integration uses the Model Context Protocol. Token exports live in
 
 Load the `#pattern-creation` steering file for the full 10-phase workflow.
 Key steps: semantic HTML first, then Figma tokens (bind variables, never hardcode),
-CSS pattern, Nunjucks macro, React wrapper, docs page, playground, Code Connect.
+CSS pattern, Nunjucks macro, Web Component, docs page, playground, Code Connect.
 
 ---
 
@@ -386,7 +391,7 @@ npm run release:publish
  ├────────────────┼───────────────────────────┤
  │ Patterns       │ Vanilla CSS (@layer)      │
  ├────────────────┼───────────────────────────┤
- │ Optional       │ React wrappers            │
+ │ Convenience    │ Light-DOM Web Components  │
  └────────────────┴───────────────────────────┘
 ```
 
@@ -396,7 +401,7 @@ npm run release:publish
 
 - **Calendar Component** — first functional component with state, date logic, and keyboard navigation. Built on top of existing patterns.
 - **Navigation Key Tips** — experimental Alt-triggered keyboard shortcuts for fast docs navigation (available now).
-- **Web Components** — replace React wrappers with framework-agnostic custom elements (light DOM, no shadow DOM) so patterns are truly platform-independent (#104).
+- **UIF public namespace** — migrate Custom Element tags from the legacy `ui-*` namespace to the approved `uif-*` namespace for v1.0.
 
 ---
 

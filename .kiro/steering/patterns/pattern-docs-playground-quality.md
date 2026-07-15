@@ -1,12 +1,12 @@
 ---
 inclusion: fileMatch
-fileMatchPattern: "site/patterns/**,site/assets/playground/**,site/_includes/macros/**,src/ui/patterns/**,src/react/**"
+fileMatchPattern: "site/patterns/**,site/assets/playground/**,site/_includes/macros/**,src/ui/patterns/**,src/elements/**"
 ---
 
 # Pattern Docs + Playground Quality Gate
 
 Use this file whenever a pattern doc page, playground page, macro, renderer, or
-React wrapper changes. It captures the checks that keep implementation,
+Web Component changes. It captures the checks that keep implementation,
 documentation, and playground output aligned.
 
 ## Reference pages first

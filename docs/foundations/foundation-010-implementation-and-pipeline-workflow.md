@@ -18,7 +18,7 @@ Define the stable implementation workflow for adding or updating UI foundations 
    - Regenerate artifacts via `npm run build:all`.
    - Add or update CSS pattern in `src/ui/patterns/`.
    - Export pattern in `src/ui/index.css`.
-   - Add React wrapper only when needed.
+   - Add or update the light-DOM Web Component only when a convenience API is needed.
    - Add docs + playground pages in `site/patterns/`.
 
 2. Keep changes token-first:

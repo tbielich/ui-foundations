@@ -156,10 +156,6 @@
       "file": ".kiro/steering/patterns/pattern-css-rules.md"
     },
     {
-      "id": "react-wrappers",
-      "file": ".kiro/steering/patterns/react-wrappers.md"
-    },
-    {
       "id": "assistant-component-checklist",
       "file": "docs/agentic/assistant-behavior-rules.md"
     }

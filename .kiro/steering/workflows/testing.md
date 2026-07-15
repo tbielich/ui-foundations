@@ -29,7 +29,7 @@ npm run test:unit        # runs: node --test tests/*.test.mjs
 | `plugin-code.test.mjs` | Figma plugin color utilities |
 
 Coverage focus: token pipeline scripts only. No component rendering, macro, or
-React wrapper tests currently exist.
+Component migration tests currently exist.
 
 ## Writing a New Test
 
@@ -59,7 +59,7 @@ When adding new scripts or utilities:
 
 When NOT required (currently):
 - Component CSS rendering (no visual regression framework)
-- React wrapper behavior (no React test setup)
+- Browser-only Custom Element behavior (no DOM test environment)
 - Nunjucks macro output (tested indirectly via docs build)
 - Browser-side playground JS
 
