@@ -1,5 +1,5 @@
 @layer components {
-  .radio-field {
+  :is(.uif-radio-field, .radio-field) {
     display: inline-flex;
     align-items: center;
     gap: var(--typography-label-gap);
@@ -7,16 +7,16 @@
     font-weight: var(--typography-label-font-weight);
     font-size: var(--typography-label-font-size);
     line-height: var(--typography-label-line-height);
-    color: var(--radio-text-color-default);
+    color: var(--uif-radio-text-color-default);
     cursor: pointer;
   }
 
-  .radio-field.is-disabled {
-    color: var(--radio-text-color-disabled);
+  :is(.uif-radio-field, .radio-field).is-disabled {
+    color: var(--uif-radio-text-color-disabled);
     cursor: not-allowed;
   }
 
-  .radio {
+  :is(.uif-radio, .radio) {
     inline-size: var(--size-spacing-600);
     block-size: var(--size-spacing-600);
     margin: 0;
@@ -24,14 +24,14 @@
     display: inline-grid;
     place-content: center;
     border-style: solid;
-    border-width: var(--radio-border-size-default);
-    border-color: var(--radio-border-color-default);
+    border-width: var(--uif-radio-border-size-default);
+    border-color: var(--uif-radio-border-color-default);
     border-radius: var(--size-radius-full);
-    background: var(--radio-container-background-default);
+    background: var(--uif-radio-container-background-default);
     cursor: pointer;
   }
 
-  .radio::after {
+  :is(.uif-radio, .radio)::after {
     content: "";
     display: block;
     inline-size: 0;
@@ -41,67 +41,67 @@
     transition: all 120ms ease;
   }
 
-  .radio:checked,
-  .radio.is-checked {
-    border-color: var(--radio-border-color-active);
-    background: var(--radio-container-background-default);
+  :is(.uif-radio, .radio):checked,
+  :is(.uif-radio, .radio).is-checked {
+    border-color: var(--uif-radio-border-color-active);
+    background: var(--uif-radio-container-background-default);
   }
 
-  .radio:checked::after,
-  .radio.is-checked::after {
+  :is(.uif-radio, .radio):checked::after,
+  :is(.uif-radio, .radio).is-checked::after {
     inline-size: 0.5rem;
     block-size: 0.5rem;
-    background: var(--radio-border-color-active);
+    background: var(--uif-radio-border-color-active);
   }
 
-  .radio:hover,
-  .radio.is-hover {
+  :is(.uif-radio, .radio):hover,
+  :is(.uif-radio, .radio).is-hover {
     background:
       linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
-      var(--radio-container-background-hover);
-    border-color: var(--radio-border-color-hover);
-    border-width: var(--radio-border-size-hover);
+      var(--uif-radio-container-background-hover);
+    border-color: var(--uif-radio-border-color-hover);
+    border-width: var(--uif-radio-border-size-hover);
   }
 
-  .radio:checked:hover,
-  .radio.is-checked.is-hover {
+  :is(.uif-radio, .radio):checked:hover,
+  :is(.uif-radio, .radio).is-checked.is-hover {
     background:
       linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
-      var(--radio-container-background-default);
-    border-color: var(--radio-border-color-hover);
-    border-width: var(--radio-border-size-hover);
+      var(--uif-radio-container-background-default);
+    border-color: var(--uif-radio-border-color-hover);
+    border-width: var(--uif-radio-border-size-hover);
   }
 
-  .radio:active,
-  .radio.is-active {
+  :is(.uif-radio, .radio):active,
+  :is(.uif-radio, .radio).is-active {
     background:
       linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
-      var(--radio-container-background-default);
-    border-color: var(--radio-border-color-active);
+      var(--uif-radio-container-background-default);
+    border-color: var(--uif-radio-border-color-active);
     border-width: var(--size-border-200);
   }
 
-  .radio:checked:active,
-  .radio.is-checked.is-active {
+  :is(.uif-radio, .radio):checked:active,
+  :is(.uif-radio, .radio).is-checked.is-active {
     background:
       linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
-      var(--radio-container-background-default);
-    border-color: var(--radio-border-color-active);
+      var(--uif-radio-container-background-default);
+    border-color: var(--uif-radio-border-color-active);
   }
 
-  .radio:focus-visible,
-  .radio.is-focus-visible {
-    border-color: var(--radio-border-color-focus);
+  :is(.uif-radio, .radio):focus-visible,
+  :is(.uif-radio, .radio).is-focus-visible {
+    border-color: var(--uif-radio-border-color-focus);
     outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
-  .radio:disabled,
-  .radio.is-disabled {
-    border-width: var(--radio-border-size-disabled);
-    border-color: var(--radio-border-color-disabled);
-    background: var(--radio-container-background-disabled);
-    color: var(--radio-text-color-disabled);
+  :is(.uif-radio, .radio):disabled,
+  :is(.uif-radio, .radio).is-disabled {
+    border-width: var(--uif-radio-border-size-disabled);
+    border-color: var(--uif-radio-border-color-disabled);
+    background: var(--uif-radio-container-background-disabled);
+    color: var(--uif-radio-text-color-disabled);
     cursor: not-allowed;
   }
 }

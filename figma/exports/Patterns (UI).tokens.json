@@ -2735,7 +2735,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-text-color-default)"
+            "WEB": "var(--uif-radio-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -2757,7 +2757,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-text-color-disabled)"
+            "WEB": "var(--uif-radio-text-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:328",
@@ -2781,7 +2781,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-border-color-default)"
+            "WEB": "var(--uif-radio-border-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:343",
@@ -2803,7 +2803,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-border-color-hover)"
+            "WEB": "var(--uif-radio-border-color-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -2825,7 +2825,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-border-color-active)"
+            "WEB": "var(--uif-radio-border-color-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -2847,7 +2847,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-border-color-disabled)"
+            "WEB": "var(--uif-radio-border-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:346",
@@ -2869,7 +2869,7 @@
             "STROKE_FLOAT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-border-size-default)"
+            "WEB": "var(--uif-radio-border-size-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:7",
@@ -2891,7 +2891,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-border-size-hover)"
+            "WEB": "var(--uif-radio-border-size-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:8",
@@ -2913,7 +2913,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-border-size-disabled)"
+            "WEB": "var(--uif-radio-border-size-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:6",
@@ -2935,7 +2935,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-border-color-focus)"
+            "WEB": "var(--uif-radio-border-color-focus)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -2959,7 +2959,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-container-background-default)"
+            "WEB": "var(--uif-radio-container-background-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -2981,7 +2981,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-container-background-disabled)"
+            "WEB": "var(--uif-radio-container-background-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:330",
@@ -3003,7 +3003,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--radio-container-background-hover)"
+            "WEB": "var(--uif-radio-container-background-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",

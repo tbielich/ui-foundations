@@ -543,12 +543,12 @@
       asBoolean(props.disabled);
 
     const wrapper = document.createElement("label");
-    const wrapperClasses = ["radio-field"];
+    const wrapperClasses = ["uif-radio-field"];
     if (disabled) wrapperClasses.push("is-disabled");
     wrapper.className = wrapperClasses.join(" ");
 
     const input = document.createElement("input");
-    const inputClasses = ["radio"];
+    const inputClasses = ["uif-radio"];
     if (checked) inputClasses.push("is-checked");
     if (previewState === "hover") inputClasses.push("is-hover");
     if (previewState === "active") inputClasses.push("is-active");
@@ -561,7 +561,7 @@
     input.disabled = disabled;
 
     const text = document.createElement("span");
-    text.className = "radio-field-text";
+    text.className = "uif-radio-field-text";
     text.textContent = labelText;
 
     wrapper.append(input, text);
@@ -573,7 +573,7 @@
     if (checked) attrs.push("checked");
     if (disabled) attrs.push("disabled");
 
-    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="radio-field-text">${quoteAttr(labelText)}</span></label>`;
+    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="uif-radio-field-text">${quoteAttr(labelText)}</span></label>`;
     return { element: wrapper, code };
   };
 
