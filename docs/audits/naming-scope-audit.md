@@ -328,9 +328,10 @@ component-level exports or examples that should be UIF-scoped."*
 | `dist/` | Not present in this checkout — cannot audit |
 | Root `examples/` directory | Not present — examples are under `site/` and were audited |
 
-**Action required post-build:** Once a `dist/` directory is produced during CI, the
-generated CSS bundle should be audited for any `--button-*` or bare `.button`
-selectors that consumers may depend on directly.
+`dist/` was not available in this checkout. Generated output must be validated after
+implementation in [#145](https://github.com/tbielich/ui-foundations/issues/145), once
+the build produces a distributable CSS bundle. The absence of `dist/` is not considered
+a blocker for closing #144.
 
 ---
 
@@ -348,9 +349,10 @@ selectors that consumers may depend on directly.
    playground, and example docs are updated, the live documentation site will render
    broken or mis-styled components during the transition window.
 
-4. **Cross-layer coupling** — `input.css` references `--button-line-height` as a
-   fallback. If `--button-line-height` is renamed first, `input.css` silently loses
-   its fallback value until it is also updated.
+4. **Cross-pattern token coupling** — `input.css` references `--button-line-height` as
+   a fallback, introducing a dependency between the Input and Button component token
+   namespaces. Remediation strategy is deferred to
+   [#145](https://github.com/tbielich/ui-foundations/issues/145).
 
 5. **Test fixture lag** — MCP server tests embed literal `.button` and `--button-*`
    strings. If runtime migrates without updating these fixtures the test suite will
@@ -358,31 +360,43 @@ selectors that consumers may depend on directly.
 
 ---
 
-## Recommended Safe Migration Order
+## Audit Scope
 
-The following sequence minimises consumer-facing risk by keeping working aliases in
-place throughout the transition window.
+This audit intentionally does not define:
 
-| Step | Action | Risk gate |
-|---|---|---|
-| 1 | Add `--uif-button-*` aliases pointing to `--button-*` in `button.css`; add `.uif-button` selector alongside `.button` in CSS and JS emitters | Consumers can opt in; no break |
-| 2 | Update `ui.njk`, `renderers.js`, and all element/React emitters to emit `.uif-button` as the primary class while keeping `.button` as a compatibility class | Both names work in parallel |
-| 3 | Update `site/patterns/button.md`, `button-playground.md`, `tooltip.md`, `all-tokens.md`, `getting-started.md`, and `vanilla-starter.md` to reflect `uif-` naming | Docs match runtime |
-| 4 | Update `site/assets/docs.css` playground panel selectors to use `.uif-button` | Docs UI consistent |
-| 5 | Update MCP server test fixtures and `patterns.ts` example comments | Tooling consistent |
-| 6 | Resolve `input.css` cross-layer fallback: replace `var(--button-line-height, …)` with `var(--uif-button-line-height, …)` in the same wave as the token rename | Prevents silent fallback loss |
-| 7 | **Major-version release:** remove bare `.button` compatibility aliases and `--button-*` shims after a documented deprecation window | Breaking change, semver bump required |
+- migration mechanics
+- compatibility alias strategy
+- implementation order beyond risk grouping
+
+Those decisions belong to [#145](https://github.com/tbielich/ui-foundations/issues/145).
+Any solution should follow the established token-first architecture and originate from
+the Figma export and token generation pipeline.
+
+---
+
+## Risk Groupings
+
+The findings above fall into the following risk groups. Sequencing and implementation
+strategy are deferred to #145.
+
+| Group | Risk |
+|---|---|
+| Runtime classes and tokens | Hard class-name break and token override break for consumers |
+| Docs, macros, and playground | Drift between live documentation and migrated runtime |
+| Cross-pattern token coupling | Silent fallback loss if Input and Button tokens are not addressed together |
+| Tests and tooling fixtures | False confidence if test fixtures are not updated in the same migration wave |
+| Generated output (`dist/`) | Cannot be audited until built; must be verified as part of #145 |
 
 ---
 
 ## Affected File Checklist
 
-### Source — must migrate
+### Source — affected files
 
 - [ ] `src/ui/patterns/button.css`
 - [ ] `src/ui/patterns/icon.css`
 - [ ] `src/ui/patterns/label.css`
-- [ ] `src/ui/patterns/input.css` (cross-layer fallback only)
+- [ ] `src/ui/patterns/input.css` (cross-pattern token coupling)
 - [ ] `src/react/button.js`
 - [ ] `src/react/calendar.js`
 - [ ] `src/react/icon.js`
@@ -393,7 +407,7 @@ place throughout the transition window.
 - [ ] `src/elements/ui-link.js`
 - [ ] `src/elements/ui-input.js`
 
-### Site — must update after source migrates
+### Site — affected files
 
 - [ ] `site/_includes/macros/ui.njk`
 - [ ] `site/_includes/macros/playground.njk`
@@ -408,12 +422,12 @@ place throughout the transition window.
 - [ ] `site/patterns/button-group-playground.md`
 - [ ] `site/patterns/tooltip.md`
 
-### Tests — must update in same wave as source
+### Tests — affected files
 
 - [ ] `packages/mcp-server/tests/resources/components.test.ts`
 - [ ] `packages/mcp-server/tests/properties/resolution.property.test.ts`
 
-### Tooling docs — update for accuracy
+### Tooling docs — affected files
 
 - [ ] `packages/mcp-server/src/resources/patterns.ts` (JSDoc example comment)
 - [ ] `docs/adr/adr-density-responsive-strategy.md`
