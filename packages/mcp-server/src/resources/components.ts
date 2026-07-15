@@ -167,7 +167,7 @@ function generateHtmlPattern(componentName: string, cssContent: string): string 
     return `<span class="${className}" style="--uif-icon-src: url('/assets/icons/name.svg');" aria-hidden="true"></span>`;
   }
   if (componentName === 'label') {
-    return `<span class="label-content"><span class="label-content__text">Label</span></span>`;
+    return `<span class="uif-label-content"><span class="uif-label-content-text">Label</span></span>`;
   }
 
   return `<div class="${className}">Content</div>`;

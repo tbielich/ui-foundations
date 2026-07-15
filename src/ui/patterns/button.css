@@ -23,13 +23,13 @@
     -webkit-text-fill-color: currentColor;
   }
 
-  :is(.uif-button, .button) .label-content {
+  :is(.uif-button, .button) :is(.uif-label-content, .label-content) {
     line-height: inherit;
     color: inherit;
     -webkit-text-fill-color: currentColor;
   }
 
-  :is(.uif-button, .button) .label-content-text,
+  :is(.uif-button, .button) :is(.uif-label-content-text, .label-content-text),
   :is(.uif-button, .button) :is(.uif-icon, .icon) {
     color: inherit;
     -webkit-text-fill-color: currentColor;

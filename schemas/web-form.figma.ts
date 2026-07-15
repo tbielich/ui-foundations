@@ -20,9 +20,9 @@ figma.connect(
       class="form-field"
       data-state="${state}"
     >
-      <label class="field-label" for="form-field-input" style="line-height: 24px;">
-        <span class="label-content">
-          <span class="label-content-text">Field label</span>
+      <label class="uif-field-label" for="form-field-input" style="line-height: 24px;">
+        <span class="uif-label-content">
+          <span class="uif-label-content-text">Field label</span>
         </span>
       </label>
       <input

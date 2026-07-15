@@ -117,7 +117,7 @@
     }
 
     const content = document.createElement("span");
-    const contentClasses = ["label-content"];
+    const contentClasses = ["uif-label-content"];
     if (resolvedIconOnly) contentClasses.push("is-icon-only");
     content.className = contentClasses.join(" ");
 
@@ -126,7 +126,7 @@
 
     if (!resolvedIconOnly && hasText) {
       const textNode = document.createElement("span");
-      textNode.className = "label-content-text";
+      textNode.className = "uif-label-content-text";
       textNode.textContent = rawLabel;
       content.append(textNode);
     }
@@ -148,14 +148,14 @@
     const codeContent = [
       labelIconCode(iconStart, "start"),
       !resolvedIconOnly && hasText
-        ? `<span class="label-content-text">${quoteAttr(rawLabel)}</span>`
+        ? `<span class="uif-label-content-text">${quoteAttr(rawLabel)}</span>`
         : "",
       labelIconCode(iconEnd, "end"),
     ]
       .filter(Boolean)
       .join("");
 
-    const codeContentClasses = ["label-content"];
+    const codeContentClasses = ["uif-label-content"];
     if (resolvedIconOnly) codeContentClasses.push("is-icon-only");
 
     const code = `<button ${attrs.join(" ")}><span class="${quoteAttr(codeContentClasses.join(" "))}">${codeContent}</span></button>`;
@@ -204,14 +204,14 @@
 
     const host = document.createElement(mode === "field" ? "label" : "span");
     if (mode === "field") {
-      host.className = "field-label";
+      host.className = "uif-field-label";
       host.setAttribute("for", forId);
     }
     host.style.lineHeight = lineHeight;
     if (color) host.style.color = color;
 
     const labelContent = document.createElement("span");
-    labelContent.className = "label-content";
+    labelContent.className = "uif-label-content";
 
     const hasText = text.trim().length > 0;
     if (iconOnly || !hasText) {
@@ -223,7 +223,7 @@
 
     if (!iconOnly && hasText) {
       const textElement = document.createElement("span");
-      textElement.className = "label-content-text";
+      textElement.className = "uif-label-content-text";
       textElement.textContent = text;
       labelContent.append(textElement);
     }
@@ -235,13 +235,13 @@
 
     if (mode === "field" && required) {
       const requiredMarker = document.createElement("span");
-      requiredMarker.className = "field-label-required";
+      requiredMarker.className = "uif-field-label-required";
       requiredMarker.setAttribute("aria-hidden", "true");
       requiredMarker.textContent = "*";
       host.append(requiredMarker);
 
       const requiredText = document.createElement("span");
-      requiredText.className = "field-label-required-text";
+      requiredText.className = "uif-field-label-required-text";
       requiredText.textContent = " (required)";
       host.append(requiredText);
     }
@@ -249,12 +249,12 @@
     const hostStyleEntries = [`line-height: ${lineHeight}`];
     if (color) hostStyleEntries.push(`color: ${color}`);
 
-    const contentClasses = ["label-content"];
+    const contentClasses = ["uif-label-content"];
     if (iconOnly || !hasText) contentClasses.push("is-icon-only");
     const contentMarkup = [
       labelIconCode(iconStart, "start"),
       !iconOnly && hasText
-        ? `<span class="label-content-text">${quoteAttr(text)}</span>`
+        ? `<span class="uif-label-content-text">${quoteAttr(text)}</span>`
         : "",
       labelIconCode(iconEnd, "end"),
     ]
@@ -263,9 +263,9 @@
 
     if (mode === "field") {
       const requiredMarkup = required
-        ? '<span class="field-label-required" aria-hidden="true">*</span><span class="field-label-required-text"> (required)</span>'
+        ? '<span class="uif-field-label-required" aria-hidden="true">*</span><span class="uif-field-label-required-text"> (required)</span>'
         : "";
-      const code = `<label for="${quoteAttr(forId)}" class="field-label" style="${quoteAttr(hostStyleEntries.join("; "))}"><span class="${quoteAttr(contentClasses.join(" "))}">${contentMarkup}</span>${requiredMarkup}</label>`;
+      const code = `<label for="${quoteAttr(forId)}" class="uif-field-label" style="${quoteAttr(hostStyleEntries.join("; "))}"><span class="${quoteAttr(contentClasses.join(" "))}">${contentMarkup}</span>${requiredMarkup}</label>`;
       return { element: host, code };
     }
 
@@ -783,8 +783,8 @@
     if (labelPosition === "side") field1.dataset.labelPosition = "side";
 
     const label1 = document.createElement("label");
-    label1.className = "field-label";
-    label1.innerHTML = '<span class="label-content"><span class="label-content-text">Email</span></span><span class="field-label-required" aria-hidden="true">*</span>';
+    label1.className = "uif-field-label";
+    label1.innerHTML = '<span class="uif-label-content"><span class="uif-label-content-text">Email</span></span><span class="uif-field-label-required" aria-hidden="true">*</span>';
 
     const input1 = document.createElement("input");
     input1.className = "input";
@@ -818,8 +818,8 @@
     if (labelPosition === "side") field2.dataset.labelPosition = "side";
 
     const label2 = document.createElement("label");
-    label2.className = "field-label";
-    label2.innerHTML = '<span class="label-content"><span class="label-content-text">Password</span></span>';
+    label2.className = "uif-field-label";
+    label2.innerHTML = '<span class="uif-label-content"><span class="uif-label-content-text">Password</span></span>';
 
     const input2 = document.createElement("input");
     input2.className = "input";
@@ -842,7 +842,7 @@
     const btn = document.createElement("button");
     btn.className = "button solid";
     btn.type = "submit";
-    btn.innerHTML = '<span class="label-content"><span class="label-content-text">Sign in</span></span>';
+    btn.innerHTML = '<span class="uif-label-content"><span class="uif-label-content-text">Sign in</span></span>';
     actions.append(btn);
 
     form.append(field1, field2, actions);
@@ -853,15 +853,15 @@
     const helperCode = invalid ? '\n    <p class="form-field-helper">Please enter a valid email address.</p>' : "";
     const code = `<form class="${formClasses.join(" ")}" novalidate>
   <div class="form-field${inv}"${lp}>
-    <label class="field-label"><span class="label-content"><span class="label-content-text">Email</span></span><span class="field-label-required" aria-hidden="true">*</span></label>
+    <label class="uif-field-label"><span class="uif-label-content"><span class="uif-label-content-text">Email</span></span><span class="uif-field-label-required" aria-hidden="true">*</span></label>
     <input class="input" type="email" placeholder="you@example.com" />${helperCode}
   </div>
   <div class="form-field"${lp}>
-    <label class="field-label"><span class="label-content"><span class="label-content-text">Password</span></span></label>
+    <label class="uif-field-label"><span class="uif-label-content"><span class="uif-label-content-text">Password</span></span></label>
     <input class="input" type="password" />
   </div>
   <div class="form-actions"${alignAttr}>
-    <button class="uif-button solid" type="submit"><span class="label-content"><span class="label-content-text">Sign in</span></span></button>
+    <button class="uif-button solid" type="submit"><span class="uif-label-content"><span class="uif-label-content-text">Sign in</span></span></button>
   </div>
 </form>`;
 
@@ -1136,7 +1136,7 @@
     if (isOpen) rootClasses.push("is-open");
 
     let html = `<div class="form-field date-picker-field">`;
-    html += `<label class="field-label" id="date-picker-playground-label" for="date-picker-playground-day"><span class="label-content"><span class="label-content-text">Travel date</span></span></label>`;
+    html += `<label class="uif-field-label" id="date-picker-playground-label" for="date-picker-playground-day"><span class="uif-label-content"><span class="uif-label-content-text">Travel date</span></span></label>`;
     html += `<div class="${rootClasses.join(" ")}" role="group" aria-labelledby="date-picker-playground-label">`;
     html += `<div class="date-segments">`;
     html += `<input class="date-segment day" id="date-picker-playground-day" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day" value="${quoteAttr(day)}"${disabledAttr}>`;

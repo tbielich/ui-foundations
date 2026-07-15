@@ -114,22 +114,22 @@
 {%- endmacro %}
 
 {% macro labelContent(text='', startIcon='', endIcon='', iconOnly=false) -%}
-<span class="label-content{% if iconOnly %} is-icon-only{% endif %}">
+<span class="uif-label-content{% if iconOnly %} is-icon-only{% endif %}">
   {%- if startIcon %}<span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
-  {%- if not iconOnly %}<span class="label-content-text">{{ text }}</span>{% endif -%}
+  {%- if not iconOnly %}<span class="uif-label-content-text">{{ text }}</span>{% endif -%}
   {%- if endIcon %}<span class="uif-icon" data-slot="end" style="--uif-icon-src: url('/assets/icons/{{ endIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
 </span>
 {%- endmacro %}
 
 {% macro fieldLabel(text, htmlFor='', required=false, startIcon='') -%}
-<label class="field-label"{% if htmlFor %} for="{{ htmlFor }}"{% endif %}>
-  <span class="label-content">
+<label class="uif-field-label"{% if htmlFor %} for="{{ htmlFor }}"{% endif %}>
+  <span class="uif-label-content">
     {%- if startIcon %}<span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
-    <span class="label-content-text">{{ text }}</span>
+    <span class="uif-label-content-text">{{ text }}</span>
   </span>
   {%- if required %}
-  <span class="field-label-required" aria-hidden="true">*</span>
-  <span class="field-label-required-text"> (required)</span>
+  <span class="uif-field-label-required" aria-hidden="true">*</span>
+  <span class="uif-field-label-required-text"> (required)</span>
   {%- endif %}
 </label>
 {%- endmacro %}

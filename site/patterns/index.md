@@ -58,9 +58,9 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/label/">
     <div class="docs-component-card-preview">
-      <span class="label-content">
+      <span class="uif-label-content">
         <span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-        <span class="label-content-text">Search</span>
+        <span class="uif-label-content-text">Search</span>
       </span>
     </div>
     <div class="docs-component-card-body">

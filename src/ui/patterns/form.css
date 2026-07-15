@@ -58,7 +58,7 @@
     align-items: flex-start;
   }
 
-  .form-field[data-label-position="side"] > .field-label {
+  .form-field[data-label-position="side"] > :is(.uif-field-label, .field-label) {
     flex-shrink: 0;
     inline-size: 8rem;
     padding-block-start: var(--size-spacing-200);

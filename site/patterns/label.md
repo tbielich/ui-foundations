@@ -24,9 +24,9 @@ playgroundLabel: Open Label Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      <span class="label-content">
+      <span class="uif-label-content">
         <span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-        <span class="label-content-text">Search</span>
+        <span class="uif-label-content-text">Search</span>
       </span>
     </div>
   </div>
@@ -55,9 +55,9 @@ playgroundLabel: Open Label Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">2</span>
       </span>
-      <span class="label-content">
+      <span class="uif-label-content">
         <span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
-        <span class="label-content-text">Search</span>
+        <span class="uif-label-content-text">Search</span>
       </span>
     </div>
   </div>
@@ -83,12 +83,22 @@ playgroundLabel: Open Label Playground
   </tbody>
 </table>
 
+### v1 naming migration
+
+Use `.uif-label-content`, `.uif-label-content-text`, and the `.uif-field-label*`
+family in new and migrated markup. Their unprefixed class selectors remain
+available throughout v1.x, but the legacy `--field-label-*` custom properties
+have no library-owned aliases or fallbacks. Rename the field-label class and its
+runtime inputs together. Shared `--typography-label-*` tokens keep their
+separately governed typography namespace. Legacy class removal remains Wave 4
+work for v2.0 or later.
+
 <h2 id="behaviors">Behaviors</h2>
 
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <span class="label-content"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content-text">Search</span></span>
+      <span class="uif-label-content"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="uif-label-content-text">Search</span></span>
     </div>
     <div class="docs-behavior-body">
       <h3>Icon + text composition</h3>
@@ -97,7 +107,7 @@ playgroundLabel: Open Label Playground
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <span class="label-content is-icon-only"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span></span>
+      <span class="uif-label-content is-icon-only"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/menu.svg');" aria-hidden="true"></span></span>
     </div>
     <div class="docs-behavior-body">
       <h3>Icon-only mode</h3>
@@ -110,14 +120,14 @@ playgroundLabel: Open Label Playground
 
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
-    <div class="docs-guideline-preview"><code>&lt;label class="field-label"&gt;</code></div>
+    <div class="docs-guideline-preview"><code>&lt;label class="uif-field-label"&gt;</code></div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
       <p>Use FieldLabel with <code>htmlFor</code> to link label and input.</p>
     </div>
   </div>
   <div class="docs-guideline-item" data-type="dont">
-    <div class="docs-guideline-preview"><code>&lt;span class="label-content"&gt;</code></div>
+    <div class="docs-guideline-preview"><code>&lt;span class="uif-label-content"&gt;</code></div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
       <p>Don't use LabelContent for form fields — no semantic link to the input.</p>

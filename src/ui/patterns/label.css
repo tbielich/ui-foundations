@@ -1,41 +1,45 @@
 @layer components {
-  .label-content {
+  /*
+   * Unprefixed Label-family classes are deprecated v1.x compatibility selectors.
+   * UIF-owned emitters use canonical `.uif-*` names; remove aliases no earlier than v2.0.
+   */
+  :is(.uif-label-content, .label-content) {
     display: inline-flex;
     align-items: center;
     gap: var(--typography-label-gap, 0.5em);
     line-height: inherit;
   }
 
-  .label-content > :is(.uif-icon, .icon)[data-slot] {
+  :is(.uif-label-content, .label-content) > :is(.uif-icon, .icon)[data-slot] {
     display: inline-flex;
     align-items: center;
     line-height: inherit;
     flex: 0 0 auto;
   }
 
-  .label-content-text {
+  :is(.uif-label-content-text, .label-content-text) {
     line-height: inherit;
   }
 
-  .label-content.is-icon-only {
+  :is(.uif-label-content, .label-content).is-icon-only {
     gap: 0;
   }
 
-  .field-label {
+  :is(.uif-field-label, .field-label) {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: var(--field-label-gap, 0.25em);
-    line-height: var(--field-label-line-height, inherit);
+    gap: var(--uif-field-label-gap, 0.25em);
+    line-height: var(--uif-field-label-line-height, inherit);
     cursor: pointer;
   }
 
-  .field-label-required {
-    color: var(--field-label-required-color, currentColor);
+  :is(.uif-field-label-required, .field-label-required) {
+    color: var(--uif-field-label-required-color, currentColor);
     font-weight: var(--font-weight-700);
   }
 
-  .field-label-required-text {
+  :is(.uif-field-label-required-text, .field-label-required-text) {
     position: absolute;
     inline-size: 1px;
     block-size: 1px;

@@ -156,7 +156,7 @@ is deferred to Wave 4 in v2.0 or later.
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      <span class="label-content"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="label-content-text">Search</span></span>
+      <span class="uif-label-content"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span><span class="uif-label-content-text">Search</span></span>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
