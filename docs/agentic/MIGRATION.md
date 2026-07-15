@@ -47,7 +47,7 @@ Documented the Token Foundry Figma plugin API (async variable calls, mode handli
 Step-by-step workflow for creating Code Connect mappings. Now covered by `assistant-behavior-rules.md` rule 8 (component creation checklist includes Code Connect) and `IMPLEMENTATION.md` (file locations and component workflow).
 
 ### `figma-design-to-code-workflow.md`
-Workflow for translating Figma designs to code. Redundant with `IMPLEMENTATION.md` (Figma MCP integration flow, component workflow) and `assistant-behavior-rules.md` rules 8-13 (complete component creation checklist with token validation, CSS conventions, React patterns).
+Workflow for translating Figma designs to code. Redundant with `IMPLEMENTATION.md` (Figma MCP integration flow, component workflow) and `assistant-behavior-rules.md` rules 8-13 (complete component creation checklist with token validation, CSS conventions, and Web Component patterns).
 
 ### `team-ai-playbook.md`
 Comprehensive AI copilot playbook covering component incubation, token roundtrips, drift reconciliation, prompt templates, and worked examples. Operational content consolidated into `assistant-behavior-rules.md` (rules 7-13) and `AGENTS.md` (token workflow, validation). Prompt templates and worked examples are better served by agent-specific local configs.

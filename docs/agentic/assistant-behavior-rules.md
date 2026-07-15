@@ -23,8 +23,8 @@ type: agent-guide
 8. When creating a new pattern, always complete all integration surfaces:
    - CSS pattern in `src/ui/patterns/<pattern>.css`
    - Import in `src/ui/index.css`
-   - React wrapper in `src/react/<pattern>.js`
-   - Export in `src/react/index.js`
+   - Light-DOM Web Component in `src/elements/<element>.js`
+   - Export in `src/elements/index.js` and `package.json`
    - Nunjucks macro in `site/_includes/macros/ui.njk` (source of truth; `dist/macros/ui.njk` is copied during build)
    - Playground renderer in `site/assets/playground/renderers.js` — register the render function and add it to the `renderers` map
    - Playground page in `site/patterns/<pattern>-playground.md` with `renderer: <pattern>` matching the key in the renderers map
@@ -47,11 +47,12 @@ type: agent-guide
     - Existing bare pattern classes such as `.button`, `.radio`, and `.checkbox` are deprecated legacy compatibility and should warn during migration.
     - Never use `.ui-` or other non-Vault namespaces.
     - CSS patterns must be wrapped in `@layer components { }`.
-12. React wrappers must follow the existing pattern:
-    - Named `export function` (not `export const`)
-    - No CSS imports inside React files
-    - Use `React.createElement`, not JSX
-    - Class array pattern: `const classes = ["component"]; if (className) classes.push(className);`
+12. Web Components are the canonical convenience layer:
+    - Use light DOM; do not attach a shadow root.
+    - Extend the shared `UIElement` base and register with `define()`.
+    - Render the same semantic markup and classes used by the CSS pattern.
+    - Keep individual package exports and the aggregate `src/elements/index.js` export aligned.
+    - Do not add framework-specific wrappers to this package.
 13. Docs-only UI (code-tabs, mode toggles) must use docs-specific CSS, not pattern tokens.
     - The `.code-tabs-bar` and `.docs-header` button groups are styled in `site/assets/docs.css` with hardcoded docs colors.
     - They must not inherit brand theming from `data-brand`.

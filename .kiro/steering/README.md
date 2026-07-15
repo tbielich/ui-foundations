@@ -17,11 +17,10 @@ These are included in every prompt automatically:
 
 1. `workflows/pattern-creation.md`
 2. `patterns/pattern-css-rules.md`
-3. `patterns/react-wrappers.md`
-4. `patterns/pattern-rule-map.md`
-5. `foundations/token-exports.md` (if token work needed)
-6. `patterns/playground-system.md` (for playground page)
-7. `patterns/pattern-docs-playground-quality.md` (docs/playground quality gate)
+3. `patterns/pattern-rule-map.md`
+4. `foundations/token-exports.md` (if token work needed)
+5. `patterns/playground-system.md` (for playground page)
+6. `patterns/pattern-docs-playground-quality.md` (docs/playground quality gate)
 
 ### Writing documentation
 

@@ -25,7 +25,8 @@ npm run build:all
         ├── copies src/core/ → dist/core/
         ├── rewrites dist/core/index.css with all token imports
         ├── copies src/ui/ → dist/ui/
-        ├── copies src/react/ → dist/react/
+        ├── copies src/elements/ → dist/elements/
+        ├── removes retired dist/react/ artifacts
         ├── copies src/assets/ → dist/assets/
         ├── copies site/_includes/macros/ui.njk → dist/macros/ui.njk
         └── inlines all @import statements → dist/main.css
@@ -39,9 +40,10 @@ This script:
 3. Copies `src/core/` to `dist/core/` and rewrites `index.css` with correct
    token imports
 4. Copies `src/ui/` to `dist/ui/`
-5. Inlines all `@import url(...)` statements recursively into one flat file
-6. Hoists any remote `@import` (Google Fonts) to the top
-7. Writes final result to `dist/main.css`
+5. Copies `src/elements/` to `dist/elements/`
+6. Inlines all `@import url(...)` statements recursively into one flat file
+7. Hoists any remote `@import` (Google Fonts) to the top
+8. Writes final result to `dist/main.css`
 
 ## Important: Circular Reference
 
@@ -60,6 +62,7 @@ this ordering automatically.
 | `src/core/context/mode.css` | `color-scheme: light dark` declaration | context |
 | `src/core/recipes/layout.css` | Reusable layout utilities (not imported into main bundle) | — |
 | `src/ui/patterns/*.css` | All component CSS patterns | components |
+| `src/elements/*.js` | Light-DOM Web Components | runtime convenience layer |
 
 ## `dist/` Is Generated — Never Edit
 

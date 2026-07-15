@@ -25,7 +25,7 @@ import { proposeTokenHandler } from '../../src/prompts/propose-token.js';
 const INTEGRATION_SURFACES = [
   'CSS Pattern',
   'Nunjucks Macro',
-  'React Wrapper',
+  'Web Component',
   'Documentation Page',
   'Playground Page',
   'Playground Renderer',
@@ -121,7 +121,7 @@ describe('Feature: mcp-server, Property 15: Implement component prompt surface c
         // Key expected paths from the implementation.
         const expectedPathSegments = [
           `src/ui/patterns/${name}.css`,
-          `src/react/${name}.js`,
+          `src/elements/ui-${name}.js`,
           `site/components/${name}.md`,
           `site/components/${name}-playground.md`,
           `schemas/web-${name}.figma.ts`,

@@ -21,7 +21,7 @@ describe('implementComponentHandler', () => {
     // All 10 surfaces mentioned
     assert.ok(text.includes('CSS Pattern'), 'Should reference CSS Pattern surface');
     assert.ok(text.includes('Nunjucks Macro'), 'Should reference Nunjucks Macro surface');
-    assert.ok(text.includes('React Wrapper'), 'Should reference React Wrapper surface');
+    assert.ok(text.includes('Web Component'), 'Should reference Web Component surface');
     assert.ok(text.includes('Documentation Page'), 'Should reference Docs Page surface');
     assert.ok(text.includes('Playground Page'), 'Should reference Playground Page surface');
     assert.ok(text.includes('Playground Renderer'), 'Should reference Playground Renderer surface');
@@ -37,7 +37,7 @@ describe('implementComponentHandler', () => {
 
     assert.ok(text.includes('src/ui/patterns/toggle-switch.css'), 'CSS pattern path');
     assert.ok(text.includes('site/_includes/macros/ui.njk'), 'Nunjucks macro path');
-    assert.ok(text.includes('src/react/toggle-switch.js'), 'React wrapper path');
+    assert.ok(text.includes('src/elements/ui-toggle-switch.js'), 'Web Component path');
     assert.ok(text.includes('site/components/toggle-switch.md'), 'Docs page path');
     assert.ok(text.includes('site/components/toggle-switch-playground.md'), 'Playground page path');
     assert.ok(text.includes('site/assets/playground/renderers.js'), 'Playground renderer path');
@@ -80,7 +80,7 @@ describe('implementComponentHandler', () => {
     const text = result.messages[0].content.text;
 
     assert.ok(text.includes('src/ui/patterns/my-complex-component.css'));
-    assert.ok(text.includes('src/react/my-complex-component.js'));
+    assert.ok(text.includes('src/elements/ui-my-complex-component.js'));
     assert.ok(text.includes('schemas/web-my-complex-component.figma.ts'));
   });
 

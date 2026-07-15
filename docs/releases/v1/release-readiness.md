@@ -27,6 +27,15 @@ This is the only release-tracking document that should be updated during impleme
 - [ ] Required CI checks green for release candidate
 - [ ] Final sign-off recorded
 
+## Breaking changes
+
+- React wrapper exports (`ui-foundations/react` and
+  `ui-foundations/react/*`) are removed in v1. Consumers must migrate using
+  `docs/migrations/react-to-web-components.md` before upgrading.
+- The canonical `<uif-*>` Custom Element namespace must be available before the
+  release candidate; the legacy `<ui-*>` registrations are not an approved
+  compatibility contract.
+
 ## Evidence log
 
 | Gate | Evidence | Status |

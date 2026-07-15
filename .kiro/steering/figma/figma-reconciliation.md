@@ -12,7 +12,7 @@ Use this when checking for drift between Figma design and code implementation.
 2. `dist/tokens/css/patterns-ui.tokens.css` — generated CSS tokens
 3. `schemas/web-*.figma.ts` — Code Connect mappings
 4. `src/ui/patterns/*.css` — CSS implementation
-5. `src/react/*.js` — React wrappers
+5. `src/elements/*.js` — light-DOM Web Components
 6. `site/patterns/` — docs and playground pages
 
 ## Checks

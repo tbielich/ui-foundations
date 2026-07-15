@@ -30,7 +30,7 @@ and CI checks.
 | Principles | Local implementation IDs for cross-cutting design intent | Vault foundations, surfaced through local docs and rule IDs |
 | Heuristics | Local implementation IDs for observable usability behavior | Vault foundations, surfaced through local docs and rule IDs |
 | Pattern rules | Composition rules for reusable UI patterns | `.kiro/steering/pattern-rules/*.md` |
-| Component rules | Local markup, token, API, and state rules | `.kiro/steering/patterns/pattern-rule-map.md`, `.kiro/steering/patterns/pattern-css-rules.md`, `.kiro/steering/patterns/react-wrappers.md`, `docs/agentic/assistant-behavior-rules.md` |
+| Component rules | Local markup, token, API, and state rules | `.kiro/steering/patterns/pattern-rule-map.md`, `.kiro/steering/patterns/pattern-css-rules.md`, `docs/agentic/assistant-behavior-rules.md` |
 | Validation | Deterministic checks grounded in upstream ids | `docs/validation/rule-pipeline.manifest.json`, `scripts/validate-rule-pipeline.mjs` |
 | CI | Required execution | `package.json`, `.github/workflows/ci.yml` |
 

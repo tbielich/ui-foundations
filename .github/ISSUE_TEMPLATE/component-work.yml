@@ -23,7 +23,7 @@ body:
     attributes:
       label: Scope
       description: Define the affected component surface and boundaries.
-      placeholder: "Include CSS pattern, React wrapper, macros, docs, playground, Code Connect, or accessibility surfaces as applicable."
+      placeholder: "Include CSS pattern, Web Component, macros, docs, playground, Code Connect, or accessibility surfaces as applicable."
     validations:
       required: true
   - type: dropdown

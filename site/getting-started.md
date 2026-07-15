@@ -8,7 +8,7 @@ permalink: /getting-started/
 ---
 
 UI Foundations is a token-first design system that provides CSS custom properties,
-HTML component patterns, Nunjucks macros, and optional React wrappers. Tokens are
+HTML component patterns, Nunjucks macros, and light-DOM Web Components. Tokens are
 authored in Figma and generated into CSS, JSON, and TypeScript.
 
 ## Install
@@ -60,7 +60,7 @@ root.dataset.mode = "light"; // "light" | "dark"
 ## Using Components
 
 Components are available as plain HTML classes, Nunjucks macros for static site
-generation, and optional React wrappers.
+generation, and framework-agnostic Custom Elements.
 
 ### HTML
 
@@ -85,17 +85,22 @@ generation, and optional React wrappers.
 ```
 {% endraw %}
 
-### React
+### Web Components
 
-```jsx
-import { Button } from "ui-foundations/react/button";
-import { Input } from "ui-foundations/react/input";
-import { Icon } from "ui-foundations/react/icon";
-
-<Button>Label</Button>
-<Input placeholder="Email" />
-<Icon name="search" />
+```js
+import "ui-foundations/elements/ui-button";
+import "ui-foundations/elements/ui-input";
+import "ui-foundations/elements/ui-icon";
 ```
+
+```html
+<ui-button>Label</ui-button>
+<ui-input aria-label="Email" placeholder="Email"></ui-input>
+<ui-icon name="search" decorative></ui-icon>
+```
+
+Custom Elements render into light DOM, so the package CSS, tokens, native
+events, and form controls remain visible to consuming frameworks.
 
 ## Macro Reference
 

@@ -12,7 +12,7 @@ Provide a compact operating context for humans and agents.
 
 ## Roadmap
 
-- Replace React wrappers with Web Components (light DOM custom elements)
+- Complete the v1 UIF namespace migration across public CSS, token, macro, and Custom Element APIs
 
 ## Theming
 

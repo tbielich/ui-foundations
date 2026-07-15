@@ -22,20 +22,18 @@ test("Button token export uses UIF names without legacy token aliases", async ()
 });
 
 test("Button-owned emitters use the canonical root and explicit solid variant", async () => {
-  const [react, element, macro, renderer, schema] = await Promise.all([
-    read("src/react/button.js"),
+  const [element, macro, renderer, schema] = await Promise.all([
     read("src/elements/ui-button.js"),
     read("site/_includes/macros/ui.njk"),
     read("site/assets/playground/renderers.js"),
     read("schemas/web-button.figma.ts"),
   ]);
 
-  for (const source of [react, element, macro, renderer, schema]) {
+  for (const source of [element, macro, renderer, schema]) {
     assert.match(source, /uif-button/);
     assert.match(source, /solid/);
   }
 
-  assert.doesNotMatch(react, /const classes = \["button"\]/);
   assert.doesNotMatch(element, /const classes = \["button"\]/);
 });
 

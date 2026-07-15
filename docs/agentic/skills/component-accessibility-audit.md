@@ -29,7 +29,7 @@ Do not use this skill to implement broad fixes in the same PR. This skill is aud
 
 1. **Plan**
    - Select exactly one component target.
-   - Confirm component surfaces in scope (CSS pattern, macro/template, React wrapper, docs, tests).
+   - Confirm component surfaces in scope (CSS pattern, macro/template, Web Component, docs, tests).
 
 2. **Collect evidence**
    - Inspect source implementation files.

@@ -183,8 +183,8 @@ function buildUiBundle() {
   copyDir(path.join(REPO_ROOT, "src", "ui"), path.join(DIST_DIR, "ui"));
 }
 
-function buildReactBundle() {
-  copyDir(path.join(REPO_ROOT, "src", "react"), path.join(DIST_DIR, "react"));
+function removeRetiredBundleArtifacts() {
+  fs.rmSync(path.join(DIST_DIR, "react"), { recursive: true, force: true });
 }
 
 function buildElementsBundle() {
@@ -210,9 +210,9 @@ function buildDocs() {
   console.log("♻️  Using pre-generated token CSS from dist/tokens/css");
   console.log(`   • ${tokenFiles.length} files`);
 
+  removeRetiredBundleArtifacts();
   buildCoreBundle(tokenFiles);
   buildUiBundle();
-  buildReactBundle();
   buildElementsBundle();
   buildAssetsBundle();
   buildMacrosBundle();

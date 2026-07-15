@@ -45,7 +45,7 @@ emitters, package output, examples, or tests.
 ### Why class aliases are required
 
 Selector aliases can preserve existing consumer markup without changing the
-canonical markup produced by React, custom elements, Nunjucks, or playground
+canonical markup produced by Custom Elements, Nunjucks, or playground
 renderers. Canonical and legacy selectors must share the same declaration block
 and specificity. New examples and emitters must not teach or produce legacy
 classes.
@@ -213,7 +213,7 @@ Included:
 - Regenerate token CSS and JSON through the existing pipeline.
 - Add canonical `.uif-button` selectors while retaining `.button` selector
   aliases with equivalent specificity.
-- Update Button-owned emitters in React, `<ui-button>`, Nunjucks, and the Button
+- Update Button-owned emitters in `<ui-button>`, Nunjucks, and the Button
   playground renderer/generator to emit `.uif-button` and explicit variant
   classes.
 - Preserve shared legacy child classes (`.icon`, `.label-content`,
@@ -276,7 +276,7 @@ not present them as normal examples.
 
 Every implementation wave must cover:
 
-1. canonical class output for React, custom elements, Nunjucks, and playground
+1. canonical class output for Custom Elements, Nunjucks, and playground
 2. legacy class selector compatibility during v1.x
 3. canonical token generation in CSS and JSON
 4. absence of legacy token names in generated v1 Button output
@@ -300,11 +300,11 @@ npm pack --dry-run
 
 ## Package output considerations
 
-- Keep existing export paths stable; this migration changes names inside the
-  exported CSS/JSON, not package subpaths.
+- Keep non-React export paths stable; React wrapper exports are removed separately
+  by the v1 breaking-change work in #159.
 - Generate `dist/tokens/css/patterns-ui.tokens.css` and corresponding JSON from
   the Figma export.
-- Verify `dist/ui/index.css`, `dist/main.css`, React output, custom-element
+- Verify `dist/ui/index.css`, `dist/main.css`, Custom Element
   output, macros, and package tarball contents.
 - Update smoke checks that currently require `.button` so they require the
   canonical selector and separately assert the intended compatibility alias.

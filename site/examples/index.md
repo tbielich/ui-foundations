@@ -40,8 +40,8 @@ Every new component needs all 10 surfaces:
 
 1. CSS pattern — `src/ui/patterns/<component>.css`
 2. CSS index import — `src/ui/index.css`
-3. React wrapper — `src/react/<component>.js`
-4. React export — `src/react/index.js`
+3. Web Component — `src/elements/<element>.js`
+4. Element exports — `src/elements/index.js` and `package.json`
 5. Nunjucks macro — `site/_includes/macros/ui.njk`
 6. Playground renderer — `site/assets/playground/renderers.js`
 7. Playground page — `site/patterns/<component>-playground.md`

@@ -70,7 +70,7 @@ function buildTestIndex(): SearchIndex {
   index.addDocument('uif://foundations/001', 'Token layering architecture core semantic component mode brand referencing');
   index.addDocument('uif://foundations/002', 'Naming and grouping conventions for design tokens figma alignment');
   index.addDocument('uif://agents/rules', 'Agent behavior rules context loading order repository rules decision bias');
-  index.addDocument('uif://agents/behavior', 'Assistant behavior rules component surfaces CSS React Nunjucks documentation');
+  index.addDocument('uif://agents/behavior', 'Assistant behavior rules component surfaces CSS Web Components Nunjucks documentation');
 
   return index;
 }
