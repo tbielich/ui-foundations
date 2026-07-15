@@ -47,8 +47,8 @@ The examples below illustrate the consumed contract. They are not source rules.
 .uif-input-field { }
 
 /* Example: invalid */
-.calendar__header { }        /* no double-underscore */
-.calendar-cell--selected { } /* no BEM modifier */
+.uif-calendar__header { }        /* no double-underscore */
+.uif-calendar-cell--selected { } /* no BEM modifier */
 .ui-calendar { }             /* no non-Vault namespace */
 .uif-button--ghost { }       /* use multi-class */
 ```
@@ -63,7 +63,7 @@ The examples below illustrate the consumed contract. They are not source rules.
 
 ## Migration
 
-Some runtime artifacts still use bare classes such as `.input` and
-`.calendar-cell`. Button emitters now use `.uif-button`; `.button` remains a
+Some runtime artifacts still use bare classes such as `.input` and `.link`.
+Button emitters now use `.uif-button`; `.button` remains a
 deprecated CSS-only compatibility selector through v1.x. Runtime validation
 warns with migration guidance while the migration is in progress.

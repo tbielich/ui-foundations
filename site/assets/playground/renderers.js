@@ -1054,16 +1054,16 @@
     const disabledAttr = disabled ? " disabled" : "";
 
     // Build header with selects
-    let headerHtml = `<div class="calendar-header">`;
-    headerHtml += `<button type="button" class="button ghost" aria-label="Previous month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
-    headerHtml += `<span class="calendar-selectors">`;
-    headerHtml += `<select class="select calendar-header-select" name="month" aria-label="Month"${disabledAttr}>`;
+    let headerHtml = `<div class="uif-calendar-header">`;
+    headerHtml += `<button type="button" class="uif-button ghost" aria-label="Previous month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
+    headerHtml += `<span class="uif-calendar-selectors">`;
+    headerHtml += `<select class="select uif-calendar-header-select" name="month" aria-label="Month"${disabledAttr}>`;
     months.forEach((m, i) => { headerHtml += `<option value="${i}"${i === selectedMonth ? " selected" : ""}>${m}</option>`; });
     headerHtml += `</select>`;
-    headerHtml += `<select class="select calendar-header-select" name="year" aria-label="Year"${disabledAttr}>`;
+    headerHtml += `<select class="select uif-calendar-header-select" name="year" aria-label="Year"${disabledAttr}>`;
     for (let y = 2020; y <= 2030; y++) { headerHtml += `<option value="${y}"${y === selectedYear ? " selected" : ""}>${y}</option>`; }
     headerHtml += `</select></span>`;
-    headerHtml += `<button type="button" class="button ghost" aria-label="Next month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
+    headerHtml += `<button type="button" class="uif-button ghost" aria-label="Next month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
     headerHtml += `</div>`;
 
     // Build table
@@ -1075,7 +1075,7 @@
       tbodyHtml += "<tr>";
       for (let dow = 0; dow < 7; dow++) {
         if (day <= 31) {
-          const classes = ["calendar-cell"];
+          const classes = ["uif-calendar-cell"];
           if (previewState === "hover" && day === 15) classes.push("is-hover");
           if (previewState === "focus" && day === 15) classes.push("is-focus-visible");
           if (selectedDate === String(day)) classes.push("is-selected");
@@ -1097,9 +1097,9 @@
     }
     tbodyHtml += "</tbody>";
 
-    const calendarClasses = ["calendar"];
+    const calendarClasses = ["uif-calendar"];
     if (hasContainer) calendarClasses.push("has-container");
-    const html = `<div class="${calendarClasses.join(" ")}">${headerHtml}<table class="calendar-table" role="grid" aria-label="${quoteAttr(month)}">${theadHtml}${tbodyHtml}</table></div>`;
+    const html = `<div class="${calendarClasses.join(" ")}">${headerHtml}<table class="uif-calendar-table" role="grid" aria-label="${quoteAttr(month)}">${theadHtml}${tbodyHtml}</table></div>`;
 
     const wrapper = document.createElement("div");
     wrapper.innerHTML = html;
@@ -1149,16 +1149,16 @@
     html += `<button type="button" aria-label="Open calendar" aria-expanded="${isOpen}" aria-haspopup="grid" aria-controls="date-picker-playground-calendar"${disabledAttr}>`;
     html += `<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>`;
     html += `</button></span>`;
-    html += `<div class="calendar" id="date-picker-playground-calendar"><div class="calendar-header">`;
-    html += `<button type="button" class="button ghost" aria-label="Previous month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
-    html += `<span class="calendar-selectors"><select class="select calendar-header-select" name="month" aria-label="Month">`;
+    html += `<div class="uif-calendar" id="date-picker-playground-calendar"><div class="uif-calendar-header">`;
+    html += `<button type="button" class="uif-button ghost" aria-label="Previous month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
+    html += `<span class="uif-calendar-selectors"><select class="select uif-calendar-header-select" name="month" aria-label="Month">`;
     monthNames.forEach((m, i) => { html += `<option value="${i}"${i === visibleMonth ? " selected" : ""}>${m}</option>`; });
-    html += `</select><select class="select calendar-header-select" name="year" aria-label="Year">`;
+    html += `</select><select class="select uif-calendar-header-select" name="year" aria-label="Year">`;
     for (let y = 2020; y <= 2030; y++) { html += `<option value="${y}"${y === visibleYear ? " selected" : ""}>${y}</option>`; }
     html += `</select></span>`;
-    html += `<button type="button" class="button ghost" aria-label="Next month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
+    html += `<button type="button" class="uif-button ghost" aria-label="Next month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
     const monthLabel = `${monthNames[visibleMonth]} ${visibleYear}`;
-    html += `</div><table class="calendar-table" role="grid" aria-label="${monthLabel}"><thead><tr>`;
+    html += `</div><table class="uif-calendar-table" role="grid" aria-label="${monthLabel}"><thead><tr>`;
     weekdayNames.forEach((d) => { html += `<th scope="col">${d}</th>`; });
     html += `</tr></thead><tbody>`;
     const firstDay = new Date(visibleYear, visibleMonth, 1);
@@ -1175,7 +1175,7 @@
         } else if (d <= daysInMonth) {
           started = true;
           const date = new Date(visibleYear, visibleMonth, d);
-          const classes = ["calendar-cell"];
+          const classes = ["uif-calendar-cell"];
           const isSelected = selectedDay === d && selectedMonth === visibleMonth + 1 && selectedYear === visibleYear;
           const isToday = date.toDateString() === today.toDateString();
           if (isSelected) classes.push("is-selected");

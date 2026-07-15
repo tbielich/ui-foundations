@@ -443,7 +443,7 @@ details[open] > .docs-nav-group-toggle::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--calendar-cell-gap);
+  padding: var(--uif-calendar-cell-gap);
   min-inline-size: 48px;
 }
 
@@ -485,7 +485,7 @@ details[open] > .docs-nav-group-toggle::before {
   inset-inline-start: calc(50% - 20px);
   inline-size: 40px;
   block-size: 40px;
-  border-radius: var(--calendar-cell-border-radius);
+  border-radius: var(--uif-calendar-cell-border-radius);
 }
 
 .docs-calendar-anatomy-callout--container {

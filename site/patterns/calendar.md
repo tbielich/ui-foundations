@@ -37,6 +37,14 @@ playgroundLabel: Open Calendar Playground
   </div>
 </div>
 
+### v1 naming migration
+
+Use `.uif-calendar` and the `.uif-calendar-*` part classes with
+`--uif-calendar-*` tokens in new and migrated markup. Unprefixed Calendar class
+selectors remain compatible throughout v1.x, but legacy `--calendar-*` token
+aliases are not provided. Consumers must migrate classes and tokens together.
+Legacy selector removal remains Wave 4 work for v2.0 or later.
+
 <h2 id="usage">Usage</h2>
 
 The Calendar component enables date selection in forms, filters, and booking flows. It supports single date selection and date range selection.
@@ -210,27 +218,27 @@ The Calendar component enables date selection in forms, filters, and booking flo
       <tr><th>Token</th><th>Purpose</th></tr>
     </thead>
     <tbody>
-      <tr><td><code>--calendar-container-padding</code></td><td>Container padding</td></tr>
-      <tr><td><code>--calendar-container-border-radius</code></td><td>Container border radius</td></tr>
-      <tr><td><code>--calendar-container-border-color</code></td><td>Container border color</td></tr>
-      <tr><td><code>--calendar-container-border-size</code></td><td>Container border width</td></tr>
-      <tr><td><code>--calendar-container-background</code></td><td>Container background</td></tr>
-      <tr><td><code>--calendar-container-gap</code></td><td>Vertical gap between calendar sections</td></tr>
-      <tr><td><code>--calendar-header-gap</code></td><td>Gap between header controls</td></tr>
-      <tr><td><code>--calendar-weekday-text-color</code></td><td>Weekday label color</td></tr>
-      <tr><td><code>--calendar-weekday-font-size</code></td><td>Weekday label font size</td></tr>
-      <tr><td><code>--calendar-weekday-height</code></td><td>Weekday label row height</td></tr>
-      <tr><td><code>--calendar-cell-gap</code></td><td>Spacing around day cells</td></tr>
-      <tr><td><code>--calendar-cell-min-size</code></td><td>Minimum day cell touch target</td></tr>
-      <tr><td><code>--calendar-cell-border-radius</code></td><td>Day cell radius</td></tr>
-      <tr><td><code>--calendar-cell-text-color-default</code></td><td>Default day cell text</td></tr>
-      <tr><td><code>--calendar-cell-text-color-active</code></td><td>Selected day cell text</td></tr>
-      <tr><td><code>--calendar-cell-text-color-disabled</code></td><td>Disabled and outside-month text</td></tr>
-      <tr><td><code>--calendar-cell-background-active</code></td><td>Selected day cell background</td></tr>
-      <tr><td><code>--calendar-cell-background-hover</code></td><td>Hover state</td></tr>
-      <tr><td><code>--calendar-cell-range-border-color</code></td><td>Range and today indicator border color</td></tr>
-      <tr><td><code>--calendar-cell-range-border-size</code></td><td>Range and today indicator border width</td></tr>
-      <tr><td><code>--calendar-cell-range-border-radius</code></td><td>Range start/end radius</td></tr>
+      <tr><td><code>--uif-calendar-container-padding</code></td><td>Container padding</td></tr>
+      <tr><td><code>--uif-calendar-container-border-radius</code></td><td>Container border radius</td></tr>
+      <tr><td><code>--uif-calendar-container-border-color</code></td><td>Container border color</td></tr>
+      <tr><td><code>--uif-calendar-container-border-size</code></td><td>Container border width</td></tr>
+      <tr><td><code>--uif-calendar-container-background</code></td><td>Container background</td></tr>
+      <tr><td><code>--uif-calendar-container-gap</code></td><td>Vertical gap between calendar sections</td></tr>
+      <tr><td><code>--uif-calendar-header-gap</code></td><td>Gap between header controls</td></tr>
+      <tr><td><code>--uif-calendar-weekday-text-color</code></td><td>Weekday label color</td></tr>
+      <tr><td><code>--uif-calendar-weekday-font-size</code></td><td>Weekday label font size</td></tr>
+      <tr><td><code>--uif-calendar-weekday-height</code></td><td>Weekday label row height</td></tr>
+      <tr><td><code>--uif-calendar-cell-gap</code></td><td>Spacing around day cells</td></tr>
+      <tr><td><code>--uif-calendar-cell-min-size</code></td><td>Minimum day cell touch target</td></tr>
+      <tr><td><code>--uif-calendar-cell-border-radius</code></td><td>Day cell radius</td></tr>
+      <tr><td><code>--uif-calendar-cell-text-color-default</code></td><td>Default day cell text</td></tr>
+      <tr><td><code>--uif-calendar-cell-text-color-active</code></td><td>Selected day cell text</td></tr>
+      <tr><td><code>--uif-calendar-cell-text-color-disabled</code></td><td>Disabled and outside-month text</td></tr>
+      <tr><td><code>--uif-calendar-cell-background-active</code></td><td>Selected day cell background</td></tr>
+      <tr><td><code>--uif-calendar-cell-background-hover</code></td><td>Hover state</td></tr>
+      <tr><td><code>--uif-calendar-cell-range-border-color</code></td><td>Range and today indicator border color</td></tr>
+      <tr><td><code>--uif-calendar-cell-range-border-size</code></td><td>Range and today indicator border width</td></tr>
+      <tr><td><code>--uif-calendar-cell-range-border-radius</code></td><td>Range start/end radius</td></tr>
     </tbody>
   </table>
 </div>

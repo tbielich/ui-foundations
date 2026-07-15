@@ -25,13 +25,6 @@ const ALLOWLIST = new Set([
   "--uif-field-label-line-height",
   "--uif-field-label-required-color",
   "--uif-icon-src",
-  // Calendar component extension points (pending Figma export)
-  "--calendar-cell-background-selected",
-  "--calendar-cell-background-range",
-  "--calendar-cell-text-color-default",
-  "--calendar-cell-text-color-selected",
-  "--calendar-cell-border-color-today",
-  "--calendar-cell-text-color-outside",
 ]);
 
 function getDefinedTokens() {

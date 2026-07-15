@@ -39,7 +39,7 @@ Rules: Components reference only Semantic or Core. Never hardcode values.
 
 Examples:
 - `--button-solid-container-background-hover`
-- `--calendar-cell-text-color-disabled`
+- `--uif-calendar-cell-text-color-disabled`
 
 States always last: `default`, `hover`, `active`, `focus`, `disabled`
 

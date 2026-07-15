@@ -1,7 +1,7 @@
 /**
  * Calendar — Progressive Enhancement
  *
- * Enhances a static `.calendar` element with:
+ * Enhances a static `.uif-calendar` element with:
  * - Month navigation (prev/next buttons rebuild the grid)
  * - Keyboard navigation (arrow keys, Home/End, PageUp/PageDown)
  * - Date selection (click/Enter updates aria-selected)
@@ -9,12 +9,17 @@
  *
  * Usage:
  *   import { Calendar } from './components/calendar.js';
- *   document.querySelectorAll('.calendar').forEach(el => new Calendar(el));
+ *   document.querySelectorAll('.uif-calendar').forEach(el => new Calendar(el));
  */
+
+const CALENDAR_ROOT_SELECTOR = ":is(.uif-calendar, .calendar)";
+const CALENDAR_TITLE_SELECTOR = ":is(.uif-calendar-title, .calendar-title)";
+const CALENDAR_TABLE_SELECTOR = ":is(.uif-calendar-table, .calendar-table)";
+const CALENDAR_CELL_SELECTOR = "button:is(.uif-calendar-cell, .calendar-cell)";
 
 export class Calendar {
   /**
-   * @param {HTMLElement} root - The .calendar element to enhance
+   * @param {HTMLElement} root - The .uif-calendar element to enhance
    * @param {object} [options]
    * @param {string} [options.locale] - Intl locale (default: "en-GB")
    * @param {Date} [options.min] - Earliest selectable date
@@ -36,8 +41,8 @@ export class Calendar {
     this.selectedDate = null;
 
     // Cache DOM references
-    this.titleEl = root.querySelector(".calendar-title");
-    this.tableBody = root.querySelector(".calendar-table tbody");
+    this.titleEl = root.querySelector(CALENDAR_TITLE_SELECTOR);
+    this.tableBody = root.querySelector(`${CALENDAR_TABLE_SELECTOR} tbody`);
     this.prevBtn = root.querySelector("[aria-label='Previous month']");
     this.nextBtn = root.querySelector("[aria-label='Next month']");
 
@@ -66,7 +71,7 @@ export class Calendar {
   // ─── Selection ──────────────────────────────────────────────────
 
   _handleCellClick(e) {
-    const btn = e.target.closest("button.calendar-cell");
+    const btn = e.target.closest(CALENDAR_CELL_SELECTOR);
     if (!btn || btn.disabled) return;
 
     const date = this._dateFromCell(btn);
@@ -90,10 +95,10 @@ export class Calendar {
   // ─── Keyboard ───────────────────────────────────────────────────
 
   _handleKeyDown(e) {
-    const btn = e.target.closest("button.calendar-cell");
+    const btn = e.target.closest(CALENDAR_CELL_SELECTOR);
     if (!btn) return;
 
-    const cells = [...this.tableBody.querySelectorAll("button.calendar-cell")];
+    const cells = [...this.tableBody.querySelectorAll(CALENDAR_CELL_SELECTOR)];
     const index = cells.indexOf(btn);
     if (index === -1) return;
 
@@ -201,7 +206,7 @@ export class Calendar {
       html += "<tr>";
       for (let j = i; j < i + 7 && j < cells.length; j++) {
         const cell = cells[j];
-        const classes = ["calendar-cell"];
+        const classes = ["uif-calendar-cell"];
         const isSelected = this._isSameDay(cell.date, this.selectedDate);
         const isToday = this._isSameDay(cell.date, this.today);
         const isDisabled = this._isDisabled(cell.date);
@@ -232,7 +237,7 @@ export class Calendar {
   // ─── Helpers ────────────────────────────────────────────────────
 
   _parseInitialMonth() {
-    const titleEl = this.root.querySelector(".calendar-title");
+    const titleEl = this.root.querySelector(CALENDAR_TITLE_SELECTOR);
     if (titleEl) {
       const parsed = new Date(titleEl.textContent);
       if (!isNaN(parsed.getTime())) return parsed;
@@ -258,11 +263,11 @@ export class Calendar {
   }
 }
 
-// Auto-init: enhance all .calendar elements on DOMContentLoaded
+// Auto-init: enhance all .uif-calendar elements on DOMContentLoaded
 if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     document
-      .querySelectorAll(".calendar:not([data-enhanced])")
+      .querySelectorAll(`${CALENDAR_ROOT_SELECTOR}:not([data-enhanced])`)
       .forEach((el) => {
         el.setAttribute("data-enhanced", "");
         new Calendar(el);
