@@ -3,15 +3,15 @@
   "contract_id": "governance-pack.naming-contract",
   "title": "Naming Contract",
   "type": "naming-contract",
-  "status": "draft",
+  "status": "review",
   "authority": "derived",
   "owner": "ui-foundations",
   "schema_version": "1.0.0",
-  "contract_version": "0.1.0",
-  "governance_pack_version": "0.7.0",
-  "channel": "draft",
-  "release_date": "2026-07-09",
-  "updated": "2026-07-09",
+  "contract_version": "0.2.0",
+  "governance_pack_version": "0.8.0",
+  "channel": "review",
+  "release_date": "2026-07-15",
+  "updated": "2026-07-15",
   "normativity": {
     "rules_are_normative": true,
     "examples_are_normative": false,
@@ -22,6 +22,15 @@
     "pack_manifest": "exports/governance-pack/pack.yml",
     "pack_changelog": "exports/governance-pack/CHANGELOG.md",
     "canonical_sources": [
+      {
+        "id": "adr.uif-public-api-namespace",
+        "path": "decisions/uif-public-api-namespace.md",
+        "sections": [
+          "Decision",
+          "Consequences",
+          "Verification"
+        ]
+      },
       {
         "id": "specification.pattern.schema",
         "path": "patterns/schemas/pattern.schema.md",
@@ -98,6 +107,36 @@
         "unscoped public tokens such as --button-*"
       ]
     },
+    "nunjucks_macro_namespace": {
+      "alias": "uif",
+      "invocation_pattern": "uif.*",
+      "scope": "public Nunjucks examples and generated snippets",
+      "required": true,
+      "consumer_selected_alias": true,
+      "does_not_govern": [
+        "macro module package path",
+        "named macro exports",
+        "compatibility or migration behavior"
+      ]
+    },
+    "custom_element_tag_prefix": {
+      "prefix": "uif-",
+      "tag_pattern": "uif-[component]",
+      "scope": "public autonomous Custom Element tag names",
+      "required": true,
+      "governs": [
+        "registration strings",
+        "authored tag names",
+        "HTMLElementTagNameMap keys"
+      ],
+      "does_not_govern": [
+        "JavaScript constructor names",
+        "JavaScript export names",
+        "module filenames",
+        "package subpaths",
+        "compatibility or migration behavior"
+      ]
+    },
     "proof_token_prefix": {
       "prefix": "--uif-proof-",
       "scope": "experimental unresolved proof tokens",
@@ -169,6 +208,16 @@
       "label": "non-normative example",
       "kind": "component_token_slot",
       "value": "--uif-button-background"
+    },
+    {
+      "label": "non-normative example",
+      "kind": "nunjucks_macro_invocation",
+      "value": "uif.button(...)"
+    },
+    {
+      "label": "non-normative example",
+      "kind": "custom_element_tag",
+      "value": "<uif-button>"
     },
     {
       "label": "non-normative example",

@@ -9,6 +9,8 @@ stable location for humans and agents.
 
 - `adr-agentic-docs-restructure.md` — documentation structure and agent consumption model
 - `adr-github-projects-workflow.md` — GitHub Projects delivery workflow (proposed)
+- `adr-uif-public-api-namespace.md` — canonical `uif.*` macro invocation and
+  `<uif-*>` Custom Element namespaces (proposed)
 
 ## Related docs
 
