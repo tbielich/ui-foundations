@@ -290,7 +290,7 @@
         var p = state.props;
         var text = p.text || "Tooltip text";
         var placement = p.placement || "top";
-        return '{% call ui.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="button">Hover me</button>{% endcall %}';
+        return '{% call ui.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="uif-button">Hover me</button>{% endcall %}';
       },
     },
     wc: {
@@ -345,7 +345,7 @@
         var p = state.props;
         var text = p.text || "Tooltip text";
         var placement = p.placement || "top";
-        return '<ui-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="button">Hover me</button>\n</ui-tooltip>';
+        return '<ui-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="uif-button">Hover me</button>\n</ui-tooltip>';
       },
     },
   };

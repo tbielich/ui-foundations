@@ -14,9 +14,9 @@ figma.connect(
       text: figma.string("Text"),
     },
     example: ({ placement, text }: TooltipProps) =>
-      html`<span class="tooltip-trigger">
-  <button class="button outline" type="button">Trigger</button>
-  <span class="tooltip" role="tooltip" data-placement="${placement}">${text}</span>
+      html`<span class="uif-tooltip-trigger">
+  <button class="uif-button outline" type="button">Trigger</button>
+  <span class="uif-tooltip" role="tooltip" data-placement="${placement}">${text}</span>
 </span>`,
   },
 );

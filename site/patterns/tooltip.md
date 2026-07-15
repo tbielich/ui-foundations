@@ -43,36 +43,36 @@ playgroundLabel: Open Tooltip Playground
 <div class="docs-states-grid" style="--docs-states-cols: 4">
   <div class="docs-states-grid-item">
     <div class="docs-states-grid-item-preview" style="padding-block: 2rem;">
-      <span class="tooltip-trigger">
+      <span class="uif-tooltip-trigger">
         <button class="button outline" type="button">Top</button>
-        <span class="tooltip is-visible" role="tooltip" data-placement="top">Tooltip text</span>
+        <span class="uif-tooltip is-visible" role="tooltip" data-placement="top">Tooltip text</span>
       </span>
     </div>
     <span class="docs-states-grid-item-label">Top</span>
   </div>
   <div class="docs-states-grid-item">
     <div class="docs-states-grid-item-preview" style="padding-block: 2rem;">
-      <span class="tooltip-trigger">
+      <span class="uif-tooltip-trigger">
         <button class="button outline" type="button">Bottom</button>
-        <span class="tooltip is-visible" role="tooltip" data-placement="bottom">Tooltip text</span>
+        <span class="uif-tooltip is-visible" role="tooltip" data-placement="bottom">Tooltip text</span>
       </span>
     </div>
     <span class="docs-states-grid-item-label">Bottom</span>
   </div>
   <div class="docs-states-grid-item">
     <div class="docs-states-grid-item-preview" style="padding-inline: 5rem; padding-block: 1rem;">
-      <span class="tooltip-trigger">
+      <span class="uif-tooltip-trigger">
         <button class="button outline" type="button">Left</button>
-        <span class="tooltip is-visible" role="tooltip" data-placement="left">Tip</span>
+        <span class="uif-tooltip is-visible" role="tooltip" data-placement="left">Tip</span>
       </span>
     </div>
     <span class="docs-states-grid-item-label">Left</span>
   </div>
   <div class="docs-states-grid-item">
     <div class="docs-states-grid-item-preview" style="padding-inline: 5rem; padding-block: 1rem;">
-      <span class="tooltip-trigger">
+      <span class="uif-tooltip-trigger">
         <button class="button outline" type="button">Right</button>
-        <span class="tooltip is-visible" role="tooltip" data-placement="right">Tip</span>
+        <span class="uif-tooltip is-visible" role="tooltip" data-placement="right">Tip</span>
       </span>
     </div>
     <span class="docs-states-grid-item-label">Right</span>
@@ -137,6 +137,10 @@ playgroundLabel: Open Tooltip Playground
 - Uses `role="tooltip"` on the tooltip element.
 - Trigger should have `aria-describedby` pointing to the tooltip ID for screen readers.
 - Tooltips are non-interactive — they cannot contain links or buttons.
+
+<h2 id="v1-naming-migration">v1 naming migration</h2>
+
+Tooltip emitters now produce `.uif-tooltip` and `.uif-tooltip-trigger`. The legacy `.tooltip` and `.tooltip-trigger` selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-tooltip-*`; library-owned legacy `--tooltip-*` token aliases are not provided. The existing `<ui-tooltip>` registration and package export remain unchanged by this component-family migration.
 - Shows on both hover and focus to support keyboard users.
 
 <h2 id="design-checklist">Design checklist</h2>
@@ -145,5 +149,5 @@ playgroundLabel: Open Tooltip Playground
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All brand/mode contexts</strong><span>Works across light and dark modes.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Defined options</strong><span>Placement and text documented.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Usage guidelines</strong><span>Do/don't for content length.</span></div></div>
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--tooltip-*</code>).</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--uif-tooltip-*</code>).</span></div></div>
 </div>

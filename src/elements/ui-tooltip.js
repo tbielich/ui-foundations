@@ -19,7 +19,7 @@ class UITooltip extends UIElement {
     const placement = this.getAttr("placement", "top");
     const children = this.innerHTML;
 
-    this.innerHTML = `<span class="tooltip-trigger">${children}<span class="tooltip" role="tooltip" data-placement="${placement}">${text}</span></span>`;
+    this.innerHTML = `<span class="uif-tooltip-trigger">${children}<span class="uif-tooltip" role="tooltip" data-placement="${placement}">${text}</span></span>`;
   }
 }
 

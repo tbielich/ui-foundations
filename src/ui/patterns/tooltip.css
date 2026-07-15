@@ -1,49 +1,49 @@
 @layer components {
-  .tooltip {
+  :is(.uif-tooltip, .tooltip) {
     position: absolute;
     z-index: var(--zindex-tooltip);
     max-inline-size: 15rem;
-    padding-inline: var(--tooltip-padding-inline);
-    padding-block: var(--tooltip-padding-block);
+    padding-inline: var(--uif-tooltip-padding-inline);
+    padding-block: var(--uif-tooltip-padding-block);
     font-family: var(--font-family-sans);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-sm);
-    color: var(--tooltip-text-color-default);
-    background: var(--tooltip-container-background-default);
-    border-radius: var(--tooltip-border-radius);
+    color: var(--uif-tooltip-text-color-default);
+    background: var(--uif-tooltip-container-background-default);
+    border-radius: var(--uif-tooltip-border-radius);
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.15s ease;
   }
 
-  .tooltip.is-visible {
+  :is(.uif-tooltip, .tooltip).is-visible {
     opacity: 1;
   }
 
   /* ── Placement ── */
 
-  .tooltip[data-placement="top"] {
+  :is(.uif-tooltip, .tooltip)[data-placement="top"] {
     inset-block-end: 100%;
     inset-inline-start: 50%;
     transform: translateX(-50%);
     margin-block-end: var(--size-spacing-200);
   }
 
-  .tooltip[data-placement="bottom"] {
+  :is(.uif-tooltip, .tooltip)[data-placement="bottom"] {
     inset-block-start: 100%;
     inset-inline-start: 50%;
     transform: translateX(-50%);
     margin-block-start: var(--size-spacing-200);
   }
 
-  .tooltip[data-placement="left"] {
+  :is(.uif-tooltip, .tooltip)[data-placement="left"] {
     inset-inline-end: 100%;
     inset-block-start: 50%;
     transform: translateY(-50%);
     margin-inline-end: var(--size-spacing-200);
   }
 
-  .tooltip[data-placement="right"] {
+  :is(.uif-tooltip, .tooltip)[data-placement="right"] {
     inset-inline-start: 100%;
     inset-block-start: 50%;
     transform: translateY(-50%);
@@ -52,13 +52,13 @@
 
   /* ── Trigger wrapper ── */
 
-  .tooltip-trigger {
+  :is(.uif-tooltip-trigger, .tooltip-trigger) {
     position: relative;
     display: inline-flex;
   }
 
-  .tooltip-trigger:hover > .tooltip,
-  .tooltip-trigger:focus-within > .tooltip {
+  :is(.uif-tooltip-trigger, .tooltip-trigger):hover > :is(.uif-tooltip, .tooltip),
+  :is(.uif-tooltip-trigger, .tooltip-trigger):focus-within > :is(.uif-tooltip, .tooltip) {
     opacity: 1;
   }
 }

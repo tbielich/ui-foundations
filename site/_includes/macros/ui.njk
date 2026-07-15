@@ -223,9 +223,9 @@
 {%- endmacro %}
 
 {% macro tooltip(text='', placement='top', className='') -%}
-{%- set classes = "tooltip-trigger" -%}
+{%- set classes = "uif-tooltip-trigger" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
-<span class="{{ classes }}">{{ caller() }}<span class="tooltip" role="tooltip" data-placement="{{ placement }}">{{ text }}</span></span>
+<span class="{{ classes }}">{{ caller() }}<span class="uif-tooltip" role="tooltip" data-placement="{{ placement }}">{{ text }}</span></span>
 {%- endmacro %}
 
 {% macro form(borderless=false, className='') -%}
