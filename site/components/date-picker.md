@@ -74,9 +74,9 @@ Together they form a component that can be opened, navigated, and dismissed — 
     ├── .input-field-control
     │   └── button [aria-label="Open calendar", aria-expanded, aria-controls]
     │       └── span.uif-icon (calendar icon)
-    └── .calendar [hidden until opened]
-        ├── .calendar-header
-        └── table.calendar-table [role="grid"]
+    └── .uif-calendar [hidden until opened]
+        ├── .uif-calendar-header
+        └── table.uif-calendar-table [role="grid"]
 ```
 
 ## Patterns Used
@@ -133,7 +133,7 @@ Together they form a component that can be opened, navigated, and dismissed — 
 Reuses tokens from the composed patterns:
 - Input tokens (`--input-*`)
 - Input control button behavior from `.input-field-control`
-- Calendar tokens (`--calendar-cell-*`)
+- Calendar tokens (`--uif-calendar-cell-*`)
 
 No additional component-specific tokens needed — the composition inherits from its parts.
 
@@ -173,7 +173,7 @@ The Date Picker requires `src/ui/components/date-input.js` for:
   document.querySelectorAll('.input-field.date').forEach(function(root) {
     var segments = root.querySelectorAll('.date-segment');
     var trigger = root.querySelector("[aria-label='Open calendar']");
-    var calendar = root.querySelector('.calendar');
+    var calendar = root.querySelector('.uif-calendar');
     var field = root.closest('.date-picker-field');
     var label = field && field.querySelector('.uif-field-label');
     var isOpen = false;
@@ -314,7 +314,7 @@ The Date Picker requires `src/ui/components/date-input.js` for:
 
         if (monthSelect) monthSelect.value = currentMonth;
         if (yearSelect) yearSelect.value = currentYear;
-        var table = calendar.querySelector('.calendar-table');
+        var table = calendar.querySelector('.uif-calendar-table');
         if (table) {
           var label = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' }).format(firstDay);
           table.setAttribute('aria-label', label);
@@ -378,9 +378,9 @@ The Date Picker requires `src/ui/components/date-input.js` for:
 
       // Keyboard navigation in the grid (roving tabindex)
       calendar.addEventListener('keydown', function(e) {
-        var btn = e.target.closest('button.calendar-cell');
+        var btn = e.target.closest('button.uif-calendar-cell');
         if (!btn) return;
-        var cells = Array.from(calendar.querySelectorAll('button.calendar-cell'));
+        var cells = Array.from(calendar.querySelectorAll('button.uif-calendar-cell'));
         var idx = cells.indexOf(btn);
         if (idx === -1) return;
 
@@ -418,9 +418,9 @@ The Date Picker requires `src/ui/components/date-input.js` for:
       });
 
       calendar.addEventListener('click', function(e) {
-        var btn = e.target.closest('button.calendar-cell');
+        var btn = e.target.closest('button.uif-calendar-cell');
         if (!btn || btn.disabled) return;
-        calendar.querySelectorAll('.calendar-cell').forEach(function(c) {
+        calendar.querySelectorAll('.uif-calendar-cell').forEach(function(c) {
           c.classList.remove('is-selected');
           c.setAttribute('aria-selected', 'false');
         });

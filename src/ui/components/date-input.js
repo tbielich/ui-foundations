@@ -18,7 +18,7 @@
  *       input.date-segment.year [maxlength=4, inputmode=numeric]
  *     .input-field-control
  *       button (calendar trigger)
- *     .calendar (dropdown)
+ *     .uif-calendar (dropdown)
  */
 
 import { Calendar } from "./calendar.js";
@@ -37,7 +37,7 @@ export class DateInput {
 
     // Calendar
     this.trigger = root.querySelector("[aria-label='Open calendar']");
-    this.calendarEl = root.querySelector(".calendar");
+    this.calendarEl = root.querySelector(":is(.uif-calendar, .calendar)");
     this.isOpen = false;
 
     if (this.calendarEl) {

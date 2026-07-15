@@ -41,7 +41,7 @@ The module paths below are the component-specific alternatives. Import
 
 `Calendar` was available only from the removed aggregate React entry. There is
 no Calendar Custom Element entry point. Use the documented Calendar semantic
-HTML and `.calendar*` CSS pattern until Calendar receives an approved Custom
+HTML and `.uif-calendar*` CSS pattern until Calendar receives an approved Custom
 Element API. `LabelContent` is likewise a composition helper: author the
 documented uif-label-content markup or use the Nunjucks macro instead of inventing
 a Custom Element.

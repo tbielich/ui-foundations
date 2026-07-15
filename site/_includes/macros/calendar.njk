@@ -15,7 +15,7 @@
 {%- endmacro %}
 
 {% macro calendarDay(label='1', selected=false, today=false, disabled=false, outsideMonth=false, hover=false, focus=false, rangeStart=false, rangeMiddle=false, rangeEnd=false, tabindex='-1') -%}
-{%- set cellClasses = "calendar-cell" -%}
+{%- set cellClasses = "uif-calendar-cell" -%}
 {%- if hover -%}{%- set cellClasses = cellClasses + " is-hover" -%}{%- endif -%}
 {%- if focus -%}{%- set cellClasses = cellClasses + " is-focus-visible" -%}{%- endif -%}
 {%- if selected -%}{%- set cellClasses = cellClasses + " is-selected" -%}{%- endif -%}
@@ -30,7 +30,7 @@
 {%- endmacro %}
 
 {% macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='', rangeStart='', rangeEnd='') -%}
-{%- set calendarClasses = "calendar" -%}
+{%- set calendarClasses = "uif-calendar" -%}
 {%- if container -%}{%- set calendarClasses = calendarClasses + " has-container" -%}{%- endif -%}
 {%- if className -%}{%- set calendarClasses = calendarClasses + " " + className -%}{%- endif -%}
 
@@ -46,19 +46,19 @@
 {%- endfor -%}
 
 <div class="{{ calendarClasses }}"{% if id %} id="{{ id }}"{% endif %}>
-  <div class="calendar-header">
-    <button type="button" class="button ghost" aria-label="Previous month"{{ " disabled" if disabled }}>
+  <div class="uif-calendar-header">
+    <button type="button" class="uif-button ghost" aria-label="Previous month"{{ " disabled" if disabled }}>
       {{ calendarIcon('chevron--left') }}
     </button>
-    <span class="calendar-selectors">
-      {{ calendarSelect(options=monthOptions, value='6', disabled=disabled, className='calendar-header-select', name='month') }}
-      {{ calendarSelect(options=yearOptions, value='2026', disabled=disabled, className='calendar-header-select', name='year') }}
+    <span class="uif-calendar-selectors">
+      {{ calendarSelect(options=monthOptions, value='6', disabled=disabled, className='uif-calendar-header-select', name='month') }}
+      {{ calendarSelect(options=yearOptions, value='2026', disabled=disabled, className='uif-calendar-header-select', name='year') }}
     </span>
-    <button type="button" class="button ghost" aria-label="Next month"{{ " disabled" if disabled }}>
+    <button type="button" class="uif-button ghost" aria-label="Next month"{{ " disabled" if disabled }}>
       {{ calendarIcon('chevron') }}
     </button>
   </div>
-  <table class="calendar-table" role="grid" aria-label="{{ month }}">
+  <table class="uif-calendar-table" role="grid" aria-label="{{ month }}">
     <thead>
       <tr>
         {%- for day in weekdays %}
@@ -101,7 +101,7 @@
 {# ─── Range Calendar (two months side by side) ─────────────────── #}
 
 {% macro rangeCalendar(month='2026-07', disabled=false, container=true, className='', id='') -%}
-{%- set calendarClasses = "calendar range-view" -%}
+{%- set calendarClasses = "uif-calendar range-view" -%}
 {%- if container -%}{%- set calendarClasses = calendarClasses + " has-container" -%}{%- endif -%}
 {%- if className -%}{%- set calendarClasses = calendarClasses + " " + className -%}{%- endif -%}
 
@@ -117,40 +117,40 @@
 {%- endfor -%}
 
 <div class="{{ calendarClasses }}"{% if id %} id="{{ id }}"{% endif %}>
-  <div class="calendar-header">
-    <button type="button" class="button ghost" aria-label="Previous month"{{ " disabled" if disabled }}>
+  <div class="uif-calendar-header">
+    <button type="button" class="uif-button ghost" aria-label="Previous month"{{ " disabled" if disabled }}>
       {{ calendarIcon('chevron--left') }}
     </button>
-    <span class="calendar-selectors">
-      {{ calendarSelect(options=monthOptions, value='6', disabled=disabled, className='calendar-header-select', name='month') }}
-      {{ calendarSelect(options=yearOptions, value='2026', disabled=disabled, className='calendar-header-select', name='year') }}
+    <span class="uif-calendar-selectors">
+      {{ calendarSelect(options=monthOptions, value='6', disabled=disabled, className='uif-calendar-header-select', name='month') }}
+      {{ calendarSelect(options=yearOptions, value='2026', disabled=disabled, className='uif-calendar-header-select', name='year') }}
     </span>
-    <button type="button" class="button ghost" aria-label="Next month"{{ " disabled" if disabled }}>
+    <button type="button" class="uif-button ghost" aria-label="Next month"{{ " disabled" if disabled }}>
       {{ calendarIcon('chevron') }}
     </button>
   </div>
 
   {# Left month #}
-  <div class="calendar-month-panel" data-panel="left">
-    <span class="calendar-month-label">July 2026</span>
-    <table class="calendar-table" role="grid" aria-label="July 2026">
+  <div class="uif-calendar-month-panel" data-panel="left">
+    <span class="uif-calendar-month-label">July 2026</span>
+    <table class="uif-calendar-table" role="grid" aria-label="July 2026">
       <thead><tr>{%- for day in weekdays %}<th scope="col" abbr="{{ day }}">{{ day }}</th>{%- endfor %}</tr></thead>
       <tbody>
         {%- for week in range(0, 5) %}
-        <tr>{%- for dow in range(0, 7) %}{%- set i = week * 7 + dow + 1 -%}{%- if i <= 31 %}<td><button type="button" class="calendar-cell" aria-selected="false" tabindex="{{ 0 if i == 1 else -1 }}">{{ i }}</button></td>{%- else %}<td></td>{%- endif %}{%- endfor %}</tr>
+        <tr>{%- for dow in range(0, 7) %}{%- set i = week * 7 + dow + 1 -%}{%- if i <= 31 %}<td><button type="button" class="uif-calendar-cell" aria-selected="false" tabindex="{{ 0 if i == 1 else -1 }}">{{ i }}</button></td>{%- else %}<td></td>{%- endif %}{%- endfor %}</tr>
         {%- endfor %}
       </tbody>
     </table>
   </div>
 
   {# Right month #}
-  <div class="calendar-month-panel" data-panel="right">
-    <span class="calendar-month-label">August 2026</span>
-    <table class="calendar-table" role="grid" aria-label="August 2026">
+  <div class="uif-calendar-month-panel" data-panel="right">
+    <span class="uif-calendar-month-label">August 2026</span>
+    <table class="uif-calendar-table" role="grid" aria-label="August 2026">
       <thead><tr>{%- for day in weekdays %}<th scope="col" abbr="{{ day }}">{{ day }}</th>{%- endfor %}</tr></thead>
       <tbody>
         {%- for week in range(0, 5) %}
-        <tr>{%- for dow in range(0, 7) %}{%- set i = week * 7 + dow + 1 -%}{%- if i <= 31 %}<td><button type="button" class="calendar-cell" aria-selected="false" tabindex="-1">{{ i }}</button></td>{%- else %}<td></td>{%- endif %}{%- endfor %}</tr>
+        <tr>{%- for dow in range(0, 7) %}{%- set i = week * 7 + dow + 1 -%}{%- if i <= 31 %}<td><button type="button" class="uif-calendar-cell" aria-selected="false" tabindex="-1">{{ i }}</button></td>{%- else %}<td></td>{%- endif %}{%- endfor %}</tr>
         {%- endfor %}
       </tbody>
     </table>

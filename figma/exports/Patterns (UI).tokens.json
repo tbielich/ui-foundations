@@ -6377,7 +6377,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-container-padding)"
+            "WEB": "var(--uif-calendar-container-padding)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:3",
@@ -6399,7 +6399,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-container-border-radius)"
+            "WEB": "var(--uif-calendar-container-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:1:250",
@@ -6421,7 +6421,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-container-border-color)"
+            "WEB": "var(--uif-calendar-container-border-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:343",
@@ -6443,7 +6443,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-container-border-size)"
+            "WEB": "var(--uif-calendar-container-border-size)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:7",
@@ -6465,7 +6465,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-container-background)"
+            "WEB": "var(--uif-calendar-container-background)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -6487,7 +6487,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-container-gap)"
+            "WEB": "var(--uif-calendar-container-gap)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:3",
@@ -6511,7 +6511,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-gap)"
+            "WEB": "var(--uif-calendar-cell-gap)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2983:462",
@@ -6533,7 +6533,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-min-size)"
+            "WEB": "var(--uif-calendar-cell-min-size)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3020:2",
@@ -6555,7 +6555,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-border-radius)"
+            "WEB": "var(--uif-calendar-cell-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:1:251",
@@ -6577,7 +6577,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-text-color-default)"
+            "WEB": "var(--uif-calendar-cell-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -6599,7 +6599,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-text-color-active)"
+            "WEB": "var(--uif-calendar-cell-text-color-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2616:6",
@@ -6621,7 +6621,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-text-color-disabled)"
+            "WEB": "var(--uif-calendar-cell-text-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:328",
@@ -6643,7 +6643,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-background-active)"
+            "WEB": "var(--uif-calendar-cell-background-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:339",
@@ -6665,7 +6665,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-background-hover)"
+            "WEB": "var(--uif-calendar-cell-background-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2016:1881",
@@ -6687,7 +6687,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-range-border-color)"
+            "WEB": "var(--uif-calendar-cell-range-border-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -6709,7 +6709,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-range-border-size)"
+            "WEB": "var(--uif-calendar-cell-range-border-size)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:7",
@@ -6731,7 +6731,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-cell-range-border-radius)"
+            "WEB": "var(--uif-calendar-cell-range-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:1:251",
@@ -6755,7 +6755,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-weekday-text-color)"
+            "WEB": "var(--uif-calendar-weekday-text-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:341",
@@ -6777,7 +6777,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-weekday-font-size)"
+            "WEB": "var(--uif-calendar-weekday-font-size)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:1:205",
@@ -6797,7 +6797,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-weekday-height)"
+            "WEB": "var(--uif-calendar-weekday-height)"
           }
         }
       }
@@ -6814,7 +6814,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--calendar-header-gap)"
+            "WEB": "var(--uif-calendar-header-gap)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:3",
