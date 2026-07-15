@@ -986,7 +986,7 @@
       previewState === "disabled" || asBoolean(props.disabled);
 
     const element = document.createElement("a");
-    const classes = ["link"];
+    const classes = ["uif-link"];
 
     if (previewState === "hover") classes.push("is-hover");
     if (previewState === "active") classes.push("is-active");

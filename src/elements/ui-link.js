@@ -21,7 +21,7 @@ class UILink extends UIElement {
     const disabled = this.getBool("disabled");
     const text = this.textContent.trim();
 
-    const classes = ["link"];
+    const classes = ["uif-link"];
     if (disabled) classes.push("is-disabled");
 
     const attrs = [`class="${classes.join(" ")}"`];

@@ -13,7 +13,7 @@ Keep component markup as flat and simple as possible. Complexity in HTML structu
 ## Rules
 
 1. Start with the flattest possible markup.
-   - A link with an icon is `<a class="link"><span class="uif-icon">...</span> Text</a>`, not three nested wrappers.
+   - A link with an icon is `<a class="uif-link"><span class="uif-icon">...</span> Text</a>`, not three nested wrappers.
    - Add structure only when layout or behavior requires it.
 
 2. Use CSS on the component root for layout.

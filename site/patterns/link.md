@@ -30,7 +30,7 @@ breadcrumb:
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      <a class="link" href="#">Learn more</a>
+      <a class="uif-link" href="#">Learn more</a>
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -40,6 +40,13 @@ breadcrumb:
     {% endif %}
   </div>
 </div>
+
+### v1 naming migration
+
+Use `.uif-link` and `--uif-link-*` tokens in new and migrated markup. The
+unprefixed `.link` selector remains compatible throughout v1.x, but legacy
+`--link-*` token aliases are not provided. Consumers must migrate classes and
+tokens together. Legacy selector removal remains Wave 4 work for v2.0 or later.
 
 <h2 id="anatomy">Anatomy</h2>
 
@@ -59,7 +66,7 @@ breadcrumb:
         <span class="docs-anatomy-badge">3</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
-      <a class="link" href="#"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/target-blank.svg');" aria-hidden="true"></span>External link<span class="uif-icon" data-slot="end" style="--uif-icon-src: url('/assets/icons/target-blank.svg');" aria-hidden="true"></span></a>
+      <a class="uif-link" href="#"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/target-blank.svg');" aria-hidden="true"></span>External link<span class="uif-icon" data-slot="end" style="--uif-icon-src: url('/assets/icons/target-blank.svg');" aria-hidden="true"></span></a>
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -75,23 +82,23 @@ breadcrumb:
 
 <div class="docs-states-grid" style="--docs-states-cols: 5">
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview"><a class="link" href="#">Default</a></div>
+    <div class="docs-states-grid-item-preview"><a class="uif-link" href="#">Default</a></div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview"><a class="link is-hover" href="#">Hover</a></div>
+    <div class="docs-states-grid-item-preview"><a class="uif-link is-hover" href="#">Hover</a></div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview"><a class="link is-active" href="#">Active</a></div>
+    <div class="docs-states-grid-item-preview"><a class="uif-link is-active" href="#">Active</a></div>
     <span class="docs-states-grid-item-label">Active</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview"><a class="link is-visited" href="#">Visited</a></div>
+    <div class="docs-states-grid-item-preview"><a class="uif-link is-visited" href="#">Visited</a></div>
     <span class="docs-states-grid-item-label">Visited</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview"><a class="link is-disabled" aria-disabled="true" tabindex="-1">Disabled</a></div>
+    <div class="docs-states-grid-item-preview"><a class="uif-link is-disabled" aria-disabled="true" tabindex="-1">Disabled</a></div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
 </div>
@@ -115,7 +122,7 @@ breadcrumb:
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <a class="link" href="#">Inline link</a> within body text.
+      <a class="uif-link" href="#">Inline link</a> within body text.
     </div>
     <div class="docs-behavior-body">
       <h3>Inline usage</h3>
@@ -124,7 +131,7 @@ breadcrumb:
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      <a class="link is-disabled" aria-disabled="true" tabindex="-1">Disabled link</a>
+      <a class="uif-link is-disabled" aria-disabled="true" tabindex="-1">Disabled link</a>
     </div>
     <div class="docs-behavior-body">
       <h3>Disabled state</h3>
@@ -140,7 +147,7 @@ breadcrumb:
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      <a class="link" href="/settings">Account settings</a>
+      <a class="uif-link" href="/settings">Account settings</a>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
@@ -149,7 +156,7 @@ breadcrumb:
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      <a class="link" href="#">Submit form</a>
+      <a class="uif-link" href="#">Submit form</a>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
@@ -163,7 +170,7 @@ breadcrumb:
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      <a class="link" href="#">View booking details</a>
+      <a class="uif-link" href="#">View booking details</a>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
@@ -172,7 +179,7 @@ breadcrumb:
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      <a class="link" href="#">Click here</a>
+      <a class="uif-link" href="#">Click here</a>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>

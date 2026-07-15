@@ -67,7 +67,7 @@ generation, and framework-agnostic Custom Elements.
 ```html
 <button class="uif-button solid" type="button">Label</button>
 <input class="input" type="text" placeholder="Email" />
-<a href="/page" class="link">Go to page</a>
+<a href="/page" class="uif-link">Go to page</a>
 ```
 
 ### Nunjucks Macros

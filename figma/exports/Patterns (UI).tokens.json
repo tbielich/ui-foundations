@@ -4623,7 +4623,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--link-text-color-default)"
+            "WEB": "var(--uif-link-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:340",
@@ -4645,7 +4645,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--link-text-color-hover)"
+            "WEB": "var(--uif-link-text-color-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:355",
@@ -4667,7 +4667,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--link-text-color-active)"
+            "WEB": "var(--uif-link-text-color-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:355",
@@ -4689,7 +4689,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--link-text-color-visited)"
+            "WEB": "var(--uif-link-text-color-visited)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:341",
@@ -4711,7 +4711,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--link-text-color-disabled)"
+            "WEB": "var(--uif-link-text-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:328",
@@ -4731,7 +4731,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--link-text-decoration-default)"
+            "WEB": "var(--uif-link-text-decoration-default)"
           }
         }
       },
@@ -4744,7 +4744,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--link-text-decoration-hover)"
+            "WEB": "var(--uif-link-text-decoration-hover)"
           }
         }
       }
@@ -4760,7 +4760,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--link-font-family)"
+          "WEB": "var(--uif-link-font-family)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:2006:213",
@@ -4782,7 +4782,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--link-font-weight)"
+          "WEB": "var(--uif-link-font-weight)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3014:12",
@@ -4804,7 +4804,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--link-gap)"
+          "WEB": "var(--uif-link-gap)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:2",
@@ -4824,7 +4824,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--link-font-size)"
+          "WEB": "var(--uif-link-font-size)"
         }
       }
     },
@@ -4837,7 +4837,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--link-line-height)"
+          "WEB": "var(--uif-link-line-height)"
         }
       }
     }
