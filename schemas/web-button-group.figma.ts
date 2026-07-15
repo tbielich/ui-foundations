@@ -12,20 +12,20 @@ figma.connect(
       attached: figma.boolean("Attached", { true: "true", false: "false" }),
     },
     example: ({ orientation, attached }: ButtonGroupProps) => html`<div
-      class="button-group"
+      class="uif-button-group"
       role="group"
       data-orientation="${orientation}"
       data-attached="${attached}"
       data-justify="start"
       aria-label="Button group"
     >
-      <button type="button" class="button outline">
+      <button type="button" class="uif-button outline">
         Day 1
       </button>
-      <button type="button" class="button outline">
+      <button type="button" class="uif-button outline">
         Day 2
       </button>
-      <button type="button" class="button outline">
+      <button type="button" class="uif-button outline">
         Day 3
       </button>
     </div>`,

@@ -79,7 +79,7 @@ class UIButtonGroup extends UIElement {
 
     const attrs = [
       'role="group"',
-      'class="button-group"',
+      'class="uif-button-group"',
       `data-orientation="${orientation}"`,
       `data-attached="${attached ? "true" : "false"}"`,
       `data-justify="${justify}"`,

@@ -165,89 +165,102 @@
     pointer-events: none;
   }
 
-  .button-group {
+  /*
+   * `.button-group` is a deprecated v1.x compatibility selector.
+   * UIF-owned emitters use `.uif-button-group`; remove the alias no earlier than v2.0.
+   */
+
+  :is(.uif-button-group, .button-group) {
     display: inline-flex;
     align-items: stretch;
-    gap: var(--button-group-gap, var(--size-spacing-100, 0.25rem));
+    gap: var(--uif-button-group-gap, var(--size-spacing-100, 0.25rem));
   }
 
-  .button-group[data-orientation="vertical"] {
+  :is(.uif-button-group, .button-group)[data-orientation="vertical"] {
     flex-direction: column;
   }
 
-  .button-group[data-justify="stretch"] {
+  :is(.uif-button-group, .button-group)[data-justify="stretch"] {
     inline-size: 100%;
   }
 
-  .button-group[data-justify="stretch"] > :is(.uif-button, .button) {
+  :is(.uif-button-group, .button-group)[data-justify="stretch"]
+    > :is(.uif-button, .button) {
     flex: 1 1 auto;
     justify-content: center;
   }
 
-  .button-group[data-attached="true"] {
+  :is(.uif-button-group, .button-group)[data-attached="true"] {
     gap: 0;
   }
 
-  .button-group[data-attached="true"] > :is(.uif-button, .button) {
+  :is(.uif-button-group, .button-group)[data-attached="true"]
+    > :is(.uif-button, .button) {
     border-radius: var(--size-radius-000);
   }
 
-  .button-group[data-attached="true"]:not([data-orientation="vertical"])
+  :is(.uif-button-group, .button-group)[data-attached="true"]:not(
+      [data-orientation="vertical"]
+    )
     > :is(.uif-button, .button)
     + :is(.uif-button, .button) {
     border-inline-start-width: 0;
   }
 
-  .button-group[data-attached="true"][data-orientation="vertical"]
+  :is(.uif-button-group, .button-group)[data-attached="true"][data-orientation="vertical"]
     > :is(.uif-button, .button)
     + :is(.uif-button, .button) {
     border-block-start-width: 0;
   }
 
-  .button-group[data-attached="true"]:not([data-orientation="vertical"])
+  :is(.uif-button-group, .button-group)[data-attached="true"]:not(
+      [data-orientation="vertical"]
+    )
     > :is(.uif-button, .button):first-child {
     border-start-start-radius: var(
-      --button-group-border-radius,
+      --uif-button-group-border-radius,
       var(--uif-button-border-radius)
     );
     border-end-start-radius: var(
-      --button-group-border-radius,
+      --uif-button-group-border-radius,
       var(--uif-button-border-radius)
     );
   }
 
-  .button-group[data-attached="true"]:not([data-orientation="vertical"])
+  :is(.uif-button-group, .button-group)[data-attached="true"]:not(
+      [data-orientation="vertical"]
+    )
     > :is(.uif-button, .button):last-child {
     border-start-end-radius: var(
-      --button-group-border-radius,
+      --uif-button-group-border-radius,
       var(--uif-button-border-radius)
     );
     border-end-end-radius: var(
-      --button-group-border-radius,
+      --uif-button-group-border-radius,
       var(--uif-button-border-radius)
     );
   }
 
-  .button-group[data-attached="true"][data-orientation="vertical"]
+  :is(.uif-button-group, .button-group)[data-attached="true"][data-orientation="vertical"]
     > :is(.uif-button, .button):first-child {
     border-start-start-radius: var(
-      --button-group-border-radius,
+      --uif-button-group-border-radius,
       var(--uif-button-border-radius)
     );
     border-start-end-radius: var(
-      --button-group-border-radius,
+      --uif-button-group-border-radius,
       var(--uif-button-border-radius)
     );
   }
 
-  .button-group[data-attached="true"][data-orientation="vertical"]
+  :is(.uif-button-group, .button-group)[data-attached="true"][data-orientation="vertical"]
     > :is(.uif-button, .button):last-child {
     border-end-start-radius: var(
-      --button-group-border-radius,
+      --uif-button-group-border-radius,
       var(--uif-button-border-radius)
     );
     border-end-end-radius: var(
-      --button-group-border-radius,
+      --uif-button-group-border-radius,
       var(--uif-button-border-radius)
     );
   }

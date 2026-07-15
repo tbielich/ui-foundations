@@ -483,7 +483,7 @@
       String(props.tertiaryLabel || "Day 3"),
     ];
 
-    element.className = "button-group";
+    element.className = "uif-button-group";
     element.setAttribute("role", "group");
     element.dataset.orientation = orientation;
     element.dataset.justify = justify;
@@ -520,7 +520,7 @@
     });
 
     const groupAttrs = [
-      'class="button-group"',
+      'class="uif-button-group"',
       'role="group"',
       `data-orientation="${quoteAttr(orientation)}"`,
       `data-attached="${attached ? "true" : "false"}"`,
