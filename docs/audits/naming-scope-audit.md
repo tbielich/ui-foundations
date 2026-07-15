@@ -341,8 +341,8 @@ a blocker for closing #144.
    period will immediately break any consumer CSS that targets or extends those
    selectors.
 
-2. **Token override break** — Consumers who customise component appearance via
-   `--button-*` overrides in their own CSS will lose their customisations. This is
+2. **Token override break** — Consumers who customize component appearance via
+   `--button-*` overrides in their own CSS will lose their customizations. This is
    a silent regression that is hard to detect without visual regression testing.
 
 3. **Docs and playground drift** — If the runtime migration lands before macros,
