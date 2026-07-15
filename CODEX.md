@@ -92,7 +92,7 @@ Follow existing macros in `site/_includes/macros/ui.njk`:
 
 - Never draw vector graphics — always reuse icons from `src/assets/icons/`
 - If needed, rotate existing icons
-- Use the Icon component (`ui.icon()` macro / `.icon` class)
+- Use the Icon component (`ui.icon()` macro / `.uif-icon` class)
 - Color with semantic tokens: `--color-text-success`, `--color-text-brand`, etc.
 
 ---

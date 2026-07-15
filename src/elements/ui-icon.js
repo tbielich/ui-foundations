@@ -29,13 +29,13 @@ class UIIcon extends UIElement {
 
     const iconUrl = src || new URL(`../assets/${folder}/${name}.svg`, import.meta.url).href;
 
-    const classes = ["icon"];
+    const classes = ["uif-icon"];
     const extraClass = this.getAttr("class");
     if (extraClass) classes.push(extraClass);
 
     const attrs = [
       `class="${classes.join(" ")}"`,
-      `style="--icon-src: url('${iconUrl}')"`,
+      `style="--uif-icon-src: url('${iconUrl}')"`,
     ];
 
     if (decorative) {

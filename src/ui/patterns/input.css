@@ -109,7 +109,7 @@
     color: var(--input-text-color-hover);
   }
 
-  .input-field-control .icon {
+  .input-field-control :is(.uif-icon, .icon) {
     font-size: 1.5rem;
   }
 

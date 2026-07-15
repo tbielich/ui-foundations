@@ -24,7 +24,7 @@ class UIFieldLabel extends UIElement {
 
     let iconHtml = "";
     if (startIcon) {
-      iconHtml = `<span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span>`;
+      iconHtml = `<span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span>`;
     }
 
     let requiredHtml = "";

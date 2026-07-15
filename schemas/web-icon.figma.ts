@@ -13,8 +13,8 @@ figma.connect(
       }),
     },
     example: ({ name }: IconProps) => html`<span
-      class="icon"
-      style="--icon-src: url('/assets/icons/${name}.svg')"
+      class="uif-icon"
+      style="--uif-icon-src: url('/assets/icons/${name}.svg')"
       aria-hidden="true"
     ></span>`,
   },

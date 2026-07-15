@@ -59,7 +59,7 @@ breadcrumb:
         <span class="docs-anatomy-badge">3</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
-      <a class="link" href="#"><span class="icon" data-slot="start" style="--icon-src: url('/assets/icons/target-blank.svg');" aria-hidden="true"></span>External link<span class="icon" data-slot="end" style="--icon-src: url('/assets/icons/target-blank.svg');" aria-hidden="true"></span></a>
+      <a class="link" href="#"><span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/target-blank.svg');" aria-hidden="true"></span>External link<span class="uif-icon" data-slot="end" style="--uif-icon-src: url('/assets/icons/target-blank.svg');" aria-hidden="true"></span></a>
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">

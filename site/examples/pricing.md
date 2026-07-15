@@ -109,7 +109,7 @@ breadcrumb:
     color: var(--color-text-default);
   }
 
-  .pricing-card-feature .icon {
+  .pricing-card-feature .uif-icon {
     flex-shrink: 0;
     color: var(--color-text-success);
   }

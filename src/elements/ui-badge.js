@@ -26,7 +26,7 @@ class UIBadge extends UIElement {
 
     let inner = "";
     if (startIcon) {
-      inner += `<span class="icon" style="--icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span>`;
+      inner += `<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span>`;
     }
     if (text) {
       inner += `<span class="badge-text">${text}</span>`;
