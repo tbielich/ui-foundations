@@ -9,9 +9,9 @@ figma.connect(
       title: figma.string("Title"),
     },
     example: ({ open, title }: AccordionItemProps) =>
-      html`<details class="accordion-item" ${open}>
+      html`<details class="uif-accordion-item" ${open}>
   <summary>${title}</summary>
-  <div class="accordion-item-content">
+  <div class="uif-accordion-item-content">
     <p>Content</p>
   </div>
 </details>`,

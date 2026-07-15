@@ -668,25 +668,25 @@
     const openIndex = Number(props.openIndex || 0);
 
     const wrapper = document.createElement("div");
-    wrapper.className = "accordion";
+    wrapper.className = "uif-accordion";
 
-    let codeLines = ['<div class="accordion">'];
+    let codeLines = ['<div class="uif-accordion">'];
     for (let i = 0; i < items; i++) {
       const details = document.createElement("details");
-      details.className = "accordion-item";
+      details.className = "uif-accordion-item";
       if (i === openIndex) details.open = true;
       const summary = document.createElement("summary");
       summary.textContent = `Item ${i + 1}`;
       const content = document.createElement("div");
-      content.className = "accordion-item-content";
+      content.className = "uif-accordion-item-content";
       content.innerHTML = `<p>Content for item ${i + 1}</p>`;
       details.append(summary, content);
       wrapper.append(details);
 
       const openAttr = i === openIndex ? " open" : "";
-      codeLines.push(`  <details class="accordion-item"${openAttr}>`);
+      codeLines.push(`  <details class="uif-accordion-item"${openAttr}>`);
       codeLines.push(`    <summary>Item ${i + 1}</summary>`);
-      codeLines.push(`    <div class="accordion-item-content"><p>Content for item ${i + 1}</p></div>`);
+      codeLines.push(`    <div class="uif-accordion-item-content"><p>Content for item ${i + 1}</p></div>`);
       codeLines.push(`  </details>`);
     }
     codeLines.push("</div>");

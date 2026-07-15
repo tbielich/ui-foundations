@@ -5215,7 +5215,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--accordion-border-color-default)"
+            "WEB": "var(--uif-accordion-border-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:342",
@@ -5237,7 +5237,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--accordion-border-size-default)"
+            "WEB": "var(--uif-accordion-border-size-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:7",
@@ -5259,7 +5259,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--accordion-border-radius)"
+            "WEB": "var(--uif-accordion-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3032:2244",
@@ -5283,7 +5283,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--accordion-text-color-default)"
+            "WEB": "var(--uif-accordion-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -5305,7 +5305,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--accordion-text-color-disabled)"
+            "WEB": "var(--uif-accordion-text-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:328",
@@ -5328,7 +5328,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--accordion-padding-inline)"
+          "WEB": "var(--uif-accordion-padding-inline)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:5",
@@ -5350,7 +5350,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--accordion-padding-block)"
+          "WEB": "var(--uif-accordion-padding-block)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:4",
@@ -5372,7 +5372,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--accordion-gap)"
+          "WEB": "var(--uif-accordion-gap)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:3",

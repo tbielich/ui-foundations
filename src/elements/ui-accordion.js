@@ -10,7 +10,7 @@ class UIAccordion extends UIElement {
   render() {
     // Wrap children in accordion container, preserving inner content
     const children = this.innerHTML;
-    this.innerHTML = `<div class="accordion">${children}</div>`;
+    this.innerHTML = `<div class="uif-accordion">${children}</div>`;
   }
 }
 
@@ -36,7 +36,7 @@ class UIAccordionItem extends UIElement {
     const disabled = this.getBool("disabled");
     const content = this.innerHTML;
 
-    const classes = ["accordion-item"];
+    const classes = ["uif-accordion-item"];
     if (disabled) classes.push("is-disabled");
 
     const detailsAttrs = [`class="${classes.join(" ")}"`];
@@ -44,7 +44,7 @@ class UIAccordionItem extends UIElement {
 
     this.innerHTML = `<details ${detailsAttrs.join(" ")}>
   <summary>${title}</summary>
-  <div class="accordion-item-content">${content}</div>
+  <div class="uif-accordion-item-content">${content}</div>
 </details>`;
   }
 }
