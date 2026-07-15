@@ -746,7 +746,7 @@
     const orientation = String(props.orientation || "horizontal");
 
     const element = document.createElement("hr");
-    element.className = "divider";
+    element.className = "uif-divider";
     if (variant === "subtle") element.classList.add("subtle");
     if (orientation === "vertical") {
       element.setAttribute("aria-orientation", "vertical");
@@ -754,7 +754,7 @@
       element.style.blockSize = "3rem";
     }
 
-    const classes = ["divider"];
+    const classes = ["uif-divider"];
     if (variant === "subtle") classes.push("subtle");
     const attrs = [];
     if (orientation === "vertical") attrs.push('aria-orientation="vertical"');

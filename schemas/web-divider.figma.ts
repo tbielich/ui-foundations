@@ -5,9 +5,7 @@ figma.connect(
   "https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?node-id=2528-272&m=dev",
   {
     props: {
-      className: figma.className([
-        "divider",
-      ]),
+      className: figma.className(["uif-divider"]),
       orientation: figma.enum("Orientation", {
         horizontal: undefined,
         vertical: "vertical",

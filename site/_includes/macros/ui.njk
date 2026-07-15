@@ -156,7 +156,7 @@
 {%- endmacro %}
 
 {% macro divider(orientation='horizontal', variant='', className='') -%}
-{%- set classes = "divider" -%}
+{%- set classes = "uif-divider" -%}
 {%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <hr class="{{ classes }}"{% if orientation == "vertical" %} aria-orientation="vertical"{% endif %} />
