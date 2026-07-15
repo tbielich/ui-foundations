@@ -118,7 +118,7 @@ breadcrumb:
     margin-block-start: auto;
   }
 
-  .pricing-card-cta .button {
+  .pricing-card-cta .uif-button {
     inline-size: 100%;
     justify-content: center;
   }

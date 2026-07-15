@@ -214,7 +214,7 @@ consistent and accessible across brands and modes.
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      <button class="button docs-dont-custom-color" type="button">Continue</button>
+      <button class="uif-button solid docs-dont-custom-color" type="button">Continue</button>
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
@@ -274,9 +274,9 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
   data-attached="false"
   data-justify="start"
 >
-  <button class="button outline" type="button">Day 1</button>
-  <button class="button outline" type="button">Day 2</button>
-  <button class="button outline" type="button">Day 3</button>
+  <button class="uif-button outline" type="button">Day 1</button>
+  <button class="uif-button outline" type="button">Day 2</button>
+  <button class="uif-button outline" type="button">Day 3</button>
 </div>
 ```
 

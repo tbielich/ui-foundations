@@ -65,7 +65,7 @@ generation, and optional React wrappers.
 ### HTML
 
 ```html
-<button class="button" type="button">Label</button>
+<button class="uif-button solid" type="button">Label</button>
 <input class="input" type="text" placeholder="Email" />
 <a href="/page" class="link">Go to page</a>
 ```

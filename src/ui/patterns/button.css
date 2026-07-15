@@ -1,163 +1,167 @@
 @layer components {
-  /* Button token usage examples (ui-foundations) */
+  /*
+   * `.button` is a deprecated v1.x compatibility selector.
+   * UIF-owned emitters use `.uif-button`; remove the alias no earlier than v2.0.
+   */
 
-  .button {
+  :is(.uif-button, .button),
+  :is(.uif-button, .button).solid {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     white-space: nowrap;
-    min-height: var(--button-height-min);
-    background: var(--button-solid-container-background-default);
-    border-color: var(--button-solid-border-color-default);
-    border-width: var(--button-border-size-default);
+    min-height: var(--uif-button-height-min);
+    background: var(--uif-button-solid-container-background-default);
+    border-color: var(--uif-button-solid-border-color-default);
+    border-width: var(--uif-button-border-size-default);
     border-style: solid;
-    color: var(--button-solid-text-color-default);
-    border-radius: var(--button-border-radius);
-    padding-inline: var(--button-padding-inline);
-    padding-block: var(--button-padding-block);
+    color: var(--uif-button-solid-text-color-default);
+    border-radius: var(--uif-button-border-radius);
+    padding-inline: var(--uif-button-padding-inline);
+    padding-block: var(--uif-button-padding-block);
     cursor: pointer;
     -webkit-text-fill-color: currentColor;
   }
 
-  .button .label-content {
+  :is(.uif-button, .button) .label-content {
     line-height: inherit;
     color: inherit;
     -webkit-text-fill-color: currentColor;
   }
 
-  .button .label-content-text,
-  .button .icon {
+  :is(.uif-button, .button) .label-content-text,
+  :is(.uif-button, .button) .icon {
     color: inherit;
     -webkit-text-fill-color: currentColor;
   }
 
-  .button.icon-only {
-    padding-inline: var(--button-padding-block);
+  :is(.uif-button, .button).icon-only {
+    padding-inline: var(--uif-button-padding-block);
   }
 
-  .button:hover,
-  .button.is-hover {
+  :is(.uif-button, .button):hover,
+  :is(.uif-button, .button).is-hover {
     background: linear-gradient(
         0deg,
-        var(--button-overlay-hover),
-        var(--button-overlay-hover)
+        var(--uif-button-overlay-hover),
+        var(--uif-button-overlay-hover)
       ),
-      var(--button-solid-container-background-default);
-    border-color: var(--button-solid-border-color-hover);
-    color: var(--button-solid-text-color-hover);
+      var(--uif-button-solid-container-background-default);
+    border-color: var(--uif-button-solid-border-color-hover);
+    color: var(--uif-button-solid-text-color-hover);
   }
 
-  .button:active,
-  .button.is-active {
+  :is(.uif-button, .button):active,
+  :is(.uif-button, .button).is-active {
     background: linear-gradient(
         0deg,
-        var(--button-overlay-active),
-        var(--button-overlay-active)
+        var(--uif-button-overlay-active),
+        var(--uif-button-overlay-active)
       ),
-      var(--button-solid-container-background-default);
-    border-color: var(--button-solid-border-color-active);
-    color: var(--button-solid-text-color-active);
+      var(--uif-button-solid-container-background-default);
+    border-color: var(--uif-button-solid-border-color-active);
+    color: var(--uif-button-solid-text-color-active);
   }
 
-  .button:focus-visible,
-  .button.is-focus-visible {
-    background: var(--button-solid-container-background-focus);
-    border-color: var(--button-solid-border-color-focus);
-    color: var(--button-solid-text-color-default);
+  :is(.uif-button, .button):focus-visible,
+  :is(.uif-button, .button).is-focus-visible {
+    background: var(--uif-button-solid-container-background-focus);
+    border-color: var(--uif-button-solid-border-color-focus);
+    color: var(--uif-button-solid-text-color-default);
     outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
-  .button.outline {
-    background: var(--button-outline-container-background-default);
-    border-color: var(--button-outline-border-color-default);
-    border-width: var(--button-border-size-default);
+  :is(.uif-button, .button).outline {
+    background: var(--uif-button-outline-container-background-default);
+    border-color: var(--uif-button-outline-border-color-default);
+    border-width: var(--uif-button-border-size-default);
     border-style: solid;
-    color: var(--button-outline-text-color-default);
+    color: var(--uif-button-outline-text-color-default);
   }
 
-  .button.outline:hover,
-  .button.outline.is-hover {
+  :is(.uif-button, .button).outline:hover,
+  :is(.uif-button, .button).outline.is-hover {
     background: linear-gradient(
         0deg,
-        var(--button-overlay-hover),
-        var(--button-overlay-hover)
+        var(--uif-button-overlay-hover),
+        var(--uif-button-overlay-hover)
       ),
-      var(--button-outline-container-background-default);
-    border-color: var(--button-outline-border-color-hover);
-    color: var(--button-outline-text-color-default);
+      var(--uif-button-outline-container-background-default);
+    border-color: var(--uif-button-outline-border-color-hover);
+    color: var(--uif-button-outline-text-color-default);
   }
 
-  .button.outline:active,
-  .button.outline.is-active {
+  :is(.uif-button, .button).outline:active,
+  :is(.uif-button, .button).outline.is-active {
     background: linear-gradient(
         0deg,
-        var(--button-overlay-active),
-        var(--button-overlay-active)
+        var(--uif-button-overlay-active),
+        var(--uif-button-overlay-active)
       ),
-      var(--button-outline-container-background-default);
-    border-color: var(--button-outline-border-color-active);
-    color: var(--button-outline-text-color-active);
+      var(--uif-button-outline-container-background-default);
+    border-color: var(--uif-button-outline-border-color-active);
+    color: var(--uif-button-outline-text-color-active);
   }
 
-  .button.outline:focus-visible,
-  .button.outline.is-focus-visible {
-    background: var(--button-outline-container-background-focus);
-    border-color: var(--button-outline-border-color-focus);
-    color: var(--button-outline-text-color-default);
+  :is(.uif-button, .button).outline:focus-visible,
+  :is(.uif-button, .button).outline.is-focus-visible {
+    background: var(--uif-button-outline-container-background-focus);
+    border-color: var(--uif-button-outline-border-color-focus);
+    color: var(--uif-button-outline-text-color-default);
     outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
-  .button.ghost {
-    background: var(--button-ghost-container-background-default);
-    border-color: var(--button-ghost-border-color-default);
-    border-width: var(--button-border-size-default);
+  :is(.uif-button, .button).ghost {
+    background: var(--uif-button-ghost-container-background-default);
+    border-color: var(--uif-button-ghost-border-color-default);
+    border-width: var(--uif-button-border-size-default);
     border-style: solid;
-    color: var(--button-ghost-text-color-default);
+    color: var(--uif-button-ghost-text-color-default);
   }
 
-  .button.ghost:hover,
-  .button.ghost.is-hover {
+  :is(.uif-button, .button).ghost:hover,
+  :is(.uif-button, .button).ghost.is-hover {
     background: linear-gradient(
         0deg,
-        var(--button-overlay-hover),
-        var(--button-overlay-hover)
+        var(--uif-button-overlay-hover),
+        var(--uif-button-overlay-hover)
       ),
-      var(--button-ghost-container-background-default);
-    border-color: var(--button-ghost-border-color-hover);
-    color: var(--button-ghost-text-color-default);
+      var(--uif-button-ghost-container-background-default);
+    border-color: var(--uif-button-ghost-border-color-hover);
+    color: var(--uif-button-ghost-text-color-default);
   }
 
-  .button.ghost:active,
-  .button.ghost.is-active {
+  :is(.uif-button, .button).ghost:active,
+  :is(.uif-button, .button).ghost.is-active {
     background: linear-gradient(
         0deg,
-        var(--button-overlay-active),
-        var(--button-overlay-active)
+        var(--uif-button-overlay-active),
+        var(--uif-button-overlay-active)
       ),
-      var(--button-ghost-container-background-default);
-    border-color: var(--button-ghost-border-color-active);
-    color: var(--button-ghost-text-color-active);
+      var(--uif-button-ghost-container-background-default);
+    border-color: var(--uif-button-ghost-border-color-active);
+    color: var(--uif-button-ghost-text-color-active);
   }
 
-  .button.ghost:focus-visible,
-  .button.ghost.is-focus-visible {
-    background: var(--button-ghost-container-background-focus);
-    border-color: var(--button-ghost-border-color-focus);
-    color: var(--button-ghost-text-color-default);
+  :is(.uif-button, .button).ghost:focus-visible,
+  :is(.uif-button, .button).ghost.is-focus-visible {
+    background: var(--uif-button-ghost-container-background-focus);
+    border-color: var(--uif-button-ghost-border-color-focus);
+    color: var(--uif-button-ghost-text-color-default);
     outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
-  .button:disabled,
-  .button[disabled],
-  .button.is-disabled {
+  :is(.uif-button, .button):disabled,
+  :is(.uif-button, .button)[disabled],
+  :is(.uif-button, .button).is-disabled {
     cursor: not-allowed;
     opacity: 0.6;
-    background: var(--button-container-background-disabled);
-    border-color: var(--button-border-color-disabled);
-    color: var(--button-text-color-disabled);
+    background: var(--uif-button-container-background-disabled);
+    border-color: var(--uif-button-border-color-disabled);
+    color: var(--uif-button-text-color-disabled);
     pointer-events: none;
   }
 
@@ -175,7 +179,7 @@
     inline-size: 100%;
   }
 
-  .button-group[data-justify="stretch"] > .button {
+  .button-group[data-justify="stretch"] > :is(.uif-button, .button) {
     flex: 1 1 auto;
     justify-content: center;
   }
@@ -184,67 +188,67 @@
     gap: 0;
   }
 
-  .button-group[data-attached="true"] > .button {
+  .button-group[data-attached="true"] > :is(.uif-button, .button) {
     border-radius: var(--size-radius-000);
   }
 
   .button-group[data-attached="true"]:not([data-orientation="vertical"])
-    > .button
-    + .button {
+    > :is(.uif-button, .button)
+    + :is(.uif-button, .button) {
     border-inline-start-width: 0;
   }
 
   .button-group[data-attached="true"][data-orientation="vertical"]
-    > .button
-    + .button {
+    > :is(.uif-button, .button)
+    + :is(.uif-button, .button) {
     border-block-start-width: 0;
   }
 
   .button-group[data-attached="true"]:not([data-orientation="vertical"])
-    > .button:first-child {
+    > :is(.uif-button, .button):first-child {
     border-start-start-radius: var(
       --button-group-border-radius,
-      var(--button-border-radius)
+      var(--uif-button-border-radius)
     );
     border-end-start-radius: var(
       --button-group-border-radius,
-      var(--button-border-radius)
+      var(--uif-button-border-radius)
     );
   }
 
   .button-group[data-attached="true"]:not([data-orientation="vertical"])
-    > .button:last-child {
+    > :is(.uif-button, .button):last-child {
     border-start-end-radius: var(
       --button-group-border-radius,
-      var(--button-border-radius)
+      var(--uif-button-border-radius)
     );
     border-end-end-radius: var(
       --button-group-border-radius,
-      var(--button-border-radius)
+      var(--uif-button-border-radius)
     );
   }
 
   .button-group[data-attached="true"][data-orientation="vertical"]
-    > .button:first-child {
+    > :is(.uif-button, .button):first-child {
     border-start-start-radius: var(
       --button-group-border-radius,
-      var(--button-border-radius)
+      var(--uif-button-border-radius)
     );
     border-start-end-radius: var(
       --button-group-border-radius,
-      var(--button-border-radius)
+      var(--uif-button-border-radius)
     );
   }
 
   .button-group[data-attached="true"][data-orientation="vertical"]
-    > .button:last-child {
+    > :is(.uif-button, .button):last-child {
     border-end-start-radius: var(
       --button-group-border-radius,
-      var(--button-border-radius)
+      var(--uif-button-border-radius)
     );
     border-end-end-radius: var(
       --button-group-border-radius,
-      var(--button-border-radius)
+      var(--uif-button-border-radius)
     );
   }
 }

@@ -55,7 +55,7 @@
     font-family: var(--input-font-family);
     font-weight: var(--input-font-weight);
     font-size: var(--input-font-size);
-    line-height: var(--input-line-height, var(--button-line-height, 1.5));
+    line-height: var(--input-line-height, var(--typography-body-line-height));
     color: var(--input-text-color-default);
     background: var(--input-container-background-default);
     border-style: solid;

@@ -34,7 +34,7 @@ Examples:
 
 ## Code Syntax (WEB)
 
-Every variable should have a `codeSyntax.WEB` value set (e.g. `var(--button-border-radius)`). This is how the token pipeline maps Figma variables to CSS Custom Properties.
+Every variable should have a `codeSyntax.WEB` value set (e.g. `var(--uif-button-border-radius)`). This is how the token pipeline maps Figma variables to CSS Custom Properties.
 
 ## Token Foundry Plugin
 

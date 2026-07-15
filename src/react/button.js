@@ -10,6 +10,10 @@ function normalizeJustify(value) {
   return value === "stretch" ? "stretch" : "start";
 }
 
+function normalizeVariant(value) {
+  return value === "outline" || value === "ghost" ? value : "solid";
+}
+
 export function Button({
   variant = "solid",
   className = "",
@@ -22,10 +26,7 @@ export function Button({
   children,
   ...props
 }) {
-  const classes = ["button"];
-
-  if (variant === "outline") classes.push("outline");
-  if (variant === "ghost") classes.push("ghost");
+  const classes = ["uif-button", normalizeVariant(variant)];
   if (className) classes.push(className);
 
   const content = children ?? label;

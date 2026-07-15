@@ -5,8 +5,8 @@
 {%- endmacro %}
 
 {% macro button(label, variant='', disabled=false, type='button') -%}
-{%- set classes = "button" -%}
-{%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- set resolvedVariant = variant if variant == "outline" or variant == "ghost" else "solid" -%}
+{%- set classes = "uif-button " + resolvedVariant -%}
 <button type="{{ type }}" class="{{ classes }}"{% if disabled %} disabled{% endif %}>{{ label }}</button>
 {%- endmacro %}
 

@@ -95,7 +95,7 @@ async function setupTestFixtures(): Promise<string> {
   await mkdir(join(dir, 'src', 'ui', 'patterns'), { recursive: true });
   await writeFile(
     join(dir, 'src', 'ui', 'patterns', 'button.css'),
-    `.button {\n  display: inline-flex;\n}\n.button.outline {\n  background: transparent;\n}\n.button:hover,\n.button.is-hover {\n  opacity: 0.9;\n}\n.button:disabled,\n.button.is-disabled {\n  opacity: 0.5;\n}\n`,
+    `:is(.uif-button, .button),\n:is(.uif-button, .button).solid {\n  display: inline-flex;\n}\n:is(.uif-button, .button).outline {\n  background: transparent;\n}\n:is(.uif-button, .button):hover,\n:is(.uif-button, .button).is-hover {\n  opacity: 0.9;\n}\n:is(.uif-button, .button):disabled,\n:is(.uif-button, .button).is-disabled {\n  opacity: 0.5;\n}\n`,
     'utf8',
   );
   await writeFile(

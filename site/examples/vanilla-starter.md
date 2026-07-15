@@ -40,7 +40,7 @@ import "ui-foundations/tokens/components.css";
 
 ## 3. Render an example page
 
-Use package classes like `.button`, `.input`, `.field-label`, and `.checkbox`.
+Use package classes like `.uif-button`, `.input`, `.field-label`, and `.checkbox`.
 
 ```js
 document.querySelector("#app").innerHTML = `
@@ -55,7 +55,7 @@ document.querySelector("#app").innerHTML = `
     <input class="input" id="email" type="email" placeholder="name@example.com" />
 
     <div style="height: 0.75rem"></div>
-    <button class="button" type="button">
+    <button class="uif-button solid" type="button">
       <span class="label-content"><span class="label-content-text">Submit</span></span>
     </button>
   </main>

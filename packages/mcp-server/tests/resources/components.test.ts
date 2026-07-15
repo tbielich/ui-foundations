@@ -47,36 +47,37 @@ describe('handleComponents', () => {
     await writeFile(
       join(testDir, 'src', 'ui', 'patterns', 'button.css'),
       `@layer components {
-  .button {
+  :is(.uif-button, .button),
+  :is(.uif-button, .button).solid {
     display: inline-flex;
-    background: var(--button-solid-container-background-default);
+    background: var(--uif-button-solid-container-background-default);
   }
 
-  .button:hover,
-  .button.is-hover {
-    background: var(--button-solid-container-background-hover);
+  :is(.uif-button, .button):hover,
+  :is(.uif-button, .button).is-hover {
+    background: var(--uif-button-solid-container-background-hover);
   }
 
-  .button:active,
-  .button.is-active {
-    background: var(--button-solid-container-background-active);
+  :is(.uif-button, .button):active,
+  :is(.uif-button, .button).is-active {
+    background: var(--uif-button-solid-container-background-active);
   }
 
-  .button:focus-visible,
-  .button.is-focus-visible {
-    border-color: var(--button-solid-border-color-focus);
+  :is(.uif-button, .button):focus-visible,
+  :is(.uif-button, .button).is-focus-visible {
+    border-color: var(--uif-button-solid-border-color-focus);
   }
 
-  .button:disabled,
-  .button.is-disabled {
+  :is(.uif-button, .button):disabled,
+  :is(.uif-button, .button).is-disabled {
     opacity: 0.5;
   }
 
-  .button.outline {
-    background: var(--button-outline-container-background-default);
+  :is(.uif-button, .button).outline {
+    background: var(--uif-button-outline-container-background-default);
   }
 
-  .button.ghost {
+  :is(.uif-button, .button).ghost {
     background: transparent;
   }
 }`,
@@ -182,8 +183,8 @@ describe('handleComponents', () => {
       assert.equal(data.name, 'button');
       assert.equal(data.description, 'Buttons allow users to perform an action.');
       assert.ok(data.documentation.includes('# Button'));
-      assert.equal(data.cssClassName, 'button');
-      assert.ok(data.htmlPattern.includes('button'));
+      assert.equal(data.cssClassName, 'uif-button');
+      assert.match(data.htmlPattern, /class="uif-button solid"/);
       assert.ok(Array.isArray(data.variants));
       assert.ok(Array.isArray(data.states));
       assert.ok(Array.isArray(data.tokens));
@@ -197,6 +198,7 @@ describe('handleComponents', () => {
 
       assert.ok(data.variants.includes('outline'));
       assert.ok(data.variants.includes('ghost'));
+      assert.ok(data.variants.includes('solid'));
     });
 
     it('extracts states from CSS', async () => {

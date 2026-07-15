@@ -75,9 +75,10 @@ Notes:
 
 - Canonical public pattern tokens follow the consumed Vault Naming Contract:
   `Component.variant.part.property.state` → `--uif-component-variant-part-property-state`
-- Current unscoped component tokens such as `--button-*` remain supported as
-  deprecated legacy compatibility and must produce migration warnings, not
-  unclear failures.
+- Migrated components emit only canonical token names. Button uses
+  `--uif-button-*` and intentionally provides no library-owned `--button-*`
+  aliases. Components that have not yet migrated may still expose unscoped
+  names until their scoped migration is approved.
 - Brand semantic: role-based and brand-scoped (e.g. `Brand.Color.*`, `Brand.Corner.*`)
 - States: `default`, `hover`, `active`, `focus`, `disabled`
 - CSS variables: kebab-case with `--`
@@ -115,7 +116,8 @@ HTML patterns:
 
 Legacy bare classes such as `.button`, `.input`, and `.link` are retained for
 existing artifacts during migration and are reported as deprecated usage by
-runtime naming checks.
+runtime naming checks. UIF-owned Button emitters use `.uif-button`; `.button`
+is a CSS-only compatibility selector through v1.x.
 
 Nunjucks:
 

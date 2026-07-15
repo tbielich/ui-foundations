@@ -67,7 +67,7 @@ function extractRelatedComponents(content: string): string[] {
 /**
  * Extracts related tokens from pattern markdown content.
  *
- * Looks for CSS custom property references (e.g., `--button-solid-container-background`)
+ * Looks for CSS custom property references (e.g., `--uif-button-solid-container-background`)
  * and token dot-notation references (e.g., `Button.solid.container`).
  */
 function extractRelatedTokens(content: string): string[] {

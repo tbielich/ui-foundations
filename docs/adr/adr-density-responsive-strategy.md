@@ -44,7 +44,7 @@ Density (maps semantic roles to different Core steps per density)
   ↑
 Semantics (Size/Spacing Tight, Size/Spacing Component, etc.)
   ↑
-Components (--button-padding-inline, --input-gap, etc.)
+Components (`--uif-button-padding-inline`, `--input-gap`, etc.)
 ```
 
 ### Implementation in Figma
