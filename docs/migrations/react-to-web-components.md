@@ -43,7 +43,7 @@ The module paths below are the component-specific alternatives. Import
 no Calendar Custom Element entry point. Use the documented Calendar semantic
 HTML and `.calendar*` CSS pattern until Calendar receives an approved Custom
 Element API. `LabelContent` is likewise a composition helper: author the
-documented label-content markup or use the Nunjucks macro instead of inventing
+documented uif-label-content markup or use the Nunjucks macro instead of inventing
 a Custom Element.
 
 The approved v1 public namespace is `<uif-*>`. At the time this removal was

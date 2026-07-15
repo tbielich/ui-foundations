@@ -6,14 +6,14 @@ figma.connect(
   {
     props: {
       className: figma.className([
-        "label-content",
+        "uif-label-content",
         figma.boolean("Has Text", { true: undefined, false: "is-icon-only" }),
       ]),
       text: figma.string("Text"),
     },
     example: ({ className, text }: LabelProps) => html`<span style="line-height: 24px;">
       <span class="${className}">
-        <span class="label-content-text">${text}</span>
+        <span class="uif-label-content-text">${text}</span>
       </span>
     </span>`,
   },

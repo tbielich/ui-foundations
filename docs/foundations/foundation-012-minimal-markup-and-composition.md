@@ -20,7 +20,7 @@ Keep component markup as flat and simple as possible. Complexity in HTML structu
    - `inline-flex`, `gap`, `align-items` on the component class itself.
    - Avoid wrapper elements whose only purpose is layout.
 
-3. Composition patterns (like `label-content`) are opt-in, not default.
+3. Composition patterns (like `uif-label-content`) are opt-in, not default.
    - Use them only when the component genuinely needs slot management, reordering, or icon-only modes.
    - A simple text + icon combination does not need a composition wrapper.
 

@@ -39,8 +39,8 @@ figma.connect(
       disabled="${disabled}"
       aria-label="${ariaLabel}"
     >
-      <span class="label-content">
-        <span class="label-content-text">${text}</span>
+      <span class="uif-label-content">
+        <span class="uif-label-content-text">${text}</span>
       </span>
     </button>`,
   },

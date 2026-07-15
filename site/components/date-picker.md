@@ -26,9 +26,9 @@ playgroundLabel: Open Date Picker Playground
     </div>
     <div class="docs-hero-preview-stage">
       <div class="form-field date-picker-field">
-        <label class="field-label" id="date-input-demo-label" for="date-input-demo-day">
-          <span class="label-content">
-            <span class="label-content-text">Travel date</span>
+        <label class="uif-field-label" id="date-input-demo-label" for="date-input-demo-day">
+          <span class="uif-label-content">
+            <span class="uif-label-content-text">Travel date</span>
           </span>
         </label>
         <div class="input-field date" id="date-input-demo" role="group" aria-labelledby="date-input-demo-label">
@@ -63,7 +63,7 @@ Together they form a component that can be opened, navigated, and dismissed — 
 
 ```
 .form-field.date-picker-field
-├── label.field-label [for="date-day"]
+├── label.uif-field-label [for="date-day"]
 └── .input-field.date [role="group", aria-labelledby]
     ├── .date-segments
     │   ├── input.date-segment.day [maxlength=2, inputmode=numeric, aria-label="Day"]
@@ -175,7 +175,7 @@ The Date Picker requires `src/ui/components/date-input.js` for:
     var trigger = root.querySelector("[aria-label='Open calendar']");
     var calendar = root.querySelector('.calendar');
     var field = root.closest('.date-picker-field');
-    var label = field && field.querySelector('.field-label');
+    var label = field && field.querySelector('.uif-field-label');
     var isOpen = false;
 
     // Auto-tab between segments
