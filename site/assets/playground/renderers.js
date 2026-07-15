@@ -952,7 +952,7 @@
     const placement = String(props.placement || "top");
 
     const trigger = document.createElement("span");
-    trigger.className = "tooltip-trigger";
+    trigger.className = "uif-tooltip-trigger";
 
     const btn = document.createElement("button");
     btn.className = "button outline";
@@ -961,15 +961,15 @@
     trigger.append(btn);
 
     const tip = document.createElement("span");
-    tip.className = "tooltip is-visible";
+    tip.className = "uif-tooltip is-visible";
     tip.setAttribute("role", "tooltip");
     tip.setAttribute("data-placement", placement);
     tip.textContent = text;
     trigger.append(tip);
 
-    const code = `<span class="tooltip-trigger">
+    const code = `<span class="uif-tooltip-trigger">
   <button class="button outline" type="button">${quoteAttr(String(children || "Hover me"))}</button>
-  <span class="tooltip" role="tooltip" data-placement="${quoteAttr(placement)}">${quoteAttr(text)}</span>
+  <span class="uif-tooltip" role="tooltip" data-placement="${quoteAttr(placement)}">${quoteAttr(text)}</span>
 </span>`;
 
     return { element: trigger, code };

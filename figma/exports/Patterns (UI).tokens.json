@@ -5601,7 +5601,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--tooltip-text-color-default)"
+            "WEB": "var(--uif-tooltip-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:327",
@@ -5625,7 +5625,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--tooltip-container-background-default)"
+            "WEB": "var(--uif-tooltip-container-background-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2039:356",
@@ -5649,7 +5649,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--tooltip-border-radius)"
+            "WEB": "var(--uif-tooltip-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3038:2847",
@@ -5672,7 +5672,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--tooltip-padding-inline)"
+          "WEB": "var(--uif-tooltip-padding-inline)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:4",
@@ -5694,7 +5694,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--tooltip-padding-block)"
+          "WEB": "var(--uif-tooltip-padding-block)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:3",
