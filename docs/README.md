@@ -16,6 +16,7 @@ details or local agent configuration.
 | `patterns/` | Pattern-level composition guidance | `docs/patterns/README.md` |
 | `components/` | Component-facing entry docs and TODO gaps | `docs/patterns/README.md` |
 | `public-api.md` | Canonical Runtime-facing v1 public API summary and migration links | `docs/public-api.md` |
+| `governance-baseline.md` | Consumed governance pack versions, artifact registry, and version lifecycle policy | `docs/governance-baseline.md` |
 | `agentic/` | Agent behavior, workflows, prompts, and migration context | `docs/agentic/README.md` |
 | `adr/` | Architecture decision records and documentation migration notes | `docs/adr/README.md` |
 | `validation/` | Validation checklists, CI, token parity, and accessibility checks | `docs/validation/README.md` |

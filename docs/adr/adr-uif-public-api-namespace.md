@@ -5,7 +5,8 @@ type: adr
 issue: 154
 vault_decision: adr.uif-public-api-namespace
 implementation_issue: 197
-governance_pack: 0.8.0
+governance_pack: 0.7.0
+governance_pack_note: "Decision aligned with governance pack 0.7.0 (consumed baseline). The naming contract was originally authored referencing a planned 0.8.0 release. Per ADR: Governance Baseline Version Policy, all Runtime references use 0.7.0 until a reviewed 0.8.0 consumption is completed."
 ---
 
 # ADR: UIF Public API Namespace
@@ -25,7 +26,7 @@ points before approving the canonical namespace for these two surfaces.
 ## Decision
 
 Adopt the canonical UIF namespace defined by Vault decision
-`adr.uif-public-api-namespace` and Governance Pack `0.8.0`:
+`adr.uif-public-api-namespace` and Governance Pack `0.7.0`:
 
 - Public Nunjucks documentation and generated snippets import the existing
   macro module with the consumer-selected alias `uif` and invoke macros as

@@ -69,10 +69,14 @@ Pack versions are tracked in `.uif/registry/source.yml`. A pack may use
 `experimental`. Reviewed consumption should replace experimental branch refs
 with a tag or SHA before the pack is treated as stable governance.
 
-The first reproducible Governance Pack source is Vault commit
-`fbeb803e51f11d5c372ece8ced4405f37f999fb3`, recorded as a `snapshot` SHA in
-`.uif/registry/source.yml`. Branch refs remain valid only for explicitly
-experimental pack exploration.
+The authoritative consumed governance baseline is **0.7.0** (SHA
+`10f78061cd65e6ad6d7304376ead27d44efc01b3`). This is recorded in
+`.uif/registry/source.yml` and is the single source of truth for consumed
+version references across Runtime documentation.
+
+For the full version conflict resolution and lifecycle policy, see
+[ADR: Governance Baseline Version Policy](adr/adr-governance-baseline-version-policy.md)
+and the [Governance Baseline Reference Matrix](governance-baseline.md).
 
 ## Workspace Concept
 
