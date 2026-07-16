@@ -114,10 +114,6 @@ playgroundLabel: Open Avatar Playground
 - Image avatars include `alt` text on the `<img>` element.
 - Initials are decorative — the `aria-label` on the container provides the accessible name.
 
-<h2 id="v1-naming-migration">v1 naming migration</h2>
-
-Avatar emitters produce the canonical `.uif-avatar` and `.uif-avatar-initials` classes. The legacy `.avatar` and `.avatar-initials` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-avatar-*`; library-owned legacy `--avatar-*` token aliases are not provided. The Custom Element now registers as `<uif-avatar>`; its existing module filename and package export remain unchanged.
-
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">

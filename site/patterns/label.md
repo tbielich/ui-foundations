@@ -83,16 +83,6 @@ playgroundLabel: Open Label Playground
   </tbody>
 </table>
 
-### v1 naming migration
-
-Use `.uif-label-content`, `.uif-label-content-text`, and the `.uif-field-label*`
-family in new and migrated markup. Their unprefixed class selectors remain
-available throughout v1.x, but the legacy `--field-label-*` custom properties
-have no library-owned aliases or fallbacks. Rename the field-label class and its
-runtime inputs together. Shared `--typography-label-*` tokens keep their
-separately governed typography namespace. Legacy class removal remains Wave 4
-work for v2.0 or later.
-
 <h2 id="behaviors">Behaviors</h2>
 
 <div class="docs-behavior-list">

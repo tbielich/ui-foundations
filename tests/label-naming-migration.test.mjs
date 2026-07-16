@@ -63,14 +63,14 @@ test("Typography Label tokens keep their separately governed namespace", async (
   assert.doesNotMatch(tokenExport, /--uif-field-label-/);
 });
 
-test("Label migration guidance uses the canonical Custom Element tag", async () => {
+test("Label migration guide uses the canonical Custom Element tag", async () => {
   const [documentation, element, declarations] = await Promise.all([
-    read("site/patterns/label.md"),
+    read("MIGRATION.md"),
     read("src/elements/ui-label.js"),
     read("src/elements/index.d.ts"),
   ]);
 
-  assert.match(documentation, /legacy `--field-label-\*` custom properties/);
+  assert.match(documentation, /\| Label composition \|.*`--uif-field-label-\*`/);
   assert.match(element, /define\("uif-field-label", UIFieldLabel\)/);
   assert.match(declarations, /"uif-field-label": UIFieldLabel/);
   assert.doesNotMatch(element, /ui-uif-field-label/);

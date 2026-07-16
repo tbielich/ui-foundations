@@ -45,14 +45,13 @@ test("Link retains Icon and legacy class compatibility without token aliases", a
   assert.doesNotMatch(css, /--link-[\w-]+\s*:/);
 });
 
-test("Link documentation explains the v1 boundary and uses the canonical registration", async () => {
+test("Link migration guide explains the v1 boundary and canonical registration", async () => {
   const [documentation, element] = await Promise.all([
-    read("site/patterns/link.md"),
+    read("MIGRATION.md"),
     read("src/elements/ui-link.js"),
   ]);
 
-  assert.match(documentation, /legacy\s+`--link-\*` token aliases are not provided/);
-  assert.match(documentation, /class="uif-link/);
-  assert.doesNotMatch(documentation, /class="link(?:[\s"])/);
+  assert.match(documentation, /\| Link \|.*`--uif-link-\*`/);
+  assert.match(documentation, /\.uif-link/);
   assert.match(element, /define\("uif-link", UILink\)/);
 });

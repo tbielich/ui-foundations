@@ -37,14 +37,6 @@ playgroundLabel: Open Calendar Playground
   </div>
 </div>
 
-### v1 naming migration
-
-Use `.uif-calendar` and the `.uif-calendar-*` part classes with
-`--uif-calendar-*` tokens in new and migrated markup. Unprefixed Calendar class
-selectors remain compatible throughout v1.x, but legacy `--calendar-*` token
-aliases are not provided. Consumers must migrate classes and tokens together.
-Legacy selector removal remains Wave 4 work for v2.0 or later.
-
 <h2 id="usage">Usage</h2>
 
 The Calendar component enables date selection in forms, filters, and booking flows. It supports single date selection and date range selection.

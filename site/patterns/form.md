@@ -188,7 +188,3 @@ Form adapts to brands and modes through its component tokens:
 | `--uif-form-field-helper-text-color-default` | Helper text color |
 | `--uif-form-field-helper-text-color-invalid` | Error text color |
 | `--uif-form-group-title-color` | Group legend color |
-
-<h2 id="v1-naming-migration">v1 naming migration</h2>
-
-Form emitters produce canonical `.uif-form*` classes, including groups, fields, helpers, links, field bodies, and actions. The corresponding legacy `.form*` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-form-*`; library-owned legacy `--form-*` token aliases are not provided. The Form Custom Elements now register as `<uif-form*>`; their existing module filename and package exports remain unchanged.

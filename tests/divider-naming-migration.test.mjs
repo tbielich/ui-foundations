@@ -38,13 +38,13 @@ test("Divider runtime input stays code-only rather than becoming a Figma token",
   assert.doesNotMatch(tokenExport, /--uif-divider-color/);
 });
 
-test("Divider documentation explains migration and uses the canonical registration", async () => {
+test("Divider migration guide explains its boundary and canonical registration", async () => {
   const [documentation, element] = await Promise.all([
-    read("site/patterns/divider.md"),
+    read("MIGRATION.md"),
     read("src/elements/ui-divider.js"),
   ]);
 
-  assert.match(documentation, /no component-scoped Figma variables/);
-  assert.match(documentation, /no library-owned legacy `--divider-color` alias is provided/);
+  assert.match(documentation, /code-only `--uif-divider-color`; no component-scoped Figma variables/);
+  assert.match(documentation, /No library-owned legacy token aliases or fallbacks/);
   assert.match(element, /define\("uif-divider", UIDivider\)/);
 });

@@ -228,10 +228,6 @@ tokens. Use the hero preview switches above to see it in action.
 
 For the full theming architecture see [Foundations: Theming](/foundations/theming/).
 
-<h2 id="v1-naming-migration">v1 naming migration</h2>
-
-Radio emitters produce `.uif-radio`, `.uif-radio-field`, and `.uif-radio-field-text`. The legacy `.radio` and `.radio-field` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-radio-*`; library-owned legacy `--radio-*` token aliases are not provided. The Custom Element now registers as `<uif-radio>`; its existing module filename and package export remain unchanged.
-
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">

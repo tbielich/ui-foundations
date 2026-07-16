@@ -33,11 +33,11 @@ test("Checkbox-owned emitters and behavior use canonical classes", async () => {
   assert.doesNotMatch(element, /class="checkbox(?:[-\s"])/);
 });
 
-test("Checkbox docs explain migration and use the canonical registration", async () => {
+test("Checkbox migration guide and registration use the canonical namespace", async () => {
   const [documentation, element] = await Promise.all([
-    read("site/patterns/checkbox.md"),
+    read("MIGRATION.md"),
     read("src/elements/ui-checkbox.js"),
   ]);
-  assert.match(documentation, /legacy `--checkbox-\*` token aliases are not provided/);
+  assert.match(documentation, /\| Checkbox \|.*`--uif-checkbox-\*`/);
   assert.match(element, /define\("uif-checkbox", UICheckbox\)/);
 });

@@ -55,11 +55,12 @@ test("the namespaced runtime input remains code-only rather than a Figma token",
   const [validator, tokenExport, documentation] = await Promise.all([
     read("scripts/validate-token-usage.mjs"),
     read("figma/exports/Patterns (UI).tokens.json"),
-    read("site/patterns/icon.md"),
+    read("MIGRATION.md"),
   ]);
 
   assert.match(validator, /"--uif-icon-src"/);
   assert.doesNotMatch(validator, /"--icon-src"/);
   assert.doesNotMatch(tokenExport, /--uif-icon-src/);
-  assert.match(documentation, /legacy\s+`--icon-src` custom property has no library-owned alias/);
+  assert.match(documentation, /\| Icon \|.*code-only `--uif-icon-src`/);
+  assert.match(documentation, /No library-owned legacy token aliases or fallbacks/);
 });

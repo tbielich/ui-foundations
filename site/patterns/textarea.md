@@ -116,10 +116,6 @@ playgroundLabel: Open TextArea Playground
 - Always pair with a visible `<label>` or `aria-label`.
 - Placeholder text is not a substitute for a label.
 
-<h2 id="v1-naming-migration">v1 naming migration</h2>
-
-Textarea emitters produce `.uif-textarea`. The legacy `.textarea` selector remains supported during the v1 compatibility period. Component token slots use `--uif-textarea-*`; library-owned legacy `--textarea-*` token aliases are not provided. The Custom Element now registers as `<uif-textarea>`; its existing module filename and package export remain unchanged.
-
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">

@@ -71,3 +71,16 @@ test("completion guidance defines canonical owned output and v1 CSS-only compati
     assert.match(documentation, /Wave 4 work for v2\.0 or\s+later/);
   }
 });
+
+test("migration history lives in the repository guide, not public pattern pages", () => {
+  const migration = read("MIGRATION.md");
+  assert.match(migration, /Legacy selectors remain CSS-only aliases through v1\.x/);
+  assert.match(migration, /No library-owned legacy token aliases or fallbacks/);
+  assert.match(migration, /no alias or dual registration/);
+  assert.match(migration, /Wave 4\s+work for v2\.0 or later/);
+
+  for (const file of filesUnder("site/patterns", new Set([".md"]))) {
+    const documentation = fs.readFileSync(file, "utf8");
+    assert.doesNotMatch(documentation, /v1 naming migration|v1-naming-migration/i, path.relative(root, file));
+  }
+});

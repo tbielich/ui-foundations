@@ -138,9 +138,6 @@ playgroundLabel: Open Tooltip Playground
 - Trigger should have `aria-describedby` pointing to the tooltip ID for screen readers.
 - Tooltips are non-interactive — they cannot contain links or buttons.
 
-<h2 id="v1-naming-migration">v1 naming migration</h2>
-
-Tooltip emitters produce `.uif-tooltip` and `.uif-tooltip-trigger`. The legacy `.tooltip` and `.tooltip-trigger` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-tooltip-*`; library-owned legacy `--tooltip-*` token aliases are not provided. The Custom Element now registers as `<uif-tooltip>`; its existing module filename and package export remain unchanged.
 - Shows on both hover and focus to support keyboard users.
 
 <h2 id="design-checklist">Design checklist</h2>

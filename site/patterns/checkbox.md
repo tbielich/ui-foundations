@@ -252,10 +252,6 @@ tokens. Use the hero preview switches above to see it in action.
 
 For the full theming architecture see [Foundations: Theming](/foundations/theming/).
 
-<h2 id="v1-naming-migration">v1 naming migration</h2>
-
-Checkbox emitters produce `.uif-checkbox`, `.uif-checkbox-field`, and `.uif-checkbox-field-text`. The legacy `.checkbox` and `.checkbox-field` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-checkbox-*`; library-owned legacy `--checkbox-*` token aliases are not provided. The Custom Element now registers as `<uif-checkbox>`; its existing module filename and package export remain unchanged.
-
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">
