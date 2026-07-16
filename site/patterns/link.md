@@ -41,13 +41,6 @@ breadcrumb:
   </div>
 </div>
 
-### v1 naming migration
-
-Use `.uif-link` and `--uif-link-*` tokens in new and migrated markup. The
-unprefixed `.link` selector remains compatible throughout v1.x, but legacy
-`--link-*` token aliases are not provided. Consumers must migrate classes and
-tokens together. Legacy selector removal remains Wave 4 work for v2.0 or later.
-
 <h2 id="anatomy">Anatomy</h2>
 
 <div class="docs-anatomy">

@@ -191,10 +191,6 @@ Switch adapts across brands and modes through tokens. Use the hero switches abov
 
 For the full theming architecture see [Foundations: Theming](/foundations/theming/).
 
-<h2 id="v1-naming-migration">v1 naming migration</h2>
-
-Switch emitters produce `.uif-switch`, `.uif-switch-field`, and `.uif-switch-field-text`. The legacy `.switch` and `.switch-field` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-switch-*`; library-owned legacy `--switch-*` token aliases are not provided. The Custom Element now registers as `<uif-switch>`; its existing module filename and package export remain unchanged.
-
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">

@@ -157,10 +157,6 @@ Badge adapts across brands and modes through semantic tokens. Use the hero switc
 
 For the full theming architecture see [Foundations: Theming](/foundations/theming/).
 
-<h2 id="v1-naming-migration">v1 naming migration</h2>
-
-Badge emitters produce `.uif-badge` and `.uif-badge-text`. The legacy `.badge` selector remains supported during the v1 compatibility period. Component token slots use `--uif-badge-*`; library-owned legacy `--badge-*` token aliases are not provided. The Custom Element now registers as `<uif-badge>`; its existing module filename and package export remain unchanged.
-
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">

@@ -69,10 +69,10 @@ test("Calendar behavior accepts legacy markup but renders canonical cells", asyn
 test("Calendar no longer relies on pending-export token exceptions", async () => {
   const [validator, documentation] = await Promise.all([
     read("scripts/validate-token-usage.mjs"),
-    read("site/patterns/calendar.md"),
+    read("MIGRATION.md"),
   ]);
 
   assert.doesNotMatch(validator, /calendar-cell-background-selected/);
   assert.doesNotMatch(validator, /calendar-cell-text-color-selected/);
-  assert.match(documentation, /legacy `--calendar-\*` token\s+aliases are not provided/);
+  assert.match(documentation, /\| Calendar \|.*`--uif-calendar-\*`/);
 });

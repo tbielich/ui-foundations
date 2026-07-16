@@ -134,10 +134,6 @@ playgroundLabel: Open Tabs Playground
 - Only the selected tab has `tabindex="0"`; others have `tabindex="-1"` for roving focus.
 - `aria-orientation` communicates layout direction to assistive technology.
 
-<h2 id="v1-naming-migration">v1 naming migration</h2>
-
-Tabs emitters produce `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, and `.uif-tab-panel`. Their unprefixed selectors remain supported during the v1 compatibility period. Component token slots use `--uif-tabs-*`; library-owned legacy `--tabs-*` token aliases are not provided. The Custom Elements now register as `<uif-tab-list>`, `<uif-tab>`, and `<uif-tab-panel>`; their existing module filename and package exports remain unchanged.
-
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">

@@ -99,14 +99,6 @@ needed.
   </tbody>
 </table>
 
-### v1 naming migration
-
-Use `.uif-icon` with `--uif-icon-src` in all new and migrated markup. The
-legacy `.icon` selector remains available throughout v1.x, but the legacy
-`--icon-src` custom property has no library-owned alias or fallback. Consumers
-must rename both public API names together. Removal of the legacy class selector
-is deferred to Wave 4 in v2.0 or later.
-
 <h2 id="behaviors">Behaviors</h2>
 
 <div class="docs-behavior-list">

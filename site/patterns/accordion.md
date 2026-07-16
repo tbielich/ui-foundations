@@ -44,14 +44,6 @@ playgroundLabel: Open Accordion Playground
   </div>
 </div>
 
-### v1 naming migration
-
-Use `.uif-accordion`, `.uif-accordion-item`, and
-`.uif-accordion-item-content` with `--uif-accordion-*` tokens. Unprefixed
-Accordion selectors remain compatible throughout v1.x, but legacy
-`--accordion-*` token aliases are not provided. Wave 4 selector removal remains
-v2.0-or-later work.
-
 <h2 id="anatomy">Anatomy</h2>
 
 <div class="docs-anatomy">

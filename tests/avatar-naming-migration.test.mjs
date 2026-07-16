@@ -36,12 +36,12 @@ test("Avatar-owned emitters produce canonical classes", async () => {
   assert.doesNotMatch(sources[3], /["']avatar["']/);
 });
 
-test("Avatar documentation and registration use the canonical public namespace", async () => {
+test("Avatar migration guide and registration use the canonical public namespace", async () => {
   const [documentation, element] = await Promise.all([
-    read("site/patterns/avatar.md"),
+    read("MIGRATION.md"),
     read("src/elements/ui-avatar.js"),
   ]);
 
-  assert.match(documentation, /legacy `--avatar-\*` token aliases are not provided/);
+  assert.match(documentation, /\| Avatar \|.*`--uif-avatar-\*`/);
   assert.match(element, /define\("uif-avatar", UIAvatar\)/);
 });
