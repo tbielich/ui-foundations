@@ -43,8 +43,8 @@
 {%- endmacro %}
 
 {% macro checkbox(label='Checkbox', checked=false, disabled=false, state='default', indeterminate=false, className='', wrapperClassName='', id='', name='', value='on') -%}
-{%- set checkboxClasses = "checkbox" -%}
-{%- set fieldClasses = "checkbox-field" -%}
+{%- set checkboxClasses = "uif-checkbox" -%}
+{%- set fieldClasses = "uif-checkbox-field" -%}
 {%- if checked -%}{%- set checkboxClasses = checkboxClasses + " is-checked" -%}{%- endif -%}
 {%- if indeterminate or state == "indeterminate" -%}{%- set checkboxClasses = checkboxClasses + " is-indeterminate" -%}{%- endif -%}
 {%- if state == "hover" -%}{%- set checkboxClasses = checkboxClasses + " is-hover" -%}{%- endif -%}
@@ -58,7 +58,7 @@
 {%- if wrapperClassName -%}{%- set fieldClasses = fieldClasses + " " + wrapperClassName -%}{%- endif -%}
 <label class="{{ fieldClasses }}">
   <input class="{{ checkboxClasses }}" type="checkbox"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if checked %} checked{% endif %}{% if indeterminate or state == "indeterminate" %} aria-checked="mixed"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
-  <span class="checkbox-field-text">{{ label }}</span>
+  <span class="uif-checkbox-field-text">{{ label }}</span>
 </label>
 {%- endmacro %}
 

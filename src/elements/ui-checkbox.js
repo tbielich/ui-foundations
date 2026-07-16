@@ -29,7 +29,7 @@ class UICheckbox extends UIElement {
       this.warnDev("[ui-foundations] <ui-checkbox> should have a label or aria-label.");
     }
 
-    const inputAttrs = ['type="checkbox"', 'class="checkbox"'];
+    const inputAttrs = ['type="checkbox"', 'class="uif-checkbox"'];
     if (checked) inputAttrs.push("checked");
     if (disabled) inputAttrs.push("disabled");
     if (name) inputAttrs.push(`name="${name}"`);
@@ -41,12 +41,12 @@ class UICheckbox extends UIElement {
       return;
     }
 
-    const wrapperClasses = ["checkbox-field"];
+    const wrapperClasses = ["uif-checkbox-field"];
     if (disabled) wrapperClasses.push("is-disabled");
 
     this.innerHTML = `<label class="${wrapperClasses.join(" ")}">
   <input ${inputAttrs.join(" ")} />
-  <span class="checkbox-field-text">${label}</span>
+  <span class="uif-checkbox-field-text">${label}</span>
 </label>`;
   }
 }
