@@ -615,14 +615,14 @@
     const rows = props.rows || "3";
 
     const element = document.createElement("textarea");
-    element.className = "textarea";
+    element.className = "uif-textarea";
     element.placeholder = placeholder;
     element.value = value;
     element.rows = Number(rows);
     if (disabled) { element.disabled = true; element.classList.add("is-disabled"); }
     if (readonly) element.readOnly = true;
 
-    const attrs = [`class="textarea"`, `placeholder="${quoteAttr(placeholder)}"`, `rows="${rows}"`];
+    const attrs = [`class="uif-textarea"`, `placeholder="${quoteAttr(placeholder)}"`, `rows="${rows}"`];
     if (disabled) attrs.push("disabled");
     if (readonly) attrs.push("readonly");
     const code = `<textarea ${attrs.join(" ")}>${quoteAttr(value)}</textarea>`;

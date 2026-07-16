@@ -31,7 +31,7 @@ class UITextarea extends UIElement {
       this.warnDev("[ui-foundations] <ui-textarea> should have an id, aria-label, or aria-labelledby.");
     }
 
-    const attrs = ['class="textarea"'];
+    const attrs = ['class="uif-textarea"'];
     if (placeholder) attrs.push(`placeholder="${placeholder}"`);
     if (disabled) attrs.push("disabled");
     if (readonly) attrs.push("readonly");
