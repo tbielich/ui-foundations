@@ -5,7 +5,7 @@
 {%- endmacro %}
 
 {% macro calendarSelect(options=[], value='', disabled=false, className='', name='') -%}
-{%- set classes = "select" -%}
+{%- set classes = "uif-select" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <select class="{{ classes }}"{% if name %} name="{{ name }}"{% endif %}{% if disabled %} disabled{% endif %}>
   {%- for opt in options %}

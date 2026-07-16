@@ -3931,7 +3931,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-text-color-default)"
+            "WEB": "var(--uif-select-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -3953,7 +3953,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-text-color-hover)"
+            "WEB": "var(--uif-select-text-color-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:340",
@@ -3975,7 +3975,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-text-color-active)"
+            "WEB": "var(--uif-select-text-color-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -3997,7 +3997,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-text-color-disabled)"
+            "WEB": "var(--uif-select-text-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:328",
@@ -4019,7 +4019,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-text-color-placeholder)"
+            "WEB": "var(--uif-select-text-color-placeholder)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:341",
@@ -4043,7 +4043,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-color-default)"
+            "WEB": "var(--uif-select-border-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:342",
@@ -4065,7 +4065,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-color-hover)"
+            "WEB": "var(--uif-select-border-color-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -4087,7 +4087,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-color-active)"
+            "WEB": "var(--uif-select-border-color-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -4109,7 +4109,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-color-focus)"
+            "WEB": "var(--uif-select-border-color-focus)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:345",
@@ -4131,7 +4131,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-color-disabled)"
+            "WEB": "var(--uif-select-border-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:346",
@@ -4153,7 +4153,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-color-invalid)"
+            "WEB": "var(--uif-select-border-color-invalid)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:356",
@@ -4175,7 +4175,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-size-default)"
+            "WEB": "var(--uif-select-border-size-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:7",
@@ -4197,7 +4197,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-size-hover)"
+            "WEB": "var(--uif-select-border-size-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:7",
@@ -4219,7 +4219,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-size-active)"
+            "WEB": "var(--uif-select-border-size-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:8",
@@ -4241,7 +4241,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-border-radius)"
+            "WEB": "var(--uif-select-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2028:335",
@@ -4265,7 +4265,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-container-background-default)"
+            "WEB": "var(--uif-select-container-background-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -4287,7 +4287,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-container-background-hover)"
+            "WEB": "var(--uif-select-container-background-hover)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -4309,7 +4309,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-container-background-focus)"
+            "WEB": "var(--uif-select-container-background-focus)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -4331,7 +4331,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-container-background-active)"
+            "WEB": "var(--uif-select-container-background-active)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -4353,7 +4353,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-container-background-disabled)"
+            "WEB": "var(--uif-select-container-background-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:330",
@@ -4376,7 +4376,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--select-font-family)"
+          "WEB": "var(--uif-select-font-family)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:2006:213",
@@ -4398,7 +4398,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--select-font-weight)"
+          "WEB": "var(--uif-select-font-weight)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3014:12",
@@ -4420,7 +4420,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--select-font-size)"
+          "WEB": "var(--uif-select-font-size)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3014:9",
@@ -4442,7 +4442,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--select-line-height)"
+          "WEB": "var(--uif-select-line-height)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3014:14",
@@ -4464,7 +4464,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--select-padding-inline)"
+          "WEB": "var(--uif-select-padding-inline)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:3",
@@ -4486,7 +4486,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--select-padding-block)"
+          "WEB": "var(--uif-select-padding-block)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:3",
@@ -4508,7 +4508,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--select-overlay-hover)"
+          "WEB": "var(--uif-select-overlay-hover)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:2006:195",
@@ -4530,7 +4530,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--select-overlay-active)"
+          "WEB": "var(--uif-select-overlay-active)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:2006:195",
@@ -4553,7 +4553,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-icon-color-default)"
+            "WEB": "var(--uif-select-icon-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:341",
@@ -4575,7 +4575,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--select-icon-color-disabled)"
+            "WEB": "var(--uif-select-icon-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:328",
@@ -4598,7 +4598,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--select-height)"
+          "WEB": "var(--uif-select-height)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3020:2",

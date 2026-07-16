@@ -875,7 +875,7 @@
     const disabled = previewState === "disabled" || asBoolean(props.disabled);
 
     const element = document.createElement("select");
-    const classes = ["select"];
+    const classes = ["uif-select"];
 
     if (previewState === "hover") classes.push("is-hover");
     if (previewState === "active") classes.push("is-active");
@@ -1057,10 +1057,10 @@
     let headerHtml = `<div class="uif-calendar-header">`;
     headerHtml += `<button type="button" class="uif-button ghost" aria-label="Previous month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
     headerHtml += `<span class="uif-calendar-selectors">`;
-    headerHtml += `<select class="select uif-calendar-header-select" name="month" aria-label="Month"${disabledAttr}>`;
+    headerHtml += `<select class="uif-select uif-calendar-header-select" name="month" aria-label="Month"${disabledAttr}>`;
     months.forEach((m, i) => { headerHtml += `<option value="${i}"${i === selectedMonth ? " selected" : ""}>${m}</option>`; });
     headerHtml += `</select>`;
-    headerHtml += `<select class="select uif-calendar-header-select" name="year" aria-label="Year"${disabledAttr}>`;
+    headerHtml += `<select class="uif-select uif-calendar-header-select" name="year" aria-label="Year"${disabledAttr}>`;
     for (let y = 2020; y <= 2030; y++) { headerHtml += `<option value="${y}"${y === selectedYear ? " selected" : ""}>${y}</option>`; }
     headerHtml += `</select></span>`;
     headerHtml += `<button type="button" class="uif-button ghost" aria-label="Next month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
@@ -1151,9 +1151,9 @@
     html += `</button></span>`;
     html += `<div class="uif-calendar" id="date-picker-playground-calendar"><div class="uif-calendar-header">`;
     html += `<button type="button" class="uif-button ghost" aria-label="Previous month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
-    html += `<span class="uif-calendar-selectors"><select class="select uif-calendar-header-select" name="month" aria-label="Month">`;
+    html += `<span class="uif-calendar-selectors"><select class="uif-select uif-calendar-header-select" name="month" aria-label="Month">`;
     monthNames.forEach((m, i) => { html += `<option value="${i}"${i === visibleMonth ? " selected" : ""}>${m}</option>`; });
-    html += `</select><select class="select uif-calendar-header-select" name="year" aria-label="Year">`;
+    html += `</select><select class="uif-select uif-calendar-header-select" name="year" aria-label="Year">`;
     for (let y = 2020; y <= 2030; y++) { html += `<option value="${y}"${y === visibleYear ? " selected" : ""}>${y}</option>`; }
     html += `</select></span>`;
     html += `<button type="button" class="uif-button ghost" aria-label="Next month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
