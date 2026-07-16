@@ -1,4 +1,4 @@
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 {% macro playground(config) -%}
 {%- set playgroundId = config.id or "ui-playground" -%}
@@ -70,7 +70,7 @@
       >
         <span>{{ control.label or control.name }}</span>
         <div class="playground-color-inline">
-          {{ ui.input(
+          {{ uif.input(
             type="text",
             id=controlId,
             name=control.name,
@@ -153,7 +153,7 @@
         data-visible-when="{% if control.visibleWhen %}{% for conditionName, conditionValue in control.visibleWhen %}{% if not loop.first %};{% endif %}{{ conditionName }}={{ conditionValue }}{% endfor %}{% endif %}"
       >
         <span>{{ control.label or control.name }}</span>
-        {{ ui.input(
+        {{ uif.input(
           type=control.kind or "text",
           id=controlId,
           name=control.name,

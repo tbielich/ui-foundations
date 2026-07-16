@@ -1,10 +1,10 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-accordion>
- *   <ui-accordion-item title="Section 1" open>Content</ui-accordion-item>
- *   <ui-accordion-item title="Section 2">Content</ui-accordion-item>
- * </ui-accordion>
+ * <uif-accordion>
+ *   <uif-accordion-item title="Section 1" open>Content</uif-accordion-item>
+ *   <uif-accordion-item title="Section 2">Content</uif-accordion-item>
+ * </uif-accordion>
  */
 class UIAccordion extends UIElement {
   render() {
@@ -14,11 +14,11 @@ class UIAccordion extends UIElement {
   }
 }
 
-define("ui-accordion", UIAccordion);
+define("uif-accordion", UIAccordion);
 export { UIAccordion };
 
 /**
- * <ui-accordion-item title="Question?" open disabled>Answer.</ui-accordion-item>
+ * <uif-accordion-item title="Question?" open disabled>Answer.</uif-accordion-item>
  *
  * Attributes:
  *   title    — summary/trigger text
@@ -49,5 +49,5 @@ class UIAccordionItem extends UIElement {
   }
 }
 
-define("ui-accordion-item", UIAccordionItem);
+define("uif-accordion-item", UIAccordionItem);
 export { UIAccordionItem };

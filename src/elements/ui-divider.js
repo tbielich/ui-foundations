@@ -1,8 +1,8 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-divider></ui-divider>
- * <ui-divider orientation="vertical" variant="subtle"></ui-divider>
+ * <uif-divider></uif-divider>
+ * <uif-divider orientation="vertical" variant="subtle"></uif-divider>
  *
  * Attributes:
  *   orientation — "horizontal" (default), "vertical"
@@ -29,5 +29,5 @@ class UIDivider extends UIElement {
   }
 }
 
-define("ui-divider", UIDivider);
+define("uif-divider", UIDivider);
 export { UIDivider };

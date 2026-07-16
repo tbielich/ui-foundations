@@ -34,11 +34,11 @@ test("Select-owned emitters and Calendar composition use canonical classes", asy
   assert.doesNotMatch(sources[0], /class="select(?:[-\s"])/);
 });
 
-test("Select docs explain migration while registration stays stable", async () => {
+test("Select docs explain migration and use the canonical registration", async () => {
   const [documentation, element] = await Promise.all([
     read("site/patterns/select.md"),
     read("src/elements/ui-select.js"),
   ]);
   assert.match(documentation, /legacy `--select-\*` token aliases are not provided/);
-  assert.match(element, /define\("ui-select", UISelect\)/);
+  assert.match(element, /define\("uif-select", UISelect\)/);
 });

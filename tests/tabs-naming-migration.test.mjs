@@ -32,13 +32,13 @@ test("Tabs-owned emitters produce canonical classes", async () => {
   assert.doesNotMatch(sources[3], /figma\.className\(\["tab"\]\)/);
 });
 
-test("Tabs documentation explains migration while registrations stay stable", async () => {
+test("Tabs documentation and registrations use the canonical public namespace", async () => {
   const [documentation, elements] = await Promise.all([
     read("site/patterns/tabs.md"),
     read("src/elements/ui-tabs.js"),
   ]);
   assert.match(documentation, /legacy `--tabs-\*` token aliases are not provided/);
-  for (const tag of ["ui-tab-list", "ui-tab", "ui-tab-panel"]) {
+  for (const tag of ["uif-tab-list", "uif-tab", "uif-tab-panel"]) {
     assert.match(elements, new RegExp(`define\\("${tag}"`));
   }
 });

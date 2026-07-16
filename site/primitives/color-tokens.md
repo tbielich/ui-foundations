@@ -7,7 +7,7 @@ order: 10
 permalink: /primitives/color/
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <p class="page-intro">
   All color primitives available in the system, organized by family. Each row shows the full ramp from lightest to darkest.

@@ -127,8 +127,36 @@ function classifyPatternId(id) {
   };
 }
 
+function classifyNunjucksMacroInvocation(invocation) {
+  const value = String(invocation || "");
+  const canonicalAlias = VAULT_NAMING_CONTRACT.macroNamespace.canonicalAlias;
+  if (value.startsWith(`${canonicalAlias}.`)) {
+    return { status: "canonical", prefix: `${canonicalAlias}.`, message: null };
+  }
+  return {
+    status: "invalid",
+    prefix: null,
+    message: `Invalid public Nunjucks macro invocation "${value}". Use "${VAULT_NAMING_CONTRACT.macroNamespace.invocationPattern}" in public examples and generated snippets.`,
+  };
+}
+
+function classifyCustomElementTagName(tagName) {
+  const value = String(tagName || "").replace(/^<\/?|>$/g, "");
+  const canonical = VAULT_NAMING_CONTRACT.customElementTagPrefix.canonical;
+  if (value.startsWith(canonical)) {
+    return { status: "canonical", prefix: canonical, message: null };
+  }
+  return {
+    status: "invalid",
+    prefix: null,
+    message: `Invalid public Custom Element tag "${value}". Use "${VAULT_NAMING_CONTRACT.customElementTagPrefix.tagPattern}".`,
+  };
+}
+
 module.exports = {
   VAULT_NAMING_CONTRACT,
+  classifyCustomElementTagName,
+  classifyNunjucksMacroInvocation,
   classifyPatternId,
   classifyPatternTokenName,
   classifyPublicClassName,

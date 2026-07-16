@@ -71,7 +71,8 @@ Missing any surface will cause broken pages or incomplete integration.
 ## Nunjucks Macro Pattern
 
 Follow existing macros in `site/_includes/macros/ui.njk`:
-- Macro name: `ui.{component}(params)`
+- Import the module with the consumer-selected alias `uif`
+- Macro invocation: `uif.{component}(params)`
 - Parameters with defaults
 - State classes: `is-hover`, `is-active`, `is-focus-visible`, `is-disabled`
 - Accessibility attributes (role, aria-*)
@@ -92,7 +93,7 @@ Follow existing macros in `site/_includes/macros/ui.njk`:
 
 - Never draw vector graphics — always reuse icons from `src/assets/icons/`
 - If needed, rotate existing icons
-- Use the Icon component (`ui.icon()` macro / `.uif-icon` class)
+- Use the Icon component (`uif.icon()` macro / `.uif-icon` class)
 - Color with semantic tokens: `--color-text-success`, `--color-text-brand`, etc.
 
 ---

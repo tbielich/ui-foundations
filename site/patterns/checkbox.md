@@ -9,7 +9,7 @@ playgroundUrl: /patterns/checkbox-playground/
 playgroundLabel: Open Checkbox Playground
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -25,7 +25,7 @@ playgroundLabel: Open Checkbox Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      {{ ui.checkbox("Accept terms", true) }}
+      {{ uif.checkbox("Accept terms", true) }}
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -57,7 +57,7 @@ playgroundLabel: Open Checkbox Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">3</span>
       </span>
-      {{ ui.checkbox("Accept terms", true) }}
+      {{ uif.checkbox("Accept terms", true) }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -74,53 +74,53 @@ playgroundLabel: Open Checkbox Playground
 <div class="docs-states-grid" style="--docs-states-cols: 4">
   <div class="docs-states-grid-row-header">Unchecked</div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Default") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Default") }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Hover", false, false, "hover") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Hover", false, false, "hover") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Focus", false, false, "focus") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Focus", false, false, "focus") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Disabled", false, true) }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Disabled", false, true) }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
   <div class="docs-states-grid-row-header">Checked</div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Default", true) }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Default", true) }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Hover", true, false, "hover") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Hover", true, false, "hover") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Focus", true, false, "focus") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Focus", true, false, "focus") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Disabled", true, true) }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Disabled", true, true) }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
   <div class="docs-states-grid-row-header">Indeterminate</div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Default", false, false, "indeterminate") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Default", false, false, "indeterminate") }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Hover", false, false, "indeterminate") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Hover", false, false, "indeterminate") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Focus", false, false, "indeterminate") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Focus", false, false, "indeterminate") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.checkbox("Disabled", false, true, "indeterminate") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.checkbox("Disabled", false, true, "indeterminate") }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
 </div>
@@ -144,28 +144,28 @@ playgroundLabel: Open Checkbox Playground
 
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">{{ ui.checkbox("Toggle me") }}</div>
+    <div class="docs-behavior-preview">{{ uif.checkbox("Toggle me") }}</div>
     <div class="docs-behavior-body">
       <h3>Toggle on click</h3>
       <p>Clicking the checkbox or its label toggles between checked and unchecked. The change is immediate.</p>
     </div>
   </div>
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">{{ ui.checkbox("Indeterminate", false, false, "indeterminate") }}</div>
+    <div class="docs-behavior-preview">{{ uif.checkbox("Indeterminate", false, false, "indeterminate") }}</div>
     <div class="docs-behavior-body">
       <h3>Indeterminate state</h3>
       <p>Represents a partial selection — typically when a parent checkbox controls a group where some children are checked. Set programmatically, not by user interaction.</p>
     </div>
   </div>
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">{{ ui.checkbox("Focused", false, false, "focus") }}</div>
+    <div class="docs-behavior-preview">{{ uif.checkbox("Focused", false, false, "focus") }}</div>
     <div class="docs-behavior-body">
       <h3>Keyboard focus</h3>
       <p>Adds a visible focus ring. The checkbox is toggled with Space when focused.</p>
     </div>
   </div>
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">{{ ui.checkbox("Disabled", false, true) }}</div>
+    <div class="docs-behavior-preview">{{ uif.checkbox("Disabled", false, true) }}</div>
     <div class="docs-behavior-body">
       <h3>Disabled state</h3>
       <p>Cannot be toggled. Removed from the tab order with reduced contrast.</p>
@@ -180,8 +180,8 @@ playgroundLabel: Open Checkbox Playground
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      {{ ui.checkbox("Email notifications", true) }}
-      {{ ui.checkbox("SMS notifications") }}
+      {{ uif.checkbox("Email notifications", true) }}
+      {{ uif.checkbox("SMS notifications") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
@@ -190,8 +190,8 @@ playgroundLabel: Open Checkbox Playground
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      {{ ui.checkbox("Yes", true) }}
-      {{ ui.checkbox("No") }}
+      {{ uif.checkbox("Yes", true) }}
+      {{ uif.checkbox("No") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
@@ -204,14 +204,14 @@ playgroundLabel: Open Checkbox Playground
 
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
-    <div class="docs-guideline-preview">{{ ui.checkbox("I agree to the terms") }}</div>
+    <div class="docs-guideline-preview">{{ uif.checkbox("I agree to the terms") }}</div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
       <p>Every checkbox must have a visible text label.</p>
     </div>
   </div>
   <div class="docs-guideline-item" data-type="dont">
-    <div class="docs-guideline-preview">{{ ui.checkbox("") }}</div>
+    <div class="docs-guideline-preview">{{ uif.checkbox("") }}</div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
       <p>Don't use a checkbox without a label.</p>
@@ -254,7 +254,7 @@ For the full theming architecture see [Foundations: Theming](/foundations/themin
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Checkbox emitters now produce `.uif-checkbox`, `.uif-checkbox-field`, and `.uif-checkbox-field-text`. The legacy `.checkbox` and `.checkbox-field` selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-checkbox-*`; library-owned legacy `--checkbox-*` token aliases are not provided. The existing `<ui-checkbox>` registration and package export remain unchanged.
+Checkbox emitters produce `.uif-checkbox`, `.uif-checkbox-field`, and `.uif-checkbox-field-text`. The legacy `.checkbox` and `.checkbox-field` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-checkbox-*`; library-owned legacy `--checkbox-*` token aliases are not provided. The Custom Element now registers as `<uif-checkbox>`; its existing module filename and package export remain unchanged.
 
 <h2 id="design-checklist">Design checklist</h2>
 

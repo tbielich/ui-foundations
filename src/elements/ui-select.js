@@ -1,10 +1,10 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-select placeholder="Choose..." aria-label="Country">
+ * <uif-select placeholder="Choose..." aria-label="Country">
  *   <option value="de">Germany</option>
  *   <option value="at">Austria</option>
- * </ui-select>
+ * </uif-select>
  *
  * Attributes:
  *   placeholder — placeholder option text
@@ -31,7 +31,7 @@ class UISelect extends UIElement {
     const ariaLabelledby = this.getAttr("aria-labelledby");
 
     if (!ariaLabel && !ariaLabelledby && !this.id) {
-      this.warnDev("[ui-foundations] <ui-select> should have an id, aria-label, or aria-labelledby.");
+      this.warnDev("[ui-foundations] <uif-select> should have an id, aria-label, or aria-labelledby.");
     }
 
     const classes = ["uif-select"];
@@ -56,5 +56,5 @@ class UISelect extends UIElement {
   }
 }
 
-define("ui-select", UISelect);
+define("uif-select", UISelect);
 export { UISelect };

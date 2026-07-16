@@ -14,6 +14,10 @@ const VAULT_NAMING_CONTRACT = Object.freeze({
     },
     "invalidPrefixes": []
   },
+  "customElementTagPrefix": {
+    "canonical": "uif-",
+    "tagPattern": "uif-[component]"
+  },
   "customPropertyPrefix": {
     "assumption": "--uif-assumption-",
     "canonical": "--uif-",
@@ -34,8 +38,14 @@ const VAULT_NAMING_CONTRACT = Object.freeze({
     "canonicalClasses": [
       "uif-button"
     ],
+    "canonicalCustomElementTags": [
+      "<uif-button>"
+    ],
     "canonicalCustomProperties": [
       "--uif-button-background"
+    ],
+    "canonicalMacroInvocations": [
+      "uif.button(...)"
     ],
     "canonicalPatternIds": [
       "pattern.base.button",
@@ -63,6 +73,11 @@ const VAULT_NAMING_CONTRACT = Object.freeze({
     ]
   },
   "kind": "UIFNamingContract",
+  "macroNamespace": {
+    "canonicalAlias": "uif",
+    "consumerSelectedAlias": true,
+    "invocationPattern": "uif.*"
+  },
   "patternIdPrefixes": [
     "pattern.base.",
     "pattern.composition.",

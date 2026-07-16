@@ -122,15 +122,20 @@ is a CSS-only compatibility selector through v1.x.
 Nunjucks:
 
 ```njk
-{{ ui.button("Label") }}
-{{ ui.input(type="text") }}
+{% import "macros/ui.njk" as uif %}
+{{ uif.button("Label") }}
+{{ uif.input(type="text") }}
 ```
 
 Web Component (optional convenience layer):
 
 ```html
-<ui-button variant="outline">Label</ui-button>
+<uif-button variant="outline">Label</uif-button>
 ```
+
+The public macro alias and Custom Element tag namespace are canonical `uif`.
+The macro module path, element module filenames, JavaScript exports, and package
+subpaths retain their existing names.
 
 ---
 

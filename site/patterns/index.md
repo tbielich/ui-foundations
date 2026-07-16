@@ -7,7 +7,7 @@ order: 1
 permalink: /patterns/
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero-preview">
   <div class="docs-hero-preview-controls">
@@ -25,8 +25,8 @@ permalink: /patterns/
     <div class="docs-component-grid">
   <a class="docs-component-card" href="/patterns/button/">
     <div class="docs-component-card-preview">
-      {{ ui.button("Action") }}
-      {{ ui.button("Secondary", "outline") }}
+      {{ uif.button("Action") }}
+      {{ uif.button("Secondary", "outline") }}
     </div>
     <div class="docs-component-card-body">
       <h2>Button</h2>
@@ -47,9 +47,9 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/badge/">
     <div class="docs-component-card-preview">
-      {{ ui.badge("Default") }}
-      {{ ui.badge("Brand", variant="brand") }}
-      {{ ui.badge("Success", variant="success") }}
+      {{ uif.badge("Default") }}
+      {{ uif.badge("Brand", variant="brand") }}
+      {{ uif.badge("Success", variant="success") }}
     </div>
     <div class="docs-component-card-body">
       <h2>Badge</h2>
@@ -70,7 +70,7 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/input/">
     <div class="docs-component-card-preview">
-      {{ ui.input(type="text", placeholder="Email address") }}
+      {{ uif.input(type="text", placeholder="Email address") }}
     </div>
     <div class="docs-component-card-body">
       <h2>Input</h2>
@@ -79,8 +79,8 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/checkbox/">
     <div class="docs-component-card-preview">
-      {{ ui.checkbox("Option A", true) }}
-      {{ ui.checkbox("Option B") }}
+      {{ uif.checkbox("Option A", true) }}
+      {{ uif.checkbox("Option B") }}
     </div>
     <div class="docs-component-card-body">
       <h2>Checkbox</h2>
@@ -89,8 +89,8 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/radio/">
     <div class="docs-component-card-preview">
-      {{ ui.radio("Option A", true, false, "default", "", "", "", "ov-radio", "a") }}
-      {{ ui.radio("Option B", false, false, "default", "", "", "", "ov-radio", "b") }}
+      {{ uif.radio("Option A", true, false, "default", "", "", "", "ov-radio", "a") }}
+      {{ uif.radio("Option B", false, false, "default", "", "", "", "ov-radio", "b") }}
     </div>
     <div class="docs-component-card-body">
       <h2>Radio</h2>
@@ -99,7 +99,7 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/switch/">
     <div class="docs-component-card-preview">
-      {{ ui.switch("Notifications", true) }}
+      {{ uif.switch("Notifications", true) }}
     </div>
     <div class="docs-component-card-body">
       <h2>Switch</h2>
@@ -117,7 +117,7 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/select/">
     <div class="docs-component-card-preview">
-      {{ ui.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}], placeholder="Choose an option") }}
+      {{ uif.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}], placeholder="Choose an option") }}
     </div>
     <div class="docs-component-card-body">
       <h2>Select</h2>

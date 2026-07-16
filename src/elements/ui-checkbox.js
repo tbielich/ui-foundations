@@ -1,8 +1,8 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-checkbox label="Accept terms" checked></ui-checkbox>
- * <ui-checkbox name="agree" aria-label="I agree"></ui-checkbox>
+ * <uif-checkbox label="Accept terms" checked></uif-checkbox>
+ * <uif-checkbox name="agree" aria-label="I agree"></uif-checkbox>
  *
  * Attributes:
  *   label      — visible label text
@@ -26,7 +26,7 @@ class UICheckbox extends UIElement {
     const ariaLabel = this.getAttr("aria-label");
 
     if (!label && !ariaLabel) {
-      this.warnDev("[ui-foundations] <ui-checkbox> should have a label or aria-label.");
+      this.warnDev("[ui-foundations] <uif-checkbox> should have a label or aria-label.");
     }
 
     const inputAttrs = ['type="checkbox"', 'class="uif-checkbox"'];
@@ -51,5 +51,5 @@ class UICheckbox extends UIElement {
   }
 }
 
-define("ui-checkbox", UICheckbox);
+define("uif-checkbox", UICheckbox);
 export { UICheckbox };

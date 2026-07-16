@@ -38,13 +38,13 @@ test("Accordion-owned emitters produce canonical classes", async () => {
   assert.doesNotMatch(sources[3], /class="accordion(?:[\s"])/);
 });
 
-test("Accordion documentation explains migration while registrations stay stable", async () => {
+test("Accordion documentation explains migration and uses canonical registrations", async () => {
   const [documentation, element] = await Promise.all([
     read("site/patterns/accordion.md"),
     read("src/elements/ui-accordion.js"),
   ]);
 
   assert.match(documentation, /legacy\s+`--accordion-\*` token aliases are not provided/);
-  assert.match(element, /define\("ui-accordion", UIAccordion\)/);
-  assert.match(element, /define\("ui-accordion-item", UIAccordionItem\)/);
+  assert.match(element, /define\("uif-accordion", UIAccordion\)/);
+  assert.match(element, /define\("uif-accordion-item", UIAccordionItem\)/);
 });

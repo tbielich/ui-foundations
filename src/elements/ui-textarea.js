@@ -1,7 +1,7 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-textarea placeholder="Enter message" rows="4"></ui-textarea>
+ * <uif-textarea placeholder="Enter message" rows="4"></uif-textarea>
  *
  * Attributes:
  *   placeholder — placeholder text
@@ -28,7 +28,7 @@ class UITextarea extends UIElement {
     const ariaLabelledby = this.getAttr("aria-labelledby");
 
     if (!ariaLabel && !ariaLabelledby && !this.id) {
-      this.warnDev("[ui-foundations] <ui-textarea> should have an id, aria-label, or aria-labelledby.");
+      this.warnDev("[ui-foundations] <uif-textarea> should have an id, aria-label, or aria-labelledby.");
     }
 
     const attrs = ['class="uif-textarea"'];
@@ -45,5 +45,5 @@ class UITextarea extends UIElement {
   }
 }
 
-define("ui-textarea", UITextarea);
+define("uif-textarea", UITextarea);
 export { UITextarea };

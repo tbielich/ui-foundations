@@ -9,7 +9,7 @@ playgroundUrl: /patterns/form-playground/
 playgroundLabel: Open Form Playground
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -25,17 +25,17 @@ playgroundLabel: Open Form Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      {% call ui.form() %}
-        {% call ui.formField() %}
-          {{ ui.fieldLabel("Email", htmlFor="hero-email", required=true) }}
-          {{ ui.input(type="email", id="hero-email", placeholder="you@example.com") }}
+      {% call uif.form() %}
+        {% call uif.formField() %}
+          {{ uif.fieldLabel("Email", htmlFor="hero-email", required=true) }}
+          {{ uif.input(type="email", id="hero-email", placeholder="you@example.com") }}
         {% endcall %}
-        {% call ui.formField() %}
-          {{ ui.fieldLabel("Password", htmlFor="hero-pw", required=true) }}
-          {{ ui.input(type="password", id="hero-pw") }}
+        {% call uif.formField() %}
+          {{ uif.fieldLabel("Password", htmlFor="hero-pw", required=true) }}
+          {{ uif.input(type="password", id="hero-pw") }}
         {% endcall %}
-        {% call ui.formActions() %}
-          {{ ui.button("Sign in", variant="solid", type="submit") }}
+        {% call uif.formActions() %}
+          {{ uif.button("Sign in", variant="solid", type="submit") }}
         {% endcall %}
       {% endcall %}
     </div>
@@ -79,20 +79,20 @@ playgroundLabel: Open Form Playground
 Use `.uif-form-group` with a `<fieldset>` and `<legend>` to group related fields. The legend provides an accessible name for the group.
 
 <div class="docs-example">
-{% call ui.form() %}
-  {% call ui.formGroup(title="Personal Information") %}
-    {% call ui.formField() %}
-      {{ ui.fieldLabel("First name", htmlFor="fn") }}
-      {{ ui.input(id="fn") }}
+{% call uif.form() %}
+  {% call uif.formGroup(title="Personal Information") %}
+    {% call uif.formField() %}
+      {{ uif.fieldLabel("First name", htmlFor="fn") }}
+      {{ uif.input(id="fn") }}
     {% endcall %}
-    {% call ui.formField() %}
-      {{ ui.fieldLabel("Last name", htmlFor="ln") }}
-      {{ ui.input(id="ln") }}
+    {% call uif.formField() %}
+      {{ uif.fieldLabel("Last name", htmlFor="ln") }}
+      {{ uif.input(id="ln") }}
     {% endcall %}
   {% endcall %}
-  {% call ui.formGroup(title="Preferences") %}
-    {{ ui.checkbox("Send newsletter") }}
-    {{ ui.checkbox("Accept terms", checked=true) }}
+  {% call uif.formGroup(title="Preferences") %}
+    {{ uif.checkbox("Send newsletter") }}
+    {{ uif.checkbox("Accept terms", checked=true) }}
   {% endcall %}
 {% endcall %}
 </div>
@@ -102,16 +102,16 @@ Use `.uif-form-group` with a `<fieldset>` and `<legend>` to group related fields
 Mark a field as invalid with `.is-invalid` on `.uif-form-field`. Helper text switches to danger color automatically.
 
 <div class="docs-example">
-{% call ui.form() %}
-  {% call ui.formField(invalid=true) %}
-    {{ ui.fieldLabel("Email", htmlFor="val-email", required=true) }}
-    {{ ui.input(type="email", id="val-email", placeholder="you@example.com") }}
-    {{ ui.formHelper("Please enter a valid email address.") }}
+{% call uif.form() %}
+  {% call uif.formField(invalid=true) %}
+    {{ uif.fieldLabel("Email", htmlFor="val-email", required=true) }}
+    {{ uif.input(type="email", id="val-email", placeholder="you@example.com") }}
+    {{ uif.formHelper("Please enter a valid email address.") }}
   {% endcall %}
-  {% call ui.formField() %}
-    {{ ui.fieldLabel("Name", htmlFor="val-name") }}
-    {{ ui.input(id="val-name", placeholder="Jane Doe") }}
-    {{ ui.formHelper("Your display name across the platform.") }}
+  {% call uif.formField() %}
+    {{ uif.fieldLabel("Name", htmlFor="val-name") }}
+    {{ uif.input(id="val-name", placeholder="Jane Doe") }}
+    {{ uif.formHelper("Your display name across the platform.") }}
   {% endcall %}
 {% endcall %}
 </div>
@@ -121,12 +121,12 @@ Mark a field as invalid with `.is-invalid` on `.uif-form-field`. Helper text swi
 Use `data-label-position="side"` for horizontal label layout. Best suited for wider viewports and settings forms.
 
 <div class="docs-example">
-{% call ui.form() %}
-  {% call ui.formField(labelPosition="side") %}
-    {{ ui.fieldLabel("Username") }}
+{% call uif.form() %}
+  {% call uif.formField(labelPosition="side") %}
+    {{ uif.fieldLabel("Username") }}
     <div class="uif-form-field-body">
-      {{ ui.input(placeholder="janedoe") }}
-      {{ ui.formHelper("Visible to other users.") }}
+      {{ uif.input(placeholder="janedoe") }}
+      {{ uif.formHelper("Visible to other users.") }}
     </div>
   {% endcall %}
 {% endcall %}
@@ -137,10 +137,10 @@ Use `data-label-position="side"` for horizontal label layout. Best suited for wi
 Use the borderless variant when the form is embedded in a card or modal that already provides its own container.
 
 <div class="docs-example">
-{% call ui.form(borderless=true) %}
-  {% call ui.formField() %}
-    {{ ui.fieldLabel("Search") }}
-    {{ ui.input(type="search", placeholder="Search...") }}
+{% call uif.form(borderless=true) %}
+  {% call uif.formField() %}
+    {{ uif.fieldLabel("Search") }}
+    {{ uif.input(type="search", placeholder="Search...") }}
   {% endcall %}
 {% endcall %}
 </div>
@@ -191,4 +191,4 @@ Form adapts to brands and modes through its component tokens:
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Form emitters now produce canonical `.uif-form*` classes, including groups, fields, helpers, links, field bodies, and actions. The corresponding legacy `.form*` selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-form-*`; library-owned legacy `--form-*` token aliases are not provided. Existing `<ui-form*>` registrations and package exports remain unchanged.
+Form emitters produce canonical `.uif-form*` classes, including groups, fields, helpers, links, field bodies, and actions. The corresponding legacy `.form*` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-form-*`; library-owned legacy `--form-*` token aliases are not provided. The Form Custom Elements now register as `<uif-form*>`; their existing module filename and package exports remain unchanged.

@@ -1,10 +1,11 @@
 ---
 title: ADR – UIF Public API Namespace
-status: proposed
+status: accepted
 type: adr
 issue: 154
 vault_decision: adr.uif-public-api-namespace
-governance_pack: 0.8.0-review
+implementation_issue: 197
+governance_pack: 0.8.0
 ---
 
 # ADR: UIF Public API Namespace
@@ -35,22 +36,17 @@ The Nunjucks decision changes the recommended import alias only. It does not
 rename `macros/ui.njk` or its named macro exports.
 
 The Custom Element decision governs registration strings, authored tag names,
-and `HTMLElementTagNameMap` keys. It does not yet decide JavaScript constructor
-or export names, module filenames, or package subpaths.
+and `HTMLElementTagNameMap` keys. JavaScript constructor and export names,
+module filenames, and package subpaths remain unchanged.
 
 ## Implementation Boundary
 
-This ADR authorizes the namespace direction, not the runtime migration.
-Implementation remains blocked until a reviewed plan explicitly decides:
-
-1. whether v1 removes `<ui-*>` registrations outright or provides any
-   compatibility period;
-2. migration sequencing across source, tests, examples, documentation, types,
-   and generated package output;
-3. treatment of element module subpaths and exported `UI*` JavaScript names.
-
-No alias, wrapper constructor, dual registration, deprecation period, or package
-redirect is implied by this decision.
+Issue [#197](https://github.com/tbielich/ui-foundations/issues/197) is the
+approved v1 runtime migration boundary. It replaces `<ui-*>` registrations
+directly with `<uif-*>`; no compatibility alias, dual registration, wrapper
+constructor, deprecation period, or package redirect is provided. Element
+module filenames, `ui-foundations/elements/ui-*` subpaths, `UI*` JavaScript
+identifiers, and `macros/ui.njk` remain stable.
 
 ## Rationale
 
@@ -67,10 +63,11 @@ migration.
 
 - New and migrated macro examples will use `uif.*`.
 - New and migrated Custom Element examples will use `<uif-*>`.
-- Existing `ui.*` examples and `<ui-*>` registrations are migration inventory.
-- Compatibility behavior remains an explicit open decision.
-- Runtime package paths and JavaScript identifiers remain unchanged until
-  separately approved.
+- Existing `ui.*` examples and `<ui-*>` registrations are removed from owned
+  public output in v1.
+- Consumers must migrate authored tags; legacy tag aliases are not provided.
+- Runtime package paths, module filenames, and JavaScript identifiers remain
+  unchanged.
 - The consumed naming contract is updated through a reviewed runtime change;
   no automatic cross-repository synchronization is introduced.
 
@@ -87,12 +84,15 @@ migration.
 - The consumed naming contract requires the `uif` Nunjucks alias and `uif-`
   Custom Element tag prefix.
 - Generated runtime contract data remains synchronized with the consumed JSON.
-- No runtime registration, macro implementation, package export, example, or
-  documentation call site is renamed in this governance change.
+- Runtime registrations, public examples, generated snippets, types, and
+  documentation use the canonical namespace.
+- Regression tests reject legacy registrations and preserve the explicitly
+  stable package and JavaScript surfaces.
 
 ## Related
 
 - [Issue #154](https://github.com/tbielich/ui-foundations/issues/154)
+- [Issue #197](https://github.com/tbielich/ui-foundations/issues/197)
+- `docs/migrations/public-api-namespace-v1.md`
 - Vault decision `decisions/uif-public-api-namespace.md`
 - `.uif/packs/governance/contracts/naming-contract.json`
-

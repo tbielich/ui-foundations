@@ -29,8 +29,8 @@ test("Radio-owned emitters and behavior use canonical classes", async () => {
   assert.doesNotMatch(element, /class="radio(?:[-\s"])/);
 });
 
-test("Radio docs explain migration while registration stays stable", async () => {
+test("Radio docs explain migration and use the canonical registration", async () => {
   const [documentation, element] = await Promise.all([read("site/patterns/radio.md"), read("src/elements/ui-radio.js")]);
   assert.match(documentation, /legacy `--radio-\*` token aliases are not provided/);
-  assert.match(element, /define\("ui-radio", UIRadio\)/);
+  assert.match(element, /define\("uif-radio", UIRadio\)/);
 });

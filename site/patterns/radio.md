@@ -9,7 +9,7 @@ playgroundUrl: /patterns/radio-playground/
 playgroundLabel: Open Radio Playground
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -25,8 +25,8 @@ playgroundLabel: Open Radio Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      {{ ui.radio("Option A", false, false, "default", "", "", "", "hero-group", "a") }}
-      {{ ui.radio("Option B", true, false, "default", "", "", "", "hero-group", "b") }}
+      {{ uif.radio("Option A", false, false, "default", "", "", "", "hero-group", "a") }}
+      {{ uif.radio("Option B", true, false, "default", "", "", "", "hero-group", "b") }}
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -58,7 +58,7 @@ playgroundLabel: Open Radio Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">3</span>
       </span>
-      {{ ui.radio("Label text", true, false, "default", "", "", "", "anatomy-group", "a") }}
+      {{ uif.radio("Label text", true, false, "default", "", "", "", "anatomy-group", "a") }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -75,36 +75,36 @@ playgroundLabel: Open Radio Playground
 <div class="docs-states-grid" style="--docs-states-cols: 4">
   <div class="docs-states-grid-row-header">Unselected</div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.radio("Default", false, false, "default", "", "", "", "sg-un", "a") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.radio("Default", false, false, "default", "", "", "", "sg-un", "a") }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.radio("Hover", false, false, "hover", "", "", "", "sg-unh", "a") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.radio("Hover", false, false, "hover", "", "", "", "sg-unh", "a") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.radio("Focus", false, false, "focus", "", "", "", "sg-unf", "a") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.radio("Focus", false, false, "focus", "", "", "", "sg-unf", "a") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.radio("Disabled", false, true, "default", "", "", "", "sg-und", "a") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.radio("Disabled", false, true, "default", "", "", "", "sg-und", "a") }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
   <div class="docs-states-grid-row-header">Selected</div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.radio("Default", true, false, "default", "", "", "", "sg-sel", "a") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.radio("Default", true, false, "default", "", "", "", "sg-sel", "a") }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.radio("Hover", true, false, "hover", "", "", "", "sg-selh", "a") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.radio("Hover", true, false, "hover", "", "", "", "sg-selh", "a") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.radio("Focus", true, false, "focus", "", "", "", "sg-self", "a") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.radio("Focus", true, false, "focus", "", "", "", "sg-self", "a") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.radio("Disabled", true, true, "default", "", "", "", "sg-seld", "a") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.radio("Disabled", true, true, "default", "", "", "", "sg-seld", "a") }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
 </div>
@@ -130,8 +130,8 @@ playgroundLabel: Open Radio Playground
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.radio("Option A", false, false, "default", "", "", "", "beh-select", "a") }}
-      {{ ui.radio("Option B", true, false, "default", "", "", "", "beh-select", "b") }}
+      {{ uif.radio("Option A", false, false, "default", "", "", "", "beh-select", "a") }}
+      {{ uif.radio("Option B", true, false, "default", "", "", "", "beh-select", "b") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Mutual exclusion</h3>
@@ -140,7 +140,7 @@ playgroundLabel: Open Radio Playground
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.radio("Focus preview", false, false, "focus", "", "", "", "beh-focus", "a") }}
+      {{ uif.radio("Focus preview", false, false, "focus", "", "", "", "beh-focus", "a") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Keyboard focus</h3>
@@ -149,7 +149,7 @@ playgroundLabel: Open Radio Playground
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.radio("Disabled", false, true, "default", "", "", "", "beh-disabled", "a") }}
+      {{ uif.radio("Disabled", false, true, "default", "", "", "", "beh-disabled", "a") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Disabled state</h3>
@@ -158,7 +158,7 @@ playgroundLabel: Open Radio Playground
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.radio("Arrow nav", true, false, "default", "", "", "", "beh-arrow", "a") }}
+      {{ uif.radio("Arrow nav", true, false, "default", "", "", "", "beh-arrow", "a") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Arrow key navigation</h3>
@@ -174,8 +174,8 @@ playgroundLabel: Open Radio Playground
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      {{ ui.radio("Economy", true, false, "default", "", "", "", "ug-do", "a") }}
-      {{ ui.radio("Business", false, false, "default", "", "", "", "ug-do", "b") }}
+      {{ uif.radio("Economy", true, false, "default", "", "", "", "ug-do", "a") }}
+      {{ uif.radio("Business", false, false, "default", "", "", "", "ug-do", "b") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
@@ -184,8 +184,8 @@ playgroundLabel: Open Radio Playground
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      {{ ui.checkbox("Economy", true) }}
-      {{ ui.checkbox("Business") }}
+      {{ uif.checkbox("Economy", true) }}
+      {{ uif.checkbox("Business") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
@@ -230,7 +230,7 @@ For the full theming architecture see [Foundations: Theming](/foundations/themin
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Radio emitters now produce `.uif-radio`, `.uif-radio-field`, and `.uif-radio-field-text`. The legacy `.radio` and `.radio-field` selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-radio-*`; library-owned legacy `--radio-*` token aliases are not provided. The existing `<ui-radio>` registration and package export remain unchanged.
+Radio emitters produce `.uif-radio`, `.uif-radio-field`, and `.uif-radio-field-text`. The legacy `.radio` and `.radio-field` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-radio-*`; library-owned legacy `--radio-*` token aliases are not provided. The Custom Element now registers as `<uif-radio>`; its existing module filename and package export remain unchanged.
 
 <h2 id="design-checklist">Design checklist</h2>
 

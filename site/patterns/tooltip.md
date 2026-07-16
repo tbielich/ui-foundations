@@ -8,7 +8,7 @@ permalink: /patterns/tooltip/
 playgroundUrl: /patterns/tooltip-playground/
 playgroundLabel: Open Tooltip Playground
 ---
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -24,7 +24,7 @@ playgroundLabel: Open Tooltip Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage" style="display: flex; gap: 2rem; justify-content: center; padding-block: 2rem;">
-      {% call ui.tooltip(text="Top tooltip", placement="top") %}
+      {% call uif.tooltip(text="Top tooltip", placement="top") %}
         <button class="button outline" type="button">Hover me</button>
       {% endcall %}
     </div>
@@ -94,7 +94,7 @@ playgroundLabel: Open Tooltip Playground
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {% call ui.tooltip(text="Appears on hover and focus", placement="top") %}
+      {% call uif.tooltip(text="Appears on hover and focus", placement="top") %}
         <button class="button outline" type="button">Trigger</button>
       {% endcall %}
     </div>
@@ -110,7 +110,7 @@ playgroundLabel: Open Tooltip Playground
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      {% call ui.tooltip(text="Save changes", placement="top") %}
+      {% call uif.tooltip(text="Save changes", placement="top") %}
         <button class="button" type="button">💾</button>
       {% endcall %}
     </div>
@@ -121,7 +121,7 @@ playgroundLabel: Open Tooltip Playground
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      {% call ui.tooltip(text="This is a very long tooltip that contains multiple sentences and detailed instructions that should really be in a help section instead.", placement="top") %}
+      {% call uif.tooltip(text="This is a very long tooltip that contains multiple sentences and detailed instructions that should really be in a help section instead.", placement="top") %}
         <button class="button outline" type="button">Help</button>
       {% endcall %}
     </div>
@@ -140,7 +140,7 @@ playgroundLabel: Open Tooltip Playground
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Tooltip emitters now produce `.uif-tooltip` and `.uif-tooltip-trigger`. The legacy `.tooltip` and `.tooltip-trigger` selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-tooltip-*`; library-owned legacy `--tooltip-*` token aliases are not provided. The existing `<ui-tooltip>` registration and package export remain unchanged by this component-family migration.
+Tooltip emitters produce `.uif-tooltip` and `.uif-tooltip-trigger`. The legacy `.tooltip` and `.tooltip-trigger` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-tooltip-*`; library-owned legacy `--tooltip-*` token aliases are not provided. The Custom Element now registers as `<uif-tooltip>`; its existing module filename and package export remain unchanged.
 - Shows on both hover and focus to support keyboard users.
 
 <h2 id="design-checklist">Design checklist</h2>

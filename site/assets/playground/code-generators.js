@@ -11,7 +11,7 @@
     if (variant && variant !== "solid") parts.push('"' + variant + '"');
     else if (disabled) parts.push('""');
     if (disabled) parts.push("true");
-    return '{{ ui.button(' + parts.join(", ") + ') }}';
+    return '{{ uif.button(' + parts.join(", ") + ') }}';
   }
 
   function wcButton(state) {
@@ -23,7 +23,7 @@
     if (variant !== "solid") attrs.push('variant="' + variant + '"');
     if (p.startIcon) attrs.push('start-icon="' + quoteAttr(p.startIcon) + '"');
     if (disabled) attrs.push("disabled");
-    return "<ui-button" + (attrs.length ? " " + attrs.join(" ") : "") + ">" + quoteAttr(label) + "</ui-button>";
+    return "<uif-button" + (attrs.length ? " " + attrs.join(" ") : "") + ">" + quoteAttr(label) + "</uif-button>";
   }
 
   function njkInput(state) {
@@ -33,7 +33,7 @@
     if (p.placeholder) parts.push('placeholder="' + quoteAttr(p.placeholder) + '"');
     if (p.value) parts.push('value="' + quoteAttr(p.value) + '"');
     if (state.meta.state === "disabled") parts.push("disabled=true");
-    return "{{ ui.input(" + parts.join(", ") + ") }}";
+    return "{{ uif.input(" + parts.join(", ") + ") }}";
   }
 
   function wcInput(state) {
@@ -43,7 +43,7 @@
     if (p.placeholder) attrs.push('placeholder="' + quoteAttr(p.placeholder) + '"');
     if (p.value) attrs.push('value="' + quoteAttr(p.value) + '"');
     if (state.meta.state === "disabled") attrs.push("disabled");
-    return "<ui-input" + (attrs.length ? " " + attrs.join(" ") : "") + "></ui-input>";
+    return "<uif-input" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-input>";
   }
 
   function njkCheckbox(state) {
@@ -55,7 +55,7 @@
     if (checked) parts.push("true");
     else if (disabled) parts.push("false");
     if (disabled) parts.push("true");
-    return "{{ ui.checkbox(" + parts.join(", ") + ") }}";
+    return "{{ uif.checkbox(" + parts.join(", ") + ") }}";
   }
 
   function wcCheckbox(state) {
@@ -66,7 +66,7 @@
     var attrs = ['label="' + quoteAttr(label) + '"'];
     if (checked) attrs.push("checked");
     if (disabled) attrs.push("disabled");
-    return "<ui-checkbox " + attrs.join(" ") + "></ui-checkbox>";
+    return "<uif-checkbox " + attrs.join(" ") + "></uif-checkbox>";
   }
 
   function njkSwitch(state) {
@@ -78,7 +78,7 @@
     if (checked) parts.push("true");
     else if (disabled) parts.push("false");
     if (disabled) parts.push("true");
-    return "{{ ui.switch(" + parts.join(", ") + ") }}";
+    return "{{ uif.switch(" + parts.join(", ") + ") }}";
   }
 
   function wcSwitch(state) {
@@ -89,7 +89,7 @@
     var attrs = ['label="' + quoteAttr(label) + '"'];
     if (checked) attrs.push("checked");
     if (disabled) attrs.push("disabled");
-    return "<ui-switch " + attrs.join(" ") + "></ui-switch>";
+    return "<uif-switch " + attrs.join(" ") + "></uif-switch>";
   }
 
   function njkIcon(state) {
@@ -98,7 +98,7 @@
     var label = p.label || "";
     var parts = ['"' + quoteAttr(name) + '"'];
     if (label) parts.push('"' + quoteAttr(label) + '"');
-    return "{{ ui.icon(" + parts.join(", ") + ") }}";
+    return "{{ uif.icon(" + parts.join(", ") + ") }}";
   }
 
   function wcIcon(state) {
@@ -108,14 +108,14 @@
     var attrs = ['name="' + quoteAttr(name) + '"'];
     if (label) attrs.push('label="' + quoteAttr(label) + '"');
     else attrs.push("decorative");
-    return "<ui-icon " + attrs.join(" ") + "></ui-icon>";
+    return "<uif-icon " + attrs.join(" ") + "></uif-icon>";
   }
 
   function njkRadio(state) {
     var p = state.props;
     var label = p.label || "Option A";
     var checked = p.checked === true || p.checked === "true";
-    return '{{ ui.radio("' + quoteAttr(label) + '"' + (checked ? ", true" : "") + ') }}';
+    return '{{ uif.radio("' + quoteAttr(label) + '"' + (checked ? ", true" : "") + ') }}';
   }
 
   function wcRadio(state) {
@@ -124,7 +124,7 @@
     var checked = p.checked === true || p.checked === "true";
     var attrs = ['label="' + quoteAttr(label) + '"'];
     if (checked) attrs.push("checked");
-    return "<ui-radio " + attrs.join(" ") + "></ui-radio>";
+    return "<uif-radio " + attrs.join(" ") + "></uif-radio>";
   }
 
   function njkBadge(state) {
@@ -133,7 +133,7 @@
     var variant = p.variant || "default";
     var parts = ['"' + quoteAttr(text) + '"'];
     if (variant !== "default") parts.push('variant="' + variant + '"');
-    return "{{ ui.badge(" + parts.join(", ") + ") }}";
+    return "{{ uif.badge(" + parts.join(", ") + ") }}";
   }
 
   function wcBadge(state) {
@@ -142,7 +142,7 @@
     var variant = p.variant || "default";
     var attrs = [];
     if (variant !== "default") attrs.push('variant="' + variant + '"');
-    return "<ui-badge" + (attrs.length ? " " + attrs.join(" ") : "") + ">" + quoteAttr(text) + "</ui-badge>";
+    return "<uif-badge" + (attrs.length ? " " + attrs.join(" ") : "") + ">" + quoteAttr(text) + "</uif-badge>";
   }
 
   function njkSelect(state) {
@@ -158,7 +158,7 @@
     }
     parts.push('placeholder="' + quoteAttr(placeholder) + '"');
     if (disabled) parts.push("disabled=true");
-    return "{{ ui.select(" + parts.join(", ") + ") }}";
+    return "{{ uif.select(" + parts.join(", ") + ") }}";
   }
 
   function wcSelect(state) {
@@ -174,7 +174,7 @@
     } else {
       options = '\n  <option value="opt1">Option 1</option>\n  <option value="opt2">Option 2</option>\n  <option value="opt3">Option 3</option>\n';
     }
-    return "<ui-select " + attrs.join(" ") + ">" + options + "</ui-select>";
+    return "<uif-select " + attrs.join(" ") + ">" + options + "</uif-select>";
   }
 
   function njkForm(state) {
@@ -184,18 +184,18 @@
     var invalid = p.invalid === true || p.invalid === "true";
     var actionsAlign = p.actionsAlign || "end";
     var lines = [];
-    lines.push("{% call ui.form(" + (borderless ? "borderless=true" : "") + ") %}");
-    lines.push("  {% call ui.formField(" + (invalid ? "invalid=true" : "") + (labelPosition === "side" ? 'labelPosition="side"' : "") + ") %}");
-    lines.push('    {{ ui.fieldLabel("Email", htmlFor="email", required=true) }}');
-    lines.push('    {{ ui.input(type="email", id="email", placeholder="you@example.com") }}');
-    if (invalid) lines.push('    {{ ui.formHelper("Please enter a valid email address.") }}');
+    lines.push("{% call uif.form(" + (borderless ? "borderless=true" : "") + ") %}");
+    lines.push("  {% call uif.formField(" + (invalid ? "invalid=true" : "") + (labelPosition === "side" ? 'labelPosition="side"' : "") + ") %}");
+    lines.push('    {{ uif.fieldLabel("Email", htmlFor="email", required=true) }}');
+    lines.push('    {{ uif.input(type="email", id="email", placeholder="you@example.com") }}');
+    if (invalid) lines.push('    {{ uif.formHelper("Please enter a valid email address.") }}');
     lines.push("  {% endcall %}");
-    lines.push("  {% call ui.formField() %}");
-    lines.push('    {{ ui.fieldLabel("Password", htmlFor="pw") }}');
-    lines.push('    {{ ui.input(type="password", id="pw") }}');
+    lines.push("  {% call uif.formField() %}");
+    lines.push('    {{ uif.fieldLabel("Password", htmlFor="pw") }}');
+    lines.push('    {{ uif.input(type="password", id="pw") }}');
     lines.push("  {% endcall %}");
-    lines.push('  {% call ui.formActions(' + (actionsAlign !== "end" ? 'align="' + actionsAlign + '"' : "") + ') %}');
-    lines.push('    {{ ui.button("Sign in", variant="solid", type="submit") }}');
+    lines.push('  {% call uif.formActions(' + (actionsAlign !== "end" ? 'align="' + actionsAlign + '"' : "") + ') %}');
+    lines.push('    {{ uif.button("Sign in", variant="solid", type="submit") }}');
     lines.push("  {% endcall %}");
     lines.push("{% endcall %}");
     return lines.join("\n");
@@ -208,20 +208,20 @@
     var invalid = p.invalid === true || p.invalid === "true";
     var actionsAlign = p.actionsAlign || "end";
     var lines = [];
-    lines.push("<ui-form" + (borderless ? " borderless" : "") + ">");
-    lines.push("  <ui-form-field" + (invalid ? " invalid" : "") + (labelPosition === "side" ? ' label-position="side"' : "") + ">");
-    lines.push('    <ui-field-label for="email" required>Email</ui-field-label>');
-    lines.push('    <ui-input type="email" id="email" placeholder="you@example.com"></ui-input>');
-    if (invalid) lines.push("    <ui-form-helper>Please enter a valid email address.</ui-form-helper>");
-    lines.push("  </ui-form-field>");
-    lines.push("  <ui-form-field>");
-    lines.push('    <ui-field-label for="pw">Password</ui-field-label>');
-    lines.push('    <ui-input type="password" id="pw"></ui-input>');
-    lines.push("  </ui-form-field>");
-    lines.push("  <ui-form-actions" + (actionsAlign !== "end" ? ' align="' + actionsAlign + '"' : "") + ">");
-    lines.push('    <ui-button type="submit">Sign in</ui-button>');
-    lines.push("  </ui-form-actions>");
-    lines.push("</ui-form>");
+    lines.push("<uif-form" + (borderless ? " borderless" : "") + ">");
+    lines.push("  <uif-form-field" + (invalid ? " invalid" : "") + (labelPosition === "side" ? ' label-position="side"' : "") + ">");
+    lines.push('    <uif-field-label for="email" required>Email</uif-field-label>');
+    lines.push('    <uif-input type="email" id="email" placeholder="you@example.com"></uif-input>');
+    if (invalid) lines.push("    <uif-form-helper>Please enter a valid email address.</uif-form-helper>");
+    lines.push("  </uif-form-field>");
+    lines.push("  <uif-form-field>");
+    lines.push('    <uif-field-label for="pw">Password</uif-field-label>');
+    lines.push('    <uif-input type="password" id="pw"></uif-input>');
+    lines.push("  </uif-form-field>");
+    lines.push("  <uif-form-actions" + (actionsAlign !== "end" ? ' align="' + actionsAlign + '"' : "") + ">");
+    lines.push('    <uif-button type="submit">Sign in</uif-button>');
+    lines.push("  </uif-form-actions>");
+    lines.push("</uif-form>");
     return lines.join("\n");
   }
 
@@ -236,15 +236,15 @@
     if (state.meta.state && state.meta.state !== "default") parts.push('state="' + quoteAttr(state.meta.state) + '"');
     if (p.disabled === true) parts.push("disabled=true");
     if (p.container === false) parts.push("container=false");
-    return "{{ ui.calendar(" + parts.join(", ") + ") }}";
+    return "{{ uif.calendar(" + parts.join(", ") + ") }}";
   }
 
   global.UIPlaygroundCodeGenerators = {
     njk: {
       button: njkButton, input: njkInput, checkbox: njkCheckbox,
       "switch": njkSwitch, icon: njkIcon, radio: njkRadio, badge: njkBadge,
-      label: function () { return '{{ ui.labelContent("text", "icon") }}'; },
-      "button-group": function () { return '{% call ui.buttonGroup() %}...{% endcall %}'; },
+      label: function () { return '{{ uif.labelContent("text", "icon") }}'; },
+      "button-group": function () { return '{% call uif.buttonGroup() %}...{% endcall %}'; },
       select: njkSelect,
       form: njkForm,
       calendar: njkCalendar,
@@ -253,7 +253,7 @@
         var parts = [];
         if (p.orientation === "vertical") parts.push('orientation="vertical"');
         if (p.variant) parts.push('variant="' + p.variant + '"');
-        return "{{ ui.divider(" + parts.join(", ") + ") }}";
+        return "{{ uif.divider(" + parts.join(", ") + ") }}";
       },
       link: function (state) {
         var p = state.props;
@@ -262,7 +262,7 @@
         if (p.href && p.href !== "#") parts.push('href="' + quoteAttr(p.href) + '"');
         if (p.startIcon) parts.push('startIcon="' + quoteAttr(p.startIcon) + '"');
         if (p.endIcon) parts.push('endIcon="' + quoteAttr(p.endIcon) + '"');
-        return "{{ ui.link(" + parts.join(", ") + ") }}";
+        return "{{ uif.link(" + parts.join(", ") + ") }}";
       },
       textarea: function (state) {
         var p = state.props;
@@ -270,7 +270,7 @@
         if (p.placeholder) parts.push('placeholder="' + quoteAttr(p.placeholder) + '"');
         if (p.rows) parts.push('rows="' + p.rows + '"');
         if (state.meta.state === "disabled") parts.push("disabled=true");
-        return "{{ ui.textarea(" + parts.join(", ") + ") }}";
+        return "{{ uif.textarea(" + parts.join(", ") + ") }}";
       },
       avatar: function (state) {
         var p = state.props;
@@ -278,26 +278,26 @@
         if (p.src) parts.push('src="' + quoteAttr(p.src) + '"');
         if (p.initials) parts.push('initials="' + quoteAttr(p.initials) + '"');
         if (p.size && p.size !== "md") parts.push('size="' + p.size + '"');
-        return "{{ ui.avatar(" + parts.join(", ") + ") }}";
+        return "{{ uif.avatar(" + parts.join(", ") + ") }}";
       },
       accordion: function () {
-        return '{% call ui.accordion() %}\n  {% call ui.accordionItem("Section 1", open=true) %}Content{% endcall %}\n  {% call ui.accordionItem("Section 2") %}Content{% endcall %}\n{% endcall %}';
+        return '{% call uif.accordion() %}\n  {% call uif.accordionItem("Section 1", open=true) %}Content{% endcall %}\n  {% call uif.accordionItem("Section 2") %}Content{% endcall %}\n{% endcall %}';
       },
       tabs: function () {
-        return '{% call ui.tabList(ariaLabel="Tabs") %}\n  {{ ui.tab("Tab 1", selected=true, controls="p1") }}\n  {{ ui.tab("Tab 2", controls="p2") }}\n{% endcall %}\n{% call ui.tabPanel(id="p1") %}Panel 1{% endcall %}\n{% call ui.tabPanel(id="p2", hidden=true) %}Panel 2{% endcall %}';
+        return '{% call uif.tabList(ariaLabel="Tabs") %}\n  {{ uif.tab("Tab 1", selected=true, controls="p1") }}\n  {{ uif.tab("Tab 2", controls="p2") }}\n{% endcall %}\n{% call uif.tabPanel(id="p1") %}Panel 1{% endcall %}\n{% call uif.tabPanel(id="p2", hidden=true) %}Panel 2{% endcall %}';
       },
       tooltip: function (state) {
         var p = state.props;
         var text = p.text || "Tooltip text";
         var placement = p.placement || "top";
-        return '{% call ui.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="uif-button">Hover me</button>{% endcall %}';
+        return '{% call uif.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="uif-button">Hover me</button>{% endcall %}';
       },
     },
     wc: {
       button: wcButton, input: wcInput, checkbox: wcCheckbox,
       "switch": wcSwitch, icon: wcIcon, radio: wcRadio, badge: wcBadge,
-      label: function () { return "<ui-field-label>...</ui-field-label>"; },
-      "button-group": function () { return "<ui-button-group>...</ui-button-group>"; },
+      label: function () { return "<uif-field-label>...</uif-field-label>"; },
+      "button-group": function () { return "<uif-button-group>...</uif-button-group>"; },
       select: wcSelect,
       form: wcForm,
       calendar: function () {
@@ -308,7 +308,7 @@
         var attrs = [];
         if (p.orientation === "vertical") attrs.push('orientation="vertical"');
         if (p.variant) attrs.push('variant="' + p.variant + '"');
-        return "<ui-divider" + (attrs.length ? " " + attrs.join(" ") : "") + "></ui-divider>";
+        return "<uif-divider" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-divider>";
       },
       link: function (state) {
         var p = state.props;
@@ -317,7 +317,7 @@
         if (p.href && p.href !== "#") attrs.push('href="' + quoteAttr(p.href) + '"');
         if (p.startIcon) attrs.push('start-icon="' + quoteAttr(p.startIcon) + '"');
         if (p.endIcon) attrs.push('end-icon="' + quoteAttr(p.endIcon) + '"');
-        return "<ui-link" + (attrs.length ? " " + attrs.join(" ") : "") + ">" + quoteAttr(text) + "</ui-link>";
+        return "<uif-link" + (attrs.length ? " " + attrs.join(" ") : "") + ">" + quoteAttr(text) + "</uif-link>";
       },
       textarea: function (state) {
         var p = state.props;
@@ -325,7 +325,7 @@
         if (p.placeholder) attrs.push('placeholder="' + quoteAttr(p.placeholder) + '"');
         if (p.rows) attrs.push('rows="' + p.rows + '"');
         if (state.meta.state === "disabled") attrs.push("disabled");
-        return "<ui-textarea" + (attrs.length ? " " + attrs.join(" ") : "") + "></ui-textarea>";
+        return "<uif-textarea" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-textarea>";
       },
       avatar: function (state) {
         var p = state.props;
@@ -333,19 +333,19 @@
         if (p.src) attrs.push('src="' + quoteAttr(p.src) + '"');
         if (p.initials) attrs.push('initials="' + quoteAttr(p.initials) + '"');
         if (p.size && p.size !== "md") attrs.push('size="' + p.size + '"');
-        return "<ui-avatar" + (attrs.length ? " " + attrs.join(" ") : "") + "></ui-avatar>";
+        return "<uif-avatar" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-avatar>";
       },
       accordion: function () {
-        return '<ui-accordion>\n  <ui-accordion-item title="Section 1" open>Content</ui-accordion-item>\n  <ui-accordion-item title="Section 2">Content</ui-accordion-item>\n</ui-accordion>';
+        return '<uif-accordion>\n  <uif-accordion-item title="Section 1" open>Content</uif-accordion-item>\n  <uif-accordion-item title="Section 2">Content</uif-accordion-item>\n</uif-accordion>';
       },
       tabs: function () {
-        return '<ui-tab-list aria-label="Tabs">\n  <ui-tab label="Tab 1" selected controls="p1"></ui-tab>\n  <ui-tab label="Tab 2" controls="p2"></ui-tab>\n</ui-tab-list>\n<ui-tab-panel id="p1">Panel 1</ui-tab-panel>\n<ui-tab-panel id="p2" hidden>Panel 2</ui-tab-panel>';
+        return '<uif-tab-list aria-label="Tabs">\n  <uif-tab label="Tab 1" selected controls="p1"></uif-tab>\n  <uif-tab label="Tab 2" controls="p2"></uif-tab>\n</uif-tab-list>\n<uif-tab-panel id="p1">Panel 1</uif-tab-panel>\n<uif-tab-panel id="p2" hidden>Panel 2</uif-tab-panel>';
       },
       tooltip: function (state) {
         var p = state.props;
         var text = p.text || "Tooltip text";
         var placement = p.placement || "top";
-        return '<ui-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="uif-button">Hover me</button>\n</ui-tooltip>';
+        return '<uif-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="uif-button">Hover me</button>\n</uif-tooltip>';
       },
     },
   };

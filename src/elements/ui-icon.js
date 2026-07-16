@@ -1,7 +1,7 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-icon name="search" label="Search"></ui-icon>
+ * <uif-icon name="search" label="Search"></uif-icon>
  *
  * Attributes:
  *   name      — icon file name (without .svg)
@@ -49,5 +49,5 @@ class UIIcon extends UIElement {
   }
 }
 
-define("ui-icon", UIIcon);
+define("uif-icon", UIIcon);
 export { UIIcon };

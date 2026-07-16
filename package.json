@@ -17,6 +17,7 @@
     "README.md",
     "docs/foundations/**",
     "docs/migrations/react-to-web-components.md",
+    "docs/migrations/public-api-namespace-v1.md",
     "docs/agentic/assistant-behavior-rules.md",
     "docs/agentic/team-ai-playbook.md",
     "docs/agentic/skills/**"

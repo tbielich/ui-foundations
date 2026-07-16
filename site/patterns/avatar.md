@@ -8,7 +8,7 @@ permalink: /patterns/avatar/
 playgroundUrl: /patterns/avatar-playground/
 playgroundLabel: Open Avatar Playground
 ---
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -24,11 +24,11 @@ playgroundLabel: Open Avatar Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage" style="display: flex; gap: 1rem; align-items: center;">
-      {{ ui.avatar(initials="XS", size="xs") }}
-      {{ ui.avatar(initials="SM", size="sm") }}
-      {{ ui.avatar(initials="TB", alt="Thomas Bielich") }}
-      {{ ui.avatar(initials="LG", size="lg") }}
-      {{ ui.avatar(initials="XL", size="xl") }}
+      {{ uif.avatar(initials="XS", size="xs") }}
+      {{ uif.avatar(initials="SM", size="sm") }}
+      {{ uif.avatar(initials="TB", alt="Thomas Bielich") }}
+      {{ uif.avatar(initials="LG", size="lg") }}
+      {{ uif.avatar(initials="XL", size="xl") }}
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -48,7 +48,7 @@ playgroundLabel: Open Avatar Playground
         <span class="docs-anatomy-badge">1</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
-      {{ ui.avatar(initials="TB", alt="Thomas Bielich") }}
+      {{ uif.avatar(initials="TB", alt="Thomas Bielich") }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -62,23 +62,23 @@ playgroundLabel: Open Avatar Playground
 
 <div class="docs-states-grid" style="--docs-states-cols: 5">
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.avatar(initials="XS", size="xs") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.avatar(initials="XS", size="xs") }}</div>
     <span class="docs-states-grid-item-label">XS (24px)</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.avatar(initials="SM", size="sm") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.avatar(initials="SM", size="sm") }}</div>
     <span class="docs-states-grid-item-label">SM (32px)</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.avatar(initials="MD") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.avatar(initials="MD") }}</div>
     <span class="docs-states-grid-item-label">MD (40px)</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.avatar(initials="LG", size="lg") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.avatar(initials="LG", size="lg") }}</div>
     <span class="docs-states-grid-item-label">LG (48px)</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.avatar(initials="XL", size="xl") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.avatar(initials="XL", size="xl") }}</div>
     <span class="docs-states-grid-item-label">XL (64px)</span>
   </div>
 </div>
@@ -87,11 +87,11 @@ playgroundLabel: Open Avatar Playground
 
 <div class="docs-states-grid" style="--docs-states-cols: 2">
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.avatar(initials="TB", alt="Thomas Bielich") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.avatar(initials="TB", alt="Thomas Bielich") }}</div>
     <span class="docs-states-grid-item-label">Initials</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.avatar(src="https://i.pravatar.cc/80", alt="User photo") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.avatar(src="https://i.pravatar.cc/80", alt="User photo") }}</div>
     <span class="docs-states-grid-item-label">Image</span>
   </div>
 </div>
@@ -116,7 +116,7 @@ playgroundLabel: Open Avatar Playground
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Avatar emitters now produce the canonical `.uif-avatar` and `.uif-avatar-initials` classes. The legacy `.avatar` and `.avatar-initials` selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-avatar-*`; library-owned legacy `--avatar-*` token aliases are not provided. The existing `<ui-avatar>` registration and package export remain unchanged by this component-family migration.
+Avatar emitters produce the canonical `.uif-avatar` and `.uif-avatar-initials` classes. The legacy `.avatar` and `.avatar-initials` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-avatar-*`; library-owned legacy `--avatar-*` token aliases are not provided. The Custom Element now registers as `<uif-avatar>`; its existing module filename and package export remain unchanged.
 
 <h2 id="design-checklist">Design checklist</h2>
 

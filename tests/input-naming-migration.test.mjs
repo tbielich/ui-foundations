@@ -58,7 +58,7 @@ test("Input behavior and Date Input accept canonical and legacy Input markup", a
   assert.match(dateCss, /:is\(\.uif-input-field, \.input-field\)\.date/);
 });
 
-test("Input documentation explains the v1 boundary while element registration stays stable", async () => {
+test("Input documentation explains the v1 boundary and uses the canonical registration", async () => {
   const [documentation, element] = await Promise.all([
     read("site/patterns/input.md"),
     read("src/elements/ui-input.js"),
@@ -66,5 +66,5 @@ test("Input documentation explains the v1 boundary while element registration st
 
   assert.match(documentation, /legacy `--input-\*` token\s+aliases are not provided/);
   assert.match(documentation, /\.uif-input-field-control/);
-  assert.match(element, /define\("ui-input", UIInput\)/);
+  assert.match(element, /define\("uif-input", UIInput\)/);
 });

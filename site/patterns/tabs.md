@@ -8,7 +8,7 @@ permalink: /patterns/tabs/
 playgroundUrl: /patterns/tabs-playground/
 playgroundLabel: Open Tabs Playground
 ---
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -24,12 +24,12 @@ playgroundLabel: Open Tabs Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage" style="inline-size: 100%;">
-      {% call ui.tabList(ariaLabel="Example tabs") %}
-        {{ ui.tab(label="Overview", selected=true, controls="panel-1") }}
-        {{ ui.tab(label="Details", controls="panel-2") }}
-        {{ ui.tab(label="Settings", controls="panel-3") }}
+      {% call uif.tabList(ariaLabel="Example tabs") %}
+        {{ uif.tab(label="Overview", selected=true, controls="panel-1") }}
+        {{ uif.tab(label="Details", controls="panel-2") }}
+        {{ uif.tab(label="Settings", controls="panel-3") }}
       {% endcall %}
-      {% call ui.tabPanel(id="panel-1") %}
+      {% call uif.tabPanel(id="panel-1") %}
         <p>Overview content goes here.</p>
       {% endcall %}
     </div>
@@ -55,11 +55,11 @@ playgroundLabel: Open Tabs Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">2</span>
       </span>
-      {% call ui.tabList(ariaLabel="Anatomy tabs") %}
-        {{ ui.tab(label="Tab 1", selected=true) }}
-        {{ ui.tab(label="Tab 2") }}
+      {% call uif.tabList(ariaLabel="Anatomy tabs") %}
+        {{ uif.tab(label="Tab 1", selected=true) }}
+        {{ uif.tab(label="Tab 2") }}
       {% endcall %}
-      {% call ui.tabPanel() %}
+      {% call uif.tabPanel() %}
         <p>Panel content</p>
       {% endcall %}
     </div>
@@ -136,7 +136,7 @@ playgroundLabel: Open Tabs Playground
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Tabs emitters now produce `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, and `.uif-tab-panel`. Their unprefixed selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-tabs-*`; library-owned legacy `--tabs-*` token aliases are not provided. Existing `<ui-tab-list>`, `<ui-tab>`, and `<ui-tab-panel>` registrations and package exports remain unchanged.
+Tabs emitters produce `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, and `.uif-tab-panel`. Their unprefixed selectors remain supported during the v1 compatibility period. Component token slots use `--uif-tabs-*`; library-owned legacy `--tabs-*` token aliases are not provided. The Custom Elements now register as `<uif-tab-list>`, `<uif-tab>`, and `<uif-tab-panel>`; their existing module filename and package exports remain unchanged.
 
 <h2 id="design-checklist">Design checklist</h2>
 

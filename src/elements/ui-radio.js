@@ -1,7 +1,7 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-radio label="Option A" name="choice" value="a"></ui-radio>
+ * <uif-radio label="Option A" name="choice" value="a"></uif-radio>
  *
  * Attributes:
  *   label      — visible label text
@@ -25,7 +25,7 @@ class UIRadio extends UIElement {
     const ariaLabel = this.getAttr("aria-label");
 
     if (!label && !ariaLabel) {
-      this.warnDev("[ui-foundations] <ui-radio> should have a label or aria-label.");
+      this.warnDev("[ui-foundations] <uif-radio> should have a label or aria-label.");
     }
 
     const inputAttrs = ['type="radio"', 'class="uif-radio"'];
@@ -50,5 +50,5 @@ class UIRadio extends UIElement {
   }
 }
 
-define("ui-radio", UIRadio);
+define("uif-radio", UIRadio);
 export { UIRadio };

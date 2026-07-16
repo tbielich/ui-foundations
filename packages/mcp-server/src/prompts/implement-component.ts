@@ -61,7 +61,7 @@ export async function implementComponentHandler(
     ``,
     `File: \`site/_includes/macros/ui.njk\``,
     ``,
-    `- Add a \`macro ui.${name.replace(/-/g, '')}()\` entry to the macros file`,
+    `- Add a \`macro uif.${name.replace(/-/g, '')}()\` entry to the macros file`,
     `- Accept all variant and state parameters`,
     `- Output semantic HTML with the CSS class`,
     `- Support \`attrs\` catch-all for extra HTML attributes`,

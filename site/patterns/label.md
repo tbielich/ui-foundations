@@ -8,7 +8,7 @@ permalink: /patterns/label/
 playgroundUrl: /patterns/label-playground/
 playgroundLabel: Open Label Playground
 ---
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">

@@ -12,7 +12,7 @@ breadcrumb:
   - label: Pricing
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <style>
   .pricing-grid {
@@ -151,30 +151,30 @@ breadcrumb:
     </div>
     <ul class="pricing-card-features">
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>5 projects</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>1 GB storage</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>Email support</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>Basic analytics</span>
       </li>
     </ul>
     <div class="pricing-card-cta">
-      {{ ui.button(label="Get Started", variant="outline") }}
+      {{ uif.button(label="Get Started", variant="outline") }}
     </div>
   </article>
 
   {# ── Pro (recommended) ── #}
   <article class="pricing-card pricing-card--recommended" role="listitem">
-    {{ ui.badge("Recommended", variant="brand", size="sm") }}
+    {{ uif.badge("Recommended", variant="brand", size="sm") }}
     <div class="pricing-card-header">
       <h3 class="pricing-card-plan">Pro</h3>
       <p class="pricing-card-price">$29<span class="pricing-card-price-period"> / mo</span></p>
@@ -182,28 +182,28 @@ breadcrumb:
     </div>
     <ul class="pricing-card-features">
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>Unlimited projects</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>50 GB storage</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>Priority support</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>Advanced analytics</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>Custom integrations</span>
       </li>
     </ul>
     <div class="pricing-card-cta">
-      {{ ui.button(label="Get Started", variant="solid") }}
+      {{ uif.button(label="Get Started", variant="solid") }}
     </div>
   </article>
 
@@ -216,32 +216,32 @@ breadcrumb:
     </div>
     <ul class="pricing-card-features">
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>Unlimited projects</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>500 GB storage</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>Dedicated support</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>Advanced analytics</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>SSO &amp; audit logs</span>
       </li>
       <li class="pricing-card-feature">
-        {{ ui.icon("shield-check", "Included") }}
+        {{ uif.icon("shield-check", "Included") }}
         <span>SLA guarantee</span>
       </li>
     </ul>
     <div class="pricing-card-cta">
-      {{ ui.button(label="Contact Sales", variant="outline") }}
+      {{ uif.button(label="Contact Sales", variant="outline") }}
     </div>
   </article>
 

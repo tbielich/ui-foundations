@@ -1,7 +1,7 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-field-label for="email" required start-icon="mail">Email address</ui-field-label>
+ * <uif-field-label for="email" required start-icon="mail">Email address</uif-field-label>
  *
  * Attributes:
  *   for        — associated input ID (htmlFor)
@@ -38,5 +38,5 @@ class UIFieldLabel extends UIElement {
   }
 }
 
-define("ui-field-label", UIFieldLabel);
+define("uif-field-label", UIFieldLabel);
 export { UIFieldLabel };

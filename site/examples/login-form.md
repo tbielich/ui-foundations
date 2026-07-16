@@ -12,7 +12,7 @@ breadcrumb:
   - label: Login Form
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <h2>Preview</h2>
 
@@ -31,21 +31,21 @@ breadcrumb:
   <div class="docs-hero-preview-stage">
 
 <div class="example-form-shell">
-  {% call ui.form(borderless=true) %}
-    {% call ui.formGroup(title="Sign in") %}
+  {% call uif.form(borderless=true) %}
+    {% call uif.formGroup(title="Sign in") %}
       <p class="uif-form-field-helper">Use your account email and password.</p>
-      {% call ui.formField() %}
-        {{ ui.fieldLabel("Email address", htmlFor="login-email", required=true) }}
-        {{ ui.input(type="email", id="login-email", name="email", placeholder="name@example.com") }}
+      {% call uif.formField() %}
+        {{ uif.fieldLabel("Email address", htmlFor="login-email", required=true) }}
+        {{ uif.input(type="email", id="login-email", name="email", placeholder="name@example.com") }}
       {% endcall %}
-      {% call ui.formField() %}
-        {{ ui.fieldLabel("Password", htmlFor="login-password", required=true) }}
-        {{ ui.input(type="password", id="login-password", name="password", placeholder="Enter password") }}
+      {% call uif.formField() %}
+        {{ uif.fieldLabel("Password", htmlFor="login-password", required=true) }}
+        {{ uif.input(type="password", id="login-password", name="password", placeholder="Enter password") }}
         <a class="uif-form-field-link" href="#">Forgot password?</a>
       {% endcall %}
     {% endcall %}
-    {% call ui.formActions(align="stretch") %}
-      {{ ui.button(label="Sign in", type="submit") }}
+    {% call uif.formActions(align="stretch") %}
+      {{ uif.button(label="Sign in", type="submit") }}
     {% endcall %}
   {% endcall %}
 </div>
@@ -59,23 +59,23 @@ breadcrumb:
   <div class="docs-hero-preview-stage">
 
 <div class="example-form-shell">
-  {% call ui.form(borderless=true) %}
-    {% call ui.formGroup(title="Sign in") %}
+  {% call uif.form(borderless=true) %}
+    {% call uif.formGroup(title="Sign in") %}
       <p class="uif-form-field-helper">Use your account email and password.</p>
-      {% call ui.formField(invalid=true) %}
-        {{ ui.fieldLabel("Email address", htmlFor="login-email-err", required=true) }}
-        {{ ui.input(type="email", id="login-email-err", name="email", placeholder="name@example.com", className="is-invalid") }}
+      {% call uif.formField(invalid=true) %}
+        {{ uif.fieldLabel("Email address", htmlFor="login-email-err", required=true) }}
+        {{ uif.input(type="email", id="login-email-err", name="email", placeholder="name@example.com", className="is-invalid") }}
         <p class="uif-form-field-helper">Please enter a valid email address.</p>
       {% endcall %}
-      {% call ui.formField(invalid=true) %}
-        {{ ui.fieldLabel("Password", htmlFor="login-password-err", required=true) }}
-        {{ ui.input(type="password", id="login-password-err", name="password", placeholder="Enter password", className="is-invalid") }}
+      {% call uif.formField(invalid=true) %}
+        {{ uif.fieldLabel("Password", htmlFor="login-password-err", required=true) }}
+        {{ uif.input(type="password", id="login-password-err", name="password", placeholder="Enter password", className="is-invalid") }}
         <p class="uif-form-field-helper">Password is required.</p>
         <a class="uif-form-field-link" href="#">Forgot password?</a>
       {% endcall %}
     {% endcall %}
-    {% call ui.formActions(align="stretch") %}
-      {{ ui.button(label="Sign in", type="submit") }}
+    {% call uif.formActions(align="stretch") %}
+      {{ uif.button(label="Sign in", type="submit") }}
     {% endcall %}
   {% endcall %}
 </div>

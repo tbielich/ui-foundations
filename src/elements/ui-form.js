@@ -1,10 +1,10 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-form borderless>
- *   <ui-form-group title="Personal">...</ui-form-group>
- *   <ui-form-actions>...</ui-form-actions>
- * </ui-form>
+ * <uif-form borderless>
+ *   <uif-form-group title="Personal">...</uif-form-group>
+ *   <uif-form-actions>...</uif-form-actions>
+ * </uif-form>
  */
 class UIForm extends UIElement {
   static get observedAttributes() {
@@ -22,11 +22,11 @@ class UIForm extends UIElement {
   }
 }
 
-define("ui-form", UIForm);
+define("uif-form", UIForm);
 export { UIForm };
 
 /**
- * <ui-form-group title="Contact Info">...</ui-form-group>
+ * <uif-form-group title="Contact Info">...</uif-form-group>
  */
 class UIFormGroup extends UIElement {
   static get observedAttributes() {
@@ -42,11 +42,11 @@ class UIFormGroup extends UIElement {
   }
 }
 
-define("ui-form-group", UIFormGroup);
+define("uif-form-group", UIFormGroup);
 export { UIFormGroup };
 
 /**
- * <ui-form-field label-position="side" invalid>...</ui-form-field>
+ * <uif-form-field label-position="side" invalid>...</uif-form-field>
  */
 class UIFormField extends UIElement {
   static get observedAttributes() {
@@ -68,11 +68,11 @@ class UIFormField extends UIElement {
   }
 }
 
-define("ui-form-field", UIFormField);
+define("uif-form-field", UIFormField);
 export { UIFormField };
 
 /**
- * <ui-form-helper>Must be at least 8 characters</ui-form-helper>
+ * <uif-form-helper>Must be at least 8 characters</uif-form-helper>
  */
 class UIFormHelper extends UIElement {
   render() {
@@ -81,11 +81,11 @@ class UIFormHelper extends UIElement {
   }
 }
 
-define("ui-form-helper", UIFormHelper);
+define("uif-form-helper", UIFormHelper);
 export { UIFormHelper };
 
 /**
- * <ui-form-actions align="end">...</ui-form-actions>
+ * <uif-form-actions align="end">...</uif-form-actions>
  */
 class UIFormActions extends UIElement {
   static get observedAttributes() {
@@ -103,5 +103,5 @@ class UIFormActions extends UIElement {
   }
 }
 
-define("ui-form-actions", UIFormActions);
+define("uif-form-actions", UIFormActions);
 export { UIFormActions };

@@ -9,7 +9,7 @@ playgroundUrl: /components/date-picker-playground/
 playgroundLabel: Open Date Picker Playground
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -44,7 +44,7 @@ playgroundLabel: Open Date Picker Playground
               <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>
             </button>
           </span>
-          {{ ui.calendar("July 2026", todayDate="1", id="date-input-demo-calendar") }}
+          {{ uif.calendar("July 2026", todayDate="1", id="date-input-demo-calendar") }}
         </div>
       </div>
     </div>

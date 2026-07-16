@@ -40,12 +40,12 @@ test("Tooltip-owned emitters produce canonical classes", async () => {
   assert.doesNotMatch(sources[3], /class="tooltip(?:[\s"])/);
 });
 
-test("Tooltip documentation explains migration while registration stays stable", async () => {
+test("Tooltip documentation explains migration and uses the canonical registration", async () => {
   const [documentation, element] = await Promise.all([
     read("site/patterns/tooltip.md"),
     read("src/elements/ui-tooltip.js"),
   ]);
 
   assert.match(documentation, /legacy `--tooltip-\*` token aliases are not provided/);
-  assert.match(element, /define\("ui-tooltip", UITooltip\)/);
+  assert.match(element, /define\("uif-tooltip", UITooltip\)/);
 });

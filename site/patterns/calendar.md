@@ -9,7 +9,7 @@ playgroundUrl: /patterns/calendar-playground/
 playgroundLabel: Open Calendar Playground
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 {% import "macros/calendar.njk" as cal %}
 
 <div class="docs-hero">
