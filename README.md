@@ -152,9 +152,9 @@ npm install ui-foundations
 ### Use Patterns (plain HTML)
 
 ```html
-<button class="button">Label</button>
-<button class="button outline">Outline</button>
-<input class="input" type="text" />
+<button class="uif-button solid">Label</button>
+<button class="uif-button outline">Outline</button>
+<input class="uif-input" type="text" />
 ```
 
 ### Optional: Web Components
@@ -173,6 +173,8 @@ Consumers upgrading to v1 should follow the
 [React removal migration guide](docs/migrations/react-to-web-components.md).
 For the v1 macro alias and Custom Element tag changes, see the
 [public API namespace migration guide](docs/migrations/public-api-namespace-v1.md).
+For the Runtime-facing canonical API summary, see
+[Public API Surface (v1)](docs/public-api.md).
 
 ### Apply Theming
 
