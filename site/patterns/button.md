@@ -9,7 +9,7 @@ playgroundUrl: /patterns/button-playground/
 playgroundLabel: Open Button Playground
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -25,7 +25,7 @@ playgroundLabel: Open Button Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      {{ ui.button("Get started") }}
+      {{ uif.button("Get started") }}
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -68,7 +68,7 @@ playgroundLabel: Open Button Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">2</span>
       </span>
-      {{ ui.button("Get started", "") }}
+      {{ uif.button("Get started", "") }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -82,9 +82,9 @@ playgroundLabel: Open Button Playground
 ### Variants
 
 <div class="docs-stack">
-  {{ ui.button("Solid") }}
-  {{ ui.button("Outline", "outline") }}
-  {{ ui.button("Ghost", "ghost") }}
+  {{ uif.button("Solid") }}
+  {{ uif.button("Outline", "outline") }}
+  {{ uif.button("Ghost", "ghost") }}
 </div>
 
 The **solid** variant communicates strong emphasis and is reserved for primary
@@ -94,7 +94,7 @@ tertiary actions and should never be the only button in a group.
 ### Disabled
 
 <div class="docs-stack">
-  {{ ui.button("Disabled", "", true) }}
+  {{ uif.button("Disabled", "", true) }}
 </div>
 
 A disabled button shows that an action exists but is not available in the
@@ -121,9 +121,9 @@ action may become available later.
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.button("Agree") }}
-      {{ ui.button("Get started") }}
-      {{ ui.button("Start experience") }}
+      {{ uif.button("Agree") }}
+      {{ uif.button("Get started") }}
+      {{ uif.button("Start experience") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Flexible width</h3>
@@ -132,7 +132,7 @@ action may become available later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.button("Start the full experience now") }}
+      {{ uif.button("Start the full experience now") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Text overflow</h3>
@@ -141,7 +141,7 @@ action may become available later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.button("Focused", "") }}
+      {{ uif.button("Focused", "") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Keyboard focus</h3>
@@ -150,9 +150,9 @@ action may become available later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.button("Save", "") }}
-      {{ ui.button("Cancel", "outline") }}
-      {{ ui.button("More", "ghost") }}
+      {{ uif.button("Save", "") }}
+      {{ uif.button("Cancel", "outline") }}
+      {{ uif.button("More", "ghost") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Variant hierarchy</h3>
@@ -161,7 +161,7 @@ action may become available later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.button("Disabled", "", true) }}
+      {{ uif.button("Disabled", "", true) }}
     </div>
     <div class="docs-behavior-body">
       <h3>Disabled state</h3>
@@ -177,8 +177,8 @@ action may become available later.
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      {{ ui.button("Save", "") }}
-      {{ ui.button("Cancel", "outline") }}
+      {{ uif.button("Save", "") }}
+      {{ uif.button("Cancel", "outline") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
@@ -187,8 +187,8 @@ action may become available later.
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      {{ ui.button("Save", "") }}
-      {{ ui.button("Cancel", "") }}
+      {{ uif.button("Save", "") }}
+      {{ uif.button("Cancel", "") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
@@ -205,7 +205,7 @@ consistent and accessible across brands and modes.
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      {{ ui.button("Continue", "") }}
+      {{ uif.button("Continue", "") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
@@ -228,10 +228,10 @@ consistent and accessible across brands and modes.
 Use `ButtonGroup` to keep related actions visually and semantically grouped.
 
 <div class="docs-stack docs-medium-stack">
-  {% call ui.buttonGroup(false, "horizontal", "start", "Travel dates") %}
-    {{ ui.button("Day 1", "outline") }}
-    {{ ui.button("Day 2", "outline") }}
-    {{ ui.button("Day 3", "outline") }}
+  {% call uif.buttonGroup(false, "horizontal", "start", "Travel dates") %}
+    {{ uif.button("Day 1", "outline") }}
+    {{ uif.button("Day 2", "outline") }}
+    {{ uif.button("Day 3", "outline") }}
   {% endcall %}
 </div>
 
@@ -240,9 +240,9 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      {% call ui.buttonGroup(false, "horizontal", "start", "Actions") %}
-        {{ ui.button("Save", "") }}
-        {{ ui.button("Discard", "outline") }}
+      {% call uif.buttonGroup(false, "horizontal", "start", "Actions") %}
+        {{ uif.button("Save", "") }}
+        {{ uif.button("Discard", "outline") }}
       {% endcall %}
     </div>
     <div class="docs-guideline-body">
@@ -252,9 +252,9 @@ Use `ButtonGroup` to keep related actions visually and semantically grouped.
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      {{ ui.button("Save", "") }}
+      {{ uif.button("Save", "") }}
       <span class="docs-guideline-spacer"></span>
-      {{ ui.button("Discard", "outline") }}
+      {{ uif.button("Discard", "outline") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
@@ -299,7 +299,7 @@ as nouns or adjectives tend to be unclear.
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview">
-      {{ ui.button("Save changes", "") }}
+      {{ uif.button("Save changes", "") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
@@ -308,7 +308,7 @@ as nouns or adjectives tend to be unclear.
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      {{ ui.button("Done", "") }}
+      {{ uif.button("Done", "") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>

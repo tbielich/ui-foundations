@@ -1,8 +1,8 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-badge variant="success" start-icon="checkmark">Active</ui-badge>
- * <ui-badge size="sm">New</ui-badge>
+ * <uif-badge variant="success" start-icon="checkmark">Active</uif-badge>
+ * <uif-badge size="sm">New</uif-badge>
  *
  * Attributes:
  *   variant    — "default", "success", "danger", "warning", "info", "brand"
@@ -36,5 +36,5 @@ class UIBadge extends UIElement {
   }
 }
 
-define("ui-badge", UIBadge);
+define("uif-badge", UIBadge);
 export { UIBadge };

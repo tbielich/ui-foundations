@@ -48,6 +48,7 @@ type: agent-guide
     - Never use `.ui-` or other non-Vault namespaces.
     - CSS patterns must be wrapped in `@layer components { }`.
 12. Web Components are the canonical convenience layer:
+    - Register and document public autonomous Custom Elements with the canonical `<uif-*>` tag namespace.
     - Use light DOM; do not attach a shadow root.
     - Extend the shared `UIElement` base and register with `define()`.
     - Render the same semantic markup and classes used by the CSS pattern.

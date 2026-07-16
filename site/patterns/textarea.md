@@ -8,7 +8,7 @@ permalink: /patterns/textarea/
 playgroundUrl: /patterns/textarea-playground/
 playgroundLabel: Open TextArea Playground
 ---
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -24,7 +24,7 @@ playgroundLabel: Open TextArea Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      {{ ui.textarea(placeholder="Enter your message...") }}
+      {{ uif.textarea(placeholder="Enter your message...") }}
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -44,7 +44,7 @@ playgroundLabel: Open TextArea Playground
         <span class="docs-anatomy-badge">1</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
-      {{ ui.textarea(placeholder="Placeholder text", rows="3") }}
+      {{ uif.textarea(placeholder="Placeholder text", rows="3") }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -58,19 +58,19 @@ playgroundLabel: Open TextArea Playground
 
 <div class="docs-states-grid" style="--docs-states-cols: 4">
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ ui.textarea(placeholder="Default", rows="2") }}</div>
+    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ uif.textarea(placeholder="Default", rows="2") }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ ui.textarea(placeholder="Hover", state="hover", rows="2") }}</div>
+    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ uif.textarea(placeholder="Hover", state="hover", rows="2") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ ui.textarea(placeholder="Focus", state="focus", rows="2") }}</div>
+    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ uif.textarea(placeholder="Focus", state="focus", rows="2") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ ui.textarea(placeholder="Disabled", disabled=true, rows="2") }}</div>
+    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ uif.textarea(placeholder="Disabled", disabled=true, rows="2") }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
 </div>
@@ -92,7 +92,7 @@ playgroundLabel: Open TextArea Playground
 
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview" style="inline-size: 100%;">{{ ui.textarea(value="Resizable by default", rows="2") }}</div>
+    <div class="docs-behavior-preview" style="inline-size: 100%;">{{ uif.textarea(value="Resizable by default", rows="2") }}</div>
     <div class="docs-behavior-body">
       <h3>Vertical resize</h3>
       <p>Users can resize the textarea vertically by default. Disabled and readonly states prevent resizing.</p>
@@ -118,7 +118,7 @@ playgroundLabel: Open TextArea Playground
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Textarea emitters now produce `.uif-textarea`. The legacy `.textarea` selector remains supported during the v1 compatibility period. Component token slots are now `--uif-textarea-*`; library-owned legacy `--textarea-*` token aliases are not provided. The existing `<ui-textarea>` registration and package export remain unchanged.
+Textarea emitters produce `.uif-textarea`. The legacy `.textarea` selector remains supported during the v1 compatibility period. Component token slots use `--uif-textarea-*`; library-owned legacy `--textarea-*` token aliases are not provided. The Custom Element now registers as `<uif-textarea>`; its existing module filename and package export remain unchanged.
 
 <h2 id="design-checklist">Design checklist</h2>
 

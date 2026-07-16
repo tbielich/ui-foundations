@@ -32,9 +32,10 @@ This is the only release-tracking document that should be updated during impleme
 - React wrapper exports (`ui-foundations/react` and
   `ui-foundations/react/*`) are removed in v1. Consumers must migrate using
   `docs/migrations/react-to-web-components.md` before upgrading.
-- The canonical `<uif-*>` Custom Element namespace must be available before the
-  release candidate; the legacy `<ui-*>` registrations are not an approved
-  compatibility contract.
+- The canonical `uif.*` macro usage and `<uif-*>` Custom Element namespace are
+  implemented under #197. Legacy `<ui-*>` registrations are removed without
+  compatibility aliases; consumers must follow
+  `docs/migrations/public-api-namespace-v1.md`.
 
 ## Evidence log
 

@@ -1,7 +1,7 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-link href="/about" start-icon="arrow">About us</ui-link>
+ * <uif-link href="/about" start-icon="arrow">About us</uif-link>
  *
  * Attributes:
  *   href       — link destination
@@ -44,5 +44,5 @@ class UILink extends UIElement {
   }
 }
 
-define("ui-link", UILink);
+define("uif-link", UILink);
 export { UILink };

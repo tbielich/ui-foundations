@@ -1,8 +1,8 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-button variant="solid" start-icon="search">Submit</ui-button>
- * <ui-button variant="outline" icon-only aria-label="Close" start-icon="cross"></ui-button>
+ * <uif-button variant="solid" start-icon="search">Submit</uif-button>
+ * <uif-button variant="outline" icon-only aria-label="Close" start-icon="cross"></uif-button>
  *
  * Attributes:
  *   variant    — "solid" (default), "outline", "ghost"
@@ -60,11 +60,11 @@ class UIButton extends UIElement {
   }
 }
 
-define("ui-button", UIButton);
+define("uif-button", UIButton);
 export { UIButton };
 
 /**
- * <ui-button-group orientation="horizontal" attached>...</ui-button-group>
+ * <uif-button-group orientation="horizontal" attached>...</uif-button-group>
  */
 class UIButtonGroup extends UIElement {
   static get observedAttributes() {
@@ -92,5 +92,5 @@ class UIButtonGroup extends UIElement {
   }
 }
 
-define("ui-button-group", UIButtonGroup);
+define("uif-button-group", UIButtonGroup);
 export { UIButtonGroup };

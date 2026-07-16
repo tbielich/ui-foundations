@@ -1,12 +1,12 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-tab-list aria-label="Settings">
- *   <ui-tab label="General" selected controls="panel-1"></ui-tab>
- *   <ui-tab label="Advanced" controls="panel-2"></ui-tab>
- * </ui-tab-list>
- * <ui-tab-panel id="panel-1">General content</ui-tab-panel>
- * <ui-tab-panel id="panel-2" hidden>Advanced content</ui-tab-panel>
+ * <uif-tab-list aria-label="Settings">
+ *   <uif-tab label="General" selected controls="panel-1"></uif-tab>
+ *   <uif-tab label="Advanced" controls="panel-2"></uif-tab>
+ * </uif-tab-list>
+ * <uif-tab-panel id="panel-1">General content</uif-tab-panel>
+ * <uif-tab-panel id="panel-2" hidden>Advanced content</uif-tab-panel>
  */
 
 class UITabList extends UIElement {
@@ -30,11 +30,11 @@ class UITabList extends UIElement {
   }
 }
 
-define("ui-tab-list", UITabList);
+define("uif-tab-list", UITabList);
 export { UITabList };
 
 /**
- * <ui-tab label="Tab 1" selected controls="panel-1"></ui-tab>
+ * <uif-tab label="Tab 1" selected controls="panel-1"></uif-tab>
  *
  * Attributes:
  *   label    — tab button text
@@ -67,11 +67,11 @@ class UITab extends UIElement {
   }
 }
 
-define("ui-tab", UITab);
+define("uif-tab", UITab);
 export { UITab };
 
 /**
- * <ui-tab-panel id="panel-1">Content</ui-tab-panel>
+ * <uif-tab-panel id="panel-1">Content</uif-tab-panel>
  *
  * Attributes:
  *   hidden — boolean
@@ -94,5 +94,5 @@ class UITabPanel extends UIElement {
   }
 }
 
-define("ui-tab-panel", UITabPanel);
+define("uif-tab-panel", UITabPanel);
 export { UITabPanel };

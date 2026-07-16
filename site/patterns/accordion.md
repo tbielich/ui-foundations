@@ -8,7 +8,7 @@ permalink: /patterns/accordion/
 playgroundUrl: /patterns/accordion-playground/
 playgroundLabel: Open Accordion Playground
 ---
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -24,14 +24,14 @@ playgroundLabel: Open Accordion Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage" style="inline-size: 100%;">
-      {% call ui.accordion() %}
-        {% call ui.accordionItem(title="What is UI Foundations?", open=true) %}
+      {% call uif.accordion() %}
+        {% call uif.accordionItem(title="What is UI Foundations?", open=true) %}
           <p>A token-first, Figma-aligned design system for building consistent UIs across brands and modes.</p>
         {% endcall %}
-        {% call ui.accordionItem(title="How do I install it?") %}
+        {% call uif.accordionItem(title="How do I install it?") %}
           <p>Install via npm: <code>npm install ui-foundations</code></p>
         {% endcall %}
-        {% call ui.accordionItem(title="Can I customize the tokens?") %}
+        {% call uif.accordionItem(title="Can I customize the tokens?") %}
           <p>Yes — override semantic tokens or add brand semantic token files.</p>
         {% endcall %}
       {% endcall %}
@@ -66,8 +66,8 @@ v2.0-or-later work.
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">2</span>
       </span>
-      {% call ui.accordion() %}
-        {% call ui.accordionItem(title="Accordion item", open=true) %}
+      {% call uif.accordion() %}
+        {% call uif.accordionItem(title="Accordion item", open=true) %}
           <p>Content area</p>
         {% endcall %}
       {% endcall %}

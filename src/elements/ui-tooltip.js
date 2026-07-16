@@ -1,9 +1,9 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-tooltip text="Helpful info" placement="top">
+ * <uif-tooltip text="Helpful info" placement="top">
  *   <button>Hover me</button>
- * </ui-tooltip>
+ * </uif-tooltip>
  *
  * Attributes:
  *   text      — tooltip content
@@ -23,5 +23,5 @@ class UITooltip extends UIElement {
   }
 }
 
-define("ui-tooltip", UITooltip);
+define("uif-tooltip", UITooltip);
 export { UITooltip };

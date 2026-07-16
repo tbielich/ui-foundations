@@ -8,7 +8,7 @@ permalink: /patterns/badge/
 playgroundUrl: /patterns/badge-playground/
 playgroundLabel: Open Badge Playground
 ---
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -24,9 +24,9 @@ playgroundLabel: Open Badge Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      {{ ui.badge("Default") }}
-      {{ ui.badge("Brand", variant="brand") }}
-      {{ ui.badge("Success", variant="success") }}
+      {{ uif.badge("Default") }}
+      {{ uif.badge("Brand", variant="brand") }}
+      {{ uif.badge("Success", variant="success") }}
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -53,7 +53,7 @@ playgroundLabel: Open Badge Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">2</span>
       </span>
-      {{ ui.badge("Brand", variant="brand", startIcon="star") }}
+      {{ uif.badge("Brand", variant="brand", startIcon="star") }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -68,19 +68,19 @@ playgroundLabel: Open Badge Playground
 
 <div class="docs-states-grid" style="--docs-states-cols: 4">
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.badge("Default") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.badge("Default") }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.badge("Brand", variant="brand") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.badge("Brand", variant="brand") }}</div>
     <span class="docs-states-grid-item-label">Brand</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.badge("Success", variant="success") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.badge("Success", variant="success") }}</div>
     <span class="docs-states-grid-item-label">Success</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.badge("Danger", variant="danger") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.badge("Danger", variant="danger") }}</div>
     <span class="docs-states-grid-item-label">Danger</span>
   </div>
 </div>
@@ -101,14 +101,14 @@ playgroundLabel: Open Badge Playground
 
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">{{ ui.badge("3", variant="danger") }}</div>
+    <div class="docs-behavior-preview">{{ uif.badge("3", variant="danger") }}</div>
     <div class="docs-behavior-body">
       <h3>Non-interactive</h3>
       <p>Badges are read-only. They cannot be clicked, focused, or dismissed.</p>
     </div>
   </div>
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">{{ ui.badge("Featured", variant="brand", startIcon="star") }}</div>
+    <div class="docs-behavior-preview">{{ uif.badge("Featured", variant="brand", startIcon="star") }}</div>
     <div class="docs-behavior-body">
       <h3>Optional icon</h3>
       <p>A leading icon reinforces the badge meaning. It is decorative and inherits the text color.</p>
@@ -122,14 +122,14 @@ playgroundLabel: Open Badge Playground
 
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
-    <div class="docs-guideline-preview">{{ ui.badge("Confirmed", variant="success") }}</div>
+    <div class="docs-guideline-preview">{{ uif.badge("Confirmed", variant="success") }}</div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
       <p>Use semantic variants to communicate status meaning.</p>
     </div>
   </div>
   <div class="docs-guideline-item" data-type="dont">
-    <div class="docs-guideline-preview">{{ ui.badge("Confirmed", variant="brand") }}</div>
+    <div class="docs-guideline-preview">{{ uif.badge("Confirmed", variant="brand") }}</div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
       <p>Don't use brand for status — it doesn't convey success or danger.</p>
@@ -159,7 +159,7 @@ For the full theming architecture see [Foundations: Theming](/foundations/themin
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Badge emitters now produce `.uif-badge` and `.uif-badge-text`. The legacy `.badge` selector remains supported during the v1 compatibility period. Component token slots are now `--uif-badge-*`; library-owned legacy `--badge-*` token aliases are not provided. The existing `<ui-badge>` registration and package export remain unchanged.
+Badge emitters produce `.uif-badge` and `.uif-badge-text`. The legacy `.badge` selector remains supported during the v1 compatibility period. Component token slots use `--uif-badge-*`; library-owned legacy `--badge-*` token aliases are not provided. The Custom Element now registers as `<uif-badge>`; its existing module filename and package export remain unchanged.
 
 <h2 id="design-checklist">Design checklist</h2>
 

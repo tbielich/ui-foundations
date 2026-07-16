@@ -46,12 +46,10 @@ Element API. `LabelContent` is likewise a composition helper: author the
 documented uif-label-content markup or use the Nunjucks macro instead of inventing
 a Custom Element.
 
-The approved v1 public namespace is `<uif-*>`. At the time this removal was
-implemented, the element modules still registered the legacy `<ui-*>` tags.
-The v1 namespace migration must register the canonical tags before the release
-candidate. Do not interpret the legacy registrations as a compatibility
-promise or invent dual registration; compatibility behavior requires separate
-approval under the namespace migration.
+The approved v1 public namespace is `<uif-*>`. The element modules register the
+canonical tags and do not retain legacy `<ui-*>` aliases or dual registration.
+See `docs/migrations/public-api-namespace-v1.md` for the complete tag mapping
+and consumer migration boundary.
 
 ## API differences
 

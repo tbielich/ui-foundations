@@ -1,8 +1,8 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-avatar src="/photo.jpg" alt="Jane Doe"></ui-avatar>
- * <ui-avatar initials="JD" size="lg"></ui-avatar>
+ * <uif-avatar src="/photo.jpg" alt="Jane Doe"></uif-avatar>
+ * <uif-avatar initials="JD" size="lg"></uif-avatar>
  *
  * Attributes:
  *   src       — image URL
@@ -33,5 +33,5 @@ class UIAvatar extends UIElement {
   }
 }
 
-define("ui-avatar", UIAvatar);
+define("uif-avatar", UIAvatar);
 export { UIAvatar };

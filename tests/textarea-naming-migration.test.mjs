@@ -27,8 +27,8 @@ test("Textarea-owned emitters use the canonical class", async () => {
   assert.doesNotMatch(sources[0], /class="textarea(?:[-\s"])/);
 });
 
-test("Textarea docs explain migration while registration stays stable", async () => {
+test("Textarea docs explain migration and use the canonical registration", async () => {
   const [documentation, element] = await Promise.all([read("site/patterns/textarea.md"), read("src/elements/ui-textarea.js")]);
   assert.match(documentation, /legacy `--textarea-\*` token aliases are not provided/);
-  assert.match(element, /define\("ui-textarea", UITextarea\)/);
+  assert.match(element, /define\("uif-textarea", UITextarea\)/);
 });

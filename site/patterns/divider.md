@@ -8,7 +8,7 @@ permalink: /patterns/divider/
 playgroundUrl: /patterns/divider-playground/
 playgroundLabel: Open Divider Playground
 ---
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -25,8 +25,8 @@ playgroundLabel: Open Divider Playground
     </div>
     <div class="docs-hero-preview-stage">
       <div style="inline-size: 100%; display: flex; flex-direction: column; gap: 1rem; align-items: stretch;">
-        {{ ui.divider() }}
-        {{ ui.divider(variant="subtle") }}
+        {{ uif.divider() }}
+        {{ uif.divider(variant="subtle") }}
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@ playgroundLabel: Open Divider Playground
         <span class="docs-anatomy-badge">1</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
-      {{ ui.divider() }}
+      {{ uif.divider() }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -64,11 +64,11 @@ playgroundLabel: Open Divider Playground
 
 <div class="docs-states-grid" style="--docs-states-cols: 2">
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ ui.divider() }}</div>
+    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ uif.divider() }}</div>
     <span class="docs-states-grid-item-label">Horizontal</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="display: flex; block-size: 3rem; align-items: stretch;">{{ ui.divider(orientation="vertical") }}</div>
+    <div class="docs-states-grid-item-preview" style="display: flex; block-size: 3rem; align-items: stretch;">{{ uif.divider(orientation="vertical") }}</div>
     <span class="docs-states-grid-item-label">Vertical</span>
   </div>
 </div>
@@ -77,11 +77,11 @@ playgroundLabel: Open Divider Playground
 
 <div class="docs-states-grid" style="--docs-states-cols: 2">
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ ui.divider() }}</div>
+    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ uif.divider() }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ ui.divider(variant="subtle") }}</div>
+    <div class="docs-states-grid-item-preview" style="inline-size: 100%;">{{ uif.divider(variant="subtle") }}</div>
     <span class="docs-states-grid-item-label">Subtle</span>
   </div>
 </div>
@@ -100,14 +100,14 @@ playgroundLabel: Open Divider Playground
 
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview" style="inline-size: 100%;">{{ ui.divider() }}</div>
+    <div class="docs-behavior-preview" style="inline-size: 100%;">{{ uif.divider() }}</div>
     <div class="docs-behavior-body">
       <h3>Non-interactive</h3>
       <p>Dividers are purely visual. They cannot be clicked, focused, or dismissed.</p>
     </div>
   </div>
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview" style="inline-size: 100%;">{{ ui.divider() }}</div>
+    <div class="docs-behavior-preview" style="inline-size: 100%;">{{ uif.divider() }}</div>
     <div class="docs-behavior-body">
       <h3>Full-width by default</h3>
       <p>Horizontal dividers stretch to fill their container. Vertical dividers stretch to the container height.</p>
@@ -123,7 +123,7 @@ playgroundLabel: Open Divider Playground
   <div class="docs-guideline-item" data-type="do">
     <div class="docs-guideline-preview" style="display: flex; flex-direction: column; gap: 0.5rem; inline-size: 100%;">
       <p style="margin: 0;">Section A content</p>
-      {{ ui.divider() }}
+      {{ uif.divider() }}
       <p style="margin: 0;">Section B content</p>
     </div>
     <div class="docs-guideline-body">
@@ -133,9 +133,9 @@ playgroundLabel: Open Divider Playground
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview" style="display: flex; flex-direction: column; gap: 0.5rem; inline-size: 100%;">
-      {{ ui.divider() }}
+      {{ uif.divider() }}
       <p style="margin: 0;">Content</p>
-      {{ ui.divider() }}
+      {{ uif.divider() }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
@@ -165,7 +165,7 @@ Divider adapts across brands and modes through semantic color tokens (`--color-b
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Divider emitters now produce the canonical `.uif-divider` class. The legacy `.divider` selector remains supported during the v1 compatibility period. Divider currently has no component-scoped Figma variables; its local runtime input is namespaced as `--uif-divider-color`, and no library-owned legacy `--divider-color` alias is provided. The existing `<ui-divider>` registration and package export remain unchanged by this component-family migration.
+Divider emitters produce the canonical `.uif-divider` class. The legacy `.divider` selector remains supported during the v1 compatibility period. Divider currently has no component-scoped Figma variables; its local runtime input is namespaced as `--uif-divider-color`, and no library-owned legacy `--divider-color` alias is provided. The Custom Element now registers as `<uif-divider>`; its existing module filename and package export remain unchanged.
 
 <h2 id="design-checklist">Design checklist</h2>
 

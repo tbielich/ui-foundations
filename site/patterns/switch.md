@@ -9,7 +9,7 @@ playgroundUrl: /patterns/switch-playground/
 playgroundLabel: Open Switch Playground
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -25,7 +25,7 @@ playgroundLabel: Open Switch Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      {{ ui.switch("Notifications", true) }}
+      {{ uif.switch("Notifications", true) }}
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -53,7 +53,7 @@ playgroundLabel: Open Switch Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">3</span>
       </span>
-      {{ ui.switch("Notifications", true) }}
+      {{ uif.switch("Notifications", true) }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -70,36 +70,36 @@ playgroundLabel: Open Switch Playground
 <div class="docs-states-grid" style="--docs-states-cols: 4">
   <div class="docs-states-grid-row-header">Off</div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.switch("Default") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.switch("Default") }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.switch("Hover", false, false, "hover") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.switch("Hover", false, false, "hover") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.switch("Focus", false, false, "focus") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.switch("Focus", false, false, "focus") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.switch("Disabled", false, true) }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.switch("Disabled", false, true) }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
   <div class="docs-states-grid-row-header">On</div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.switch("Default", true) }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.switch("Default", true) }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.switch("Hover", true, false, "hover") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.switch("Hover", true, false, "hover") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.switch("Focus", true, false, "focus") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.switch("Focus", true, false, "focus") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.switch("Disabled", true, true) }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.switch("Disabled", true, true) }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
 </div>
@@ -119,21 +119,21 @@ playgroundLabel: Open Switch Playground
 
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">{{ ui.switch("Toggle me") }}</div>
+    <div class="docs-behavior-preview">{{ uif.switch("Toggle me") }}</div>
     <div class="docs-behavior-body">
       <h3>Immediate effect</h3>
       <p>Toggling takes effect immediately — no submit needed.</p>
     </div>
   </div>
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">{{ ui.switch("Animated", true) }}</div>
+    <div class="docs-behavior-preview">{{ uif.switch("Animated", true) }}</div>
     <div class="docs-behavior-body">
       <h3>Thumb animation</h3>
       <p>The thumb slides smoothly. The track color transitions to indicate the new state.</p>
     </div>
   </div>
   <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">{{ ui.switch("Focused", false, false, "focus") }}</div>
+    <div class="docs-behavior-preview">{{ uif.switch("Focused", false, false, "focus") }}</div>
     <div class="docs-behavior-body">
       <h3>Keyboard focus</h3>
       <p>Adds a visible focus ring. Toggled with Space.</p>
@@ -147,14 +147,14 @@ playgroundLabel: Open Switch Playground
 
 <div class="docs-guideline">
   <div class="docs-guideline-item" data-type="do">
-    <div class="docs-guideline-preview">{{ ui.switch("Dark mode", true) }}</div>
+    <div class="docs-guideline-preview">{{ uif.switch("Dark mode", true) }}</div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Do</p>
       <p>Use a switch for settings that take effect immediately.</p>
     </div>
   </div>
   <div class="docs-guideline-item" data-type="dont">
-    <div class="docs-guideline-preview">{{ ui.switch("I agree to the terms") }}</div>
+    <div class="docs-guideline-preview">{{ uif.switch("I agree to the terms") }}</div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
       <p>Don't use a switch for form consent — use a checkbox.</p>
@@ -193,7 +193,7 @@ For the full theming architecture see [Foundations: Theming](/foundations/themin
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Switch emitters now produce `.uif-switch`, `.uif-switch-field`, and `.uif-switch-field-text`. The legacy `.switch` and `.switch-field` selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-switch-*`; library-owned legacy `--switch-*` token aliases are not provided. The existing `<ui-switch>` registration and package export remain unchanged.
+Switch emitters produce `.uif-switch`, `.uif-switch-field`, and `.uif-switch-field-text`. The legacy `.switch` and `.switch-field` selectors remain supported during the v1 compatibility period. Component token slots use `--uif-switch-*`; library-owned legacy `--switch-*` token aliases are not provided. The Custom Element now registers as `<uif-switch>`; its existing module filename and package export remain unchanged.
 
 <h2 id="design-checklist">Design checklist</h2>
 

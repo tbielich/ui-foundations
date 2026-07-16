@@ -59,6 +59,8 @@ function normalizeContract(contract) {
   const customPropertyPrefix = contract.rules?.css_custom_property_prefix?.prefix;
   const proofPrefix = contract.rules?.proof_token_prefix?.prefix;
   const assumptionPrefix = contract.rules?.assumption_token_prefix?.prefix;
+  const macroNamespace = contract.rules?.nunjucks_macro_namespace || {};
+  const customElementTagPrefix = contract.rules?.custom_element_tag_prefix || {};
   const patternPrefixes = contract.rules?.pattern_id_prefixes || {};
   const deprecatedPolicy = contract.rules?.compatibility_and_deprecation_policy || {};
 
@@ -97,6 +99,15 @@ function normalizeContract(contract) {
         },
       },
     },
+    macroNamespace: {
+      canonicalAlias: macroNamespace.alias,
+      invocationPattern: macroNamespace.invocation_pattern,
+      consumerSelectedAlias: macroNamespace.consumer_selected_alias === true,
+    },
+    customElementTagPrefix: {
+      canonical: customElementTagPrefix.prefix,
+      tagPattern: customElementTagPrefix.tag_pattern,
+    },
     patternIdPrefixes: [
       patternPrefixes.base_pattern,
       patternPrefixes.composition_pattern,
@@ -113,6 +124,8 @@ function normalizeContract(contract) {
       deprecatedBareClasses: ["button", "calendar-cell"],
       invalidClasses: ["ui-button"],
       canonicalCustomProperties: examples.component_token_slot || [],
+      canonicalMacroInvocations: examples.nunjucks_macro_invocation || [],
+      canonicalCustomElementTags: examples.custom_element_tag || [],
       proofCustomProperties: examples.proof_token || [],
       assumptionCustomProperties: examples.assumption_token || [],
       deprecatedLegacyComponentTokens: ["--button-container-background-default"],
@@ -135,6 +148,10 @@ function validateContract(contract) {
   assertField(contract.customPropertyPrefix?.canonical, "customPropertyPrefix.canonical", errors);
   assertField(contract.customPropertyPrefix?.proof, "customPropertyPrefix.proof", errors);
   assertField(contract.customPropertyPrefix?.assumption, "customPropertyPrefix.assumption", errors);
+  assertField(contract.macroNamespace?.canonicalAlias, "macroNamespace.canonicalAlias", errors);
+  assertField(contract.macroNamespace?.invocationPattern, "macroNamespace.invocationPattern", errors);
+  assertField(contract.customElementTagPrefix?.canonical, "customElementTagPrefix.canonical", errors);
+  assertField(contract.customElementTagPrefix?.tagPattern, "customElementTagPrefix.tagPattern", errors);
 
   if (!Array.isArray(contract.patternIdPrefixes) || contract.patternIdPrefixes.length === 0) {
     errors.push("patternIdPrefixes must be a non-empty array.");

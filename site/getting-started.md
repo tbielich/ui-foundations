@@ -74,14 +74,14 @@ generation, and framework-agnostic Custom Elements.
 
 {% raw %}
 ```njk
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
-{{ ui.button("Label") }}
-{{ ui.input(type="text", placeholder="Email") }}
-{{ ui.link("Go to page", href="/page") }}
-{{ ui.icon("search") }}
-{{ ui.checkbox("Accept terms") }}
-{{ ui.switch("Notifications") }}
+{{ uif.button("Label") }}
+{{ uif.input(type="text", placeholder="Email") }}
+{{ uif.link("Go to page", href="/page") }}
+{{ uif.icon("search") }}
+{{ uif.checkbox("Accept terms") }}
+{{ uif.switch("Notifications") }}
 ```
 {% endraw %}
 
@@ -94,9 +94,9 @@ import "ui-foundations/elements/ui-icon";
 ```
 
 ```html
-<ui-button>Label</ui-button>
-<ui-input aria-label="Email" placeholder="Email"></ui-input>
-<ui-icon name="search" decorative></ui-icon>
+<uif-button>Label</uif-button>
+<uif-input aria-label="Email" placeholder="Email"></uif-input>
+<uif-icon name="search" decorative></uif-icon>
 ```
 
 Custom Elements render into light DOM, so the package CSS, tokens, native
@@ -106,17 +106,17 @@ events, and form controls remain visible to consuming frameworks.
 
 | Macro | Description |
 |---|---|
-| `ui.button(label, variant, disabled)` | Button — solid, outline, or ghost variant |
-| `ui.buttonGroup(attached, orientation, justify, ariaLabel)` | Groups related buttons |
-| `ui.input(type, placeholder, value, state, disabled)` | Text input field |
-| `ui.checkbox(label, checked, disabled)` | Checkbox with visible label |
-| `ui.radio(label, name, value, checked, disabled)` | Radio button with visible label |
-| `ui.switch(label, checked, disabled)` | Toggle switch with visible label |
-| `ui.icon(name, label)` | Icon rendered via CSS mask |
-| `ui.labelContent(text, startIcon, endIcon, iconOnly)` | Label primitive with optional icons |
-| `ui.fieldLabel(text, htmlFor, required, startIcon)` | Form field label with required indicator |
-| `ui.link(text, href, startIcon, endIcon, state, disabled)` | Link with optional start and end icons |
-| `ui.badge(text, variant, size, startIcon)` | Status badge with optional icon |
+| `uif.button(label, variant, disabled)` | Button — solid, outline, or ghost variant |
+| `uif.buttonGroup(attached, orientation, justify, ariaLabel)` | Groups related buttons |
+| `uif.input(type, placeholder, value, state, disabled)` | Text input field |
+| `uif.checkbox(label, checked, disabled)` | Checkbox with visible label |
+| `uif.radio(label, name, value, checked, disabled)` | Radio button with visible label |
+| `uif.switch(label, checked, disabled)` | Toggle switch with visible label |
+| `uif.icon(name, label)` | Icon rendered via CSS mask |
+| `uif.labelContent(text, startIcon, endIcon, iconOnly)` | Label primitive with optional icons |
+| `uif.fieldLabel(text, htmlFor, required, startIcon)` | Form field label with required indicator |
+| `uif.link(text, href, startIcon, endIcon, state, disabled)` | Link with optional start and end icons |
+| `uif.badge(text, variant, size, startIcon)` | Status badge with optional icon |
 
 ## Token Architecture
 

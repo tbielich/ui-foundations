@@ -34,13 +34,13 @@ test("Form-owned emitters and integrations use canonical classes", async () => {
   assert.doesNotMatch(sources[0], /class="form(?:[-\s"])/);
 });
 
-test("Form docs explain migration while registrations stay stable", async () => {
+test("Form docs and registrations use the canonical public namespace", async () => {
   const [documentation, element] = await Promise.all([
     read("site/patterns/form.md"),
     read("src/elements/ui-form.js"),
   ]);
   assert.match(documentation, /legacy `--form-\*` token aliases are not provided/);
-  for (const tag of ["ui-form", "ui-form-group", "ui-form-field", "ui-form-helper", "ui-form-actions"]) {
+  for (const tag of ["uif-form", "uif-form-group", "uif-form-field", "uif-form-helper", "uif-form-actions"]) {
     assert.match(element, new RegExp(`define\\("${tag}"`));
   }
 });

@@ -9,6 +9,8 @@ import { fileURLToPath } from "node:url";
 const require = createRequire(import.meta.url);
 const {
   VAULT_NAMING_CONTRACT,
+  classifyCustomElementTagName,
+  classifyNunjucksMacroInvocation,
   classifyPatternId,
   classifyPatternTokenName,
   classifyPublicClassName,
@@ -57,6 +59,16 @@ test("pattern ID prefix classification uses generated contract examples", () => 
     assert.equal(classifyPatternId(id).status, "canonical");
   }
   assert.equal(classifyPatternId(VAULT_NAMING_CONTRACT.examples.invalidPatternIds[0]).status, "invalid");
+});
+
+test("public macro and Custom Element namespaces use the consumed contract", () => {
+  const macro = VAULT_NAMING_CONTRACT.examples.canonicalMacroInvocations[0];
+  const tag = VAULT_NAMING_CONTRACT.examples.canonicalCustomElementTags[0];
+
+  assert.equal(classifyNunjucksMacroInvocation(macro).status, "canonical");
+  assert.equal(classifyNunjucksMacroInvocation("ui.button").status, "invalid");
+  assert.equal(classifyCustomElementTagName(tag).status, "canonical");
+  assert.equal(classifyCustomElementTagName("ui-button").status, "invalid");
 });
 
 test("deprecated bare class warnings use generated compatibility policy", () => {

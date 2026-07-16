@@ -1,9 +1,9 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-input type="text" placeholder="Enter value"></ui-input>
- * <ui-input type="number" value="0" min="0" max="100" step="1"></ui-input>
- * <ui-input type="password" placeholder="Password"></ui-input>
+ * <uif-input type="text" placeholder="Enter value"></uif-input>
+ * <uif-input type="number" value="0" min="0" max="100" step="1"></uif-input>
+ * <uif-input type="password" placeholder="Password"></uif-input>
  *
  * Attributes:
  *   type        — "text" (default), "email", "search", "password", "number", "tel", "url", "date", "time"
@@ -34,7 +34,7 @@ class UIInput extends UIElement {
     const ariaLabelledby = this.getAttr("aria-labelledby");
 
     if (!ariaLabel && !ariaLabelledby && !this.id) {
-      this.warnDev("[ui-foundations] <ui-input> should have an id, aria-label, or aria-labelledby.");
+      this.warnDev("[ui-foundations] <uif-input> should have an id, aria-label, or aria-labelledby.");
     }
 
     const wrapperClasses = ["uif-input-field"];
@@ -72,5 +72,5 @@ class UIInput extends UIElement {
   }
 }
 
-define("ui-input", UIInput);
+define("uif-input", UIInput);
 export { UIInput };

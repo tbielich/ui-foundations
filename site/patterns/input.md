@@ -9,7 +9,7 @@ playgroundUrl: /patterns/input-playground/
 playgroundLabel: Open Input Playground
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -25,7 +25,7 @@ playgroundLabel: Open Input Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      {{ ui.input(type="text", placeholder="Email address") }}
+      {{ uif.input(type="text", placeholder="Email address") }}
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -65,7 +65,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
         <span class="docs-anatomy-badge">3</span>
         <span class="docs-anatomy-callout-line"></span>
       </span>
-      {{ ui.input(type="text", value="Input value") }}
+      {{ uif.input(type="text", value="Input value") }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -81,19 +81,19 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
 
 <div class="docs-states-grid" style="--docs-states-cols: 4">
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.input(type="text", placeholder="Default") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.input(type="text", placeholder="Default") }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.input(type="text", value="Hover", state="hover") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.input(type="text", value="Hover", state="hover") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.input(type="text", value="Focus", state="focus") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.input(type="text", value="Focus", state="focus") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.input(type="text", value="Disabled", disabled=true) }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.input(type="text", value="Disabled", disabled=true) }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
 </div>
@@ -118,7 +118,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="text", value="Input") }}
+      {{ uif.input(type="text", value="Input") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Text with clear control</h3>
@@ -127,7 +127,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="number", value="0") }}
+      {{ uif.input(type="number", value="0") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Number with increment/decrement</h3>
@@ -136,7 +136,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="password", value="secret") }}
+      {{ uif.input(type="password", value="secret") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Password with visibility toggle</h3>
@@ -145,7 +145,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="date", value="2026-07-20") }}
+      {{ uif.input(type="date", value="2026-07-20") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Date with picker affordance</h3>
@@ -154,7 +154,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="text", placeholder="Email address") }}
+      {{ uif.input(type="text", placeholder="Email address") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Full width</h3>
@@ -163,7 +163,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="text", value="Focus preview", state="focus") }}
+      {{ uif.input(type="text", value="Focus preview", state="focus") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Keyboard focus</h3>
@@ -172,7 +172,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="text", value="Disabled field", disabled=true) }}
+      {{ uif.input(type="text", value="Disabled field", disabled=true) }}
     </div>
     <div class="docs-behavior-body">
       <h3>Disabled state</h3>
@@ -181,7 +181,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.input(type="text", placeholder="name@example.com") }}
+      {{ uif.input(type="text", placeholder="name@example.com") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Placeholder text</h3>
@@ -206,7 +206,7 @@ Legacy selector removal remains Wave 4 work for v2.0 or later.
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      {{ ui.input(type="text", placeholder="Email") }}
+      {{ uif.input(type="text", placeholder="Email") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>

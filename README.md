@@ -164,13 +164,15 @@ import "ui-foundations/elements/ui-button";
 ```
 
 ```html
-<ui-button variant="outline">Label</ui-button>
+<uif-button variant="outline">Label</uif-button>
 ```
 
 The light-DOM Custom Elements are the canonical convenience layer. They render
 the same semantic HTML used by the CSS patterns and work across frameworks.
 Consumers upgrading to v1 should follow the
 [React removal migration guide](docs/migrations/react-to-web-components.md).
+For the v1 macro alias and Custom Element tag changes, see the
+[public API namespace migration guide](docs/migrations/public-api-namespace-v1.md).
 
 ### Apply Theming
 

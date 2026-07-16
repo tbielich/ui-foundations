@@ -9,7 +9,7 @@ playgroundUrl: /patterns/select-playground/
 playgroundLabel: Open Select Playground
 ---
 
-{% import "macros/ui.njk" as ui %}
+{% import "macros/ui.njk" as uif %}
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
@@ -25,7 +25,7 @@ playgroundLabel: Open Select Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      {{ ui.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}, {value: "opt3", label: "Option 3"}], placeholder="Choose an option") }}
+      {{ uif.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}, {value: "opt3", label: "Option 3"}], placeholder="Choose an option") }}
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -57,7 +57,7 @@ playgroundLabel: Open Select Playground
         <span class="docs-anatomy-callout-line"></span>
         <span class="docs-anatomy-badge">3</span>
       </span>
-      {{ ui.select(options=[{value: "opt1", label: "Option 1"}], placeholder="Choose an option") }}
+      {{ uif.select(options=[{value: "opt1", label: "Option 1"}], placeholder="Choose an option") }}
     </div>
   </div>
   <ol class="docs-anatomy-footnotes">
@@ -73,19 +73,19 @@ playgroundLabel: Open Select Playground
 
 <div class="docs-states-grid" style="--docs-states-cols: 4">
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.select(options=[{value: "opt1", label: "Option 1"}], placeholder="Default") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.select(options=[{value: "opt1", label: "Option 1"}], placeholder="Default") }}</div>
     <span class="docs-states-grid-item-label">Default</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.select(options=[{value: "opt1", label: "Option 1"}], value="opt1", state="hover") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.select(options=[{value: "opt1", label: "Option 1"}], value="opt1", state="hover") }}</div>
     <span class="docs-states-grid-item-label">Hover</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.select(options=[{value: "opt1", label: "Option 1"}], value="opt1", state="focus") }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.select(options=[{value: "opt1", label: "Option 1"}], value="opt1", state="focus") }}</div>
     <span class="docs-states-grid-item-label">Focus</span>
   </div>
   <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">{{ ui.select(options=[{value: "opt1", label: "Option 1"}], placeholder="Disabled", disabled=true) }}</div>
+    <div class="docs-states-grid-item-preview">{{ uif.select(options=[{value: "opt1", label: "Option 1"}], placeholder="Disabled", disabled=true) }}</div>
     <span class="docs-states-grid-item-label">Disabled</span>
   </div>
 </div>
@@ -110,7 +110,7 @@ playgroundLabel: Open Select Playground
 <div class="docs-behavior-list">
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}], placeholder="Choose an option") }}
+      {{ uif.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}], placeholder="Choose an option") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Full width</h3>
@@ -119,7 +119,7 @@ playgroundLabel: Open Select Playground
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.select(options=[{value: "opt1", label: "Option 1"}], value="opt1", state="focus") }}
+      {{ uif.select(options=[{value: "opt1", label: "Option 1"}], value="opt1", state="focus") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Keyboard focus</h3>
@@ -128,7 +128,7 @@ playgroundLabel: Open Select Playground
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.select(options=[{value: "opt1", label: "Option 1"}], placeholder="Disabled", disabled=true) }}
+      {{ uif.select(options=[{value: "opt1", label: "Option 1"}], placeholder="Disabled", disabled=true) }}
     </div>
     <div class="docs-behavior-body">
       <h3>Disabled state</h3>
@@ -137,7 +137,7 @@ playgroundLabel: Open Select Playground
   </div>
   <div class="docs-behavior-item">
     <div class="docs-behavior-preview">
-      {{ ui.select(options=[{group: "Fruits", items: [{value: "apple", label: "Apple"}, {value: "banana", label: "Banana"}]}, {group: "Vegetables", items: [{value: "carrot", label: "Carrot"}]}], placeholder="Choose food") }}
+      {{ uif.select(options=[{group: "Fruits", items: [{value: "apple", label: "Apple"}, {value: "banana", label: "Banana"}]}, {group: "Vegetables", items: [{value: "carrot", label: "Carrot"}]}], placeholder="Choose food") }}
     </div>
     <div class="docs-behavior-body">
       <h3>Option groups</h3>
@@ -162,7 +162,7 @@ playgroundLabel: Open Select Playground
   </div>
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview">
-      {{ ui.select(options=[{value: "de", label: "Germany"}], placeholder="Country") }}
+      {{ uif.select(options=[{value: "de", label: "Germany"}], placeholder="Country") }}
     </div>
     <div class="docs-guideline-body">
       <p class="docs-guideline-label">Don't</p>
@@ -252,7 +252,7 @@ For the full theming architecture see [Foundations: Theming](/foundations/themin
 
 <h2 id="v1-naming-migration">v1 naming migration</h2>
 
-Select emitters now produce `.uif-select`. The legacy `.select` selector remains supported during the v1 compatibility period, including when Select is composed into Calendar. Component token slots are now `--uif-select-*`; library-owned legacy `--select-*` token aliases are not provided. The existing `<ui-select>` registration and package export remain unchanged.
+Select emitters produce `.uif-select`. The legacy `.select` selector remains supported during the v1 compatibility period, including when Select is composed into Calendar. Component token slots use `--uif-select-*`; library-owned legacy `--select-*` token aliases are not provided. The Custom Element now registers as `<uif-select>`; its existing module filename and package export remain unchanged.
 
 <h2 id="design-checklist">Design checklist</h2>
 

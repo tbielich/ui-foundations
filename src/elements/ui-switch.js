@@ -1,7 +1,7 @@
 import { UIElement, define } from "./base.js";
 
 /**
- * <ui-switch label="Notifications" checked></ui-switch>
+ * <uif-switch label="Notifications" checked></uif-switch>
  *
  * Attributes:
  *   label      — visible label text
@@ -25,7 +25,7 @@ class UISwitch extends UIElement {
     const ariaLabel = this.getAttr("aria-label");
 
     if (!label && !ariaLabel) {
-      this.warnDev("[ui-foundations] <ui-switch> should have a label or aria-label.");
+      this.warnDev("[ui-foundations] <uif-switch> should have a label or aria-label.");
     }
 
     const inputAttrs = ['type="checkbox"', 'role="switch"', 'class="uif-switch"'];
@@ -50,5 +50,5 @@ class UISwitch extends UIElement {
   }
 }
 
-define("ui-switch", UISwitch);
+define("uif-switch", UISwitch);
 export { UISwitch };

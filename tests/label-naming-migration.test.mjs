@@ -63,7 +63,7 @@ test("Typography Label tokens keep their separately governed namespace", async (
   assert.doesNotMatch(tokenExport, /--uif-field-label-/);
 });
 
-test("Label migration guidance preserves the existing Custom Element tag", async () => {
+test("Label migration guidance uses the canonical Custom Element tag", async () => {
   const [documentation, element, declarations] = await Promise.all([
     read("site/patterns/label.md"),
     read("src/elements/ui-label.js"),
@@ -71,7 +71,7 @@ test("Label migration guidance preserves the existing Custom Element tag", async
   ]);
 
   assert.match(documentation, /legacy `--field-label-\*` custom properties/);
-  assert.match(element, /define\("ui-field-label", UIFieldLabel\)/);
-  assert.match(declarations, /"ui-field-label": UIFieldLabel/);
+  assert.match(element, /define\("uif-field-label", UIFieldLabel\)/);
+  assert.match(declarations, /"uif-field-label": UIFieldLabel/);
   assert.doesNotMatch(element, /ui-uif-field-label/);
 });

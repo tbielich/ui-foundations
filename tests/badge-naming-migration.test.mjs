@@ -29,11 +29,11 @@ test("Badge-owned emitters use canonical classes", async () => {
   assert.doesNotMatch(sources[0], /class="badge(?:[-\s"])/);
 });
 
-test("Badge docs explain migration while registration stays stable", async () => {
+test("Badge docs explain migration and use the canonical registration", async () => {
   const [documentation, element] = await Promise.all([
     read("site/patterns/badge.md"),
     read("src/elements/ui-badge.js"),
   ]);
   assert.match(documentation, /legacy `--badge-\*` token aliases are not provided/);
-  assert.match(element, /define\("ui-badge", UIBadge\)/);
+  assert.match(element, /define\("uif-badge", UIBadge\)/);
 });

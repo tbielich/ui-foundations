@@ -29,8 +29,8 @@ test("Switch-owned emitters and behavior use canonical classes", async () => {
   assert.doesNotMatch(element, /class="switch(?:[-\s"])/);
 });
 
-test("Switch docs explain migration while registration stays stable", async () => {
+test("Switch docs explain migration and use the canonical registration", async () => {
   const [documentation, element] = await Promise.all([read("site/patterns/switch.md"), read("src/elements/ui-switch.js")]);
   assert.match(documentation, /legacy `--switch-\*` token aliases are not provided/);
-  assert.match(element, /define\("ui-switch", UISwitch\)/);
+  assert.match(element, /define\("uif-switch", UISwitch\)/);
 });
