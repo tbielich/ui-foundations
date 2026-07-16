@@ -28,7 +28,7 @@ class UISwitch extends UIElement {
       this.warnDev("[ui-foundations] <ui-switch> should have a label or aria-label.");
     }
 
-    const inputAttrs = ['type="checkbox"', 'role="switch"', 'class="switch"'];
+    const inputAttrs = ['type="checkbox"', 'role="switch"', 'class="uif-switch"'];
     if (checked) inputAttrs.push("checked");
     if (disabled) inputAttrs.push("disabled");
     if (name) inputAttrs.push(`name="${name}"`);
@@ -40,12 +40,12 @@ class UISwitch extends UIElement {
       return;
     }
 
-    const wrapperClasses = ["switch-field"];
+    const wrapperClasses = ["uif-switch-field"];
     if (disabled) wrapperClasses.push("is-disabled");
 
     this.innerHTML = `<label class="${wrapperClasses.join(" ")}">
   <input ${inputAttrs.join(" ")} />
-  <span class="switch-field-text">${label}</span>
+  <span class="uif-switch-field-text">${label}</span>
 </label>`;
   }
 }

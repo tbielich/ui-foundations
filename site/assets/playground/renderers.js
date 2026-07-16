@@ -424,12 +424,12 @@
       asBoolean(props.disabled);
 
     const wrapper = document.createElement("label");
-    const wrapperClasses = ["switch-field"];
+    const wrapperClasses = ["uif-switch-field"];
     if (disabled) wrapperClasses.push("is-disabled");
     wrapper.className = wrapperClasses.join(" ");
 
     const input = document.createElement("input");
-    const inputClasses = ["switch"];
+    const inputClasses = ["uif-switch"];
     if (checked) inputClasses.push("is-checked");
     if (previewState === "hover") inputClasses.push("is-hover");
     if (previewState === "active") inputClasses.push("is-active");
@@ -443,7 +443,7 @@
     input.setAttribute("role", "switch");
 
     const text = document.createElement("span");
-    text.className = "switch-field-text";
+    text.className = "uif-switch-field-text";
     text.textContent = labelText;
 
     wrapper.append(input, text);
@@ -456,7 +456,7 @@
     if (checked) attrs.push("checked");
     if (disabled) attrs.push("disabled");
 
-    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="switch-field-text">${quoteAttr(labelText)}</span></label>`;
+    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="uif-switch-field-text">${quoteAttr(labelText)}</span></label>`;
     return { element: wrapper, code };
   };
 
