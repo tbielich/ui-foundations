@@ -3610,7 +3610,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-track-background-default)"
+              "WEB": "var(--uif-switch-track-background-default)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:329",
@@ -3632,7 +3632,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-track-background-hover)"
+              "WEB": "var(--uif-switch-track-background-hover)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:329",
@@ -3654,7 +3654,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-track-background-active)"
+              "WEB": "var(--uif-switch-track-background-active)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:337",
@@ -3676,7 +3676,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-track-background-disabled)"
+              "WEB": "var(--uif-switch-track-background-disabled)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:330",
@@ -3700,7 +3700,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-track-border-color-default)"
+              "WEB": "var(--uif-switch-track-border-color-default)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:342",
@@ -3722,7 +3722,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-track-border-color-hover)"
+              "WEB": "var(--uif-switch-track-border-color-hover)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:345",
@@ -3744,7 +3744,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-track-border-color-active)"
+              "WEB": "var(--uif-switch-track-border-color-active)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:345",
@@ -3766,7 +3766,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-track-border-color-disabled)"
+              "WEB": "var(--uif-switch-track-border-color-disabled)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:346",
@@ -3792,7 +3792,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-thumb-background-default)"
+              "WEB": "var(--uif-switch-thumb-background-default)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:342",
@@ -3814,7 +3814,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-thumb-background-hover)"
+              "WEB": "var(--uif-switch-thumb-background-hover)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:345",
@@ -3836,7 +3836,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-thumb-background-active)"
+              "WEB": "var(--uif-switch-thumb-background-active)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:329",
@@ -3858,7 +3858,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--switch-thumb-background-disabled)"
+              "WEB": "var(--uif-switch-thumb-background-disabled)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:329",
@@ -3883,7 +3883,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--switch-text-color-default)"
+            "WEB": "var(--uif-switch-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -3905,7 +3905,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--switch-text-color-disabled)"
+            "WEB": "var(--uif-switch-text-color-disabled)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:328",

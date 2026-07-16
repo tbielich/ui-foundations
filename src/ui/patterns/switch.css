@@ -1,5 +1,5 @@
 @layer components {
-  .switch-field {
+  :is(.uif-switch-field, .switch-field) {
     display: inline-flex;
     align-items: center;
     gap: var(--typography-label-gap);
@@ -7,16 +7,16 @@
     font-weight: var(--typography-label-font-weight);
     font-size: var(--typography-label-font-size);
     line-height: var(--typography-label-line-height);
-    color: var(--switch-text-color-default);
+    color: var(--uif-switch-text-color-default);
     cursor: pointer;
   }
 
-  .switch-field.is-disabled {
-    color: var(--switch-text-color-disabled);
+  :is(.uif-switch-field, .switch-field).is-disabled {
+    color: var(--uif-switch-text-color-disabled);
     cursor: not-allowed;
   }
 
-  .switch {
+  :is(.uif-switch, .switch) {
     --_switch-inline-size: var(--size-spacing-1000);
     --_switch-block-size: var(--size-spacing-600);
     --_switch-padding: var(--size-spacing-100);
@@ -32,9 +32,9 @@
     flex: 0 0 auto;
     border-style: solid;
     border-width: var(--size-border-100);
-    border-color: var(--switch-track-border-color-default);
+    border-color: var(--uif-switch-track-border-color-default);
     border-radius: var(--size-radius-full);
-    background: var(--switch-track-background-default);
+    background: var(--uif-switch-track-background-default);
     cursor: pointer;
     transition:
       background-color 160ms ease,
@@ -42,7 +42,7 @@
       opacity 160ms ease;
   }
 
-  .switch::after {
+  :is(.uif-switch, .switch)::after {
     content: "";
     position: absolute;
     inset-block-start: 50%;
@@ -51,105 +51,105 @@
     block-size: var(--_switch-thumb-size);
     box-sizing: border-box;
     border-radius: var(--size-radius-full);
-    background: var(--switch-thumb-background-default);
+    background: var(--uif-switch-thumb-background-default);
     transform: translate(0, -50%);
     transition:
       transform 160ms ease,
       background-color 160ms ease;
   }
 
-  .switch:checked,
-  .switch.is-checked {
-    border-color: var(--switch-track-border-color-active);
-    background: var(--switch-track-background-active);
+  :is(.uif-switch, .switch):checked,
+  :is(.uif-switch, .switch).is-checked {
+    border-color: var(--uif-switch-track-border-color-active);
+    background: var(--uif-switch-track-background-active);
   }
 
-  .switch:checked::after,
-  .switch.is-checked::after {
-    background: var(--switch-thumb-background-active);
+  :is(.uif-switch, .switch):checked::after,
+  :is(.uif-switch, .switch).is-checked::after {
+    background: var(--uif-switch-thumb-background-active);
     transform: translate(
       calc(var(--_switch-inline-size) - var(--_switch-block-size)),
       -50%
     );
   }
 
-  .switch:hover,
-  .switch.is-hover {
+  :is(.uif-switch, .switch):hover,
+  :is(.uif-switch, .switch).is-hover {
     background:
       linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
-      var(--switch-track-background-hover);
-    border-color: var(--switch-track-border-color-hover);
+      var(--uif-switch-track-background-hover);
+    border-color: var(--uif-switch-track-border-color-hover);
   }
 
-  .switch:hover::after,
-  .switch.is-hover::after {
-    background: var(--switch-thumb-background-hover);
+  :is(.uif-switch, .switch):hover::after,
+  :is(.uif-switch, .switch).is-hover::after {
+    background: var(--uif-switch-thumb-background-hover);
   }
 
-  .switch:checked:hover,
-  .switch.is-checked.is-hover {
+  :is(.uif-switch, .switch):checked:hover,
+  :is(.uif-switch, .switch).is-checked.is-hover {
     background:
       linear-gradient(0deg, var(--color-overlay-hover), var(--color-overlay-hover)),
-      var(--switch-track-background-active);
+      var(--uif-switch-track-background-active);
   }
 
-  .switch:checked:hover::after,
-  .switch.is-checked.is-hover::after {
-    background: var(--switch-thumb-background-active);
+  :is(.uif-switch, .switch):checked:hover::after,
+  :is(.uif-switch, .switch).is-checked.is-hover::after {
+    background: var(--uif-switch-thumb-background-active);
   }
 
-  .switch:active,
-  .switch.is-active {
+  :is(.uif-switch, .switch):active,
+  :is(.uif-switch, .switch).is-active {
     background:
       linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
-      var(--switch-track-background-hover);
-    border-color: var(--switch-track-border-color-hover);
+      var(--uif-switch-track-background-hover);
+    border-color: var(--uif-switch-track-border-color-hover);
   }
 
-  .switch:active::after,
-  .switch.is-active::after {
-    background: var(--switch-thumb-background-hover);
+  :is(.uif-switch, .switch):active::after,
+  :is(.uif-switch, .switch).is-active::after {
+    background: var(--uif-switch-thumb-background-hover);
   }
 
-  .switch:checked:active,
-  .switch.is-checked.is-active {
+  :is(.uif-switch, .switch):checked:active,
+  :is(.uif-switch, .switch).is-checked.is-active {
     background:
       linear-gradient(0deg, var(--color-overlay-active), var(--color-overlay-active)),
-      var(--switch-track-background-active);
+      var(--uif-switch-track-background-active);
   }
 
-  .switch:checked:active::after,
-  .switch.is-checked.is-active::after {
-    background: var(--switch-thumb-background-active);
+  :is(.uif-switch, .switch):checked:active::after,
+  :is(.uif-switch, .switch).is-checked.is-active::after {
+    background: var(--uif-switch-thumb-background-active);
   }
 
-  .switch:focus-visible,
-  .switch.is-focus-visible {
-    border-color: var(--switch-track-border-color-active);
+  :is(.uif-switch, .switch):focus-visible,
+  :is(.uif-switch, .switch).is-focus-visible {
+    border-color: var(--uif-switch-track-border-color-active);
     outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
-  .switch:disabled,
-  .switch.is-disabled {
+  :is(.uif-switch, .switch):disabled,
+  :is(.uif-switch, .switch).is-disabled {
     cursor: not-allowed;
     opacity: 0.6;
   }
 
-  .switch:disabled:not(:checked),
-  .switch.is-disabled:not(.is-checked) {
-    border-color: var(--switch-track-border-color-disabled);
-    background: var(--switch-track-background-disabled);
+  :is(.uif-switch, .switch):disabled:not(:checked),
+  :is(.uif-switch, .switch).is-disabled:not(.is-checked) {
+    border-color: var(--uif-switch-track-border-color-disabled);
+    background: var(--uif-switch-track-background-disabled);
   }
 
-  .switch:disabled::after,
-  .switch.is-disabled::after {
-    background: var(--switch-thumb-background-disabled);
+  :is(.uif-switch, .switch):disabled::after,
+  :is(.uif-switch, .switch).is-disabled::after {
+    background: var(--uif-switch-thumb-background-disabled);
   }
 
-  .switch:checked:disabled,
-  .switch.is-checked.is-disabled {
-    border-color: var(--switch-track-border-color-disabled);
-    background: var(--switch-track-background-active);
+  :is(.uif-switch, .switch):checked:disabled,
+  :is(.uif-switch, .switch).is-checked.is-disabled {
+    border-color: var(--uif-switch-track-border-color-disabled);
+    background: var(--uif-switch-track-background-active);
   }
 }

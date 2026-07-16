@@ -6,7 +6,7 @@ figma.connect(
   {
     props: {
       className: figma.className([
-        "switch",
+        "uif-switch",
         figma.enum("Checked", {
           Unchecked: undefined,
           Checked: "is-checked",
@@ -48,11 +48,11 @@ figma.connect(
   {
     props: {
       wrapperClassName: figma.className([
-        "switch-field",
+        "uif-switch-field",
         figma.boolean("Is Disabled", { true: "is-disabled", false: undefined }),
       ]),
       className: figma.className([
-        "switch",
+        "uif-switch",
         figma.boolean("Is Disabled", { true: "is-disabled", false: undefined }),
         "is-checked",
       ]),
@@ -75,7 +75,7 @@ figma.connect(
         checked="${checked}"
         disabled="${disabled}"
       />
-      <span class="switch-field-text">${text}</span>
+      <span class="uif-switch-field-text">${text}</span>
     </label>`,
   },
 );
