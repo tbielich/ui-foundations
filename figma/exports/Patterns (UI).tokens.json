@@ -3029,7 +3029,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--badge-default-text-color)"
+            "WEB": "var(--uif-badge-default-text-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -3051,7 +3051,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--badge-default-border-color)"
+            "WEB": "var(--uif-badge-default-border-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2006:195",
@@ -3074,7 +3074,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--badge-default-container-background)"
+              "WEB": "var(--uif-badge-default-container-background)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:338",
@@ -3099,7 +3099,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--badge-brand-text-color)"
+            "WEB": "var(--uif-badge-brand-text-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2616:2",
@@ -3121,7 +3121,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--badge-brand-border-color)"
+            "WEB": "var(--uif-badge-brand-border-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2006:195",
@@ -3144,7 +3144,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--badge-brand-container-background)"
+              "WEB": "var(--uif-badge-brand-container-background)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:337",
@@ -3169,7 +3169,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--badge-success-text-color)"
+            "WEB": "var(--uif-badge-success-text-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2616:4",
@@ -3191,7 +3191,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--badge-success-border-color)"
+            "WEB": "var(--uif-badge-success-border-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2006:195",
@@ -3214,7 +3214,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--badge-success-container-background)"
+              "WEB": "var(--uif-badge-success-container-background)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:376",
@@ -3238,7 +3238,7 @@
           "FONT_FAMILY"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-font-family)"
+          "WEB": "var(--uif-badge-font-family)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:2006:214",
@@ -3260,7 +3260,7 @@
           "FONT_STYLE"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-font-weight)"
+          "WEB": "var(--uif-badge-font-weight)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3014:8",
@@ -3282,7 +3282,7 @@
           "STROKE_FLOAT"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-border-size-default)"
+          "WEB": "var(--uif-badge-border-size-default)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:7",
@@ -3304,7 +3304,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-border-radius)"
+          "WEB": "var(--uif-badge-border-radius)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:1:251",
@@ -3326,7 +3326,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-padding-inline-md)"
+          "WEB": "var(--uif-badge-padding-inline-md)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:4",
@@ -3348,7 +3348,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-padding-inline-icon-only)"
+          "WEB": "var(--uif-badge-padding-inline-icon-only)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:3",
@@ -3370,7 +3370,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-padding-block-md)"
+          "WEB": "var(--uif-badge-padding-block-md)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:2",
@@ -3392,7 +3392,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-gap)"
+          "WEB": "var(--uif-badge-gap)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:2",
@@ -3414,7 +3414,7 @@
           "WIDTH_HEIGHT"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-height-min)"
+          "WEB": "var(--uif-badge-height-min)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3020:2",
@@ -3436,7 +3436,7 @@
           "WIDTH_HEIGHT"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-width-min)"
+          "WEB": "var(--uif-badge-width-min)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3020:2",
@@ -3460,7 +3460,7 @@
               "ALL_SCOPES"
             ],
             "com.figma.codeSyntax": {
-              "WEB": "var(--badge-danger-container-background)"
+              "WEB": "var(--uif-badge-danger-container-background)"
             },
             "com.figma.aliasData": {
               "targetVariableId": "VariableID:2007:357",
@@ -3483,7 +3483,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--badge-danger-text-color)"
+            "WEB": "var(--uif-badge-danger-text-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2616:3",
@@ -3505,7 +3505,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--badge-danger-border-color)"
+            "WEB": "var(--uif-badge-danger-border-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2006:195",
@@ -3526,7 +3526,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-font-size-sm)"
+          "WEB": "var(--uif-badge-font-size-sm)"
         }
       }
     },
@@ -3539,7 +3539,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-font-size-md)"
+          "WEB": "var(--uif-badge-font-size-md)"
         }
       }
     },
@@ -3552,7 +3552,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-line-height-sm)"
+          "WEB": "var(--uif-badge-line-height-sm)"
         }
       }
     },
@@ -3565,7 +3565,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-line-height-md)"
+          "WEB": "var(--uif-badge-line-height-md)"
         }
       }
     },
@@ -3578,7 +3578,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-padding-inline-sm)"
+          "WEB": "var(--uif-badge-padding-inline-sm)"
         }
       }
     },
@@ -3591,7 +3591,7 @@
           "ALL_SCOPES"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--badge-padding-block-sm)"
+          "WEB": "var(--uif-badge-padding-block-sm)"
         }
       }
     }

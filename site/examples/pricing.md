@@ -47,7 +47,7 @@ breadcrumb:
     position: relative;
   }
 
-  .pricing-card--recommended > .badge {
+  .pricing-card--recommended > .uif-badge {
     position: absolute;
     inset-block-start: 0;
     inset-inline-start: 50%;

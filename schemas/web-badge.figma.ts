@@ -6,7 +6,7 @@ figma.connect(
   {
     props: {
       className: figma.className([
-        "badge",
+        "uif-badge",
         figma.enum("Variant", {
           Default: undefined,
           Brand: "brand",
@@ -21,6 +21,6 @@ figma.connect(
       text: figma.string("Text"),
     },
     example: ({ className, text }: BadgeProps) =>
-      html`<span class="${className}"><span class="badge-text">${text}</span></span>`,
+      html`<span class="${className}"><span class="uif-badge-text">${text}</span></span>`,
   },
 );

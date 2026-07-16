@@ -146,12 +146,12 @@
 {%- endmacro %}
 
 {% macro badge(text, variant='', size='', startIcon='') -%}
-{%- set classes = "badge" -%}
+{%- set classes = "uif-badge" -%}
 {%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
 {%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
 <span class="{{ classes }}">
   {%- if startIcon %}<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
-  <span class="badge-text">{{ text }}</span>
+  <span class="uif-badge-text">{{ text }}</span>
 </span>
 {%- endmacro %}
 
