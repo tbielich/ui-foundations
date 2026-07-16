@@ -955,7 +955,7 @@
     trigger.className = "uif-tooltip-trigger";
 
     const btn = document.createElement("button");
-    btn.className = "button outline";
+    btn.className = "uif-button outline";
     btn.type = "button";
     btn.textContent = String(children || "Hover me");
     trigger.append(btn);
@@ -968,7 +968,7 @@
     trigger.append(tip);
 
     const code = `<span class="uif-tooltip-trigger">
-  <button class="button outline" type="button">${quoteAttr(String(children || "Hover me"))}</button>
+  <button class="uif-button outline" type="button">${quoteAttr(String(children || "Hover me"))}</button>
   <span class="uif-tooltip" role="tooltip" data-placement="${quoteAttr(placement)}">${quoteAttr(text)}</span>
 </span>`;
 

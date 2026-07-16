@@ -32,10 +32,10 @@ type: agent-guide
    - Code Connect file in `schemas/web-<pattern>.figma.ts`
    - Pattern card in `site/patterns/index.md`
    Missing any of these (especially the playground renderer) will cause broken pages.
-9. Every new pattern must have its own pattern-layer tokens. Never reuse tokens from another pattern (e.g. do not use `--input-checkbox-*` for a radio).
+9. Every new pattern must have its own pattern-layer tokens. Never reuse tokens from another pattern (e.g. do not use `--uif-input-checkbox-*` for a radio).
    - Check `dist/tokens/css/patterns-ui.tokens.css` for existing tokens.
    - If the pattern has no tokens in Figma yet, propose new public token slots following the Vault naming pattern `--uif-<pattern>-<part>-<property>-<state>` and add them to the `Patterns (UI)` collection, referencing only Semantics (Brands), Appearance, or Core tokens.
-   - Migrated patterns emit canonical `--uif-*` tokens only. Button has no library-owned `--button-*` alias; components that have not yet migrated may retain unscoped tokens until their scoped migration is approved.
+   - All repository-owned pattern emitters use canonical `--uif-*` tokens only. Library-owned unprefixed component token aliases are not provided.
    - This keeps patterns independently adaptable across brand/mode context and avoids hidden coupling.
 10. Token alias references must point to tokens that actually exist in the system.
     - Before adding a `$ref`, verify the target exists in `dist/tokens/css/` (Core, Appearance, Semantics (Brands)).
@@ -44,7 +44,7 @@ type: agent-guide
     - If a needed Semantic token does not exist, flag it for creation in Figma first.
 11. CSS class naming must follow the consumed Vault Naming Contract from `.uif/packs/governance/contracts/naming-contract.json`; runtime generates its local naming contract from that artifact.
     - Local examples such as `.uif-slider`, `.uif-radio`, and `.uif-checkbox` are examples only, not source rules.
-    - Existing bare pattern classes such as `.button`, `.radio`, and `.checkbox` are deprecated legacy compatibility and should warn during migration.
+    - Existing bare pattern classes such as `.button`, `.radio`, and `.checkbox` are deprecated CSS-only compatibility selectors through v1.x. Repository-owned emitters must produce canonical `.uif-*` classes only.
     - Never use `.ui-` or other non-Vault namespaces.
     - CSS patterns must be wrapped in `@layer components { }`.
 12. Web Components are the canonical convenience layer:

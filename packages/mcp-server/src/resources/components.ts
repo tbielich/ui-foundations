@@ -152,10 +152,10 @@ function generateHtmlPattern(componentName: string, cssContent: string): string 
     return `<input class="${className}" type="text" />`;
   }
   if (componentName === 'checkbox') {
-    return `<input class="checkbox" type="checkbox" />`;
+    return `<input class="${className}" type="checkbox" />`;
   }
   if (componentName === 'radio') {
-    return `<input class="radio" type="radio" />`;
+    return `<input class="${className}" type="radio" />`;
   }
   if (componentName === 'switch') {
     return `<button class="${className}" role="switch" aria-checked="false">Label</button>`;
