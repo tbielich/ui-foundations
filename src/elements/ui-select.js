@@ -34,7 +34,7 @@ class UISelect extends UIElement {
       this.warnDev("[ui-foundations] <ui-select> should have an id, aria-label, or aria-labelledby.");
     }
 
-    const classes = ["select"];
+    const classes = ["uif-select"];
     if (!value && placeholder) classes.push("is-placeholder");
     if (invalid) classes.push("is-invalid");
 

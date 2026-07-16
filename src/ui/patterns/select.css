@@ -1,41 +1,41 @@
 @layer components {
-  .select {
+  :is(.uif-select, .select) {
     position: relative;
     display: inline-grid;
     grid-template-columns: 1fr auto;
     align-items: center;
     inline-size: 100%;
-    block-size: var(--select-height, 2.5rem);
+    block-size: var(--uif-select-height, 2.5rem);
     appearance: none;
-    font-family: var(--select-font-family);
-    font-weight: var(--select-font-weight);
-    font-size: var(--select-font-size);
-    line-height: var(--select-line-height);
-    color: var(--select-text-color-default);
-    background: var(--select-container-background-default);
+    font-family: var(--uif-select-font-family);
+    font-weight: var(--uif-select-font-weight);
+    font-size: var(--uif-select-font-size);
+    line-height: var(--uif-select-line-height);
+    color: var(--uif-select-text-color-default);
+    background: var(--uif-select-container-background-default);
     border-style: solid;
-    border-width: var(--select-border-size-default);
-    border-color: var(--select-border-color-default);
-    border-radius: var(--select-border-radius);
-    padding-inline-start: var(--select-padding-inline);
-    padding-inline-end: calc(var(--select-padding-inline) + 1.5em);
-    padding-block: var(--select-padding-block);
+    border-width: var(--uif-select-border-size-default);
+    border-color: var(--uif-select-border-color-default);
+    border-radius: var(--uif-select-border-radius);
+    padding-inline-start: var(--uif-select-padding-inline);
+    padding-inline-end: calc(var(--uif-select-padding-inline) + 1.5em);
+    padding-block: var(--uif-select-padding-block);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right var(--select-padding-inline) center;
+    background-position: right var(--uif-select-padding-inline) center;
     background-size: 1em;
     cursor: pointer;
   }
 
   /* --- Progressive enhancement: base-select --- */
   @supports (appearance: base-select) {
-    .select {
+    :is(.uif-select, .select) {
       appearance: base-select;
       background-image: none;
-      padding-inline-end: var(--select-padding-inline);
+      padding-inline-end: var(--uif-select-padding-inline);
     }
 
-    .select::picker-icon {
+    :is(.uif-select, .select)::picker-icon {
       content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
       display: block;
       inline-size: 1em;
@@ -43,154 +43,154 @@
       transition: rotate 0.2s ease;
     }
 
-    .select:open::picker-icon {
+    :is(.uif-select, .select):open::picker-icon {
       rotate: 180deg;
     }
 
-    .select::picker(select) {
+    :is(.uif-select, .select)::picker(select) {
       appearance: base-select;
-      border: var(--select-border-size-default) solid var(--select-border-color-default);
-      border-radius: var(--select-border-radius);
-      background: var(--select-container-background-default);
+      border: var(--uif-select-border-size-default) solid var(--uif-select-border-color-default);
+      border-radius: var(--uif-select-border-radius);
+      background: var(--uif-select-container-background-default);
       padding: var(--size-spacing-100);
       transition: opacity 0.2s ease, translate 0.2s ease;
       opacity: 0;
       translate: 0 -0.5rem;
     }
 
-    .select::picker(select):popover-open {
+    :is(.uif-select, .select)::picker(select):popover-open {
       opacity: 1;
       translate: 0;
     }
 
     @starting-style {
-      .select::picker(select):popover-open {
+      :is(.uif-select, .select)::picker(select):popover-open {
         opacity: 0;
         translate: 0 -0.5rem;
       }
     }
 
-    .select option {
+    :is(.uif-select, .select) option {
       padding: 0.5rem 0.75rem;
       border-radius: var(--size-radius-200);
       cursor: pointer;
       transition: background-color 0.15s ease, color 0.15s ease;
     }
 
-    .select option:hover {
+    :is(.uif-select, .select) option:hover {
       background-color: color-mix(in srgb, currentColor 8%, transparent);
     }
 
-    .select option:checked {
+    :is(.uif-select, .select) option:checked {
       background-color: color-mix(in srgb, currentColor 12%, transparent);
       font-weight: 500;
     }
   }
 
-  .select:hover,
-  .select.is-hover {
-    background-color: var(--select-container-background-hover);
+  :is(.uif-select, .select):hover,
+  :is(.uif-select, .select).is-hover {
+    background-color: var(--uif-select-container-background-hover);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
-    border-width: var(--select-border-size-hover);
-    border-color: var(--select-border-color-hover);
-    color: var(--select-text-color-hover);
+    border-width: var(--uif-select-border-size-hover);
+    border-color: var(--uif-select-border-color-hover);
+    color: var(--uif-select-text-color-hover);
     padding-inline-start: calc(
-      var(--select-padding-inline) + var(--select-border-size-default) -
-        var(--select-border-size-hover)
+      var(--uif-select-padding-inline) + var(--uif-select-border-size-default) -
+        var(--uif-select-border-size-hover)
     );
     padding-inline-end: calc(
-      var(--select-padding-inline) + 1.5em + var(--select-border-size-default) -
-        var(--select-border-size-hover)
+      var(--uif-select-padding-inline) + 1.5em + var(--uif-select-border-size-default) -
+        var(--uif-select-border-size-hover)
     );
     padding-block: calc(
-      var(--select-padding-block) + var(--select-border-size-default) -
-        var(--select-border-size-hover)
+      var(--uif-select-padding-block) + var(--uif-select-border-size-default) -
+        var(--uif-select-border-size-hover)
     );
   }
 
   @supports (appearance: base-select) {
-    .select:hover,
-    .select.is-hover {
+    :is(.uif-select, .select):hover,
+    :is(.uif-select, .select).is-hover {
       background-image: none;
       padding-inline-end: calc(
-        var(--select-padding-inline) + var(--select-border-size-default) -
-          var(--select-border-size-hover)
+        var(--uif-select-padding-inline) + var(--uif-select-border-size-default) -
+          var(--uif-select-border-size-hover)
       );
     }
   }
 
-  .select:active,
-  .select.is-active {
-    background-color: var(--select-container-background-active);
+  :is(.uif-select, .select):active,
+  :is(.uif-select, .select).is-active {
+    background-color: var(--uif-select-container-background-active);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
-    border-width: var(--select-border-size-active);
-    border-color: var(--select-border-color-active);
-    color: var(--select-text-color-active);
+    border-width: var(--uif-select-border-size-active);
+    border-color: var(--uif-select-border-color-active);
+    color: var(--uif-select-text-color-active);
     padding-inline-start: calc(
-      var(--select-padding-inline) + var(--select-border-size-default) -
-        var(--select-border-size-active)
+      var(--uif-select-padding-inline) + var(--uif-select-border-size-default) -
+        var(--uif-select-border-size-active)
     );
     padding-inline-end: calc(
-      var(--select-padding-inline) + 1.5em + var(--select-border-size-default) -
-        var(--select-border-size-active)
+      var(--uif-select-padding-inline) + 1.5em + var(--uif-select-border-size-default) -
+        var(--uif-select-border-size-active)
     );
     padding-block: calc(
-      var(--select-padding-block) + var(--select-border-size-default) -
-        var(--select-border-size-active)
+      var(--uif-select-padding-block) + var(--uif-select-border-size-default) -
+        var(--uif-select-border-size-active)
     );
   }
 
   @supports (appearance: base-select) {
-    .select:active,
-    .select.is-active {
+    :is(.uif-select, .select):active,
+    :is(.uif-select, .select).is-active {
       background-image: none;
       padding-inline-end: calc(
-        var(--select-padding-inline) + var(--select-border-size-default) -
-          var(--select-border-size-active)
+        var(--uif-select-padding-inline) + var(--uif-select-border-size-default) -
+          var(--uif-select-border-size-active)
       );
     }
   }
 
-  .select:focus-visible,
-  .select.is-focus-visible {
-    background: var(--select-container-background-focus);
-    border-color: var(--select-border-color-focus);
+  :is(.uif-select, .select):focus-visible,
+  :is(.uif-select, .select).is-focus-visible {
+    background: var(--uif-select-container-background-focus);
+    border-color: var(--uif-select-border-color-focus);
     outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
-  .select:disabled,
-  .select[disabled],
-  .select.is-disabled {
+  :is(.uif-select, .select):disabled,
+  :is(.uif-select, .select)[disabled],
+  :is(.uif-select, .select).is-disabled {
     cursor: not-allowed;
-    color: var(--select-text-color-disabled);
-    background-color: var(--select-container-background-disabled);
+    color: var(--uif-select-text-color-disabled);
+    background-color: var(--uif-select-container-background-disabled);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
-    border-color: var(--select-border-color-disabled);
+    border-color: var(--uif-select-border-color-disabled);
   }
 
   @supports (appearance: base-select) {
-    .select:disabled,
-    .select[disabled],
-    .select.is-disabled {
+    :is(.uif-select, .select):disabled,
+    :is(.uif-select, .select)[disabled],
+    :is(.uif-select, .select).is-disabled {
       background-image: none;
     }
   }
 
-  .select.is-placeholder {
-    color: var(--select-text-color-placeholder);
+  :is(.uif-select, .select).is-placeholder {
+    color: var(--uif-select-text-color-placeholder);
   }
 
-  .select.is-invalid,
-  .select[aria-invalid="true"] {
-    border-color: var(--select-border-color-invalid);
+  :is(.uif-select, .select).is-invalid,
+  :is(.uif-select, .select)[aria-invalid="true"] {
+    border-color: var(--uif-select-border-color-invalid);
   }
 
-  .select.is-invalid:focus-visible,
-  .select[aria-invalid="true"]:focus-visible,
-  .select.is-invalid.is-focus-visible,
-  .select[aria-invalid="true"].is-focus-visible {
-    border-color: var(--select-border-color-invalid);
-    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--select-border-color-invalid);
+  :is(.uif-select, .select).is-invalid:focus-visible,
+  :is(.uif-select, .select)[aria-invalid="true"]:focus-visible,
+  :is(.uif-select, .select).is-invalid.is-focus-visible,
+  :is(.uif-select, .select)[aria-invalid="true"].is-focus-visible {
+    border-color: var(--uif-select-border-color-invalid);
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--uif-select-border-color-invalid);
   }
 }

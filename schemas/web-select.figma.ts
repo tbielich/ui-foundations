@@ -6,7 +6,7 @@ figma.connect(
   {
     props: {
       className: figma.className([
-        "select",
+        "uif-select",
         figma.enum("State", {
           Default: undefined,
           Hover: "is-hover",

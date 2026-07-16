@@ -250,6 +250,10 @@ tokens. Use the hero preview switches above to see it in action.
 
 For the full theming architecture see [Foundations: Theming](/foundations/theming/).
 
+<h2 id="v1-naming-migration">v1 naming migration</h2>
+
+Select emitters now produce `.uif-select`. The legacy `.select` selector remains supported during the v1 compatibility period, including when Select is composed into Calendar. Component token slots are now `--uif-select-*`; library-owned legacy `--select-*` token aliases are not provided. The existing `<ui-select>` registration and package export remain unchanged.
+
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">

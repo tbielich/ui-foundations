@@ -46,7 +46,7 @@
   }
 
   /* Header selects: reuse Select pattern with calendar-specific overrides (no border, transparent) */
-  :is(.uif-calendar-header, .calendar-header) .select:is(.uif-calendar-header-select, .calendar-header-select) {
+  :is(.uif-calendar-header, .calendar-header) :is(.uif-select, .select):is(.uif-calendar-header-select, .calendar-header-select) {
     flex: 0 0 auto;
     inline-size: auto;
     border-color: transparent;
@@ -55,15 +55,15 @@
     padding-block: 0;
   }
 
-  :is(.uif-calendar-header, .calendar-header) .select:is(.uif-calendar-header-select, .calendar-header-select)[name="month"] {
+  :is(.uif-calendar-header, .calendar-header) :is(.uif-select, .select):is(.uif-calendar-header-select, .calendar-header-select)[name="month"] {
     min-inline-size: 12ch;
   }
 
-  :is(.uif-calendar-header, .calendar-header) .select:is(.uif-calendar-header-select, .calendar-header-select)[name="year"] {
+  :is(.uif-calendar-header, .calendar-header) :is(.uif-select, .select):is(.uif-calendar-header-select, .calendar-header-select)[name="year"] {
     min-inline-size: 7ch;
   }
 
-  :is(.uif-calendar-header, .calendar-header) .select:is(.uif-calendar-header-select, .calendar-header-select):hover {
+  :is(.uif-calendar-header, .calendar-header) :is(.uif-select, .select):is(.uif-calendar-header-select, .calendar-header-select):hover {
     background: var(--uif-calendar-cell-background-hover);
   }
 
