@@ -770,14 +770,14 @@
     const actionsAlign = String(props.actionsAlign || "end");
 
     const form = document.createElement("form");
-    const formClasses = ["form"];
+    const formClasses = ["uif-form"];
     if (borderless) formClasses.push("borderless");
     form.className = formClasses.join(" ");
     form.setAttribute("novalidate", "");
 
     // Field 1
     const field1 = document.createElement("div");
-    const field1Classes = ["form-field"];
+    const field1Classes = ["uif-form-field"];
     if (invalid) field1Classes.push("is-invalid");
     field1.className = field1Classes.join(" ");
     if (labelPosition === "side") field1.dataset.labelPosition = "side";
@@ -793,11 +793,11 @@
 
     if (labelPosition === "side") {
       const body1 = document.createElement("div");
-      body1.className = "form-field-body";
+      body1.className = "uif-form-field-body";
       body1.append(input1);
       if (invalid) {
         const helper = document.createElement("p");
-        helper.className = "form-field-helper";
+        helper.className = "uif-form-field-helper";
         helper.textContent = "Please enter a valid email address.";
         body1.append(helper);
       }
@@ -806,7 +806,7 @@
       field1.append(label1, input1);
       if (invalid) {
         const helper = document.createElement("p");
-        helper.className = "form-field-helper";
+        helper.className = "uif-form-field-helper";
         helper.textContent = "Please enter a valid email address.";
         field1.append(helper);
       }
@@ -814,7 +814,7 @@
 
     // Field 2
     const field2 = document.createElement("div");
-    field2.className = "form-field";
+    field2.className = "uif-form-field";
     if (labelPosition === "side") field2.dataset.labelPosition = "side";
 
     const label2 = document.createElement("label");
@@ -827,7 +827,7 @@
 
     if (labelPosition === "side") {
       const body2 = document.createElement("div");
-      body2.className = "form-field-body";
+      body2.className = "uif-form-field-body";
       body2.append(input2);
       field2.append(label2, body2);
     } else {
@@ -836,11 +836,11 @@
 
     // Actions
     const actions = document.createElement("div");
-    actions.className = "form-actions";
+    actions.className = "uif-form-actions";
     if (actionsAlign !== "end") actions.dataset.align = actionsAlign;
 
     const btn = document.createElement("button");
-    btn.className = "button solid";
+    btn.className = "uif-button solid";
     btn.type = "submit";
     btn.innerHTML = '<span class="uif-label-content"><span class="uif-label-content-text">Sign in</span></span>';
     actions.append(btn);
@@ -850,17 +850,17 @@
     const lp = labelPosition === "side" ? ' data-label-position="side"' : "";
     const inv = invalid ? " is-invalid" : "";
     const alignAttr = actionsAlign !== "end" ? ` data-align="${actionsAlign}"` : "";
-    const helperCode = invalid ? '\n    <p class="form-field-helper">Please enter a valid email address.</p>' : "";
+    const helperCode = invalid ? '\n    <p class="uif-form-field-helper">Please enter a valid email address.</p>' : "";
     const code = `<form class="${formClasses.join(" ")}" novalidate>
-  <div class="form-field${inv}"${lp}>
+  <div class="uif-form-field${inv}"${lp}>
     <label class="uif-field-label"><span class="uif-label-content"><span class="uif-label-content-text">Email</span></span><span class="uif-field-label-required" aria-hidden="true">*</span></label>
     <input class="uif-input" type="email" placeholder="you@example.com" />${helperCode}
   </div>
-  <div class="form-field"${lp}>
+  <div class="uif-form-field"${lp}>
     <label class="uif-field-label"><span class="uif-label-content"><span class="uif-label-content-text">Password</span></span></label>
     <input class="uif-input" type="password" />
   </div>
-  <div class="form-actions"${alignAttr}>
+  <div class="uif-form-actions"${alignAttr}>
     <button class="uif-button solid" type="submit"><span class="uif-label-content"><span class="uif-label-content-text">Sign in</span></span></button>
   </div>
 </form>`;
@@ -1135,7 +1135,7 @@
     const rootClasses = ["uif-input-field", "date"];
     if (isOpen) rootClasses.push("is-open");
 
-    let html = `<div class="form-field date-picker-field">`;
+    let html = `<div class="uif-form-field date-picker-field">`;
     html += `<label class="uif-field-label" id="date-picker-playground-label" for="date-picker-playground-day"><span class="uif-label-content"><span class="uif-label-content-text">Travel date</span></span></label>`;
     html += `<div class="${rootClasses.join(" ")}" role="group" aria-labelledby="date-picker-playground-label">`;
     html += `<div class="date-segments">`;

@@ -229,23 +229,23 @@
 {%- endmacro %}
 
 {% macro form(borderless=false, className='') -%}
-{%- set classes = "form" -%}
+{%- set classes = "uif-form" -%}
 {%- if borderless -%}{%- set classes = classes + " borderless" -%}{%- endif -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <form class="{{ classes }}" novalidate>{{ caller() }}</form>
 {%- endmacro %}
 
 {% macro formGroup(title='', className='') -%}
-{%- set classes = "form-group" -%}
+{%- set classes = "uif-form-group" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <fieldset class="{{ classes }}">
-  {%- if title %}<legend class="form-group-title">{{ title }}</legend>{% endif -%}
+  {%- if title %}<legend class="uif-form-group-title">{{ title }}</legend>{% endif -%}
   {{ caller() }}
 </fieldset>
 {%- endmacro %}
 
 {% macro formField(labelPosition='top', invalid=false, className='') -%}
-{%- set classes = "form-field" -%}
+{%- set classes = "uif-form-field" -%}
 {%- if invalid -%}{%- set classes = classes + " is-invalid" -%}{%- endif -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <div class="{{ classes }}"{% if labelPosition == "side" %} data-label-position="side"{% endif %}>{{ caller() }}</div>
@@ -279,11 +279,11 @@
 {%- endmacro %}
 
 {% macro formHelper(text='') -%}
-<p class="form-field-helper">{{ text }}</p>
+<p class="uif-form-field-helper">{{ text }}</p>
 {%- endmacro %}
 
 {% macro formActions(align='end', className='') -%}
-{%- set classes = "form-actions" -%}
+{%- set classes = "uif-form-actions" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <div class="{{ classes }}"{% if align != "end" %} data-align="{{ align }}"{% endif %}>{{ caller() }}</div>
 {%- endmacro %}

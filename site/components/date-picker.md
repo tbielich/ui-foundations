@@ -25,7 +25,7 @@ playgroundLabel: Open Date Picker Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      <div class="form-field date-picker-field">
+      <div class="uif-form-field date-picker-field">
         <label class="uif-field-label" id="date-input-demo-label" for="date-input-demo-day">
           <span class="uif-label-content">
             <span class="uif-label-content-text">Travel date</span>
@@ -62,7 +62,7 @@ Together they form a component that can be opened, navigated, and dismissed — 
 ## Composition
 
 ```
-.form-field.date-picker-field
+.uif-form-field.date-picker-field
 ├── label.uif-field-label [for="date-day"]
 └── .uif-input-field.date [role="group", aria-labelledby]
     ├── .date-segments

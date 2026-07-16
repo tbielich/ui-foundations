@@ -17,7 +17,7 @@ figma.connect(
       }),
     },
     example: ({ state, helperText }: FormProps) => html`<div
-      class="form-field"
+      class="uif-form-field"
       data-state="${state}"
     >
       <label class="uif-field-label" for="form-field-input" style="line-height: 24px;">
@@ -31,7 +31,7 @@ figma.connect(
         type="text"
         placeholder="Enter value"
       />
-      <p class="form-field-helper">
+      <p class="uif-form-field-helper">
         ${helperText}
       </p>
     </div>`,
