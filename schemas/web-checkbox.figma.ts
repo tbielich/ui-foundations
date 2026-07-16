@@ -6,7 +6,7 @@ figma.connect(
   {
     props: {
       className: figma.className([
-        "checkbox",
+        "uif-checkbox",
         figma.enum("Checked", {
           Unchecked: undefined,
           Checked: "is-checked",
@@ -56,11 +56,11 @@ figma.connect(
   {
     props: {
       wrapperClassName: figma.className([
-        "checkbox-field",
+        "uif-checkbox-field",
         figma.boolean("Is Disabled", { true: "is-disabled", false: undefined }),
       ]),
       className: figma.className([
-        "checkbox",
+        "uif-checkbox",
         figma.enum("State", {
           Default: undefined,
           Hover: "is-hover",
@@ -86,7 +86,7 @@ figma.connect(
         checked="${checked}"
         disabled="${disabled}"
       />
-      <span class="checkbox-field-text">${text}</span>
+      <span class="uif-checkbox-field-text">${text}</span>
     </label>`,
   },
 );

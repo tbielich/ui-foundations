@@ -40,7 +40,7 @@ import "ui-foundations/tokens/components.css";
 
 ## 3. Render an example page
 
-Use package classes like `.uif-button`, `.uif-input`, `.uif-field-label`, and `.checkbox`.
+Use package classes like `.uif-button`, `.uif-input`, `.uif-field-label`, and `.uif-checkbox`.
 
 ```js
 document.querySelector("#app").innerHTML = `

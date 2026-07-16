@@ -377,12 +377,12 @@
       asBoolean(props.disabled);
 
     const wrapper = document.createElement("label");
-    const wrapperClasses = ["checkbox-field"];
+    const wrapperClasses = ["uif-checkbox-field"];
     if (disabled) wrapperClasses.push("is-disabled");
     wrapper.className = wrapperClasses.join(" ");
 
     const input = document.createElement("input");
-    const inputClasses = ["checkbox"];
+    const inputClasses = ["uif-checkbox"];
     if (checked) inputClasses.push("is-checked");
     if (indeterminate) inputClasses.push("is-indeterminate");
     if (previewState === "hover") inputClasses.push("is-hover");
@@ -398,7 +398,7 @@
     if (indeterminate) input.setAttribute("aria-checked", "mixed");
 
     const text = document.createElement("span");
-    text.className = "checkbox-field-text";
+    text.className = "uif-checkbox-field-text";
     text.textContent = labelText;
 
     wrapper.append(input, text);
@@ -411,7 +411,7 @@
     if (indeterminate) attrs.push('aria-checked="mixed"');
     if (disabled) attrs.push("disabled");
 
-    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="checkbox-field-text">${quoteAttr(labelText)}</span></label>`;
+    const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="uif-checkbox-field-text">${quoteAttr(labelText)}</span></label>`;
     return { element: wrapper, code };
   };
 
