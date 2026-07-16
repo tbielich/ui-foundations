@@ -63,7 +63,8 @@ The examples below illustrate the consumed contract. They are not source rules.
 
 ## Migration
 
-Some runtime artifacts still use bare classes such as `.select` and `.checkbox`.
-Button emitters now use `.uif-button`; `.button` remains a
-deprecated CSS-only compatibility selector through v1.x. Runtime validation
-warns with migration guidance while the migration is in progress.
+All repository-owned emitters use canonical `.uif-*` classes. Bare classes such
+as `.button`, `.select`, and `.checkbox` remain deprecated CSS-only
+compatibility selectors through v1.x; templates, examples, generators, and
+Custom Elements do not emit them. Their removal is Wave 4 work for v2.0 or
+later.

@@ -1,5 +1,5 @@
 {% macro toggleButton(label, dataName, dataValue, variant='outline') -%}
-{%- set classes = "button" -%}
+{%- set classes = "uif-button" -%}
 {%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
 <button class="{{ classes }}" type="button"{% if dataName == "mode" %} data-mode="{{ dataValue }}"{% endif %}{% if dataName == "brand" %} data-brand="{{ dataValue }}"{% endif %}{% if dataName == "lang" %} data-lang="{{ dataValue }}"{% endif %} aria-pressed="false">{{ label }}</button>
 {%- endmacro %}

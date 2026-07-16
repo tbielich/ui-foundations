@@ -83,7 +83,7 @@
           ) }}
           <button
             type="button"
-            class="button ghost playground-color-pick"
+            class="uif-button ghost playground-color-pick"
             data-playground-color-button
             data-target-control="{{ controlId }}"
           >
@@ -168,7 +168,7 @@
       {% endif %}
       {% endfor %}
       <div class="playground-actions">
-        <button type="button" class="button ghost" data-playground-reset>
+        <button type="button" class="uif-button ghost" data-playground-reset>
           Reset
         </button>
       </div>
@@ -177,10 +177,10 @@
 
   <section class="playground-code-panel">
     <div class="code-tabs">
-      <div class="code-tabs-bar button-group" role="group" data-orientation="horizontal" data-attached="true" data-justify="start" aria-label="Code format">
-        <a class="button outline" href="#{{ playgroundId }}-tab-html">HTML</a>
-        <a class="button outline" href="#{{ playgroundId }}-tab-njk">Nunjucks</a>
-        <a class="button outline" href="#{{ playgroundId }}-tab-wc">Web Component</a>
+      <div class="code-tabs-bar uif-button-group" role="group" data-orientation="horizontal" data-attached="true" data-justify="start" aria-label="Code format">
+        <a class="uif-button outline" href="#{{ playgroundId }}-tab-html">HTML</a>
+        <a class="uif-button outline" href="#{{ playgroundId }}-tab-njk">Nunjucks</a>
+        <a class="uif-button outline" href="#{{ playgroundId }}-tab-wc">Web Component</a>
       </div>
       <div class="code-tabs-panels">
         <div class="code-tabs-panel" id="{{ playgroundId }}-tab-html">
