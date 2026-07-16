@@ -2035,7 +2035,7 @@
             "GAP"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--form-group-gap)"
+            "WEB": "var(--uif-form-group-gap)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:5",
@@ -2057,7 +2057,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--form-group-title-color)"
+            "WEB": "var(--uif-form-group-title-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:326",
@@ -2080,7 +2080,7 @@
           "GAP"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--form-padding-inline)"
+          "WEB": "var(--uif-form-padding-inline)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:5",
@@ -2102,7 +2102,7 @@
           "GAP"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--form-padding-block)"
+          "WEB": "var(--uif-form-padding-block)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:5",
@@ -2125,7 +2125,7 @@
             "CORNER_RADIUS"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--form-border-radius)"
+            "WEB": "var(--uif-form-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2028:310",
@@ -2147,7 +2147,7 @@
             "STROKE_FLOAT"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--form-border-size)"
+            "WEB": "var(--uif-form-border-size)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:7",
@@ -2170,7 +2170,7 @@
           "GAP"
         ],
         "com.figma.codeSyntax": {
-          "WEB": "var(--form-gap)"
+          "WEB": "var(--uif-form-gap)"
         },
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3022:5",
@@ -2193,7 +2193,7 @@
             "GAP"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--form-field-gap)"
+            "WEB": "var(--uif-form-field-gap)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:3022:3",
@@ -2215,7 +2215,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--form-field-helper-text-color-default)"
+            "WEB": "var(--uif-form-field-helper-text-color-default)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:341",
@@ -2237,7 +2237,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--form-field-helper-text-color-invalid)"
+            "WEB": "var(--uif-form-field-helper-text-color-invalid)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:358",
@@ -2261,7 +2261,7 @@
             "ALL_FILLS"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--form-container-background)"
+            "WEB": "var(--uif-form-container-background)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -2283,7 +2283,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--form-container-border-color)"
+            "WEB": "var(--uif-form-container-border-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:343",

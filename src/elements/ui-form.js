@@ -15,7 +15,7 @@ class UIForm extends UIElement {
     const borderless = this.getBool("borderless");
     const children = this.innerHTML;
 
-    const classes = ["form"];
+    const classes = ["uif-form"];
     if (borderless) classes.push("borderless");
 
     this.innerHTML = `<form class="${classes.join(" ")}" novalidate>${children}</form>`;
@@ -37,8 +37,8 @@ class UIFormGroup extends UIElement {
     const title = this.getAttr("title");
     const children = this.innerHTML;
 
-    const legend = title ? `<legend class="form-group-title">${title}</legend>` : "";
-    this.innerHTML = `<fieldset class="form-group">${legend}${children}</fieldset>`;
+    const legend = title ? `<legend class="uif-form-group-title">${title}</legend>` : "";
+    this.innerHTML = `<fieldset class="uif-form-group">${legend}${children}</fieldset>`;
   }
 }
 
@@ -58,7 +58,7 @@ class UIFormField extends UIElement {
     const invalid = this.getBool("invalid");
     const children = this.innerHTML;
 
-    const classes = ["form-field"];
+    const classes = ["uif-form-field"];
     if (invalid) classes.push("is-invalid");
 
     const attrs = [`class="${classes.join(" ")}"`];
@@ -77,7 +77,7 @@ export { UIFormField };
 class UIFormHelper extends UIElement {
   render() {
     const text = this.textContent.trim();
-    this.innerHTML = `<p class="form-field-helper">${text}</p>`;
+    this.innerHTML = `<p class="uif-form-field-helper">${text}</p>`;
   }
 }
 
@@ -96,7 +96,7 @@ class UIFormActions extends UIElement {
     const align = this.getAttr("align", "end");
     const children = this.innerHTML;
 
-    const attrs = ['class="form-actions"'];
+    const attrs = ['class="uif-form-actions"'];
     if (align !== "end") attrs.push(`data-align="${align}"`);
 
     this.innerHTML = `<div ${attrs.join(" ")}>${children}</div>`;

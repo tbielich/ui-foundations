@@ -33,7 +33,7 @@ breadcrumb:
 <div class="example-form-shell">
   {% call ui.form(borderless=true) %}
     {% call ui.formGroup(title="Sign in") %}
-      <p class="form-field-helper">Use your account email and password.</p>
+      <p class="uif-form-field-helper">Use your account email and password.</p>
       {% call ui.formField() %}
         {{ ui.fieldLabel("Email address", htmlFor="login-email", required=true) }}
         {{ ui.input(type="email", id="login-email", name="email", placeholder="name@example.com") }}
@@ -41,7 +41,7 @@ breadcrumb:
       {% call ui.formField() %}
         {{ ui.fieldLabel("Password", htmlFor="login-password", required=true) }}
         {{ ui.input(type="password", id="login-password", name="password", placeholder="Enter password") }}
-        <a class="form-field-link" href="#">Forgot password?</a>
+        <a class="uif-form-field-link" href="#">Forgot password?</a>
       {% endcall %}
     {% endcall %}
     {% call ui.formActions(align="stretch") %}
@@ -61,17 +61,17 @@ breadcrumb:
 <div class="example-form-shell">
   {% call ui.form(borderless=true) %}
     {% call ui.formGroup(title="Sign in") %}
-      <p class="form-field-helper">Use your account email and password.</p>
+      <p class="uif-form-field-helper">Use your account email and password.</p>
       {% call ui.formField(invalid=true) %}
         {{ ui.fieldLabel("Email address", htmlFor="login-email-err", required=true) }}
         {{ ui.input(type="email", id="login-email-err", name="email", placeholder="name@example.com", className="is-invalid") }}
-        <p class="form-field-helper">Please enter a valid email address.</p>
+        <p class="uif-form-field-helper">Please enter a valid email address.</p>
       {% endcall %}
       {% call ui.formField(invalid=true) %}
         {{ ui.fieldLabel("Password", htmlFor="login-password-err", required=true) }}
         {{ ui.input(type="password", id="login-password-err", name="password", placeholder="Enter password", className="is-invalid") }}
-        <p class="form-field-helper">Password is required.</p>
-        <a class="form-field-link" href="#">Forgot password?</a>
+        <p class="uif-form-field-helper">Password is required.</p>
+        <a class="uif-form-field-link" href="#">Forgot password?</a>
       {% endcall %}
     {% endcall %}
     {% call ui.formActions(align="stretch") %}

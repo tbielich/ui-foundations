@@ -76,7 +76,7 @@ playgroundLabel: Open Form Playground
 
 <h3>Field grouping</h3>
 
-Use `.form-group` with a `<fieldset>` and `<legend>` to group related fields. The legend provides an accessible name for the group.
+Use `.uif-form-group` with a `<fieldset>` and `<legend>` to group related fields. The legend provides an accessible name for the group.
 
 <div class="docs-example">
 {% call ui.form() %}
@@ -99,7 +99,7 @@ Use `.form-group` with a `<fieldset>` and `<legend>` to group related fields. Th
 
 <h3>Validation and helper text</h3>
 
-Mark a field as invalid with `.is-invalid` on `.form-field`. Helper text switches to danger color automatically.
+Mark a field as invalid with `.is-invalid` on `.uif-form-field`. Helper text switches to danger color automatically.
 
 <div class="docs-example">
 {% call ui.form() %}
@@ -124,7 +124,7 @@ Use `data-label-position="side"` for horizontal label layout. Best suited for wi
 {% call ui.form() %}
   {% call ui.formField(labelPosition="side") %}
     {{ ui.fieldLabel("Username") }}
-    <div class="form-field-body">
+    <div class="uif-form-field-body">
       {{ ui.input(placeholder="janedoe") }}
       {{ ui.formHelper("Visible to other users.") }}
     </div>
@@ -176,15 +176,19 @@ Form adapts to brands and modes through its component tokens:
 
 | Token | Purpose |
 |-------|---------|
-| `--form-gap` | Spacing between fields |
-| `--form-group-gap` | Spacing between fields in a group |
-| `--form-padding-inline` | Horizontal padding |
-| `--form-padding-block` | Vertical padding |
-| `--form-border-radius` | Container corner radius |
-| `--form-container-background` | Background color |
-| `--form-container-border-color` | Border color |
-| `--form-border-size` | Border width |
-| `--form-field-gap` | Gap between label, input, helper |
-| `--form-field-helper-text-color-default` | Helper text color |
-| `--form-field-helper-text-color-invalid` | Error text color |
-| `--form-group-title-color` | Group legend color |
+| `--uif-form-gap` | Spacing between fields |
+| `--uif-form-group-gap` | Spacing between fields in a group |
+| `--uif-form-padding-inline` | Horizontal padding |
+| `--uif-form-padding-block` | Vertical padding |
+| `--uif-form-border-radius` | Container corner radius |
+| `--uif-form-container-background` | Background color |
+| `--uif-form-container-border-color` | Border color |
+| `--uif-form-border-size` | Border width |
+| `--uif-form-field-gap` | Gap between label, input, helper |
+| `--uif-form-field-helper-text-color-default` | Helper text color |
+| `--uif-form-field-helper-text-color-invalid` | Error text color |
+| `--uif-form-group-title-color` | Group legend color |
+
+<h2 id="v1-naming-migration">v1 naming migration</h2>
+
+Form emitters now produce canonical `.uif-form*` classes, including groups, fields, helpers, links, field bodies, and actions. The corresponding legacy `.form*` selectors remain supported during the v1 compatibility period. Component token slots are now `--uif-form-*`; library-owned legacy `--form-*` token aliases are not provided. Existing `<ui-form*>` registrations and package exports remain unchanged.

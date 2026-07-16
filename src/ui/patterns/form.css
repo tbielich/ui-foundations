@@ -3,18 +3,18 @@
    * Form — layout container for form fields
    * ---------------------------------------------------------------- */
 
-  .form {
+  :is(.uif-form, .form) {
     display: flex;
     flex-direction: column;
-    gap: var(--form-gap);
-    padding-inline: var(--form-padding-inline);
-    padding-block: var(--form-padding-block);
-    background: var(--form-container-background);
-    border: var(--form-border-size) solid var(--form-container-border-color);
-    border-radius: var(--form-border-radius);
+    gap: var(--uif-form-gap);
+    padding-inline: var(--uif-form-padding-inline);
+    padding-block: var(--uif-form-padding-block);
+    background: var(--uif-form-container-background);
+    border: var(--uif-form-border-size) solid var(--uif-form-container-border-color);
+    border-radius: var(--uif-form-border-radius);
   }
 
-  .form.borderless {
+  :is(.uif-form, .form).borderless {
     border: none;
     padding: 0;
     background: transparent;
@@ -24,22 +24,22 @@
    * Form Group — groups related fields with an optional title
    * ---------------------------------------------------------------- */
 
-  .form-group {
+  :is(.uif-form-group, .form-group) {
     display: flex;
     flex-direction: column;
-    gap: var(--form-group-gap);
+    gap: var(--uif-form-group-gap);
     margin: 0;
     padding: 0;
     border: 0;
     min-inline-size: 0;
   }
 
-  .form-group-title {
+  :is(.uif-form-group-title, .form-group-title) {
     font-family: var(--typography-heading-font-family);
     font-weight: var(--typography-heading-font-weight);
     font-size: var(--typography-heading-font-size-sm);
     line-height: var(--typography-heading-line-height-sm);
-    color: var(--form-group-title-color);
+    color: var(--uif-form-group-title-color);
     margin: 0;
   }
 
@@ -47,53 +47,53 @@
    * Form Field — single field with label, input, and helper/error
    * ---------------------------------------------------------------- */
 
-  .form-field {
+  :is(.uif-form-field, .form-field) {
     display: flex;
     flex-direction: column;
-    gap: var(--form-field-gap);
+    gap: var(--uif-form-field-gap);
   }
 
-  .form-field[data-label-position="side"] {
+  :is(.uif-form-field, .form-field)[data-label-position="side"] {
     flex-direction: row;
     align-items: flex-start;
   }
 
-  .form-field[data-label-position="side"] > :is(.uif-field-label, .field-label) {
+  :is(.uif-form-field, .form-field)[data-label-position="side"] > :is(.uif-field-label, .field-label) {
     flex-shrink: 0;
     inline-size: 8rem;
     padding-block-start: var(--size-spacing-200);
   }
 
-  .form-field[data-label-position="side"] > .form-field-body {
+  :is(.uif-form-field, .form-field)[data-label-position="side"] > :is(.uif-form-field-body, .form-field-body) {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--form-field-gap);
+    gap: var(--uif-form-field-gap);
   }
 
   /* ----------------------------------------------------------------
    * Helper and error text
    * ---------------------------------------------------------------- */
 
-  .form-field-helper {
+  :is(.uif-form-field-helper, .form-field-helper) {
     font-family: var(--typography-body-font-family);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-sm);
-    color: var(--form-field-helper-text-color-default);
+    color: var(--uif-form-field-helper-text-color-default);
     margin: 0;
   }
 
-  .form-field.is-invalid .form-field-helper {
-    color: var(--form-field-helper-text-color-invalid);
+  :is(.uif-form-field, .form-field).is-invalid :is(.uif-form-field-helper, .form-field-helper) {
+    color: var(--uif-form-field-helper-text-color-invalid);
   }
 
-  .form-field-link {
+  :is(.uif-form-field-link, .form-field-link) {
     font-size: var(--font-size-sm);
     color: var(--color-text-brand);
     text-decoration: none;
   }
 
-  .form-field-link:hover {
+  :is(.uif-form-field-link, .form-field-link):hover {
     text-decoration: underline;
   }
 
@@ -101,22 +101,22 @@
    * Form Actions — button area at the bottom
    * ---------------------------------------------------------------- */
 
-  .form-actions {
+  :is(.uif-form-actions, .form-actions) {
     display: flex;
     gap: var(--size-spacing-200);
     justify-content: flex-end;
     padding-block-start: var(--size-spacing-200);
   }
 
-  .form-actions[data-align="start"] {
+  :is(.uif-form-actions, .form-actions)[data-align="start"] {
     justify-content: flex-start;
   }
 
-  .form-actions[data-align="stretch"] {
+  :is(.uif-form-actions, .form-actions)[data-align="stretch"] {
     flex-direction: column;
   }
 
-  .form-actions[data-align="stretch"] > * {
+  :is(.uif-form-actions, .form-actions)[data-align="stretch"] > * {
     inline-size: 100%;
   }
 }
