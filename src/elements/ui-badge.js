@@ -20,7 +20,7 @@ class UIBadge extends UIElement {
     const startIcon = this.getAttr("start-icon");
     const text = this.textContent.trim();
 
-    const classes = ["badge"];
+    const classes = ["uif-badge"];
     if (variant && variant !== "default") classes.push(variant);
     if (size === "sm") classes.push("sm");
 
@@ -29,7 +29,7 @@ class UIBadge extends UIElement {
       inner += `<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/${startIcon}.svg')" aria-hidden="true"></span>`;
     }
     if (text) {
-      inner += `<span class="badge-text">${text}</span>`;
+      inner += `<span class="uif-badge-text">${text}</span>`;
     }
 
     this.innerHTML = `<span class="${classes.join(" ")}">${inner}</span>`;

@@ -585,7 +585,7 @@
       typeof children === "undefined" ? "Badge" : String(children || "");
 
     const element = document.createElement("span");
-    const classes = ["badge"];
+    const classes = ["uif-badge"];
     if (variant && variant !== "default") classes.push(variant);
     if (size === "sm") classes.push("sm");
     element.className = classes.join(" ");
@@ -596,13 +596,13 @@
     }
 
     const textSpan = document.createElement("span");
-    textSpan.className = "badge-text";
+    textSpan.className = "uif-badge-text";
     textSpan.textContent = rawText;
     element.append(textSpan);
 
     const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
     const iconMarkup = startIcon ? iconCode({ name: startIcon, decorative: true }) : "";
-    const code = `<span class="${codeClasses}">${iconMarkup}<span class="badge-text">${quoteAttr(rawText)}</span></span>`;
+    const code = `<span class="${codeClasses}">${iconMarkup}<span class="uif-badge-text">${quoteAttr(rawText)}</span></span>`;
 
     return { element, code };
   };
