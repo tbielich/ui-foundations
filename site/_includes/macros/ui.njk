@@ -163,7 +163,7 @@
 {%- endmacro %}
 
 {% macro textarea(placeholder='', value='', disabled=false, readonly=false, rows='', state='default', className='') -%}
-{%- set classes = "textarea" -%}
+{%- set classes = "uif-textarea" -%}
 {%- if state == "hover" -%}{%- set classes = classes + " is-hover" -%}{%- endif -%}
 {%- if state == "focus" -%}{%- set classes = classes + " is-focus-visible" -%}{%- endif -%}
 {%- if state == "disabled" or disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}

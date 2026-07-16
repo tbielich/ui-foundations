@@ -1,49 +1,49 @@
 @layer components {
-  .textarea {
+  :is(.uif-textarea, .textarea) {
     display: block;
     inline-size: 100%;
-    min-block-size: calc(var(--textarea-line-height) * 3 + var(--textarea-padding-block) * 2);
-    padding-inline: var(--textarea-padding-inline);
-    padding-block: var(--textarea-padding-block);
-    font-family: var(--textarea-font-family);
-    font-size: var(--textarea-font-size);
-    line-height: var(--textarea-line-height);
-    color: var(--textarea-text-color-default);
-    background: var(--textarea-container-background-default);
-    border: var(--textarea-border-size-default) solid var(--textarea-border-color-default);
-    border-radius: var(--textarea-border-radius);
+    min-block-size: calc(var(--uif-textarea-line-height) * 3 + var(--uif-textarea-padding-block) * 2);
+    padding-inline: var(--uif-textarea-padding-inline);
+    padding-block: var(--uif-textarea-padding-block);
+    font-family: var(--uif-textarea-font-family);
+    font-size: var(--uif-textarea-font-size);
+    line-height: var(--uif-textarea-line-height);
+    color: var(--uif-textarea-text-color-default);
+    background: var(--uif-textarea-container-background-default);
+    border: var(--uif-textarea-border-size-default) solid var(--uif-textarea-border-color-default);
+    border-radius: var(--uif-textarea-border-radius);
     resize: vertical;
     transition: border-color 0.15s ease;
   }
 
-  .textarea::placeholder {
-    color: var(--textarea-text-color-placeholder);
+  :is(.uif-textarea, .textarea)::placeholder {
+    color: var(--uif-textarea-text-color-placeholder);
   }
 
-  .textarea:hover,
-  .textarea.is-hover {
-    border-color: var(--textarea-border-color-hover);
+  :is(.uif-textarea, .textarea):hover,
+  :is(.uif-textarea, .textarea).is-hover {
+    border-color: var(--uif-textarea-border-color-hover);
   }
 
-  .textarea:focus-visible,
-  .textarea.is-focus-visible {
-    border-color: var(--textarea-border-color-focus);
+  :is(.uif-textarea, .textarea):focus-visible,
+  :is(.uif-textarea, .textarea).is-focus-visible {
+    border-color: var(--uif-textarea-border-color-focus);
     outline: 2px solid transparent;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 
-  .textarea:disabled,
-  .textarea.is-disabled {
-    color: var(--textarea-text-color-disabled);
-    background: var(--textarea-container-background-disabled);
-    border-color: var(--textarea-border-color-disabled);
+  :is(.uif-textarea, .textarea):disabled,
+  :is(.uif-textarea, .textarea).is-disabled {
+    color: var(--uif-textarea-text-color-disabled);
+    background: var(--uif-textarea-container-background-disabled);
+    border-color: var(--uif-textarea-border-color-disabled);
     cursor: not-allowed;
     resize: none;
   }
 
-  .textarea[readonly] {
-    background: var(--textarea-container-background-default);
-    border-color: var(--textarea-border-color-default);
+  :is(.uif-textarea, .textarea)[readonly] {
+    background: var(--uif-textarea-container-background-default);
+    border-color: var(--uif-textarea-border-color-default);
     cursor: default;
     resize: none;
   }

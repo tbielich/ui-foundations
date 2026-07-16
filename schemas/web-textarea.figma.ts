@@ -6,7 +6,7 @@ figma.connect(
   {
     props: {
       className: figma.className([
-        "textarea",
+        "uif-textarea",
         figma.enum("State", {
           Default: undefined,
           Hover: "is-hover",
