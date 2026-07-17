@@ -5,7 +5,7 @@
 If you are new to Runtime documentation, use this order:
 
 1. `docs/public-api.md` — canonical v1 API surface and migration entry points
-2. `docs/adr/adr-runtime-and-vault-documentation-architecture.md` — architecture boundary between Runtime and Vault
+2. `docs/architecture.md` — Runtime system map, layers, outputs, and consumer surfaces
 3. `docs/foundations/README.md` — foundations navigation (token architecture, naming, theming)
 4. `docs/patterns/README.md` — pattern and component-facing composition guidance
 5. `docs/validation/README.md` — validation and CI checks
@@ -29,6 +29,7 @@ details or local agent configuration.
 | Section | What belongs here | Start with |
 |---|---|---|
 | `playbook.md` | Reading order, operating model, and agent roles | `docs/playbook.md` |
+| `architecture.md` | Developer-oriented Runtime system map and implementation layers | `docs/architecture.md` |
 | `foundations/` | Token architecture, naming, theming, parity, and format guidance | `docs/foundations/README.md` |
 | `principles/` | Perception, heuristics, and accessibility intent | `docs/principles/README.md` |
 | `patterns/` | Pattern-level composition guidance | `docs/patterns/README.md` |

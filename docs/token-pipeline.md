@@ -2,6 +2,13 @@
 
 ## Overview
 
+Use this page for pipeline mechanics and generated-output detail.
+
+If you need the shorter developer overview first, start with:
+
+- `docs/architecture.md`
+- `docs/foundations/README.md`
+
 Figma is the single source of truth. Tokens flow through a generation pipeline
 that transforms Figma Variable exports into DTCG-compliant dist files consumed
 by CSS, TypeScript, and JSON tooling.

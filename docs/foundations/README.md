@@ -5,6 +5,29 @@
 Foundations docs describe the canonical token, naming, theming, parity, and
 format rules that other layers build on.
 
+This section is the developer-facing entry point for Runtime foundation
+implementation. It points to the detailed foundation records instead of
+repeating them.
+
+## Foundations at a glance
+
+Use foundations docs to understand:
+
+1. how token layers are separated
+2. how public naming is derived
+3. how mode and brand context are activated
+4. how generated token outputs feed patterns and components
+
+For the repository-wide system view, start with `docs/architecture.md`.
+
+## Recommended reading path
+
+1. `foundation-001-token-layering.md` — token layer model
+2. `foundation-002-naming-and-grouping.md` — naming structure and grouping
+3. `foundation-008-mode-activation-and-consumer-control.md` — mode ownership
+4. `foundation-010-implementation-and-pipeline-workflow.md` — implementation workflow
+5. `docs/token-pipeline.md` — generation mechanics and output files
+
 ## Canonical files
 
 The detailed foundation ADRs are the source of truth:
@@ -29,3 +52,10 @@ The detailed foundation ADRs are the source of truth:
 - Designers defining token and naming decisions
 - Engineers implementing or validating token-driven UI
 - Agents doing token, component, or parity work
+
+## Related docs
+
+- `docs/architecture.md`
+- `docs/token-pipeline.md`
+- `docs/patterns/README.md`
+- `IMPLEMENTATION.md`
