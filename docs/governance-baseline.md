@@ -5,136 +5,33 @@ type: governance
 owner: ui-foundations-runtime
 issue: 208
 related_epic: 205
-consumed_pack_version: 0.7.0
-consumed_pack_sha: 10f78061cd65e6ad6d7304376ead27d44efc01b3
 ---
 
 # Governance Baseline Reference Matrix
 
-This document records the governance artifacts consumed from the UI Foundations
-Vault, their canonical sources, consumed versions, and current review status.
+This Runtime reference matrix captures governance baseline interpretation without
+changing consumed Vault artifacts.
 
-It is the Runtime's authoritative record of governance consumption. Any change
-to a consumed version must be reviewed and recorded here before it takes effect
-in Runtime documentation or implementation.
+| Concept | Authoritative Source | Current Value / State | Authority | Runtime Interpretation |
+|---|---|---|---|---|
+| Published governance pack version | `.uif/packs/governance/registry/governance-packs.yml`, `.uif/packs/governance/exports/governance-pack/pack.yml` | `0.6.0` (draft channel) | Vault published pack artifacts (consumed copy) | Treat as published baseline currently present in consumed pack files |
+| Runtime-consumed governance snapshot/version | `.uif/registry/source.yml` (`consumedPacks[id=governance]`) | `lastKnownVersion: 0.7.0`, `versionRef.type: sha`, `value: 10f78061cd65e6ad6d7304376ead27d44efc01b3`, `versionStatus: snapshot` | Runtime source registry | Treat as current Runtime adoption baseline |
+| Planned/forward governance reference | `.uif/packs/governance/contracts/naming-contract.json` (`governance_pack_version: 0.8.0`), `docs/adr/adr-uif-public-api-namespace.md` | `0.8.0` (forward reference) | Decision context / forward planning reference | Treat as planned target only; not published baseline and not consumed Runtime baseline |
+| Consumption lifecycle/channel | `.uif/registry/source.yml` | `mode: reviewed-manual`, `automaticSync: false`, `versionStatus: snapshot` | Runtime source registry | Reviewed manual adoption only; no automatic sync |
+| Vault canonical authority | `vault.repository`, `vault.ref.strategy`, `vault.sourceOfTruthFor` in `.uif/registry/source.yml` | Vault is source of truth for reusable governance | Vault definition recorded by Runtime | Runtime documents local adoption status; it does not redefine Vault publication state |
 
-## Consumed Pack
+## Usage Rules for Runtime-owned Documentation
 
-| Field | Value |
-|-------|-------|
-| Pack ID | `governance-pack` |
-| Vault source | `ui-foundations-vault` |
-| Consumed version | `0.7.0` |
-| Vault SHA | `10f78061cd65e6ad6d7304376ead27d44efc01b3` |
-| Consumption mode | `reviewed-manual` |
-| Channel | `snapshot` |
-| Last reviewed | 2026-07-09 |
-| Source registry | `.uif/registry/source.yml` |
+1. Use **published** when referencing version state declared in consumed Vault
+   pack artifacts (`0.6.0` currently).
+2. Use **consumed** when referencing Runtime registry adoption (`0.7.0`
+   snapshot currently).
+3. Use **planned** or **forward reference** when referencing `0.8.0`.
+4. Do not modify consumed Vault artifacts under `.uif/packs/governance/` only to
+   align numbers.
 
-> **Note:** The pack files under `.uif/packs/governance/` reflect Vault release
-> `0.6.0` (the last published tag at time of consumption). The Runtime consumed
-> a SHA snapshot between 0.6.0 and the anticipated 0.7.0 release. The source
-> registry version (`0.7.0`) is the authoritative consumed baseline per
-> [ADR: Governance Baseline Version Policy](adr/adr-governance-baseline-version-policy.md).
+## Related
 
----
-
-## Consumed Artifacts
-
-### Naming Rules
-
-| Field | Value |
-|-------|-------|
-| Artifact ID | `governance-pack.naming-rules` |
-| Vault path | `.uif/packs/governance/exports/governance-pack/naming-rules.md` |
-| Contract | `.uif/packs/governance/contracts/naming-contract.json` |
-| Consumed version | `0.7.0` |
-| Status | `draft` |
-| Review required | Yes |
-| Runtime owner | ui-foundations-runtime |
-| Related ADR | [`adr-uif-public-api-namespace.md`](adr/adr-uif-public-api-namespace.md) |
-| Notes | Naming contract version aligned to 0.7.0 per WS2-I2. |
-
-### Token Governance
-
-| Field | Value |
-|-------|-------|
-| Artifact ID | `governance-pack.token-governance` |
-| Vault path | `.uif/packs/governance/exports/governance-pack/token-governance.md` |
-| Consumed version | `0.7.0` |
-| Status | `draft` |
-| Review required | Yes |
-| Runtime owner | ui-foundations-runtime |
-| Notes | Governs Core → Semantic → Component token layer separation and `--uif-*` prefix convention. |
-
-### Component Governance
-
-| Field | Value |
-|-------|-------|
-| Artifact ID | `governance-pack.component-governance` |
-| Vault path | `.uif/packs/governance/exports/governance-pack/component-governance.md` |
-| Consumed version | `0.7.0` |
-| Status | `draft` |
-| Review required | Yes |
-| Runtime owner | ui-foundations-runtime |
-| Notes | Governs `.uif-*` CSS class convention, pattern lifecycle, and component boundaries. |
-
-### Accessibility Baseline
-
-| Field | Value |
-|-------|-------|
-| Artifact ID | `governance-pack.accessibility-baseline` |
-| Vault path | `.uif/packs/governance/exports/governance-pack/accessibility-baseline.md` |
-| Consumed version | `0.7.0` |
-| Status | `draft` |
-| Review required | Yes |
-| Runtime owner | ui-foundations-runtime |
-| Notes | Defines native-first accessibility model; ARIA is supplementary not primary. |
-
-### Decisions
-
-| Artifact | Vault Path | Status |
-|----------|-----------|--------|
-| UIF Public API Namespace | `.uif/packs/governance/decisions/uif-public-api-namespace.md` | Accepted |
-
-### Pattern Governance
-
-| Artifact | Vault Path | Status |
-|----------|-----------|--------|
-| Pattern Schema | `.uif/packs/governance/patterns/schemas/pattern.schema.md` | Draft |
-| Base Pattern Template | `.uif/packs/governance/patterns/templates/base-pattern.template.md` | Draft |
-| Composition Pattern Template | `.uif/packs/governance/patterns/templates/composition-pattern.template.md` | Draft |
-| Product Pattern Template | `.uif/packs/governance/patterns/templates/product-pattern.template.md` | Draft |
-| Button Pattern (pilot) | `.uif/packs/governance/patterns/base/button.pattern.md` | Draft |
-
----
-
-## Version History
-
-| Version | Date | Notes |
-|---------|------|-------|
-| 0.7.0 | 2026-07-09 | Initial consumption baseline (SHA snapshot). Naming rules, token governance, component governance, accessibility baseline, UIF namespace decision. |
-| 0.6.0 | 2026-07-09 | Last published Vault release tag. Pack files reflect this version. |
-
----
-
-## Lifecycle Policy
-
-When a new governance pack version is available from the Vault:
-
-1. A governance review is required before consumption.
-2. The reviewed version must be recorded in `.uif/registry/source.yml`.
-3. This matrix must be updated in the same commit.
-4. Any Runtime documentation that references the pack version must be updated.
-5. No automatic synchronisation is permitted.
-
-For the full version lifecycle policy, see
-[ADR: Governance Baseline Version Policy](adr/adr-governance-baseline-version-policy.md).
-
----
-
-## Canonical Source
-
-- Vault remote: `https://github.com/tbielich/ui-foundations-vault.git`
-- Source registry: `.uif/registry/source.yml`
-- Pack registry (consumed): `.uif/packs/governance/registry/governance-packs.yml`
+- `docs/adr/adr-governance-baseline-version-policy.md`
+- `docs/uif-governance.md`
+- `.uif/registry/source.yml`

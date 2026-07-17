@@ -4,7 +4,9 @@ status: accepted
 type: adr
 issue: 206
 related_epic: 205
-governance_pack: 0.7.0
+governance_pack_published: 0.6.0
+governance_pack_consumed_snapshot: 0.7.0
+governance_pack_planned: 0.8.0
 ---
 
 # ADR: Governance Baseline Version Policy
@@ -53,57 +55,51 @@ release. The 0.8.0 pack does not yet exist in the Vault.
 
 ## Decision
 
-**The authoritative consumed governance baseline for the Runtime is 0.7.0.**
+The Runtime uses a three-value interpretation model:
 
-Rationale:
+1. **Published governance pack version:** `0.6.0`
+   Authority: Vault pack manifest and governance registry under
+   `.uif/packs/governance/`.
+2. **Runtime-consumed snapshot/version:** `0.7.0`
+   Authority: Runtime source registry `.uif/registry/source.yml` at SHA
+   `10f78061cd65e6ad6d7304376ead27d44efc01b3`.
+3. **Planned/forward-referenced version:** `0.8.0`
+   Authority: forward reference in governance decision context; not yet the
+   published pack baseline and not the currently consumed Runtime baseline.
 
-1. The source registry (`source.yml`) is the Runtime's authoritative record of
-   what has been consumed. It records `0.7.0` at SHA `10f78061`.
-2. The pack manifest files (`0.6.0`) represent the Vault's published tag, not
-   the Runtime's consumption record.
-3. The `0.8.0` forward references in the naming contract and ADR are
-   aspirational references to a planned Vault release. They are accurate in
-   intent but incorrect as consumed-version labels.
+This model preserves Vault authority while accurately representing Runtime
+adoption status.
 
 ## Version Lifecycle Policy
 
-This policy applies to all future governance pack consumption:
+This policy applies to future governance pack consumption:
 
-1. **Source registry is authoritative.** `.uif/registry/source.yml` is the
-   single source of truth for the consumed version. All other files must
-   reference the same version.
+1. **Published version authority stays with Vault artifacts.** Runtime must not
+   rewrite consumed Vault artifacts in `.uif/packs/governance/` just to align
+   values.
 
-2. **No forward references.** Governance files must only reference versions that
-   have been consumed and recorded in the source registry. Planned future
-   versions must be noted as `pending` or `proposed`, not referenced as if
-   consumed.
+2. **Consumed version authority stays with Runtime registry.**
+   `.uif/registry/source.yml` is authoritative for what Runtime has adopted.
 
-3. **Pack file version must match registry version.** When a pack is consumed,
-   the pack manifest version and the registry `lastKnownVersion` must be
-   identical.
+3. **Planned versions must be labeled explicitly as planned/forward references.**
+   They must not be presented as published or consumed until a reviewed
+   consumption event updates the Runtime registry.
 
-4. **Version updates require a governance review.** Updating the consumed
-   version in `source.yml` constitutes a governance consumption event and
-   requires the same review as the initial consumption.
-
-5. **Forward references must be resolved before the next WS cycle.** If a
-   forward reference is identified, it must be corrected to either the current
-   consumed version or marked explicitly as `proposed: <version>` in the
-   relevant file.
+4. **Version updates require governance review.** Updating the consumed version
+   in `source.yml` is a governance consumption event and requires review.
 
 ## Resolution for Existing Files
 
 | File | Action Required |
 |------|----------------|
-| `.uif/registry/source.yml` | Remains at `0.7.0` — this is authoritative |
-| Pack manifest and registry files | Update to `0.7.0` in WS2-I2 |
-| `naming-contract.json` | Update `governance_pack_version` to `0.7.0` |
-| `adr-uif-public-api-namespace.md` | Update `governance_pack` frontmatter to `0.7.0` and add note about 0.8.0 intent |
+| `.uif/registry/source.yml` | Keep `0.7.0` as consumed Runtime snapshot/version |
+| `.uif/packs/governance/registry/governance-packs.yml` and `exports/governance-pack/pack.yml` | Keep `0.6.0` as published Vault pack version |
+| `.uif/packs/governance/contracts/naming-contract.json` | Keep `0.8.0` as planned/forward reference in consumed artifact context |
+| Runtime docs (`docs/uif-governance.md`, `docs/governance-baseline.md`, relevant ADR frontmatter/notes) | Explicitly distinguish published vs consumed vs planned values |
 
 ## Consequences
 
-- All Runtime-owned governance references will use `0.7.0` as the consumed
-  baseline.
-- Future pack consumption will follow the lifecycle policy above.
-- When the Vault publishes `0.8.0` (incorporating the UIF namespace decision),
-  the Runtime must perform a new reviewed consumption and update `source.yml`.
+- Runtime documentation becomes explicit about authority boundaries.
+- Vault artifacts remain unchanged as consumed source evidence.
+- Future adoption of `0.8.0` requires a reviewed consumption update rather than
+  silent normalization in Runtime files.
