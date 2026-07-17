@@ -7,25 +7,31 @@ guessing which file owns which rule.
 
 ## Reading order
 
-`AGENTS.md`  
-↓  
-`docs/playbook.md`  
-↓  
-`docs/foundations/*`  
-↓  
-`docs/principles/*`  
-↓  
-`docs/patterns/*`  
-↓  
-`docs/patterns/*`  
-↓  
-`docs/validation/*`
+### Developer-first navigation (default)
+
+`README.md` → `docs/README.md` → `docs/public-api.md` →
+`docs/foundations/*` → `docs/patterns/*` → `docs/validation/*`
+
+### Agent/contributor navigation
+
+`AGENTS.md` → `docs/playbook.md` → `docs/foundations/*` →
+`docs/principles/*` → `docs/patterns/*` → `docs/validation/*`
+
+### Missing-reference fallback policy
+
+If a Runtime-local reference target is missing:
+
+1. Prefer linking to an existing Runtime page that carries the concept.
+2. If no Runtime page exists, add a minimal Runtime stub that points to the
+   canonical Vault source.
+3. Do not leave unresolved links or infer canonical ownership from local drafts.
 
 Supplemental context:
 
 - `DESIGN.md` for the executive design contract
 - `IMPLEMENTATION.md` for repo-specific execution guidance
-- `docs/ui-foundations-rules.md` for governance
+- `docs/uif-governance.md` for governance consumption state
+- `docs/ui-foundations-rules.md` for canonical operating rules
 - `docs/token-pipeline.md` for token generation and DTCG format details
 
 ## Operating model
@@ -58,6 +64,7 @@ How that applies in this repo:
 - Token architecture: `docs/foundations/foundation-001-token-layering.md`
 - Naming: `docs/foundations/foundation-002-naming-and-grouping.md`
 - Theming: `docs/foundations/foundation-008-mode-activation-and-consumer-control.md`
+- Public API entry: `docs/public-api.md`
 - Figma/code parity: `docs/ui-foundations-rules.md`, `IMPLEMENTATION.md`
 - Token format / DTCG: `docs/token-pipeline.md`
 - Agent behavior: `docs/agentic/assistant-behavior-rules.md`

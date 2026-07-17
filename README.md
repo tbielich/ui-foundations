@@ -176,6 +176,16 @@ For the v1 macro alias and Custom Element tag changes, see the
 For the Runtime-facing canonical API summary, see
 [Public API Surface (v1)](docs/public-api.md).
 
+### Documentation quickstart
+
+If you are new to this repository, start with:
+
+1. [Documentation map](docs/README.md)
+2. [Public API Surface (v1)](docs/public-api.md)
+3. [Foundations overview](docs/foundations/README.md)
+4. [Patterns and components entry](docs/patterns/README.md)
+5. [Validation checks](docs/validation/README.md)
+
 ### Apply Theming
 
 ```js

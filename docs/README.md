@@ -1,5 +1,23 @@
 # Documentation Map
 
+## Start here — Developer quickstart
+
+If you are new to Runtime documentation, use this order:
+
+1. `docs/public-api.md` — canonical v1 API surface and migration entry points
+2. `docs/adr/adr-runtime-and-vault-documentation-architecture.md` — architecture boundary between Runtime and Vault
+3. `docs/foundations/README.md` — foundations navigation (token architecture, naming, theming)
+4. `docs/patterns/README.md` — pattern and component-facing composition guidance
+5. `docs/validation/README.md` — validation and CI checks
+
+From `docs/README.md`, each target is reachable directly in one click.
+
+If you are contributing governance or agent behavior, continue with:
+
+- `docs/uif-governance.md`
+- `docs/playbook.md`
+- `AGENTS.md`
+
 ## Purpose
 
 This directory is the human- and agent-readable map of UI Foundations.
