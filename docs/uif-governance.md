@@ -172,3 +172,10 @@ runtime safety or documented local ownership.
 - workspace Markdown files include valid YAML frontmatter
 
 The script performs no synchronization, no remote access, and no file changes.
+
+
+## Related docs
+
+- `docs/governance-baseline.md`
+- `docs/canonical-reference-matrix.md`
+- `docs/terminology.md`

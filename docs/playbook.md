@@ -33,6 +33,8 @@ Supplemental context:
 - `docs/uif-governance.md` for governance consumption state
 - `docs/ui-foundations-rules.md` for canonical operating rules
 - `docs/token-pipeline.md` for token generation and DTCG format details
+- `docs/terminology.md` for canonical terminology baseline
+- `docs/canonical-reference-matrix.md` for topic-to-source traceability
 
 ## Operating model
 
@@ -69,6 +71,8 @@ How that applies in this repo:
 - Token format / DTCG: `docs/token-pipeline.md`
 - Agent behavior: `docs/agentic/assistant-behavior-rules.md`
 - Validation and CI: `docs/validation/ci.md`
+- Terminology baseline: `docs/terminology.md`
+- Canonical topic-source map: `docs/canonical-reference-matrix.md`
 
 ## Related docs
 

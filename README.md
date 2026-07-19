@@ -187,6 +187,11 @@ If you are new to this repository, start with:
 5. [Patterns and components entry](docs/patterns/README.md)
 6. [Validation checks](docs/validation/README.md)
 
+Terminology and source-traceability references:
+
+- [Runtime terminology baseline](docs/terminology.md)
+- [Canonical topic-source matrix](docs/canonical-reference-matrix.md)
+
 ### Apply Theming
 
 ```js

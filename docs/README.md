@@ -10,6 +10,8 @@ If you are new to Runtime documentation, use this order:
 4. `docs/patterns/README.md` — pattern hierarchy and composition guidance
 5. `docs/components/README.md` — component-facing status and entry points
 6. `docs/validation/README.md` — validation and CI checks
+7. `docs/terminology.md` — canonical terminology and status language baseline
+8. `docs/canonical-reference-matrix.md` — topic-to-canonical-source traceability matrix
 
 From `docs/README.md`, each target is reachable directly in one click.
 
@@ -37,6 +39,8 @@ details or local agent configuration.
 | `components/` | Component-facing entry, current implementation surfaces, and placeholders | `docs/components/README.md` |
 | `public-api.md` | Canonical Runtime-facing v1 public API summary and migration links | `docs/public-api.md` |
 | `governance-baseline.md` | Consumed governance pack versions, artifact registry, and version lifecycle policy | `docs/governance-baseline.md` |
+| `terminology.md` | Canonical vs compatibility/deprecated/placeholder terminology baseline | `docs/terminology.md` |
+| `canonical-reference-matrix.md` | Major topic-to-canonical-source and Runtime reference traceability | `docs/canonical-reference-matrix.md` |
 | `agentic/` | Agent behavior, workflows, prompts, and migration context | `docs/agentic/README.md` |
 | `adr/` | Architecture decision records and documentation migration notes | `docs/adr/README.md` |
 | `validation/` | Validation checklists, CI, token parity, and accessibility checks | `docs/validation/README.md` |
