@@ -118,7 +118,7 @@ function dispatchSelectEvent(table, row) {
   const selectedRows = getSelectedRows(table);
   const detail =
     getSelectionMode(table) === "multi"
-      ? { row, selectedRows, rows: selectedRows }
+      ? { row, selectedRows }
       : {
           row,
           selected: row.getAttribute("aria-selected") === "true",
@@ -186,10 +186,9 @@ function flushResizeFrame() {
     resizeState.startWidth + (resizeState.pendingClientX - resizeState.startX),
     MIN_COLUMN_WIDTH,
   );
-
   resizeState.header.style.setProperty("--uif-table-col-width", `${nextWidth}px`);
   resizeState.header.style.width = `${nextWidth}px`;
-  resizeState.header.style.inlineSize = `${nextWidth}px`;
+  resizeState.header.style.width = `${nextWidth}px`;
   resizeState.frame = 0;
 }
 
