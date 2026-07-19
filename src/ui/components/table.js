@@ -188,7 +188,6 @@ function flushResizeFrame() {
   );
   resizeState.header.style.setProperty("--uif-table-col-width", `${nextWidth}px`);
   resizeState.header.style.width = `${nextWidth}px`;
-  resizeState.header.style.width = `${nextWidth}px`;
   resizeState.frame = 0;
 }
 
