@@ -2,7 +2,13 @@
 
 ## Purpose
 
-Explain what the current CI path actually runs and where the configuration lives.
+Explain what the current CI path actually runs and where the configuration
+lives.
+
+## Accessibility principle entry
+
+- `docs/principles/accessibility.md` (principles)
+- `docs/accessibility-audit-interactive-components.md` (audit workflow)
 
 ## Canonical rules
 
@@ -23,4 +29,5 @@ Current pipeline:
 
 ## Related docs
 
+- `docs/validation/README.md`
 - `docs/agentic/rule-pipeline-audit.md`

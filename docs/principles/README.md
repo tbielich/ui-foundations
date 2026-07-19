@@ -2,23 +2,29 @@
 
 ## Purpose
 
-This section explains how design foundation knowledge is used by the
-`ui-foundations` implementation repository.
+This section explains how design foundation knowledge is applied in the
+`ui-foundations` Runtime repository.
 
-Canonical design foundation knowledge is maintained in the UI Foundations Vault. This repository only documents implementation-specific usage.
+Canonical design foundation knowledge is maintained in the UI Foundations Vault.
+Runtime docs keep implementation-facing summaries and links.
 
-Vault reference:
+## Accessibility principle boundary (WS6 decision)
 
-- `config/site.js` -> `vault.documentation`
+Runtime principles docs:
 
-## Canonical rules
+- summarize how accessibility principles are applied in this repository
+- link to implementation surfaces (patterns, elements, validation, audits)
+- avoid redefining canonical principle wording
+
+Canonical principle definitions remain in Vault documentation and linked
+cross-repository governance sources.
+
+## Canonical references
 
 - Vault documentation path: `foundations/design-principles.md`
 - Vault documentation path: `foundations/usability-heuristics.md`
 - Vault documentation path: `foundations/gestalt-principles.md`
-
-Local docs should describe how those foundations are applied to patterns,
-components, tokens, validation, and CI in this repository.
+- Runtime accessibility principles surface: `docs/principles/accessibility.md`
 
 ## Who should read this
 
@@ -28,6 +34,7 @@ components, tokens, validation, and CI in this repository.
 
 ## Related docs
 
+- `docs/principles/accessibility.md`
 - `docs/foundations/README.md`
 - `docs/patterns/README.md`
 - `docs/validation/README.md`

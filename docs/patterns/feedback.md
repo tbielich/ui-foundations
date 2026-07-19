@@ -14,6 +14,7 @@ error recovery, and assistive feedback.
 
 ## Current canonical references
 
+- `docs/principles/accessibility.md`
 - `docs/principles/usability-heuristics.md`
 - `docs/agentic/assistant-behavior-rules.md`
 - `.kiro/specs/accessibility-test-suite/requirements.md`

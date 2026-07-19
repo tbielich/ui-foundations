@@ -5,6 +5,11 @@
 This section explains what the repo currently validates, what is planned, and
 which docs are canonical for CI-facing quality checks.
 
+## Accessibility principle entry
+
+Use `docs/principles/accessibility.md` for high-level accessibility principle
+expectations. Use validation docs for enforcement and workflow checks.
+
 ## Canonical rules
 
 - `ci.md`
@@ -19,6 +24,8 @@ which docs are canonical for CI-facing quality checks.
 
 ## Related docs
 
+- `docs/principles/accessibility.md`
+- `docs/accessibility-audit-interactive-components.md`
 - `docs/playbook.md`
 - `docs/agentic/rule-pipeline.md`
 - `IMPLEMENTATION.md`

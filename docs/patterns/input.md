@@ -11,8 +11,12 @@ Point to the existing input implementation and documentation surfaces.
 - `src/elements/ui-input.js`
 - `schemas/web-input.figma.ts`
 
+## Accessibility principle entry
+
+- `docs/principles/accessibility.md`
+
 ## Related docs
 
 - `docs/patterns/forms.md`
-- `docs/principles/accessibility.md`
+- `docs/principles/usability-heuristics.md`
 - `docs/validation/token-parity.md`
