@@ -1,13 +1,22 @@
 # Select
 
+## Status
+
+**Placeholder (non-canonical component tracker).**
+
+This page tracks standalone select component documentation status. It does not
+define final select component behavior.
+
 ## Purpose
 
-Track where select-component documentation should live once the component exists.
+Track where select-component documentation should live once a dedicated
+component surface is documented.
 
-## Canonical rules
+## Current canonical references
 
-- `docs/patterns/README.md`
+- `docs/components/README.md`
 - `docs/patterns/forms.md`
+- `src/elements/ui-select.js`
 
 ## Related docs
 
@@ -17,4 +26,5 @@ Track where select-component documentation should live once the component exists
 ## TODO
 
 No standalone select component documentation exists in the current repo.
-Validate whether this should be a new component or composition before adding it.
+Validate whether this should remain pattern composition or become a dedicated
+component documentation surface.

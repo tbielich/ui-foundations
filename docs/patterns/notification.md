@@ -1,18 +1,25 @@
 # Notification
 
+## Status
+
+**Placeholder (non-canonical component tracker).**
+
+This page reserves a stable location for future Runtime notification component
+documentation. It does not define final notification behavior.
+
 ## Purpose
 
-Reserve a stable location for future notification-component documentation.
+Track where notification component documentation should live once implemented.
 
-## Canonical rules
+## Current canonical references
 
-- `docs/patterns/README.md`
+- `docs/components/README.md`
 - `docs/patterns/feedback.md`
 
 ## Related docs
 
 - `docs/principles/usability-heuristics.md`
-- `docs/validation/accessibility.md`
+- `docs/validation/README.md`
 
 ## TODO
 

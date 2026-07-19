@@ -7,8 +7,9 @@ If you are new to Runtime documentation, use this order:
 1. `docs/public-api.md` — canonical v1 API surface and migration entry points
 2. `docs/architecture.md` — Runtime system map, layers, outputs, and consumer surfaces
 3. `docs/foundations/README.md` — foundations navigation (token architecture, naming, theming)
-4. `docs/patterns/README.md` — pattern and component-facing composition guidance
-5. `docs/validation/README.md` — validation and CI checks
+4. `docs/patterns/README.md` — pattern hierarchy and composition guidance
+5. `docs/components/README.md` — component-facing status and entry points
+6. `docs/validation/README.md` — validation and CI checks
 
 From `docs/README.md`, each target is reachable directly in one click.
 
@@ -32,8 +33,8 @@ details or local agent configuration.
 | `architecture.md` | Developer-oriented Runtime system map and implementation layers | `docs/architecture.md` |
 | `foundations/` | Token architecture, naming, theming, parity, and format guidance | `docs/foundations/README.md` |
 | `principles/` | Perception, heuristics, and accessibility intent | `docs/principles/README.md` |
-| `patterns/` | Pattern-level composition guidance | `docs/patterns/README.md` |
-| `components/` | Component-facing entry docs and TODO gaps | `docs/patterns/README.md` |
+| `patterns/` | Pattern hierarchy, composition guidance, and placeholder status map | `docs/patterns/README.md` |
+| `components/` | Component-facing entry, current implementation surfaces, and placeholders | `docs/components/README.md` |
 | `public-api.md` | Canonical Runtime-facing v1 public API summary and migration links | `docs/public-api.md` |
 | `governance-baseline.md` | Consumed governance pack versions, artifact registry, and version lifecycle policy | `docs/governance-baseline.md` |
 | `agentic/` | Agent behavior, workflows, prompts, and migration context | `docs/agentic/README.md` |

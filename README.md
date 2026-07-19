@@ -219,20 +219,16 @@ CSS-only, stateless UI building blocks. No JavaScript required.
 ```
 
 Each pattern uses semantic tokens and supports theming out of the box.
+See `docs/patterns/README.md` for hierarchy and status.
 
-## Components (coming next)
+## Components
 
-Functional units that add state and interactivity on top of patterns.
+Runtime currently exposes component-facing behavior through light-DOM Custom
+Elements in `src/elements/` (for example: `ui-button`, `ui-input`, `ui-tabs`,
+`ui-tooltip`, `ui-select`).
 
-```
- ┌──────────┬──────────┬──────────┐
- │ Calendar │ DatePckr │ ComboBox │
- ├──────────┼──────────┼──────────┤
- │ Dialog   │ Table    │   ...    │
- └──────────┴──────────┴──────────┘
-```
-
-Components will live in `src/ui/components/` and require JavaScript.
+Standalone product-component documentation is tracked through
+`docs/components/README.md`, including explicit placeholder topics and status.
 
 ---
 
@@ -266,10 +262,11 @@ Agents operate in modes:
 
 ```
  docs/
- ├── foundations/    ← Token layering, naming, 12 ADRs
- ├── patterns/      ← Composition guidance
- ├── agentic/       ← Agent rules, modes, workflows
- ├── validation/    ← CI pipeline, parity checks
+ ├── foundations/    ← Token layering, naming, foundation records
+ ├── patterns/       ← Pattern hierarchy and composition guidance
+ ├── components/     ← Component-facing status and entry points
+ ├── agentic/        ← Agent rules, modes, workflows
+ ├── validation/     ← CI pipeline, parity checks
  └── token-pipeline.md
  site/
  ├── patterns/      ← Pattern docs + playgrounds
