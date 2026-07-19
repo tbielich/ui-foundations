@@ -10,8 +10,12 @@ hierarchy, and recognisable destination structure.
 - `.kiro/steering/pattern-rules/navigation.md`
 - `docs/foundations/foundation-012-minimal-markup-and-composition.md`
 
+## Accessibility principle entry
+
+- `docs/principles/accessibility.md`
+
 ## Related docs
 
 - `docs/patterns/button.md`
-- `docs/principles/perception-laws.md`
+- `docs/principles/usability-heuristics.md`
 - `docs/validation/ci.md`

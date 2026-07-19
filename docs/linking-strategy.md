@@ -64,3 +64,9 @@ URL moves to a dedicated publishing target.
   vault links.
 - Do not introduce environment variables for vault location. The vault location
   is project configuration, not deployment configuration.
+
+
+## Related docs
+
+- `docs/canonical-reference-matrix.md`
+- `docs/terminology.md`

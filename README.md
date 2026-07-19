@@ -152,9 +152,9 @@ npm install ui-foundations
 ### Use Patterns (plain HTML)
 
 ```html
-<button class="button">Label</button>
-<button class="button outline">Outline</button>
-<input class="input" type="text" />
+<button class="uif-button solid">Label</button>
+<button class="uif-button outline">Outline</button>
+<input class="uif-input" type="text" />
 ```
 
 ### Optional: Web Components
@@ -173,6 +173,24 @@ Consumers upgrading to v1 should follow the
 [React removal migration guide](docs/migrations/react-to-web-components.md).
 For the v1 macro alias and Custom Element tag changes, see the
 [public API namespace migration guide](docs/migrations/public-api-namespace-v1.md).
+For the Runtime-facing canonical API summary, see
+[Public API Surface (v1)](docs/public-api.md).
+
+### Documentation quickstart
+
+If you are new to this repository, start with:
+
+1. [Documentation map](docs/README.md)
+2. [Runtime architecture overview](docs/architecture.md)
+3. [Public API Surface (v1)](docs/public-api.md)
+4. [Foundations overview](docs/foundations/README.md)
+5. [Patterns and components entry](docs/patterns/README.md)
+6. [Validation checks](docs/validation/README.md)
+
+Terminology and source-traceability references:
+
+- [Runtime terminology baseline](docs/terminology.md)
+- [Canonical topic-source matrix](docs/canonical-reference-matrix.md)
 
 ### Apply Theming
 
@@ -206,20 +224,16 @@ CSS-only, stateless UI building blocks. No JavaScript required.
 ```
 
 Each pattern uses semantic tokens and supports theming out of the box.
+See `docs/patterns/README.md` for hierarchy and status.
 
-## Components (coming next)
+## Components
 
-Functional units that add state and interactivity on top of patterns.
+Runtime currently exposes component-facing behavior through light-DOM Custom
+Elements in `src/elements/` (for example: `ui-button`, `ui-input`, `ui-tabs`,
+`ui-tooltip`, `ui-select`).
 
-```
- ┌──────────┬──────────┬──────────┐
- │ Calendar │ DatePckr │ ComboBox │
- ├──────────┼──────────┼──────────┤
- │ Dialog   │ Table    │   ...    │
- └──────────┴──────────┴──────────┘
-```
-
-Components will live in `src/ui/components/` and require JavaScript.
+Standalone product-component documentation is tracked through
+`docs/components/README.md`, including explicit placeholder topics and status.
 
 ---
 
@@ -253,10 +267,11 @@ Agents operate in modes:
 
 ```
  docs/
- ├── foundations/    ← Token layering, naming, 12 ADRs
- ├── patterns/      ← Composition guidance
- ├── agentic/       ← Agent rules, modes, workflows
- ├── validation/    ← CI pipeline, parity checks
+ ├── foundations/    ← Token layering, naming, foundation records
+ ├── patterns/       ← Pattern hierarchy and composition guidance
+ ├── components/     ← Component-facing status and entry points
+ ├── agentic/        ← Agent rules, modes, workflows
+ ├── validation/     ← CI pipeline, parity checks
  └── token-pipeline.md
  site/
  ├── patterns/      ← Pattern docs + playgrounds
