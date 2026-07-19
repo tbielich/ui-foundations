@@ -59,6 +59,11 @@
     padding-inline-end: calc(var(--brand-size-spacing-comfortable) + var(--brand-size-spacing-spacious));
   }
 
+  :is(.uif-table, .table):is(.uif-table--comfortable, .table--comfortable) :is(th.uif-table-th, th.table-th, thead th)[aria-sort],
+  :is(.uif-table, .table):is(.uif-table--comfortable, .table--comfortable) :is(th.uif-table-th, th.table-th, thead th)[data-resizable] {
+    padding-inline-end: calc(var(--brand-size-spacing-comfortable) + var(--brand-size-spacing-spacious));
+  }
+
   :is(.uif-table, .table):is(.uif-table--compact, .table--compact) :is(th.uif-table-th, th.table-th, thead th)[aria-sort],
   :is(.uif-table, .table):is(.uif-table--compact, .table--compact) :is(th.uif-table-th, th.table-th, thead th)[data-resizable] {
     padding-inline-end: calc(var(--brand-size-spacing-component) + var(--brand-size-spacing-spacious));
