@@ -100,7 +100,7 @@
 
   :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[data-resizable] {
     position: sticky;
-    min-inline-size: calc(var(--size-spacing-400) * 6);
+    min-inline-size: calc(var(--brand-size-spacing-spacious) * 6);
     max-inline-size: 100%;
     padding-inline-end: calc(var(--brand-size-spacing-comfortable) + var(--brand-size-spacing-spacious));
   }
