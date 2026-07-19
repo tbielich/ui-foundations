@@ -1,0 +1,156 @@
+@layer components {
+  :is(.uif-table-wrapper, .table-wrapper) {
+    inline-size: 100%;
+    overflow-x: auto;
+  }
+
+  :is(.uif-table, .table) {
+    inline-size: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: var(--color-fill-surface);
+    color: var(--color-text-default);
+    font-family: var(--typography-body-font-family);
+    font-size: var(--typography-body-font-size);
+    font-weight: var(--typography-body-font-weight);
+    line-height: var(--typography-body-line-height);
+  }
+
+  :is(.uif-table, .table) :is(th, td) {
+    padding-block: var(--brand-size-spacing-component);
+    padding-inline: var(--brand-size-spacing-comfortable);
+    text-align: left;
+    vertical-align: middle;
+    border-block-end: var(--brand-size-border-default) solid var(--color-border-subtle);
+  }
+
+  :is(.uif-table, .table):is(.uif-table--compact, .table--compact) :is(th, td) {
+    padding-block: var(--brand-size-spacing-tight);
+    padding-inline: var(--brand-size-spacing-component);
+  }
+
+  :is(.uif-table, .table):is(.uif-table--comfortable, .table--comfortable) :is(th, td) {
+    padding-block: var(--brand-size-spacing-component);
+    padding-inline: var(--brand-size-spacing-comfortable);
+  }
+
+  :is(.uif-table, .table):is(.uif-table--spacious, .table--spacious) :is(th, td) {
+    padding-block: var(--brand-size-spacing-comfortable);
+    padding-inline: var(--brand-size-spacing-spacious);
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th) {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
+    background: var(--color-fill-surface);
+    color: var(--color-text-default);
+    font-family: var(--typography-label-font-family);
+    font-size: var(--typography-label-font-size);
+    font-weight: var(--typography-label-font-weight);
+    line-height: var(--typography-label-line-height);
+  }
+
+  :is(.uif-table, .table) :is(td.uif-table-td, td.table-td, tbody td) {
+    color: inherit;
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort] {
+    position: sticky;
+    padding-inline-end: calc(var(--brand-size-spacing-comfortable) + var(--brand-size-spacing-spacious));
+  }
+
+  :is(.uif-table, .table):is(.uif-table--compact, .table--compact) :is(th.uif-table-th, th.table-th, thead th)[aria-sort],
+  :is(.uif-table, .table):is(.uif-table--compact, .table--compact) :is(th.uif-table-th, th.table-th, thead th)[data-resizable] {
+    padding-inline-end: calc(var(--brand-size-spacing-component) + var(--brand-size-spacing-spacious));
+  }
+
+  :is(.uif-table, .table):is(.uif-table--spacious, .table--spacious) :is(th.uif-table-th, th.table-th, thead th)[aria-sort],
+  :is(.uif-table, .table):is(.uif-table--spacious, .table--spacious) :is(th.uif-table-th, th.table-th, thead th)[data-resizable] {
+    padding-inline-end: calc(var(--brand-size-spacing-spacious) + var(--brand-size-spacing-spacious));
+  }
+
+  :is(.uif-table, .table):is(.uif-table--sortable, .table--sortable) :is(th.uif-table-th, th.table-th, thead th)[aria-sort] {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort]::before {
+    position: absolute;
+    inset-inline-end: var(--brand-size-spacing-component);
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    color: currentColor;
+    font-size: var(--font-size-sm);
+    line-height: 1;
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort="none"]::before {
+    content: "↕";
+    opacity: 0.56;
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort="ascending"]::before {
+    content: "↑";
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort="descending"]::before {
+    content: "↓";
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[data-resizable] {
+    position: sticky;
+    min-inline-size: calc(var(--size-target-default) * 1.5);
+    max-inline-size: 100%;
+    padding-inline-end: calc(var(--brand-size-spacing-comfortable) + var(--brand-size-spacing-spacious));
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[data-resizable]::after {
+    content: "";
+    position: absolute;
+    inset-block: var(--brand-size-spacing-tight);
+    inset-inline-end: 0;
+    inline-size: var(--brand-size-spacing-component);
+    cursor: col-resize;
+    background: linear-gradient(
+      to right,
+      transparent calc(50% - (var(--brand-size-border-default) / 2)),
+      var(--color-border-subtle) calc(50% - (var(--brand-size-border-default) / 2)),
+      var(--color-border-subtle) calc(50% + (var(--brand-size-border-default) / 2)),
+      transparent calc(50% + (var(--brand-size-border-default) / 2))
+    );
+  }
+
+  :is(.uif-table, .table)[data-selection] tbody :is(tr.uif-table-tr, tr.table-tr, tr) {
+    cursor: pointer;
+  }
+
+  :is(.uif-table, .table) tbody :is(tr.uif-table-tr, tr.table-tr, tr):hover > * {
+    background: var(--color-fill-subtle);
+  }
+
+  :is(.uif-table, .table) tbody :is(tr.uif-table-tr, tr.table-tr, tr)[aria-selected="true"] > * {
+    background: var(--color-fill-subtle);
+    color: var(--color-text-brand);
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th):focus-visible,
+  :is(.uif-table, .table)[data-selection] tbody :is(tr.uif-table-tr, tr.table-tr, tr):focus-visible {
+    outline: 2px solid transparent;
+    box-shadow: inset 0 0 0 var(--brand-size-border-default) var(--color-focus, transparent);
+  }
+
+  :is(.uif-table-empty, .table-empty) {
+    color: var(--color-text-subtle);
+    text-align: center;
+  }
+
+  :is(.uif-table-empty, .table-empty) > * {
+    text-align: center;
+  }
+
+  :is(.uif-table, .table):is(.uif-table--loading, .table--loading) tbody {
+    opacity: 0.56;
+    pointer-events: none;
+  }
+}
