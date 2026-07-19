@@ -23,6 +23,15 @@ const MIN_COLUMN_WIDTH = 96;
 const RESIZE_CLICK_SUPPRESSION_MS = 120;
 const INTERACTIVE_SELECTOR =
   'a[href], button, input:not([type="checkbox"]), select, textarea, [contenteditable="true"], [role="button"]';
+const resizeState = {
+  header: null,
+  startX: 0,
+  startWidth: 0,
+  pendingClientX: 0,
+  frame: 0,
+  lastResizeEndedAt: 0,
+};
+let resizeListenersBound = false;
 
 function getTables(root) {
   const container = root || document;
@@ -167,38 +176,59 @@ function shouldStartResize(header, event) {
   return offset >= 0 && offset <= RESIZE_HANDLE_WIDTH;
 }
 
+function flushResizeFrame() {
+  if (!resizeState.header) {
+    resizeState.frame = 0;
+    return;
+  }
+
+  const nextWidth = Math.max(
+    resizeState.startWidth + (resizeState.pendingClientX - resizeState.startX),
+    MIN_COLUMN_WIDTH,
+  );
+
+  resizeState.header.style.setProperty("--uif-table-col-width", `${nextWidth}px`);
+  resizeState.header.style.width = `${nextWidth}px`;
+  resizeState.header.style.inlineSize = `${nextWidth}px`;
+  resizeState.frame = 0;
+}
+
+function handleResizeMouseMove(event) {
+  if (!resizeState.header) return;
+
+  resizeState.pendingClientX = event.clientX;
+  if (resizeState.frame) return;
+
+  resizeState.frame = window.requestAnimationFrame(flushResizeFrame);
+}
+
+function handleResizeMouseUp() {
+  if (!resizeState.header) return;
+
+  if (resizeState.frame) {
+    window.cancelAnimationFrame(resizeState.frame);
+    flushResizeFrame();
+  }
+
+  resizeState.header = null;
+  resizeState.lastResizeEndedAt = Date.now();
+}
+
+function bindResizeListeners() {
+  if (resizeListenersBound || typeof document === "undefined") return;
+
+  document.addEventListener("mousemove", handleResizeMouseMove);
+  document.addEventListener("mouseup", handleResizeMouseUp);
+  resizeListenersBound = true;
+}
+
 function enhanceTableElement(table) {
   if (table.dataset.enhanced) return;
   table.dataset.enhanced = "true";
 
   enhanceSortableHeaders(table);
   enhanceSelectableRows(table);
-
-  const resizeState = {
-    header: null,
-    startX: 0,
-    startWidth: 0,
-    lastResizeEndedAt: 0,
-  };
-
-  function handleMouseMove(event) {
-    if (!resizeState.header) return;
-
-    const nextWidth = Math.max(
-      resizeState.startWidth + (event.clientX - resizeState.startX),
-      MIN_COLUMN_WIDTH,
-    );
-
-    resizeState.header.style.setProperty("--uif-table-col-width", `${nextWidth}px`);
-    resizeState.header.style.width = `${nextWidth}px`;
-    resizeState.header.style.inlineSize = `${nextWidth}px`;
-  }
-
-  function handleMouseUp() {
-    if (!resizeState.header) return;
-    resizeState.header = null;
-    resizeState.lastResizeEndedAt = Date.now();
-  }
+  bindResizeListeners();
 
   table.addEventListener("mousedown", function (event) {
     const header = event.target.closest(RESIZABLE_HEADER_SELECTOR);
@@ -245,9 +275,6 @@ function enhanceTableElement(table) {
     event.preventDefault();
     selectRow(table, row);
   });
-
-  document.addEventListener("mousemove", handleMouseMove);
-  document.addEventListener("mouseup", handleMouseUp);
 }
 
 /**
