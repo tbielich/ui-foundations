@@ -18,6 +18,9 @@ const SORTABLE_HEADER_SELECTOR = "th[aria-sort]";
 const RESIZABLE_HEADER_SELECTOR = "th[data-resizable]";
 const ROW_SELECTOR = "tbody tr";
 const CHECKBOX_SELECTOR = 'input[type="checkbox"]';
+const RESIZE_HANDLE_WIDTH = 16;
+const MIN_COLUMN_WIDTH = 96;
+const RESIZE_CLICK_SUPPRESSION_MS = 120;
 const INTERACTIVE_SELECTOR =
   'a[href], button, input:not([type="checkbox"]), select, textarea, [contenteditable="true"], [role="button"]';
 
@@ -160,9 +163,8 @@ function shouldSkipRowSelection(event) {
 
 function shouldStartResize(header, event) {
   const rect = header.getBoundingClientRect();
-  const handleWidth = 16;
   const offset = rect.right - event.clientX;
-  return offset >= 0 && offset <= handleWidth;
+  return offset >= 0 && offset <= RESIZE_HANDLE_WIDTH;
 }
 
 function enhanceTableElement(table) {
@@ -184,7 +186,7 @@ function enhanceTableElement(table) {
 
     const nextWidth = Math.max(
       resizeState.startWidth + (event.clientX - resizeState.startX),
-      96,
+      MIN_COLUMN_WIDTH,
     );
 
     resizeState.header.style.setProperty("--uif-table-col-width", `${nextWidth}px`);
@@ -209,7 +211,7 @@ function enhanceTableElement(table) {
   });
 
   table.addEventListener("click", function (event) {
-    if (Date.now() - resizeState.lastResizeEndedAt < 120) return;
+    if (Date.now() - resizeState.lastResizeEndedAt < RESIZE_CLICK_SUPPRESSION_MS) return;
 
     const header = event.target.closest(SORTABLE_HEADER_SELECTOR);
     if (header && table.contains(header)) {
