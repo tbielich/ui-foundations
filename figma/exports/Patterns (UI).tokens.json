@@ -6826,5 +6826,257 @@
         }
       }
     }
+  },
+  "Table": {
+    "Header": {
+      "Background": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-table-header-background)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Text Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-table-header-text-color)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Subtle"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-table-header-border-color)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Row": {
+      "Background": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-table-row-background)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Hover"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-table-row-background-hover)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Selected": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Overlay/Selected"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-table-row-background-selected)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Subtle"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-table-row-border-color)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Text Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-table-row-text-color)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Padding Block Default": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Component"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-table-padding-block-default)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Padding Block Compact": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Tight"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-table-padding-block-compact)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Padding Block Spacious": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Comfortable"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-table-padding-block-spacious)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Padding Inline Default": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Comfortable"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-table-padding-inline-default)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Padding Inline Compact": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Component"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-table-padding-inline-compact)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Font Family": {
+      "$type": "string",
+      "$value": {
+        "$ref": "Brand/Font/Base"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-table-font-family)"
+        },
+        "com.figma.isOverride": true,
+        "com.figma.aliasData": {
+          "targetVariableName": "Brand/Font/Base"
+        }
+      }
+    },
+    "Font Size": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Typography/Body/Font Size"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-table-font-size)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Border Radius": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Corner/Container"
+      },
+      "$extensions": {
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-table-border-radius)"
+        },
+        "com.figma.isOverride": true,
+        "com.figma.aliasData": {
+          "targetVariableName": "Brand/Corner/Container"
+        }
+      }
+    }
   }
 }

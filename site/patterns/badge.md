@@ -155,7 +155,7 @@ Badges are non-interactive and not focusable.
 
 Badge adapts across brands and modes through semantic tokens. Use the hero switches above.
 
-For the full theming architecture see [Foundations: Theming](/foundations/theming/).
+For the full theming architecture see [Foundations: Design Tokens](/foundations/design-tokens/).
 
 <h2 id="design-checklist">Design checklist</h2>
 

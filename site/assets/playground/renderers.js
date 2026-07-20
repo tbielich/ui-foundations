@@ -1197,6 +1197,57 @@
     return { element, code: html };
   };
 
+  // ─── Table ────────────────────────────────────
+
+  const TABLE_ROWS = [
+    ["Mallorca", "15 Aug 2025", "7 nights", "£499"],
+    ["Tenerife", "22 Aug 2025", "14 nights", "£799"],
+    ["Lanzarote", "01 Sep 2025", "10 nights", "£649"],
+    ["Fuerteventura", "10 Sep 2025", "7 nights", "£529"],
+    ["Rhodes", "18 Sep 2025", "7 nights", "£589"],
+  ];
+
+  const renderVanillaTable = ({ props }) => {
+    const density = String(props.density || "default");
+    const selection = String(props.selection || "none");
+    const sortable = props.sortable === true || props.sortable === "true";
+    const resizable = props.resizable === true || props.resizable === "true";
+
+    const tableClasses = ["uif-table"];
+    if (density !== "default") tableClasses.push(`uif-table--${density}`);
+    const tableAttrs = [`class="${tableClasses.join(" ")}"`];
+    if (selection !== "none") tableAttrs.push(`data-selection="${selection}"`);
+
+    const hasCheckboxes = selection === "multi";
+    const headers = ["Destination", "Departure", "Duration", "Price"];
+
+    let theadCells = "";
+    if (hasCheckboxes) {
+      theadCells += `<th><input type="checkbox" aria-label="Select all" /></th>`;
+    }
+    headers.forEach((h) => {
+      const sortAttr = sortable ? ' aria-sort="none"' : "";
+      const resizeAttr = resizable ? " data-resizable" : "";
+      theadCells += `<th${sortAttr}${resizeAttr}>${h}</th>`;
+    });
+
+    let tbodyRows = "";
+    TABLE_ROWS.forEach((row) => {
+      let cells = "";
+      if (hasCheckboxes) cells += `<td><input type="checkbox" /></td>`;
+      row.forEach((cell) => { cells += `<td>${cell}</td>`; });
+      tbodyRows += `<tr>${cells}</tr>`;
+    });
+
+    const html = `<div class="uif-table-wrapper"><table ${tableAttrs.join(" ")}><thead><tr>${theadCells}</tr></thead><tbody>${tbodyRows}</tbody></table></div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+
+    return { element, code: html };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -1219,6 +1270,7 @@
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      table: renderVanillaTable,
     },
   };
 })(window);

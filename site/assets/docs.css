@@ -560,6 +560,8 @@ details[open] > .docs-nav-group-toggle::before {
   border: 1px solid var(--docs-border);
   border-radius: 12px;
   background: var(--color-fill-surface, #fff);
+  isolation: isolate;
+  position: relative;
 }
 
 .playground-controls-panel {
