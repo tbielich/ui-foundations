@@ -145,7 +145,7 @@ Labels are not interactive. FieldLabel clicking focuses the associated input.
 
 Label adapts across brands and modes through typography and color tokens.
 
-For the full theming architecture see [Foundations: Theming](/foundations/theming/).
+For the full theming architecture see [Foundations: Design Tokens](/foundations/design-tokens/).
 
 <h2 id="design-checklist">Design checklist</h2>
 
