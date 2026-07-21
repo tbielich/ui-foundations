@@ -26,3 +26,4 @@ export { UISelect } from "./ui-select.js";
 export { UILink } from "./ui-link.js";
 export { UIFieldLabel } from "./ui-label.js";
 export { UIForm, UIFormGroup, UIFormField, UIFormHelper, UIFormActions } from "./ui-form.js";
+export { UIRangeSlider } from "./ui-range-slider.js";

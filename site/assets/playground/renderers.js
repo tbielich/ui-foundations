@@ -1197,6 +1197,107 @@
     return { element, code: html };
   };
 
+  // ─── Range Slider ──────────────────────────────────
+
+  const renderVanillaRangeSlider = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const label = String(props.label || "Price range");
+    const min = Number(props.min || 0);
+    const max = Number(props.max || 100);
+    const valueMin = Number(props.valueMin || 20);
+    const valueMax = Number(props.valueMax || 80);
+    const step = Number(props.step || 1);
+    const disabled = previewState === "disabled" || asBoolean(props.disabled);
+
+    const fieldClasses = ["uif-range-slider-field"];
+    if (disabled) fieldClasses.push("is-disabled");
+
+    const pctMin = ((valueMin - min) / (max - min)) * 100;
+    const pctMax = ((valueMax - min) / (max - min)) * 100;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = fieldClasses.join(" ");
+
+    // Header
+    const header = document.createElement("div");
+    header.className = "uif-range-slider-header";
+    const labelEl = document.createElement("span");
+    labelEl.className = "uif-range-slider-label";
+    labelEl.textContent = label;
+    const valueEl = document.createElement("span");
+    valueEl.className = "uif-range-slider-value";
+    valueEl.textContent = `${valueMin} – ${valueMax}`;
+    header.append(labelEl, valueEl);
+    wrapper.append(header);
+
+    // Slider
+    const slider = document.createElement("div");
+    slider.className = "uif-range-slider";
+    slider.setAttribute("role", "group");
+
+    const track = document.createElement("div");
+    track.className = "uif-range-slider-track";
+    const range = document.createElement("div");
+    range.className = "uif-range-slider-range";
+    range.style.insetInlineStart = `${pctMin}%`;
+    range.style.inlineSize = `${pctMax - pctMin}%`;
+    track.append(range);
+    slider.append(track);
+
+    // Min thumb
+    const thumbMin = document.createElement("div");
+    const thumbMinClasses = ["uif-range-slider-thumb"];
+    if (previewState === "hover") thumbMinClasses.push("is-hover");
+    if (previewState === "active") thumbMinClasses.push("is-active");
+    if (previewState === "focus") thumbMinClasses.push("is-focus-visible");
+    if (disabled) thumbMinClasses.push("is-disabled");
+    thumbMin.className = thumbMinClasses.join(" ");
+    thumbMin.setAttribute("role", "slider");
+    thumbMin.setAttribute("tabindex", disabled ? "-1" : "0");
+    thumbMin.setAttribute("aria-label", `${label} minimum`);
+    thumbMin.setAttribute("aria-valuemin", String(min));
+    thumbMin.setAttribute("aria-valuemax", String(max));
+    thumbMin.setAttribute("aria-valuenow", String(valueMin));
+    thumbMin.style.insetInlineStart = `${pctMin}%`;
+    if (disabled) thumbMin.setAttribute("aria-disabled", "true");
+    slider.append(thumbMin);
+
+    // Max thumb
+    const thumbMax = document.createElement("div");
+    thumbMax.className = thumbMinClasses.join(" ");
+    thumbMax.setAttribute("role", "slider");
+    thumbMax.setAttribute("tabindex", disabled ? "-1" : "0");
+    thumbMax.setAttribute("aria-label", `${label} maximum`);
+    thumbMax.setAttribute("aria-valuemin", String(min));
+    thumbMax.setAttribute("aria-valuemax", String(max));
+    thumbMax.setAttribute("aria-valuenow", String(valueMax));
+    thumbMax.style.insetInlineStart = `${pctMax}%`;
+    if (disabled) thumbMax.setAttribute("aria-disabled", "true");
+    slider.append(thumbMax);
+
+    wrapper.append(slider);
+
+    // Code generation
+    const thumbClasses = thumbMinClasses.join(" ");
+    const code = `<div class="${quoteAttr(wrapper.className)}">
+  <div class="uif-range-slider-header">
+    <span class="uif-range-slider-label">${quoteAttr(label)}</span>
+    <span class="uif-range-slider-value">${valueMin} – ${valueMax}</span>
+  </div>
+  <div class="uif-range-slider" role="group">
+    <div class="uif-range-slider-track">
+      <div class="uif-range-slider-range" style="inset-inline-start: ${pctMin}%; inline-size: ${pctMax - pctMin}%;"></div>
+    </div>
+    <div class="${quoteAttr(thumbClasses)}" role="slider" tabindex="${disabled ? "-1" : "0"}" aria-label="${quoteAttr(label)} minimum" aria-valuemin="${min}" aria-valuemax="${max}" aria-valuenow="${valueMin}" style="inset-inline-start: ${pctMin}%;"${disabled ? ' aria-disabled="true"' : ""}></div>
+    <div class="${quoteAttr(thumbClasses)}" role="slider" tabindex="${disabled ? "-1" : "0"}" aria-label="${quoteAttr(label)} maximum" aria-valuemin="${min}" aria-valuemax="${max}" aria-valuenow="${valueMax}" style="inset-inline-start: ${pctMax}%;"${disabled ? ' aria-disabled="true"' : ""}></div>
+    <input type="range" min="${min}" max="${max}" step="${step}" value="${valueMin}" aria-hidden="true" tabindex="-1"${disabled ? " disabled" : ""} />
+    <input type="range" min="${min}" max="${max}" step="${step}" value="${valueMax}" aria-hidden="true" tabindex="-1"${disabled ? " disabled" : ""} />
+  </div>
+</div>`;
+
+    return { element: wrapper, code };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -1219,6 +1320,7 @@
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      "range-slider": renderVanillaRangeSlider,
     },
   };
 })(window);

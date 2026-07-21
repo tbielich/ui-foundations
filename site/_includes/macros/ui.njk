@@ -100,6 +100,29 @@
 </label>
 {%- endmacro %}
 
+{% macro rangeSlider(label='Price range', min=0, max=100, valueMin=20, valueMax=80, step=1, disabled=false, state='default', className='') -%}
+{%- set fieldClasses = "uif-range-slider-field" -%}
+{%- if disabled or state == "disabled" -%}{%- set fieldClasses = fieldClasses + " is-disabled" -%}{%- endif -%}
+{%- if className -%}{%- set fieldClasses = fieldClasses + " " + className -%}{%- endif -%}
+{%- set pctMin = ((valueMin - min) / (max - min)) * 100 -%}
+{%- set pctMax = ((valueMax - min) / (max - min)) * 100 -%}
+<div class="{{ fieldClasses }}">
+  <div class="uif-range-slider-header">
+    <span class="uif-range-slider-label">{{ label }}</span>
+    <span class="uif-range-slider-value">{{ valueMin }} – {{ valueMax }}</span>
+  </div>
+  <div class="uif-range-slider" role="group">
+    <div class="uif-range-slider-track">
+      <div class="uif-range-slider-range" style="inset-inline-start: {{ pctMin }}%; inline-size: {{ pctMax - pctMin }}%;"></div>
+    </div>
+    <div class="uif-range-slider-thumb" role="slider" tabindex="{{ "-1" if disabled or state == "disabled" else "0" }}" aria-label="{{ label }} minimum" aria-valuemin="{{ min }}" aria-valuemax="{{ max }}" aria-valuenow="{{ valueMin }}" style="inset-inline-start: {{ pctMin }}%;"{% if disabled or state == "disabled" %} aria-disabled="true"{% endif %}></div>
+    <div class="uif-range-slider-thumb" role="slider" tabindex="{{ "-1" if disabled or state == "disabled" else "0" }}" aria-label="{{ label }} maximum" aria-valuemin="{{ min }}" aria-valuemax="{{ max }}" aria-valuenow="{{ valueMax }}" style="inset-inline-start: {{ pctMax }}%;"{% if disabled or state == "disabled" %} aria-disabled="true"{% endif %}></div>
+    <input type="range" min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ valueMin }}" aria-hidden="true" tabindex="-1"{% if disabled or state == "disabled" %} disabled{% endif %} />
+    <input type="range" min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ valueMax }}" aria-hidden="true" tabindex="-1"{% if disabled or state == "disabled" %} disabled{% endif %} />
+  </div>
+</div>
+{%- endmacro %}
+
 {% macro colorChip(token) -%}
 <div class="swatch" style="--swatch-color: var({{ token.cssVar }})">
   <span class="swatch-name">{{ token.name }}</span>
