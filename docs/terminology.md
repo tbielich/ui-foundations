@@ -1,3 +1,7 @@
+---
+owner: "@ui-foundations-maintainers"
+---
+
 # Runtime Terminology Baseline
 
 ## Purpose
