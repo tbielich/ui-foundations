@@ -24,8 +24,8 @@ playgroundLabel: Open Tooltip Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage" style="display: flex; gap: 2rem; justify-content: center; padding-block: 2rem;">
-      {% call uif.tooltip(text="Top tooltip", placement="top") %}
-        <button class="button outline" type="button">Hover me</button>
+      {% call uif.tooltip(text="Top tooltip", placement="top", delay=300, tooltipId="tooltip-hero") %}
+        <button class="button outline" type="button" aria-describedby="tooltip-hero">Hover me</button>
       {% endcall %}
     </div>
   </div>
@@ -41,42 +41,10 @@ playgroundLabel: Open Tooltip Playground
 ### Placement
 
 <div class="docs-states-grid" style="--docs-states-cols: 4">
-  <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="padding-block: 2rem;">
-      <span class="uif-tooltip-trigger">
-        <button class="button outline" type="button">Top</button>
-        <span class="uif-tooltip is-visible" role="tooltip" data-placement="top">Tooltip text</span>
-      </span>
-    </div>
-    <span class="docs-states-grid-item-label">Top</span>
-  </div>
-  <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="padding-block: 2rem;">
-      <span class="uif-tooltip-trigger">
-        <button class="button outline" type="button">Bottom</button>
-        <span class="uif-tooltip is-visible" role="tooltip" data-placement="bottom">Tooltip text</span>
-      </span>
-    </div>
-    <span class="docs-states-grid-item-label">Bottom</span>
-  </div>
-  <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="padding-inline: 5rem; padding-block: 1rem;">
-      <span class="uif-tooltip-trigger">
-        <button class="button outline" type="button">Left</button>
-        <span class="uif-tooltip is-visible" role="tooltip" data-placement="left">Tip</span>
-      </span>
-    </div>
-    <span class="docs-states-grid-item-label">Left</span>
-  </div>
-  <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview" style="padding-inline: 5rem; padding-block: 1rem;">
-      <span class="uif-tooltip-trigger">
-        <button class="button outline" type="button">Right</button>
-        <span class="uif-tooltip is-visible" role="tooltip" data-placement="right">Tip</span>
-      </span>
-    </div>
-    <span class="docs-states-grid-item-label">Right</span>
-  </div>
+  <div class="docs-states-grid-item"><div class="docs-states-grid-item-preview" style="padding-block: 2rem;"><span class="uif-tooltip-trigger"><button class="button outline" type="button">Top</button><span class="uif-tooltip is-visible" role="tooltip" data-placement="top">Tooltip text</span></span></div><span class="docs-states-grid-item-label">Top</span></div>
+  <div class="docs-states-grid-item"><div class="docs-states-grid-item-preview" style="padding-block: 2rem;"><span class="uif-tooltip-trigger"><button class="button outline" type="button">Bottom</button><span class="uif-tooltip is-visible" role="tooltip" data-placement="bottom">Tooltip text</span></span></div><span class="docs-states-grid-item-label">Bottom</span></div>
+  <div class="docs-states-grid-item"><div class="docs-states-grid-item-preview" style="padding-inline: 5rem; padding-block: 1rem;"><span class="uif-tooltip-trigger"><button class="button outline" type="button">Left</button><span class="uif-tooltip is-visible" role="tooltip" data-placement="left">Tip</span></span></div><span class="docs-states-grid-item-label">Left</span></div>
+  <div class="docs-states-grid-item"><div class="docs-states-grid-item-preview" style="padding-inline: 5rem; padding-block: 1rem;"><span class="uif-tooltip-trigger"><button class="button outline" type="button">Right</button><span class="uif-tooltip is-visible" role="tooltip" data-placement="right">Tip</span></span></div><span class="docs-states-grid-item-label">Right</span></div>
 </div>
 
 ### Table of options
@@ -86,65 +54,36 @@ playgroundLabel: Open Tooltip Playground
   <tbody>
     <tr><td>text</td><td>text</td><td>—</td></tr>
     <tr><td>placement</td><td><code>top</code> / <code>bottom</code> / <code>left</code> / <code>right</code></td><td><code>top</code></td></tr>
+    <tr><td>delay</td><td>milliseconds, zero or greater</td><td><code>300</code></td></tr>
+    <tr><td>tooltip-id</td><td>stable DOM ID</td><td>generated</td></tr>
   </tbody>
 </table>
 
 <h2 id="behaviors">Behaviors</h2>
 
-<div class="docs-behavior-list">
-  <div class="docs-behavior-item">
-    <div class="docs-behavior-preview">
-      {% call uif.tooltip(text="Appears on hover and focus", placement="top") %}
-        <button class="button outline" type="button">Trigger</button>
-      {% endcall %}
-    </div>
-    <div class="docs-behavior-body">
-      <h3>Show on hover and focus</h3>
-      <p>Tooltips appear when the trigger is hovered or receives keyboard focus. They disappear when the pointer leaves or focus moves away.</p>
-    </div>
-  </div>
-</div>
+- Tooltips appear after the configured delay on hover or keyboard focus.
+- Tooltips hide when hover or focus leaves the trigger; Escape also hides an open tooltip.
+- An arrow is positioned for each placement.
+- Tooltip content remains non-interactive.
 
 <h2 id="usage-guidelines">Usage guidelines</h2>
 
-<div class="docs-guideline">
-  <div class="docs-guideline-item" data-type="do">
-    <div class="docs-guideline-preview">
-      {% call uif.tooltip(text="Save changes", placement="top") %}
-        <button class="button" type="button">💾</button>
-      {% endcall %}
-    </div>
-    <div class="docs-guideline-body">
-      <p class="docs-guideline-label">Do</p>
-      <p>Use tooltips to label icon-only buttons or provide brief supplementary info.</p>
-    </div>
-  </div>
-  <div class="docs-guideline-item" data-type="dont">
-    <div class="docs-guideline-preview">
-      {% call uif.tooltip(text="This is a very long tooltip that contains multiple sentences and detailed instructions that should really be in a help section instead.", placement="top") %}
-        <button class="button outline" type="button">Help</button>
-      {% endcall %}
-    </div>
-    <div class="docs-guideline-body">
-      <p class="docs-guideline-label">Don't</p>
-      <p>Don't put long content in tooltips. Use a popover or inline help instead.</p>
-    </div>
-  </div>
-</div>
+- Use tooltips to label icon-only controls or provide brief supplementary information.
+- Use a popover or inline help for long or interactive content.
 
 <h2 id="accessibility">Accessibility</h2>
 
 - Uses `role="tooltip"` on the tooltip element.
-- Trigger should have `aria-describedby` pointing to the tooltip ID for screen readers.
-- Tooltips are non-interactive — they cannot contain links or buttons.
-
-- Shows on both hover and focus to support keyboard users.
+- The Web Component generates or accepts a stable ID and applies `aria-describedby` to its trigger.
+- Shows on both hover and focus to support pointer and keyboard users.
+- Escape hides the tooltip without moving focus.
+- Tooltips cannot contain interactive controls.
 
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All brand/mode contexts</strong><span>Works across light and dark modes.</span></div></div>
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Defined options</strong><span>Placement and text documented.</span></div></div>
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Usage guidelines</strong><span>Do/don't for content length.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Defined options</strong><span>Placement, delay, ID, and text documented.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Accessible relationship</strong><span>Trigger and tooltip are connected through <code>aria-describedby</code>.</span></div></div>
   <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--uif-tooltip-*</code>).</span></div></div>
 </div>
