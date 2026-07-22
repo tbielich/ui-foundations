@@ -7,6 +7,13 @@ const DEFAULT_ICONS = {
   notice: "exclamation-mark-circled",
 };
 
+const ICON_NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+function sanitizeIconName(name) {
+  if (!name || !ICON_NAME_PATTERN.test(name)) return "";
+  return name;
+}
+
 /**
  * <uif-inline-alert variant="info" title="Heads up" description="Something to know."></uif-inline-alert>
  * <uif-inline-alert variant="negative" title="Error" dismissible></uif-inline-alert>
@@ -27,7 +34,7 @@ class UIInlineAlert extends UIElement {
     const variant = this.getAttr("variant", "info");
     const title = this.getAttr("title");
     const description = this.getAttr("description");
-    const iconOverride = this.getAttr("icon");
+    const iconOverride = sanitizeIconName(this.getAttr("icon"));
     const dismissible = this.getBool("dismissible");
 
     const icon = iconOverride || DEFAULT_ICONS[variant] || "info-circled";
@@ -38,11 +45,11 @@ class UIInlineAlert extends UIElement {
     const iconHtml = `<span class="uif-inline-alert-icon"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/${icon}.svg')" aria-hidden="true"></span></span>`;
 
     const titleHtml = title
-      ? `<strong class="uif-inline-alert-title">${title}</strong>`
+      ? `<strong class="uif-inline-alert-title"></strong>`
       : "";
 
     const descHtml = description
-      ? `<p class="uif-inline-alert-description">${description}</p>`
+      ? `<p class="uif-inline-alert-description"></p>`
       : "";
 
     const dismissHtml = dismissible
@@ -50,6 +57,13 @@ class UIInlineAlert extends UIElement {
       : "";
 
     this.innerHTML = `<div class="${classes.join(" ")}" role="alert">${iconHtml}<div class="uif-inline-alert-content">${titleHtml}${descHtml}</div>${dismissHtml}</div>`;
+
+    if (title) {
+      this.querySelector(".uif-inline-alert-title").textContent = title;
+    }
+    if (description) {
+      this.querySelector(".uif-inline-alert-description").textContent = description;
+    }
 
     if (dismissible) {
       const btn = this.querySelector(".uif-inline-alert-dismiss");
