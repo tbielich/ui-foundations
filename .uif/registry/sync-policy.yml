@@ -70,10 +70,18 @@ conflicts:
     - identify-local-owner
     - decide-adopt-override-or-promote
 review:
+  cadence: quarterly
   owners:
     governance: "@ui-foundations-maintainers"
     runtime: "@ui-foundations-maintainers"
     agent: "@ui-foundations-maintainers"
+  baselineDocuments:
+    - path: docs/terminology.md
+      owner: "@ui-foundations-maintainers"
+      reviewCadence: quarterly
+    - path: docs/canonical-reference-matrix.md
+      owner: "@ui-foundations-maintainers"
+      reviewCadence: quarterly
   requiredFor:
     - new-imported-pack-version
     - governance-rule-change
