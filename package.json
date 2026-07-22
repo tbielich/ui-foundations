@@ -107,7 +107,8 @@
     "docs:site": "npm run build:all && npm run docs:build",
     "docs:dev": "node scripts/build.mjs dev",
     "docs:dev:verbose": "npm run build:raw && eleventy --serve",
-    "ci:check": "npm run lint && npm run test:unit && npm run naming:check && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run tokens:usage && npm run dtcg:validate && npm run assets:check && npm run rules:validate && npm run docs:build"
+    "docs:lint": "node scripts/check-docs-drift.mjs",
+    "ci:check": "npm run lint && npm run test:unit && npm run docs:lint && npm run naming:check && npm run build:all && npm run smoke:check && npm run tokens:validate && npm run tokens:usage && npm run dtcg:validate && npm run assets:check && npm run rules:validate && npm run docs:build"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
