@@ -13,20 +13,37 @@
     border-radius: var(--uif-tooltip-border-radius);
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.15s ease;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+    transition-delay: var(--uif-tooltip-delay, 300ms), var(--uif-tooltip-delay, 300ms);
   }
 
-  :is(.uif-tooltip, .tooltip).is-visible {
+  :is(.uif-tooltip, .tooltip)::after {
+    content: "";
+    position: absolute;
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    background: inherit;
+    transform: rotate(45deg);
+  }
+
+  :is(.uif-tooltip, .tooltip).is-visible,
+  :is(.uif-tooltip, .tooltip)[aria-hidden="false"] {
     opacity: 1;
+    visibility: visible;
+    transition-delay: var(--uif-tooltip-delay, 300ms), 0s;
   }
-
-  /* ── Placement ── */
 
   :is(.uif-tooltip, .tooltip)[data-placement="top"] {
     inset-block-end: 100%;
     inset-inline-start: 50%;
     transform: translateX(-50%);
     margin-block-end: var(--size-spacing-200);
+  }
+
+  :is(.uif-tooltip, .tooltip)[data-placement="top"]::after {
+    inset-block-start: calc(100% - 0.25rem);
+    inset-inline-start: calc(50% - 0.25rem);
   }
 
   :is(.uif-tooltip, .tooltip)[data-placement="bottom"] {
@@ -36,11 +53,21 @@
     margin-block-start: var(--size-spacing-200);
   }
 
+  :is(.uif-tooltip, .tooltip)[data-placement="bottom"]::after {
+    inset-block-end: calc(100% - 0.25rem);
+    inset-inline-start: calc(50% - 0.25rem);
+  }
+
   :is(.uif-tooltip, .tooltip)[data-placement="left"] {
     inset-inline-end: 100%;
     inset-block-start: 50%;
     transform: translateY(-50%);
     margin-inline-end: var(--size-spacing-200);
+  }
+
+  :is(.uif-tooltip, .tooltip)[data-placement="left"]::after {
+    inset-inline-start: calc(100% - 0.25rem);
+    inset-block-start: calc(50% - 0.25rem);
   }
 
   :is(.uif-tooltip, .tooltip)[data-placement="right"] {
@@ -50,7 +77,10 @@
     margin-inline-start: var(--size-spacing-200);
   }
 
-  /* ── Trigger wrapper ── */
+  :is(.uif-tooltip, .tooltip)[data-placement="right"]::after {
+    inset-inline-end: calc(100% - 0.25rem);
+    inset-block-start: calc(50% - 0.25rem);
+  }
 
   :is(.uif-tooltip-trigger, .tooltip-trigger) {
     position: relative;
@@ -60,5 +90,7 @@
   :is(.uif-tooltip-trigger, .tooltip-trigger):hover > :is(.uif-tooltip, .tooltip),
   :is(.uif-tooltip-trigger, .tooltip-trigger):focus-within > :is(.uif-tooltip, .tooltip) {
     opacity: 1;
+    visibility: visible;
+    transition-delay: var(--uif-tooltip-delay, 300ms), 0s;
   }
 }
