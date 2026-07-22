@@ -7,11 +7,21 @@
   :is(.uif-tab-list, .tab-list) {
     display: flex;
     gap: 0;
+    max-inline-size: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
     border-block-end: var(--size-border-100) solid var(--uif-tabs-border-color-default);
+  }
+
+  :is(.uif-tab-list, .tab-list)[data-overflow="wrap"] {
+    flex-wrap: wrap;
+    overflow: visible;
   }
 
   :is(.uif-tab-list, .tab-list)[aria-orientation="vertical"] {
     flex-direction: column;
+    overflow: visible;
     border-block-end: none;
     border-inline-end: var(--size-border-100) solid var(--uif-tabs-border-color-default);
   }
@@ -20,6 +30,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex: 0 0 auto;
     padding-inline: var(--uif-tabs-padding-inline);
     padding-block: var(--uif-tabs-padding-block);
     font-family: var(--font-family-sans);
@@ -34,6 +45,13 @@
     white-space: nowrap;
     text-decoration: none;
     transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  :is(.uif-tab-list, .tab-list)[data-size="compact"] :is(.uif-tab, .tab) {
+    padding-inline: var(--size-spacing-300);
+    padding-block: var(--size-spacing-150, var(--size-spacing-200));
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
   }
 
   :is(.uif-tab, .tab):hover,
@@ -65,23 +83,10 @@
     pointer-events: none;
   }
 
-  /* --- Panel container: CSS-only scroll-snap switching --- */
-
   :is(.uif-tab-panels, .tab-panels) {
-    display: flex;
-    overflow-x: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    display: block;
   }
 
-  :is(.uif-tab-panels, .tab-panels) > :is(.uif-tab-panel, .tab-panel) {
-    flex: 0 0 100%;
-    min-inline-size: 100%;
-    scroll-snap-align: start;
-    padding-block: var(--size-spacing-400);
-  }
-
-  /* Legacy: standalone panel with hidden attribute (JS-driven) */
   :is(.uif-tab-panel, .tab-panel) {
     padding-block: var(--size-spacing-400);
   }
