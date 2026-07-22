@@ -1,3 +1,7 @@
+---
+owner: "@ui-foundations-maintainers"
+---
+
 # Canonical Topic-Source Matrix
 
 ## Purpose

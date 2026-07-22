@@ -71,9 +71,9 @@ conflicts:
     - decide-adopt-override-or-promote
 review:
   owners:
-    governance: TODO-governance-owner
-    runtime: TODO-runtime-owner
-    agent: TODO-agent-owner
+    governance: "@ui-foundations-maintainers"
+    runtime: "@ui-foundations-maintainers"
+    agent: "@ui-foundations-maintainers"
   requiredFor:
     - new-imported-pack-version
     - governance-rule-change
