@@ -166,24 +166,19 @@
 {%- set classes = "uif-textarea" -%}
 {%- if state == "hover" -%}{%- set classes = classes + " is-hover" -%}{%- endif -%}
 {%- if state == "focus" -%}{%- set classes = classes + " is-focus-visible" -%}{%- endif -%}
-{%- if state == "disabled" or disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if disabled or state == "disabled" -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
-<textarea class="{{ classes }}"{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if rows %} rows="{{ rows }}"{% endif %}{% if readonly %} readonly{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %}>{{ value }}</textarea>
+<textarea class="{{ classes }}"{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %}{% if readonly %} readonly{% endif %}{% if rows %} rows="{{ rows }}"{% endif %}>{{ value }}</textarea>
 {%- endmacro %}
 
-{% macro avatar(src='', alt='', initials='', size='', className='') -%}
+{% macro avatar(name='', src='', alt='', size='', status='', className='') -%}
 {%- set classes = "uif-avatar" -%}
-{%- if size and size != "md" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
+{%- if size -%}{%- set classes = classes + " " + size -%}{%- endif -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
-<span class="{{ classes }}" role="img" aria-label="{{ alt or initials }}">
-  {%- if src -%}<img src="{{ src }}" alt="{{ alt }}" />{%- else -%}<span class="uif-avatar-initials">{{ initials }}</span>{%- endif -%}
+<span class="{{ classes }}">
+  {%- if src %}<img src="{{ src }}" alt="{{ alt or name }}" />{% else %}<span aria-hidden="true">{{ name | first }}</span>{% endif -%}
+  {%- if status %}<span class="uif-avatar-status {{ status }}" aria-label="{{ status }}"></span>{% endif -%}
 </span>
-{%- endmacro %}
-
-{% macro accordion(className='') -%}
-{%- set classes = "uif-accordion" -%}
-{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
-<div class="{{ classes }}">{{ caller() }}</div>
 {%- endmacro %}
 
 {% macro accordionItem(title='', open=false, disabled=false) -%}
@@ -222,10 +217,10 @@
 <div class="uif-tab-panel" role="tabpanel"{% if id %} id="{{ id }}"{% endif %}{% if hidden %} hidden{% endif %} tabindex="0">{{ caller() }}</div>
 {%- endmacro %}
 
-{% macro tooltip(text='', placement='top', className='') -%}
+{% macro tooltip(text='', placement='top', className='', delay=300, tooltipId='') -%}
 {%- set classes = "uif-tooltip-trigger" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
-<span class="{{ classes }}">{{ caller() }}<span class="uif-tooltip" role="tooltip" data-placement="{{ placement }}">{{ text }}</span></span>
+<span class="{{ classes }}" style="--uif-tooltip-delay: {{ delay }}ms">{{ caller() }}<span class="uif-tooltip"{% if tooltipId %} id="{{ tooltipId }}"{% endif %} role="tooltip" data-placement="{{ placement }}" aria-hidden="true">{{ text }}</span></span>
 {%- endmacro %}
 
 {% macro form(borderless=false, className='') -%}
