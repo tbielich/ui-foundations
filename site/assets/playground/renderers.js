@@ -1197,6 +1197,75 @@
     return { element, code: html };
   };
 
+  const renderVanillaInlineAlert = ({ props }) => {
+    const variant = String(props.variant || "info");
+    const title = String(props.title || "");
+    const description = String(props.description || "");
+    const dismissible = asBoolean(props.dismissible);
+
+    const iconMap = {
+      info: "info-circled",
+      positive: "checkmark-circled",
+      negative: "cross-circled",
+      notice: "exclamation-mark-circled",
+    };
+    const icon = iconMap[variant] || "info-circled";
+
+    const classes = ["uif-inline-alert"];
+    if (variant) classes.push(variant);
+
+    const wrapper = document.createElement("div");
+    wrapper.className = classes.join(" ");
+    wrapper.setAttribute("role", "alert");
+
+    const iconSpan = document.createElement("span");
+    iconSpan.className = "uif-inline-alert-icon";
+    const iconEl = createIconElement({ name: icon, decorative: true });
+    if (iconEl) iconSpan.append(iconEl);
+    wrapper.append(iconSpan);
+
+    const content = document.createElement("div");
+    content.className = "uif-inline-alert-content";
+
+    if (title) {
+      const titleEl = document.createElement("strong");
+      titleEl.className = "uif-inline-alert-title";
+      titleEl.textContent = title;
+      content.append(titleEl);
+    }
+
+    if (description) {
+      const descEl = document.createElement("p");
+      descEl.className = "uif-inline-alert-description";
+      descEl.textContent = description;
+      content.append(descEl);
+    }
+
+    wrapper.append(content);
+
+    if (dismissible) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "uif-inline-alert-dismiss";
+      btn.setAttribute("aria-label", "Dismiss");
+      const crossIcon = createIconElement({ name: "cross", decorative: true });
+      if (crossIcon) btn.append(crossIcon);
+      btn.addEventListener("click", () => wrapper.classList.add("is-hidden"));
+      wrapper.append(btn);
+    }
+
+    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
+    const iconMarkup = iconCode({ name: icon, decorative: true });
+    const titleMarkup = title ? `<strong class="uif-inline-alert-title">${quoteAttr(title)}</strong>` : "";
+    const descMarkup = description ? `<p class="uif-inline-alert-description">${quoteAttr(description)}</p>` : "";
+    const dismissMarkup = dismissible
+      ? `<button type="button" class="uif-inline-alert-dismiss" aria-label="Dismiss">${iconCode({ name: "cross", decorative: true })}</button>`
+      : "";
+    const code = `<div class="${codeClasses}" role="alert"><span class="uif-inline-alert-icon">${iconMarkup}</span><div class="uif-inline-alert-content">${titleMarkup}${descMarkup}</div>${dismissMarkup}</div>`;
+
+    return { element: wrapper, code };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -1219,6 +1288,7 @@
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      "inline-alert": renderVanillaInlineAlert,
     },
   };
 })(window);

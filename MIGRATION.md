@@ -55,6 +55,7 @@ parts follow the same prefix replacement.
 | Divider | `.uif-divider` | code-only `--uif-divider-color`; no component-scoped Figma variables | `<uif-divider>` |
 | Form | `.uif-form`, `.uif-form-*` | `--uif-form-*` | `<uif-form>`, `<uif-form-group>`, `<uif-form-field>`, `<uif-form-helper>`, `<uif-form-actions>` |
 | Icon | `.uif-icon` | code-only `--uif-icon-src` | `<uif-icon>` |
+| InlineAlert | `.uif-inline-alert`, `.uif-inline-alert-content`, `.uif-inline-alert-title`, `.uif-inline-alert-description` | `--uif-inline-alert-*` | `<uif-inline-alert>` |
 | Input | `.uif-input`, `.uif-input-field`, `.uif-input-field-control` | `--uif-input-*` | `<uif-input>` |
 | Label composition | `.uif-label-content`, `.uif-label-content-text`, `.uif-field-label*` | `--uif-field-label-*`; separately governed `--typography-label-*` remains unchanged | `<uif-field-label>` |
 | Link | `.uif-link` | `--uif-link-*` | `<uif-link>` |

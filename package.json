@@ -69,7 +69,8 @@
     "./elements/ui-select": "./dist/elements/ui-select.js",
     "./elements/ui-link": "./dist/elements/ui-link.js",
     "./elements/ui-label": "./dist/elements/ui-label.js",
-    "./elements/ui-form": "./dist/elements/ui-form.js"
+    "./elements/ui-form": "./dist/elements/ui-form.js",
+    "./elements/ui-inline-alert": "./dist/elements/ui-inline-alert.js"
   },
   "scripts": {
     "icons:generate-list": "node scripts/generate-icon-list.mjs",
