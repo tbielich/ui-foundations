@@ -12,26 +12,17 @@ playgroundLabel: Open Tabs Playground
 
 <div class="docs-hero">
   <div class="docs-hero-preview">
-    <div class="docs-hero-preview-controls">
-      <span class="docs-hero-switch" data-hero-group="brand">
-        <button type="button" data-hero-brand="a" aria-pressed="true">Brand A</button>
-        <button type="button" data-hero-brand="b" aria-pressed="false">Brand B</button>
-        <button type="button" data-hero-brand="c" aria-pressed="false">Brand C</button>
-      </span>
-      <span class="docs-hero-switch" data-hero-group="mode">
-        <button type="button" data-hero-mode="light" aria-pressed="true">Light</button>
-        <button type="button" data-hero-mode="dark" aria-pressed="false">Dark</button>
-      </span>
-    </div>
     <div class="docs-hero-preview-stage" style="inline-size: 100%;">
-      {% call uif.tabList(ariaLabel="Example tabs") %}
-        {{ uif.tab(label="Overview", selected=true, controls="panel-1") }}
-        {{ uif.tab(label="Details", controls="panel-2") }}
-        {{ uif.tab(label="Settings", controls="panel-3") }}
-      {% endcall %}
-      {% call uif.tabPanel(id="panel-1") %}
-        <p>Overview content goes here.</p>
-      {% endcall %}
+      <uif-tabs orientation="horizontal" size="default" overflow="scroll">
+        <uif-tab-list aria-label="Example tabs">
+          <uif-tab label="Overview" selected controls="panel-1"></uif-tab>
+          <uif-tab label="Details" controls="panel-2"></uif-tab>
+          <uif-tab label="Settings" controls="panel-3"></uif-tab>
+        </uif-tab-list>
+        <uif-tab-panel id="panel-1">Overview content goes here.</uif-tab-panel>
+        <uif-tab-panel id="panel-2" hidden>Details content goes here.</uif-tab-panel>
+        <uif-tab-panel id="panel-3" hidden>Settings content goes here.</uif-tab-panel>
+      </uif-tabs>
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -41,72 +32,14 @@ playgroundLabel: Open Tabs Playground
   </div>
 </div>
 
-<h2 id="anatomy">Anatomy</h2>
-
-<div class="docs-anatomy">
-  <div class="docs-anatomy-preview">
-    <div class="docs-anatomy-subject" style="inline-size: 100%;">
-      <span class="docs-anatomy-outline"></span>
-      <span class="docs-anatomy-callout" data-dir="top" style="left: 30%; transform: translateX(-50%);">
-        <span class="docs-anatomy-badge">1</span>
-        <span class="docs-anatomy-callout-line"></span>
-      </span>
-      <span class="docs-anatomy-callout" data-dir="right" style="top: 70%; transform: translateY(-50%);">
-        <span class="docs-anatomy-callout-line"></span>
-        <span class="docs-anatomy-badge">2</span>
-      </span>
-      {% call uif.tabList(ariaLabel="Anatomy tabs") %}
-        {{ uif.tab(label="Tab 1", selected=true) }}
-        {{ uif.tab(label="Tab 2") }}
-      {% endcall %}
-      {% call uif.tabPanel() %}
-        <p>Panel content</p>
-      {% endcall %}
-    </div>
-  </div>
-  <ol class="docs-anatomy-footnotes">
-    <li><span class="docs-anatomy-badge-inline">1</span> Tab list — horizontal row of tab buttons with active indicator</li>
-    <li><span class="docs-anatomy-badge-inline">2</span> Tab panel — content area associated with the active tab</li>
-  </ol>
-</div>
-
 <h2 id="options">Options</h2>
-
-### States
-
-<div class="docs-states-grid" style="--docs-states-cols: 4">
-  <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">
-      <button class="tab" role="tab" aria-selected="false">Default</button>
-    </div>
-    <span class="docs-states-grid-item-label">Default</span>
-  </div>
-  <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">
-      <button class="tab is-hover" role="tab" aria-selected="false">Hover</button>
-    </div>
-    <span class="docs-states-grid-item-label">Hover</span>
-  </div>
-  <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">
-      <button class="tab" role="tab" aria-selected="true">Selected</button>
-    </div>
-    <span class="docs-states-grid-item-label">Selected</span>
-  </div>
-  <div class="docs-states-grid-item">
-    <div class="docs-states-grid-item-preview">
-      <button class="tab is-disabled" role="tab" aria-selected="false" disabled>Disabled</button>
-    </div>
-    <span class="docs-states-grid-item-label">Disabled</span>
-  </div>
-</div>
-
-### Table of options
 
 <table class="docs-options-table">
   <thead><tr><th>Property</th><th>Values</th><th>Default</th></tr></thead>
   <tbody>
     <tr><td>orientation</td><td><code>horizontal</code> / <code>vertical</code></td><td><code>horizontal</code></td></tr>
+    <tr><td>size</td><td><code>default</code> / <code>compact</code></td><td><code>default</code></td></tr>
+    <tr><td>overflow</td><td><code>scroll</code> / <code>wrap</code></td><td><code>scroll</code></td></tr>
     <tr><td>selected</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
     <tr><td>disabled</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
   </tbody>
@@ -117,27 +50,37 @@ playgroundLabel: Open Tabs Playground
 <table class="docs-keyboard-table">
   <thead><tr><th>Key</th><th>Action</th></tr></thead>
   <tbody>
-    <tr><td><kbd>Tab</kbd></td><td>Moves focus into/out of the tab list</td></tr>
-    <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Moves between tabs (horizontal)</td></tr>
-    <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>Moves between tabs (vertical)</td></tr>
-    <tr><td><kbd>Enter</kbd> / <kbd>Space</kbd></td><td>Activates the focused tab</td></tr>
-    <tr><td><kbd>Home</kbd></td><td>Moves to first tab</td></tr>
-    <tr><td><kbd>End</kbd></td><td>Moves to last tab</td></tr>
+    <tr><td><kbd>Tab</kbd></td><td>Moves focus into or out of the tab list.</td></tr>
+    <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Moves focus between enabled tabs in a horizontal list.</td></tr>
+    <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>Moves focus between enabled tabs in a vertical list.</td></tr>
+    <tr><td><kbd>Home</kbd></td><td>Moves focus to the first enabled tab.</td></tr>
+    <tr><td><kbd>End</kbd></td><td>Moves focus to the last enabled tab.</td></tr>
+    <tr><td><kbd>Enter</kbd> / <kbd>Space</kbd></td><td>Activates the focused tab and reveals its controlled panel.</td></tr>
   </tbody>
 </table>
 
+<h2 id="behaviors">Behaviors</h2>
+
+- Clicking or activating a tab updates `aria-selected`, roving `tabindex`, and the controlled panel.
+- Disabled tabs are skipped by keyboard navigation.
+- Horizontal tab lists scroll when content exceeds available width by default.
+- Set `overflow="wrap"` to allow multiple rows.
+- Compact size reduces spacing and typography while preserving the same interaction model.
+- Activation dispatches a bubbling `uif-tab-change` event with the controlled panel ID.
+
 <h2 id="accessibility">Accessibility</h2>
 
-- Uses `role="tablist"`, `role="tab"`, and `role="tabpanel"` ARIA pattern.
-- `aria-selected` indicates the active tab.
-- `aria-controls` links each tab to its panel.
-- Only the selected tab has `tabindex="0"`; others have `tabindex="-1"` for roving focus.
-- `aria-orientation` communicates layout direction to assistive technology.
+- Uses `role="tablist"`, `role="tab"`, and `role="tabpanel"`.
+- `aria-selected` represents active state.
+- `aria-controls` connects each tab to its panel.
+- Roving focus keeps only the selected tab in the page tab sequence.
+- `aria-orientation` determines the supported arrow-key axis.
 
 <h2 id="design-checklist">Design checklist</h2>
 
 <div class="docs-checklist">
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>All brand/mode contexts</strong><span>Works across light and dark modes.</span></div></div>
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Keyboard interactions</strong><span>Full ARIA tablist pattern.</span></div></div>
-  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Design tokens</strong><span>Component-scoped tokens (<code>--uif-tabs-*</code>).</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Keyboard behavior</strong><span>Arrow, Home, End, Enter, and Space are implemented.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Panel synchronization</strong><span>Selected tab and controlled panel stay aligned.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Responsive overflow</strong><span>Scrollable and wrapped tab-list modes are available.</span></div></div>
+  <div class="docs-checklist-item" data-done="true"><div class="docs-checklist-icon">✓</div><div class="docs-checklist-text"><strong>Sizes</strong><span>Default and compact sizes are supported.</span></div></div>
 </div>
