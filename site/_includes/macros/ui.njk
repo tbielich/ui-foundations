@@ -294,3 +294,42 @@
 {%- macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='', rangeStart='', rangeEnd='') -%}
 {{- _cal(month, selectedDate, todayDate, state, disabled, container, className, id, rangeStart, rangeEnd) }}
 {%- endmacro -%}
+
+{% macro card(layout='vertical', interactive=false, selected=false, href='', className='') -%}
+{%- set classes = "uif-card" -%}
+{%- if layout == "horizontal" -%}{%- set classes = classes + " horizontal" -%}{%- endif -%}
+{%- if interactive -%}{%- set classes = classes + " interactive" -%}{%- endif -%}
+{%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{%- if href -%}
+<a class="{{ classes }}" href="{{ href }}"{% if interactive %} role="link"{% endif %}{% if selected %} aria-pressed="true"{% endif %}>{{ caller() }}</a>
+{%- else -%}
+<article class="{{ classes }}"{% if interactive %} tabindex="0"{% endif %}{% if selected %} aria-selected="true"{% endif %}>{{ caller() }}</article>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro cardMedia(src='', alt='', className='') -%}
+{%- set classes = "uif-card-media" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">
+  {%- if src %}<img src="{{ src }}" alt="{{ alt }}" />{% else %}{{ caller() }}{%- endif -%}
+</div>
+{%- endmacro %}
+
+{% macro cardHeader(className='') -%}
+{%- set classes = "uif-card-header" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro cardBody(className='') -%}
+{%- set classes = "uif-card-body" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro cardFooter(className='') -%}
+{%- set classes = "uif-card-footer" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}

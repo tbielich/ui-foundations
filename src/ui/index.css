@@ -17,3 +17,4 @@
 @import url("./patterns/form.css") layer(components);
 @import url("./patterns/calendar.css") layer(components);
 @import url("./patterns/date-input.css") layer(components);
+@import url("./patterns/card.css") layer(components);

@@ -1197,11 +1197,81 @@
     return { element, code: html };
   };
 
+  const renderVanillaCard = ({ props, children }) => {
+    const title =
+      typeof children === "undefined" ? "Card title" : String(children || "Card title");
+    const body = String(props.body || "A short description of the card content goes here.");
+    const layout = String(props.layout || "vertical");
+    const interactive = asBoolean(props.interactive);
+    const selected = asBoolean(props.selected);
+    const showMedia = asBoolean(props.showMedia);
+    const showFooter = props.showFooter === undefined ? true : asBoolean(props.showFooter);
+
+    const classes = ["uif-card"];
+    if (layout === "horizontal") classes.push("horizontal");
+    if (interactive) classes.push("interactive");
+    if (selected) classes.push("is-selected");
+
+    const card = document.createElement("article");
+    card.className = classes.join(" ");
+    if (interactive) card.setAttribute("tabindex", "0");
+    if (selected) card.setAttribute("aria-selected", "true");
+    card.style.maxInlineSize = layout === "horizontal" ? "100%" : "22rem";
+
+    if (showMedia) {
+      const media = document.createElement("div");
+      media.className = "uif-card-media";
+      const placeholder = document.createElement("div");
+      placeholder.style.cssText =
+        "background: var(--color-fill-subtle); block-size: 10rem;";
+      media.append(placeholder);
+      card.append(media);
+    }
+
+    const header = document.createElement("div");
+    header.className = "uif-card-header";
+    const strong = document.createElement("strong");
+    strong.textContent = title;
+    header.append(strong);
+    card.append(header);
+
+    const bodyEl = document.createElement("div");
+    bodyEl.className = "uif-card-body";
+    const p = document.createElement("p");
+    p.textContent = body;
+    bodyEl.append(p);
+    card.append(bodyEl);
+
+    if (showFooter) {
+      const footer = document.createElement("div");
+      footer.className = "uif-card-footer";
+      const btn = document.createElement("button");
+      btn.className = "uif-button solid";
+      btn.type = "button";
+      btn.innerHTML = '<span class="uif-label-content"><span class="uif-label-content-text">Action</span></span>';
+      footer.append(btn);
+      card.append(footer);
+    }
+
+    const mediaCode = showMedia
+      ? `\n  <div class="uif-card-media"><div style="background: var(--color-fill-subtle); block-size: 10rem;"></div></div>`
+      : "";
+    const footerCode = showFooter
+      ? `\n  <div class="uif-card-footer"><button class="uif-button solid" type="button"><span class="uif-label-content"><span class="uif-label-content-text">Action</span></span></button></div>`
+      : "";
+    const selectedAttr = selected ? ' aria-selected="true"' : "";
+    const tabAttr = interactive ? ' tabindex="0"' : "";
+    const code = `<article class="${quoteAttr(classes.join(" "))}"${tabAttr}${selectedAttr}>${mediaCode}\n  <div class="uif-card-header"><strong>${quoteAttr(title)}</strong></div>\n  <div class="uif-card-body"><p>${quoteAttr(body)}</p></div>${footerCode}\n</article>`;
+
+    return { element: card, code };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
       button: renderVanillaButton,
       "button-group": renderVanillaButtonGroup,
+      card: renderVanillaCard,
       checkbox: renderVanillaCheckbox,
       divider: renderVanillaDivider,
       icon: renderVanillaIcon,
