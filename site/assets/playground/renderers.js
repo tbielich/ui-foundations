@@ -12,6 +12,11 @@
       .trim();
 
   const iconSrcFromName = (name) => `/assets/icons/${name}.svg`;
+  const TABLE_ROWS = [
+    ["Mallorca", "15 Aug 2025", "7 nights", "£499"],
+    ["Tenerife", "22 Aug 2025", "14 nights", "£799"],
+    ["Lanzarote", "01 Sep 2025", "10 nights", "£649"],
+  ];
 
   const createIconElement = ({ name, decorative = true, label, color }) => {
     const normalizedName = normalizeIconName(name);
@@ -1197,6 +1202,51 @@
     return { element, code: html };
   };
 
+  const renderVanillaTable = ({ props }) => {
+    const density = String(props.density || "default");
+    const selection = String(props.selection || "none");
+    const sortable = asBoolean(props.sortable);
+    const resizable = asBoolean(props.resizable);
+
+    const tableClasses = ["uif-table", "uif-table--comfortable"];
+    if (density !== "default") {
+      tableClasses[1] = `uif-table--${density}`;
+    }
+    if (sortable) tableClasses.push("uif-table--sortable");
+
+    const tableAttrs = [`class="${tableClasses.join(" ")}"`];
+    if (selection !== "none") tableAttrs.push(`data-selection="${quoteAttr(selection)}"`);
+
+    const hasCheckboxes = selection === "multi";
+    let theadCells = "";
+    if (hasCheckboxes) {
+      theadCells += '<th class="uif-table-th"><input type="checkbox" aria-label="Select all rows" /></th>';
+    }
+
+    ["Destination", "Departure", "Duration", "Price"].forEach((heading) => {
+      const attrs = ['class="uif-table-th"'];
+      if (sortable) attrs.push('aria-sort="none"');
+      if (resizable) attrs.push("data-resizable");
+      theadCells += `<th ${attrs.join(" ")}>${heading}</th>`;
+    });
+
+    const tbodyRows = TABLE_ROWS.map((row) => {
+      let cells = "";
+      if (hasCheckboxes) {
+        cells += '<td class="uif-table-td"><input type="checkbox" aria-label="Select row" /></td>';
+      }
+      row.forEach((cell) => {
+        cells += `<td class="uif-table-td">${cell}</td>`;
+      });
+      return `<tr class="uif-table-tr"${hasCheckboxes ? ' role="row"' : ""}>${cells}</tr>`;
+    }).join("");
+
+    const html = `<div class="uif-table-wrapper"><table ${tableAttrs.join(" ")}><thead><tr>${theadCells}</tr></thead><tbody>${tbodyRows}</tbody></table></div>`;
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    return { element: wrapper.firstElementChild, code: html };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -1210,6 +1260,7 @@
       link: renderVanillaLink,
       radio: renderVanillaRadio,
       switch: renderVanillaSwitch,
+      table: renderVanillaTable,
       textarea: renderVanillaTextarea,
       avatar: renderVanillaAvatar,
       accordion: renderVanillaAccordion,

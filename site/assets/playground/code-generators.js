@@ -292,6 +292,14 @@
         var placement = p.placement || "top";
         return '{% call uif.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="uif-button">Hover me</button>{% endcall %}';
       },
+      table: function (state) {
+        var p = state.props;
+        var parts = ['caption="Destinations"'];
+        if (p.density && p.density !== "default") parts.push('density="' + p.density + '"');
+        if (p.selection && p.selection !== "none") parts.push('selection="' + p.selection + '"');
+        if (p.sortable === true || p.sortable === "true") parts.push("sortable=true");
+        return '{% call uif.table(' + parts.join(', ') + ') %}\n  {% call uif.tableHead() %}\n    <tr>{{ uif.th("Destination", sort=' + ((p.sortable === true || p.sortable === "true") ? 'true' : 'false') + ') }}{{ uif.th("Departure") }}{{ uif.th("Duration") }}{{ uif.th("Price") }}</tr>\n  {% endcall %}\n  {% call uif.tableBody() %}\n    {{ uif.tr(["Mallorca", "15 Aug 2025", "7 nights", "£499"]) }}\n    {{ uif.tr(["Tenerife", "22 Aug 2025", "14 nights", "£799"]) }}\n  {% endcall %}\n{% endcall %}';
+      },
     },
     wc: {
       button: wcButton, input: wcInput, checkbox: wcCheckbox,
@@ -346,6 +354,9 @@
         var text = p.text || "Tooltip text";
         var placement = p.placement || "top";
         return '<uif-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="uif-button">Hover me</button>\n</uif-tooltip>';
+      },
+      table: function () {
+        return "<!-- Table is a CSS/JS pattern — no Web Component variant. Use the HTML output directly. -->";
       },
     },
   };

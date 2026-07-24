@@ -115,6 +115,18 @@ permalink: /patterns/
       <p>Inline and standalone navigation with token-driven states.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/table/">
+    <div class="docs-component-card-preview" style="justify-content: stretch;">
+      {% call uif.table(density="compact") %}
+        {% call uif.tableHead() %}<tr>{{ uif.th("Name") }}{{ uif.th("Price") }}</tr>{% endcall %}
+        {% call uif.tableBody() %}{{ uif.tr(["Mallorca", "£499"]) }}{{ uif.tr(["Tenerife", "£799"]) }}{% endcall %}
+      {% endcall %}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Table</h2>
+      <p>Structured data display with sorting, selection, sticky headers, and progressive enhancement.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/select/">
     <div class="docs-component-card-preview">
       {{ uif.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}], placeholder="Choose an option") }}

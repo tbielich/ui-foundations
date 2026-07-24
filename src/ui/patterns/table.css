@@ -1,0 +1,155 @@
+@layer components {
+  :is(.uif-table-wrapper, .table-wrapper) {
+    inline-size: 100%;
+    overflow: auto;
+    border-radius: var(--uif-table-border-radius);
+    box-shadow: inset 0 0 0 1px var(--uif-table-row-border-color);
+    background: var(--uif-table-row-background);
+  }
+
+  :is(.uif-table, .table) {
+    inline-size: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: var(--uif-table-row-background);
+    color: var(--uif-table-row-text-color);
+    font-family: var(--uif-table-font-family);
+    font-size: var(--uif-table-font-size);
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, td.uif-table-td, td.table-td, th, td) {
+    padding-block: var(--uif-table-padding-block-default);
+    padding-inline: var(--uif-table-padding-inline-default);
+    text-align: left;
+    vertical-align: middle;
+    border-block-end: 1px solid var(--uif-table-row-border-color);
+  }
+
+  :is(.uif-table, .table):is(.uif-table--compact, .table--compact)
+    :is(th.uif-table-th, th.table-th, td.uif-table-td, td.table-td, th, td) {
+    padding-block: var(--uif-table-padding-block-compact);
+    padding-inline: var(--uif-table-padding-inline-compact);
+  }
+
+  :is(.uif-table, .table):is(.uif-table--comfortable, .table--comfortable)
+    :is(th.uif-table-th, th.table-th, td.uif-table-td, td.table-td, th, td) {
+    padding-block: var(--uif-table-padding-block-default);
+    padding-inline: var(--uif-table-padding-inline-default);
+  }
+
+  :is(.uif-table, .table):is(.uif-table--spacious, .table--spacious)
+    :is(th.uif-table-th, th.table-th, td.uif-table-td, td.table-td, th, td) {
+    padding-block: var(--uif-table-padding-block-spacious);
+    padding-inline: calc(var(--uif-table-padding-inline-default) + var(--uif-table-padding-block-compact));
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th) {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
+    background: var(--uif-table-header-background);
+    color: var(--uif-table-header-text-color);
+    border-block-end-color: var(--uif-table-header-border-color);
+  }
+
+  :is(.uif-table, .table):is(.uif-table--sortable, .table--sortable)
+    :is(th.uif-table-th, th.table-th, thead th)[aria-sort] {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort] {
+    padding-inline-end: calc(var(--uif-table-padding-inline-default) + 1.5rem);
+  }
+
+  :is(.uif-table, .table):is(.uif-table--compact, .table--compact)
+    :is(th.uif-table-th, th.table-th, thead th)[aria-sort],
+  :is(.uif-table, .table):is(.uif-table--compact, .table--compact)
+    :is(th.uif-table-th, th.table-th, thead th)[data-resizable] {
+    padding-inline-end: calc(var(--uif-table-padding-inline-compact) + 1.5rem);
+  }
+
+  :is(.uif-table, .table):is(.uif-table--spacious, .table--spacious)
+    :is(th.uif-table-th, th.table-th, thead th)[aria-sort],
+  :is(.uif-table, .table):is(.uif-table--spacious, .table--spacious)
+    :is(th.uif-table-th, th.table-th, thead th)[data-resizable] {
+    padding-inline-end: calc(var(--uif-table-padding-inline-default) + var(--uif-table-padding-block-spacious));
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort]::before {
+    position: absolute;
+    inset-inline-end: var(--uif-table-padding-inline-compact);
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    color: currentColor;
+    line-height: 1;
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort="none"]::before {
+    content: "↕";
+    opacity: 0.56;
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort="ascending"]::before {
+    content: "↑";
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[aria-sort="descending"]::before {
+    content: "↓";
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[data-resizable] {
+    min-inline-size: calc(var(--uif-table-padding-inline-default) * 6);
+    inline-size: var(--runtime-table-col-width, auto);
+    width: var(--runtime-table-col-width, auto);
+  }
+
+  :is(.uif-table, .table) :is(th.uif-table-th, th.table-th, thead th)[data-resizable]::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    inline-size: 1rem;
+    cursor: col-resize;
+    background: linear-gradient(
+      to right,
+      transparent calc(50% - 0.5px),
+      var(--uif-table-header-border-color) calc(50% - 0.5px),
+      var(--uif-table-header-border-color) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
+  }
+
+  :is(.uif-table, .table)[data-selection] tbody :is(tr.uif-table-tr, tr.table-tr, tr) {
+    cursor: pointer;
+  }
+
+  :is(.uif-table, .table) tbody :is(tr.uif-table-tr, tr.table-tr, tr):hover > * {
+    background: var(--uif-table-row-background-hover);
+  }
+
+  :is(.uif-table, .table) tbody :is(tr.uif-table-tr, tr.table-tr, tr)[aria-selected="true"] > * {
+    background: var(--uif-table-row-background-selected);
+  }
+
+  :is(.uif-table, .table):focus-within :is(th.uif-table-th, th.table-th, thead th):focus-visible,
+  :is(.uif-table, .table)[data-selection] tbody :is(tr.uif-table-tr, tr.table-tr, tr):focus-visible {
+    outline: 2px solid transparent;
+    box-shadow: inset 0 0 0 1px var(--color-focus, currentColor);
+  }
+
+  :is(.uif-table-empty, .table-empty) {
+    color: var(--uif-table-row-text-color);
+    opacity: 0.72;
+    text-align: center;
+  }
+
+  :is(.uif-table-empty, .table-empty) > * {
+    text-align: center;
+  }
+
+  :is(.uif-table, .table):is(.uif-table--loading, .table--loading) tbody {
+    opacity: 0.56;
+    pointer-events: none;
+  }
+}

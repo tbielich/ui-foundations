@@ -11,6 +11,7 @@
 @import url("./patterns/avatar.css") layer(components);
 @import url("./patterns/accordion.css") layer(components);
 @import url("./patterns/tabs.css") layer(components);
+@import url("./patterns/table.css") layer(components);
 @import url("./patterns/tooltip.css") layer(components);
 @import url("./patterns/select.css") layer(components);
 @import url("./patterns/link.css") layer(components);

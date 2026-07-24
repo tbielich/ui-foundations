@@ -288,6 +288,53 @@
 <div class="{{ classes }}"{% if align != "end" %} data-align="{{ align }}"{% endif %}>{{ caller() }}</div>
 {%- endmacro %}
 
+{% macro table(density='', selection='', sortable=false, caption='', className='') -%}
+{%- set classes = "uif-table" -%}
+{%- if density and density != "default" -%}{%- set classes = classes + " uif-table--" + density -%}{%- else -%}{%- set classes = classes + " uif-table--comfortable" -%}{%- endif -%}
+{%- if sortable -%}{%- set classes = classes + " uif-table--sortable" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="uif-table-wrapper"><table class="{{ classes }}"{% if selection and selection != "none" %} data-selection="{{ selection }}"{% endif %}>
+  {%- if caption %}<caption>{{ caption }}</caption>{% endif -%}
+  {{ caller() }}
+</table></div>
+{%- endmacro %}
+
+{% macro tableHead() -%}
+<thead>{{ caller() }}</thead>
+{%- endmacro %}
+
+{% macro tableBody() -%}
+<tbody>{{ caller() }}</tbody>
+{%- endmacro %}
+
+{% macro tableFoot() -%}
+<tfoot>{{ caller() }}</tfoot>
+{%- endmacro %}
+
+{% macro th(label='', sort=false, resizable=false, className='') -%}
+{%- set classes = "uif-table-th" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<th class="{{ classes }}"{% if sort %} aria-sort="none"{% endif %}{% if resizable %} data-resizable{% endif %}>{{ label }}</th>
+{%- endmacro %}
+
+{% macro tr(cells=[], selected=false, className='') -%}
+{%- set classes = "uif-table-tr" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<tr class="{{ classes }}"{% if selected %} aria-selected="true"{% endif %}>
+  {%- if caller -%}
+    {{ caller() }}
+  {%- else -%}
+    {%- for cell in cells -%}<td class="uif-table-td">{{ cell }}</td>{%- endfor -%}
+  {%- endif -%}
+</tr>
+{%- endmacro %}
+
+{% macro td(className='') -%}
+{%- set classes = "uif-table-td" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<td class="{{ classes }}">{{ caller() }}</td>
+{%- endmacro %}
+
 {# ─── Re-export Calendar macro ────────────────────────────────────── #}
 
 {%- from "macros/calendar.njk" import calendar as _cal -%}
