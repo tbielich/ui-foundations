@@ -1259,9 +1259,9 @@
     const footerCode = showFooter
       ? `\n  <div class="uif-card-footer"><button class="uif-button solid" type="button"><span class="uif-label-content"><span class="uif-label-content-text">Action</span></span></button></div>`
       : "";
-    const selectedAttr = selected ? ' aria-selected="true"' : "";
+    const currentAttr = selected ? ' aria-selected="true"' : "";
     const tabAttr = interactive ? ' tabindex="0"' : "";
-    const code = `<article class="${quoteAttr(classes.join(" "))}"${tabAttr}${selectedAttr}>${mediaCode}\n  <div class="uif-card-header"><strong>${quoteAttr(title)}</strong></div>\n  <div class="uif-card-body"><p>${quoteAttr(body)}</p></div>${footerCode}\n</article>`;
+    const code = `<article class="${quoteAttr(classes.join(" "))}"${tabAttr}${currentAttr}>${mediaCode}\n  <div class="uif-card-header"><strong>${quoteAttr(title)}</strong></div>\n  <div class="uif-card-body"><p>${quoteAttr(body)}</p></div>${footerCode}\n</article>`;
 
     return { element: card, code };
   };

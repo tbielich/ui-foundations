@@ -302,7 +302,7 @@
 {%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 {%- if href -%}
-<a class="{{ classes }}" href="{{ href }}"{% if interactive %} role="link"{% endif %}{% if selected %} aria-pressed="true"{% endif %}>{{ caller() }}</a>
+<a class="{{ classes }}" href="{{ href }}"{% if selected %} aria-current="true"{% endif %}>{{ caller() }}</a>
 {%- else -%}
 <article class="{{ classes }}"{% if interactive %} tabindex="0"{% endif %}{% if selected %} aria-selected="true"{% endif %}>{{ caller() }}</article>
 {%- endif -%}

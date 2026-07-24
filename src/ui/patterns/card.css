@@ -32,7 +32,7 @@
   .uif-card-header {
     display: flex;
     flex-direction: column;
-    gap: var(--uif-card-gap, 0.25rem);
+    gap: var(--uif-card-gap);
     padding-block: var(--uif-card-padding-block);
     padding-inline: var(--uif-card-padding-inline);
     font-weight: var(--font-weight-600);
@@ -42,7 +42,7 @@
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    gap: var(--uif-card-gap, 0.5rem);
+    gap: var(--uif-card-gap);
     padding-block: var(--uif-card-padding-block);
     padding-inline: var(--uif-card-padding-inline);
     font-size: var(--font-size-md);
@@ -53,7 +53,7 @@
   .uif-card-footer {
     display: flex;
     align-items: center;
-    gap: var(--uif-card-gap, 0.5rem);
+    gap: var(--uif-card-gap);
     padding-block: var(--uif-card-padding-block);
     padding-inline: var(--uif-card-padding-inline);
     border-block-start: var(--uif-card-border-size-default) solid var(--uif-card-border-color-default);

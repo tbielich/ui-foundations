@@ -34,8 +34,8 @@ class UICard extends UIElement {
     const classAttr = `class="${classes.join(" ")}"`;
 
     if (href) {
-      const selectedAttr = selected ? ' aria-pressed="true"' : "";
-      this.innerHTML = `<a ${classAttr} href="${href}"${selectedAttr}>${content}</a>`;
+      const currentAttr = selected ? ' aria-current="true"' : "";
+      this.innerHTML = `<a ${classAttr} href="${href}"${currentAttr}>${content}</a>`;
     } else {
       const tabAttr = interactive ? ' tabindex="0"' : "";
       const selectedAttr = selected ? ' aria-selected="true"' : "";
