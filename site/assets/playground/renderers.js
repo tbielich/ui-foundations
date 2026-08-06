@@ -1034,6 +1034,120 @@
     return { element, code };
   };
 
+  const renderVanillaBreadcrumbs = ({ props }) => {
+    const depth = Math.max(2, Number(props.depth || 4));
+    const separator = String(props.separator || "/");
+    const collapse = String(props.collapse || "responsive");
+    const maxItems = Math.max(2, Number(props.maxItems || 4));
+
+    const labels = [
+      "Home",
+      "Category",
+      "Collection",
+      "Details",
+      "Current page with a long label",
+    ];
+
+    const items = labels.slice(0, depth).map((label, index, arr) => ({
+      label,
+      href: index === arr.length - 1 ? "" : `#${index + 1}`,
+      current: index === arr.length - 1,
+    }));
+
+    const alwaysCollapsed = collapse === "always" && items.length > maxItems;
+    const responsiveCollapse = collapse === "responsive" && items.length > 2;
+    const listClasses = ["uif-breadcrumbs-list"];
+    if (alwaysCollapsed) listClasses.push("is-collapsed");
+    if (responsiveCollapse) listClasses.push("is-responsive");
+
+    const list = document.createElement("ol");
+    list.className = listClasses.join(" ");
+    list.dataset.separator = separator;
+    list.dataset.collapse = collapse;
+
+    const renderedItems = alwaysCollapsed
+      ? [items[0], { overflow: true }, ...items.slice(-(maxItems - 1))]
+      : items;
+
+    const renderItem = (item, itemIndex, total) => {
+      const li = document.createElement("li");
+      li.className = "uif-breadcrumb-item";
+      li.dataset.separator = separator;
+
+      if (responsiveCollapse && itemIndex > 0 && itemIndex < total - 1 && !item.overflow) {
+        li.classList.add("is-middle");
+      }
+
+      if (item.overflow) {
+        li.classList.add("is-overflow");
+        const overflow = document.createElement("span");
+        overflow.className = "uif-breadcrumb-overflow";
+        overflow.setAttribute("aria-hidden", "true");
+        overflow.textContent = "…";
+        li.append(overflow);
+        return li;
+      }
+
+      if (item.current || itemIndex === total - 1) {
+        const current = document.createElement("span");
+        current.className = "uif-breadcrumb-current";
+        current.setAttribute("aria-current", "page");
+        current.textContent = item.label;
+        li.append(current);
+        return li;
+      }
+
+      const anchor = document.createElement("a");
+      anchor.className = "uif-breadcrumb-link";
+      anchor.href = item.href || "#";
+      anchor.textContent = item.label;
+      li.append(anchor);
+      return li;
+    };
+
+    renderedItems.forEach((item, index) => {
+      list.append(renderItem(item, index, renderedItems.length));
+      if (responsiveCollapse && index === 0) {
+        list.append(renderItem({ overflow: true }, index + 0.5, renderedItems.length + 1));
+      }
+    });
+
+    const nav = document.createElement("nav");
+    nav.className = "uif-breadcrumbs";
+    nav.setAttribute("aria-label", "Breadcrumb");
+    nav.append(list);
+
+    const codeLines = [
+      `<nav class="uif-breadcrumbs" aria-label="Breadcrumb">`,
+      `  <ol class="${quoteAttr(list.className)}" data-separator="${quoteAttr(separator)}" data-collapse="${quoteAttr(collapse)}">`,
+    ];
+
+    const pushCodeItem = (item, index, total) => {
+      const middleClass = responsiveCollapse && index > 0 && index < total - 1 && !item.overflow ? " is-middle" : "";
+      if (item.overflow) {
+        codeLines.push(`    <li class="uif-breadcrumb-item is-overflow" data-separator="${quoteAttr(separator)}"><span class="uif-breadcrumb-overflow" aria-hidden="true">…</span></li>`);
+        return;
+      }
+      if (item.current || index === total - 1) {
+        codeLines.push(`    <li class="uif-breadcrumb-item${middleClass}" data-separator="${quoteAttr(separator)}"><span class="uif-breadcrumb-current" aria-current="page">${quoteAttr(item.label)}</span></li>`);
+        return;
+      }
+      codeLines.push(`    <li class="uif-breadcrumb-item${middleClass}" data-separator="${quoteAttr(separator)}"><a class="uif-breadcrumb-link" href="${quoteAttr(item.href || "#")}">${quoteAttr(item.label)}</a></li>`);
+    };
+
+    renderedItems.forEach((item, index) => {
+      pushCodeItem(item, index, renderedItems.length);
+      if (responsiveCollapse && index === 0) {
+        pushCodeItem({ overflow: true }, index + 0.5, renderedItems.length + 1);
+      }
+    });
+
+    codeLines.push("  </ol>");
+    codeLines.push("</nav>");
+
+    return { element: nav, code: codeLines.join("\n") };
+  };
+
   // ─── Calendar ─────────────────────────────────────────────────────
   const renderVanillaCalendar = ({ props, meta }) => {
     const month = String(props.month || "2026-07");
@@ -1208,6 +1322,7 @@
       input: renderVanillaInput,
       label: renderVanillaLabel,
       link: renderVanillaLink,
+      breadcrumbs: renderVanillaBreadcrumbs,
       radio: renderVanillaRadio,
       switch: renderVanillaSwitch,
       textarea: renderVanillaTextarea,

@@ -145,6 +145,66 @@
 </a>
 {%- endmacro %}
 
+{% macro breadcrumbs(items=[], separator='/', collapse='responsive', maxItems=4, ariaLabel='Breadcrumb', className='') -%}
+{%- set total = items | length -%}
+{%- set resolvedCollapse = collapse if collapse == "none" or collapse == "always" or collapse == "responsive" else "responsive" -%}
+{%- set resolvedMaxItems = maxItems | int -%}
+{%- if resolvedMaxItems < 2 -%}{%- set resolvedMaxItems = 2 -%}{%- endif -%}
+{%- set shouldAlwaysCollapse = resolvedCollapse == "always" and total > resolvedMaxItems -%}
+{%- set shouldResponsiveCollapse = resolvedCollapse == "responsive" and total > 2 -%}
+{%- set listClasses = "uif-breadcrumbs-list" -%}
+{%- if shouldAlwaysCollapse -%}{%- set listClasses = listClasses + " is-collapsed" -%}{%- endif -%}
+{%- if shouldResponsiveCollapse -%}{%- set listClasses = listClasses + " is-responsive" -%}{%- endif -%}
+{%- set navClasses = "uif-breadcrumbs" -%}
+{%- if className -%}{%- set navClasses = navClasses + " " + className -%}{%- endif -%}
+<nav class="{{ navClasses }}" aria-label="{{ ariaLabel }}">
+  <ol class="{{ listClasses }}" data-separator="{{ separator }}" data-collapse="{{ resolvedCollapse }}">
+    {%- if shouldAlwaysCollapse -%}
+      {%- set first = items[0] -%}
+      {%- set tailCount = resolvedMaxItems - 1 -%}
+      {%- set tailStart = total - tailCount -%}
+      {%- if first %}
+    <li class="uif-breadcrumb-item" data-separator="{{ separator }}">
+      {%- if first.url and total > 1 -%}
+      <a class="uif-breadcrumb-link" href="{{ first.url }}">{{ first.label }}</a>
+      {%- else -%}
+      <span class="uif-breadcrumb-current" aria-current="page">{{ first.label }}</span>
+      {%- endif -%}
+    </li>
+      {%- endif -%}
+    <li class="uif-breadcrumb-item is-overflow" data-separator="{{ separator }}"><span class="uif-breadcrumb-overflow" aria-hidden="true">…</span></li>
+      {%- for item in items -%}
+        {%- if loop.index0 >= tailStart -%}
+          {%- set isCurrent = item.current or loop.last -%}
+    <li class="uif-breadcrumb-item" data-separator="{{ separator }}">
+          {%- if item.url and not isCurrent -%}
+      <a class="uif-breadcrumb-link" href="{{ item.url }}">{{ item.label }}</a>
+          {%- else -%}
+      <span class="uif-breadcrumb-current" aria-current="page">{{ item.label }}</span>
+          {%- endif -%}
+    </li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for item in items -%}
+        {%- set isCurrent = item.current or loop.last -%}
+        {%- set middle = shouldResponsiveCollapse and not loop.first and not loop.last -%}
+    <li class="uif-breadcrumb-item{% if middle %} is-middle{% endif %}" data-separator="{{ separator }}">
+        {%- if item.url and not isCurrent -%}
+      <a class="uif-breadcrumb-link" href="{{ item.url }}">{{ item.label }}</a>
+        {%- else -%}
+      <span class="uif-breadcrumb-current" aria-current="page">{{ item.label }}</span>
+        {%- endif -%}
+    </li>
+        {%- if shouldResponsiveCollapse and loop.first -%}
+    <li class="uif-breadcrumb-item is-overflow" data-separator="{{ separator }}"><span class="uif-breadcrumb-overflow" aria-hidden="true">…</span></li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </ol>
+</nav>
+{%- endmacro %}
+
 {% macro badge(text, variant='', size='', startIcon='') -%}
 {%- set classes = "uif-badge" -%}
 {%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}

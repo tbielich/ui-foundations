@@ -115,6 +115,15 @@ permalink: /patterns/
       <p>Inline and standalone navigation with token-driven states.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/breadcrumbs/">
+    <div class="docs-component-card-preview">
+      {{ uif.breadcrumbs(items=[{label: "Home", url: "/"}, {label: "Shop", url: "/shop"}, {label: "Bags", current: true}], collapse="none") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Breadcrumbs</h2>
+      <p>Hierarchical navigation with separators, truncation, and responsive collapse.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/select/">
     <div class="docs-component-card-preview">
       {{ uif.select(options=[{value: "opt1", label: "Option 1"}, {value: "opt2", label: "Option 2"}], placeholder="Choose an option") }}

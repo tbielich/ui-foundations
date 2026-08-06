@@ -24,5 +24,6 @@ export { UITabList, UITab, UITabPanel } from "./ui-tabs.js";
 export { UITooltip } from "./ui-tooltip.js";
 export { UISelect } from "./ui-select.js";
 export { UILink } from "./ui-link.js";
+export { UIBreadcrumbs } from "./ui-breadcrumbs.js";
 export { UIFieldLabel } from "./ui-label.js";
 export { UIForm, UIFormGroup, UIFormField, UIFormHelper, UIFormActions } from "./ui-form.js";
