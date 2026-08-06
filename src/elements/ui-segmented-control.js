@@ -16,7 +16,8 @@ class UISegmentedControl extends UIElement {
   render() {
     const ariaLabel = this.getAttr("aria-label");
     const size = this.getAttr("size");
-    const children = this.innerHTML;
+    const existingWrapper = this.querySelector(".uif-segmented-control");
+    const children = existingWrapper ? existingWrapper.innerHTML : this.innerHTML;
 
     const classes = ["uif-segmented-control"];
     if (size && size !== "md") classes.push(size);
