@@ -15,8 +15,26 @@ test("TreeView CSS exposes canonical UIF naming with v1 class aliases", async ()
 
 test("TreeView Figma export contains canonical tokens without legacy aliases", async () => {
   const tokenExport = await read("figma/exports/Patterns (UI).tokens.json");
-  const canonical = tokenExport.match(/var\(--uif-tree-view-/g) ?? [];
-  assert.equal(canonical.length, 14);
+  const requiredTokens = [
+    "--uif-tree-view-border-color-default",
+    "--uif-tree-view-border-size-default",
+    "--uif-tree-view-border-radius",
+    "--uif-tree-view-background-color-default",
+    "--uif-tree-view-text-color-default",
+    "--uif-tree-view-text-color-selected",
+    "--uif-tree-view-text-color-disabled",
+    "--uif-tree-view-row-background-hover",
+    "--uif-tree-view-row-background-selected",
+    "--uif-tree-view-focus-ring-color",
+    "--uif-tree-view-padding-inline",
+    "--uif-tree-view-padding-block",
+    "--uif-tree-view-indent",
+    "--uif-tree-view-gap",
+  ];
+
+  for (const tokenName of requiredTokens) {
+    assert.match(tokenExport, new RegExp(tokenName));
+  }
   assert.doesNotMatch(tokenExport, /var\(--tree-view-/);
 });
 

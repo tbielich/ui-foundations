@@ -66,8 +66,8 @@
     display: inline-block;
     inline-size: 0.5rem;
     block-size: 0.5rem;
-    border-inline-end: var(--size-border-200) solid currentColor;
-    border-block-end: var(--size-border-200) solid currentColor;
+    border-inline-end: var(--uif-tree-view-border-size-default) solid currentColor;
+    border-block-end: var(--uif-tree-view-border-size-default) solid currentColor;
     transform: rotate(-45deg);
     transition: transform 0.15s ease;
   }
@@ -78,10 +78,7 @@
   }
 
   :is(.uif-tree-label, .tree-label) {
-    font-family: var(--font-family-sans);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-500);
-    line-height: var(--line-height-md);
+    font: inherit;
   }
 
   :is(.uif-tree-children, .tree-children) {

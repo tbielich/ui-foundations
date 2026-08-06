@@ -208,7 +208,7 @@
 {%- if expanded -%}{%- set classes = classes + " is-expanded" -%}{%- endif -%}
 {%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
 {%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
-<li class="{{ classes }}" role="treeitem" tabindex="-1" aria-selected="{{ "true" if selected else "false" }}"{% if expanded or hasChildren or lazyUrl %} aria-expanded="{{ "true" if expanded else "false" }}"{% endif %}{% if id %} data-node-id="{{ id }}"{% endif %}{% if lazyUrl %} data-lazy-url="{{ lazyUrl }}"{% endif %}>
+<li class="{{ classes }}" role="treeitem" aria-selected="{{ "true" if selected else "false" }}"{% if expanded or hasChildren or lazyUrl %} aria-expanded="{{ "true" if expanded else "false" }}"{% endif %}{% if id %} data-node-id="{{ id }}"{% endif %}{% if lazyUrl %} data-lazy-url="{{ lazyUrl }}"{% endif %}>
   <div class="uif-tree-node-row" tabindex="-1">
     {% if hasChildren or lazyUrl %}<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>{% endif %}
     <span class="uif-tree-label">{{ label }}</span>
