@@ -58,6 +58,7 @@
     "./elements/ui-input": "./dist/elements/ui-input.js",
     "./elements/ui-checkbox": "./dist/elements/ui-checkbox.js",
     "./elements/ui-radio": "./dist/elements/ui-radio.js",
+    "./elements/ui-progress-circle": "./dist/elements/ui-progress-circle.js",
     "./elements/ui-switch": "./dist/elements/ui-switch.js",
     "./elements/ui-badge": "./dist/elements/ui-badge.js",
     "./elements/ui-divider": "./dist/elements/ui-divider.js",

@@ -14,6 +14,7 @@ export { UIButton, UIButtonGroup } from "./ui-button.js";
 export { UIInput } from "./ui-input.js";
 export { UICheckbox } from "./ui-checkbox.js";
 export { UIRadio } from "./ui-radio.js";
+export { UIProgressCircle } from "./ui-progress-circle.js";
 export { UISwitch } from "./ui-switch.js";
 export { UIBadge } from "./ui-badge.js";
 export { UIDivider } from "./ui-divider.js";

@@ -5780,6 +5780,148 @@
       }
     }
   },
+  "Progress Circle": {
+    "Track": {
+      "Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:1",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-circle-track-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:343",
+            "targetVariableName": "Color/Border/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Indicator": {
+      "Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:2",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-circle-indicator-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:337",
+            "targetVariableName": "Color/Fill/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Stroke": {
+      "Width": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Border/Thick"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:3",
+          "com.figma.scopes": [
+            "STROKE_FLOAT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-circle-stroke-width)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:8",
+            "targetVariableName": "Brand/Size/Border/Thick",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Size": {
+      "sm": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Spacing/600"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:4",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-circle-size-sm)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:234",
+            "targetVariableName": "Size/Spacing/600",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "md": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Spacing/700"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:5",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-circle-size-md)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:235",
+            "targetVariableName": "Size/Spacing/700",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "lg": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Spacing/800"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:6",
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-circle-size-lg)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:236",
+            "targetVariableName": "Size/Spacing/800",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    }
+  },
   "Typography": {
     "Heading": {
       "Font Family": {

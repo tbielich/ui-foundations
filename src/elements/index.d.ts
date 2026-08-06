@@ -21,6 +21,7 @@ export declare class UIButtonGroup extends UIElement {}
 export declare class UIInput extends UIElement {}
 export declare class UICheckbox extends UIElement {}
 export declare class UIRadio extends UIElement {}
+export declare class UIProgressCircle extends UIElement {}
 export declare class UISwitch extends UIElement {}
 export declare class UIBadge extends UIElement {}
 export declare class UIDivider extends UIElement {}
@@ -51,6 +52,7 @@ declare global {
     "uif-input": UIInput;
     "uif-checkbox": UICheckbox;
     "uif-radio": UIRadio;
+    "uif-progress-circle": UIProgressCircle;
     "uif-switch": UISwitch;
     "uif-badge": UIBadge;
     "uif-divider": UIDivider;

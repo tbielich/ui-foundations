@@ -36,6 +36,7 @@ by the importing consumer changes in canonical examples and generated output.
 | `<ui-input>` | `<uif-input>` |
 | `<ui-checkbox>` | `<uif-checkbox>` |
 | `<ui-radio>` | `<uif-radio>` |
+| `<ui-progress-circle>` | `<uif-progress-circle>` |
 | `<ui-switch>` | `<uif-switch>` |
 | `<ui-badge>` | `<uif-badge>` |
 | `<ui-divider>` | `<uif-divider>` |

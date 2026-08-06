@@ -14,6 +14,7 @@ const TAGS = [
   "input",
   "checkbox",
   "radio",
+  "progress-circle",
   "switch",
   "badge",
   "divider",
