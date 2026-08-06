@@ -3,7 +3,7 @@ import { UIElement, define } from "./base.js";
 let modalCounter = 0;
 
 /**
- * <uif-modal open title="Delete file?" variant="alert" size="m" dismissible="false">
+ * <uif-modal open title="Delete file?" variant="alert" size="m" confirm-label="Delete" dismissible="false">
  *   This action cannot be undone.
  * </uif-modal>
  */
@@ -34,6 +34,7 @@ class UIModal extends UIElement {
     if (this._initialContent === null) {
       this._initialContent = this.innerHTML;
     }
+    const hadFocusInside = this.contains(document.activeElement);
 
     const open = this.getBool("open");
     const variantAttr = this.getAttr("variant", "confirmation");
@@ -85,10 +86,10 @@ class UIModal extends UIElement {
   </section>
 </div>`;
 
-    this.#wireEvents({ open, dismissible });
+    this.#wireEvents({ open, dismissible, hadFocusInside });
   }
 
-  #wireEvents({ open, dismissible }) {
+  #wireEvents({ open, dismissible, hadFocusInside }) {
     const root = this.querySelector(".uif-modal-root");
     const dialog = this.querySelector(".uif-modal");
     if (!root || !dialog) return;
@@ -160,11 +161,13 @@ class UIModal extends UIElement {
         }
       });
 
-      queueMicrotask(() => {
-        const preferred = dialog.querySelector('.uif-modal-close, [data-action="confirm"], [data-action="cancel"]');
-        if (preferred instanceof HTMLElement) preferred.focus();
-        else dialog.focus();
-      });
+      if (!this._wasOpen || hadFocusInside) {
+        queueMicrotask(() => {
+          const preferred = dialog.querySelector('.uif-modal-close, [data-action="confirm"], [data-action="cancel"]');
+          if (preferred instanceof HTMLElement) preferred.focus();
+          else dialog.focus();
+        });
+      }
     } else if (this._wasOpen && this._previouslyFocused?.isConnected) {
       this._previouslyFocused.focus();
     }

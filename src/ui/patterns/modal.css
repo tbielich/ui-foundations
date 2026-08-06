@@ -110,7 +110,8 @@
   }
 
   :is(.uif-modal-close, .modal-close):focus-visible {
-    outline: 2px solid transparent;
+    outline: 2px solid var(--color-focus, currentColor);
+    outline-offset: 2px;
     box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
   }
 }

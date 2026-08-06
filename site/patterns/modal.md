@@ -56,7 +56,7 @@ playgroundLabel: Open Modal Playground
     <tr><td>variant</td><td><code>confirmation</code> / <code>alert</code></td><td><code>confirmation</code></td></tr>
     <tr><td>size</td><td><code>s</code> / <code>m</code> / <code>l</code></td><td><code>m</code></td></tr>
     <tr><td>dismissible</td><td><code>true</code> / <code>false</code></td><td><code>true</code></td></tr>
-    <tr><td>open</td><td><code>true</code> / <code>false</code></td><td><code>true</code></td></tr>
+    <tr><td>open</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
   </tbody>
 </table>
 
