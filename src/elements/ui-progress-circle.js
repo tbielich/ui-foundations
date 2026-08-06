@@ -21,6 +21,7 @@ class UIProgressCircle extends UIElement {
   render() {
     const indeterminate = this.getBool("indeterminate");
     const size = this.getAttr("size", "md");
+    const resolvedSize = size === "sm" || size === "lg" ? size : "md";
     const ariaLabel = this.getAttr("aria-label");
     const ariaLabelledby = this.getAttr("aria-labelledby");
     const rawValue = Number.parseFloat(this.getAttr("value", "0"));
@@ -35,7 +36,7 @@ class UIProgressCircle extends UIElement {
 
     const root = document.createElement("span");
     const classes = ["uif-progress-circle"];
-    if (size === "sm" || size === "lg") classes.push(size);
+    if (resolvedSize !== "md") classes.push(resolvedSize);
     if (indeterminate) classes.push("is-indeterminate");
     root.className = classes.join(" ");
     root.setAttribute("role", "progressbar");
