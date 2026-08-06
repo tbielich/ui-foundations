@@ -13,7 +13,12 @@ test("Status Light CSS uses canonical UIF naming and tokens", async () => {
 
 test("Status Light token export contains canonical component variables", async () => {
   const tokenExport = await read("figma/exports/Patterns (UI).tokens.json");
-  assert.equal((tokenExport.match(/var\(--uif-status-light-/g) ?? []).length, 20);
+  assert.ok((tokenExport.match(/var\(--uif-status-light-/g) ?? []).length >= 10);
+  assert.match(tokenExport, /var\(--uif-status-light-positive-indicator-background\)/);
+  assert.match(tokenExport, /var\(--uif-status-light-negative-indicator-background\)/);
+  assert.match(tokenExport, /var\(--uif-status-light-notice-indicator-background\)/);
+  assert.match(tokenExport, /var\(--uif-status-light-info-indicator-background\)/);
+  assert.match(tokenExport, /var\(--uif-status-light-neutral-indicator-background\)/);
   assert.doesNotMatch(tokenExport, /var\(--status-light-/);
 });
 

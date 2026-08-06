@@ -6,16 +6,24 @@ import { UIElement, define } from "./base.js";
  * Attributes:
  *   variant — "neutral" (default), "positive", "negative", "notice", "info"
  *   size    — "md" (default), "sm"
+ *   label   — optional label text override
  */
 class UIStatusLight extends UIElement {
   static get observedAttributes() {
-    return ["variant", "size"];
+    return ["variant", "size", "label"];
+  }
+
+  connectedCallback() {
+    if (typeof this._initialText === "undefined") {
+      this._initialText = this.textContent.trim();
+    }
+    super.connectedCallback();
   }
 
   render() {
     const variant = this.getAttr("variant", "neutral");
     const size = this.getAttr("size", "md");
-    const text = this.textContent.trim();
+    const text = this.getAttr("label", this._initialText);
 
     const classes = ["uif-status-light"];
     if (variant && variant !== "neutral") classes.push(variant);
