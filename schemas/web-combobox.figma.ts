@@ -29,7 +29,7 @@ figma.connect(
       aria-expanded="false"
       placeholder="${placeholder}"
       value="${value}"
-      disabled="${disabled}"
+      ${disabled ? "disabled" : ""}
     />
     <span class="uif-combobox-control">
       <span class="uif-icon" aria-hidden="true"></span>

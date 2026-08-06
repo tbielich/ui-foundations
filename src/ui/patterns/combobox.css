@@ -84,7 +84,7 @@
   }
 
   :is(.uif-combobox-control, .combobox-control) :is(.uif-icon, .icon) {
-    font-size: 1.25rem;
+    font-size: var(--uif-combobox-font-size);
   }
 
   :is(.uif-combobox, .combobox)[data-open="true"]

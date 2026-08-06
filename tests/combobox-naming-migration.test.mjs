@@ -46,6 +46,23 @@ test("ComboBox-owned emitters use canonical classes", async () => {
   for (const source of sources) assert.match(source, /uif-combobox/);
 });
 
+test("ComboBox macro and schema stay aligned with runtime filtering and public props", async () => {
+  const [macro, schema] = await Promise.all([
+    read("site/_includes/macros/ui.njk"),
+    read("schemas/web-combobox.ts"),
+  ]);
+
+  assert.match(macro, /set visibleOptions = \[\]/);
+  assert.match(macro, /normalizedQuery in haystack/);
+  assert.match(macro, /for opt in visibleOptions/);
+  assert.match(schema, /allowCustomValue\?: boolean;/);
+  assert.match(schema, /ariaLabel\?: string;/);
+  assert.match(schema, /ariaLabelledby\?: string;/);
+  assert.match(schema, /invalid\?: boolean;/);
+  assert.match(schema, /loading\?: boolean;/);
+  assert.match(schema, /name\?: string;/);
+});
+
 test("ComboBox registration and migration guide use the canonical namespace", async () => {
   const [documentation, element] = await Promise.all([
     read("MIGRATION.md"),

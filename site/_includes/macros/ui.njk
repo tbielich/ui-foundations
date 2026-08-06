@@ -288,6 +288,18 @@
 {%- if invalid -%}{%- set classes = classes + " is-invalid" -%}{%- endif -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 {%- set inputValue = query or value -%}
+{%- set normalizedQuery = inputValue|lower -%}
+{%- set exactMatch = false -%}
+{%- set visibleOptions = [] -%}
+{%- for opt in options -%}
+  {%- if inputValue and ((opt.label and opt.label|lower == inputValue|lower) or (opt.value and opt.value|lower == inputValue|lower)) -%}
+    {%- set exactMatch = true -%}
+  {%- endif -%}
+  {%- set haystack = (((opt.label or "") + "\n" + (opt.value or "") + "\n" + (opt.description or "") + "\n" + (opt.group or "") + "\n" + ((opt.keywords or [])|join("\n"))) | lower) -%}
+  {%- if not normalizedQuery or normalizedQuery in haystack -%}
+    {%- set _ = visibleOptions.push(opt) -%}
+  {%- endif -%}
+{%- endfor -%}
 <div class="{{ classes }}" data-open="{{ "true" if open else "false" }}" data-loading="{{ "true" if loading else "false" }}">
   <div class="uif-combobox-field">
     <input class="uif-combobox-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="{{ "true" if open else "false" }}"{% if id %} id="{{ id }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if inputValue %} value="{{ inputValue }}"{% endif %}{% if invalid %} aria-invalid="true"{% endif %}{% if loading %} aria-busy="true"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
@@ -303,13 +315,13 @@
   </div>
   <input class="uif-combobox-value" type="hidden"{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %} />
   <div class="uif-combobox-listbox" role="listbox"{% if not open %} hidden{% endif %}>
-    {%- for opt in options -%}
+    {%- for opt in visibleOptions -%}
     <button type="button" class="uif-combobox-option{% if opt.value == value %} is-active{% endif %}{% if opt.disabled %} is-disabled{% endif %}" role="option" aria-selected="{{ "true" if opt.value == value else "false" }}"{% if opt.disabled %} disabled{% endif %}>
       <span class="uif-combobox-option-label">{{ opt.label }}</span>
       {%- if opt.description or opt.group %}<span class="uif-combobox-option-meta">{{ opt.description or opt.group }}</span>{% endif %}
     </button>
     {%- endfor -%}
-    {%- if allowCustomValue and query and not options.length -%}
+    {%- if allowCustomValue and query and not exactMatch -%}
     <button type="button" class="uif-combobox-option" role="option" aria-selected="false">
       <span class="uif-combobox-option-label">Use “{{ query }}”</span>
       <span class="uif-combobox-option-meta">Free-form value</span>
@@ -319,7 +331,7 @@
       <span class="uif-combobox-option-label">Loading options…</span>
       <span class="uif-combobox-option-meta">Results update when loading completes.</span>
     </div>
-    {%- elif open and not options.length -%}
+    {%- elif open and not visibleOptions.length -%}
     <div class="uif-combobox-empty" role="status" aria-live="polite">
       <span class="uif-combobox-option-label">No matches found</span>
       <span class="uif-combobox-option-meta">Try a different search term.</span>

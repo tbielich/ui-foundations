@@ -41,13 +41,12 @@ export function normalizeComboBoxOptions(options = []) {
   });
 }
 
-export function filterComboBoxOptions(options, query) {
-  const normalized = normalizeComboBoxOptions(options);
+function filterNormalizedComboBoxOptions(options, query) {
   const term = String(query ?? "").trim().toLowerCase();
 
-  if (!term) return normalized;
+  if (!term) return options;
 
-  return normalized.filter((option) => {
+  return options.filter((option) => {
     const haystack = [
       option.label,
       option.value,
@@ -63,19 +62,26 @@ export function filterComboBoxOptions(options, query) {
   });
 }
 
-export function getNextComboBoxActiveIndex(options, startIndex, direction = 1) {
-  const list = normalizeComboBoxOptions(options);
-  if (!list.length) return -1;
+export function filterComboBoxOptions(options, query) {
+  return filterNormalizedComboBoxOptions(normalizeComboBoxOptions(options), query);
+}
+
+function getNextComboBoxActiveIndexFromNormalized(options, startIndex, direction = 1) {
+  if (!options.length) return -1;
 
   const step = direction < 0 ? -1 : 1;
-  let index = Number.isInteger(startIndex) ? startIndex : step < 0 ? list.length : -1;
+  let index = Number.isInteger(startIndex) ? startIndex : step < 0 ? options.length : -1;
 
-  for (let count = 0; count < list.length; count += 1) {
-    index = (index + step + list.length) % list.length;
-    if (!list[index].disabled) return index;
+  for (let count = 0; count < options.length; count += 1) {
+    index = (index + step + options.length) % options.length;
+    if (!options[index].disabled) return index;
   }
 
   return -1;
+}
+
+export function getNextComboBoxActiveIndex(options, startIndex, direction = 1) {
+  return getNextComboBoxActiveIndexFromNormalized(normalizeComboBoxOptions(options), startIndex, direction);
 }
 
 function parseChildOptions(host) {
@@ -246,7 +252,7 @@ class UIComboBox extends UIElement {
   }
 
   _visibleOptions() {
-    return filterComboBoxOptions(this._options || [], this._inputValue);
+    return filterNormalizedComboBoxOptions(this._options || [], this._inputValue);
   }
 
   _selectedOption() {
@@ -339,7 +345,7 @@ class UIComboBox extends UIElement {
         this._setValueAttribute("");
       }
       this._open = true;
-      this._activeIndex = getNextComboBoxActiveIndex(this._visibleOptions(), -1, 1);
+      this._activeIndex = getNextComboBoxActiveIndexFromNormalized(this._visibleOptions(), -1, 1);
       this._restoreFocus = true;
       this.render();
     });
@@ -348,7 +354,7 @@ class UIComboBox extends UIElement {
       if (input.disabled || this._open) return;
       this._open = true;
       if (this._activeIndex === -1) {
-        this._activeIndex = getNextComboBoxActiveIndex(this._visibleOptions(), -1, 1);
+        this._activeIndex = getNextComboBoxActiveIndexFromNormalized(this._visibleOptions(), -1, 1);
       }
       this._restoreFocus = true;
       this.render();
@@ -356,27 +362,27 @@ class UIComboBox extends UIElement {
 
     input.addEventListener("keydown", (event) => {
       const visibleOptions = this._visibleOptions();
-      const lastIndex = getNextComboBoxActiveIndex(visibleOptions, 0, -1);
+      const lastIndex = getNextComboBoxActiveIndexFromNormalized(visibleOptions, 0, -1);
 
       switch (event.key) {
         case "ArrowDown":
           event.preventDefault();
           this._open = true;
-          this._activeIndex = getNextComboBoxActiveIndex(visibleOptions, this._activeIndex, 1);
+          this._activeIndex = getNextComboBoxActiveIndexFromNormalized(visibleOptions, this._activeIndex, 1);
           this._restoreFocus = true;
           this.render();
           break;
         case "ArrowUp":
           event.preventDefault();
           this._open = true;
-          this._activeIndex = getNextComboBoxActiveIndex(visibleOptions, this._activeIndex, -1);
+          this._activeIndex = getNextComboBoxActiveIndexFromNormalized(visibleOptions, this._activeIndex, -1);
           this._restoreFocus = true;
           this.render();
           break;
         case "Home":
           if (!this._open) break;
           event.preventDefault();
-          this._activeIndex = getNextComboBoxActiveIndex(visibleOptions, -1, 1);
+          this._activeIndex = getNextComboBoxActiveIndexFromNormalized(visibleOptions, -1, 1);
           this._restoreFocus = true;
           this.render();
           break;
@@ -422,7 +428,7 @@ class UIComboBox extends UIElement {
       if (input.disabled) return;
       this._open = !this._open;
       if (this._open && this._activeIndex === -1) {
-        this._activeIndex = getNextComboBoxActiveIndex(this._visibleOptions(), -1, 1);
+        this._activeIndex = getNextComboBoxActiveIndexFromNormalized(this._visibleOptions(), -1, 1);
       }
       this._restoreFocus = true;
       this.render();
@@ -435,7 +441,7 @@ class UIComboBox extends UIElement {
         this._selectedValue = "";
         this._setValueAttribute("");
         this._open = true;
-        this._activeIndex = getNextComboBoxActiveIndex(this._visibleOptions(), -1, 1);
+        this._activeIndex = getNextComboBoxActiveIndexFromNormalized(this._visibleOptions(), -1, 1);
         this._restoreFocus = true;
         this.render();
       });
@@ -484,7 +490,7 @@ class UIComboBox extends UIElement {
     }
 
     if (this._activeIndex >= visibleOptions.length) {
-      this._activeIndex = getNextComboBoxActiveIndex(visibleOptions, -1, 1);
+      this._activeIndex = getNextComboBoxActiveIndexFromNormalized(visibleOptions, -1, 1);
     }
 
     const classes = ["uif-combobox"];
