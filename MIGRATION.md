@@ -62,6 +62,7 @@ parts follow the same prefix replacement.
 | Select | `.uif-select` | `--uif-select-*` | `<uif-select>` |
 | Switch | `.uif-switch`, `.uif-switch-field`, `.uif-switch-field-text` | `--uif-switch-*` | `<uif-switch>` |
 | Tabs | `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, `.uif-tab-panel` | `--uif-tabs-*` | `<uif-tab-list>`, `<uif-tab>`, `<uif-tab-panel>` |
+| Tag | `.uif-tag`, `.uif-tag-text`, `.uif-tag-remove`, `.uif-tag-group` | `--uif-tag-*` | `<uif-tag>`, `<uif-tag-group>` |
 | Textarea | `.uif-textarea` | `--uif-textarea-*` | `<uif-textarea>` |
 | Tooltip | `.uif-tooltip`, `.uif-tooltip-trigger` | `--uif-tooltip-*` | `<uif-tooltip>` |
 

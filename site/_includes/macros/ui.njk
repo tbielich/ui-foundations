@@ -294,3 +294,21 @@
 {%- macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='', rangeStart='', rangeEnd='') -%}
 {{- _cal(month, selectedDate, todayDate, state, disabled, container, className, id, rangeStart, rangeEnd) }}
 {%- endmacro -%}
+
+{% macro tag(text, size='', removable=false, removeLabel='Remove', selected=false, startIcon='') -%}
+{%- set classes = "uif-tag" -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+{%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
+<span class="{{ classes }}"{% if selected %} aria-selected="true"{% endif %}>
+  {%- if startIcon %}<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
+  <span class="uif-tag-text">{{ text }}</span>
+  {%- if removable %}<button type="button" class="uif-tag-remove" aria-label="{{ removeLabel }}"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg');" aria-hidden="true"></span></button>{% endif -%}
+</span>
+{%- endmacro %}
+
+{% macro tagGroup(noWrap=false, className='') -%}
+{%- set classes = "uif-tag-group" -%}
+{%- if noWrap -%}{%- set classes = classes + " no-wrap" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}" role="group">{{ caller() }}</div>
+{%- endmacro %}

@@ -1109,6 +1109,53 @@
     return { element, code };
   };
 
+  // ─── Tag ──────────────────────────────────────────────────────────
+  const renderVanillaTag = ({ props, children }) => {
+    const rawText = typeof children === "undefined" ? "Label" : String(children || "");
+    const size = String(props.size || "md");
+    const removable = asBoolean(props.removable);
+    const selected = asBoolean(props.selected);
+    const startIcon = normalizeIconName(props.startIcon);
+    const removeLabel = String(props.removeLabel || "Remove");
+
+    const element = document.createElement("span");
+    const classes = ["uif-tag"];
+    if (size === "sm") classes.push("sm");
+    if (selected) classes.push("is-selected");
+    element.className = classes.join(" ");
+    if (selected) element.setAttribute("aria-selected", "true");
+
+    if (startIcon) {
+      const icon = createIconElement({ name: startIcon, decorative: true });
+      if (icon) element.append(icon);
+    }
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "uif-tag-text";
+    textSpan.textContent = rawText;
+    element.append(textSpan);
+
+    if (removable) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "uif-tag-remove";
+      btn.setAttribute("aria-label", removeLabel);
+      const closeIcon = createIconElement({ name: "close", decorative: true });
+      if (closeIcon) btn.append(closeIcon);
+      element.append(btn);
+    }
+
+    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
+    const ariaSelected = selected ? ` aria-selected="true"` : "";
+    const iconMarkup = startIcon ? iconCode({ name: startIcon, decorative: true }) : "";
+    const removeBtnMarkup = removable
+      ? `<button type="button" class="uif-tag-remove" aria-label="${quoteAttr(removeLabel)}">${iconCode({ name: "close", decorative: true })}</button>`
+      : "";
+    const code = `<span class="${codeClasses}"${ariaSelected}>${iconMarkup}<span class="uif-tag-text">${quoteAttr(rawText)}</span>${removeBtnMarkup}</span>`;
+
+    return { element, code };
+  };
+
   // ─── Date Picker ──────────────────────────────────────────────────
   const renderVanillaDatePicker = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
@@ -1219,6 +1266,7 @@
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      tag: renderVanillaTag,
     },
   };
 })(window);
