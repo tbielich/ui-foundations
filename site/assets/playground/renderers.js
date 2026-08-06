@@ -1197,6 +1197,30 @@
     return { element, code: html };
   };
 
+  const renderVanillaSkeleton = ({ props }) => {
+    const shape = String(props.shape || "text");
+    const size = String(props.size || "md");
+    const width = String(props.width || "");
+    const animated = props.animated !== false && props.animated !== "false";
+
+    const classes = ["uif-skeleton", shape];
+    if (size === "sm") classes.push("sm");
+    if (size === "lg") classes.push("lg");
+    if (width === "short" || width === "medium") classes.push(width);
+    if (!animated) classes.push("no-animation");
+
+    const element = document.createElement("span");
+    element.className = classes.join(" ");
+    element.setAttribute("role", "status");
+    element.setAttribute("aria-label", "Loading\u2026");
+    element.setAttribute("aria-busy", "true");
+
+    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
+    const code = `<span class="${codeClasses}" role="status" aria-label="Loading\u2026" aria-busy="true"></span>`;
+
+    return { element, code };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -1219,6 +1243,7 @@
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      skeleton: renderVanillaSkeleton,
     },
   };
 })(window);

@@ -294,3 +294,12 @@
 {%- macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='', rangeStart='', rangeEnd='') -%}
 {{- _cal(month, selectedDate, todayDate, state, disabled, container, className, id, rangeStart, rangeEnd) }}
 {%- endmacro -%}
+
+{% macro skeleton(shape='text', size='', width='', animated=true) -%}
+{%- set classes = "uif-skeleton" -%}
+{%- if shape -%}{%- set classes = classes + " " + shape -%}{%- endif -%}
+{%- if size == "sm" or size == "lg" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
+{%- if width == "short" or width == "medium" -%}{%- set classes = classes + " " + width -%}{%- endif -%}
+{%- if not animated -%}{%- set classes = classes + " no-animation" -%}{%- endif -%}
+<span class="{{ classes }}" role="status" aria-label="Loading…" aria-busy="true"></span>
+{%- endmacro %}
