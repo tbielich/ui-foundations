@@ -21,6 +21,7 @@ export { UITextarea } from "./ui-textarea.js";
 export { UIAvatar } from "./ui-avatar.js";
 export { UIAccordion, UIAccordionItem } from "./ui-accordion.js";
 export { UITabList, UITab, UITabPanel } from "./ui-tabs.js";
+export { UITreeView } from "./ui-tree-view.js";
 export { UITooltip } from "./ui-tooltip.js";
 export { UISelect } from "./ui-select.js";
 export { UILink } from "./ui-link.js";

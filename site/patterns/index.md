@@ -124,6 +124,27 @@ permalink: /patterns/
       <p>Dropdown for choosing a single option from a predefined list.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/tree-view/">
+    <div class="docs-component-card-preview">
+      <ul class="uif-tree-view" role="tree" style="inline-size: 100%; max-inline-size: 18rem;">
+        <li class="uif-tree-node is-expanded is-selected" role="treeitem" aria-selected="true" aria-expanded="true">
+          <div class="uif-tree-node-row">
+            <button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>
+            <span class="uif-tree-label">Workspace</span>
+          </div>
+          <ul class="uif-tree-children" role="group">
+            <li class="uif-tree-node" role="treeitem" aria-selected="false">
+              <div class="uif-tree-node-row"><span class="uif-tree-label">Components</span></div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="docs-component-card-body">
+      <h2>TreeView</h2>
+      <p>Hierarchical tree navigation with expand/collapse, selection, and keyboard support.</p>
+    </div>
+  </a>
     </div>
   </div>
 </div>

@@ -739,6 +739,87 @@
     return { element: wrapper, code: codeLines.join("\n") };
   };
 
+  const renderVanillaTreeView = ({ props }) => {
+    const selection = String(props.selection || "single") === "multi" ? "multi" : "single";
+    const expanded = asBoolean(props.expanded);
+    const draggable = asBoolean(props.draggable);
+    const lazy = asBoolean(props.lazy);
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "uif-tree-view-demo";
+
+    const tree = document.createElement("ul");
+    tree.className = "uif-tree-view";
+    tree.setAttribute("role", "tree");
+    tree.dataset.selection = selection;
+
+    const rootA = document.createElement("li");
+    rootA.className = "uif-tree-node is-selected";
+    rootA.setAttribute("role", "treeitem");
+    rootA.setAttribute("aria-selected", "true");
+    rootA.setAttribute("aria-expanded", expanded ? "true" : "false");
+    rootA.dataset.nodeId = "root-a";
+
+    const rootARow = document.createElement("div");
+    rootARow.className = "uif-tree-node-row";
+    rootARow.tabIndex = 0;
+    rootARow.draggable = draggable;
+    rootARow.innerHTML = '<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button><span class="uif-tree-label">Projects</span>';
+    rootA.append(rootARow);
+
+    const children = document.createElement("ul");
+    children.className = "uif-tree-children";
+    children.setAttribute("role", "group");
+    children.innerHTML = '<li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-a"><div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Design system</span></div></li><li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-b"><div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Runtime package</span></div></li>';
+    rootA.append(children);
+
+    const rootB = document.createElement("li");
+    rootB.className = "uif-tree-node";
+    rootB.setAttribute("role", "treeitem");
+    rootB.setAttribute("aria-selected", "false");
+    rootB.dataset.nodeId = "root-b";
+    if (lazy) {
+      rootB.setAttribute("aria-expanded", "false");
+      rootB.setAttribute("data-lazy-url", "/api/tree-view/lazy.json");
+    }
+
+    const rootBRow = document.createElement("div");
+    rootBRow.className = "uif-tree-node-row";
+    rootBRow.tabIndex = -1;
+    rootBRow.draggable = draggable;
+    rootBRow.innerHTML = `${lazy ? '<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>' : ""}<span class="uif-tree-label">Archived</span>`;
+    rootB.append(rootBRow);
+
+    tree.append(rootA, rootB);
+    wrapper.append(tree);
+
+    const codeLines = [
+      `<uif-tree-view selection="${selection}"${draggable ? " draggable" : ""}>`,
+      `  <ul class="uif-tree-view" role="tree">`,
+      `    <li class="uif-tree-node is-selected" role="treeitem" aria-selected="true" aria-expanded="${expanded ? "true" : "false"}" data-node-id="root-a">`,
+      `      <div class="uif-tree-node-row" tabindex="0">`,
+      `        <button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>`,
+      `        <span class="uif-tree-label">Projects</span>`,
+      `      </div>`,
+      `      <ul class="uif-tree-children" role="group">`,
+      `        <li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-a">`,
+      `          <div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Design system</span></div>`,
+      `        </li>`,
+      `        <li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-b">`,
+      `          <div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Runtime package</span></div>`,
+      `        </li>`,
+      `      </ul>`,
+      `    </li>`,
+      `    <li class="uif-tree-node" role="treeitem" aria-selected="false"${lazy ? ' aria-expanded="false" data-lazy-url="/api/tree-view/lazy.json"' : ""} data-node-id="root-b">`,
+      `      <div class="uif-tree-node-row" tabindex="-1">${lazy ? '<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>' : ""}<span class="uif-tree-label">Archived</span></div>`,
+      `    </li>`,
+      `  </ul>`,
+      `</uif-tree-view>`,
+    ];
+
+    return { element: wrapper, code: codeLines.join("\n") };
+  };
+
   // ─── Divider ──────────────────────────────────
 
   const renderVanillaDivider = ({ props }) => {
@@ -1214,6 +1295,7 @@
       avatar: renderVanillaAvatar,
       accordion: renderVanillaAccordion,
       tabs: renderVanillaTabs,
+      "tree-view": renderVanillaTreeView,
       tooltip: renderVanillaTooltip,
       select: renderVanillaSelect,
       form: renderVanillaForm,

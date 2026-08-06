@@ -103,7 +103,8 @@ const VAULT_NAMING_CONTRACT = Object.freeze({
       "switch",
       "tabs",
       "textarea",
-      "tooltip"
+      "tooltip",
+      "tree-view"
     ]
   },
   "source": {
