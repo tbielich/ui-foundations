@@ -663,6 +663,70 @@
     return { element, code };
   };
 
+  const renderVanillaMenu = ({ props }) => {
+    const itemCount = Number(props.items || 4);
+    const showDivider = props.divider === "true" || props.divider === true;
+    const includeDisabled = props.disabled === "true" || props.disabled === true;
+    const includeSelected = props.selected === "true" || props.selected === true;
+    const showIcons = props.icons === "true" || props.icons === true;
+
+    const ICONS = ["✏️", "📋", "🔗", "🗑️", "⭐", "📂", "🔔", "⚙️"];
+    const wrapper = document.createElement("ul");
+    wrapper.className = "uif-menu";
+    wrapper.setAttribute("role", "menu");
+    wrapper.setAttribute("aria-label", "Options");
+
+    let codeLines = ['<ul class="uif-menu" role="menu" aria-label="Options">'];
+
+    for (let i = 0; i < itemCount; i++) {
+      const isDisabled = includeDisabled && i === itemCount - 1;
+      const isSelected = includeSelected && i === 0;
+      const dividerBefore = showDivider && i === itemCount - 1 && itemCount > 1;
+
+      if (dividerBefore) {
+        const divider = document.createElement("li");
+        divider.className = "uif-menu-divider";
+        divider.setAttribute("role", "separator");
+        wrapper.append(divider);
+        codeLines.push('  <li class="uif-menu-divider" role="separator"></li>');
+      }
+
+      const li = document.createElement("li");
+      const classes = ["uif-menu-item"];
+      if (isDisabled) classes.push("is-disabled");
+      if (isSelected) classes.push("is-selected");
+      li.className = classes.join(" ");
+      li.setAttribute("role", "menuitem");
+      li.setAttribute("tabindex", i === 0 ? "0" : "-1");
+      if (isDisabled) li.setAttribute("aria-disabled", "true");
+      if (isSelected) li.setAttribute("aria-checked", "true");
+
+      let innerCode = "";
+      if (showIcons) {
+        const iconSpan = document.createElement("span");
+        iconSpan.className = "uif-menu-item-icon";
+        iconSpan.setAttribute("aria-hidden", "true");
+        iconSpan.textContent = ICONS[i % ICONS.length];
+        li.append(iconSpan);
+        innerCode += `<span class="uif-menu-item-icon" aria-hidden="true">${ICONS[i % ICONS.length]}</span>`;
+      }
+
+      const label = isDisabled ? "Disabled item" : `Item ${i + 1}`;
+      li.append(document.createTextNode(label));
+      innerCode += label;
+      wrapper.append(li);
+
+      const attrStr = [
+        isDisabled ? ' aria-disabled="true"' : "",
+        isSelected ? ' aria-checked="true"' : "",
+      ].join("");
+      codeLines.push(`  <li class="${classes.join(" ")}" role="menuitem" tabindex="${i === 0 ? "0" : "-1"}"${attrStr}>${innerCode}</li>`);
+    }
+
+    codeLines.push("</ul>");
+    return { element: wrapper, code: codeLines.join("\n") };
+  };
+
   const renderVanillaAccordion = ({ props }) => {
     const items = Number(props.items || 3);
     const openIndex = Number(props.openIndex || 0);
@@ -1219,6 +1283,7 @@
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      menu: renderVanillaMenu,
     },
   };
 })(window);

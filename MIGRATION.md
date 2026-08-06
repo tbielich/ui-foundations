@@ -61,6 +61,7 @@ parts follow the same prefix replacement.
 | Radio | `.uif-radio`, `.uif-radio-field`, `.uif-radio-field-text` | `--uif-radio-*` | `<uif-radio>` |
 | Select | `.uif-select` | `--uif-select-*` | `<uif-select>` |
 | Switch | `.uif-switch`, `.uif-switch-field`, `.uif-switch-field-text` | `--uif-switch-*` | `<uif-switch>` |
+| Menu | `.uif-menu`, `.uif-menu-item`, `.uif-menu-section`, `.uif-menu-section-label`, `.uif-menu-divider` | `--uif-menu-*` | `<uif-menu>` |
 | Tabs | `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, `.uif-tab-panel` | `--uif-tabs-*` | `<uif-tab-list>`, `<uif-tab>`, `<uif-tab-panel>` |
 | Textarea | `.uif-textarea` | `--uif-textarea-*` | `<uif-textarea>` |
 | Tooltip | `.uif-tooltip`, `.uif-tooltip-trigger` | `--uif-tooltip-*` | `<uif-tooltip>` |
