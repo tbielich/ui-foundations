@@ -5,6 +5,16 @@
     shared.normalizeIconName || ((rawValue) => String(rawValue || "").trim());
   const asBoolean = (value) =>
     value === true || value === "true" || value === 1 || value === "1";
+  const escapeHtml = (value) =>
+    String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+  const sanitizeHref = (value) => {
+    const href = String(value || "");
+    if (!href) return "";
+    return /^(?:https?:|mailto:|tel:|\/|#)/.test(href) ? href : "#";
+  };
 
   const iconLabelFromName = (name) =>
     String(name || "")
@@ -692,7 +702,7 @@
     const heading = String(props.heading || defaults.heading);
     const description = String(props.description || defaults.description);
     const actionLabel = String(props.actionLabel || "");
-    const actionHref = String(props.actionHref || "");
+    const actionHref = sanitizeHref(props.actionHref);
     const actionVariant =
       props.actionVariant === "outline" || props.actionVariant === "ghost"
         ? String(props.actionVariant)
@@ -738,23 +748,23 @@
         actionLink.href = actionHref;
         actionLink.textContent = actionLabel;
         actions.append(actionLink);
-        actionCode = `<a class="uif-button ${quoteAttr(actionVariant)}" href="${quoteAttr(actionHref)}">${quoteAttr(actionLabel)}</a>`;
+        actionCode = `<a class="uif-button ${quoteAttr(actionVariant)}" href="${quoteAttr(actionHref)}">${escapeHtml(actionLabel)}</a>`;
       } else {
         const actionButton = document.createElement("button");
         actionButton.className = `uif-button ${actionVariant}`;
         actionButton.type = "button";
         actionButton.textContent = actionLabel;
         actions.append(actionButton);
-        actionCode = `<button class="uif-button ${quoteAttr(actionVariant)}" type="button">${quoteAttr(actionLabel)}</button>`;
+        actionCode = `<button class="uif-button ${quoteAttr(actionVariant)}" type="button">${escapeHtml(actionLabel)}</button>`;
       }
       wrapper.append(actions);
     }
 
     const headingCode = heading
-      ? `<h2 class="uif-illustrated-message-heading">${quoteAttr(heading)}</h2>`
+      ? `<h2 class="uif-illustrated-message-heading">${escapeHtml(heading)}</h2>`
       : "";
     const descriptionCode = description
-      ? `<p class="uif-illustrated-message-description">${quoteAttr(description)}</p>`
+      ? `<p class="uif-illustrated-message-description">${escapeHtml(description)}</p>`
       : "";
     const code = `<div class="uif-illustrated-message" data-preset="${quoteAttr(preset)}"><div class="uif-illustrated-message-illustration" aria-hidden="true">${iconCode({ name: illustrationIcon, decorative: true })}</div><div class="uif-illustrated-message-content">${headingCode}${descriptionCode}</div>${actionCode ? `<div class="uif-illustrated-message-actions">${actionCode}</div>` : ""}</div>`;
 

@@ -24,9 +24,17 @@ test("Illustrated Message CSS exposes canonical UIF naming with v1 class aliases
 
 test("Illustrated Message Figma export contains canonical tokens without legacy aliases", async () => {
   const tokenExport = await read("figma/exports/Patterns (UI).tokens.json");
-  const canonical = tokenExport.match(/var\(--uif-illustrated-message-/g) ?? [];
 
-  assert.equal(canonical.length, 6);
+  for (const tokenName of [
+    "--uif-illustrated-message-gap",
+    "--uif-illustrated-message-content-gap",
+    "--uif-illustrated-message-heading-text-color",
+    "--uif-illustrated-message-description-text-color",
+    "--uif-illustrated-message-illustration-color",
+    "--uif-illustrated-message-illustration-size",
+  ]) {
+    assert.match(tokenExport, new RegExp(tokenName.replaceAll("-", "\\-")));
+  }
   assert.doesNotMatch(tokenExport, /var\(--illustrated-message-/);
 });
 

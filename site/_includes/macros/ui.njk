@@ -198,8 +198,13 @@
 {%- set resolvedDescription = description or defaultDescription -%}
 {%- set resolvedIcon = illustrationIcon or defaultIcon -%}
 {%- set resolvedActionVariant = actionVariant if actionVariant == "outline" or actionVariant == "ghost" else "solid" -%}
+{%- set resolvedActionHref = "#" -%}
+{%- if actionHref and (actionHref.startsWith("https://") or actionHref.startsWith("http://") or actionHref.startsWith("mailto:") or actionHref.startsWith("tel:") or actionHref.startsWith("/") or actionHref.startsWith("#")) -%}
+  {%- set resolvedActionHref = actionHref -%}
+{%- endif -%}
 {%- set classes = "uif-illustrated-message" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{# illustrationHtml/actionHtml are trusted author markup hooks, not user-content sinks. #}
 <div class="{{ classes }}" data-preset="{{ resolvedPreset }}">
   <div class="uif-illustrated-message-illustration" aria-hidden="true">
     {%- if illustrationHtml -%}{{ illustrationHtml | safe }}{%- else -%}<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ resolvedIcon }}.svg');" aria-hidden="true"></span>{%- endif -%}
@@ -210,7 +215,7 @@
   </div>
   {%- if actionHtml or actionLabel -%}
   <div class="uif-illustrated-message-actions">
-    {%- if actionHtml -%}{{ actionHtml | safe }}{%- elif actionHref -%}<a class="uif-button {{ resolvedActionVariant }}" href="{{ actionHref }}">{{ actionLabel }}</a>{%- else -%}<button class="uif-button {{ resolvedActionVariant }}" type="button">{{ actionLabel }}</button>{%- endif -%}
+    {%- if actionHtml -%}{{ actionHtml | safe }}{%- elif actionHref -%}<a class="uif-button {{ resolvedActionVariant }}" href="{{ resolvedActionHref }}">{{ actionLabel }}</a>{%- else -%}<button class="uif-button {{ resolvedActionVariant }}" type="button">{{ actionLabel }}</button>{%- endif -%}
   </div>
   {%- endif %}
 </div>
