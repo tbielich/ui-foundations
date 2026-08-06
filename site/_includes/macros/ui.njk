@@ -100,6 +100,26 @@
 </label>
 {%- endmacro %}
 
+{% macro notification(message='Notification', variant='info', dismissible=true, actionLabel='', actionHref='#', duration=0, role='', live='') -%}
+{%- set resolvedVariant = variant if variant in ["info", "success", "warning", "error"] else "info" -%}
+{%- set resolvedRole = role if role else ("alert" if resolvedVariant == "error" else "status") -%}
+{%- set resolvedLive = live if live else ("assertive" if resolvedVariant == "error" else "polite") -%}
+<div class="uif-notification {{ resolvedVariant }}" role="{{ resolvedRole }}" aria-live="{{ resolvedLive }}"{% if duration %} data-duration="{{ duration }}"{% endif %}>
+  <span class="uif-notification-icon" aria-hidden="true"></span>
+  <div class="uif-notification-content">
+    <p class="uif-notification-message">{{ message }}</p>
+    {%- if actionLabel %}<a class="uif-notification-action" href="{{ actionHref }}">{{ actionLabel }}</a>{% endif -%}
+  </div>
+  {%- if dismissible %}<button type="button" class="uif-notification-dismiss" aria-label="Dismiss notification">×</button>{% endif -%}
+</div>
+{%- endmacro %}
+
+{% macro notificationStack(className='') -%}
+{%- set classes = "uif-notification-stack" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}
+
 {% macro colorChip(token) -%}
 <div class="swatch" style="--swatch-color: var({{ token.cssVar }})">
   <span class="swatch-name">{{ token.name }}</span>

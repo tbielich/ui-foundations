@@ -25,6 +25,7 @@ const TAGS = [
   "tab",
   "tab-panel",
   "tooltip",
+  "notification",
   "select",
   "link",
   "field-label",

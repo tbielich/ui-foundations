@@ -292,6 +292,22 @@
         var placement = p.placement || "top";
         return '{% call uif.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="uif-button">Hover me</button>{% endcall %}';
       },
+      notification: function (state) {
+        var p = state.props;
+        var message = p.message || "Notification";
+        var variant = p.variant || "info";
+        var dismissible = p.dismissible === true || p.dismissible === "true";
+        var actionLabel = p.actionLabel || "";
+        var actionHref = p.actionHref || "#";
+        var duration = Number.parseInt(p.duration || 0, 10);
+        var attrs = ['"' + quoteAttr(message) + '"'];
+        if (variant !== "info") attrs.push('variant="' + quoteAttr(variant) + '"');
+        if (!dismissible) attrs.push("dismissible=false");
+        if (actionLabel) attrs.push('actionLabel="' + quoteAttr(actionLabel) + '"');
+        if (actionLabel && actionHref !== "#") attrs.push('actionHref="' + quoteAttr(actionHref) + '"');
+        if (duration > 0) attrs.push("duration=" + String(duration));
+        return "{{ uif.notification(" + attrs.join(", ") + ") }}";
+      },
     },
     wc: {
       button: wcButton, input: wcInput, checkbox: wcCheckbox,
@@ -346,6 +362,22 @@
         var text = p.text || "Tooltip text";
         var placement = p.placement || "top";
         return '<uif-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="uif-button">Hover me</button>\n</uif-tooltip>';
+      },
+      notification: function (state) {
+        var p = state.props;
+        var message = p.message || "Notification";
+        var variant = p.variant || "info";
+        var dismissible = p.dismissible === true || p.dismissible === "true";
+        var actionLabel = p.actionLabel || "";
+        var actionHref = p.actionHref || "#";
+        var duration = Number.parseInt(p.duration || 0, 10);
+        var attrs = ['message="' + quoteAttr(message) + '"'];
+        if (variant !== "info") attrs.push('variant="' + quoteAttr(variant) + '"');
+        if (dismissible) attrs.push("dismissible");
+        if (actionLabel) attrs.push('action-label="' + quoteAttr(actionLabel) + '"');
+        if (actionLabel || actionHref !== "#") attrs.push('action-href="' + quoteAttr(actionHref) + '"');
+        if (duration > 0) attrs.push('duration="' + duration + '"');
+        return "<uif-notification " + attrs.join(" ") + "></uif-notification>";
       },
     },
   };

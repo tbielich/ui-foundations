@@ -106,6 +106,15 @@ permalink: /patterns/
       <p>Binary toggle for immediate on/off settings.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/notification/">
+    <div class="docs-component-card-preview">
+      {{ uif.notification("Profile updated", "success", false) }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Notification</h2>
+      <p>Transient status messages with variants, actions, and auto-dismiss support.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/link/">
     <div class="docs-component-card-preview">
       <span class="uif-link">Learn more</span>

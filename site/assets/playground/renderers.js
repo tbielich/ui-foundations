@@ -975,6 +975,67 @@
     return { element: trigger, code };
   };
 
+  const renderVanillaNotification = ({ props }) => {
+    const allowedVariants = new Set(["info", "success", "warning", "error"]);
+    const variantRaw = String(props.variant || "info").toLowerCase();
+    const variant = allowedVariants.has(variantRaw) ? variantRaw : "info";
+    const message = String(props.message || "Notification");
+    const actionLabel = String(props.actionLabel || "");
+    const actionHref = String(props.actionHref || "#");
+    const dismissible = asBoolean(props.dismissible);
+    const durationValue = Number.parseInt(String(props.duration || "0"), 10);
+    const duration =
+      Number.isFinite(durationValue) && durationValue > 0 ? durationValue : 0;
+    const role = variant === "error" ? "alert" : "status";
+    const ariaLive = variant === "error" ? "assertive" : "polite";
+
+    const element = document.createElement("div");
+    element.className = `uif-notification ${variant}`;
+    element.setAttribute("role", role);
+    element.setAttribute("aria-live", ariaLive);
+    if (duration > 0) element.setAttribute("data-duration", String(duration));
+
+    const icon = document.createElement("span");
+    icon.className = "uif-notification-icon";
+    icon.setAttribute("aria-hidden", "true");
+    element.append(icon);
+
+    const content = document.createElement("div");
+    content.className = "uif-notification-content";
+    const messageNode = document.createElement("p");
+    messageNode.className = "uif-notification-message";
+    messageNode.textContent = message;
+    content.append(messageNode);
+
+    if (actionLabel) {
+      const action = document.createElement("a");
+      action.className = "uif-notification-action";
+      action.href = actionHref;
+      action.textContent = actionLabel;
+      content.append(action);
+    }
+
+    element.append(content);
+
+    if (dismissible) {
+      const dismiss = document.createElement("button");
+      dismiss.type = "button";
+      dismiss.className = "uif-notification-dismiss";
+      dismiss.setAttribute("aria-label", "Dismiss notification");
+      dismiss.textContent = "×";
+      element.append(dismiss);
+    }
+
+    const code = `<div class="${quoteAttr(element.className)}" role="${role}" aria-live="${ariaLive}"${duration > 0 ? ` data-duration="${duration}"` : ""}>
+  <span class="uif-notification-icon" aria-hidden="true"></span>
+  <div class="uif-notification-content">
+    <p class="uif-notification-message">${quoteAttr(message)}</p>${actionLabel ? `\n    <a class="uif-notification-action" href="${quoteAttr(actionHref)}">${quoteAttr(actionLabel)}</a>` : ""}
+  </div>${dismissible ? '\n  <button type="button" class="uif-notification-dismiss" aria-label="Dismiss notification">×</button>' : ""}
+</div>`;
+
+    return { element, code };
+  };
+
   const renderVanillaLink = ({ props, children, meta }) => {
     const previewState = String(meta.state || "default");
     const rawText =
@@ -1215,6 +1276,7 @@
       accordion: renderVanillaAccordion,
       tabs: renderVanillaTabs,
       tooltip: renderVanillaTooltip,
+      notification: renderVanillaNotification,
       select: renderVanillaSelect,
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
