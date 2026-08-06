@@ -44,7 +44,7 @@ playground:
       name: actionHref
       label: Action href
       query: true
-      default: "#"
+      default: ""
     - kind: boolean
       name: dismissible
       label: Dismissible

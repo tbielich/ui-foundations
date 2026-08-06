@@ -100,15 +100,15 @@
 </label>
 {%- endmacro %}
 
-{% macro notification(message='Notification', variant='info', dismissible=true, actionLabel='', actionHref='#', duration=0, role='', live='') -%}
+{% macro notification(message='Notification', variant='info', dismissible=true, actionLabel='', actionHref='', duration=0, role='', live='') -%}
 {%- set resolvedVariant = variant if variant in ["info", "success", "warning", "error"] else "info" -%}
 {%- set resolvedRole = role if role else ("alert" if resolvedVariant == "error" else "status") -%}
 {%- set resolvedLive = live if live else ("assertive" if resolvedVariant == "error" else "polite") -%}
-<div class="uif-notification {{ resolvedVariant }}" role="{{ resolvedRole }}" aria-live="{{ resolvedLive }}"{% if duration %} data-duration="{{ duration }}"{% endif %}>
+<div class="uif-notification{% if resolvedVariant != "info" %} is-{{ resolvedVariant }}{% endif %}" role="{{ resolvedRole }}" aria-live="{{ resolvedLive }}"{% if duration %} data-duration="{{ duration }}"{% endif %}>
   <span class="uif-notification-icon" aria-hidden="true"></span>
   <div class="uif-notification-content">
     <p class="uif-notification-message">{{ message }}</p>
-    {%- if actionLabel %}<a class="uif-notification-action" href="{{ actionHref }}">{{ actionLabel }}</a>{% endif -%}
+    {%- if actionLabel and actionHref %}<a class="uif-notification-action" href="{{ actionHref }}">{{ actionLabel }}</a>{% elif actionLabel %}<button type="button" class="uif-notification-action">{{ actionLabel }}</button>{% endif -%}
   </div>
   {%- if dismissible %}<button type="button" class="uif-notification-dismiss" aria-label="Dismiss notification">×</button>{% endif -%}
 </div>

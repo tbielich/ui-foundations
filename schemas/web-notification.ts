@@ -5,5 +5,6 @@ export interface NotificationProps {
   message: string;
   actionLabel: string;
   actionHref: string;
+  duration: string;
   dismissible: boolean;
 }

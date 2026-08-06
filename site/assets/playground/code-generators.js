@@ -296,15 +296,15 @@
         var p = state.props;
         var message = p.message || "Notification";
         var variant = p.variant || "info";
-        var dismissible = p.dismissible === true || p.dismissible === "true";
+        var dismissible = !(p.dismissible === false || p.dismissible === "false");
         var actionLabel = p.actionLabel || "";
-        var actionHref = p.actionHref || "#";
+        var actionHref = p.actionHref || "";
         var duration = Number.parseInt(p.duration || 0, 10);
         var attrs = ['"' + quoteAttr(message) + '"'];
         if (variant !== "info") attrs.push('variant="' + quoteAttr(variant) + '"');
         if (!dismissible) attrs.push("dismissible=false");
         if (actionLabel) attrs.push('actionLabel="' + quoteAttr(actionLabel) + '"');
-        if (actionLabel && actionHref !== "#") attrs.push('actionHref="' + quoteAttr(actionHref) + '"');
+        if (actionLabel && actionHref) attrs.push('actionHref="' + quoteAttr(actionHref) + '"');
         if (duration > 0) attrs.push("duration=" + String(duration));
         return "{{ uif.notification(" + attrs.join(", ") + ") }}";
       },
@@ -367,15 +367,15 @@
         var p = state.props;
         var message = p.message || "Notification";
         var variant = p.variant || "info";
-        var dismissible = p.dismissible === true || p.dismissible === "true";
+        var dismissible = !(p.dismissible === false || p.dismissible === "false");
         var actionLabel = p.actionLabel || "";
-        var actionHref = p.actionHref || "#";
+        var actionHref = p.actionHref || "";
         var duration = Number.parseInt(p.duration || 0, 10);
         var attrs = ['message="' + quoteAttr(message) + '"'];
         if (variant !== "info") attrs.push('variant="' + quoteAttr(variant) + '"');
         if (dismissible) attrs.push("dismissible");
         if (actionLabel) attrs.push('action-label="' + quoteAttr(actionLabel) + '"');
-        if (actionLabel || actionHref !== "#") attrs.push('action-href="' + quoteAttr(actionHref) + '"');
+        if (actionLabel && actionHref) attrs.push('action-href="' + quoteAttr(actionHref) + '"');
         if (duration > 0) attrs.push('duration="' + duration + '"');
         return "<uif-notification " + attrs.join(" ") + "></uif-notification>";
       },

@@ -8,10 +8,10 @@ figma.connect(
       className: figma.className([
         "uif-notification",
         figma.enum("Variant", {
-          Info: "info",
-          Success: "success",
-          Warning: "warning",
-          Error: "error",
+          Info: undefined,
+          Success: "is-success",
+          Warning: "is-warning",
+          Error: "is-error",
         }),
       ]),
       role: figma.enum("Variant", {
@@ -29,6 +29,7 @@ figma.connect(
       message: figma.string("Message"),
       actionLabel: figma.string("Action Label"),
       actionHref: figma.string("Action Href"),
+      duration: figma.string("Duration"),
       dismissible: figma.boolean("Dismissible"),
     },
     example: ({
@@ -38,13 +39,16 @@ figma.connect(
       message,
       actionLabel,
       actionHref,
+      duration,
       dismissible,
-    }: NotificationProps) => html`<div class="${className}" role="${role}" aria-live="${ariaLive}">
+    }: NotificationProps) => html`<div class="${className}" role="${role}" aria-live="${ariaLive}"${duration ? ` data-duration="${duration}"` : ""}>
       <span class="uif-notification-icon" aria-hidden="true"></span>
       <div class="uif-notification-content">
         <p class="uif-notification-message">${message}</p>
         ${actionLabel
-          ? html`<a class="uif-notification-action" href="${actionHref}">${actionLabel}</a>`
+          ? actionHref
+            ? html`<a class="uif-notification-action" href="${actionHref}">${actionLabel}</a>`
+            : html`<button type="button" class="uif-notification-action">${actionLabel}</button>`
           : ""}
       </div>
       ${dismissible

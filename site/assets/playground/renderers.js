@@ -981,7 +981,10 @@
     const variant = allowedVariants.has(variantRaw) ? variantRaw : "info";
     const message = String(props.message || "Notification");
     const actionLabel = String(props.actionLabel || "");
-    const actionHref = String(props.actionHref || "#");
+    const actionHref = String(props.actionHref || "");
+    const safeActionHref = /^(https?:\/\/|\/|#)/i.test(actionHref)
+      ? actionHref
+      : "";
     const dismissible = asBoolean(props.dismissible);
     const durationValue = Number.parseInt(String(props.duration || "0"), 10);
     const duration =
@@ -990,7 +993,8 @@
     const ariaLive = variant === "error" ? "assertive" : "polite";
 
     const element = document.createElement("div");
-    element.className = `uif-notification ${variant}`;
+    element.className =
+      variant === "info" ? "uif-notification" : `uif-notification is-${variant}`;
     element.setAttribute("role", role);
     element.setAttribute("aria-live", ariaLive);
     if (duration > 0) element.setAttribute("data-duration", String(duration));
@@ -1008,9 +1012,10 @@
     content.append(messageNode);
 
     if (actionLabel) {
-      const action = document.createElement("a");
+      const action = document.createElement(safeActionHref ? "a" : "button");
       action.className = "uif-notification-action";
-      action.href = actionHref;
+      if (safeActionHref) action.href = safeActionHref;
+      if (!safeActionHref) action.type = "button";
       action.textContent = actionLabel;
       content.append(action);
     }
@@ -1023,13 +1028,14 @@
       dismiss.className = "uif-notification-dismiss";
       dismiss.setAttribute("aria-label", "Dismiss notification");
       dismiss.textContent = "×";
+      dismiss.addEventListener("click", () => element.remove(), { once: true });
       element.append(dismiss);
     }
 
     const code = `<div class="${quoteAttr(element.className)}" role="${role}" aria-live="${ariaLive}"${duration > 0 ? ` data-duration="${duration}"` : ""}>
   <span class="uif-notification-icon" aria-hidden="true"></span>
   <div class="uif-notification-content">
-    <p class="uif-notification-message">${quoteAttr(message)}</p>${actionLabel ? `\n    <a class="uif-notification-action" href="${quoteAttr(actionHref)}">${quoteAttr(actionLabel)}</a>` : ""}
+    <p class="uif-notification-message">${quoteAttr(message)}</p>${actionLabel ? `\n    ${safeActionHref ? `<a class="uif-notification-action" href="${quoteAttr(safeActionHref)}">${quoteAttr(actionLabel)}</a>` : `<button type="button" class="uif-notification-action">${quoteAttr(actionLabel)}</button>`}` : ""}
   </div>${dismissible ? '\n  <button type="button" class="uif-notification-dismiss" aria-label="Dismiss notification">×</button>' : ""}
 </div>`;
 

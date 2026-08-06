@@ -13,26 +13,22 @@
     inline-size: min(100%, 32rem);
     padding: var(--size-spacing-300) var(--size-spacing-400);
     border: var(--size-border-100) solid var(--uif-notification-container-border-color-default);
-    border-inline-start-width: var(--size-border-400);
+    border-inline-start-width: var(--size-border-200);
     border-inline-start-color: var(--_notification-accent-color);
     border-radius: var(--size-radius-200);
     background: var(--uif-notification-container-background-default);
     color: var(--uif-notification-text-color-default);
   }
 
-  :is(.uif-notification, .notification).info {
-    --_notification-accent-color: var(--uif-notification-accent-color-info);
-  }
-
-  :is(.uif-notification, .notification).success {
+  :is(.uif-notification, .notification).is-success {
     --_notification-accent-color: var(--uif-notification-accent-color-success);
   }
 
-  :is(.uif-notification, .notification).warning {
+  :is(.uif-notification, .notification).is-warning {
     --_notification-accent-color: var(--uif-notification-accent-color-warning);
   }
 
-  :is(.uif-notification, .notification).error {
+  :is(.uif-notification, .notification).is-error {
     --_notification-accent-color: var(--uif-notification-accent-color-error);
   }
 
@@ -55,6 +51,11 @@
   }
 
   :is(.uif-notification-action, .notification-action) {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
     color: var(--uif-notification-action-text-color-default);
     text-decoration: underline;
     text-underline-offset: 0.12em;

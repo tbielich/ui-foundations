@@ -17,6 +17,7 @@ class UINotification extends UIElement {
   constructor() {
     super();
     this._dismissTimer = null;
+    this._root = null;
   }
 
   disconnectedCallback() {
@@ -33,7 +34,7 @@ class UINotification extends UIElement {
     const message = this.getAttr("message", "Notification");
     const dismissible = this.getBool("dismissible");
     const actionLabel = this.getAttr("action-label");
-    const actionHref = this.getAttr("action-href", "#");
+    const actionHref = this.getAttr("action-href");
     const role = this.getAttr("role", variant === "error" ? "alert" : "status");
     const ariaLive = this.getAttr(
       "aria-live",
@@ -44,12 +45,18 @@ class UINotification extends UIElement {
     const duration = Number.isFinite(durationValue) && durationValue > 0
       ? durationValue
       : 0;
+    const safeActionHref = /^(https?:\/\/|\/|#)/i.test(actionHref)
+      ? actionHref
+      : "";
 
-    this.textContent = "";
+    if (this.getAttribute("role") !== role) this.setAttribute("role", role);
+    if (this.getAttribute("aria-live") !== ariaLive) {
+      this.setAttribute("aria-live", ariaLive);
+    }
+
     const root = document.createElement("div");
-    root.className = `uif-notification ${variant}`;
-    root.setAttribute("role", role);
-    root.setAttribute("aria-live", ariaLive);
+    root.className =
+      variant === "info" ? "uif-notification" : `uif-notification is-${variant}`;
 
     const icon = document.createElement("span");
     icon.className = "uif-notification-icon";
@@ -65,9 +72,10 @@ class UINotification extends UIElement {
     content.append(messageNode);
 
     if (actionLabel) {
-      const action = document.createElement("a");
+      const action = document.createElement(safeActionHref ? "a" : "button");
       action.className = "uif-notification-action";
-      action.href = actionHref;
+      if (safeActionHref) action.href = safeActionHref;
+      if (!safeActionHref) action.type = "button";
       action.textContent = actionLabel;
       content.append(action);
     }
@@ -84,7 +92,12 @@ class UINotification extends UIElement {
       root.append(dismissButton);
     }
 
-    this.append(root);
+    if (this._root && this._root.parentNode === this) {
+      this.replaceChild(root, this._root);
+    } else {
+      this.append(root);
+    }
+    this._root = root;
 
     if (this._dismissTimer) {
       clearTimeout(this._dismissTimer);
