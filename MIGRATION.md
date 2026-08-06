@@ -64,6 +64,7 @@ parts follow the same prefix replacement.
 | Tabs | `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, `.uif-tab-panel` | `--uif-tabs-*` | `<uif-tab-list>`, `<uif-tab>`, `<uif-tab-panel>` |
 | Textarea | `.uif-textarea` | `--uif-textarea-*` | `<uif-textarea>` |
 | Tooltip | `.uif-tooltip`, `.uif-tooltip-trigger` | `--uif-tooltip-*` | `<uif-tooltip>` |
+| Popover | `.uif-popover`, `.uif-popover-container` | `--uif-popover-*` | `<uif-popover>` |
 
 For every token-bearing family, Figma `codeSyntax.WEB` is the naming source and
 generated `dist/` files must be regenerated rather than edited directly.

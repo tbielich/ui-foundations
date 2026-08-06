@@ -6826,5 +6826,145 @@
         }
       }
     }
+  },
+  "Popover": {
+    "Text": {
+      "Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:1",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-popover-text-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:326",
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Container": {
+      "Background Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:2",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-popover-container-background-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:3",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-popover-container-border-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:342",
+            "targetVariableName": "Color/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Border": {
+      "Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Corner/Container"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4001:4",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-popover-border-radius)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3032:2244",
+            "targetVariableName": "Brand/Corner/Container",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Padding Inline": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Comfortable"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4001:5",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-popover-padding-inline)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:4",
+          "targetVariableName": "Brand/Size/Spacing/Comfortable",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Padding Block": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Component"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4001:6",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-popover-padding-block)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:3",
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    }
   }
 }

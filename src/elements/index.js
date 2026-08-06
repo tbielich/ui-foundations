@@ -22,6 +22,7 @@ export { UIAvatar } from "./ui-avatar.js";
 export { UIAccordion, UIAccordionItem } from "./ui-accordion.js";
 export { UITabList, UITab, UITabPanel } from "./ui-tabs.js";
 export { UITooltip } from "./ui-tooltip.js";
+export { UIPopover } from "./ui-popover.js";
 export { UISelect } from "./ui-select.js";
 export { UILink } from "./ui-link.js";
 export { UIFieldLabel } from "./ui-label.js";
