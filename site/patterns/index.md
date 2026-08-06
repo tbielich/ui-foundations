@@ -56,6 +56,15 @@ permalink: /patterns/
       <p>Pill-shaped labels for status, counts, or highlights.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/meter/">
+    <div class="docs-component-card-preview" style="min-inline-size: 12rem;">
+      {{ uif.meter(label="Storage used", value=72, variant="positive", size="sm") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Meter</h2>
+      <p>Visual indicator of a value within a known range.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/label/">
     <div class="docs-component-card-preview">
       <span class="uif-label-content">

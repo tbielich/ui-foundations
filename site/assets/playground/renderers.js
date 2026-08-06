@@ -607,6 +607,60 @@
     return { element, code };
   };
 
+  const renderVanillaMeter = ({ props }) => {
+    const label = String(props.label || "Storage used");
+    const min = Number.isFinite(Number(props.min)) ? Number(props.min) : 0;
+    const maxRaw = Number.isFinite(Number(props.max)) ? Number(props.max) : 100;
+    const max = maxRaw <= min ? min + 1 : maxRaw;
+    const valueRaw = Number.isFinite(Number(props.value)) ? Number(props.value) : 0;
+    const value = Math.min(max, Math.max(min, valueRaw));
+    const variant = String(props.variant || "default");
+    const size = String(props.size || "md");
+    const resolvedValueText = String(props.valueText || "").trim();
+    const percent = Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
+    const valueText = resolvedValueText || `${Math.round(percent)}%`;
+
+    const element = document.createElement("div");
+    const classes = ["uif-meter"];
+    if (variant && variant !== "default") classes.push(variant);
+    if (size === "sm") classes.push("sm");
+    element.className = classes.join(" ");
+
+    const header = document.createElement("div");
+    header.className = "uif-meter-header";
+
+    const labelNode = document.createElement("span");
+    labelNode.className = "uif-meter-label";
+    labelNode.textContent = label;
+
+    const valueNode = document.createElement("span");
+    valueNode.className = "uif-meter-value";
+    valueNode.textContent = valueText;
+
+    header.append(labelNode, valueNode);
+
+    const track = document.createElement("div");
+    track.className = "uif-meter-track";
+    track.setAttribute("role", "meter");
+    track.setAttribute("aria-label", label);
+    track.setAttribute("aria-valuemin", String(min));
+    track.setAttribute("aria-valuemax", String(max));
+    track.setAttribute("aria-valuenow", String(value));
+    track.setAttribute("aria-valuetext", valueText);
+
+    const fill = document.createElement("span");
+    fill.className = "uif-meter-fill";
+    fill.style.inlineSize = `${percent}%`;
+    track.append(fill);
+
+    element.append(header, track);
+
+    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
+    const code = `<div class="${codeClasses}"><div class="uif-meter-header"><span class="uif-meter-label">${quoteAttr(label)}</span><span class="uif-meter-value">${quoteAttr(valueText)}</span></div><div class="uif-meter-track" role="meter" aria-label="${quoteAttr(label)}" aria-valuemin="${quoteAttr(min)}" aria-valuemax="${quoteAttr(max)}" aria-valuenow="${quoteAttr(value)}" aria-valuetext="${quoteAttr(valueText)}"><span class="uif-meter-fill" style="inline-size: ${quoteAttr(percent)}%;"></span></div></div>`;
+
+    return { element, code };
+  };
+
   const renderVanillaTextarea = ({ props }) => {
     const placeholder = String(props.placeholder || "");
     const value = String(props.value || "");
@@ -1200,6 +1254,7 @@
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
+      meter: renderVanillaMeter,
       button: renderVanillaButton,
       "button-group": renderVanillaButtonGroup,
       checkbox: renderVanillaCheckbox,

@@ -16,6 +16,7 @@ export { UICheckbox } from "./ui-checkbox.js";
 export { UIRadio } from "./ui-radio.js";
 export { UISwitch } from "./ui-switch.js";
 export { UIBadge } from "./ui-badge.js";
+export { UIMeter } from "./ui-meter.js";
 export { UIDivider } from "./ui-divider.js";
 export { UITextarea } from "./ui-textarea.js";
 export { UIAvatar } from "./ui-avatar.js";

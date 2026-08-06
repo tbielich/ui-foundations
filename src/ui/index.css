@@ -6,6 +6,7 @@
 @import url("./patterns/radio.css") layer(components);
 @import url("./patterns/switch.css") layer(components);
 @import url("./patterns/badge.css") layer(components);
+@import url("./patterns/meter.css") layer(components);
 @import url("./patterns/divider.css") layer(components);
 @import url("./patterns/textarea.css") layer(components);
 @import url("./patterns/avatar.css") layer(components);

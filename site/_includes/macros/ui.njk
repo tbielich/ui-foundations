@@ -155,6 +155,26 @@
 </span>
 {%- endmacro %}
 
+{% macro meter(label='Storage used', value=72, min=0, max=100, variant='default', size='md', valueText='') -%}
+{%- set classes = "uif-meter" -%}
+{%- if variant and variant != "default" -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+{%- set range = (max - min) if (max - min) > 0 else 1 -%}
+{%- set normalized = (((value - min) / range) * 100) -%}
+{%- if normalized < 0 -%}{%- set normalized = 0 -%}{%- endif -%}
+{%- if normalized > 100 -%}{%- set normalized = 100 -%}{%- endif -%}
+{%- set displayValue = valueText if valueText else (normalized | round(0, "floor")) ~ "%" -%}
+<div class="{{ classes }}">
+  <div class="uif-meter-header">
+    <span class="uif-meter-label">{{ label }}</span>
+    <span class="uif-meter-value">{{ displayValue }}</span>
+  </div>
+  <div class="uif-meter-track" role="meter" aria-label="{{ label }}" aria-valuemin="{{ min }}" aria-valuemax="{{ max }}" aria-valuenow="{{ value }}" aria-valuetext="{{ displayValue }}">
+    <span class="uif-meter-fill" style="inline-size: {{ normalized }}%;"></span>
+  </div>
+</div>
+{%- endmacro %}
+
 {% macro divider(orientation='horizontal', variant='', className='') -%}
 {%- set classes = "uif-divider" -%}
 {%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
