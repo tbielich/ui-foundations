@@ -9,6 +9,7 @@
 @import url("./patterns/divider.css") layer(components);
 @import url("./patterns/textarea.css") layer(components);
 @import url("./patterns/avatar.css") layer(components);
+@import url("./patterns/illustrated-message.css") layer(components);
 @import url("./patterns/accordion.css") layer(components);
 @import url("./patterns/tabs.css") layer(components);
 @import url("./patterns/tooltip.css") layer(components);

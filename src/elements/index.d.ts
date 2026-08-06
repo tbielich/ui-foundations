@@ -26,6 +26,7 @@ export declare class UIBadge extends UIElement {}
 export declare class UIDivider extends UIElement {}
 export declare class UITextarea extends UIElement {}
 export declare class UIAvatar extends UIElement {}
+export declare class UIIllustratedMessage extends UIElement {}
 export declare class UIAccordion extends UIElement {}
 export declare class UIAccordionItem extends UIElement {}
 export declare class UITabList extends UIElement {}
@@ -56,6 +57,7 @@ declare global {
     "uif-divider": UIDivider;
     "uif-textarea": UITextarea;
     "uif-avatar": UIAvatar;
+    "uif-illustrated-message": UIIllustratedMessage;
     "uif-accordion": UIAccordion;
     "uif-accordion-item": UIAccordionItem;
     "uif-tab-list": UITabList;

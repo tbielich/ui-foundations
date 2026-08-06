@@ -180,6 +180,42 @@
 </span>
 {%- endmacro %}
 
+{% macro illustratedMessage(preset='empty', heading='', description='', actionLabel='', actionHref='', actionVariant='solid', illustrationIcon='', illustrationHtml='', actionHtml='', className='') -%}
+{%- set resolvedPreset = preset if preset == "error" or preset == "no-results" or preset == "empty" else "empty" -%}
+{%- set defaultHeading = "Nothing here yet" -%}
+{%- set defaultDescription = "Add content or create a new item to get started." -%}
+{%- set defaultIcon = "message-info" -%}
+{%- if resolvedPreset == "error" -%}
+  {%- set defaultHeading = "Something went wrong" -%}
+  {%- set defaultDescription = "Try again or go back to the previous step." -%}
+  {%- set defaultIcon = "message-alert" -%}
+{%- elif resolvedPreset == "no-results" -%}
+  {%- set defaultHeading = "No results found" -%}
+  {%- set defaultDescription = "Try adjusting your filters or search terms." -%}
+  {%- set defaultIcon = "search" -%}
+{%- endif -%}
+{%- set resolvedHeading = heading or defaultHeading -%}
+{%- set resolvedDescription = description or defaultDescription -%}
+{%- set resolvedIcon = illustrationIcon or defaultIcon -%}
+{%- set resolvedActionVariant = actionVariant if actionVariant == "outline" or actionVariant == "ghost" else "solid" -%}
+{%- set classes = "uif-illustrated-message" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}" data-preset="{{ resolvedPreset }}">
+  <div class="uif-illustrated-message-illustration" aria-hidden="true">
+    {%- if illustrationHtml -%}{{ illustrationHtml | safe }}{%- else -%}<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ resolvedIcon }}.svg');" aria-hidden="true"></span>{%- endif -%}
+  </div>
+  <div class="uif-illustrated-message-content">
+    {%- if resolvedHeading %}<h2 class="uif-illustrated-message-heading">{{ resolvedHeading }}</h2>{% endif -%}
+    {%- if resolvedDescription %}<p class="uif-illustrated-message-description">{{ resolvedDescription }}</p>{% endif -%}
+  </div>
+  {%- if actionHtml or actionLabel -%}
+  <div class="uif-illustrated-message-actions">
+    {%- if actionHtml -%}{{ actionHtml | safe }}{%- elif actionHref -%}<a class="uif-button {{ resolvedActionVariant }}" href="{{ actionHref }}">{{ actionLabel }}</a>{%- else -%}<button class="uif-button {{ resolvedActionVariant }}" type="button">{{ actionLabel }}</button>{%- endif -%}
+  </div>
+  {%- endif %}
+</div>
+{%- endmacro %}
+
 {% macro accordion(className='') -%}
 {%- set classes = "uif-accordion" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}

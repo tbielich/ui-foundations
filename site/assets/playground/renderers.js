@@ -663,6 +663,104 @@
     return { element, code };
   };
 
+  const ILLUSTRATED_MESSAGE_PRESETS = {
+    empty: {
+      heading: "Nothing here yet",
+      description: "Add content or create a new item to get started.",
+      icon: "message-info",
+    },
+    error: {
+      heading: "Something went wrong",
+      description: "Try again or go back to the previous step.",
+      icon: "message-alert",
+    },
+    "no-results": {
+      heading: "No results found",
+      description: "Try adjusting your filters or search terms.",
+      icon: "search",
+    },
+  };
+
+  const resolveIllustratedMessagePreset = (value) =>
+    Object.prototype.hasOwnProperty.call(ILLUSTRATED_MESSAGE_PRESETS, value)
+      ? value
+      : "empty";
+
+  const renderVanillaIllustratedMessage = ({ props }) => {
+    const preset = resolveIllustratedMessagePreset(String(props.preset || "empty"));
+    const defaults = ILLUSTRATED_MESSAGE_PRESETS[preset];
+    const heading = String(props.heading || defaults.heading);
+    const description = String(props.description || defaults.description);
+    const actionLabel = String(props.actionLabel || "");
+    const actionHref = String(props.actionHref || "");
+    const actionVariant =
+      props.actionVariant === "outline" || props.actionVariant === "ghost"
+        ? String(props.actionVariant)
+        : "solid";
+    const illustrationIcon = normalizeIconName(props.illustrationIcon) || defaults.icon;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "uif-illustrated-message";
+    wrapper.dataset.preset = preset;
+
+    const illustration = document.createElement("div");
+    illustration.className = "uif-illustrated-message-illustration";
+    illustration.setAttribute("aria-hidden", "true");
+    const icon = createIconElement({ name: illustrationIcon, decorative: true });
+    if (icon) illustration.append(icon);
+
+    const content = document.createElement("div");
+    content.className = "uif-illustrated-message-content";
+
+    if (heading) {
+      const title = document.createElement("h2");
+      title.className = "uif-illustrated-message-heading";
+      title.textContent = heading;
+      content.append(title);
+    }
+
+    if (description) {
+      const body = document.createElement("p");
+      body.className = "uif-illustrated-message-description";
+      body.textContent = description;
+      content.append(body);
+    }
+
+    wrapper.append(illustration, content);
+
+    let actionCode = "";
+    if (actionLabel) {
+      const actions = document.createElement("div");
+      actions.className = "uif-illustrated-message-actions";
+      if (actionHref) {
+        const actionLink = document.createElement("a");
+        actionLink.className = `uif-button ${actionVariant}`;
+        actionLink.href = actionHref;
+        actionLink.textContent = actionLabel;
+        actions.append(actionLink);
+        actionCode = `<a class="uif-button ${quoteAttr(actionVariant)}" href="${quoteAttr(actionHref)}">${quoteAttr(actionLabel)}</a>`;
+      } else {
+        const actionButton = document.createElement("button");
+        actionButton.className = `uif-button ${actionVariant}`;
+        actionButton.type = "button";
+        actionButton.textContent = actionLabel;
+        actions.append(actionButton);
+        actionCode = `<button class="uif-button ${quoteAttr(actionVariant)}" type="button">${quoteAttr(actionLabel)}</button>`;
+      }
+      wrapper.append(actions);
+    }
+
+    const headingCode = heading
+      ? `<h2 class="uif-illustrated-message-heading">${quoteAttr(heading)}</h2>`
+      : "";
+    const descriptionCode = description
+      ? `<p class="uif-illustrated-message-description">${quoteAttr(description)}</p>`
+      : "";
+    const code = `<div class="uif-illustrated-message" data-preset="${quoteAttr(preset)}"><div class="uif-illustrated-message-illustration" aria-hidden="true">${iconCode({ name: illustrationIcon, decorative: true })}</div><div class="uif-illustrated-message-content">${headingCode}${descriptionCode}</div>${actionCode ? `<div class="uif-illustrated-message-actions">${actionCode}</div>` : ""}</div>`;
+
+    return { element: wrapper, code };
+  };
+
   const renderVanillaAccordion = ({ props }) => {
     const items = Number(props.items || 3);
     const openIndex = Number(props.openIndex || 0);
@@ -1212,6 +1310,7 @@
       switch: renderVanillaSwitch,
       textarea: renderVanillaTextarea,
       avatar: renderVanillaAvatar,
+      "illustrated-message": renderVanillaIllustratedMessage,
       accordion: renderVanillaAccordion,
       tabs: renderVanillaTabs,
       tooltip: renderVanillaTooltip,
