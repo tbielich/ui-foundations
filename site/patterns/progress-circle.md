@@ -104,7 +104,7 @@ playgroundLabel: Open Progress Circle Playground
     <tr><td>value</td><td><code>0</code>–<code>100</code></td><td><code>0</code></td></tr>
     <tr><td>indeterminate</td><td><code>true</code> / <code>false</code></td><td><code>false</code></td></tr>
     <tr><td>size</td><td><code>sm</code> / <code>md</code> / <code>lg</code></td><td><code>md</code></td></tr>
-    <tr><td>aria-label</td><td>text</td><td><code>"Loading"</code></td></tr>
+    <tr><td>aria-label</td><td>text</td><td>—</td></tr>
     <tr><td>aria-labelledby</td><td>element id</td><td>—</td></tr>
   </tbody>
 </table>

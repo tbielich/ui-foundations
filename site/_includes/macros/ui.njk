@@ -180,7 +180,7 @@
 </span>
 {%- endmacro %}
 
-{% macro progressCircle(value=0, indeterminate=false, size='md', ariaLabel='Loading', ariaLabelledby='', className='') -%}
+{% macro progressCircle(value=0, indeterminate=false, size='md', ariaLabel='', ariaLabelledby='', className='') -%}
 {%- set classes = "uif-progress-circle" -%}
 {%- if size == "sm" or size == "lg" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
 {%- if indeterminate -%}{%- set classes = classes + " is-indeterminate" -%}{%- endif -%}

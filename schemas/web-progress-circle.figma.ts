@@ -1,7 +1,7 @@
 import figma, { html } from "@figma/code-connect/html";
 import { ProgressCircleProps } from "./web-progress-circle";
 
-figma.connect("TODO:FIGMA_NODE_URL", {
+figma.connect("https://www.figma.com/design/uqMsy8fV1fPbQdAzgwlmBA/UI-Foundations?m=dev", {
   props: {
     className: figma.className([
       "uif-progress-circle",
