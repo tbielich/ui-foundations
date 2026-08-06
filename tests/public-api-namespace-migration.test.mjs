@@ -15,6 +15,7 @@ const TAGS = [
   "checkbox",
   "radio",
   "switch",
+  "range-slider",
   "badge",
   "divider",
   "textarea",

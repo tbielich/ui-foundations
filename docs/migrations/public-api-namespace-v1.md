@@ -37,6 +37,7 @@ by the importing consumer changes in canonical examples and generated output.
 | `<ui-checkbox>` | `<uif-checkbox>` |
 | `<ui-radio>` | `<uif-radio>` |
 | `<ui-switch>` | `<uif-switch>` |
+| `<ui-range-slider>` | `<uif-range-slider>` |
 | `<ui-badge>` | `<uif-badge>` |
 | `<ui-divider>` | `<uif-divider>` |
 | `<ui-textarea>` | `<uif-textarea>` |

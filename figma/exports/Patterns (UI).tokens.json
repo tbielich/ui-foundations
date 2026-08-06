@@ -3918,6 +3918,190 @@
       }
     }
   },
+  "RangeSlider": {
+    "Text": {
+      "Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-text-color-default)"
+          }
+        }
+      },
+      "Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-text-color-disabled)"
+          }
+        }
+      }
+    },
+    "Track": {
+      "Background Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Subtle"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-track-background-default)"
+          }
+        }
+      },
+      "Background Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Brand"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-track-background-active)"
+          }
+        }
+      },
+      "Background Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Disabled"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-track-background-disabled)"
+          }
+        }
+      },
+      "Size": {
+        "$type": "dimension",
+        "$value": {
+          "$ref": "Size/Spacing/200"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-track-size)"
+          }
+        }
+      },
+      "Border Radius": {
+        "$type": "borderRadius",
+        "$value": {
+          "$ref": "Size/Radius/full"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-track-border-radius)"
+          }
+        }
+      }
+    },
+    "Thumb": {
+      "Background Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-thumb-background-default)"
+          }
+        }
+      },
+      "Background Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Disabled"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-thumb-background-disabled)"
+          }
+        }
+      },
+      "Border Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-thumb-border-color-default)"
+          }
+        }
+      },
+      "Border Color Focus": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-thumb-border-color-focus)"
+          }
+        }
+      },
+      "Border Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Disabled"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-thumb-border-color-disabled)"
+          }
+        }
+      },
+      "Border Size": {
+        "$type": "dimension",
+        "$value": {
+          "$ref": "Brand/Size/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-thumb-border-size)"
+          }
+        }
+      },
+      "Size": {
+        "$type": "dimension",
+        "$value": {
+          "$ref": "Brand/Size/Spacing/Component"
+        },
+        "$extensions": {
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-range-slider-thumb-size)"
+          }
+        }
+      }
+    },
+    "Gap": {
+      "$type": "dimension",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Comfortable"
+      },
+      "$extensions": {
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-range-slider-gap)"
+        }
+      }
+    },
+    "Value Gap": {
+      "$type": "dimension",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Tight"
+      },
+      "$extensions": {
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-range-slider-value-gap)"
+        }
+      }
+    }
+  },
   "Select": {
     "Text": {
       "Color Default": {

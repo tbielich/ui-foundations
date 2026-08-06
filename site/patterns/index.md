@@ -97,6 +97,15 @@ permalink: /patterns/
       <p>Mutually exclusive choices within a group.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/range-slider/">
+    <div class="docs-component-card-preview">
+      {{ uif.rangeSlider("Price range", 0, 100, 20, 80, 5) }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Range Slider</h2>
+      <p>Dual-thumb slider for selecting a bounded numeric range.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/switch/">
     <div class="docs-component-card-preview">
       {{ uif.switch("Notifications", true) }}
