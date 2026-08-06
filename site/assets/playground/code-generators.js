@@ -177,6 +177,24 @@
     return "<uif-select " + attrs.join(" ") + ">" + options + "</uif-select>";
   }
 
+  function njkColorPicker(state) {
+    var p = state.props;
+    var parts = [];
+    if (p.value) parts.push('value="' + quoteAttr(p.value) + '"');
+    if (p.format && p.format !== "hex") parts.push('format="' + quoteAttr(p.format) + '"');
+    if (state.meta.state === "disabled") parts.push("disabled=true");
+    return "{{ uif.colorPicker(" + parts.join(", ") + ") }}";
+  }
+
+  function wcColorPicker(state) {
+    var p = state.props;
+    var attrs = [];
+    if (p.value) attrs.push('value="' + quoteAttr(p.value) + '"');
+    if (p.format && p.format !== "hex") attrs.push('format="' + quoteAttr(p.format) + '"');
+    if (state.meta.state === "disabled") attrs.push("disabled");
+    return "<uif-color-picker" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-color-picker>";
+  }
+
   function njkForm(state) {
     var p = state.props;
     var borderless = p.borderless === true || p.borderless === "true";
@@ -246,6 +264,7 @@
       label: function () { return '{{ uif.labelContent("text", "icon") }}'; },
       "button-group": function () { return '{% call uif.buttonGroup() %}...{% endcall %}'; },
       select: njkSelect,
+      colorPicker: njkColorPicker,
       form: njkForm,
       calendar: njkCalendar,
       divider: function (state) {
@@ -299,6 +318,7 @@
       label: function () { return "<uif-field-label>...</uif-field-label>"; },
       "button-group": function () { return "<uif-button-group>...</uif-button-group>"; },
       select: wcSelect,
+      colorPicker: wcColorPicker,
       form: wcForm,
       calendar: function () {
         return "<!-- Calendar is provided as Nunjucks/static HTML in this package. -->";

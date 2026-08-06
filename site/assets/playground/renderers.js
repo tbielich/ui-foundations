@@ -947,6 +947,62 @@
     return { element, code };
   };
 
+  const renderVanillaColorPicker = ({ props, meta }) => {
+    const value = String(props.value || "#6366f1");
+    const format = String(props.format || "hex");
+    const disabled = String(meta.state || "default") === "disabled" || asBoolean(props.disabled);
+    const swatches = [
+      "#111827",
+      "#1d4ed8",
+      "#0f766e",
+      "#15803d",
+      "#a16207",
+      "#b91c1c",
+      "#be185d",
+      "#6d28d9",
+    ];
+
+    const rootClasses = ["uif-color-picker"];
+    if (disabled) rootClasses.push("is-disabled");
+    const disabledAttr = disabled ? " disabled" : "";
+    const swatchButtons = swatches
+      .map(
+        (swatch) =>
+          `<button type="button" class="uif-color-picker-grid-item" style="background: ${quoteAttr(swatch)}" aria-label="Select ${quoteAttr(swatch)}"${disabledAttr}></button>`,
+      )
+      .join("");
+
+    const html = `<div class="${rootClasses.join(" ")}" data-format="${quoteAttr(format)}" style="--uif-color-picker-accent-color: ${quoteAttr(value)}">
+  <div class="uif-color-picker-panel">
+    <div class="uif-color-picker-area" role="application" aria-label="Color area">
+      <span class="uif-color-picker-area-thumb" aria-hidden="true"></span>
+    </div>
+    <div class="uif-color-picker-sliders">
+      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value="240" aria-label="Hue"${disabledAttr} />
+      <input class="uif-color-picker-slider alpha" type="range" min="0" max="100" value="100" aria-label="Alpha"${disabledAttr} />
+    </div>
+    <div class="uif-color-picker-wheel" role="img" aria-label="Color wheel"></div>
+    <div class="uif-color-picker-swatch" aria-hidden="true"></div>
+    <div class="uif-color-picker-inputs">
+      <label class="uif-color-picker-input-group"><span>HEX</span><input class="uif-color-picker-input" type="text" value="${quoteAttr(value)}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="99"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="102"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="241"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value="239"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="84"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="66"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>A</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="100"${disabledAttr} /></label>
+    </div>
+    <div class="uif-color-picker-grid" role="listbox" aria-label="Swatch picker">${swatchButtons}</div>
+  </div>
+</div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+    return { element, code: html };
+  };
+
   const renderVanillaTooltip = ({ props, children }) => {
     const text = String(props.text || "Tooltip");
     const placement = String(props.placement || "top");
@@ -1216,6 +1272,7 @@
       tabs: renderVanillaTabs,
       tooltip: renderVanillaTooltip,
       select: renderVanillaSelect,
+      colorPicker: renderVanillaColorPicker,
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,

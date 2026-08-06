@@ -124,6 +124,15 @@ permalink: /patterns/
       <p>Dropdown for choosing a single option from a predefined list.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/color-picker/">
+    <div class="docs-component-card-preview">
+      {{ uif.colorPicker(value="#6366f1") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Color Picker</h2>
+      <p>Composite color selection with area, sliders, wheel, swatch preview, and value inputs.</p>
+    </div>
+  </a>
     </div>
   </div>
 </div>

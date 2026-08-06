@@ -6826,5 +6826,361 @@
         }
       }
     }
+  },
+  "Color Picker": {
+    "Gap": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Component"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:1",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-gap)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:3",
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Panel": {
+      "Background": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4200:2",
+          "com.figma.scopes": [
+            "ALL_FILLS"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-color-picker-panel-background)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4200:3",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-color-picker-panel-border-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:342",
+            "targetVariableName": "Color/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Size": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4200:4",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-color-picker-panel-border-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:7",
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Corner/Input"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4200:5",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-color-picker-panel-border-radius)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2028:335",
+            "targetVariableName": "Brand/Corner/Input",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Control Height": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:6",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-control-height)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3020:2",
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetId": "VariableCollectionId:1:200",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Slider Height": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Border/Thick"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:7",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-slider-height)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:8",
+          "targetVariableName": "Brand/Size/Border/Thick",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Slider Thumb Size": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:8",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-slider-thumb-size)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3020:2",
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetId": "VariableCollectionId:1:200",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Swatch Size": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:9",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-swatch-size)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3020:2",
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetId": "VariableCollectionId:1:200",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Swatch Border Radius": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Corner/Input"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:10",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-swatch-border-radius)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2028:335",
+          "targetVariableName": "Brand/Corner/Input",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Swatch Border Color": {
+      "$type": "color",
+      "$value": {
+        "$ref": "Color/Border/Subtle"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:11",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-swatch-border-color)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2007:343",
+          "targetVariableName": "Color/Border/Subtle",
+          "targetVariableSetId": "VariableCollectionId:2007:325",
+          "targetVariableSetName": "Appearance (Modes)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Text Color Default": {
+      "$type": "color",
+      "$value": {
+        "$ref": "Color/Text/Default"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:12",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-text-color-default)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2007:326",
+          "targetVariableName": "Color/Text/Default",
+          "targetVariableSetId": "VariableCollectionId:2007:325",
+          "targetVariableSetName": "Appearance (Modes)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Text Color Subtle": {
+      "$type": "color",
+      "$value": {
+        "$ref": "Color/Text/Subtle"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:13",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-text-color-subtle)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2007:341",
+          "targetVariableName": "Color/Text/Subtle",
+          "targetVariableSetId": "VariableCollectionId:2007:325",
+          "targetVariableSetName": "Appearance (Modes)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Focus Ring Color": {
+      "$type": "color",
+      "$value": {
+        "$ref": "Color/Border/Brand"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:14",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-focus-ring-color)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2007:345",
+          "targetVariableName": "Color/Border/Brand",
+          "targetVariableSetId": "VariableCollectionId:2007:325",
+          "targetVariableSetName": "Appearance (Modes)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Focus Ring Size": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Border/Default"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:15",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-focus-ring-size)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:7",
+          "targetVariableName": "Brand/Size/Border/Default",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Accent Color": {
+      "$type": "color",
+      "$value": {
+        "$ref": "Color/Fill/Brand"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:4200:16",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-color-picker-accent-color)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2007:337",
+          "targetVariableName": "Color/Fill/Brand",
+          "targetVariableSetId": "VariableCollectionId:2007:325",
+          "targetVariableSetName": "Appearance (Modes)"
+        },
+        "com.figma.isOverride": true
+      }
+    }
   }
 }

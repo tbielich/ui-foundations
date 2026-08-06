@@ -40,6 +40,7 @@ export declare class UIFormGroup extends UIElement {}
 export declare class UIFormField extends UIElement {}
 export declare class UIFormHelper extends UIElement {}
 export declare class UIFormActions extends UIElement {}
+export declare class UIColorPicker extends UIElement {}
 
 // --- Custom Element Tag Name Map ---
 
@@ -70,5 +71,6 @@ declare global {
     "uif-form-field": UIFormField;
     "uif-form-helper": UIFormHelper;
     "uif-form-actions": UIFormActions;
+    "uif-color-picker": UIColorPicker;
   }
 }
