@@ -12,6 +12,7 @@ export { UIElement, define } from "./base.js";
 export { UIIcon } from "./ui-icon.js";
 export { UIButton, UIButtonGroup } from "./ui-button.js";
 export { UIInput } from "./ui-input.js";
+export { UIComboBox } from "./ui-combobox.js";
 export { UICheckbox } from "./ui-checkbox.js";
 export { UIRadio } from "./ui-radio.js";
 export { UISwitch } from "./ui-switch.js";

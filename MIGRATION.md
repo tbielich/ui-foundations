@@ -52,6 +52,7 @@ parts follow the same prefix replacement.
 | ButtonGroup | `.uif-button-group` | `--uif-button-group-*` | `<uif-button-group>` |
 | Calendar | `.uif-calendar`, `.uif-calendar-*` | `--uif-calendar-*` | No autonomous Calendar element |
 | Checkbox | `.uif-checkbox`, `.uif-checkbox-field`, `.uif-checkbox-field-text` | `--uif-checkbox-*` | `<uif-checkbox>` |
+| ComboBox | `.uif-combobox`, `.uif-combobox-field`, `.uif-combobox-input`, `.uif-combobox-listbox`, `.uif-combobox-option` | `--uif-combobox-*` | `<uif-combobox>` |
 | Divider | `.uif-divider` | code-only `--uif-divider-color`; no component-scoped Figma variables | `<uif-divider>` |
 | Form | `.uif-form`, `.uif-form-*` | `--uif-form-*` | `<uif-form>`, `<uif-form-group>`, `<uif-form-field>`, `<uif-form-helper>`, `<uif-form-actions>` |
 | Icon | `.uif-icon` | code-only `--uif-icon-src` | `<uif-icon>` |

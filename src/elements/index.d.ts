@@ -19,6 +19,7 @@ export declare class UIIcon extends UIElement {}
 export declare class UIButton extends UIElement {}
 export declare class UIButtonGroup extends UIElement {}
 export declare class UIInput extends UIElement {}
+export declare class UIComboBox extends UIElement {}
 export declare class UICheckbox extends UIElement {}
 export declare class UIRadio extends UIElement {}
 export declare class UISwitch extends UIElement {}
@@ -49,6 +50,7 @@ declare global {
     "uif-button": UIButton;
     "uif-button-group": UIButtonGroup;
     "uif-input": UIInput;
+    "uif-combobox": UIComboBox;
     "uif-checkbox": UICheckbox;
     "uif-radio": UIRadio;
     "uif-switch": UISwitch;

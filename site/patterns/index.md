@@ -68,6 +68,15 @@ permalink: /patterns/
       <p>Text and icon primitives for components and form fields.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/combobox/">
+    <div class="docs-component-card-preview">
+      {{ uif.combobox(options=[{value: "pmi", label: "Palma de Mallorca"}, {value: "her", label: "Heraklion"}], placeholder="Search destinations") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>ComboBox</h2>
+      <p>Input field with autocomplete filtering and expandable suggestions.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/input/">
     <div class="docs-component-card-preview">
       {{ uif.input(type="text", placeholder="Email address") }}
