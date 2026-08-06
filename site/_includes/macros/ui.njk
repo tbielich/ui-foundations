@@ -53,19 +53,19 @@
       <span class="uif-color-picker-area-thumb" aria-hidden="true"></span>
     </div>
     <div class="uif-color-picker-sliders">
-      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value="240"{% if state == "disabled" or disabled %} disabled{% endif %} />
+      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value=""{% if state == "disabled" or disabled %} disabled{% endif %} />
       <input class="uif-color-picker-slider alpha" type="range" min="0" max="100" value="100"{% if state == "disabled" or disabled %} disabled{% endif %} />
     </div>
     <div class="uif-color-picker-wheel" role="img" aria-label="Color wheel"></div>
     <div class="uif-color-picker-swatch" aria-hidden="true"></div>
     <div class="uif-color-picker-inputs">
       <label class="uif-color-picker-input-group"><span>HEX</span><input class="uif-color-picker-input" type="text" value="{{ value }}"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
-      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="99"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
-      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="102"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
-      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="241"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
-      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value="239"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
-      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="84"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
-      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="66"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
       <label class="uif-color-picker-input-group"><span>A</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="100"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
     </div>
     <div class="uif-color-picker-grid" role="listbox" aria-label="Swatch picker">

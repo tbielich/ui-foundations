@@ -74,6 +74,8 @@ playgroundLabel: Open Color Picker Playground
   </tbody>
 </table>
 
+<p><strong>Note:</strong> The Nunjucks macro renders RGB/HSL channel fields as placeholders. The `<uif-color-picker>` web component and playground renderer derive channel values from the `value` hex color.</p>
+
 <h2 id="tokens">Tokens</h2>
 
 <ul>

@@ -13,6 +13,45 @@
 
   const iconSrcFromName = (name) => `/assets/icons/${name}.svg`;
 
+  const parseHexColor = (value) => {
+    const match = String(value || "").trim().match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i);
+    if (!match) return null;
+    const hex = match[1].length === 3
+      ? match[1].split("").map((char) => char + char).join("")
+      : match[1];
+    return {
+      r: Number.parseInt(hex.slice(0, 2), 16),
+      g: Number.parseInt(hex.slice(2, 4), 16),
+      b: Number.parseInt(hex.slice(4, 6), 16),
+    };
+  };
+
+  const rgbToHsl = (r, g, b) => {
+    const rn = r / 255;
+    const gn = g / 255;
+    const bn = b / 255;
+    const max = Math.max(rn, gn, bn);
+    const min = Math.min(rn, gn, bn);
+    const delta = max - min;
+
+    let h = 0;
+    if (delta !== 0) {
+      if (max === rn) h = ((gn - bn) / delta) % 6;
+      else if (max === gn) h = (bn - rn) / delta + 2;
+      else h = (rn - gn) / delta + 4;
+      h = Math.round(h * 60);
+      if (h < 0) h += 360;
+    }
+
+    const l = (max + min) / 2;
+    const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+    return {
+      h,
+      s: Math.round(s * 100),
+      l: Math.round(l * 100),
+    };
+  };
+
   const createIconElement = ({ name, decorative = true, label, color }) => {
     const normalizedName = normalizeIconName(name);
     if (!normalizedName) return null;
@@ -951,6 +990,8 @@
     const value = String(props.value || "#6366f1");
     const format = String(props.format || "hex");
     const disabled = String(meta.state || "default") === "disabled" || asBoolean(props.disabled);
+    const rgb = parseHexColor(value);
+    const hsl = rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : null;
     const swatches = [
       "#111827",
       "#1d4ed8",
@@ -978,19 +1019,19 @@
       <span class="uif-color-picker-area-thumb" aria-hidden="true"></span>
     </div>
     <div class="uif-color-picker-sliders">
-      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value="240" aria-label="Hue"${disabledAttr} />
+      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value="${hsl ? hsl.h : 0}" aria-label="Hue"${disabledAttr} />
       <input class="uif-color-picker-slider alpha" type="range" min="0" max="100" value="100" aria-label="Alpha"${disabledAttr} />
     </div>
     <div class="uif-color-picker-wheel" role="img" aria-label="Color wheel"></div>
     <div class="uif-color-picker-swatch" aria-hidden="true"></div>
     <div class="uif-color-picker-inputs">
       <label class="uif-color-picker-input-group"><span>HEX</span><input class="uif-color-picker-input" type="text" value="${quoteAttr(value)}"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="99"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="102"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="241"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value="239"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="84"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="66"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.r : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.g : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.b : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value="${hsl ? hsl.h : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="${hsl ? hsl.s : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="${hsl ? hsl.l : ""}"${disabledAttr} /></label>
       <label class="uif-color-picker-input-group"><span>A</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="100"${disabledAttr} /></label>
     </div>
     <div class="uif-color-picker-grid" role="listbox" aria-label="Swatch picker">${swatchButtons}</div>
