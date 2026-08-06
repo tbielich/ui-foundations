@@ -228,6 +228,23 @@
 <span class="{{ classes }}">{{ caller() }}<span class="uif-tooltip" role="tooltip" data-placement="{{ placement }}">{{ text }}</span></span>
 {%- endmacro %}
 
+{% macro segmentedControl(ariaLabel='', size='', className='') -%}
+{%- set classes = "uif-segmented-control" -%}
+{%- if size and size != "md" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}" role="group"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro segmentedControlItem(label='', selected=false, disabled=false, icon='') -%}
+{%- set classes = "uif-segmented-control-item" -%}
+{%- if selected -%}{%- set classes = classes + " is-active" -%}{%- endif -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+<button class="{{ classes }}" type="button" aria-pressed="{{ "true" if selected else "false" }}"{% if disabled %} disabled aria-disabled="true"{% endif %}>
+  {%- if icon %}<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ icon }}.svg');" aria-hidden="true"></span>{% endif -%}
+  {{ label }}
+</button>
+{%- endmacro %}
+
 {% macro form(borderless=false, className='') -%}
 {%- set classes = "uif-form" -%}
 {%- if borderless -%}{%- set classes = classes + " borderless" -%}{%- endif -%}

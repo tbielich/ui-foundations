@@ -1197,6 +1197,41 @@
     return { element, code: html };
   };
 
+  // ─── Segmented Control ────────────────────────
+
+  const renderVanillaSegmentedControl = ({ props }) => {
+    const segmentCount = Number(props.segments || 3);
+    const activeIndex = Number(props.active || 0);
+    const size = String(props.size || "md");
+
+    const wrapper = document.createElement("div");
+    const classes = ["uif-segmented-control"];
+    if (size !== "md") classes.push(size);
+    wrapper.className = classes.join(" ");
+    wrapper.setAttribute("role", "group");
+    wrapper.setAttribute("aria-label", "Segmented control");
+
+    const attrSize = size !== "md" ? ` class="uif-segmented-control ${size}"` : "";
+    let codeLines = [`<div${attrSize || ' class="uif-segmented-control"'} role="group" aria-label="Segmented control">`];
+
+    for (let i = 0; i < segmentCount; i++) {
+      const btn = document.createElement("button");
+      btn.className = "uif-segmented-control-item";
+      btn.type = "button";
+      btn.setAttribute("aria-pressed", String(i === activeIndex));
+      btn.textContent = `Option ${i + 1}`;
+      if (i === activeIndex) btn.classList.add("is-active");
+      wrapper.append(btn);
+
+      const pressed = i === activeIndex ? ' aria-pressed="true" class="uif-segmented-control-item is-active"' : ' aria-pressed="false" class="uif-segmented-control-item"';
+      codeLines.push(`  <button type="button"${pressed}>Option ${i + 1}</button>`);
+    }
+
+    codeLines.push("</div>");
+
+    return { element: wrapper, code: codeLines.join("\n") };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -1219,6 +1254,7 @@
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      "segmented-control": renderVanillaSegmentedControl,
     },
   };
 })(window);
