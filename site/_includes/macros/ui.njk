@@ -288,6 +288,21 @@
 <div class="{{ classes }}"{% if align != "end" %} data-align="{{ align }}"{% endif %}>{{ caller() }}</div>
 {%- endmacro %}
 
+{% macro dropzone(label='Drag and drop files here', hint='or', buttonLabel='Choose files', accept='', multiple=false, disabled=false, filled=false, filesText='', className='', id='', name='files') -%}
+{%- set classes = "uif-dropzone" -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if filled -%}{%- set classes = classes + " is-filled" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}" role="group" aria-label="File upload drop zone">
+  <input class="uif-dropzone-input" type="file"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if accept %} accept="{{ accept }}"{% endif %}{% if multiple %} multiple{% endif %}{% if disabled %} disabled{% endif %} />
+  <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/upload.svg');" aria-hidden="true"></span>
+  <span class="uif-dropzone-label">{{ label }}</span>
+  <span class="uif-dropzone-hint">{{ hint }}</span>
+  <button class="uif-button outline uif-dropzone-button" type="button"{% if disabled %} disabled{% endif %}>{{ buttonLabel }}</button>
+  <span class="uif-dropzone-files" aria-live="polite">{{ filesText if filesText else ("Files selected" if filled else "No files selected") }}</span>
+</div>
+{%- endmacro %}
+
 {# ─── Re-export Calendar macro ────────────────────────────────────── #}
 
 {%- from "macros/calendar.njk" import calendar as _cal -%}

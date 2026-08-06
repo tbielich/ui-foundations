@@ -124,6 +124,15 @@ permalink: /patterns/
       <p>Dropdown for choosing a single option from a predefined list.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/dropzone/">
+    <div class="docs-component-card-preview">
+      {{ uif.dropzone(label="Drop files", hint="or", buttonLabel="Browse", filesText="No files selected") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>DropZone</h2>
+      <p>Drag-and-drop upload target with accessible file picker fallback.</p>
+    </div>
+  </a>
     </div>
   </div>
 </div>

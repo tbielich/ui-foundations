@@ -367,6 +367,75 @@
     return { element: wrapper, code };
   };
 
+  const renderVanillaDropzone = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const disabled = previewState === "disabled" || asBoolean(props.disabled);
+    const filled = previewState === "filled" || asBoolean(props.filled);
+    const label = String(props.label || "Drag and drop files here");
+    const hint = String(props.hint || "or");
+    const buttonLabel = String(props.buttonLabel || "Choose files");
+    const accept = String(props.accept || "");
+    const multiple = asBoolean(props.multiple);
+    const filesText = filled
+      ? String(props.filesText || (multiple ? "2 files selected" : "invoice.pdf"))
+      : String(props.filesText || "No files selected");
+
+    const wrapper = document.createElement("div");
+    const classes = ["uif-dropzone"];
+    if (previewState === "dragover") classes.push("is-dragover");
+    if (disabled) classes.push("is-disabled");
+    if (filled) classes.push("is-filled");
+    if (props.className) classes.push(String(props.className));
+    wrapper.className = classes.join(" ");
+    wrapper.setAttribute("role", "group");
+    wrapper.setAttribute("aria-label", "File upload drop zone");
+
+    const input = document.createElement("input");
+    input.className = "uif-dropzone-input";
+    input.type = "file";
+    if (accept) input.setAttribute("accept", accept);
+    if (multiple) input.multiple = true;
+    if (disabled) input.disabled = true;
+
+    const icon = createIconElement({ name: "upload", decorative: true });
+    const labelEl = document.createElement("span");
+    labelEl.className = "uif-dropzone-label";
+    labelEl.textContent = label;
+    const hintEl = document.createElement("span");
+    hintEl.className = "uif-dropzone-hint";
+    hintEl.textContent = hint;
+    const button = document.createElement("button");
+    button.className = "uif-button outline uif-dropzone-button";
+    button.type = "button";
+    button.textContent = buttonLabel;
+    button.disabled = disabled;
+    const files = document.createElement("span");
+    files.className = "uif-dropzone-files";
+    files.setAttribute("aria-live", "polite");
+    files.textContent = filesText;
+
+    wrapper.append(input);
+    if (icon) wrapper.append(icon);
+    wrapper.append(labelEl, hintEl, button, files);
+
+    const inputAttrs = ['class="uif-dropzone-input"', 'type="file"'];
+    if (accept) inputAttrs.push(`accept="${quoteAttr(accept)}"`);
+    if (multiple) inputAttrs.push("multiple");
+    if (disabled) inputAttrs.push("disabled");
+    const buttonAttrs = ['class="uif-button outline uif-dropzone-button"', 'type="button"'];
+    if (disabled) buttonAttrs.push("disabled");
+    const code = `<div class="${quoteAttr(wrapper.className)}" role="group" aria-label="File upload drop zone">
+  <input ${inputAttrs.join(" ")} />
+  ${iconCode({ name: "upload", decorative: true })}
+  <span class="uif-dropzone-label">${quoteAttr(label)}</span>
+  <span class="uif-dropzone-hint">${quoteAttr(hint)}</span>
+  <button ${buttonAttrs.join(" ")}>${quoteAttr(buttonLabel)}</button>
+  <span class="uif-dropzone-files" aria-live="polite">${quoteAttr(filesText)}</span>
+</div>`;
+
+    return { element: wrapper, code };
+  };
+
   const renderVanillaCheckbox = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
     const labelText = String(props.label || "Accept terms");
@@ -1206,6 +1275,7 @@
       divider: renderVanillaDivider,
       icon: renderVanillaIcon,
       input: renderVanillaInput,
+      dropzone: renderVanillaDropzone,
       label: renderVanillaLabel,
       link: renderVanillaLink,
       radio: renderVanillaRadio,
