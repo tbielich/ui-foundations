@@ -86,6 +86,7 @@ const VAULT_NAMING_CONTRACT = Object.freeze({
   "runtimeCompatibilityInputs": {
     "legacyComponentNames": [
       "accordion",
+      "action-bar",
       "avatar",
       "badge",
       "button",

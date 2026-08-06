@@ -1034,6 +1034,66 @@
     return { element, code };
   };
 
+  // ─── ActionBar ────────────────────────────────────────────────────
+  const renderVanillaActionBar = ({ props }) => {
+    const count = Math.max(0, parseInt(String(props.count || "3"), 10) || 0);
+    const isOpen = asBoolean(props.open !== undefined ? props.open : true);
+    const countText = count === 1 ? "1 item selected" : `${count} items selected`;
+
+    const bar = document.createElement("div");
+    const classes = ["uif-action-bar"];
+    if (isOpen) classes.push("is-open");
+    bar.className = classes.join(" ");
+    bar.setAttribute("role", "toolbar");
+    bar.setAttribute("aria-label", "Bulk actions");
+
+    const countSpan = document.createElement("span");
+    countSpan.className = "uif-action-bar-count";
+    countSpan.textContent = countText;
+    bar.append(countSpan);
+
+    const actions = document.createElement("div");
+    actions.className = "uif-action-bar-actions";
+    for (const label of ["Delete", "Export"]) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "uif-button ghost sm";
+      btn.textContent = label;
+      actions.append(btn);
+    }
+    bar.append(actions);
+
+    const spacer = document.createElement("span");
+    spacer.className = "uif-action-bar-spacer";
+    spacer.setAttribute("aria-hidden", "true");
+    bar.append(spacer);
+
+    const dismiss = document.createElement("button");
+    dismiss.type = "button";
+    dismiss.className = "uif-action-bar-dismiss";
+    dismiss.setAttribute("aria-label", "Dismiss");
+    const icon = createIconElement({ name: "close", decorative: true });
+    if (icon) dismiss.append(icon);
+    bar.append(dismiss);
+
+    const codeLines = [
+      `<div class="${classes.join(" ")}" role="toolbar" aria-label="Bulk actions">`,
+      `  <span class="uif-action-bar-count">${quoteAttr(countText)}</span>`,
+      `  <div class="uif-action-bar-actions">`,
+      `    <button type="button" class="uif-button ghost sm">Delete</button>`,
+      `    <button type="button" class="uif-button ghost sm">Export</button>`,
+      `  </div>`,
+      `  <span class="uif-action-bar-spacer" aria-hidden="true"></span>`,
+      `  <button type="button" class="uif-action-bar-dismiss" aria-label="Dismiss">`,
+      `    ${iconCode({ name: "close", decorative: true })}`,
+      `  </button>`,
+      `</div>`,
+    ];
+    const code = codeLines.join("\n");
+
+    return { element: bar, code };
+  };
+
   // ─── Calendar ─────────────────────────────────────────────────────
   const renderVanillaCalendar = ({ props, meta }) => {
     const month = String(props.month || "2026-07");
@@ -1217,6 +1277,7 @@
       tooltip: renderVanillaTooltip,
       select: renderVanillaSelect,
       form: renderVanillaForm,
+      actionBar: renderVanillaActionBar,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
     },
