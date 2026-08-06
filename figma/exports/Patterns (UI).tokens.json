@@ -1229,7 +1229,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--modal-backdrop-color)"
+            "WEB": "var(--uif-modal-backdrop-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:371",
@@ -1253,7 +1253,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--modal-surface-color)"
+            "WEB": "var(--uif-modal-surface-color)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2007:329",
@@ -1275,7 +1275,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.codeSyntax": {
-            "WEB": "var(--modal-surface-border-radius)"
+            "WEB": "var(--uif-modal-surface-border-radius)"
           },
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:2006:217",

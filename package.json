@@ -66,6 +66,7 @@
     "./elements/ui-accordion": "./dist/elements/ui-accordion.js",
     "./elements/ui-tabs": "./dist/elements/ui-tabs.js",
     "./elements/ui-tooltip": "./dist/elements/ui-tooltip.js",
+    "./elements/ui-modal": "./dist/elements/ui-modal.js",
     "./elements/ui-select": "./dist/elements/ui-select.js",
     "./elements/ui-link": "./dist/elements/ui-link.js",
     "./elements/ui-label": "./dist/elements/ui-label.js",

@@ -225,6 +225,38 @@
     return lines.join("\n");
   }
 
+  function njkModal(state) {
+    var p = state.props;
+    var title = p.title || "Confirm action";
+    var description = p.description || "This action requires your confirmation.";
+    var variant = p.variant || "confirmation";
+    var size = p.size || "m";
+    var dismissible = p.dismissible === undefined ? true : (p.dismissible === true || p.dismissible === "true");
+    var open = p.open === undefined ? true : (p.open === true || p.open === "true");
+    var confirmLabel = p.confirmLabel || "Confirm";
+    var cancelLabel = p.cancelLabel || "Cancel";
+    return '{% call uif.modal(title="' + quoteAttr(title) + '", description="' + quoteAttr(description) + '", variant="' + quoteAttr(variant) + '", size="' + quoteAttr(size) + '", dismissible=' + (dismissible ? "true" : "false") + ", open=" + (open ? "true" : "false") + ', confirmLabel="' + quoteAttr(confirmLabel) + '", cancelLabel="' + quoteAttr(cancelLabel) + '") %}Modal content{% endcall %}';
+  }
+
+  function wcModal(state) {
+    var p = state.props;
+    var title = p.title || "Confirm action";
+    var description = p.description || "This action requires your confirmation.";
+    var variant = p.variant || "confirmation";
+    var size = p.size || "m";
+    var dismissible = p.dismissible === undefined ? true : (p.dismissible === true || p.dismissible === "true");
+    var open = p.open === undefined ? true : (p.open === true || p.open === "true");
+    var attrs = [
+      'title="' + quoteAttr(title) + '"',
+      'description="' + quoteAttr(description) + '"',
+      'variant="' + quoteAttr(variant) + '"',
+      'size="' + quoteAttr(size) + '"',
+      'dismissible="' + (dismissible ? "true" : "false") + '"',
+    ];
+    if (open) attrs.push("open");
+    return "<uif-modal " + attrs.join(" ") + ">Modal content</uif-modal>";
+  }
+
   function njkCalendar(state) {
     var p = state.props;
     var parts = [];
@@ -292,6 +324,7 @@
         var placement = p.placement || "top";
         return '{% call uif.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="uif-button">Hover me</button>{% endcall %}';
       },
+      modal: njkModal,
     },
     wc: {
       button: wcButton, input: wcInput, checkbox: wcCheckbox,
@@ -347,6 +380,7 @@
         var placement = p.placement || "top";
         return '<uif-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="uif-button">Hover me</button>\n</uif-tooltip>';
       },
+      modal: wcModal,
     },
   };
 })(window);

@@ -947,6 +947,110 @@
     return { element, code };
   };
 
+  const renderVanillaModal = ({ props, children }) => {
+    const title = String(props.title || "Confirm action");
+    const description = String(props.description || "This action requires your confirmation.");
+    const variant = String(props.variant || "confirmation") === "alert" ? "alert" : "confirmation";
+    const sizeRaw = String(props.size || "m");
+    const size = sizeRaw === "s" ? "sm" : sizeRaw === "l" ? "lg" : "md";
+    const dismissible = props.dismissible === undefined ? true : asBoolean(props.dismissible);
+    const open = props.open === undefined ? true : asBoolean(props.open);
+    const confirmLabel = String(props.confirmLabel || (variant === "alert" ? "Delete" : "Confirm"));
+    const cancelLabel = String(props.cancelLabel || "Cancel");
+
+    const root = document.createElement("div");
+    root.className = `uif-modal-root is-preview${open ? " is-open" : ""}`;
+    if (!open) root.hidden = true;
+
+    const overlay = dismissible ? document.createElement("button") : document.createElement("span");
+    overlay.className = "uif-modal-overlay";
+    if (dismissible) {
+      overlay.type = "button";
+      overlay.setAttribute("aria-label", "Dismiss dialog");
+    } else {
+      overlay.setAttribute("aria-hidden", "true");
+    }
+    root.append(overlay);
+
+    const dialog = document.createElement("section");
+    dialog.className = `uif-modal ${variant} ${size}`;
+    dialog.setAttribute("role", "dialog");
+    dialog.setAttribute("aria-modal", "true");
+
+    const header = document.createElement("header");
+    header.className = "uif-modal-header";
+
+    const heading = document.createElement("h2");
+    heading.className = "uif-modal-title";
+    heading.textContent = title;
+    header.append(heading);
+
+    if (dismissible) {
+      const close = document.createElement("button");
+      close.className = "uif-modal-close";
+      close.type = "button";
+      close.setAttribute("aria-label", "Close dialog");
+      close.textContent = "×";
+      header.append(close);
+    }
+
+    const body = document.createElement("div");
+    body.className = "uif-modal-body";
+
+    const desc = document.createElement("p");
+    desc.className = "uif-modal-description";
+    desc.textContent = description;
+    body.append(desc);
+
+    if (children) {
+      const content = document.createElement("p");
+      content.textContent = String(children);
+      body.append(content);
+    }
+
+    const actions = document.createElement("footer");
+    actions.className = "uif-modal-actions";
+
+    if (dismissible) {
+      const cancel = document.createElement("button");
+      cancel.className = "uif-button outline";
+      cancel.type = "button";
+      cancel.textContent = cancelLabel;
+      actions.append(cancel);
+    }
+
+    const confirm = document.createElement("button");
+    confirm.className = "uif-button solid";
+    confirm.type = "button";
+    confirm.textContent = confirmLabel;
+    actions.append(confirm);
+
+    dialog.append(header, body, actions);
+    root.append(dialog);
+
+    const code = `<div class="uif-modal-root${open ? " is-open" : ""}"${open ? "" : " hidden"}>
+  ${dismissible
+    ? '<button class="uif-modal-overlay" type="button" aria-label="Dismiss dialog"></button>'
+    : '<span class="uif-modal-overlay" aria-hidden="true"></span>'}
+  <section class="uif-modal ${quoteAttr(variant)} ${quoteAttr(size)}" role="dialog" aria-modal="true">
+    <header class="uif-modal-header">
+      <h2 class="uif-modal-title">${quoteAttr(title)}</h2>
+      ${dismissible ? '<button class="uif-modal-close" type="button" aria-label="Close dialog">×</button>' : ""}
+    </header>
+    <div class="uif-modal-body">
+      <p class="uif-modal-description">${quoteAttr(description)}</p>
+      ${children ? `<p>${quoteAttr(String(children))}</p>` : ""}
+    </div>
+    <footer class="uif-modal-actions">
+      ${dismissible ? `<button class="uif-button outline" type="button">${quoteAttr(cancelLabel)}</button>` : ""}
+      <button class="uif-button solid" type="button">${quoteAttr(confirmLabel)}</button>
+    </footer>
+  </section>
+</div>`;
+
+    return { element: root, code };
+  };
+
   const renderVanillaTooltip = ({ props, children }) => {
     const text = String(props.text || "Tooltip");
     const placement = String(props.placement || "top");
@@ -1215,6 +1319,7 @@
       accordion: renderVanillaAccordion,
       tabs: renderVanillaTabs,
       tooltip: renderVanillaTooltip,
+      modal: renderVanillaModal,
       select: renderVanillaSelect,
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
