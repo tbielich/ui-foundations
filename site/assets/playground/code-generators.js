@@ -46,6 +46,41 @@
     return "<uif-input" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-input>";
   }
 
+  function njkSearchField(state) {
+    var p = state.props;
+    var parts = [];
+    if (p.placeholder) parts.push('placeholder="' + quoteAttr(p.placeholder) + '"');
+    if (p.value) parts.push('value="' + quoteAttr(p.value) + '"');
+    if (state.meta.state && state.meta.state !== "default") {
+      parts.push('state="' + quoteAttr(state.meta.state) + '"');
+    }
+    if (p.quiet === true || p.quiet === "true") parts.push("quiet=true");
+    if (
+      (p.disabled === true || p.disabled === "true") &&
+      state.meta.state !== "disabled"
+    ) {
+      parts.push("disabled=true");
+    }
+    if (
+      (p.readonly === true || p.readonly === "true") &&
+      state.meta.state !== "readonly"
+    ) {
+      parts.push("readonly=true");
+    }
+    return "{{ uif.searchField(" + parts.join(", ") + ") }}";
+  }
+
+  function wcSearchField(state) {
+    var p = state.props;
+    var attrs = [];
+    if (p.placeholder) attrs.push('placeholder="' + quoteAttr(p.placeholder) + '"');
+    if (p.value) attrs.push('value="' + quoteAttr(p.value) + '"');
+    if (p.quiet === true || p.quiet === "true") attrs.push("quiet");
+    if (state.meta.state === "disabled") attrs.push("disabled");
+    if (state.meta.state === "readonly") attrs.push("readonly");
+    return "<uif-search-field" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-search-field>";
+  }
+
   function njkCheckbox(state) {
     var p = state.props;
     var label = p.label || "Accept terms";
@@ -242,6 +277,7 @@
   global.UIPlaygroundCodeGenerators = {
     njk: {
       button: njkButton, input: njkInput, checkbox: njkCheckbox,
+      "search-field": njkSearchField,
       "switch": njkSwitch, icon: njkIcon, radio: njkRadio, badge: njkBadge,
       label: function () { return '{{ uif.labelContent("text", "icon") }}'; },
       "button-group": function () { return '{% call uif.buttonGroup() %}...{% endcall %}'; },
@@ -295,6 +331,7 @@
     },
     wc: {
       button: wcButton, input: wcInput, checkbox: wcCheckbox,
+      "search-field": wcSearchField,
       "switch": wcSwitch, icon: wcIcon, radio: wcRadio, badge: wcBadge,
       label: function () { return "<uif-field-label>...</uif-field-label>"; },
       "button-group": function () { return "<uif-button-group>...</uif-button-group>"; },

@@ -2022,6 +2022,175 @@
       }
     }
   },
+  "Search Field": {
+    "Text": {
+      "Color Default": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Text/Default" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-text-color-default)" } }
+      },
+      "Color Hover": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Text/Brand" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-text-color-hover)" } }
+      },
+      "Color Active": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Text/Default" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-text-color-active)" } }
+      },
+      "Color Disabled": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Text/Disabled" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-text-color-disabled)" } }
+      },
+      "Color Placeholder": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Text/Subtle" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-text-color-placeholder)" } }
+      }
+    },
+    "Border": {
+      "Color Default": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Border/Default" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-border-color-default)" } }
+      },
+      "Color Hover": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Border/Brand" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-border-color-hover)" } }
+      },
+      "Color Active": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Border/Brand" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-border-color-active)" } }
+      },
+      "Color Focus": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Border/Brand" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-border-color-focus)" } }
+      },
+      "Color Disabled": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Border/Disabled" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-border-color-disabled)" } }
+      },
+      "Size Default": {
+        "$type": "number",
+        "$value": { "$ref": "Brand/Size/Border/Default" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-border-size-default)" } }
+      },
+      "Size Hover": {
+        "$type": "number",
+        "$value": { "$ref": "Brand/Size/Border/Default" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-border-size-hover)" } }
+      },
+      "Size Active": {
+        "$type": "number",
+        "$value": { "$ref": "Brand/Size/Border/Thick" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-border-size-active)" } }
+      },
+      "Radius": {
+        "$type": "number",
+        "$value": { "$ref": "Brand/Corner/Input" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-border-radius)" } }
+      }
+    },
+    "Font Family": {
+      "$type": "string",
+      "$value": { "$ref": "Brand/Font/Base" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-font-family)" } }
+    },
+    "Font Weight": {
+      "$type": "string",
+      "$value": { "$ref": "Typography/Body/Font Weight" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-font-weight)" } }
+    },
+    "Font Size": {
+      "$type": "number",
+      "$value": { "$ref": "Typography/Label/Font Size" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-font-size)" } }
+    },
+    "Line Height": {
+      "$type": "number",
+      "$value": { "$ref": "Typography/Body/Line Height" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-line-height)" } }
+    },
+    "Container": {
+      "Background Default": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Fill/Surface" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-container-background-default)" } }
+      },
+      "Background Focus": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Fill/Surface" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-container-background-focus)" } }
+      },
+      "Background Disabled": {
+        "$type": "color",
+        "$value": { "$ref": "Color/Fill/Disabled" },
+        "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-container-background-disabled)" } }
+      }
+    },
+    "Padding Inline": {
+      "$type": "number",
+      "$value": { "$ref": "Brand/Size/Spacing/Component" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-padding-inline)" } }
+    },
+    "Padding Block": {
+      "$type": "number",
+      "$value": { "$ref": "Brand/Size/Spacing/Component" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-padding-block)" } }
+    },
+    "Gap": {
+      "$type": "number",
+      "$value": { "$ref": "Brand/Size/Spacing/Component" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-gap)" } }
+    },
+    "Overlay Hover": {
+      "$type": "color",
+      "$value": { "$ref": "Color/Transparent" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-overlay-hover)" } }
+    },
+    "Overlay Active": {
+      "$type": "color",
+      "$value": { "$ref": "Color/Transparent" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-overlay-active)" } }
+    },
+    "Height": {
+      "$type": "number",
+      "$value": { "$ref": "Size/Target/Default" },
+      "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-height)" } }
+    },
+    "Quiet": {
+      "Container": {
+        "Background Default": {
+          "$type": "color",
+          "$value": { "$ref": "Color/Transparent" },
+          "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-quiet-container-background-default)" } }
+        },
+        "Background Focus": {
+          "$type": "color",
+          "$value": { "$ref": "Color/Fill/Surface" },
+          "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-quiet-container-background-focus)" } }
+        }
+      },
+      "Border": {
+        "Color Default": {
+          "$type": "color",
+          "$value": { "$ref": "Color/Transparent" },
+          "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-quiet-border-color-default)" } }
+        },
+        "Color Focus": {
+          "$type": "color",
+          "$value": { "$ref": "Color/Border/Brand" },
+          "$extensions": { "com.figma.codeSyntax": { "WEB": "var(--uif-search-field-quiet-border-color-focus)" } }
+        }
+      }
+    }
+  },
   "Form": {
     "Group": {
       "Gap": {
