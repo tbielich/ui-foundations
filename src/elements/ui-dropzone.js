@@ -1,5 +1,12 @@
 import { UIElement, define } from "./base.js";
 
+const escapeHTML = (value) =>
+  String(value).replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+
 class UIDropzone extends UIElement {
   static get observedAttributes() {
     return ["label", "hint", "button-label", "accept", "multiple", "disabled", "filled", "files-text", "name"];
@@ -21,18 +28,18 @@ class UIDropzone extends UIElement {
     if (filled) classes.push("is-filled");
 
     const inputAttrs = ['class="uif-dropzone-input"', 'type="file"'];
-    if (accept) inputAttrs.push(`accept="${accept}"`);
+    if (accept) inputAttrs.push(`accept="${escapeHTML(accept)}"`);
     if (multiple) inputAttrs.push("multiple");
     if (disabled) inputAttrs.push("disabled");
-    if (name) inputAttrs.push(`name="${name}"`);
+    if (name) inputAttrs.push(`name="${escapeHTML(name)}"`);
 
     this.innerHTML = `<div class="${classes.join(" ")}" role="group" aria-label="File upload drop zone">
   <input ${inputAttrs.join(" ")} />
   <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/upload.svg');" aria-hidden="true"></span>
-  <span class="uif-dropzone-label">${label}</span>
-  <span class="uif-dropzone-hint">${hint}</span>
-  <button class="uif-button outline uif-dropzone-button" type="button"${disabled ? " disabled" : ""}>${buttonLabel}</button>
-  <span class="uif-dropzone-files" aria-live="polite">${filesText}</span>
+  <span class="uif-dropzone-label">${escapeHTML(label)}</span>
+  <span class="uif-dropzone-hint">${escapeHTML(hint)}</span>
+  <button class="uif-button outline uif-dropzone-button" type="button"${disabled ? " disabled" : ""}>${escapeHTML(buttonLabel)}</button>
+  <span class="uif-dropzone-files" aria-live="polite">${escapeHTML(filesText)}</span>
 </div>`;
 
     if (disabled) return;
@@ -40,6 +47,7 @@ class UIDropzone extends UIElement {
     const root = this.querySelector(".uif-dropzone");
     const input = this.querySelector(".uif-dropzone-input");
     const button = this.querySelector(".uif-dropzone-button");
+    const files = this.querySelector(".uif-dropzone-files");
 
     if (button && input) {
       button.addEventListener("click", () => input.click());
@@ -51,7 +59,6 @@ class UIDropzone extends UIElement {
         root.classList.add("is-dragover");
       };
       const clearDragover = (event) => {
-        event.preventDefault();
         root.classList.remove("is-dragover");
       };
 
@@ -59,24 +66,25 @@ class UIDropzone extends UIElement {
       root.addEventListener("dragover", setDragover);
       root.addEventListener("dragleave", clearDragover);
       root.addEventListener("drop", (event) => {
+        event.preventDefault();
         clearDragover(event);
         const count = event.dataTransfer?.files?.length ?? 0;
-        if (count > 0) {
-          this.setAttribute("files-text", count === 1 ? event.dataTransfer.files[0].name : `${count} files selected`);
-          this.setAttribute("filled", "");
+        if (count > 0 && files) {
+          root.classList.add("is-filled");
+          files.textContent = count === 1 ? event.dataTransfer.files[0].name : `${count} files selected`;
         }
       });
     }
 
-    if (input) {
+    if (input && files && root) {
       input.addEventListener("change", () => {
         const count = input.files?.length ?? 0;
         if (count > 0) {
-          this.setAttribute("files-text", count === 1 ? input.files[0].name : `${count} files selected`);
-          this.setAttribute("filled", "");
+          root.classList.add("is-filled");
+          files.textContent = count === 1 ? input.files[0].name : `${count} files selected`;
         } else {
-          this.setAttribute("files-text", "No files selected");
-          this.removeAttribute("filled");
+          root.classList.remove("is-filled");
+          files.textContent = "No files selected";
         }
       });
     }

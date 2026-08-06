@@ -25,6 +25,7 @@
   }
 
   .uif-dropzone.is-filled {
+    color: var(--uif-dropzone-text-color-default);
     border-color: var(--uif-dropzone-border-color-filled);
     background: var(--uif-dropzone-container-background-filled);
   }

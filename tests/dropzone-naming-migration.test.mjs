@@ -18,9 +18,29 @@ test("Dropzone CSS exposes canonical UIF naming and component tokens", async () 
 
 test("Dropzone Figma export contains canonical component tokens", async () => {
   const tokenExport = await read("figma/exports/Patterns (UI).tokens.json");
-  const canonical = tokenExport.match(/var\(--uif-dropzone-/g) ?? [];
+  const expectedTokens = [
+    "--uif-dropzone-text-color-default",
+    "--uif-dropzone-text-color-subtle",
+    "--uif-dropzone-text-color-disabled",
+    "--uif-dropzone-text-color-dragover",
+    "--uif-dropzone-border-color-default",
+    "--uif-dropzone-border-color-dragover",
+    "--uif-dropzone-border-color-filled",
+    "--uif-dropzone-border-color-disabled",
+    "--uif-dropzone-border-size-default",
+    "--uif-dropzone-border-radius",
+    "--uif-dropzone-container-background-default",
+    "--uif-dropzone-container-background-dragover",
+    "--uif-dropzone-container-background-filled",
+    "--uif-dropzone-container-background-disabled",
+    "--uif-dropzone-padding-inline",
+    "--uif-dropzone-padding-block",
+    "--uif-dropzone-gap",
+  ];
 
-  assert.equal(canonical.length, 17);
+  for (const token of expectedTokens) {
+    assert.match(tokenExport, new RegExp(`var\\(${token}\\)`));
+  }
   assert.doesNotMatch(tokenExport, /var\(--dropzone-/);
 });
 
