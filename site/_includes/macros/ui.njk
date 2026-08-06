@@ -294,3 +294,30 @@
 {%- macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='', rangeStart='', rangeEnd='') -%}
 {{- _cal(month, selectedDate, todayDate, state, disabled, container, className, id, rangeStart, rangeEnd) }}
 {%- endmacro -%}
+
+{% macro progressBar(value='', variant='', size='', label='', showValue=false, indeterminate=false) -%}
+{%- set classes = "uif-progress-bar" -%}
+{%- if variant and variant != "default" -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+{%- if size == "lg" -%}{%- set classes = classes + " lg" -%}{%- endif -%}
+{%- if indeterminate or value === "" -%}{%- set classes = classes + " indeterminate" -%}{%- endif -%}
+{%- if indeterminate or value === "" -%}
+<div class="{{ classes }}" role="progressbar" aria-label="{{ label or "Loading" }}" aria-valuemin="0" aria-valuemax="100">
+{%- else -%}
+<div class="{{ classes }}" role="progressbar" aria-label="{{ label or "Progress" }}" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100">
+{%- endif -%}
+{%- if label or (showValue and not indeterminate) %}
+  <div class="uif-progress-bar-header">
+    {%- if label %}<span class="uif-progress-bar-label">{{ label }}</span>{% endif -%}
+    {%- if showValue and not indeterminate %}<span class="uif-progress-bar-value">{{ value }}%</span>{% endif %}
+  </div>
+{%- endif %}
+  <div class="uif-progress-bar-track">
+    {%- if indeterminate or value === "" %}
+    <div class="uif-progress-bar-fill"></div>
+    {%- else %}
+    <div class="uif-progress-bar-fill" style="--_progress: {{ value }}"></div>
+    {%- endif %}
+  </div>
+</div>
+{%- endmacro %}

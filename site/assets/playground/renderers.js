@@ -1197,6 +1197,45 @@
     return { element, code: html };
   };
 
+  const renderVanillaProgressBar = ({ props }) => {
+    const rawValue = props.value !== undefined && props.value !== "" ? props.value : null;
+    const variant = String(props.variant || "default");
+    const size = String(props.size || "md");
+    const label = String(props.label || "");
+    const showValue = asBoolean(props.showValue);
+    const forceIndeterminate = asBoolean(props.indeterminate);
+
+    const isIndeterminate = forceIndeterminate || rawValue === null || rawValue === "";
+    const value = isIndeterminate ? null : Math.min(100, Math.max(0, parseFloat(rawValue) || 0));
+
+    const classes = ["uif-progress-bar"];
+    if (variant && variant !== "default") classes.push(variant);
+    if (size === "sm") classes.push("sm");
+    if (size === "lg") classes.push("lg");
+    if (isIndeterminate) classes.push("indeterminate");
+
+    const ariaAttrs = isIndeterminate
+      ? `role="progressbar" aria-label="${quoteAttr(label || "Loading")}" aria-valuemin="0" aria-valuemax="100"`
+      : `role="progressbar" aria-label="${quoteAttr(label || "Progress")}" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="100"`;
+
+    let headerHtml = "";
+    if (label || (showValue && !isIndeterminate)) {
+      headerHtml = `<div class="uif-progress-bar-header">`;
+      if (label) headerHtml += `<span class="uif-progress-bar-label">${quoteAttr(label)}</span>`;
+      if (showValue && !isIndeterminate) headerHtml += `<span class="uif-progress-bar-value">${Math.round(value)}%</span>`;
+      headerHtml += `</div>`;
+    }
+
+    const fillStyle = isIndeterminate ? "" : ` style="--_progress: ${value}"`;
+    const html = `<div class="${classes.join(" ")}" ${ariaAttrs}>${headerHtml}<div class="uif-progress-bar-track"><div class="uif-progress-bar-fill"${fillStyle}></div></div></div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+
+    return { element, code: html };
+  };
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -1219,6 +1258,7 @@
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      "progress-bar": renderVanillaProgressBar,
     },
   };
 })(window);

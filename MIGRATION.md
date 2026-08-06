@@ -58,6 +58,7 @@ parts follow the same prefix replacement.
 | Input | `.uif-input`, `.uif-input-field`, `.uif-input-field-control` | `--uif-input-*` | `<uif-input>` |
 | Label composition | `.uif-label-content`, `.uif-label-content-text`, `.uif-field-label*` | `--uif-field-label-*`; separately governed `--typography-label-*` remains unchanged | `<uif-field-label>` |
 | Link | `.uif-link` | `--uif-link-*` | `<uif-link>` |
+| Progress Bar | `.uif-progress-bar`, `.uif-progress-bar-track`, `.uif-progress-bar-fill`, `.uif-progress-bar-header`, `.uif-progress-bar-label`, `.uif-progress-bar-value` | `--uif-progress-bar-*` | `<uif-progress-bar>` |
 | Radio | `.uif-radio`, `.uif-radio-field`, `.uif-radio-field-text` | `--uif-radio-*` | `<uif-radio>` |
 | Select | `.uif-select` | `--uif-select-*` | `<uif-select>` |
 | Switch | `.uif-switch`, `.uif-switch-field`, `.uif-switch-field-text` | `--uif-switch-*` | `<uif-switch>` |
