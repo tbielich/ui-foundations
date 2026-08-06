@@ -23,8 +23,7 @@ class UISkeleton extends UIElement {
     const animated = this.getAttr("animated", "true");
 
     const classes = ["uif-skeleton"];
-    if (shape && shape !== "text") classes.push(shape);
-    if (shape === "text") classes.push("text");
+    classes.push(shape);
     if (size === "sm") classes.push("sm");
     if (size === "lg") classes.push("lg");
     if (width === "short" || width === "medium") classes.push(width);

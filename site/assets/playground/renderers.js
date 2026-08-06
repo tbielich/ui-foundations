@@ -1203,7 +1203,8 @@
     const width = String(props.width || "");
     const animated = props.animated !== false && props.animated !== "false";
 
-    const classes = ["uif-skeleton", shape];
+    const classes = ["uif-skeleton"];
+    if (shape) classes.push(shape);
     if (size === "sm") classes.push("sm");
     if (size === "lg") classes.push("lg");
     if (width === "short" || width === "medium") classes.push(width);
