@@ -42,7 +42,7 @@ figma.connect(
           step="${step}"
           value="${lowerValue}"
           aria-label="Minimum value"
-          disabled="${disabled}"
+          ${disabled ? "disabled" : ""}
         />
         <input
           class="uif-range-slider-input is-upper"
@@ -52,7 +52,7 @@ figma.connect(
           step="${step}"
           value="${upperValue}"
           aria-label="Maximum value"
-          disabled="${disabled}"
+          ${disabled ? "disabled" : ""}
         />
       </div>
     </div>`,
