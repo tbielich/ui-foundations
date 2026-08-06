@@ -155,6 +155,16 @@
 </span>
 {%- endmacro %}
 
+{% macro statusLight(text, variant='neutral', size='md') -%}
+{%- set classes = "uif-status-light" -%}
+{%- if variant and variant != "neutral" -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+<span class="{{ classes }}">
+  <span class="uif-status-light-indicator" aria-hidden="true"></span>
+  <span class="uif-status-light-text">{{ text }}</span>
+</span>
+{%- endmacro %}
+
 {% macro divider(orientation='horizontal', variant='', className='') -%}
 {%- set classes = "uif-divider" -%}
 {%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}

@@ -56,6 +56,16 @@ permalink: /patterns/
       <p>Pill-shaped labels for status, counts, or highlights.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/status-light/">
+    <div class="docs-component-card-preview">
+      {{ uif.statusLight("Online", variant="positive") }}
+      {{ uif.statusLight("Offline", variant="negative") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Status Light</h2>
+      <p>Compact semantic status indicator with optional label and size variants.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/label/">
     <div class="docs-component-card-preview">
       <span class="uif-label-content">

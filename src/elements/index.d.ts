@@ -23,6 +23,7 @@ export declare class UICheckbox extends UIElement {}
 export declare class UIRadio extends UIElement {}
 export declare class UISwitch extends UIElement {}
 export declare class UIBadge extends UIElement {}
+export declare class UIStatusLight extends UIElement {}
 export declare class UIDivider extends UIElement {}
 export declare class UITextarea extends UIElement {}
 export declare class UIAvatar extends UIElement {}
@@ -53,6 +54,7 @@ declare global {
     "uif-radio": UIRadio;
     "uif-switch": UISwitch;
     "uif-badge": UIBadge;
+    "uif-status-light": UIStatusLight;
     "uif-divider": UIDivider;
     "uif-textarea": UITextarea;
     "uif-avatar": UIAvatar;

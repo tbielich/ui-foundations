@@ -607,6 +607,33 @@
     return { element, code };
   };
 
+  const renderVanillaStatusLight = ({ props, children }) => {
+    const variant = String(props.variant || "neutral");
+    const size = String(props.size || "md");
+    const rawText =
+      typeof children === "undefined" ? "Status" : String(children || "");
+
+    const element = document.createElement("span");
+    const classes = ["uif-status-light"];
+    if (variant && variant !== "neutral") classes.push(variant);
+    if (size === "sm") classes.push("sm");
+    element.className = classes.join(" ");
+
+    const indicator = document.createElement("span");
+    indicator.className = "uif-status-light-indicator";
+    indicator.setAttribute("aria-hidden", "true");
+    element.append(indicator);
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "uif-status-light-text";
+    textSpan.textContent = rawText;
+    element.append(textSpan);
+
+    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
+    const code = `<span class="${codeClasses}"><span class="uif-status-light-indicator" aria-hidden="true"></span><span class="uif-status-light-text">${quoteAttr(rawText)}</span></span>`;
+    return { element, code };
+  };
+
   const renderVanillaTextarea = ({ props }) => {
     const placeholder = String(props.placeholder || "");
     const value = String(props.value || "");
@@ -1200,6 +1227,7 @@
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
+      "status-light": renderVanillaStatusLight,
       button: renderVanillaButton,
       "button-group": renderVanillaButtonGroup,
       checkbox: renderVanillaCheckbox,
