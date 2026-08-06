@@ -56,6 +56,7 @@ parts follow the same prefix replacement.
 | Form | `.uif-form`, `.uif-form-*` | `--uif-form-*` | `<uif-form>`, `<uif-form-group>`, `<uif-form-field>`, `<uif-form-helper>`, `<uif-form-actions>` |
 | Icon | `.uif-icon` | code-only `--uif-icon-src` | `<uif-icon>` |
 | Input | `.uif-input`, `.uif-input-field`, `.uif-input-field-control` | `--uif-input-*` | `<uif-input>` |
+| Number Field | `.uif-input-field.uif-number-field`, `.uif-number-field-prefix`, `.uif-number-field-suffix` | `--uif-number-field-*` | `<uif-number-field>` |
 | Label composition | `.uif-label-content`, `.uif-label-content-text`, `.uif-field-label*` | `--uif-field-label-*`; separately governed `--typography-label-*` remains unchanged | `<uif-field-label>` |
 | Link | `.uif-link` | `--uif-link-*` | `<uif-link>` |
 | Radio | `.uif-radio`, `.uif-radio-field`, `.uif-radio-field-text` | `--uif-radio-*` | `<uif-radio>` |

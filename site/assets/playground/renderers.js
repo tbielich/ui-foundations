@@ -1109,6 +1109,99 @@
     return { element, code };
   };
 
+  // ─── Number Field ─────────────────────────────────────────────────
+  const renderVanillaNumberField = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const value = props.value != null ? String(props.value) : "";
+    const min = String(props.min || "");
+    const max = String(props.max || "");
+    const step = String(props.step || "");
+    const format = String(props.format || "");
+    const placeholder = String(props.placeholder || "0");
+    const isDisabled = previewState === "disabled" || Boolean(props.disabled);
+    const isReadonly = previewState === "readonly";
+
+    const wrapper = document.createElement("div");
+    const wrapperClasses = ["uif-input-field", "uif-number-field"];
+    if (previewState === "hover") wrapperClasses.push("is-hover");
+    if (previewState === "active") wrapperClasses.push("is-active");
+    if (previewState === "focus") wrapperClasses.push("is-focus-visible");
+    if (isDisabled) wrapperClasses.push("is-disabled");
+    if (previewState === "invalid") wrapperClasses.push("is-invalid");
+    wrapper.className = wrapperClasses.join(" ");
+
+    if (format === "currency") {
+      const prefix = document.createElement("span");
+      prefix.className = "uif-number-field-prefix";
+      prefix.setAttribute("aria-hidden", "true");
+      prefix.textContent = "$";
+      wrapper.appendChild(prefix);
+    }
+
+    const input = document.createElement("input");
+    input.className = "uif-input";
+    input.type = "number";
+    input.placeholder = placeholder;
+    input.value = value;
+    input.disabled = isDisabled;
+    input.readOnly = isReadonly;
+    if (min) input.min = min;
+    if (max) input.max = max;
+    if (step) input.step = step;
+    wrapper.appendChild(input);
+
+    if (format === "percent") {
+      const suffix = document.createElement("span");
+      suffix.className = "uif-number-field-suffix";
+      suffix.setAttribute("aria-hidden", "true");
+      suffix.textContent = "%";
+      wrapper.appendChild(suffix);
+    }
+
+    const control = document.createElement("span");
+    control.className = "uif-input-field-control";
+    const controlIcons = [
+      { icon: "minus-circled", label: "Decrease value" },
+      { icon: "plus-circled", label: "Increase value" },
+    ];
+    controlIcons.forEach(({ icon, label }) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.setAttribute("aria-label", label);
+      if (isDisabled) btn.disabled = true;
+      const iconEl = createIconElement({ name: icon, decorative: true });
+      if (iconEl) btn.appendChild(iconEl);
+      control.appendChild(btn);
+    });
+    wrapper.appendChild(control);
+
+    // Generate code
+    const inputAttrs = [`class="uif-input"`, `type="number"`];
+    if (placeholder) inputAttrs.push(`placeholder="${quoteAttr(placeholder)}"`);
+    if (value) inputAttrs.push(`value="${quoteAttr(value)}"`);
+    if (min) inputAttrs.push(`min="${quoteAttr(min)}"`);
+    if (max) inputAttrs.push(`max="${quoteAttr(max)}"`);
+    if (step) inputAttrs.push(`step="${quoteAttr(step)}"`);
+    if (isDisabled) inputAttrs.push("disabled");
+
+    const prefixCode = format === "currency"
+      ? `<span class="uif-number-field-prefix" aria-hidden="true">$</span>\n  ` : "";
+    const suffixCode = format === "percent"
+      ? `\n  <span class="uif-number-field-suffix" aria-hidden="true">%</span>` : "";
+    const controlCode = controlIcons
+      .map(({ icon, label }) => `<button type="button" aria-label="${quoteAttr(label)}">${iconCode({ name: icon, decorative: true })}</button>`)
+      .join("\n    ");
+
+    const code = `<div class="${quoteAttr(wrapper.className)}">
+  ${prefixCode}<input ${inputAttrs.join(" ")} />${suffixCode}
+  <span class="uif-input-field-control">
+    ${controlCode}
+  </span>
+</div>`;
+
+    return { element: wrapper, code };
+  };
+
   // ─── Date Picker ──────────────────────────────────────────────────
   const renderVanillaDatePicker = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
@@ -1219,6 +1312,7 @@
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      "number-field": renderVanillaNumberField,
     },
   };
 })(window);
