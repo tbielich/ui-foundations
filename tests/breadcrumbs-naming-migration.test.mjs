@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
+const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 test("Breadcrumbs CSS exposes canonical UIF naming with a v1 class alias", async () => {
   const css = await read("src/ui/patterns/breadcrumbs.css");
@@ -17,7 +18,24 @@ test("Breadcrumbs CSS exposes canonical UIF naming with a v1 class alias", async
 
 test("Breadcrumbs Figma export contains canonical tokens without legacy aliases", async () => {
   const tokenExport = await read("figma/exports/Patterns (UI).tokens.json");
-  assert.equal((tokenExport.match(/var\(--uif-breadcrumbs-/g) ?? []).length, 12);
+  const expectedTokens = [
+    "--uif-breadcrumbs-text-color-default",
+    "--uif-breadcrumbs-text-color-hover",
+    "--uif-breadcrumbs-text-color-active",
+    "--uif-breadcrumbs-text-color-current",
+    "--uif-breadcrumbs-text-color-disabled",
+    "--uif-breadcrumbs-separator-color",
+    "--uif-breadcrumbs-separator-gap",
+    "--uif-breadcrumbs-font-family",
+    "--uif-breadcrumbs-font-weight",
+    "--uif-breadcrumbs-font-size",
+    "--uif-breadcrumbs-line-height",
+    "--uif-breadcrumbs-label-max-inline-size",
+    "--uif-breadcrumbs-gap",
+  ];
+  for (const token of expectedTokens) {
+    assert.match(tokenExport, new RegExp(`var\\(${escapeRegex(token)}\\)`));
+  }
   assert.doesNotMatch(tokenExport, /var\(--breadcrumbs-/);
 });
 

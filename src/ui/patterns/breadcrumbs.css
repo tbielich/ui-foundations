@@ -33,7 +33,7 @@
     font-weight: var(--uif-breadcrumbs-font-weight);
     font-size: var(--uif-breadcrumbs-font-size);
     line-height: var(--uif-breadcrumbs-line-height);
-    max-inline-size: 18ch;
+    max-inline-size: var(--uif-breadcrumbs-label-max-inline-size);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

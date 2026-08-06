@@ -1108,7 +1108,7 @@
     renderedItems.forEach((item, index) => {
       list.append(renderItem(item, index, renderedItems.length));
       if (responsiveCollapse && index === 0) {
-        list.append(renderItem({ overflow: true }, index + 0.5, renderedItems.length + 1));
+        list.append(renderItem({ overflow: true }, index + 1, renderedItems.length + 1));
       }
     });
 
@@ -1138,7 +1138,7 @@
     renderedItems.forEach((item, index) => {
       pushCodeItem(item, index, renderedItems.length);
       if (responsiveCollapse && index === 0) {
-        pushCodeItem({ overflow: true }, index + 0.5, renderedItems.length + 1);
+        pushCodeItem({ overflow: true }, index + 1, renderedItems.length + 1);
       }
     });
 

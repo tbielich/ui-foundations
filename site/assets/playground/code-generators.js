@@ -366,7 +366,7 @@
         var items = [];
         for (var i = 0; i < depth; i++) {
           var entry = { label: labels[i] || ("Level " + (i + 1)) };
-          if (i < depth - 1) entry.href = "#" + (i + 1);
+          if (i < depth - 1) entry.url = "#" + (i + 1);
           if (i === depth - 1) entry.current = true;
           items.push(entry);
         }

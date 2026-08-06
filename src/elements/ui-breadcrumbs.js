@@ -17,10 +17,11 @@ function parseItems(raw) {
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
     return parsed
-      .map((item) => ({
+      .map((item, index) => ({
         label: String(item?.label || "").trim(),
-        href: item?.href ? String(item.href) : "",
+        url: item?.url ? String(item.url) : "",
         current: item?.current === true,
+        sourceIndex: index,
       }))
       .filter((item) => item.label.length > 0);
   } catch {
@@ -45,21 +46,21 @@ function collapseAlways(items, maxItems) {
   return [items[0], { overflow: true }, ...tail];
 }
 
-function renderItem(item, index, total, isResponsiveCollapse, separator) {
+function renderItem(item, index, total, isResponsiveCollapse, separator, sourceLastIndex) {
   if (item.overflow) {
     return `<li class="uif-breadcrumb-item is-overflow" data-separator="${escapeAttr(separator)}">` +
       `<span class="uif-breadcrumb-overflow" aria-hidden="true">…</span>` +
       `</li>`;
   }
 
-  const isCurrent = item.current || index === total - 1;
+  const isCurrent = item.current || item.sourceIndex === sourceLastIndex;
   const middleClass = isResponsiveCollapse && index > 0 && index < total - 1 ? " is-middle" : "";
   if (isCurrent) {
     return `<li class="uif-breadcrumb-item${middleClass}" data-separator="${escapeAttr(separator)}">` +
       `<span class="uif-breadcrumb-current" aria-current="page">${escapeHtml(item.label)}</span>` +
       `</li>`;
   }
-  const href = item.href || "#";
+  const href = item.url || "#";
   return `<li class="uif-breadcrumb-item${middleClass}" data-separator="${escapeAttr(separator)}">` +
     `<a class="uif-breadcrumb-link" href="${escapeAttr(href)}">${escapeHtml(item.label)}</a>` +
     `</li>`;
@@ -67,7 +68,7 @@ function renderItem(item, index, total, isResponsiveCollapse, separator) {
 
 /**
  * <uif-breadcrumbs
- *   items='[{"label":"Home","href":"/"},{"label":"Products","href":"/products"},{"label":"Shoes","current":true}]'
+ *   items='[{"label":"Home","url":"/"},{"label":"Products","url":"/products"},{"label":"Shoes","current":true}]'
  *   separator="/"
  *   collapse="responsive"
  *   max-items="4"
@@ -94,6 +95,7 @@ class UIBreadcrumbs extends UIElement {
     const alwaysCollapsed = collapse === "always" && items.length > maxItems;
     const responsiveCollapse = collapse === "responsive" && items.length > 2;
     const renderedItems = alwaysCollapsed ? collapseAlways(items, maxItems) : items;
+    const sourceLastIndex = items.length - 1;
 
     const listClasses = ["uif-breadcrumbs-list"];
     if (alwaysCollapsed) listClasses.push("is-collapsed");
@@ -102,7 +104,7 @@ class UIBreadcrumbs extends UIElement {
     const outputItems = [];
     for (let index = 0; index < renderedItems.length; index++) {
       const item = renderedItems[index];
-      outputItems.push(renderItem(item, index, renderedItems.length, responsiveCollapse, separator));
+      outputItems.push(renderItem(item, index, renderedItems.length, responsiveCollapse, separator, sourceLastIndex));
       if (responsiveCollapse && index === 0) {
         outputItems.push(
           `<li class="uif-breadcrumb-item is-overflow" data-separator="${escapeAttr(separator)}">` +

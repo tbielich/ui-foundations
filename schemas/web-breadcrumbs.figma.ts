@@ -13,22 +13,22 @@ figma.connect(
         None: "none",
       }),
       maxItems: figma.enum("Max items", {
-        "2": "2",
-        "3": "3",
-        "4": "4",
-        "5": "5",
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
       }),
     },
     example: ({ className, separator, collapse, maxItems }: BreadcrumbsProps) =>
       html`<nav class="uif-breadcrumbs" aria-label="Breadcrumb">
-        <ol class="${className}" data-separator="${separator || "/"}" data-collapse="${collapse}" data-max-items="${maxItems}">
-          <li class="uif-breadcrumb-item" data-separator="/">
+        <ol class="${className || "uif-breadcrumbs-list"}" data-separator="${separator || "/"}" data-collapse="${collapse}" data-max-items="${String(maxItems || 4)}">
+          <li class="uif-breadcrumb-item" data-separator="${separator || "/"}">
             <a class="uif-breadcrumb-link" href="/">Home</a>
           </li>
-          <li class="uif-breadcrumb-item" data-separator="/">
+          <li class="uif-breadcrumb-item" data-separator="${separator || "/"}">
             <a class="uif-breadcrumb-link" href="/products">Products</a>
           </li>
-          <li class="uif-breadcrumb-item" data-separator="/">
+          <li class="uif-breadcrumb-item" data-separator="${separator || "/"}">
             <span class="uif-breadcrumb-current" aria-current="page">Current page</span>
           </li>
         </ol>

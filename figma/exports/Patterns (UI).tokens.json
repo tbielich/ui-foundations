@@ -5071,6 +5071,19 @@
         }
       }
     },
+    "Label Max Inline Size": {
+      "$type": "string",
+      "$value": "18ch",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:6000:13",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-breadcrumbs-label-max-inline-size)"
+        }
+      }
+    },
     "Gap": {
       "$type": "number",
       "$value": {

@@ -5,8 +5,10 @@ export interface BreadcrumbsItem {
 }
 
 export interface BreadcrumbsProps {
-  className: string;
-  separator: string;
-  collapse: string;
-  maxItems: string;
+  items: BreadcrumbsItem[];
+  className?: string;
+  separator?: string;
+  collapse?: "responsive" | "always" | "none";
+  maxItems?: number;
+  ariaLabel?: string;
 }
