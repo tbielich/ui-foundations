@@ -28,7 +28,8 @@ class UIProgressCircle extends UIElement {
       ? Math.min(100, Math.max(0, rawValue))
       : 0;
 
-    if (!ariaLabel && !ariaLabelledby) {
+    if (!ariaLabel && !ariaLabelledby && !this._warnedMissingAccessibleName) {
+      this._warnedMissingAccessibleName = true;
       this.warnDev("[ui-foundations] <uif-progress-circle> should have aria-label or aria-labelledby.");
     }
 
