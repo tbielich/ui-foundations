@@ -1,0 +1,13 @@
+{
+  "fluid": {
+    "viewportMin": 375,
+    "viewportMax": 1440,
+    "baseFontSize": 16,
+    "unit": "rem",
+    "modes": {
+      "min": "Min",
+      "max": "Max"
+    },
+    "collections": ["Typography (Liquid)"]
+  }
+}
