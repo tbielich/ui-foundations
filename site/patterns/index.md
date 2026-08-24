@@ -63,6 +63,8 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>Illustrated Message</h2>
       <p>Empty, error, and no-results messaging with optional recovery actions.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/status-light/">
     <div class="docs-component-card-preview">
       {{ uif.statusLight("Online", variant="positive") }}
@@ -71,6 +73,8 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>Status Light</h2>
       <p>Compact semantic status indicator with optional label and size variants.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/meter/">
     <div class="docs-component-card-preview" style="min-inline-size: 12rem;">
       {{ uif.meter(label="Storage used", value=72, variant="positive", size="sm") }}
@@ -146,6 +150,8 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>Range Slider</h2>
       <p>Dual-thumb slider for selecting a bounded numeric range.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/progress-circle/">
     <div class="docs-component-card-preview">
       {{ uif.progressCircle(65, false, "sm", "Loading trip summary") }}
@@ -190,6 +196,8 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>Breadcrumbs</h2>
       <p>Hierarchical navigation with separators, truncation, and responsive collapse.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/modal/">
     <div class="docs-component-card-preview">
       <div class="uif-modal-root is-preview is-open">
@@ -240,6 +248,8 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>TreeView</h2>
       <p>Hierarchical tree navigation with expand/collapse, selection, and keyboard support.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/dropzone/">
     <div class="docs-component-card-preview">
       {{ uif.dropzone(label="Drop files", hint="or", buttonLabel="Browse", filesText="No files selected") }}
@@ -247,6 +257,8 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>DropZone</h2>
       <p>Drag-and-drop upload target with accessible file picker fallback.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/color-picker/">
     <div class="docs-component-card-preview">
       {{ uif.colorPicker(value="#6366f1") }}
