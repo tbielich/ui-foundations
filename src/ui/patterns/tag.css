@@ -1,0 +1,89 @@
+@layer components {
+  :is(.uif-tag, .tag) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--uif-tag-gap, 0.25rem);
+    border: var(--uif-tag-border-size-default) solid var(--uif-tag-default-border-color);
+    border-radius: var(--uif-tag-border-radius, 625rem);
+    font-family: var(--uif-tag-font-family, inherit);
+    font-weight: var(--uif-tag-font-weight, 500);
+    white-space: nowrap;
+    background: var(--uif-tag-default-container-background);
+    color: var(--uif-tag-default-text-color);
+    font-size: var(--uif-tag-font-size-md);
+    line-height: var(--uif-tag-line-height-md);
+    padding-inline: var(--uif-tag-padding-inline-md);
+    padding-block: var(--uif-tag-padding-block-md);
+  }
+
+  /* ── Sizes ── */
+
+  :is(.uif-tag, .tag).sm {
+    font-size: var(--uif-tag-font-size-sm);
+    line-height: var(--uif-tag-line-height-sm);
+    padding-inline: var(--uif-tag-padding-inline-sm);
+    padding-block: var(--uif-tag-padding-block-sm);
+  }
+
+  /* ── Selected state ── */
+
+  :is(.uif-tag, .tag).is-selected,
+  :is(.uif-tag, .tag)[aria-selected="true"] {
+    background: var(--uif-tag-selected-container-background);
+    color: var(--uif-tag-selected-text-color);
+    border-color: var(--uif-tag-selected-border-color);
+  }
+
+  /* ── Remove button ── */
+
+  :is(.uif-tag, .tag) .uif-tag-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 50%;
+    block-size: var(--uif-tag-remove-size-md, 1rem);
+    inline-size: var(--uif-tag-remove-size-md, 1rem);
+  }
+
+  :is(.uif-tag, .tag) .uif-tag-remove > :is(.uif-icon, .icon) {
+    flex: 0 0 auto;
+    pointer-events: none;
+  }
+
+  :is(.uif-tag, .tag).sm .uif-tag-remove {
+    block-size: var(--uif-tag-remove-size-sm, 0.875rem);
+    inline-size: var(--uif-tag-remove-size-sm, 0.875rem);
+  }
+
+  /* ── Icon/Avatar prefix slot ── */
+
+  :is(.uif-tag, .tag) > :is(.uif-icon, .icon, .uif-avatar, .avatar) {
+    flex: 0 0 auto;
+  }
+
+  /* ── Ensure children inherit color ── */
+
+  :is(.uif-tag, .tag) > * {
+    color: inherit;
+  }
+
+  /* ── Tag group ── */
+
+  .uif-tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--uif-tag-group-gap, 0.5rem);
+    align-items: center;
+  }
+
+  .uif-tag-group.no-wrap {
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+}

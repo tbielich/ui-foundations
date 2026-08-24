@@ -73,6 +73,7 @@ parts follow the same prefix replacement.
 | Switch | `.uif-switch`, `.uif-switch-field`, `.uif-switch-field-text` | `--uif-switch-*` | `<uif-switch>` |
 | Menu | `.uif-menu`, `.uif-menu-item`, `.uif-menu-section`, `.uif-menu-section-label`, `.uif-menu-divider` | `--uif-menu-*` | `<uif-menu>` |
 | Tabs | `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, `.uif-tab-panel` | `--uif-tabs-*` | `<uif-tab-list>`, `<uif-tab>`, `<uif-tab-panel>` |
+| Tag | `.uif-tag`, `.uif-tag-text`, `.uif-tag-remove`, `.uif-tag-group` | `--uif-tag-*` | `<uif-tag>`, `<uif-tag-group>` |
 | Textarea | `.uif-textarea` | `--uif-textarea-*` | `<uif-textarea>` |
 | TreeView | `.uif-tree-view`, `.uif-tree-node`, `.uif-tree-node-row`, `.uif-tree-children` | `--uif-tree-view-*` | `<uif-tree-view>` |
 | Tooltip | `.uif-tooltip`, `.uif-tooltip-trigger` | `--uif-tooltip-*` | `<uif-tooltip>` |
