@@ -283,6 +283,73 @@
     return "<uif-combobox " + attrs.join(" ") + ">" + options + "</uif-combobox>";
   }
 
+  function njkSearchField(state) {
+    var p = state.props;
+    var parts = [];
+    if (p.placeholder) parts.push('placeholder="' + quoteAttr(p.placeholder) + '"');
+    if (p.value) parts.push('value="' + quoteAttr(p.value) + '"');
+    if (state.meta.state && state.meta.state !== "default") {
+      parts.push('state="' + quoteAttr(state.meta.state) + '"');
+    }
+    if (p.quiet === true || p.quiet === "true") parts.push("quiet=true");
+    if (
+      (p.disabled === true || p.disabled === "true") &&
+      state.meta.state !== "disabled"
+    ) {
+      parts.push("disabled=true");
+    }
+    if (
+      (p.readonly === true || p.readonly === "true") &&
+      state.meta.state !== "readonly"
+    ) {
+      parts.push("readonly=true");
+    }
+    return "{{ uif.searchField(" + parts.join(", ") + ") }}";
+  }
+
+  function wcSearchField(state) {
+    var p = state.props;
+    var attrs = [];
+    if (p.placeholder) attrs.push('placeholder="' + quoteAttr(p.placeholder) + '"');
+    if (p.value) attrs.push('value="' + quoteAttr(p.value) + '"');
+    if (p.quiet === true || p.quiet === "true") attrs.push("quiet");
+    if (state.meta.state === "disabled") attrs.push("disabled");
+    if (state.meta.state === "readonly") attrs.push("readonly");
+    return "<uif-search-field" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-search-field>";
+  }
+
+  function njkModal(state) {
+    var p = state.props;
+    var title = p.title || "Confirm action";
+    var description = p.description || "This action requires your confirmation.";
+    var variant = p.variant || "confirmation";
+    var size = p.size || "m";
+    var dismissible = p.dismissible === undefined ? true : (p.dismissible === true || p.dismissible === "true");
+    var open = p.open === undefined ? true : (p.open === true || p.open === "true");
+    var confirmLabel = p.confirmLabel || "Confirm";
+    var cancelLabel = p.cancelLabel || "Cancel";
+    return '{% call uif.modal(title="' + quoteAttr(title) + '", description="' + quoteAttr(description) + '", variant="' + quoteAttr(variant) + '", size="' + quoteAttr(size) + '", dismissible=' + (dismissible ? "true" : "false") + ", open=" + (open ? "true" : "false") + ', confirmLabel="' + quoteAttr(confirmLabel) + '", cancelLabel="' + quoteAttr(cancelLabel) + '") %}Modal content{% endcall %}';
+  }
+
+  function wcModal(state) {
+    var p = state.props;
+    var title = p.title || "Confirm action";
+    var description = p.description || "This action requires your confirmation.";
+    var variant = p.variant || "confirmation";
+    var size = p.size || "m";
+    var dismissible = p.dismissible === undefined ? true : (p.dismissible === true || p.dismissible === "true");
+    var open = p.open === undefined ? true : (p.open === true || p.open === "true");
+    var attrs = [
+      'title="' + quoteAttr(title) + '"',
+      'description="' + quoteAttr(description) + '"',
+      'variant="' + quoteAttr(variant) + '"',
+      'size="' + quoteAttr(size) + '"',
+      'dismissible="' + (dismissible ? "true" : "false") + '"',
+    ];
+    if (open) attrs.push("open");
+    return "<uif-modal " + attrs.join(" ") + ">Modal content</uif-modal>";
+  }
+
   global.UIPlaygroundCodeGenerators = {
     njk: {
       button: njkButton, input: njkInput, checkbox: njkCheckbox,
@@ -353,6 +420,42 @@
         if (duration > 0) attrs.push("duration=" + String(duration));
         return "{{ uif.notification(" + attrs.join(", ") + ") }}";
       },
+      "search-field": njkSearchField,
+      breadcrumbs: function (state) {
+        var p = state.props;
+        var depth = Math.max(2, Number(p.depth || 4));
+        var labels = ["Home", "Category", "Collection", "Details", "Current page"];
+        var parts = [];
+        for (var i = 0; i < depth; i++) {
+          var item = '{label: "' + quoteAttr(labels[i] || ("Level " + (i + 1))) + '"';
+          if (i < depth - 1) item += ', url: "#' + (i + 1) + '"';
+          if (i === depth - 1) item += ", current: true";
+          item += "}";
+          parts.push(item);
+        }
+        var args = ["items=[" + parts.join(", ") + "]"];
+        if (p.separator && p.separator !== "/") args.push('separator="' + quoteAttr(p.separator) + '"');
+        return "{{ uif.breadcrumbs(" + args.join(", ") + ") }}";
+      },
+      card: function () { return '{% call uif.card() %}\n  {% call uif.cardBody() %}Card content{% endcall %}\n{% endcall %}'; },
+      "inline-alert": function (state) { var p = state.props; return '{{ uif.inlineAlert(title="' + quoteAttr(p.title || "Alert") + '", variant="' + (p.variant || "info") + '") }}'; },
+      skeleton: function (state) { var p = state.props; return '{{ uif.skeleton(shape="' + (p.shape || "text") + '") }}'; },
+      "range-slider": function (state) { var p = state.props; return '{{ uif.rangeSlider(min=' + (p.min || 0) + ', max=' + (p.max || 100) + ') }}'; },
+      "progress-circle": function (state) { var p = state.props; return '{{ uif.progressCircle(value=' + (p.value || 50) + ') }}'; },
+      "progress-bar": function (state) { var p = state.props; return '{{ uif.progressBar(value=' + (p.value || 50) + ') }}'; },
+      meter: function (state) { var p = state.props; return '{{ uif.meter(value=' + (p.value || 50) + ', max=' + (p.max || 100) + ') }}'; },
+      "number-field": function (state) { var p = state.props; return '{{ uif.numberField(value=' + (p.value || 0) + ') }}'; },
+      "status-light": function (state) { var p = state.props; return '{{ uif.statusLight(variant="' + (p.variant || "positive") + '", label="' + quoteAttr(p.label || "Active") + '") }}'; },
+      "illustrated-message": function (state) { var p = state.props; return '{{ uif.illustratedMessage(preset="' + (p.preset || "empty") + '") }}'; },
+      "segmented-control": function () { return '{{ uif.segmentedControl(items=["Option 1", "Option 2", "Option 3"]) }}'; },
+      actionBar: function () { return '{{ uif.actionBar() }}'; },
+      "tree-view": function () { return '{% call uif.treeView() %}...{% endcall %}'; },
+      dropzone: function () { return '{{ uif.dropzone() }}'; },
+      colorPicker: njkColorPicker,
+      popover: function (state) { var p = state.props; return '{% call uif.popover(placement="' + (p.placement || "bottom") + '") %}Content{% endcall %}'; },
+      tag: function (state) { var p = state.props; return '{{ uif.tag("' + quoteAttr(p.label || "Tag") + '") }}'; },
+      table: function () { return '{% call uif.table() %}...{% endcall %}'; },
+      menu: function () { return '{% call uif.menu() %}\n  {{ uif.menuItem("Action 1") }}\n  {{ uif.menuItem("Action 2") }}\n{% endcall %}'; },
     },
     wc: {
       button: wcButton, input: wcInput, checkbox: wcCheckbox,
@@ -425,6 +528,41 @@
         if (duration > 0) attrs.push('duration="' + duration + '"');
         return "<uif-notification " + attrs.join(" ") + "></uif-notification>";
       },
+      "search-field": wcSearchField,
+      breadcrumbs: function (state) {
+        var p = state.props;
+        var depth = Math.max(2, Number(p.depth || 4));
+        var labels = ["Home", "Category", "Collection", "Details", "Current page"];
+        var items = [];
+        for (var i = 0; i < depth; i++) {
+          var entry = { label: labels[i] || ("Level " + (i + 1)) };
+          if (i < depth - 1) entry.url = "#" + (i + 1);
+          if (i === depth - 1) entry.current = true;
+          items.push(entry);
+        }
+        var attrs = ["items='" + JSON.stringify(items) + "'"];
+        if (p.separator && p.separator !== "/") attrs.push('separator="' + quoteAttr(p.separator) + '"');
+        return "<uif-breadcrumbs " + attrs.join(" ") + "></uif-breadcrumbs>";
+      },
+      card: function () { return "<uif-card>\n  <p>Card content</p>\n</uif-card>"; },
+      "inline-alert": function (state) { var p = state.props; return '<uif-inline-alert variant="' + (p.variant || "info") + '" title="' + quoteAttr(p.title || "Alert") + '"></uif-inline-alert>'; },
+      skeleton: function (state) { var p = state.props; return '<uif-skeleton shape="' + (p.shape || "text") + '"></uif-skeleton>'; },
+      "range-slider": function (state) { var p = state.props; return '<uif-range-slider min="' + (p.min || 0) + '" max="' + (p.max || 100) + '"></uif-range-slider>'; },
+      "progress-circle": function (state) { var p = state.props; return '<uif-progress-circle value="' + (p.value || 50) + '"></uif-progress-circle>'; },
+      "progress-bar": function (state) { var p = state.props; return '<uif-progress-bar value="' + (p.value || 50) + '"></uif-progress-bar>'; },
+      meter: function (state) { var p = state.props; return '<uif-meter value="' + (p.value || 50) + '" max="' + (p.max || 100) + '"></uif-meter>'; },
+      "number-field": function (state) { var p = state.props; return '<uif-number-field value="' + (p.value || 0) + '"></uif-number-field>'; },
+      "status-light": function (state) { var p = state.props; return '<uif-status-light variant="' + (p.variant || "positive") + '">' + quoteAttr(p.label || "Active") + '</uif-status-light>'; },
+      "illustrated-message": function (state) { var p = state.props; return '<uif-illustrated-message preset="' + (p.preset || "empty") + '"></uif-illustrated-message>'; },
+      "segmented-control": function () { return '<uif-segmented-control>\n  <button>Option 1</button>\n  <button>Option 2</button>\n</uif-segmented-control>'; },
+      actionBar: function () { return "<uif-action-bar>...</uif-action-bar>"; },
+      "tree-view": function () { return "<uif-tree-view>...</uif-tree-view>"; },
+      dropzone: function () { return "<uif-dropzone></uif-dropzone>"; },
+      colorPicker: wcColorPicker,
+      popover: function (state) { var p = state.props; return '<uif-popover placement="' + (p.placement || "bottom") + '">Content</uif-popover>'; },
+      tag: function (state) { var p = state.props; return '<uif-tag>' + quoteAttr(p.label || "Tag") + '</uif-tag>'; },
+      table: function () { return "<uif-table>...</uif-table>"; },
+      menu: function () { return '<uif-menu>\n  <uif-menu-item>Action 1</uif-menu-item>\n  <uif-menu-item>Action 2</uif-menu-item>\n</uif-menu>'; },
     },
   };
 })(window);
