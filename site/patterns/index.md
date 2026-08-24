@@ -191,7 +191,15 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/breadcrumbs/">
     <div class="docs-component-card-preview">
-      {{ uif.breadcrumbs(items=[{label: "Home", url: "/"}, {label: "Shop", url: "/shop"}, {label: "Bags", current: true}], collapse="none") }}
+      <span class="uif-breadcrumbs" role="img" aria-label="Breadcrumbs example">
+        <span class="uif-breadcrumbs-list" style="display:flex;align-items:center;gap:var(--uif-breadcrumbs-gap);list-style:none;margin:0;padding:0;">
+          <span style="color:var(--uif-breadcrumbs-text-color-default)">Home</span>
+          <span style="color:var(--uif-breadcrumbs-separator-color);margin-inline:var(--uif-breadcrumbs-separator-gap)">/</span>
+          <span style="color:var(--uif-breadcrumbs-text-color-default)">Shop</span>
+          <span style="color:var(--uif-breadcrumbs-separator-color);margin-inline:var(--uif-breadcrumbs-separator-gap)">/</span>
+          <span style="color:var(--uif-breadcrumbs-text-color-current);font-weight:var(--font-weight-600)">Bags</span>
+        </span>
+      </span>
     </div>
     <div class="docs-component-card-body">
       <h2>Breadcrumbs</h2>
@@ -202,17 +210,17 @@ permalink: /patterns/
     <div class="docs-component-card-preview">
       <div class="uif-modal-root is-preview is-open">
         <span class="uif-modal-overlay" aria-hidden="true"></span>
-        <section class="uif-modal confirmation sm" role="dialog" aria-modal="true">
-          <header class="uif-modal-header">
-            <h2 class="uif-modal-title">Confirm action</h2>
-          </header>
+        <div class="uif-modal confirmation sm" aria-hidden="true">
+          <div class="uif-modal-header">
+            <span class="uif-modal-title">Confirm action</span>
+          </div>
           <div class="uif-modal-body">
             <p class="uif-modal-description">Proceed with this change?</p>
           </div>
-          <footer class="uif-modal-actions">
-            <button class="uif-button solid" type="button">Confirm</button>
-          </footer>
-        </section>
+          <div class="uif-modal-actions">
+            <span class="uif-button solid">Confirm</span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="docs-component-card-body">
@@ -231,14 +239,14 @@ permalink: /patterns/
   </a>
   <a class="docs-component-card" href="/patterns/tree-view/">
     <div class="docs-component-card-preview">
-      <ul class="uif-tree-view" role="tree" style="inline-size: 100%; max-inline-size: 18rem;">
-        <li class="uif-tree-node is-expanded is-selected" role="treeitem" aria-selected="true" aria-expanded="true">
+      <ul class="uif-tree-view" style="inline-size: 100%; max-inline-size: 18rem; list-style: none; margin: 0; padding: 0;">
+        <li class="uif-tree-node is-expanded is-selected">
           <div class="uif-tree-node-row">
-            <button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>
+            <span class="uif-tree-toggle" aria-hidden="true"></span>
             <span class="uif-tree-label">Workspace</span>
           </div>
-          <ul class="uif-tree-children" role="group">
-            <li class="uif-tree-node" role="treeitem" aria-selected="false">
+          <ul class="uif-tree-children" style="list-style: none; padding-inline-start: 1.25rem; margin: 0;">
+            <li class="uif-tree-node">
               <div class="uif-tree-node-row"><span class="uif-tree-label">Components</span></div>
             </li>
           </ul>
