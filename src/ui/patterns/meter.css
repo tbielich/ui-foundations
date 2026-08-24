@@ -23,6 +23,22 @@
     color: var(--uif-meter-value-color-default);
   }
 
+  /* Native <meter> provides semantics for assistive technology;
+     visually hidden so the token-styled proxy is displayed instead. */
+  :is(.uif-meter, .meter) .uif-meter-native,
+  :is(.uif-meter, .meter) > meter {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    inline-size: 1px;
+    block-size: 1px;
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+  }
+
   :is(.uif-meter, .meter) .uif-meter-track {
     position: relative;
     overflow: hidden;
