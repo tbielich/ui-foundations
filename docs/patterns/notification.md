@@ -2,22 +2,25 @@
 
 ## Status
 
-Implemented in Runtime.
+**Placeholder (non-canonical component tracker).**
+
+This page reserves a stable location for future Runtime notification component
+documentation. It does not define final notification behavior.
 
 ## Purpose
 
-Provide Toast/Notification guidance for transient feedback.
+Track where notification component documentation should live once implemented.
 
 ## Current canonical references
 
-- `site/patterns/notification.md`
-- `site/patterns/notification-playground.md`
+- `docs/components/README.md`
+- `docs/patterns/feedback.md`
 
 ## Related docs
 
 - `docs/principles/usability-heuristics.md`
 - `docs/validation/README.md`
 
-## Notes
+## TODO
 
-Canonical public docs are published from `site/patterns/notification.md`.
+No notification component documentation exists in the current repo yet.

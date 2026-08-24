@@ -36,9 +36,7 @@ by the importing consumer changes in canonical examples and generated output.
 | `<ui-input>` | `<uif-input>` |
 | `<ui-checkbox>` | `<uif-checkbox>` |
 | `<ui-radio>` | `<uif-radio>` |
-| `<ui-progress-circle>` | `<uif-progress-circle>` |
 | `<ui-switch>` | `<uif-switch>` |
-| `<ui-range-slider>` | `<uif-range-slider>` |
 | `<ui-badge>` | `<uif-badge>` |
 | `<ui-divider>` | `<uif-divider>` |
 | `<ui-textarea>` | `<uif-textarea>` |
@@ -49,8 +47,6 @@ by the importing consumer changes in canonical examples and generated output.
 | `<ui-tab>` | `<uif-tab>` |
 | `<ui-tab-panel>` | `<uif-tab-panel>` |
 | `<ui-tooltip>` | `<uif-tooltip>` |
-| `<ui-modal>` | `<uif-modal>` |
-| `<ui-notification>` | `<uif-notification>` |
 | `<ui-select>` | `<uif-select>` |
 | `<ui-link>` | `<uif-link>` |
 | `<ui-field-label>` | `<uif-field-label>` |

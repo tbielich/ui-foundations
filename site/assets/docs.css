@@ -1989,26 +1989,15 @@ html[data-brand="c"] .palette-group[data-brand-scope="b"] {
   background: var(--docs-surface-1);
   box-shadow: var(--docs-shadow-sm);
   overflow: hidden;
+  text-decoration: none;
   color: inherit;
   transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
-  position: relative;
 }
 
 .docs-component-card:hover {
   transform: translateY(-2px);
   border-color: var(--docs-border-strong);
   box-shadow: var(--docs-shadow-md);
-}
-
-.docs-component-card-body h2 a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.docs-component-card-body h2 a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
 }
 
 .docs-component-card-preview {

@@ -25,7 +25,6 @@ Runtime pattern/component docs use three explicit statuses:
 |---|---|---|---|
 | `button.md` | Implemented pattern | Active | `site/patterns/button.md`, `src/ui/patterns/button.css`, `src/elements/ui-button.js` |
 | `input.md` | Implemented pattern | Active | `site/patterns/input.md`, `src/ui/patterns/input.css`, `src/elements/ui-input.js` |
-| `range-slider.md` | Implemented pattern | Active | `site/patterns/range-slider.md`, `src/ui/patterns/range-slider.css`, `src/elements/ui-range-slider.js` |
 | `forms.md` | Pattern guidance | Active | `.kiro/steering/pattern-rules/forms.md` |
 | `navigation.md` | Pattern guidance | Active | `.kiro/steering/pattern-rules/navigation.md` |
 | `cards.md` | Pattern guidance | Active | `.kiro/steering/pattern-rules/cards.md` |
