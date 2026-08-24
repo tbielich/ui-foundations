@@ -9625,5 +9625,387 @@
         }
       }
     }
+  },
+  "Dropzone": {
+    "Text": {
+      "Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:101",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-text-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:326",
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Subtle": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:102",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-text-color-subtle)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:341",
+            "targetVariableName": "Color/Text/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:103",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-text-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:328",
+            "targetVariableName": "Color/Text/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Dragover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:104",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-text-color-dragover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:340",
+            "targetVariableName": "Color/Text/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Border": {
+      "Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:105",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-border-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:342",
+            "targetVariableName": "Color/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Dragover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:106",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-border-color-dragover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:345",
+            "targetVariableName": "Color/Border/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Filled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Strong"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:107",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-border-color-filled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:344",
+            "targetVariableName": "Color/Border/Strong",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:108",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-border-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:346",
+            "targetVariableName": "Color/Border/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Size Default": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:109",
+          "com.figma.scopes": [
+            "STROKE_FLOAT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-border-size-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:7",
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Corner/Input"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:110",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-border-radius)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2028:335",
+            "targetVariableName": "Brand/Corner/Input",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Container": {
+      "Background Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:111",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-container-background-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Dragover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:112",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-container-background-dragover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:338",
+            "targetVariableName": "Color/Fill/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Filled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:113",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-container-background-filled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:338",
+            "targetVariableName": "Color/Fill/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3500:114",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-dropzone-container-background-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:330",
+            "targetVariableName": "Color/Fill/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Padding Inline": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Spacious"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3500:115",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-dropzone-padding-inline)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:5",
+          "targetVariableName": "Brand/Size/Spacing/Spacious",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Padding Block": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Spacious"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3500:116",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-dropzone-padding-block)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:5",
+          "targetVariableName": "Brand/Size/Spacing/Spacious",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Gap": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Component"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3500:117",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-dropzone-gap)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:3",
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    }
   }
 }

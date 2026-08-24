@@ -33,3 +33,4 @@ export { UIForm, UIFormGroup, UIFormField, UIFormHelper, UIFormActions } from ".
 export { UIInlineAlert } from "./ui-inline-alert.js";
 export { UICard, UICardMedia, UICardHeader, UICardBody, UICardFooter } from "./ui-card.js";
 export { UISkeleton } from "./ui-skeleton.js";
+export { UIDropzone } from "./ui-dropzone.js";

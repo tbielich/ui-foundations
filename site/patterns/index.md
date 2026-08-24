@@ -170,6 +170,13 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>TreeView</h2>
       <p>Hierarchical tree navigation with expand/collapse, selection, and keyboard support.</p>
+  <a class="docs-component-card" href="/patterns/dropzone/">
+    <div class="docs-component-card-preview">
+      {{ uif.dropzone(label="Drop files", hint="or", buttonLabel="Browse", filesText="No files selected") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>DropZone</h2>
+      <p>Drag-and-drop upload target with accessible file picker fallback.</p>
     </div>
   </a>
     </div>
