@@ -22,23 +22,20 @@ playgroundLabel: Open Modal Playground
       </span>
     </div>
     <div class="docs-hero-preview-stage">
-      <div class="uif-modal-root is-preview is-open">
-        <button class="uif-modal-overlay" type="button" aria-label="Dismiss dialog"></button>
-        <section class="uif-modal alert md" role="dialog" aria-modal="true" aria-labelledby="docs-modal-title" aria-describedby="docs-modal-description">
-          <header class="uif-modal-header">
-            <h2 class="uif-modal-title" id="docs-modal-title">Delete file?</h2>
-            <button class="uif-modal-close" type="button" aria-label="Close dialog">×</button>
-          </header>
-          <div class="uif-modal-body">
-            <p class="uif-modal-description" id="docs-modal-description">This action cannot be undone.</p>
-            <p>Deleting this file permanently removes it from your workspace.</p>
-          </div>
-          <footer class="uif-modal-actions">
-            <button class="uif-button outline" type="button">Cancel</button>
-            <button class="uif-button solid" type="button">Delete</button>
-          </footer>
-        </section>
-      </div>
+      <dialog class="uif-modal alert md" open aria-labelledby="docs-modal-title" aria-describedby="docs-modal-description" style="position: relative;">
+        <header class="uif-modal-header">
+          <h2 class="uif-modal-title" id="docs-modal-title">Delete file?</h2>
+          <button class="uif-modal-close" type="button" aria-label="Close dialog">&times;</button>
+        </header>
+        <div class="uif-modal-body">
+          <p class="uif-modal-description" id="docs-modal-description">This action cannot be undone.</p>
+          <p>Deleting this file permanently removes it from your workspace.</p>
+        </div>
+        <footer class="uif-modal-actions">
+          <button class="uif-button outline" type="button">Cancel</button>
+          <button class="uif-button solid" type="button">Delete</button>
+        </footer>
+      </dialog>
     </div>
   </div>
   <div class="docs-hero-meta">
@@ -71,6 +68,8 @@ playgroundLabel: Open Modal Playground
 
 <h2 id="accessibility">Accessibility</h2>
 
-- Uses <code>role="dialog"</code> and <code>aria-modal="true"</code>.
-- Wires <code>aria-labelledby</code> and optional <code>aria-describedby</code>.
-- Keeps keyboard focus within the dialog until the modal closes.
+- Uses the native <code>&lt;dialog&gt;</code> element with <code>showModal()</code> for built-in accessibility.
+- Focus is automatically trapped inside the dialog by the browser.
+- <code>aria-labelledby</code> and optional <code>aria-describedby</code> connect title and description.
+- Escape key dismisses via the native <code>cancel</code> event (when dismissible).
+- Background content is made inert automatically by the browser.
