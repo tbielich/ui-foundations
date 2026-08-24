@@ -25,22 +25,6 @@ const ALLOWLIST = new Set([
   "--uif-field-label-line-height",
   "--uif-field-label-required-color",
   "--uif-icon-src",
-  "--uif-action-bar-gap",
-  "--uif-action-bar-z-index",
-  "--uif-action-bar-border-size",
-  "--uif-action-bar-border-radius",
-  "--uif-action-bar-actions-gap",
-  "--uif-action-bar-dismiss-hover-background",
-  "--shadow-md",
-  "--uif-menu-item-margin-inline",
-  "--uif-number-field-format-color",
-  "--uif-number-field-stepper-gap",
-  "--uif-popover-box-shadow",
-  "--uif-skeleton-circle-size-sm",
-  "--uif-skeleton-circle-size-lg",
-  "--uif-skeleton-rect-border-radius",
-  "--uif-skeleton-rect-height-sm",
-  "--uif-skeleton-rect-height-lg",
 ]);
 
 function getDefinedTokens() {

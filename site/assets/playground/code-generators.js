@@ -239,117 +239,6 @@
     return "{{ uif.calendar(" + parts.join(", ") + ") }}";
   }
 
-  function njkComboBox(state) {
-    var p = state.props;
-    var placeholder = p.placeholder || "Search destinations";
-    var loading = p.loading === true || p.loading === "true";
-    var allowCustomValue =
-      p.allowCustomValue === true || p.allowCustomValue === "true";
-    var descriptions = p.descriptions === true || p.descriptions === "true";
-    var disabled = state.meta.state === "disabled";
-    var parts = [];
-    parts.push(
-      "options=[" +
-        (descriptions
-          ? '{value: "pmi", label: "Palma de Mallorca", description: "Spain"}, {value: "her", label: "Heraklion", description: "Greece"}, {value: "fue", label: "Fuerteventura", description: "Canary Islands"}'
-          : '{value: "pmi", label: "Palma de Mallorca"}, {value: "her", label: "Heraklion"}, {value: "fue", label: "Fuerteventura"}') +
-        "]",
-    );
-    parts.push('placeholder="' + quoteAttr(placeholder) + '"');
-    if (loading) parts.push("loading=true");
-    if (allowCustomValue) parts.push("allowCustomValue=true");
-    if (disabled) parts.push("disabled=true");
-    return "{{ uif.combobox(" + parts.join(", ") + ") }}";
-  }
-
-  function wcComboBox(state) {
-    var p = state.props;
-    var placeholder = p.placeholder || "Search destinations";
-    var loading = p.loading === true || p.loading === "true";
-    var allowCustomValue =
-      p.allowCustomValue === true || p.allowCustomValue === "true";
-    var descriptions = p.descriptions === true || p.descriptions === "true";
-    var disabled = state.meta.state === "disabled";
-    var attrs = [
-      'placeholder="' + quoteAttr(placeholder) + '"',
-      'aria-label="Destination search"',
-    ];
-    if (loading) attrs.push("loading");
-    if (allowCustomValue) attrs.push("allow-custom-value");
-    if (disabled) attrs.push("disabled");
-    var options = descriptions
-      ? '\n  <option value="pmi" data-description="Spain">Palma de Mallorca</option>\n  <option value="her" data-description="Greece">Heraklion</option>\n  <option value="fue" data-description="Canary Islands">Fuerteventura</option>\n'
-      : '\n  <option value="pmi">Palma de Mallorca</option>\n  <option value="her">Heraklion</option>\n  <option value="fue">Fuerteventura</option>\n';
-    return "<uif-combobox " + attrs.join(" ") + ">" + options + "</uif-combobox>";
-  }
-
-  function njkSearchField(state) {
-    var p = state.props;
-    var parts = [];
-    if (p.placeholder) parts.push('placeholder="' + quoteAttr(p.placeholder) + '"');
-    if (p.value) parts.push('value="' + quoteAttr(p.value) + '"');
-    if (state.meta.state && state.meta.state !== "default") {
-      parts.push('state="' + quoteAttr(state.meta.state) + '"');
-    }
-    if (p.quiet === true || p.quiet === "true") parts.push("quiet=true");
-    if (
-      (p.disabled === true || p.disabled === "true") &&
-      state.meta.state !== "disabled"
-    ) {
-      parts.push("disabled=true");
-    }
-    if (
-      (p.readonly === true || p.readonly === "true") &&
-      state.meta.state !== "readonly"
-    ) {
-      parts.push("readonly=true");
-    }
-    return "{{ uif.searchField(" + parts.join(", ") + ") }}";
-  }
-
-  function wcSearchField(state) {
-    var p = state.props;
-    var attrs = [];
-    if (p.placeholder) attrs.push('placeholder="' + quoteAttr(p.placeholder) + '"');
-    if (p.value) attrs.push('value="' + quoteAttr(p.value) + '"');
-    if (p.quiet === true || p.quiet === "true") attrs.push("quiet");
-    if (state.meta.state === "disabled") attrs.push("disabled");
-    if (state.meta.state === "readonly") attrs.push("readonly");
-    return "<uif-search-field" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-search-field>";
-  }
-
-  function njkModal(state) {
-    var p = state.props;
-    var title = p.title || "Confirm action";
-    var description = p.description || "This action requires your confirmation.";
-    var variant = p.variant || "confirmation";
-    var size = p.size || "m";
-    var dismissible = p.dismissible === undefined ? true : (p.dismissible === true || p.dismissible === "true");
-    var open = p.open === undefined ? true : (p.open === true || p.open === "true");
-    var confirmLabel = p.confirmLabel || "Confirm";
-    var cancelLabel = p.cancelLabel || "Cancel";
-    return '{% call uif.modal(title="' + quoteAttr(title) + '", description="' + quoteAttr(description) + '", variant="' + quoteAttr(variant) + '", size="' + quoteAttr(size) + '", dismissible=' + (dismissible ? "true" : "false") + ", open=" + (open ? "true" : "false") + ', confirmLabel="' + quoteAttr(confirmLabel) + '", cancelLabel="' + quoteAttr(cancelLabel) + '") %}Modal content{% endcall %}';
-  }
-
-  function wcModal(state) {
-    var p = state.props;
-    var title = p.title || "Confirm action";
-    var description = p.description || "This action requires your confirmation.";
-    var variant = p.variant || "confirmation";
-    var size = p.size || "m";
-    var dismissible = p.dismissible === undefined ? true : (p.dismissible === true || p.dismissible === "true");
-    var open = p.open === undefined ? true : (p.open === true || p.open === "true");
-    var attrs = [
-      'title="' + quoteAttr(title) + '"',
-      'description="' + quoteAttr(description) + '"',
-      'variant="' + quoteAttr(variant) + '"',
-      'size="' + quoteAttr(size) + '"',
-      'dismissible="' + (dismissible ? "true" : "false") + '"',
-    ];
-    if (open) attrs.push("open");
-    return "<uif-modal " + attrs.join(" ") + ">Modal content</uif-modal>";
-  }
-
   global.UIPlaygroundCodeGenerators = {
     njk: {
       button: njkButton, input: njkInput, checkbox: njkCheckbox,
@@ -357,8 +246,7 @@
       label: function () { return '{{ uif.labelContent("text", "icon") }}'; },
       "button-group": function () { return '{% call uif.buttonGroup() %}...{% endcall %}'; },
       select: njkSelect,
-      colorPicker: njkColorPicker,
-      combobox: njkComboBox,
+      form: njkForm,
       calendar: njkCalendar,
       divider: function (state) {
         var p = state.props;
@@ -404,59 +292,14 @@
         var placement = p.placement || "top";
         return '{% call uif.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="uif-button">Hover me</button>{% endcall %}';
       },
-      notification: function (state) {
+      table: function (state) {
         var p = state.props;
-        var message = p.message || "Notification";
-        var variant = p.variant || "info";
-        var dismissible = !(p.dismissible === false || p.dismissible === "false");
-        var actionLabel = p.actionLabel || "";
-        var actionHref = p.actionHref || "";
-        var duration = Number.parseInt(p.duration || 0, 10);
-        var attrs = ['"' + quoteAttr(message) + '"'];
-        if (variant !== "info") attrs.push('variant="' + quoteAttr(variant) + '"');
-        if (!dismissible) attrs.push("dismissible=false");
-        if (actionLabel) attrs.push('actionLabel="' + quoteAttr(actionLabel) + '"');
-        if (actionLabel && actionHref) attrs.push('actionHref="' + quoteAttr(actionHref) + '"');
-        if (duration > 0) attrs.push("duration=" + String(duration));
-        return "{{ uif.notification(" + attrs.join(", ") + ") }}";
+        var density = p.density && p.density !== "default" ? ', density="' + p.density + '"' : "";
+        var selection = p.selection && p.selection !== "none" ? ', selection="' + p.selection + '"' : "";
+        var sortable = p.sortable ? ", sortable=true" : "";
+        var resizable = p.resizable ? ", resizable=true" : "";
+        return '{% call uif.table(caption="Destinations"' + density + selection + sortable + resizable + ') %}\n  {% call uif.tableHead() %}\n    {{ uif.th("Destination") }}\n    {{ uif.th("Departure") }}\n    {{ uif.th("Duration") }}\n    {{ uif.th("Price") }}\n  {% endcall %}\n  {% call uif.tableBody() %}\n    {{ uif.tr(["Mallorca", "15 Aug 2025", "7 nights", "€499"]) }}\n    {{ uif.tr(["Tenerife", "22 Aug 2025", "14 nights", "€799"]) }}\n  {% endcall %}\n{% endcall %}';
       },
-      "search-field": njkSearchField,
-      modal: njkModal,
-      breadcrumbs: function (state) {
-        var p = state.props;
-        var depth = Math.max(2, Number(p.depth || 4));
-        var labels = ["Home", "Category", "Collection", "Details", "Current page"];
-        var parts = [];
-        for (var i = 0; i < depth; i++) {
-          var item = '{label: "' + quoteAttr(labels[i] || ("Level " + (i + 1))) + '"';
-          if (i < depth - 1) item += ', url: "#' + (i + 1) + '"';
-          if (i === depth - 1) item += ", current: true";
-          item += "}";
-          parts.push(item);
-        }
-        var args = ["items=[" + parts.join(", ") + "]"];
-        if (p.separator && p.separator !== "/") args.push('separator="' + quoteAttr(p.separator) + '"');
-        return "{{ uif.breadcrumbs(" + args.join(", ") + ") }}";
-      },
-      card: function () { return '{% call uif.card() %}\n  {% call uif.cardBody() %}Card content{% endcall %}\n{% endcall %}'; },
-      "inline-alert": function (state) { var p = state.props; return '{{ uif.inlineAlert(title="' + quoteAttr(p.title || "Alert") + '", variant="' + (p.variant || "info") + '") }}'; },
-      skeleton: function (state) { var p = state.props; return '{{ uif.skeleton(shape="' + (p.shape || "text") + '") }}'; },
-      "range-slider": function (state) { var p = state.props; return '{{ uif.rangeSlider(min=' + (p.min || 0) + ', max=' + (p.max || 100) + ') }}'; },
-      "progress-circle": function (state) { var p = state.props; return '{{ uif.progressCircle(value=' + (p.value || 50) + ') }}'; },
-      "progress-bar": function (state) { var p = state.props; return '{{ uif.progressBar(value=' + (p.value || 50) + ') }}'; },
-      meter: function (state) { var p = state.props; return '{{ uif.meter(value=' + (p.value || 50) + ', max=' + (p.max || 100) + ') }}'; },
-      "number-field": function (state) { var p = state.props; return '{{ uif.numberField(value=' + (p.value || 0) + ') }}'; },
-      "status-light": function (state) { var p = state.props; return '{{ uif.statusLight(variant="' + (p.variant || "positive") + '", label="' + quoteAttr(p.label || "Active") + '") }}'; },
-      "illustrated-message": function (state) { var p = state.props; return '{{ uif.illustratedMessage(preset="' + (p.preset || "empty") + '") }}'; },
-      "segmented-control": function () { return '{{ uif.segmentedControl(items=["Option 1", "Option 2", "Option 3"]) }}'; },
-      actionBar: function () { return '{{ uif.actionBar() }}'; },
-      "tree-view": function () { return '{% call uif.treeView() %}...{% endcall %}'; },
-      dropzone: function () { return '{{ uif.dropzone() }}'; },
-      colorPicker: njkColorPicker,
-      popover: function (state) { var p = state.props; return '{% call uif.popover(placement="' + (p.placement || "bottom") + '") %}Content{% endcall %}'; },
-      tag: function (state) { var p = state.props; return '{{ uif.tag("' + quoteAttr(p.label || "Tag") + '") }}'; },
-      table: function () { return '{% call uif.table() %}...{% endcall %}'; },
-      menu: function () { return '{% call uif.menu() %}\n  {{ uif.menuItem("Action 1") }}\n  {{ uif.menuItem("Action 2") }}\n{% endcall %}'; },
     },
     wc: {
       button: wcButton, input: wcInput, checkbox: wcCheckbox,
@@ -464,8 +307,7 @@
       label: function () { return "<uif-field-label>...</uif-field-label>"; },
       "button-group": function () { return "<uif-button-group>...</uif-button-group>"; },
       select: wcSelect,
-      colorPicker: wcColorPicker,
-      combobox: wcComboBox,
+      form: wcForm,
       calendar: function () {
         return "<!-- Calendar is provided as Nunjucks/static HTML in this package. -->";
       },
@@ -513,58 +355,9 @@
         var placement = p.placement || "top";
         return '<uif-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="uif-button">Hover me</button>\n</uif-tooltip>';
       },
-      notification: function (state) {
-        var p = state.props;
-        var message = p.message || "Notification";
-        var variant = p.variant || "info";
-        var dismissible = !(p.dismissible === false || p.dismissible === "false");
-        var actionLabel = p.actionLabel || "";
-        var actionHref = p.actionHref || "";
-        var duration = Number.parseInt(p.duration || 0, 10);
-        var attrs = ['message="' + quoteAttr(message) + '"'];
-        if (variant !== "info") attrs.push('variant="' + quoteAttr(variant) + '"');
-        if (dismissible) attrs.push("dismissible");
-        if (actionLabel) attrs.push('action-label="' + quoteAttr(actionLabel) + '"');
-        if (actionLabel && actionHref) attrs.push('action-href="' + quoteAttr(actionHref) + '"');
-        if (duration > 0) attrs.push('duration="' + duration + '"');
-        return "<uif-notification " + attrs.join(" ") + "></uif-notification>";
+      table: function () {
+        return "<!-- Table is a CSS/JS pattern — no Web Component variant. Use the HTML output directly. -->";
       },
-      "search-field": wcSearchField,
-      modal: wcModal,
-      breadcrumbs: function (state) {
-        var p = state.props;
-        var depth = Math.max(2, Number(p.depth || 4));
-        var labels = ["Home", "Category", "Collection", "Details", "Current page"];
-        var items = [];
-        for (var i = 0; i < depth; i++) {
-          var entry = { label: labels[i] || ("Level " + (i + 1)) };
-          if (i < depth - 1) entry.url = "#" + (i + 1);
-          if (i === depth - 1) entry.current = true;
-          items.push(entry);
-        }
-        var attrs = ["items='" + JSON.stringify(items) + "'"];
-        if (p.separator && p.separator !== "/") attrs.push('separator="' + quoteAttr(p.separator) + '"');
-        return "<uif-breadcrumbs " + attrs.join(" ") + "></uif-breadcrumbs>";
-      },
-      card: function () { return "<uif-card>\n  <p>Card content</p>\n</uif-card>"; },
-      "inline-alert": function (state) { var p = state.props; return '<uif-inline-alert variant="' + (p.variant || "info") + '" title="' + quoteAttr(p.title || "Alert") + '"></uif-inline-alert>'; },
-      skeleton: function (state) { var p = state.props; return '<uif-skeleton shape="' + (p.shape || "text") + '"></uif-skeleton>'; },
-      "range-slider": function (state) { var p = state.props; return '<uif-range-slider min="' + (p.min || 0) + '" max="' + (p.max || 100) + '"></uif-range-slider>'; },
-      "progress-circle": function (state) { var p = state.props; return '<uif-progress-circle value="' + (p.value || 50) + '"></uif-progress-circle>'; },
-      "progress-bar": function (state) { var p = state.props; return '<uif-progress-bar value="' + (p.value || 50) + '"></uif-progress-bar>'; },
-      meter: function (state) { var p = state.props; return '<uif-meter value="' + (p.value || 50) + '" max="' + (p.max || 100) + '"></uif-meter>'; },
-      "number-field": function (state) { var p = state.props; return '<uif-number-field value="' + (p.value || 0) + '"></uif-number-field>'; },
-      "status-light": function (state) { var p = state.props; return '<uif-status-light variant="' + (p.variant || "positive") + '">' + quoteAttr(p.label || "Active") + '</uif-status-light>'; },
-      "illustrated-message": function (state) { var p = state.props; return '<uif-illustrated-message preset="' + (p.preset || "empty") + '"></uif-illustrated-message>'; },
-      "segmented-control": function () { return '<uif-segmented-control>\n  <button>Option 1</button>\n  <button>Option 2</button>\n</uif-segmented-control>'; },
-      actionBar: function () { return "<uif-action-bar>...</uif-action-bar>"; },
-      "tree-view": function () { return "<uif-tree-view>...</uif-tree-view>"; },
-      dropzone: function () { return "<uif-dropzone></uif-dropzone>"; },
-      colorPicker: wcColorPicker,
-      popover: function (state) { var p = state.props; return '<uif-popover placement="' + (p.placement || "bottom") + '">Content</uif-popover>'; },
-      tag: function (state) { var p = state.props; return '<uif-tag>' + quoteAttr(p.label || "Tag") + '</uif-tag>'; },
-      table: function () { return "<uif-table>...</uif-table>"; },
-      menu: function () { return '<uif-menu>\n  <uif-menu-item>Action 1</uif-menu-item>\n  <uif-menu-item>Action 2</uif-menu-item>\n</uif-menu>'; },
     },
   };
 })(window);

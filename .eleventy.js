@@ -37,9 +37,6 @@ module.exports = function (eleventyConfig) {
     "dist/main.css": "vendor/ui-foundations/main.css",
   });
   eleventyConfig.addPassthroughCopy({
-    "dist/elements": "vendor/ui-foundations/elements",
-  });
-  eleventyConfig.addPassthroughCopy({
     "src/ui/components": "vendor/ui-foundations/components",
   });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });

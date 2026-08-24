@@ -19,43 +19,27 @@ export declare class UIIcon extends UIElement {}
 export declare class UIButton extends UIElement {}
 export declare class UIButtonGroup extends UIElement {}
 export declare class UIInput extends UIElement {}
-export declare class UIComboBox extends UIElement {}
-export declare class UISearchField extends UIElement {}
 export declare class UICheckbox extends UIElement {}
 export declare class UIRadio extends UIElement {}
-export declare class UIProgressCircle extends UIElement {}
 export declare class UISwitch extends UIElement {}
-export declare class UIRangeSlider extends UIElement {}
 export declare class UIBadge extends UIElement {}
-export declare class UIStatusLight extends UIElement {}
-export declare class UIMeter extends UIElement {}
 export declare class UIDivider extends UIElement {}
 export declare class UITextarea extends UIElement {}
 export declare class UIAvatar extends UIElement {}
-export declare class UIIllustratedMessage extends UIElement {}
 export declare class UIAccordion extends UIElement {}
 export declare class UIAccordionItem extends UIElement {}
 export declare class UITabList extends UIElement {}
 export declare class UITab extends UIElement {}
 export declare class UITabPanel extends UIElement {}
-export declare class UITreeView extends UIElement {}
 export declare class UITooltip extends UIElement {}
-export declare class UIPopover extends UIElement {}
-export declare class UIModal extends UIElement {}
 export declare class UISelect extends UIElement {}
 export declare class UILink extends UIElement {}
-export declare class UIBreadcrumbs extends UIElement {}
-export declare class UINotification extends UIElement {}
 export declare class UIFieldLabel extends UIElement {}
 export declare class UIForm extends UIElement {}
 export declare class UIFormGroup extends UIElement {}
 export declare class UIFormField extends UIElement {}
 export declare class UIFormHelper extends UIElement {}
 export declare class UIFormActions extends UIElement {}
-export declare class UIDropzone extends UIElement {}
-export declare class UIColorPicker extends UIElement {}
-export declare class UITag extends UIElement {}
-export declare class UITagGroup extends UIElement {}
 
 // --- Custom Element Tag Name Map ---
 
@@ -65,42 +49,26 @@ declare global {
     "uif-button": UIButton;
     "uif-button-group": UIButtonGroup;
     "uif-input": UIInput;
-    "uif-combobox": UIComboBox;
-    "uif-search-field": UISearchField;
     "uif-checkbox": UICheckbox;
     "uif-radio": UIRadio;
-    "uif-progress-circle": UIProgressCircle;
     "uif-switch": UISwitch;
-    "uif-range-slider": UIRangeSlider;
     "uif-badge": UIBadge;
-    "uif-status-light": UIStatusLight;
-    "uif-meter": UIMeter;
     "uif-divider": UIDivider;
     "uif-textarea": UITextarea;
     "uif-avatar": UIAvatar;
-    "uif-illustrated-message": UIIllustratedMessage;
     "uif-accordion": UIAccordion;
     "uif-accordion-item": UIAccordionItem;
     "uif-tab-list": UITabList;
     "uif-tab": UITab;
     "uif-tab-panel": UITabPanel;
-    "uif-tree-view": UITreeView;
     "uif-tooltip": UITooltip;
-    "uif-popover": UIPopover;
-    "uif-modal": UIModal;
     "uif-select": UISelect;
     "uif-link": UILink;
-    "uif-breadcrumbs": UIBreadcrumbs;
-    "uif-notification": UINotification;
     "uif-field-label": UIFieldLabel;
     "uif-form": UIForm;
     "uif-form-group": UIFormGroup;
     "uif-form-field": UIFormField;
     "uif-form-helper": UIFormHelper;
     "uif-form-actions": UIFormActions;
-    "uif-dropzone": UIDropzone;
-    "uif-color-picker": UIColorPicker;
-    "uif-tag": UITag;
-    "uif-tag-group": UITagGroup;
   }
 }
