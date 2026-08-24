@@ -47,6 +47,7 @@ test("owned templates, previews, schemas, elements, and MCP fixtures do not emit
   const legacyNames =
     "accordion|avatar|badge|button-group|button|calendar|checkbox|divider|form|icon|input|label-content|label|link|progress-circle|progress-circle-svg|progress-circle-track|progress-circle-indicator|radio|select|switch|tab-list|tab-panel|tab|tabs|textarea|tooltip";
     "accordion|avatar|badge|button-group|button|calendar|checkbox|divider|form|icon|input|label-content|label|link|modal|radio|select|switch|tab-list|tab-panel|tab|tabs|textarea|tooltip";
+    "accordion|avatar|badge|button-group|button|calendar|checkbox|divider|form|icon|input|label-content|label|link|notification|radio|select|switch|tab-list|tab-panel|tab|tabs|textarea|tooltip";
   const literalClass = new RegExp(
     `(?:class=["']|className\\s*=\\s*["'])(?:${legacyNames})(?:\\s|["'])`,
   );

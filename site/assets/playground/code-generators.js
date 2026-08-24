@@ -46,41 +46,6 @@
     return "<uif-input" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-input>";
   }
 
-  function njkSearchField(state) {
-    var p = state.props;
-    var parts = [];
-    if (p.placeholder) parts.push('placeholder="' + quoteAttr(p.placeholder) + '"');
-    if (p.value) parts.push('value="' + quoteAttr(p.value) + '"');
-    if (state.meta.state && state.meta.state !== "default") {
-      parts.push('state="' + quoteAttr(state.meta.state) + '"');
-    }
-    if (p.quiet === true || p.quiet === "true") parts.push("quiet=true");
-    if (
-      (p.disabled === true || p.disabled === "true") &&
-      state.meta.state !== "disabled"
-    ) {
-      parts.push("disabled=true");
-    }
-    if (
-      (p.readonly === true || p.readonly === "true") &&
-      state.meta.state !== "readonly"
-    ) {
-      parts.push("readonly=true");
-    }
-    return "{{ uif.searchField(" + parts.join(", ") + ") }}";
-  }
-
-  function wcSearchField(state) {
-    var p = state.props;
-    var attrs = [];
-    if (p.placeholder) attrs.push('placeholder="' + quoteAttr(p.placeholder) + '"');
-    if (p.value) attrs.push('value="' + quoteAttr(p.value) + '"');
-    if (p.quiet === true || p.quiet === "true") attrs.push("quiet");
-    if (state.meta.state === "disabled") attrs.push("disabled");
-    if (state.meta.state === "readonly") attrs.push("readonly");
-    return "<uif-search-field" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-search-field>";
-  }
-
   function njkCheckbox(state) {
     var p = state.props;
     var label = p.label || "Accept terms";
@@ -212,24 +177,6 @@
     return "<uif-select " + attrs.join(" ") + ">" + options + "</uif-select>";
   }
 
-  function njkColorPicker(state) {
-    var p = state.props;
-    var parts = [];
-    if (p.value) parts.push('value="' + quoteAttr(p.value) + '"');
-    if (p.format && p.format !== "hex") parts.push('format="' + quoteAttr(p.format) + '"');
-    if (state.meta.state === "disabled") parts.push("disabled=true");
-    return "{{ uif.colorPicker(" + parts.join(", ") + ") }}";
-  }
-
-  function wcColorPicker(state) {
-    var p = state.props;
-    var attrs = [];
-    if (p.value) attrs.push('value="' + quoteAttr(p.value) + '"');
-    if (p.format && p.format !== "hex") attrs.push('format="' + quoteAttr(p.format) + '"');
-    if (state.meta.state === "disabled") attrs.push("disabled");
-    return "<uif-color-picker" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-color-picker>";
-  }
-
   function njkForm(state) {
     var p = state.props;
     var borderless = p.borderless === true || p.borderless === "true";
@@ -278,38 +225,6 @@
     return lines.join("\n");
   }
 
-  function njkModal(state) {
-    var p = state.props;
-    var title = p.title || "Confirm action";
-    var description = p.description || "This action requires your confirmation.";
-    var variant = p.variant || "confirmation";
-    var size = p.size || "m";
-    var dismissible = p.dismissible === undefined ? true : (p.dismissible === true || p.dismissible === "true");
-    var open = p.open === undefined ? true : (p.open === true || p.open === "true");
-    var confirmLabel = p.confirmLabel || "Confirm";
-    var cancelLabel = p.cancelLabel || "Cancel";
-    return '{% call uif.modal(title="' + quoteAttr(title) + '", description="' + quoteAttr(description) + '", variant="' + quoteAttr(variant) + '", size="' + quoteAttr(size) + '", dismissible=' + (dismissible ? "true" : "false") + ", open=" + (open ? "true" : "false") + ', confirmLabel="' + quoteAttr(confirmLabel) + '", cancelLabel="' + quoteAttr(cancelLabel) + '") %}Modal content{% endcall %}';
-  }
-
-  function wcModal(state) {
-    var p = state.props;
-    var title = p.title || "Confirm action";
-    var description = p.description || "This action requires your confirmation.";
-    var variant = p.variant || "confirmation";
-    var size = p.size || "m";
-    var dismissible = p.dismissible === undefined ? true : (p.dismissible === true || p.dismissible === "true");
-    var open = p.open === undefined ? true : (p.open === true || p.open === "true");
-    var attrs = [
-      'title="' + quoteAttr(title) + '"',
-      'description="' + quoteAttr(description) + '"',
-      'variant="' + quoteAttr(variant) + '"',
-      'size="' + quoteAttr(size) + '"',
-      'dismissible="' + (dismissible ? "true" : "false") + '"',
-    ];
-    if (open) attrs.push("open");
-    return "<uif-modal " + attrs.join(" ") + ">Modal content</uif-modal>";
-  }
-
   function njkCalendar(state) {
     var p = state.props;
     var parts = [];
@@ -327,12 +242,10 @@
   global.UIPlaygroundCodeGenerators = {
     njk: {
       button: njkButton, input: njkInput, checkbox: njkCheckbox,
-      "search-field": njkSearchField,
       "switch": njkSwitch, icon: njkIcon, radio: njkRadio, badge: njkBadge,
       label: function () { return '{{ uif.labelContent("text", "icon") }}'; },
       "button-group": function () { return '{% call uif.buttonGroup() %}...{% endcall %}'; },
       select: njkSelect,
-      colorPicker: njkColorPicker,
       form: njkForm,
       calendar: njkCalendar,
       divider: function (state) {
@@ -379,16 +292,29 @@
         var placement = p.placement || "top";
         return '{% call uif.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="uif-button">Hover me</button>{% endcall %}';
       },
-      modal: njkModal,
+      notification: function (state) {
+        var p = state.props;
+        var message = p.message || "Notification";
+        var variant = p.variant || "info";
+        var dismissible = !(p.dismissible === false || p.dismissible === "false");
+        var actionLabel = p.actionLabel || "";
+        var actionHref = p.actionHref || "";
+        var duration = Number.parseInt(p.duration || 0, 10);
+        var attrs = ['"' + quoteAttr(message) + '"'];
+        if (variant !== "info") attrs.push('variant="' + quoteAttr(variant) + '"');
+        if (!dismissible) attrs.push("dismissible=false");
+        if (actionLabel) attrs.push('actionLabel="' + quoteAttr(actionLabel) + '"');
+        if (actionLabel && actionHref) attrs.push('actionHref="' + quoteAttr(actionHref) + '"');
+        if (duration > 0) attrs.push("duration=" + String(duration));
+        return "{{ uif.notification(" + attrs.join(", ") + ") }}";
+      },
     },
     wc: {
       button: wcButton, input: wcInput, checkbox: wcCheckbox,
-      "search-field": wcSearchField,
       "switch": wcSwitch, icon: wcIcon, radio: wcRadio, badge: wcBadge,
       label: function () { return "<uif-field-label>...</uif-field-label>"; },
       "button-group": function () { return "<uif-button-group>...</uif-button-group>"; },
       select: wcSelect,
-      colorPicker: wcColorPicker,
       form: wcForm,
       calendar: function () {
         return "<!-- Calendar is provided as Nunjucks/static HTML in this package. -->";
@@ -437,7 +363,22 @@
         var placement = p.placement || "top";
         return '<uif-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="uif-button">Hover me</button>\n</uif-tooltip>';
       },
-      modal: wcModal,
+      notification: function (state) {
+        var p = state.props;
+        var message = p.message || "Notification";
+        var variant = p.variant || "info";
+        var dismissible = !(p.dismissible === false || p.dismissible === "false");
+        var actionLabel = p.actionLabel || "";
+        var actionHref = p.actionHref || "";
+        var duration = Number.parseInt(p.duration || 0, 10);
+        var attrs = ['message="' + quoteAttr(message) + '"'];
+        if (variant !== "info") attrs.push('variant="' + quoteAttr(variant) + '"');
+        if (dismissible) attrs.push("dismissible");
+        if (actionLabel) attrs.push('action-label="' + quoteAttr(actionLabel) + '"');
+        if (actionLabel && actionHref) attrs.push('action-href="' + quoteAttr(actionHref) + '"');
+        if (duration > 0) attrs.push('duration="' + duration + '"');
+        return "<uif-notification " + attrs.join(" ") + "></uif-notification>";
+      },
     },
   };
 })(window);

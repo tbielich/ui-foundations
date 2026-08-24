@@ -947,110 +947,6 @@
     return { element, code };
   };
 
-  const renderVanillaModal = ({ props, children }) => {
-    const title = String(props.title || "Confirm action");
-    const description = String(props.description || "This action requires your confirmation.");
-    const variant = String(props.variant || "confirmation") === "alert" ? "alert" : "confirmation";
-    const sizeRaw = String(props.size || "m");
-    const size = sizeRaw === "s" ? "sm" : sizeRaw === "l" ? "lg" : "md";
-    const dismissible = props.dismissible === undefined ? true : asBoolean(props.dismissible);
-    const open = props.open === undefined ? true : asBoolean(props.open);
-    const confirmLabel = String(props.confirmLabel || (variant === "alert" ? "Delete" : "Confirm"));
-    const cancelLabel = String(props.cancelLabel || "Cancel");
-
-    const root = document.createElement("div");
-    root.className = `uif-modal-root is-preview${open ? " is-open" : ""}`;
-    if (!open) root.hidden = true;
-
-    const overlay = dismissible ? document.createElement("button") : document.createElement("span");
-    overlay.className = "uif-modal-overlay";
-    if (dismissible) {
-      overlay.type = "button";
-      overlay.setAttribute("aria-label", "Dismiss dialog");
-    } else {
-      overlay.setAttribute("aria-hidden", "true");
-    }
-    root.append(overlay);
-
-    const dialog = document.createElement("section");
-    dialog.className = `uif-modal ${variant} ${size}`;
-    dialog.setAttribute("role", "dialog");
-    dialog.setAttribute("aria-modal", "true");
-
-    const header = document.createElement("header");
-    header.className = "uif-modal-header";
-
-    const heading = document.createElement("h2");
-    heading.className = "uif-modal-title";
-    heading.textContent = title;
-    header.append(heading);
-
-    if (dismissible) {
-      const close = document.createElement("button");
-      close.className = "uif-modal-close";
-      close.type = "button";
-      close.setAttribute("aria-label", "Close dialog");
-      close.textContent = "×";
-      header.append(close);
-    }
-
-    const body = document.createElement("div");
-    body.className = "uif-modal-body";
-
-    const desc = document.createElement("p");
-    desc.className = "uif-modal-description";
-    desc.textContent = description;
-    body.append(desc);
-
-    if (children) {
-      const content = document.createElement("p");
-      content.textContent = String(children);
-      body.append(content);
-    }
-
-    const actions = document.createElement("footer");
-    actions.className = "uif-modal-actions";
-
-    if (dismissible) {
-      const cancel = document.createElement("button");
-      cancel.className = "uif-button outline";
-      cancel.type = "button";
-      cancel.textContent = cancelLabel;
-      actions.append(cancel);
-    }
-
-    const confirm = document.createElement("button");
-    confirm.className = "uif-button solid";
-    confirm.type = "button";
-    confirm.textContent = confirmLabel;
-    actions.append(confirm);
-
-    dialog.append(header, body, actions);
-    root.append(dialog);
-
-    const code = `<div class="uif-modal-root${open ? " is-open" : ""}"${open ? "" : " hidden"}>
-  ${dismissible
-    ? '<button class="uif-modal-overlay" type="button" aria-label="Dismiss dialog"></button>'
-    : '<span class="uif-modal-overlay" aria-hidden="true"></span>'}
-  <section class="uif-modal ${quoteAttr(variant)} ${quoteAttr(size)}" role="dialog" aria-modal="true">
-    <header class="uif-modal-header">
-      <h2 class="uif-modal-title">${quoteAttr(title)}</h2>
-      ${dismissible ? '<button class="uif-modal-close" type="button" aria-label="Close dialog">×</button>' : ""}
-    </header>
-    <div class="uif-modal-body">
-      <p class="uif-modal-description">${quoteAttr(description)}</p>
-      ${children ? `<p>${quoteAttr(String(children))}</p>` : ""}
-    </div>
-    <footer class="uif-modal-actions">
-      ${dismissible ? `<button class="uif-button outline" type="button">${quoteAttr(cancelLabel)}</button>` : ""}
-      <button class="uif-button solid" type="button">${quoteAttr(confirmLabel)}</button>
-    </footer>
-  </section>
-</div>`;
-
-    return { element: root, code };
-  };
-
   const renderVanillaTooltip = ({ props, children }) => {
     const text = String(props.text || "Tooltip");
     const placement = String(props.placement || "top");
@@ -1077,6 +973,73 @@
 </span>`;
 
     return { element: trigger, code };
+  };
+
+  const renderVanillaNotification = ({ props }) => {
+    const allowedVariants = new Set(["info", "success", "warning", "error"]);
+    const variantRaw = String(props.variant || "info").toLowerCase();
+    const variant = allowedVariants.has(variantRaw) ? variantRaw : "info";
+    const message = String(props.message || "Notification");
+    const actionLabel = String(props.actionLabel || "");
+    const actionHref = String(props.actionHref || "");
+    const safeActionHref = /^(https?:\/\/|\/|#)/i.test(actionHref)
+      ? actionHref
+      : "";
+    const dismissible = asBoolean(props.dismissible);
+    const durationValue = Number.parseInt(String(props.duration || "0"), 10);
+    const duration =
+      Number.isFinite(durationValue) && durationValue > 0 ? durationValue : 0;
+    const role = variant === "error" ? "alert" : "status";
+    const ariaLive = variant === "error" ? "assertive" : "polite";
+
+    const element = document.createElement("div");
+    element.className =
+      variant === "info" ? "uif-notification" : `uif-notification is-${variant}`;
+    element.setAttribute("role", role);
+    element.setAttribute("aria-live", ariaLive);
+    if (duration > 0) element.setAttribute("data-duration", String(duration));
+
+    const icon = document.createElement("span");
+    icon.className = "uif-notification-icon";
+    icon.setAttribute("aria-hidden", "true");
+    element.append(icon);
+
+    const content = document.createElement("div");
+    content.className = "uif-notification-content";
+    const messageNode = document.createElement("p");
+    messageNode.className = "uif-notification-message";
+    messageNode.textContent = message;
+    content.append(messageNode);
+
+    if (actionLabel) {
+      const action = document.createElement(safeActionHref ? "a" : "button");
+      action.className = "uif-notification-action";
+      if (safeActionHref) action.href = safeActionHref;
+      if (!safeActionHref) action.type = "button";
+      action.textContent = actionLabel;
+      content.append(action);
+    }
+
+    element.append(content);
+
+    if (dismissible) {
+      const dismiss = document.createElement("button");
+      dismiss.type = "button";
+      dismiss.className = "uif-notification-dismiss";
+      dismiss.setAttribute("aria-label", "Dismiss notification");
+      dismiss.textContent = "×";
+      dismiss.addEventListener("click", () => element.remove(), { once: true });
+      element.append(dismiss);
+    }
+
+    const code = `<div class="${quoteAttr(element.className)}" role="${role}" aria-live="${ariaLive}"${duration > 0 ? ` data-duration="${duration}"` : ""}>
+  <span class="uif-notification-icon" aria-hidden="true"></span>
+  <div class="uif-notification-content">
+    <p class="uif-notification-message">${quoteAttr(message)}</p>${actionLabel ? `\n    ${safeActionHref ? `<a class="uif-notification-action" href="${quoteAttr(safeActionHref)}">${quoteAttr(actionLabel)}</a>` : `<button type="button" class="uif-notification-action">${quoteAttr(actionLabel)}</button>`}` : ""}
+  </div>${dismissible ? '\n  <button type="button" class="uif-notification-dismiss" aria-label="Dismiss notification">×</button>' : ""}
+</div>`;
+
+    return { element, code };
   };
 
   const renderVanillaLink = ({ props, children, meta }) => {
@@ -1213,53 +1176,6 @@
     return { element, code };
   };
 
-  // ─── Tag ──────────────────────────────────────────────────────────
-  const renderVanillaTag = ({ props, children }) => {
-    const rawText = typeof children === "undefined" ? "Label" : String(children || "");
-    const size = String(props.size || "md");
-    const removable = asBoolean(props.removable);
-    const selected = asBoolean(props.selected);
-    const startIcon = normalizeIconName(props.startIcon);
-    const removeLabel = String(props.removeLabel || "Remove");
-
-    const element = document.createElement("span");
-    const classes = ["uif-tag"];
-    if (size === "sm") classes.push("sm");
-    if (selected) classes.push("is-selected");
-    element.className = classes.join(" ");
-    if (selected) element.setAttribute("aria-selected", "true");
-
-    if (startIcon) {
-      const icon = createIconElement({ name: startIcon, decorative: true });
-      if (icon) element.append(icon);
-    }
-
-    const textSpan = document.createElement("span");
-    textSpan.className = "uif-tag-text";
-    textSpan.textContent = rawText;
-    element.append(textSpan);
-
-    if (removable) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "uif-tag-remove";
-      btn.setAttribute("aria-label", removeLabel);
-      const closeIcon = createIconElement({ name: "close", decorative: true });
-      if (closeIcon) btn.append(closeIcon);
-      element.append(btn);
-    }
-
-    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
-    const ariaSelected = selected ? ` aria-selected="true"` : "";
-    const iconMarkup = startIcon ? iconCode({ name: startIcon, decorative: true }) : "";
-    const removeBtnMarkup = removable
-      ? `<button type="button" class="uif-tag-remove" aria-label="${quoteAttr(removeLabel)}">${iconCode({ name: "close", decorative: true })}</button>`
-      : "";
-    const code = `<span class="${codeClasses}"${ariaSelected}>${iconMarkup}<span class="uif-tag-text">${quoteAttr(rawText)}</span>${removeBtnMarkup}</span>`;
-
-    return { element, code };
-  };
-
   // ─── Date Picker ──────────────────────────────────────────────────
   const renderVanillaDatePicker = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
@@ -1348,6 +1264,159 @@
     return { element, code: html };
   };
 
+  const renderVanillaModal = ({ props, children }) => {
+    const title = String(props.title || "Confirm action");
+    const description = String(props.description || "This action requires your confirmation.");
+    const variant = String(props.variant || "confirmation") === "alert" ? "alert" : "confirmation";
+    const sizeRaw = String(props.size || "m");
+    const size = sizeRaw === "s" ? "sm" : sizeRaw === "l" ? "lg" : "md";
+    const dismissible = props.dismissible === undefined ? true : asBoolean(props.dismissible);
+    const open = props.open === undefined ? true : asBoolean(props.open);
+    const confirmLabel = String(props.confirmLabel || (variant === "alert" ? "Delete" : "Confirm"));
+    const cancelLabel = String(props.cancelLabel || "Cancel");
+
+    const root = document.createElement("div");
+    root.className = `uif-modal-root is-preview${open ? " is-open" : ""}`;
+    if (!open) root.hidden = true;
+
+    const overlay = dismissible ? document.createElement("button") : document.createElement("span");
+    overlay.className = "uif-modal-overlay";
+    if (dismissible) {
+      overlay.type = "button";
+      overlay.setAttribute("aria-label", "Dismiss dialog");
+    } else {
+      overlay.setAttribute("aria-hidden", "true");
+    }
+    root.append(overlay);
+
+    const dialog = document.createElement("section");
+    dialog.className = `uif-modal ${variant} ${size}`;
+    dialog.setAttribute("role", "dialog");
+    dialog.setAttribute("aria-modal", "true");
+
+    const header = document.createElement("header");
+    header.className = "uif-modal-header";
+
+    const heading = document.createElement("h2");
+    heading.className = "uif-modal-title";
+    heading.textContent = title;
+    header.append(heading);
+
+    if (dismissible) {
+      const close = document.createElement("button");
+      close.className = "uif-modal-close";
+      close.type = "button";
+      close.setAttribute("aria-label", "Close dialog");
+      close.textContent = "×";
+      header.append(close);
+    }
+
+    const body = document.createElement("div");
+    body.className = "uif-modal-body";
+
+    const desc = document.createElement("p");
+    desc.className = "uif-modal-description";
+    desc.textContent = description;
+    body.append(desc);
+
+    if (children) {
+      const content = document.createElement("p");
+      content.textContent = String(children);
+      body.append(content);
+    }
+
+    const actions = document.createElement("footer");
+    actions.className = "uif-modal-actions";
+
+    if (dismissible) {
+      const cancel = document.createElement("button");
+      cancel.className = "uif-button outline";
+      cancel.type = "button";
+      cancel.textContent = cancelLabel;
+      actions.append(cancel);
+    }
+
+    const confirm = document.createElement("button");
+    confirm.className = "uif-button solid";
+    confirm.type = "button";
+    confirm.textContent = confirmLabel;
+    actions.append(confirm);
+
+    dialog.append(header, body, actions);
+    root.append(dialog);
+
+    const code = `<div class="uif-modal-root${open ? " is-open" : ""}"${open ? "" : " hidden"}>
+  ${dismissible
+    ? '<button class="uif-modal-overlay" type="button" aria-label="Dismiss dialog"></button>'
+    : '<span class="uif-modal-overlay" aria-hidden="true"></span>'}
+  <section class="uif-modal ${quoteAttr(variant)} ${quoteAttr(size)}" role="dialog" aria-modal="true">
+    <header class="uif-modal-header">
+      <h2 class="uif-modal-title">${quoteAttr(title)}</h2>
+      ${dismissible ? '<button class="uif-modal-close" type="button" aria-label="Close dialog">×</button>' : ""}
+    </header>
+    <div class="uif-modal-body">
+      <p class="uif-modal-description">${quoteAttr(description)}</p>
+      ${children ? `<p>${quoteAttr(String(children))}</p>` : ""}
+    </div>
+    <footer class="uif-modal-actions">
+      ${dismissible ? `<button class="uif-button outline" type="button">${quoteAttr(cancelLabel)}</button>` : ""}
+      <button class="uif-button solid" type="button">${quoteAttr(confirmLabel)}</button>
+    </footer>
+  </section>
+</div>`;
+
+    return { element: root, code };
+  };
+
+
+  const renderVanillaTag = ({ props, children }) => {
+    const rawText = typeof children === "undefined" ? "Label" : String(children || "");
+    const size = String(props.size || "md");
+    const removable = asBoolean(props.removable);
+    const selected = asBoolean(props.selected);
+    const startIcon = normalizeIconName(props.startIcon);
+    const removeLabel = String(props.removeLabel || "Remove");
+
+    const element = document.createElement("span");
+    const classes = ["uif-tag"];
+    if (size === "sm") classes.push("sm");
+    if (selected) classes.push("is-selected");
+    element.className = classes.join(" ");
+    if (selected) element.setAttribute("aria-selected", "true");
+
+    if (startIcon) {
+      const icon = createIconElement({ name: startIcon, decorative: true });
+      if (icon) element.append(icon);
+    }
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "uif-tag-text";
+    textSpan.textContent = rawText;
+    element.append(textSpan);
+
+    if (removable) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "uif-tag-remove";
+      btn.setAttribute("aria-label", removeLabel);
+      const closeIcon = createIconElement({ name: "close", decorative: true });
+      if (closeIcon) btn.append(closeIcon);
+      element.append(btn);
+    }
+
+    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
+    const ariaSelected = selected ? ` aria-selected="true"` : "";
+    const iconMarkup = startIcon ? iconCode({ name: startIcon, decorative: true }) : "";
+    const removeBtnMarkup = removable
+      ? `<button type="button" class="uif-tag-remove" aria-label="${quoteAttr(removeLabel)}">${iconCode({ name: "close", decorative: true })}</button>`
+      : "";
+    const code = `<span class="${codeClasses}"${ariaSelected}>${iconMarkup}<span class="uif-tag-text">${quoteAttr(rawText)}</span>${removeBtnMarkup}</span>`;
+
+    return { element, code };
+  };
+
+  // ─── Date Picker ──────────────────────────────────────────────────
+
   const renderVanillaProgressBar = ({ props }) => {
     const rawValue = props.value !== undefined && props.value !== "" ? props.value : null;
     const variant = String(props.variant || "default");
@@ -1386,6 +1455,7 @@
 
     return { element, code: html };
   };
+
 
 
   const renderVanillaSearchField = ({ props, meta }) => {
@@ -1461,6 +1531,7 @@
 
 
 
+
   const renderVanillaMeter = ({ props }) => {
     const label = String(props.label || "Storage used");
     const min = Number.isFinite(Number(props.min)) ? Number(props.min) : 0;
@@ -1514,6 +1585,7 @@
 
     return { element, code };
   };
+
 
 
 
@@ -1574,6 +1646,7 @@
     const element = wrapper.firstElementChild;
     return { element, code: html };
   };
+
 
 
 
@@ -1645,6 +1718,7 @@
 
     return { element: wrapper, code };
   };
+
 
 
 
@@ -1777,6 +1851,7 @@
 
 
 
+
   const renderVanillaStatusLight = ({ props, children }) => {
     const variant = String(props.variant || "neutral");
     const size = String(props.size || "md");
@@ -1803,6 +1878,7 @@
     const code = `<span class="${codeClasses}"><span class="uif-status-light-indicator" aria-hidden="true"></span><span class="uif-status-light-text">${quoteAttr(rawText)}</span></span>`;
     return { element, code };
   };
+
 
 
 
@@ -1885,6 +1961,7 @@
 
 
 
+
   const renderVanillaProgressCircle = ({ props }) => {
     const size = String(props.size || "md");
     const indeterminate = asBoolean(props.indeterminate);
@@ -1926,6 +2003,7 @@
     const code = `<span ${attrs.join(" ")}><svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle><circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle></svg></span>`;
     return { element, code };
   };
+
 
 
 
@@ -1993,6 +2071,7 @@
     codeLines.push("</ul>");
     return { element: wrapper, code: codeLines.join("\n") };
   };
+
 
 
 
@@ -2083,6 +2162,7 @@
 
 
 
+
   const renderVanillaComboBox = ({ props, meta }) => {
     const placeholder = String(props.placeholder || "Search destinations");
     const loading = asBoolean(props.loading);
@@ -2127,6 +2207,7 @@
       code: `<uif-combobox ${attrs.join(" ")}>${optionsCode}\n</uif-combobox>`,
     };
   };
+
 
 
 
@@ -2177,6 +2258,7 @@
 
     return { element: container, code };
   };
+
 
 
 
@@ -2239,6 +2321,7 @@
 
     return { element: bar, code };
   };
+
 
 
 
@@ -2361,6 +2444,7 @@
 
 
 
+
   const renderVanillaNumberField = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
     const value = props.value != null ? String(props.value) : "";
@@ -2457,6 +2541,7 @@
 
 
 
+
   const renderVanillaTable = ({ props }) => {
     const density = String(props.density || "default");
     const selection = String(props.selection || "none");
@@ -2497,6 +2582,7 @@
 
     return { element, code: html };
   };
+
 
 
 
@@ -2573,6 +2659,7 @@
 
 
 
+
   const renderVanillaCard = ({ props, children }) => {
     const title =
       typeof children === "undefined" ? "Card title" : String(children || "Card title");
@@ -2645,6 +2732,7 @@
 
 
 
+
   const renderVanillaSkeleton = ({ props }) => {
     const shape = String(props.shape || "text");
     const size = String(props.size || "md");
@@ -2671,6 +2759,7 @@
   };
 
   // ─── Segmented Control ────────────────────────
+
 
 
 
@@ -2711,6 +2800,7 @@
 
 
 
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
@@ -2729,11 +2819,12 @@
       accordion: renderVanillaAccordion,
       tabs: renderVanillaTabs,
       tooltip: renderVanillaTooltip,
-      modal: renderVanillaModal,
+      notification: renderVanillaNotification,
       select: renderVanillaSelect,
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      modal: renderVanillaModal,
       tag: renderVanillaTag,
       "progress-bar": renderVanillaProgressBar,
       meter: renderVanillaMeter,

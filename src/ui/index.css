@@ -55,3 +55,5 @@
 @import url("./patterns/segmented-control.css") layer(components);
 @import url("./patterns/date-input.css") layer(components);
 @import url("./patterns/color-picker.css") layer(components);
+@import url("./patterns/date-input.css") layer(components);
+@import url("./patterns/notification.css") layer(components);

@@ -45,6 +45,7 @@ export declare class UIModal extends UIElement {}
 export declare class UISelect extends UIElement {}
 export declare class UILink extends UIElement {}
 export declare class UIBreadcrumbs extends UIElement {}
+export declare class UINotification extends UIElement {}
 export declare class UIFieldLabel extends UIElement {}
 export declare class UIForm extends UIElement {}
 export declare class UIFormGroup extends UIElement {}
@@ -90,6 +91,7 @@ declare global {
     "uif-select": UISelect;
     "uif-link": UILink;
     "uif-breadcrumbs": UIBreadcrumbs;
+    "uif-notification": UINotification;
     "uif-field-label": UIFieldLabel;
     "uif-form": UIForm;
     "uif-form-group": UIFormGroup;

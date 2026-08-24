@@ -47,3 +47,4 @@ export { UISegmentedControl, UISegmentedControlItem } from "./ui-segmented-contr
 export { UIColorPicker } from "./ui-color-picker.js";
 export { UIProgressBar } from "./ui-progress-bar.js";
 export { UITag, UITagGroup } from "./ui-tag.js";
+export { UINotification } from "./ui-notification.js";
