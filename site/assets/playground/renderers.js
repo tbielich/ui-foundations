@@ -992,6 +992,48 @@
     return { element: wrapper, code };
   };
 
+  const renderVanillaProgressCircle = ({ props }) => {
+    const size = String(props.size || "md");
+    const indeterminate = asBoolean(props.indeterminate);
+    const ariaLabel = String(props.ariaLabel || "Loading");
+    const rawValue = Number.parseFloat(String(props.value || "0"));
+    const value = Number.isFinite(rawValue)
+      ? Math.min(100, Math.max(0, rawValue))
+      : 0;
+
+    const element = document.createElement("span");
+    const classes = ["uif-progress-circle"];
+    if (size === "sm" || size === "lg") classes.push(size);
+    if (indeterminate) classes.push("is-indeterminate");
+    element.className = classes.join(" ");
+    element.setAttribute("role", "progressbar");
+    element.setAttribute("aria-label", ariaLabel);
+
+    if (!indeterminate) {
+      element.setAttribute("aria-valuemin", "0");
+      element.setAttribute("aria-valuemax", "100");
+      element.setAttribute("aria-valuenow", String(value));
+      element.style.setProperty("--_progress-circle-value", String(value));
+    }
+
+    element.innerHTML = `<svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle><circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle></svg>`;
+
+    const attrs = [
+      `class="${quoteAttr(element.className)}"`,
+      'role="progressbar"',
+      `aria-label="${quoteAttr(ariaLabel)}"`,
+    ];
+    if (!indeterminate) {
+      attrs.push('aria-valuemin="0"');
+      attrs.push('aria-valuemax="100"');
+      attrs.push(`aria-valuenow="${value}"`);
+      attrs.push(`style="--_progress-circle-value: ${value};"`);
+    }
+
+    const code = `<span ${attrs.join(" ")}><svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle><circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle></svg></span>`;
+    return { element, code };
+  };
+
   const renderVanillaAccordion = ({ props }) => {
     const items = Number(props.items || 3);
     const openIndex = Number(props.openIndex || 0);
@@ -2034,6 +2076,7 @@
       label: renderVanillaLabel,
       link: renderVanillaLink,
       "range-slider": renderVanillaRangeSlider,
+      "progress-circle": renderVanillaProgressCircle,
       radio: renderVanillaRadio,
       switch: renderVanillaSwitch,
       textarea: renderVanillaTextarea,

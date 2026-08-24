@@ -15,6 +15,7 @@ export { UIInput } from "./ui-input.js";
 export { UIComboBox } from "./ui-combobox.js";
 export { UICheckbox } from "./ui-checkbox.js";
 export { UIRadio } from "./ui-radio.js";
+export { UIProgressCircle } from "./ui-progress-circle.js";
 export { UISwitch } from "./ui-switch.js";
 export { UIRangeSlider } from "./ui-range-slider.js";
 export { UIBadge } from "./ui-badge.js";

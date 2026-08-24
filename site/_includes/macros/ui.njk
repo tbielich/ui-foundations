@@ -250,6 +250,17 @@
   </div>
   {%- endif %}
 </div>
+{% macro progressCircle(value=0, indeterminate=false, size='md', ariaLabel='', ariaLabelledby='', className='') -%}
+{%- set classes = "uif-progress-circle" -%}
+{%- if size == "sm" or size == "lg" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
+{%- if indeterminate -%}{%- set classes = classes + " is-indeterminate" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<span class="{{ classes }}" role="progressbar"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}{% if ariaLabelledby %} aria-labelledby="{{ ariaLabelledby }}"{% endif %}{% if not indeterminate %} aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ value or 0 }}"{% endif %}{% if not indeterminate %} style="--_progress-circle-value: {{ value or 0 }};"{% endif %}>
+  <svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle>
+    <circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle>
+  </svg>
+</span>
 {%- endmacro %}
 
 {% macro accordion(className='') -%}

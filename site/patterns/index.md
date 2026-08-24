@@ -130,6 +130,14 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>Range Slider</h2>
       <p>Dual-thumb slider for selecting a bounded numeric range.</p>
+  <a class="docs-component-card" href="/patterns/progress-circle/">
+    <div class="docs-component-card-preview">
+      {{ uif.progressCircle(65, false, "sm", "Loading trip summary") }}
+      {{ uif.progressCircle(0, true, "md", "Loading trip summary") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Progress Circle</h2>
+      <p>Circular loading indicator for determinate and indeterminate progress.</p>
     </div>
   </a>
   <a class="docs-component-card" href="/patterns/switch/">

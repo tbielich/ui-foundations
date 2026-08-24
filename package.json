@@ -59,6 +59,7 @@
     "./elements/ui-combobox": "./dist/elements/ui-combobox.js",
     "./elements/ui-checkbox": "./dist/elements/ui-checkbox.js",
     "./elements/ui-radio": "./dist/elements/ui-radio.js",
+    "./elements/ui-progress-circle": "./dist/elements/ui-progress-circle.js",
     "./elements/ui-switch": "./dist/elements/ui-switch.js",
     "./elements/ui-range-slider": "./dist/elements/ui-range-slider.js",
     "./elements/ui-badge": "./dist/elements/ui-badge.js",
