@@ -1883,6 +1883,28 @@
 
 
 
+  const ILLUSTRATED_MESSAGE_PRESETS = {
+    empty: {
+      heading: "Nothing here yet",
+      description: "Add content or create a new item to get started.",
+      icon: "message-info",
+    },
+    error: {
+      heading: "Something went wrong",
+      description: "Try again or go back to the previous step.",
+      icon: "message-alert",
+    },
+    "no-results": {
+      heading: "No results found",
+      description: "Try adjusting your filters or search terms.",
+      icon: "search",
+    },
+  };
+  const resolveIllustratedMessagePreset = (value) =>
+    Object.prototype.hasOwnProperty.call(ILLUSTRATED_MESSAGE_PRESETS, value)
+      ? value
+      : "empty";
+
   const renderVanillaIllustratedMessage = ({ props }) => {
     const preset = resolveIllustratedMessagePreset(String(props.preset || "empty"));
     const defaults = ILLUSTRATED_MESSAGE_PRESETS[preset];
@@ -1957,10 +1979,6 @@
 
     return { element: wrapper, code };
   };
-
-
-
-
 
   const renderVanillaProgressCircle = ({ props }) => {
     const size = String(props.size || "md");

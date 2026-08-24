@@ -239,6 +239,50 @@
     return "{{ uif.calendar(" + parts.join(", ") + ") }}";
   }
 
+  function njkComboBox(state) {
+    var p = state.props;
+    var placeholder = p.placeholder || "Search destinations";
+    var loading = p.loading === true || p.loading === "true";
+    var allowCustomValue =
+      p.allowCustomValue === true || p.allowCustomValue === "true";
+    var descriptions = p.descriptions === true || p.descriptions === "true";
+    var disabled = state.meta.state === "disabled";
+    var parts = [];
+    parts.push(
+      "options=[" +
+        (descriptions
+          ? '{value: "pmi", label: "Palma de Mallorca", description: "Spain"}, {value: "her", label: "Heraklion", description: "Greece"}, {value: "fue", label: "Fuerteventura", description: "Canary Islands"}'
+          : '{value: "pmi", label: "Palma de Mallorca"}, {value: "her", label: "Heraklion"}, {value: "fue", label: "Fuerteventura"}') +
+        "]",
+    );
+    parts.push('placeholder="' + quoteAttr(placeholder) + '"');
+    if (loading) parts.push("loading=true");
+    if (allowCustomValue) parts.push("allowCustomValue=true");
+    if (disabled) parts.push("disabled=true");
+    return "{{ uif.combobox(" + parts.join(", ") + ") }}";
+  }
+
+  function wcComboBox(state) {
+    var p = state.props;
+    var placeholder = p.placeholder || "Search destinations";
+    var loading = p.loading === true || p.loading === "true";
+    var allowCustomValue =
+      p.allowCustomValue === true || p.allowCustomValue === "true";
+    var descriptions = p.descriptions === true || p.descriptions === "true";
+    var disabled = state.meta.state === "disabled";
+    var attrs = [
+      'placeholder="' + quoteAttr(placeholder) + '"',
+      'aria-label="Destination search"',
+    ];
+    if (loading) attrs.push("loading");
+    if (allowCustomValue) attrs.push("allow-custom-value");
+    if (disabled) attrs.push("disabled");
+    var options = descriptions
+      ? '\n  <option value="pmi" data-description="Spain">Palma de Mallorca</option>\n  <option value="her" data-description="Greece">Heraklion</option>\n  <option value="fue" data-description="Canary Islands">Fuerteventura</option>\n'
+      : '\n  <option value="pmi">Palma de Mallorca</option>\n  <option value="her">Heraklion</option>\n  <option value="fue">Fuerteventura</option>\n';
+    return "<uif-combobox " + attrs.join(" ") + ">" + options + "</uif-combobox>";
+  }
+
   global.UIPlaygroundCodeGenerators = {
     njk: {
       button: njkButton, input: njkInput, checkbox: njkCheckbox,
@@ -246,7 +290,8 @@
       label: function () { return '{{ uif.labelContent("text", "icon") }}'; },
       "button-group": function () { return '{% call uif.buttonGroup() %}...{% endcall %}'; },
       select: njkSelect,
-      form: njkForm,
+      colorPicker: njkColorPicker,
+      combobox: njkComboBox,
       calendar: njkCalendar,
       divider: function (state) {
         var p = state.props;
@@ -315,7 +360,8 @@
       label: function () { return "<uif-field-label>...</uif-field-label>"; },
       "button-group": function () { return "<uif-button-group>...</uif-button-group>"; },
       select: wcSelect,
-      form: wcForm,
+      colorPicker: wcColorPicker,
+      combobox: wcComboBox,
       calendar: function () {
         return "<!-- Calendar is provided as Nunjucks/static HTML in this package. -->";
       },
