@@ -20,6 +20,9 @@
     border: var(--brand-size-border-default) solid var(--color-border-default);
     border-radius: var(--uif-modal-surface-border-radius);
   }
+  dialog:is(.uif-modal, .modal):not([open]) {
+    display: none;
+  }
   dialog:is(.uif-modal, .modal)::backdrop {
     background: var(--uif-modal-backdrop-color);
   }
