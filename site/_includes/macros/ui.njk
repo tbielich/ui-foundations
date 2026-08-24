@@ -100,6 +100,27 @@
 </label>
 {%- endmacro %}
 
+{% macro rangeSlider(label='Range', min=0, max=100, lowerValue=25, upperValue=75, step=1, disabled=false, className='', id='', lowerName='', upperName='', lowerAriaLabel='Minimum value', upperAriaLabel='Maximum value') -%}
+{%- set fieldClasses = "uif-range-slider-field" -%}
+{%- if disabled -%}{%- set fieldClasses = fieldClasses + " is-disabled" -%}{%- endif -%}
+{%- if className -%}{%- set fieldClasses = fieldClasses + " " + className -%}{%- endif -%}
+{%- set sliderId = id or "range-slider" -%}
+<div class="{{ fieldClasses }}">
+  <div class="uif-range-slider-header">
+    <span class="uif-range-slider-label">{{ label }}</span>
+    <output class="uif-range-slider-value" aria-live="polite">
+      <span class="uif-range-slider-value-lower">{{ lowerValue }}</span>
+      <span class="uif-range-slider-value-separator">–</span>
+      <span class="uif-range-slider-value-upper">{{ upperValue }}</span>
+    </output>
+  </div>
+  <div class="uif-range-slider" data-min="{{ min }}" data-max="{{ max }}" data-lower-value="{{ lowerValue }}" data-upper-value="{{ upperValue }}">
+    <input class="uif-range-slider-input is-lower" type="range"{% if id %} id="{{ sliderId }}-lower"{% endif %}{% if lowerName %} name="{{ lowerName }}"{% endif %} min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ lowerValue }}" aria-label="{{ lowerAriaLabel }}"{% if disabled %} disabled{% endif %} />
+    <input class="uif-range-slider-input is-upper" type="range"{% if id %} id="{{ sliderId }}-upper"{% endif %}{% if upperName %} name="{{ upperName }}"{% endif %} min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ upperValue }}" aria-label="{{ upperAriaLabel }}"{% if disabled %} disabled{% endif %} />
+  </div>
+</div>
+{%- endmacro %}
+
 {% macro colorChip(token) -%}
 <div class="swatch" style="--swatch-color: var({{ token.cssVar }})">
   <span class="swatch-name">{{ token.name }}</span>

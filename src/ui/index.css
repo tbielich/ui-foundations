@@ -1,3 +1,15 @@
+@import url("./patterns/label.css") layer(components);
+@import url("./patterns/button.css") layer(components);
+@import url("./patterns/input.css") layer(components);
+@import url("./patterns/icon.css") layer(components);
+@import url("./patterns/checkbox.css") layer(components);
+@import url("./patterns/radio.css") layer(components);
+@import url("./patterns/switch.css") layer(components);
+@import url("./patterns/range-slider.css") layer(components);
+@import url("./patterns/badge.css") layer(components);
+@import url("./patterns/divider.css") layer(components);
+@import url("./patterns/textarea.css") layer(components);
+@import url("./patterns/avatar.css") layer(components);
 @import url("./patterns/accordion.css") layer(components);
 @import url("./patterns/avatar.css") layer(components);
 @import url("./patterns/badge.css") layer(components);

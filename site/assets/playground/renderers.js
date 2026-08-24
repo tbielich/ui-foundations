@@ -460,6 +460,131 @@
     return { element: wrapper, code };
   };
 
+  const renderVanillaRangeSlider = ({ props }) => {
+    const labelText = String(props.label || "Price range");
+    const min = Number.isFinite(Number(props.min)) ? Number(props.min) : 0;
+    const max = Number.isFinite(Number(props.max)) ? Number(props.max) : 100;
+    const step = Number.isFinite(Number(props.step)) && Number(props.step) > 0
+      ? Number(props.step)
+      : 1;
+    const disabled = asBoolean(props.disabled);
+    const lowerDefault = Number.isFinite(Number(props.lowerValue))
+      ? Number(props.lowerValue)
+      : min;
+    const upperDefault = Number.isFinite(Number(props.upperValue))
+      ? Number(props.upperValue)
+      : max;
+
+    const clamp = (value) => Math.min(max, Math.max(min, value));
+    const wrapper = document.createElement("div");
+    const wrapperClasses = ["uif-range-slider-field"];
+    if (disabled) wrapperClasses.push("is-disabled");
+    wrapper.className = wrapperClasses.join(" ");
+
+    const header = document.createElement("div");
+    header.className = "uif-range-slider-header";
+
+    const label = document.createElement("span");
+    label.className = "uif-range-slider-label";
+    label.textContent = labelText;
+
+    const output = document.createElement("output");
+    output.className = "uif-range-slider-value";
+    output.setAttribute("aria-live", "polite");
+
+    const lowerSpan = document.createElement("span");
+    lowerSpan.className = "uif-range-slider-value-lower";
+    const separator = document.createElement("span");
+    separator.className = "uif-range-slider-value-separator";
+    separator.textContent = "–";
+    const upperSpan = document.createElement("span");
+    upperSpan.className = "uif-range-slider-value-upper";
+    output.append(lowerSpan, separator, upperSpan);
+    header.append(label, output);
+
+    const slider = document.createElement("div");
+    slider.className = "uif-range-slider";
+
+    const lowerInput = document.createElement("input");
+    lowerInput.className = "uif-range-slider-input is-lower";
+    lowerInput.type = "range";
+    lowerInput.min = String(min);
+    lowerInput.max = String(max);
+    lowerInput.step = String(step);
+    lowerInput.setAttribute("aria-label", "Minimum value");
+    lowerInput.disabled = disabled;
+
+    const upperInput = document.createElement("input");
+    upperInput.className = "uif-range-slider-input is-upper";
+    upperInput.type = "range";
+    upperInput.min = String(min);
+    upperInput.max = String(max);
+    upperInput.step = String(step);
+    upperInput.setAttribute("aria-label", "Maximum value");
+    upperInput.disabled = disabled;
+
+    const sync = (source) => {
+      let lower = clamp(Number(lowerInput.value || lowerDefault));
+      let upper = clamp(Number(upperInput.value || upperDefault));
+
+      if (source === "lower" && lower > upper) lower = upper;
+      if (source === "upper" && upper < lower) upper = lower;
+      if (source !== "lower" && source !== "upper" && lower > upper) {
+        lower = upper;
+      }
+
+      lowerInput.value = String(lower);
+      upperInput.value = String(upper);
+      slider.dataset.lowerValue = String(lower);
+      slider.dataset.upperValue = String(upper);
+
+      const range = max - min || 1;
+      const lowerPercent = ((lower - min) / range) * 100;
+      const upperPercent = ((upper - min) / range) * 100;
+      slider.style.setProperty("--_range-slider-start", String(lowerPercent));
+      slider.style.setProperty("--_range-slider-end", String(upperPercent));
+
+      lowerSpan.textContent = String(lower);
+      upperSpan.textContent = String(upper);
+    };
+
+    lowerInput.value = String(clamp(lowerDefault));
+    upperInput.value = String(clamp(upperDefault));
+    lowerInput.addEventListener("input", () => sync("lower"));
+    upperInput.addEventListener("input", () => sync("upper"));
+
+    slider.append(lowerInput, upperInput);
+    wrapper.append(header, slider);
+    sync();
+
+    const fieldAttrs = [`class="${quoteAttr(wrapper.className)}"`];
+    const inputAttrs = (position, value, ariaLabel) => {
+      const attrs = [
+        `class="uif-range-slider-input is-${position}"`,
+        'type="range"',
+        `min="${quoteAttr(min)}"`,
+        `max="${quoteAttr(max)}"`,
+        `step="${quoteAttr(step)}"`,
+        `value="${quoteAttr(value)}"`,
+        `aria-label="${quoteAttr(ariaLabel)}"`,
+      ];
+      if (disabled) attrs.push("disabled");
+      return attrs.join(" ");
+    };
+    const code = `<div ${fieldAttrs.join(" ")}>
+  <div class="uif-range-slider-header">
+    <span class="uif-range-slider-label">${quoteAttr(labelText)}</span>
+    <output class="uif-range-slider-value" aria-live="polite"><span class="uif-range-slider-value-lower">${quoteAttr(lowerInput.value)}</span><span class="uif-range-slider-value-separator">–</span><span class="uif-range-slider-value-upper">${quoteAttr(upperInput.value)}</span></output>
+  </div>
+  <div class="uif-range-slider" data-min="${quoteAttr(min)}" data-max="${quoteAttr(max)}" data-lower-value="${quoteAttr(lowerInput.value)}" data-upper-value="${quoteAttr(upperInput.value)}" style="--_range-slider-start: ${quoteAttr(slider.style.getPropertyValue("--_range-slider-start"))}; --_range-slider-end: ${quoteAttr(slider.style.getPropertyValue("--_range-slider-end"))};">
+    <input ${inputAttrs("lower", lowerInput.value, "Minimum value")} />
+    <input ${inputAttrs("upper", upperInput.value, "Maximum value")} />
+  </div>
+</div>`;
+
+    return { element: wrapper, code };
+  };
+
   const renderVanillaButtonGroup = ({ props, meta }) => {
     const element = document.createElement("div");
     const orientation =
@@ -1398,6 +1523,7 @@
       input: renderVanillaInput,
       label: renderVanillaLabel,
       link: renderVanillaLink,
+      "range-slider": renderVanillaRangeSlider,
       radio: renderVanillaRadio,
       switch: renderVanillaSwitch,
       textarea: renderVanillaTextarea,
