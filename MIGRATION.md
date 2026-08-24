@@ -68,6 +68,7 @@ parts follow the same prefix replacement.
 | RangeSlider | `.uif-range-slider`, `.uif-range-slider-*` | `--uif-range-slider-*` | `<uif-range-slider>` |
 | Select | `.uif-select` | `--uif-select-*` | `<uif-select>` |
 | Skeleton | `.uif-skeleton`, `.uif-skeleton-group` | `--uif-skeleton-*` | `<uif-skeleton>` |
+| Segmented Control | `.uif-segmented-control`, `.uif-segmented-control-item` | `--uif-segmented-control-*` | `<uif-segmented-control>`, `<uif-segmented-control-item>` |
 | Switch | `.uif-switch`, `.uif-switch-field`, `.uif-switch-field-text` | `--uif-switch-*` | `<uif-switch>` |
 | Menu | `.uif-menu`, `.uif-menu-item`, `.uif-menu-section`, `.uif-menu-section-label`, `.uif-menu-divider` | `--uif-menu-*` | `<uif-menu>` |
 | Tabs | `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, `.uif-tab-panel` | `--uif-tabs-*` | `<uif-tab-list>`, `<uif-tab>`, `<uif-tab-panel>` |

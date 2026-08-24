@@ -40,3 +40,4 @@ export { UISkeleton } from "./ui-skeleton.js";
 export { UIDropzone } from "./ui-dropzone.js";
 export { UINumberField } from "./ui-number-field.js";
 export { UIMenu } from "./ui-menu.js";
+export { UISegmentedControl, UISegmentedControlItem } from "./ui-segmented-control.js";

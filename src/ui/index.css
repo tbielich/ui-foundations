@@ -48,3 +48,5 @@
 @import url("./patterns/card.css") layer(components);
 @import url("./patterns/date-input.css") layer(components);
 @import url("./patterns/dropzone.css") layer(components);
+@import url("./patterns/date-input.css") layer(components);
+@import url("./patterns/segmented-control.css") layer(components);
