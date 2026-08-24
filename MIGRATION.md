@@ -46,6 +46,7 @@ parts follow the same prefix replacement.
 | Family | Canonical classes | Canonical token slots or runtime inputs | Canonical Custom Elements |
 |---|---|---|---|
 | Accordion | `.uif-accordion`, `.uif-accordion-item`, `.uif-accordion-item-content` | `--uif-accordion-*` | `<uif-accordion>`, `<uif-accordion-item>` |
+| ActionBar | `.uif-action-bar`, `.uif-action-bar-count`, `.uif-action-bar-actions`, `.uif-action-bar-dismiss` | `--uif-action-bar-*` | `<uif-action-bar>` |
 | Avatar | `.uif-avatar`, `.uif-avatar-initials` | `--uif-avatar-*` | `<uif-avatar>` |
 | Badge | `.uif-badge`, `.uif-badge-text` | `--uif-badge-*` | `<uif-badge>` |
 | Button | `.uif-button` with `.solid`, `.outline`, or `.ghost` | `--uif-button-*` | `<uif-button>` |

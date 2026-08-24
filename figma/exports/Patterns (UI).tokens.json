@@ -9187,5 +9187,125 @@
         }
       }
     }
+  },
+  "ActionBar": {
+    "Container": {
+      "Background": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Neutral/900"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4100:1",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-action-bar-container-background)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2039:356",
+            "targetVariableName": "Color/Neutral/900",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Text": {
+      "Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Inverse"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4100:2",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-action-bar-text-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:327",
+            "targetVariableName": "Color/Text/Inverse",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Border": {
+      "Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4100:3",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-action-bar-border-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:342",
+            "targetVariableName": "Color/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Padding": {
+      "Inline": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Spacing/Comfortable"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4100:4",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-action-bar-padding-inline)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:4",
+            "targetVariableName": "Brand/Size/Spacing/Comfortable",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Block": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Spacing/Component"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:4100:5",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-action-bar-padding-block)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:3",
+            "targetVariableName": "Brand/Size/Spacing/Component",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    }
   }
 }

@@ -475,6 +475,18 @@
     {%- if caller %}<span class="uif-inline-alert-action">{{ caller() }}</span>{% endif -%}
   </div>
   {%- if dismissible %}<button type="button" class="uif-inline-alert-dismiss" aria-label="Dismiss"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg');" aria-hidden="true"></span></button>{% endif -%}
+{% macro actionBar(count=0, open=false, label='Bulk actions', dismissLabel='Dismiss', className='') -%}
+{%- set classes = "uif-action-bar" -%}
+{%- if open -%}{%- set classes = classes + " is-open" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{%- set countText = (count | string) + (" item selected" if count == 1 else " items selected") -%}
+<div class="{{ classes }}" role="toolbar" aria-label="{{ label }}">
+  <span class="uif-action-bar-count" aria-live="polite">{{ countText }}</span>
+  <div class="uif-action-bar-actions">{{ caller() if caller }}</div>
+  <span class="uif-action-bar-spacer" aria-hidden="true"></span>
+  <button type="button" class="uif-action-bar-dismiss" aria-label="{{ dismissLabel }}">
+    <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/close.svg')" aria-hidden="true"></span>
+  </button>
 </div>
 {%- endmacro %}
 
