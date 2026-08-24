@@ -37,3 +37,4 @@ export { UICard, UICardMedia, UICardHeader, UICardBody, UICardFooter } from "./u
 export { UISkeleton } from "./ui-skeleton.js";
 export { UIDropzone } from "./ui-dropzone.js";
 export { UINumberField } from "./ui-number-field.js";
+export { UIMenu } from "./ui-menu.js";

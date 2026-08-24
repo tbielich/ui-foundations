@@ -562,6 +562,38 @@
     <button type="button" aria-label="Increase value"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/plus-circled.svg');" aria-hidden="true"></span></button>
   </span>
 </div>
+{# ─── Menu ────────────────────────────────────────────────────────── #}
+
+{% macro menu(ariaLabel='', role='menu', className='') -%}
+{%- set classes = "uif-menu" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<ul class="{{ classes }}" role="{{ role }}"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>{{ caller() }}</ul>
+{%- endmacro %}
+
+{% macro menuItem(disabled=false, selected=false, icon='', hasSubmenu=false, className='') -%}
+{%- set classes = "uif-menu-item" -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
+{%- if hasSubmenu -%}{%- set classes = classes + " has-submenu" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<li class="{{ classes }}" role="menuitem" tabindex="-1"{% if disabled %} aria-disabled="true"{% endif %}{% if selected %} aria-checked="true"{% endif %}>
+  {%- if icon %}<span class="uif-menu-item-icon uif-icon" aria-hidden="true">{{ icon }}</span>{% endif -%}
+  {{ caller() }}
+  {%- if hasSubmenu %}<span class="uif-menu-item-chevron" aria-hidden="true"></span>{% endif -%}
+</li>
+{%- endmacro %}
+
+{% macro menuSection(label='', className='') -%}
+{%- set classes = "uif-menu-section" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<li class="{{ classes }}" role="none">
+  {%- if label %}<span class="uif-menu-section-label">{{ label }}</span>{% endif -%}
+  <ul role="group"{% if label %} aria-label="{{ label }}"{% endif %}>{{ caller() }}</ul>
+</li>
+{%- endmacro %}
+
+{% macro menuDivider() -%}
+<li role="separator" class="uif-menu-divider"></li>
 {%- endmacro %}
 
 {# ─── Re-export Calendar macro ────────────────────────────────────── #}

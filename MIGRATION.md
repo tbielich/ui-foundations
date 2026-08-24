@@ -68,6 +68,7 @@ parts follow the same prefix replacement.
 | Select | `.uif-select` | `--uif-select-*` | `<uif-select>` |
 | Skeleton | `.uif-skeleton`, `.uif-skeleton-group` | `--uif-skeleton-*` | `<uif-skeleton>` |
 | Switch | `.uif-switch`, `.uif-switch-field`, `.uif-switch-field-text` | `--uif-switch-*` | `<uif-switch>` |
+| Menu | `.uif-menu`, `.uif-menu-item`, `.uif-menu-section`, `.uif-menu-section-label`, `.uif-menu-divider` | `--uif-menu-*` | `<uif-menu>` |
 | Tabs | `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, `.uif-tab-panel` | `--uif-tabs-*` | `<uif-tab-list>`, `<uif-tab>`, `<uif-tab-panel>` |
 | Textarea | `.uif-textarea` | `--uif-textarea-*` | `<uif-textarea>` |
 | TreeView | `.uif-tree-view`, `.uif-tree-node`, `.uif-tree-node-row`, `.uif-tree-children` | `--uif-tree-view-*` | `<uif-tree-view>` |
