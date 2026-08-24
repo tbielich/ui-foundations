@@ -1,9 +1,42 @@
 @layer components {
   /*
+   * Native <dialog> provides focus trapping, backdrop, inert management, and Esc handling.
    * `.modal-*` selectors are deprecated v1.x compatibility aliases.
-   * UIF-owned emitters use `.uif-modal-*`; remove aliases no earlier than v2.0.
+   * Implements: principle.foundation.native-html-first
    */
 
+  /* Native dialog element — reset browser defaults */
+  dialog:is(.uif-modal, .modal) {
+    position: relative;
+    display: grid;
+    gap: var(--size-spacing-400);
+    inline-size: min(100%, var(--container-400));
+    max-block-size: calc(100dvh - (var(--size-spacing-400) * 2));
+    overflow: auto;
+    padding: var(--size-spacing-500);
+    margin: auto;
+    color: var(--color-text-default);
+    background: var(--uif-modal-surface-color);
+    border: var(--brand-size-border-default) solid var(--color-border-default);
+    border-radius: var(--uif-modal-surface-border-radius);
+  }
+  dialog:is(.uif-modal, .modal)::backdrop {
+    background: var(--uif-modal-backdrop-color);
+  }
+  dialog:is(.uif-modal, .modal).sm {
+    inline-size: min(100%, var(--container-300));
+  }
+  dialog:is(.uif-modal, .modal).lg {
+    inline-size: min(100%, var(--container-500));
+  }
+  dialog:is(.uif-modal, .modal).alert {
+    border-color: var(--color-border-danger);
+  }
+  dialog:is(.uif-modal, .modal).confirmation {
+    border-color: var(--color-border-brand);
+  }
+
+  /* Legacy div-based modal (v1.x compatibility — non-native fallback) */
   :is(.uif-modal-root, .modal-root) {
     position: fixed;
     inset: 0;
@@ -13,18 +46,15 @@
     padding: var(--size-spacing-400);
     z-index: var(--zindex-modal-overlay);
   }
-
   :is(.uif-modal-root, .modal-root).is-open {
     display: flex;
   }
-
   :is(.uif-modal-root, .modal-root).is-preview {
     position: relative;
     inset: auto;
     min-block-size: var(--container-300);
     z-index: var(--zindex-base);
   }
-
   :is(.uif-modal-overlay, .modal-overlay) {
     position: absolute;
     inset: 0;
@@ -34,8 +64,7 @@
     background: var(--uif-modal-backdrop-color);
     z-index: var(--zindex-modal-overlay);
   }
-
-  :is(.uif-modal, .modal) {
+  :is(.uif-modal-root, .modal-root) :is(.uif-modal, .modal) {
     position: relative;
     display: grid;
     gap: var(--size-spacing-400);
@@ -49,53 +78,45 @@
     border-radius: var(--uif-modal-surface-border-radius);
     z-index: var(--zindex-modal);
   }
-
-  :is(.uif-modal, .modal).sm {
+  :is(.uif-modal-root, .modal-root) :is(.uif-modal, .modal).sm {
     inline-size: min(100%, var(--container-300));
   }
-
-  :is(.uif-modal, .modal).lg {
+  :is(.uif-modal-root, .modal-root) :is(.uif-modal, .modal).lg {
     inline-size: min(100%, var(--container-500));
   }
-
-  :is(.uif-modal, .modal).alert {
+  :is(.uif-modal-root, .modal-root) :is(.uif-modal, .modal).alert {
     border-color: var(--color-border-danger);
   }
-
-  :is(.uif-modal, .modal).confirmation {
+  :is(.uif-modal-root, .modal-root) :is(.uif-modal, .modal).confirmation {
     border-color: var(--color-border-brand);
   }
 
+  /* Shared inner styles (both native and legacy) */
   :is(.uif-modal-header, .modal-header) {
     display: flex;
     align-items: start;
     justify-content: space-between;
     gap: var(--size-spacing-300);
   }
-
   :is(.uif-modal-title, .modal-title) {
     margin: 0;
     font-size: var(--font-size-xl);
     line-height: var(--line-height-xl);
   }
-
   :is(.uif-modal-description, .modal-description) {
     margin: 0;
     color: var(--color-text-subtle);
   }
-
   :is(.uif-modal-body, .modal-body) {
     display: grid;
     gap: var(--size-spacing-300);
   }
-
   :is(.uif-modal-actions, .modal-actions) {
     display: flex;
     justify-content: end;
     gap: var(--size-spacing-200);
     flex-wrap: wrap;
   }
-
   :is(.uif-modal-close, .modal-close) {
     display: inline-flex;
     align-items: center;
@@ -108,7 +129,6 @@
     color: var(--color-text-default);
     cursor: pointer;
   }
-
   :is(.uif-modal-close, .modal-close):focus-visible {
     outline: 2px solid var(--color-focus, currentColor);
     outline-offset: 2px;
