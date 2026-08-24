@@ -47,14 +47,16 @@ playground:
         - s
         - m
         - l
-    - kind: toggle
+    - kind: switch
       name: dismissible
       label: Dismissible
+      valueType: boolean
       query: true
       default: true
-    - kind: toggle
+    - kind: switch
       name: open
       label: Open
+      valueType: boolean
       query: true
       default: true
     - kind: text

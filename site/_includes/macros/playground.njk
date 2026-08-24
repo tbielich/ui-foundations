@@ -37,9 +37,33 @@
       {% for control in config.controls %}
       {% set controlId = playgroundId + "-" + control.name %}
       {% set source = control.source or "prop" %}
-      {% set valueType = control.valueType or ("boolean" if control.kind == "boolean" else "string") %}
+      {% set valueType = control.valueType or ("boolean" if control.kind == "boolean" or control.kind == "switch" else "string") %}
       {% set queryParam = control.query or false %}
-      {% if control.kind == "boolean" %}
+      {% if control.kind == "switch" %}
+      <label
+        class="playground-field playground-switch"
+        for="{{ controlId }}"
+        data-playground-field
+        data-control-name="{{ control.name }}"
+        data-visible-when="{% if control.visibleWhen %}{% for conditionName, conditionValue in control.visibleWhen %}{% if not loop.first %};{% endif %}{{ conditionName }}={{ conditionValue }}{% endfor %}{% endif %}"
+      >
+        <span>{{ control.label or control.name }}</span>
+        <span class="uif-switch">
+          <input
+            id="{{ controlId }}"
+            type="checkbox"
+            role="switch"
+            name="{{ control.name }}"
+            data-playground-control
+            data-prop="{{ control.prop or control.name }}"
+            data-source="{{ source }}"
+            data-value-type="{{ valueType }}"
+            data-query-param="{{ "1" if queryParam else "0" }}"
+            {% if control.default %}checked{% endif %}
+          />
+        </span>
+      </label>
+      {% elif control.kind == "boolean" %}
       <label
         class="playground-field playground-check"
         for="{{ controlId }}"
