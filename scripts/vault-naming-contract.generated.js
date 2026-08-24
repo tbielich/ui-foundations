@@ -92,6 +92,7 @@ const VAULT_NAMING_CONTRACT = Object.freeze({
       "calendar",
       "card",
       "checkbox",
+      "combobox",
       "date-input",
       "divider",
       "form",

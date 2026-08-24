@@ -2022,6 +2022,922 @@
       }
     }
   },
+  "ComboBox": {
+    "Text": {
+      "Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:1",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-text-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:326",
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:2",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-text-color-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:340",
+            "targetVariableName": "Color/Text/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:3",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-text-color-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:326",
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:4",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-text-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:328",
+            "targetVariableName": "Color/Text/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Placeholder": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:5",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-text-color-placeholder)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:341",
+            "targetVariableName": "Color/Text/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Border": {
+      "Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:6",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:342",
+            "targetVariableName": "Color/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:7",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-color-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:345",
+            "targetVariableName": "Color/Border/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:8",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-color-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:345",
+            "targetVariableName": "Color/Border/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Focus": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:9",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-color-focus)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:345",
+            "targetVariableName": "Color/Border/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:10",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:346",
+            "targetVariableName": "Color/Border/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Invalid": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Danger"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:11",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-color-invalid)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:356",
+            "targetVariableName": "Color/Border/Danger",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Size Default": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:12",
+          "com.figma.scopes": [
+            "STROKE_FLOAT"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-size-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:7",
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Size Hover": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:13",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-size-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:7",
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Size Active": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Border/Thick"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:14",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-size-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:8",
+            "targetVariableName": "Brand/Size/Border/Thick",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Corner/Input"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:15",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-border-radius)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2028:335",
+            "targetVariableName": "Brand/Corner/Input",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Container": {
+      "Background Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:16",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-container-background-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:17",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-container-background-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Focus": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:18",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-container-background-focus)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:19",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-container-background-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:20",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-container-background-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:330",
+            "targetVariableName": "Color/Fill/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Panel": {
+      "Background Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:21",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-panel-background-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:22",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-panel-border-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:343",
+            "targetVariableName": "Color/Border/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Size Default": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Border/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:23",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-panel-border-size-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:7",
+            "targetVariableName": "Brand/Size/Border/Default",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Border Radius": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Corner/Container"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:24",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-panel-border-radius)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3032:2244",
+            "targetVariableName": "Brand/Corner/Container",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Option": {
+      "Text Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:25",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-option-text-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:326",
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Text Color Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:26",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-option-text-color-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:340",
+            "targetVariableName": "Color/Text/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Text Color Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:27",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-option-text-color-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:326",
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Text Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:28",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-option-text-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:328",
+            "targetVariableName": "Color/Text/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Transparent"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:29",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-option-background-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2006:195",
+            "targetVariableName": "Color/Transparent",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:30",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-option-background-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Background Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Surface"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:31",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-option-background-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:329",
+            "targetVariableName": "Color/Fill/Surface",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Icon": {
+      "Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:32",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-icon-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:341",
+            "targetVariableName": "Color/Text/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:combobox:33",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-combobox-icon-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:328",
+            "targetVariableName": "Color/Text/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Font Family": {
+      "$type": "string",
+      "$value": {
+        "$ref": "Brand/Font/Base"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:combobox:34",
+        "com.figma.scopes": [
+          "FONT_FAMILY"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-combobox-font-family)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2006:213",
+          "targetVariableName": "Brand/Font/Base",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Font Weight": {
+      "$type": "string",
+      "$value": {
+        "$ref": "Typography/Body/Font Weight"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:combobox:35",
+        "com.figma.scopes": [
+          "FONT_STYLE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-combobox-font-weight)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3014:12",
+          "targetVariableName": "Typography/Body/Font Weight",
+          "targetVariableSetId": "VariableCollectionId:1:264",
+          "targetVariableSetName": "Patterns (UI)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Font Size": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Typography/Label/Font Size"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:combobox:36",
+        "com.figma.scopes": [
+          "FONT_SIZE"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-combobox-font-size)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3014:9",
+          "targetVariableName": "Typography/Label/Font Size",
+          "targetVariableSetId": "VariableCollectionId:1:264",
+          "targetVariableSetName": "Patterns (UI)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Line Height": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Typography/Body/Line Height"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:combobox:37",
+        "com.figma.scopes": [
+          "LINE_HEIGHT"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-combobox-line-height)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3014:14",
+          "targetVariableName": "Typography/Body/Line Height",
+          "targetVariableSetId": "VariableCollectionId:1:264",
+          "targetVariableSetName": "Patterns (UI)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Padding Inline": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Component"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:combobox:38",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-combobox-padding-inline)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:3",
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Padding Block": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Component"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:combobox:39",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-combobox-padding-block)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:3",
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Gap": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Component"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:combobox:40",
+        "com.figma.scopes": [
+          "GAP"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-combobox-gap)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:3",
+          "targetVariableName": "Brand/Size/Spacing/Component",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Height": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Size/Target/Default"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:combobox:41",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-combobox-height)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3020:2",
+          "targetVariableName": "Size/Target/Default",
+          "targetVariableSetId": "VariableCollectionId:1:200",
+          "targetVariableSetName": "Core (Primitives)"
+        },
+        "com.figma.isOverride": true
+      }
+    }
+  },
   "Form": {
     "Group": {
       "Gap": {

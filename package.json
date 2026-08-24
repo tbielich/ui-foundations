@@ -56,6 +56,7 @@
     "./elements/ui-icon": "./dist/elements/ui-icon.js",
     "./elements/ui-button": "./dist/elements/ui-button.js",
     "./elements/ui-input": "./dist/elements/ui-input.js",
+    "./elements/ui-combobox": "./dist/elements/ui-combobox.js",
     "./elements/ui-checkbox": "./dist/elements/ui-checkbox.js",
     "./elements/ui-radio": "./dist/elements/ui-radio.js",
     "./elements/ui-switch": "./dist/elements/ui-switch.js",

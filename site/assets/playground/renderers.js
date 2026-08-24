@@ -1072,6 +1072,51 @@
     return { element, code };
   };
 
+  const renderVanillaComboBox = ({ props, meta }) => {
+    const placeholder = String(props.placeholder || "Search destinations");
+    const loading = asBoolean(props.loading);
+    const allowCustomValue = asBoolean(props.allowCustomValue);
+    const descriptions = asBoolean(props.descriptions);
+    const disabled =
+      String(meta.state || "default") === "disabled" || asBoolean(props.disabled);
+
+    const element = document.createElement("uif-combobox");
+    element.setAttribute("placeholder", placeholder);
+    element.setAttribute("aria-label", "Destination search");
+    if (loading) element.setAttribute("loading", "");
+    if (allowCustomValue) element.setAttribute("allow-custom-value", "");
+    if (disabled) element.setAttribute("disabled", "");
+
+    element.options = descriptions
+      ? [
+          { value: "pmi", label: "Palma de Mallorca", description: "Spain" },
+          { value: "her", label: "Heraklion", description: "Greece" },
+          { value: "fue", label: "Fuerteventura", description: "Canary Islands" },
+        ]
+      : [
+          { value: "pmi", label: "Palma de Mallorca" },
+          { value: "her", label: "Heraklion" },
+          { value: "fue", label: "Fuerteventura" },
+        ];
+
+    const attrs = [
+      `placeholder="${quoteAttr(placeholder)}"`,
+      'aria-label="Destination search"',
+    ];
+    if (loading) attrs.push("loading");
+    if (allowCustomValue) attrs.push("allow-custom-value");
+    if (disabled) attrs.push("disabled");
+
+    const optionsCode = descriptions
+      ? `\n  <option value="pmi" data-description="Spain">Palma de Mallorca</option>\n  <option value="her" data-description="Greece">Heraklion</option>\n  <option value="fue" data-description="Canary Islands">Fuerteventura</option>`
+      : `\n  <option value="pmi">Palma de Mallorca</option>\n  <option value="her">Heraklion</option>\n  <option value="fue">Fuerteventura</option>`;
+
+    return {
+      element,
+      code: `<uif-combobox ${attrs.join(" ")}>${optionsCode}\n</uif-combobox>`,
+    };
+  };
+
   const renderVanillaTooltip = ({ props, children }) => {
     const text = String(props.text || "Tooltip");
     const placement = String(props.placement || "top");
@@ -1532,6 +1577,7 @@
       tabs: renderVanillaTabs,
       tooltip: renderVanillaTooltip,
       select: renderVanillaSelect,
+      combobox: renderVanillaComboBox,
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
