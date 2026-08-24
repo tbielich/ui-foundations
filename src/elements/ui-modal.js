@@ -59,7 +59,7 @@ class UIModal extends UIElement {
     const bodyContent = this._initialContent || "";
 
     const closeButton = dismissible
-      ? `<button class="uif-modal-close" type="button" data-action="dismiss" aria-label="Close dialog">\u00d7</button>`
+      ? `<button class="uif-button ghost uif-modal-close" type="button" data-action="dismiss" aria-label="Close dialog"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg')" aria-hidden="true"></span></button>`
       : "";
     const cancelButton = dismissible
       ? `<button class="uif-button outline" type="button" data-action="cancel">${cancelLabel}</button>`

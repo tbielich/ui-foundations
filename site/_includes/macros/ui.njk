@@ -499,7 +499,7 @@
 <dialog class="{{ modalClasses }}"{% if open %} open{% endif %}>
   <header class="uif-modal-header">
     <h2 class="uif-modal-title">{{ title }}</h2>
-    {%- if dismissible -%}<button class="uif-modal-close" type="button" aria-label="Close dialog">&times;</button>{%- endif -%}
+    {%- if dismissible -%}<button class="uif-button ghost uif-modal-close" type="button" aria-label="Close dialog"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg')" aria-hidden="true"></span></button>{%- endif -%}
   </header>
   <div class="uif-modal-body">
     {%- if description %}<p class="uif-modal-description">{{ description }}</p>{% endif -%}
