@@ -6,6 +6,10 @@ let modalCounter = 0;
  * <uif-modal open title="Delete file?" variant="alert" size="m" confirm-label="Delete" dismissible="false">
  *   This action cannot be undone.
  * </uif-modal>
+ *
+ * Uses the native <dialog> element for built-in focus trapping, backdrop,
+ * inert management, Esc handling, and accessibility semantics.
+ * Implements: principle.foundation.native-html-first
  */
 class UIModal extends UIElement {
   static get observedAttributes() {
@@ -27,14 +31,15 @@ class UIModal extends UIElement {
     this._uid = `uif-modal-${modalCounter}`;
     this._initialContent = null;
     this._wasOpen = false;
-    this._previouslyFocused = null;
+    this._dialog = null;
+    this._handleCancel = this._handleCancel.bind(this);
+    this._handleClick = this._handleClick.bind(this);
   }
 
   render() {
     if (this._initialContent === null) {
       this._initialContent = this.innerHTML;
     }
-    const hadFocusInside = this.contains(document.activeElement);
 
     const open = this.getBool("open");
     const variantAttr = this.getAttr("variant", "confirmation");
@@ -53,126 +58,100 @@ class UIModal extends UIElement {
     const sizeClass = size === "s" ? "sm" : size === "l" ? "lg" : "md";
     const bodyContent = this._initialContent || "";
 
-    const overlay = dismissible
-      ? '<button class="uif-modal-overlay" type="button" data-action="dismiss" aria-label="Dismiss dialog"></button>'
-      : '<span class="uif-modal-overlay" aria-hidden="true"></span>';
-
     const closeButton = dismissible
-      ? '<button class="uif-modal-close" type="button" data-action="dismiss" aria-label="Close dialog">×</button>'
+      ? `<button class="uif-modal-close" type="button" data-action="dismiss" aria-label="Close dialog">\u00d7</button>`
       : "";
-
     const cancelButton = dismissible
       ? `<button class="uif-button outline" type="button" data-action="cancel">${cancelLabel}</button>`
       : "";
-
     const describedBy = description ? ` aria-describedby="${descriptionId}"` : "";
-    const rootStateClass = open ? " is-open" : "";
 
-    this.innerHTML = `<div class="uif-modal-root${rootStateClass}"${open ? "" : " hidden"}>
-  ${overlay}
-  <section class="uif-modal ${variant} ${sizeClass}" role="dialog" aria-modal="true" aria-labelledby="${titleId}"${describedBy} tabindex="-1">
-    <header class="uif-modal-header">
-      <h2 class="uif-modal-title" id="${titleId}">${title}</h2>
-      ${closeButton}
-    </header>
-    <div class="uif-modal-body">
-      ${description ? `<p class="uif-modal-description" id="${descriptionId}">${description}</p>` : ""}
-      ${bodyContent}
-    </div>
-    <footer class="uif-modal-actions">
-      ${cancelButton}
-      <button class="uif-button solid" type="button" data-action="confirm">${confirmLabel}</button>
-    </footer>
-  </section>
-</div>`;
+    this.innerHTML = `<dialog class="uif-modal ${variant} ${sizeClass}" aria-labelledby="${titleId}"${describedBy}>
+  <header class="uif-modal-header">
+    <h2 class="uif-modal-title" id="${titleId}">${title}</h2>
+    ${closeButton}
+  </header>
+  <div class="uif-modal-body">
+    ${description ? `<p class="uif-modal-description" id="${descriptionId}">${description}</p>` : ""}
+    ${bodyContent}
+  </div>
+  <footer class="uif-modal-actions">
+    ${cancelButton}
+    <button class="uif-button solid" type="button" data-action="confirm">${confirmLabel}</button>
+  </footer>
+</dialog>`;
 
-    this.#wireEvents({ open, dismissible, hadFocusInside });
+    this._dialog = this.querySelector("dialog");
+    this.#syncOpenState(open);
+    this.#wireEvents(dismissible);
   }
 
-  #wireEvents({ open, dismissible, hadFocusInside }) {
-    const root = this.querySelector(".uif-modal-root");
-    const dialog = this.querySelector(".uif-modal");
-    if (!root || !dialog) return;
+  #syncOpenState(open) {
+    const dialog = this._dialog;
+    if (!dialog) return;
 
-    if (open && !this._wasOpen) {
-      this._previouslyFocused = document.activeElement instanceof HTMLElement
-        ? document.activeElement
-        : null;
+    if (open && !dialog.open) {
+      dialog.showModal();
+    } else if (!open && dialog.open) {
+      dialog.close();
     }
+    this._wasOpen = open;
+  }
 
-    const close = () => {
+  #wireEvents(dismissible) {
+    const dialog = this._dialog;
+    if (!dialog) return;
+
+    // Native <dialog> fires 'cancel' on Esc
+    dialog.removeEventListener("cancel", this._handleCancel);
+    dialog.addEventListener("cancel", this._handleCancel);
+
+    // Click handling for dismiss/cancel/confirm buttons and backdrop click
+    dialog.removeEventListener("click", this._handleClick);
+    dialog.addEventListener("click", this._handleClick);
+  }
+
+  _handleCancel(event) {
+    const dismissible = this.getAttribute("dismissible") !== "false";
+    if (!dismissible) {
+      event.preventDefault();
+      return;
+    }
+    this.removeAttribute("open");
+    this.dispatchEvent(new CustomEvent("uif-modal-close", { bubbles: true }));
+  }
+
+  _handleClick(event) {
+    const target = event.target;
+    const action = target.closest("[data-action]")?.dataset?.action;
+    const dismissible = this.getAttribute("dismissible") !== "false";
+
+    if (action === "dismiss" && dismissible) {
       this.removeAttribute("open");
       this.dispatchEvent(new CustomEvent("uif-modal-close", { bubbles: true }));
-    };
-
-    const handleDismiss = () => {
-      if (!dismissible) return;
-      close();
-    };
-
-    root.querySelectorAll('[data-action="dismiss"]').forEach((node) => {
-      node.addEventListener("click", handleDismiss);
-    });
-
-    const cancel = root.querySelector('[data-action="cancel"]');
-    if (cancel) {
-      cancel.addEventListener("click", () => {
-        this.dispatchEvent(new CustomEvent("uif-modal-cancel", { bubbles: true }));
-        handleDismiss();
-      });
-    }
-
-    const confirm = root.querySelector('[data-action="confirm"]');
-    if (confirm) {
-      confirm.addEventListener("click", () => {
-        this.dispatchEvent(new CustomEvent("uif-modal-confirm", { bubbles: true }));
-        close();
-      });
-    }
-
-    if (open) {
-      dialog.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          handleDismiss();
-          return;
-        }
-        if (event.key !== "Tab") return;
-
-        const focusable = [...dialog.querySelectorAll(
-          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-        )].filter((node) => node instanceof HTMLElement);
-
-        if (focusable.length === 0) {
-          event.preventDefault();
-          dialog.focus();
-          return;
-        }
-
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        const current = document.activeElement;
-
-        if (event.shiftKey && current === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && current === last) {
-          event.preventDefault();
-          first.focus();
-        }
-      });
-
-      if (!this._wasOpen || hadFocusInside) {
-        queueMicrotask(() => {
-          const preferred = dialog.querySelector('.uif-modal-close, [data-action="confirm"], [data-action="cancel"]');
-          if (preferred instanceof HTMLElement) preferred.focus();
-          else dialog.focus();
-        });
+    } else if (action === "cancel") {
+      this.dispatchEvent(new CustomEvent("uif-modal-cancel", { bubbles: true }));
+      if (dismissible) {
+        this.removeAttribute("open");
+        this.dispatchEvent(new CustomEvent("uif-modal-close", { bubbles: true }));
       }
-    } else if (this._wasOpen && this._previouslyFocused?.isConnected) {
-      this._previouslyFocused.focus();
+    } else if (action === "confirm") {
+      this.dispatchEvent(new CustomEvent("uif-modal-confirm", { bubbles: true }));
+      this.removeAttribute("open");
+      this.dispatchEvent(new CustomEvent("uif-modal-close", { bubbles: true }));
+    } else if (target === this._dialog && dismissible) {
+      // Click on backdrop (the dialog element itself, outside content)
+      const rect = this._dialog.getBoundingClientRect();
+      const clickedInside =
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
+      if (!clickedInside) {
+        this.removeAttribute("open");
+        this.dispatchEvent(new CustomEvent("uif-modal-close", { bubbles: true }));
+      }
     }
-
-    this._wasOpen = open;
   }
 }
 
