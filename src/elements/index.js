@@ -28,6 +28,7 @@ export { UIAccordion, UIAccordionItem } from "./ui-accordion.js";
 export { UITabList, UITab, UITabPanel } from "./ui-tabs.js";
 export { UITreeView } from "./ui-tree-view.js";
 export { UITooltip } from "./ui-tooltip.js";
+export { UIPopover } from "./ui-popover.js";
 export { UISelect } from "./ui-select.js";
 export { UILink } from "./ui-link.js";
 export { UIBreadcrumbs } from "./ui-breadcrumbs.js";

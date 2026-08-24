@@ -1536,6 +1536,53 @@
     return { element: trigger, code };
   };
 
+  const renderVanillaPopover = ({ props, children }) => {
+    const placement = String(props.placement || "bottom");
+    const showArrow = props.arrow === true || props.arrow === "true";
+    const content = String(props.content || "Popover content");
+    const triggerText = String(children || "Open");
+
+    const container = document.createElement("span");
+    container.className = "uif-popover-container";
+
+    const btn = document.createElement("button");
+    btn.className = "uif-button outline";
+    btn.type = "button";
+    btn.textContent = triggerText;
+    container.append(btn);
+
+    const panel = document.createElement("div");
+    panel.className = "uif-popover is-open";
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-modal", "false");
+    panel.setAttribute("data-placement", placement);
+
+    if (showArrow) {
+      const arrow = document.createElement("span");
+      arrow.className = "uif-popover-arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      panel.append(arrow);
+    }
+
+    const contentEl = document.createElement("div");
+    contentEl.className = "uif-popover-content";
+    contentEl.textContent = content;
+    panel.append(contentEl);
+    container.append(panel);
+
+    const arrowMarkup = showArrow
+      ? `\n  <span class="uif-popover-arrow" aria-hidden="true"></span>`
+      : "";
+    const code = `<span class="uif-popover-container">
+  <button class="uif-button outline" type="button">${quoteAttr(triggerText)}</button>
+  <div class="uif-popover" role="dialog" aria-modal="false" data-placement="${quoteAttr(placement)}">${arrowMarkup}
+    <div class="uif-popover-content">${quoteAttr(content)}</div>
+  </div>
+</span>`;
+
+    return { element: container, code };
+  };
+
   const renderVanillaLink = ({ props, children, meta }) => {
     const previewState = String(meta.state || "default");
     const rawText =
@@ -2265,6 +2312,7 @@
       tabs: renderVanillaTabs,
       "tree-view": renderVanillaTreeView,
       tooltip: renderVanillaTooltip,
+      popover: renderVanillaPopover,
       select: renderVanillaSelect,
       combobox: renderVanillaComboBox,
       form: renderVanillaForm,

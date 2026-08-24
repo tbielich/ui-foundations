@@ -108,6 +108,7 @@ const VAULT_NAMING_CONTRACT = Object.freeze({
       "number-field",
       "progress-circle",
       "menu",
+      "popover",
       "radio",
       "range-slider",
       "select",

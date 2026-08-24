@@ -397,6 +397,23 @@
 <span class="{{ classes }}">{{ caller() }}<span class="uif-tooltip" role="tooltip" data-placement="{{ placement }}">{{ text }}</span></span>
 {%- endmacro %}
 
+{% macro popover(placement='bottom', arrow=false, id='', className='') -%}
+{%- set panelClasses = "uif-popover" -%}
+{%- if className -%}{%- set panelClasses = panelClasses + " " + className -%}{%- endif -%}
+<span class="uif-popover-container">
+  {{ caller() }}
+  <div class="{{ panelClasses }}"
+    role="dialog"
+    aria-modal="false"
+    data-placement="{{ placement }}"
+    {% if arrow %}data-arrow{% endif %}
+    {% if id %}id="{{ id }}"{% endif %}
+    aria-hidden="true"
+    tabindex="-1"
+  >{% if arrow %}<span class="uif-popover-arrow" aria-hidden="true"></span>{% endif %}</div>
+</span>
+{%- endmacro %}
+
 {% macro form(borderless=false, className='') -%}
 {%- set classes = "uif-form" -%}
 {%- if borderless -%}{%- set classes = classes + " borderless" -%}{%- endif -%}

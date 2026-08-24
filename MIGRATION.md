@@ -74,6 +74,7 @@ parts follow the same prefix replacement.
 | Textarea | `.uif-textarea` | `--uif-textarea-*` | `<uif-textarea>` |
 | TreeView | `.uif-tree-view`, `.uif-tree-node`, `.uif-tree-node-row`, `.uif-tree-children` | `--uif-tree-view-*` | `<uif-tree-view>` |
 | Tooltip | `.uif-tooltip`, `.uif-tooltip-trigger` | `--uif-tooltip-*` | `<uif-tooltip>` |
+| Popover | `.uif-popover`, `.uif-popover-container` | `--uif-popover-*` | `<uif-popover>` |
 
 For every token-bearing family, Figma `codeSyntax.WEB` is the naming source and
 generated `dist/` files must be regenerated rather than edited directly.

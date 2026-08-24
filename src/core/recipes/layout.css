@@ -21,4 +21,5 @@
   .modal-overlay { z-index: var(--zindex-modal-overlay); }
   .modal { z-index: var(--zindex-modal); }
   :is(.uif-tooltip, .tooltip) { z-index: var(--zindex-tooltip); }
+  :is(.uif-popover, .popover) { z-index: var(--zindex-popover); }
 }

@@ -38,6 +38,7 @@ export declare class UITab extends UIElement {}
 export declare class UITabPanel extends UIElement {}
 export declare class UITreeView extends UIElement {}
 export declare class UITooltip extends UIElement {}
+export declare class UIPopover extends UIElement {}
 export declare class UISelect extends UIElement {}
 export declare class UILink extends UIElement {}
 export declare class UIBreadcrumbs extends UIElement {}
@@ -76,6 +77,7 @@ declare global {
     "uif-tab-panel": UITabPanel;
     "uif-tree-view": UITreeView;
     "uif-tooltip": UITooltip;
+    "uif-popover": UIPopover;
     "uif-select": UISelect;
     "uif-link": UILink;
     "uif-breadcrumbs": UIBreadcrumbs;

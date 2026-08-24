@@ -21,6 +21,7 @@
 @import url("./patterns/tabs.css") layer(components);
 @import url("./patterns/tree-view.css") layer(components);
 @import url("./patterns/tooltip.css") layer(components);
+@import url("./patterns/popover.css") layer(components);
 @import url("./patterns/select.css") layer(components);
 @import url("./patterns/link.css") layer(components);
 @import url("./patterns/breadcrumbs.css") layer(components);
