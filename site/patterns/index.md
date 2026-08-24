@@ -63,6 +63,14 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>Illustrated Message</h2>
       <p>Empty, error, and no-results messaging with optional recovery actions.</p>
+  <a class="docs-component-card" href="/patterns/status-light/">
+    <div class="docs-component-card-preview">
+      {{ uif.statusLight("Online", variant="positive") }}
+      {{ uif.statusLight("Offline", variant="negative") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Status Light</h2>
+      <p>Compact semantic status indicator with optional label and size variants.</p>
     </div>
   </a>
   <a class="docs-component-card" href="/patterns/label/">
