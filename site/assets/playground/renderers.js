@@ -5,16 +5,6 @@
     shared.normalizeIconName || ((rawValue) => String(rawValue || "").trim());
   const asBoolean = (value) =>
     value === true || value === "true" || value === 1 || value === "1";
-  const escapeHtml = (value) =>
-    String(value || "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;");
-  const sanitizeHref = (value) => {
-    const href = String(value || "");
-    if (!href) return "";
-    return /^(?:https?:|mailto:|tel:|\/|#)/.test(href) ? href : "#";
-  };
 
   const iconLabelFromName = (name) =>
     String(name || "")
@@ -22,6 +12,45 @@
       .trim();
 
   const iconSrcFromName = (name) => `/assets/icons/${name}.svg`;
+
+  const parseHexColor = (value) => {
+    const match = String(value || "").trim().match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i);
+    if (!match) return null;
+    const hex = match[1].length === 3
+      ? match[1].split("").map((char) => char + char).join("")
+      : match[1];
+    return {
+      r: Number.parseInt(hex.slice(0, 2), 16),
+      g: Number.parseInt(hex.slice(2, 4), 16),
+      b: Number.parseInt(hex.slice(4, 6), 16),
+    };
+  };
+
+  const rgbToHsl = (r, g, b) => {
+    const rn = r / 255;
+    const gn = g / 255;
+    const bn = b / 255;
+    const max = Math.max(rn, gn, bn);
+    const min = Math.min(rn, gn, bn);
+    const delta = max - min;
+
+    let h = 0;
+    if (delta !== 0) {
+      if (max === rn) h = ((gn - bn) / delta) % 6;
+      else if (max === gn) h = (bn - rn) / delta + 2;
+      else h = (rn - gn) / delta + 4;
+      h = Math.round(h * 60);
+      if (h < 0) h += 360;
+    }
+
+    const l = (max + min) / 2;
+    const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+    return {
+      h,
+      s: Math.round(s * 100),
+      l: Math.round(l * 100),
+    };
+  };
 
   const createIconElement = ({ name, decorative = true, label, color }) => {
     const normalizedName = normalizeIconName(name);
@@ -377,75 +406,6 @@
     return { element: wrapper, code };
   };
 
-  const renderVanillaDropzone = ({ props, meta }) => {
-    const previewState = String(meta.state || "default");
-    const disabled = previewState === "disabled" || asBoolean(props.disabled);
-    const filled = previewState === "filled" || asBoolean(props.filled);
-    const label = String(props.label || "Drag and drop files here");
-    const hint = String(props.hint || "or");
-    const buttonLabel = String(props.buttonLabel || "Choose files");
-    const accept = String(props.accept || "");
-    const multiple = asBoolean(props.multiple);
-    const filesText = filled
-      ? String(props.filesText || (multiple ? "2 files selected" : "invoice.pdf"))
-      : String(props.filesText || "No files selected");
-
-    const wrapper = document.createElement("div");
-    const classes = ["uif-dropzone"];
-    if (previewState === "dragover") classes.push("is-dragover");
-    if (disabled) classes.push("is-disabled");
-    if (filled) classes.push("is-filled");
-    if (props.className) classes.push(String(props.className));
-    wrapper.className = classes.join(" ");
-    wrapper.setAttribute("role", "group");
-    wrapper.setAttribute("aria-label", "File upload drop zone");
-
-    const input = document.createElement("input");
-    input.className = "uif-dropzone-input";
-    input.type = "file";
-    if (accept) input.setAttribute("accept", accept);
-    if (multiple) input.multiple = true;
-    if (disabled) input.disabled = true;
-
-    const icon = createIconElement({ name: "upload", decorative: true });
-    const labelEl = document.createElement("span");
-    labelEl.className = "uif-dropzone-label";
-    labelEl.textContent = label;
-    const hintEl = document.createElement("span");
-    hintEl.className = "uif-dropzone-hint";
-    hintEl.textContent = hint;
-    const button = document.createElement("button");
-    button.className = "uif-button outline uif-dropzone-button";
-    button.type = "button";
-    button.textContent = buttonLabel;
-    button.disabled = disabled;
-    const files = document.createElement("span");
-    files.className = "uif-dropzone-files";
-    files.setAttribute("aria-live", "polite");
-    files.textContent = filesText;
-
-    wrapper.append(input);
-    if (icon) wrapper.append(icon);
-    wrapper.append(labelEl, hintEl, button, files);
-
-    const inputAttrs = ['class="uif-dropzone-input"', 'type="file"'];
-    if (accept) inputAttrs.push(`accept="${quoteAttr(accept)}"`);
-    if (multiple) inputAttrs.push("multiple");
-    if (disabled) inputAttrs.push("disabled");
-    const buttonAttrs = ['class="uif-button outline uif-dropzone-button"', 'type="button"'];
-    if (disabled) buttonAttrs.push("disabled");
-    const code = `<div class="${quoteAttr(wrapper.className)}" role="group" aria-label="File upload drop zone">
-  <input ${inputAttrs.join(" ")} />
-  ${iconCode({ name: "upload", decorative: true })}
-  <span class="uif-dropzone-label">${quoteAttr(label)}</span>
-  <span class="uif-dropzone-hint">${quoteAttr(hint)}</span>
-  <button ${buttonAttrs.join(" ")}>${quoteAttr(buttonLabel)}</button>
-  <span class="uif-dropzone-files" aria-live="polite">${quoteAttr(filesText)}</span>
-</div>`;
-
-    return { element: wrapper, code };
-  };
-
   const renderVanillaCheckbox = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
     const labelText = String(props.label || "Accept terms");
@@ -536,131 +496,6 @@
     if (disabled) attrs.push("disabled");
 
     const code = `<label class="${quoteAttr(wrapper.className)}"><input ${attrs.join(" ")} /><span class="uif-switch-field-text">${quoteAttr(labelText)}</span></label>`;
-    return { element: wrapper, code };
-  };
-
-  const renderVanillaRangeSlider = ({ props }) => {
-    const labelText = String(props.label || "Price range");
-    const min = Number.isFinite(Number(props.min)) ? Number(props.min) : 0;
-    const max = Number.isFinite(Number(props.max)) ? Number(props.max) : 100;
-    const step = Number.isFinite(Number(props.step)) && Number(props.step) > 0
-      ? Number(props.step)
-      : 1;
-    const disabled = asBoolean(props.disabled);
-    const lowerDefault = Number.isFinite(Number(props.lowerValue))
-      ? Number(props.lowerValue)
-      : min;
-    const upperDefault = Number.isFinite(Number(props.upperValue))
-      ? Number(props.upperValue)
-      : max;
-
-    const clamp = (value) => Math.min(max, Math.max(min, value));
-    const wrapper = document.createElement("div");
-    const wrapperClasses = ["uif-range-slider-field"];
-    if (disabled) wrapperClasses.push("is-disabled");
-    wrapper.className = wrapperClasses.join(" ");
-
-    const header = document.createElement("div");
-    header.className = "uif-range-slider-header";
-
-    const label = document.createElement("span");
-    label.className = "uif-range-slider-label";
-    label.textContent = labelText;
-
-    const output = document.createElement("output");
-    output.className = "uif-range-slider-value";
-    output.setAttribute("aria-live", "polite");
-
-    const lowerSpan = document.createElement("span");
-    lowerSpan.className = "uif-range-slider-value-lower";
-    const separator = document.createElement("span");
-    separator.className = "uif-range-slider-value-separator";
-    separator.textContent = "–";
-    const upperSpan = document.createElement("span");
-    upperSpan.className = "uif-range-slider-value-upper";
-    output.append(lowerSpan, separator, upperSpan);
-    header.append(label, output);
-
-    const slider = document.createElement("div");
-    slider.className = "uif-range-slider";
-
-    const lowerInput = document.createElement("input");
-    lowerInput.className = "uif-range-slider-input is-lower";
-    lowerInput.type = "range";
-    lowerInput.min = String(min);
-    lowerInput.max = String(max);
-    lowerInput.step = String(step);
-    lowerInput.setAttribute("aria-label", "Minimum value");
-    lowerInput.disabled = disabled;
-
-    const upperInput = document.createElement("input");
-    upperInput.className = "uif-range-slider-input is-upper";
-    upperInput.type = "range";
-    upperInput.min = String(min);
-    upperInput.max = String(max);
-    upperInput.step = String(step);
-    upperInput.setAttribute("aria-label", "Maximum value");
-    upperInput.disabled = disabled;
-
-    const sync = (source) => {
-      let lower = clamp(Number(lowerInput.value || lowerDefault));
-      let upper = clamp(Number(upperInput.value || upperDefault));
-
-      if (source === "lower" && lower > upper) lower = upper;
-      if (source === "upper" && upper < lower) upper = lower;
-      if (source !== "lower" && source !== "upper" && lower > upper) {
-        lower = upper;
-      }
-
-      lowerInput.value = String(lower);
-      upperInput.value = String(upper);
-      slider.dataset.lowerValue = String(lower);
-      slider.dataset.upperValue = String(upper);
-
-      const range = max - min || 1;
-      const lowerPercent = ((lower - min) / range) * 100;
-      const upperPercent = ((upper - min) / range) * 100;
-      slider.style.setProperty("--_range-slider-start", String(lowerPercent));
-      slider.style.setProperty("--_range-slider-end", String(upperPercent));
-
-      lowerSpan.textContent = String(lower);
-      upperSpan.textContent = String(upper);
-    };
-
-    lowerInput.value = String(clamp(lowerDefault));
-    upperInput.value = String(clamp(upperDefault));
-    lowerInput.addEventListener("input", () => sync("lower"));
-    upperInput.addEventListener("input", () => sync("upper"));
-
-    slider.append(lowerInput, upperInput);
-    wrapper.append(header, slider);
-    sync();
-
-    const fieldAttrs = [`class="${quoteAttr(wrapper.className)}"`];
-    const inputAttrs = (position, value, ariaLabel) => {
-      const attrs = [
-        `class="uif-range-slider-input is-${position}"`,
-        'type="range"',
-        `min="${quoteAttr(min)}"`,
-        `max="${quoteAttr(max)}"`,
-        `step="${quoteAttr(step)}"`,
-        `value="${quoteAttr(value)}"`,
-        `aria-label="${quoteAttr(ariaLabel)}"`,
-      ];
-      if (disabled) attrs.push("disabled");
-      return attrs.join(" ");
-    };
-    const code = `<div ${fieldAttrs.join(" ")}>
-  <div class="uif-range-slider-header">
-    <span class="uif-range-slider-label">${quoteAttr(labelText)}</span>
-    <output class="uif-range-slider-value" aria-live="polite"><span class="uif-range-slider-value-lower">${quoteAttr(lowerInput.value)}</span><span class="uif-range-slider-value-separator">–</span><span class="uif-range-slider-value-upper">${quoteAttr(upperInput.value)}</span></output>
-  </div>
-  <div class="uif-range-slider" data-min="${quoteAttr(min)}" data-max="${quoteAttr(max)}" data-lower-value="${quoteAttr(lowerInput.value)}" data-upper-value="${quoteAttr(upperInput.value)}" style="--_range-slider-start: ${quoteAttr(slider.style.getPropertyValue("--_range-slider-start"))}; --_range-slider-end: ${quoteAttr(slider.style.getPropertyValue("--_range-slider-end"))};">
-    <input ${inputAttrs("lower", lowerInput.value, "Minimum value")} />
-    <input ${inputAttrs("upper", upperInput.value, "Maximum value")} />
-  </div>
-</div>`;
-
     return { element: wrapper, code };
   };
 
@@ -811,33 +646,6 @@
     return { element, code };
   };
 
-  const renderVanillaStatusLight = ({ props, children }) => {
-    const variant = String(props.variant || "neutral");
-    const size = String(props.size || "md");
-    const rawText =
-      typeof children === "undefined" ? "Status" : String(children || "");
-
-    const element = document.createElement("span");
-    const classes = ["uif-status-light"];
-    if (variant && variant !== "neutral") classes.push(variant);
-    if (size === "sm") classes.push("sm");
-    element.className = classes.join(" ");
-
-    const indicator = document.createElement("span");
-    indicator.className = "uif-status-light-indicator";
-    indicator.setAttribute("aria-hidden", "true");
-    element.append(indicator);
-
-    const textSpan = document.createElement("span");
-    textSpan.className = "uif-status-light-text";
-    textSpan.textContent = rawText;
-    element.append(textSpan);
-
-    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
-    const code = `<span class="${codeClasses}"><span class="uif-status-light-indicator" aria-hidden="true"></span><span class="uif-status-light-text">${quoteAttr(rawText)}</span></span>`;
-    return { element, code };
-  };
-
   const renderVanillaTextarea = ({ props }) => {
     const placeholder = String(props.placeholder || "");
     const value = String(props.value || "");
@@ -892,210 +700,6 @@
     const code = `<span class="${codeClasses}" role="img" aria-label="${quoteAttr(initials)}">${inner}</span>`;
 
     return { element, code };
-  };
-
-  const ILLUSTRATED_MESSAGE_PRESETS = {
-    empty: {
-      heading: "Nothing here yet",
-      description: "Add content or create a new item to get started.",
-      icon: "message-info",
-    },
-    error: {
-      heading: "Something went wrong",
-      description: "Try again or go back to the previous step.",
-      icon: "message-alert",
-    },
-    "no-results": {
-      heading: "No results found",
-      description: "Try adjusting your filters or search terms.",
-      icon: "search",
-    },
-  };
-
-  const resolveIllustratedMessagePreset = (value) =>
-    Object.prototype.hasOwnProperty.call(ILLUSTRATED_MESSAGE_PRESETS, value)
-      ? value
-      : "empty";
-
-  const renderVanillaIllustratedMessage = ({ props }) => {
-    const preset = resolveIllustratedMessagePreset(String(props.preset || "empty"));
-    const defaults = ILLUSTRATED_MESSAGE_PRESETS[preset];
-    const heading = String(props.heading || defaults.heading);
-    const description = String(props.description || defaults.description);
-    const actionLabel = String(props.actionLabel || "");
-    const actionHref = sanitizeHref(props.actionHref);
-    const actionVariant =
-      props.actionVariant === "outline" || props.actionVariant === "ghost"
-        ? String(props.actionVariant)
-        : "solid";
-    const illustrationIcon = normalizeIconName(props.illustrationIcon) || defaults.icon;
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "uif-illustrated-message";
-    wrapper.dataset.preset = preset;
-
-    const illustration = document.createElement("div");
-    illustration.className = "uif-illustrated-message-illustration";
-    illustration.setAttribute("aria-hidden", "true");
-    const icon = createIconElement({ name: illustrationIcon, decorative: true });
-    if (icon) illustration.append(icon);
-
-    const content = document.createElement("div");
-    content.className = "uif-illustrated-message-content";
-
-    if (heading) {
-      const title = document.createElement("h2");
-      title.className = "uif-illustrated-message-heading";
-      title.textContent = heading;
-      content.append(title);
-    }
-
-    if (description) {
-      const body = document.createElement("p");
-      body.className = "uif-illustrated-message-description";
-      body.textContent = description;
-      content.append(body);
-    }
-
-    wrapper.append(illustration, content);
-
-    let actionCode = "";
-    if (actionLabel) {
-      const actions = document.createElement("div");
-      actions.className = "uif-illustrated-message-actions";
-      if (actionHref) {
-        const actionLink = document.createElement("a");
-        actionLink.className = `uif-button ${actionVariant}`;
-        actionLink.href = actionHref;
-        actionLink.textContent = actionLabel;
-        actions.append(actionLink);
-        actionCode = `<a class="uif-button ${quoteAttr(actionVariant)}" href="${quoteAttr(actionHref)}">${escapeHtml(actionLabel)}</a>`;
-      } else {
-        const actionButton = document.createElement("button");
-        actionButton.className = `uif-button ${actionVariant}`;
-        actionButton.type = "button";
-        actionButton.textContent = actionLabel;
-        actions.append(actionButton);
-        actionCode = `<button class="uif-button ${quoteAttr(actionVariant)}" type="button">${escapeHtml(actionLabel)}</button>`;
-      }
-      wrapper.append(actions);
-    }
-
-    const headingCode = heading
-      ? `<h2 class="uif-illustrated-message-heading">${escapeHtml(heading)}</h2>`
-      : "";
-    const descriptionCode = description
-      ? `<p class="uif-illustrated-message-description">${escapeHtml(description)}</p>`
-      : "";
-    const code = `<div class="uif-illustrated-message" data-preset="${quoteAttr(preset)}"><div class="uif-illustrated-message-illustration" aria-hidden="true">${iconCode({ name: illustrationIcon, decorative: true })}</div><div class="uif-illustrated-message-content">${headingCode}${descriptionCode}</div>${actionCode ? `<div class="uif-illustrated-message-actions">${actionCode}</div>` : ""}</div>`;
-
-    return { element: wrapper, code };
-  };
-
-  const renderVanillaProgressCircle = ({ props }) => {
-    const size = String(props.size || "md");
-    const indeterminate = asBoolean(props.indeterminate);
-    const ariaLabel = String(props.ariaLabel || "Loading");
-    const rawValue = Number.parseFloat(String(props.value || "0"));
-    const value = Number.isFinite(rawValue)
-      ? Math.min(100, Math.max(0, rawValue))
-      : 0;
-
-    const element = document.createElement("span");
-    const classes = ["uif-progress-circle"];
-    if (size === "sm" || size === "lg") classes.push(size);
-    if (indeterminate) classes.push("is-indeterminate");
-    element.className = classes.join(" ");
-    element.setAttribute("role", "progressbar");
-    element.setAttribute("aria-label", ariaLabel);
-
-    if (!indeterminate) {
-      element.setAttribute("aria-valuemin", "0");
-      element.setAttribute("aria-valuemax", "100");
-      element.setAttribute("aria-valuenow", String(value));
-      element.style.setProperty("--_progress-circle-value", String(value));
-    }
-
-    element.innerHTML = `<svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle><circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle></svg>`;
-
-    const attrs = [
-      `class="${quoteAttr(element.className)}"`,
-      'role="progressbar"',
-      `aria-label="${quoteAttr(ariaLabel)}"`,
-    ];
-    if (!indeterminate) {
-      attrs.push('aria-valuemin="0"');
-      attrs.push('aria-valuemax="100"');
-      attrs.push(`aria-valuenow="${value}"`);
-      attrs.push(`style="--_progress-circle-value: ${value};"`);
-    }
-
-    const code = `<span ${attrs.join(" ")}><svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle><circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle></svg></span>`;
-    return { element, code };
-  };
-
-  const renderVanillaMenu = ({ props }) => {
-    const itemCount = Number(props.items || 4);
-    const showDivider = props.divider === "true" || props.divider === true;
-    const includeDisabled = props.disabled === "true" || props.disabled === true;
-    const includeSelected = props.selected === "true" || props.selected === true;
-    const showIcons = props.icons === "true" || props.icons === true;
-
-    const ICONS = ["✏️", "📋", "🔗", "🗑️", "⭐", "📂", "🔔", "⚙️"];
-    const wrapper = document.createElement("ul");
-    wrapper.className = "uif-menu";
-    wrapper.setAttribute("role", "menu");
-    wrapper.setAttribute("aria-label", "Options");
-
-    let codeLines = ['<ul class="uif-menu" role="menu" aria-label="Options">'];
-
-    for (let i = 0; i < itemCount; i++) {
-      const isDisabled = includeDisabled && i === itemCount - 1;
-      const isSelected = includeSelected && i === 0;
-      const dividerBefore = showDivider && i === itemCount - 1 && itemCount > 1;
-
-      if (dividerBefore) {
-        const divider = document.createElement("li");
-        divider.className = "uif-menu-divider";
-        divider.setAttribute("role", "separator");
-        wrapper.append(divider);
-        codeLines.push('  <li class="uif-menu-divider" role="separator"></li>');
-      }
-
-      const li = document.createElement("li");
-      const classes = ["uif-menu-item"];
-      if (isDisabled) classes.push("is-disabled");
-      if (isSelected) classes.push("is-selected");
-      li.className = classes.join(" ");
-      li.setAttribute("role", "menuitem");
-      li.setAttribute("tabindex", i === 0 ? "0" : "-1");
-      if (isDisabled) li.setAttribute("aria-disabled", "true");
-      if (isSelected) li.setAttribute("aria-checked", "true");
-
-      let innerCode = "";
-      if (showIcons) {
-        const iconSpan = document.createElement("span");
-        iconSpan.className = "uif-menu-item-icon";
-        iconSpan.setAttribute("aria-hidden", "true");
-        iconSpan.textContent = ICONS[i % ICONS.length];
-        li.append(iconSpan);
-        innerCode += `<span class="uif-menu-item-icon" aria-hidden="true">${ICONS[i % ICONS.length]}</span>`;
-      }
-
-      const label = isDisabled ? "Disabled item" : `Item ${i + 1}`;
-      li.append(document.createTextNode(label));
-      innerCode += label;
-      wrapper.append(li);
-
-      const attrStr = [
-        isDisabled ? ' aria-disabled="true"' : "",
-        isSelected ? ' aria-checked="true"' : "",
-      ].join("");
-      codeLines.push(`  <li class="${classes.join(" ")}" role="menuitem" tabindex="${i === 0 ? "0" : "-1"}"${attrStr}>${innerCode}</li>`);
-    }
-
-    codeLines.push("</ul>");
-    return { element: wrapper, code: codeLines.join("\n") };
   };
 
   const renderVanillaAccordion = ({ props }) => {
@@ -1170,87 +774,6 @@
     codeLines.push(`    <p>Panel content</p>`);
     codeLines.push(`  </div>`);
     codeLines.push("</div>");
-
-    return { element: wrapper, code: codeLines.join("\n") };
-  };
-
-  const renderVanillaTreeView = ({ props }) => {
-    const selection = String(props.selection || "single") === "multi" ? "multi" : "single";
-    const expanded = asBoolean(props.expanded);
-    const draggable = asBoolean(props.draggable);
-    const lazy = asBoolean(props.lazy);
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "uif-tree-view-demo";
-
-    const tree = document.createElement("ul");
-    tree.className = "uif-tree-view";
-    tree.setAttribute("role", "tree");
-    tree.dataset.selection = selection;
-
-    const rootA = document.createElement("li");
-    rootA.className = "uif-tree-node is-selected";
-    rootA.setAttribute("role", "treeitem");
-    rootA.setAttribute("aria-selected", "true");
-    rootA.setAttribute("aria-expanded", expanded ? "true" : "false");
-    rootA.dataset.nodeId = "root-a";
-
-    const rootARow = document.createElement("div");
-    rootARow.className = "uif-tree-node-row";
-    rootARow.tabIndex = 0;
-    rootARow.draggable = draggable;
-    rootARow.innerHTML = '<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button><span class="uif-tree-label">Projects</span>';
-    rootA.append(rootARow);
-
-    const children = document.createElement("ul");
-    children.className = "uif-tree-children";
-    children.setAttribute("role", "group");
-    children.innerHTML = '<li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-a"><div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Design system</span></div></li><li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-b"><div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Runtime package</span></div></li>';
-    rootA.append(children);
-
-    const rootB = document.createElement("li");
-    rootB.className = "uif-tree-node";
-    rootB.setAttribute("role", "treeitem");
-    rootB.setAttribute("aria-selected", "false");
-    rootB.dataset.nodeId = "root-b";
-    if (lazy) {
-      rootB.setAttribute("aria-expanded", "false");
-      rootB.setAttribute("data-lazy-url", "/api/tree-view/lazy.json");
-    }
-
-    const rootBRow = document.createElement("div");
-    rootBRow.className = "uif-tree-node-row";
-    rootBRow.tabIndex = -1;
-    rootBRow.draggable = draggable;
-    rootBRow.innerHTML = `${lazy ? '<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>' : ""}<span class="uif-tree-label">Archived</span>`;
-    rootB.append(rootBRow);
-
-    tree.append(rootA, rootB);
-    wrapper.append(tree);
-
-    const codeLines = [
-      `<uif-tree-view selection="${selection}"${draggable ? " draggable" : ""}>`,
-      `  <ul class="uif-tree-view" role="tree">`,
-      `    <li class="uif-tree-node is-selected" role="treeitem" aria-selected="true" aria-expanded="${expanded ? "true" : "false"}" data-node-id="root-a">`,
-      `      <div class="uif-tree-node-row" tabindex="0">`,
-      `        <button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>`,
-      `        <span class="uif-tree-label">Projects</span>`,
-      `      </div>`,
-      `      <ul class="uif-tree-children" role="group">`,
-      `        <li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-a">`,
-      `          <div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Design system</span></div>`,
-      `        </li>`,
-      `        <li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-b">`,
-      `          <div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Runtime package</span></div>`,
-      `        </li>`,
-      `      </ul>`,
-      `    </li>`,
-      `    <li class="uif-tree-node" role="treeitem" aria-selected="false"${lazy ? ' aria-expanded="false" data-lazy-url="/api/tree-view/lazy.json"' : ""} data-node-id="root-b">`,
-      `      <div class="uif-tree-node-row" tabindex="-1">${lazy ? '<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>' : ""}<span class="uif-tree-label">Archived</span></div>`,
-      `    </li>`,
-      `  </ul>`,
-      `</uif-tree-view>`,
-    ];
 
     return { element: wrapper, code: codeLines.join("\n") };
   };
@@ -1463,49 +986,62 @@
     return { element, code };
   };
 
-  const renderVanillaComboBox = ({ props, meta }) => {
-    const placeholder = String(props.placeholder || "Search destinations");
-    const loading = asBoolean(props.loading);
-    const allowCustomValue = asBoolean(props.allowCustomValue);
-    const descriptions = asBoolean(props.descriptions);
-    const disabled =
-      String(meta.state || "default") === "disabled" || asBoolean(props.disabled);
-
-    const element = document.createElement("uif-combobox");
-    element.setAttribute("placeholder", placeholder);
-    element.setAttribute("aria-label", "Destination search");
-    if (loading) element.setAttribute("loading", "");
-    if (allowCustomValue) element.setAttribute("allow-custom-value", "");
-    if (disabled) element.setAttribute("disabled", "");
-
-    element.options = descriptions
-      ? [
-          { value: "pmi", label: "Palma de Mallorca", description: "Spain" },
-          { value: "her", label: "Heraklion", description: "Greece" },
-          { value: "fue", label: "Fuerteventura", description: "Canary Islands" },
-        ]
-      : [
-          { value: "pmi", label: "Palma de Mallorca" },
-          { value: "her", label: "Heraklion" },
-          { value: "fue", label: "Fuerteventura" },
-        ];
-
-    const attrs = [
-      `placeholder="${quoteAttr(placeholder)}"`,
-      'aria-label="Destination search"',
+  const renderVanillaColorPicker = ({ props, meta }) => {
+    const value = String(props.value || "#6366f1");
+    const format = String(props.format || "hex");
+    const disabled = String(meta.state || "default") === "disabled" || asBoolean(props.disabled);
+    const rgb = parseHexColor(value);
+    const hsl = rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : null;
+    const swatches = [
+      "#111827",
+      "#1d4ed8",
+      "#0f766e",
+      "#15803d",
+      "#a16207",
+      "#b91c1c",
+      "#be185d",
+      "#6d28d9",
     ];
-    if (loading) attrs.push("loading");
-    if (allowCustomValue) attrs.push("allow-custom-value");
-    if (disabled) attrs.push("disabled");
 
-    const optionsCode = descriptions
-      ? `\n  <option value="pmi" data-description="Spain">Palma de Mallorca</option>\n  <option value="her" data-description="Greece">Heraklion</option>\n  <option value="fue" data-description="Canary Islands">Fuerteventura</option>`
-      : `\n  <option value="pmi">Palma de Mallorca</option>\n  <option value="her">Heraklion</option>\n  <option value="fue">Fuerteventura</option>`;
+    const rootClasses = ["uif-color-picker"];
+    if (disabled) rootClasses.push("is-disabled");
+    const disabledAttr = disabled ? " disabled" : "";
+    const swatchButtons = swatches
+      .map(
+        (swatch) =>
+          `<button type="button" class="uif-color-picker-grid-item" style="background: ${quoteAttr(swatch)}" aria-label="Select ${quoteAttr(swatch)}"${disabledAttr}></button>`,
+      )
+      .join("");
 
-    return {
-      element,
-      code: `<uif-combobox ${attrs.join(" ")}>${optionsCode}\n</uif-combobox>`,
-    };
+    const html = `<div class="${rootClasses.join(" ")}" data-format="${quoteAttr(format)}" style="--uif-color-picker-accent-color: ${quoteAttr(value)}">
+  <div class="uif-color-picker-panel">
+    <div class="uif-color-picker-area" role="application" aria-label="Color area">
+      <span class="uif-color-picker-area-thumb" aria-hidden="true"></span>
+    </div>
+    <div class="uif-color-picker-sliders">
+      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value="${hsl ? hsl.h : 0}" aria-label="Hue"${disabledAttr} />
+      <input class="uif-color-picker-slider alpha" type="range" min="0" max="100" value="100" aria-label="Alpha"${disabledAttr} />
+    </div>
+    <div class="uif-color-picker-wheel" role="img" aria-label="Color wheel"></div>
+    <div class="uif-color-picker-swatch" aria-hidden="true"></div>
+    <div class="uif-color-picker-inputs">
+      <label class="uif-color-picker-input-group"><span>HEX</span><input class="uif-color-picker-input" type="text" value="${quoteAttr(value)}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.r : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.g : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.b : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value="${hsl ? hsl.h : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="${hsl ? hsl.s : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="${hsl ? hsl.l : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>A</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="100"${disabledAttr} /></label>
+    </div>
+    <div class="uif-color-picker-grid" role="listbox" aria-label="Swatch picker">${swatchButtons}</div>
+  </div>
+</div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+    return { element, code: html };
   };
 
   const renderVanillaTooltip = ({ props, children }) => {
@@ -1534,53 +1070,6 @@
 </span>`;
 
     return { element: trigger, code };
-  };
-
-  const renderVanillaPopover = ({ props, children }) => {
-    const placement = String(props.placement || "bottom");
-    const showArrow = props.arrow === true || props.arrow === "true";
-    const content = String(props.content || "Popover content");
-    const triggerText = String(children || "Open");
-
-    const container = document.createElement("span");
-    container.className = "uif-popover-container";
-
-    const btn = document.createElement("button");
-    btn.className = "uif-button outline";
-    btn.type = "button";
-    btn.textContent = triggerText;
-    container.append(btn);
-
-    const panel = document.createElement("div");
-    panel.className = "uif-popover is-open";
-    panel.setAttribute("role", "dialog");
-    panel.setAttribute("aria-modal", "false");
-    panel.setAttribute("data-placement", placement);
-
-    if (showArrow) {
-      const arrow = document.createElement("span");
-      arrow.className = "uif-popover-arrow";
-      arrow.setAttribute("aria-hidden", "true");
-      panel.append(arrow);
-    }
-
-    const contentEl = document.createElement("div");
-    contentEl.className = "uif-popover-content";
-    contentEl.textContent = content;
-    panel.append(contentEl);
-    container.append(panel);
-
-    const arrowMarkup = showArrow
-      ? `\n  <span class="uif-popover-arrow" aria-hidden="true"></span>`
-      : "";
-    const code = `<span class="uif-popover-container">
-  <button class="uif-button outline" type="button">${quoteAttr(triggerText)}</button>
-  <div class="uif-popover" role="dialog" aria-modal="false" data-placement="${quoteAttr(placement)}">${arrowMarkup}
-    <div class="uif-popover-content">${quoteAttr(content)}</div>
-  </div>
-</span>`;
-
-    return { element: container, code };
   };
 
   const renderVanillaLink = ({ props, children, meta }) => {
@@ -1642,7 +1131,755 @@
     return { element, code };
   };
 
-  // ─── ActionBar ────────────────────────────────────────────────────
+  // ─── Calendar ─────────────────────────────────────────────────────
+  const renderVanillaCalendar = ({ props, meta }) => {
+    const month = String(props.month || "2026-07");
+    const selectedDate = String(props.selectedDate || "");
+    const rangeStart = Number(props.rangeStart || 0);
+    const rangeEnd = Number(props.rangeEnd || 0);
+    const hasRange = rangeStart > 0 && rangeEnd >= rangeStart;
+    const todayDate = String(props.todayDate || "1");
+    const previewState = String(meta.state || "default");
+    const hasContainer = props.container !== false;
+    const disabled = asBoolean(props.disabled);
+
+    const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const [yearValue, monthValue] = month.split("-");
+    const selectedYear = Number(yearValue) || 2026;
+    const selectedMonth = Math.max(0, Math.min(11, (Number(monthValue) || 7) - 1));
+    const disabledAttr = disabled ? " disabled" : "";
+
+    // Build header with selects
+    let headerHtml = `<div class="uif-calendar-header">`;
+    headerHtml += `<button type="button" class="uif-button ghost" aria-label="Previous month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
+    headerHtml += `<span class="uif-calendar-selectors">`;
+    headerHtml += `<select class="uif-select uif-calendar-header-select" name="month" aria-label="Month"${disabledAttr}>`;
+    months.forEach((m, i) => { headerHtml += `<option value="${i}"${i === selectedMonth ? " selected" : ""}>${m}</option>`; });
+    headerHtml += `</select>`;
+    headerHtml += `<select class="uif-select uif-calendar-header-select" name="year" aria-label="Year"${disabledAttr}>`;
+    for (let y = 2020; y <= 2030; y++) { headerHtml += `<option value="${y}"${y === selectedYear ? " selected" : ""}>${y}</option>`; }
+    headerHtml += `</select></span>`;
+    headerHtml += `<button type="button" class="uif-button ghost" aria-label="Next month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
+    headerHtml += `</div>`;
+
+    // Build table
+    const theadHtml = `<thead><tr>${weekdays.map((d) => `<th scope="col" abbr="${d}">${d}</th>`).join("")}</tr></thead>`;
+
+    let tbodyHtml = "<tbody>";
+    let day = 1;
+    for (let week = 0; week < 5; week++) {
+      tbodyHtml += "<tr>";
+      for (let dow = 0; dow < 7; dow++) {
+        if (day <= 31) {
+          const classes = ["uif-calendar-cell"];
+          if (previewState === "hover" && day === 15) classes.push("is-hover");
+          if (previewState === "focus" && day === 15) classes.push("is-focus-visible");
+          if (selectedDate === String(day)) classes.push("is-selected");
+          if (hasRange && day === rangeStart) classes.push("is-range-start");
+          if (hasRange && day > rangeStart && day < rangeEnd) classes.push("is-range-middle");
+          if (hasRange && day === rangeEnd) classes.push("is-range-end");
+          if (todayDate === String(day)) classes.push("is-today");
+          if (disabled) classes.push("is-disabled");
+
+          const selected = selectedDate === String(day) || (hasRange && day >= rangeStart && day <= rangeEnd) ? "true" : "false";
+          const tabindex = day === 1 ? "0" : "-1";
+          tbodyHtml += `<td><button type="button" class="${classes.join(" ")}" aria-selected="${selected}" tabindex="${tabindex}"${disabledAttr}>${day}</button></td>`;
+          day++;
+        } else {
+          tbodyHtml += "<td></td>";
+        }
+      }
+      tbodyHtml += "</tr>";
+    }
+    tbodyHtml += "</tbody>";
+
+    const calendarClasses = ["uif-calendar"];
+    if (hasContainer) calendarClasses.push("has-container");
+    const html = `<div class="${calendarClasses.join(" ")}">${headerHtml}<table class="uif-calendar-table" role="grid" aria-label="${quoteAttr(month)}">${theadHtml}${tbodyHtml}</table></div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+
+    const code = html;
+    return { element, code };
+  };
+
+  // ─── Date Picker ──────────────────────────────────────────────────
+  const renderVanillaDatePicker = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const isOpen = previewState === "open";
+    const disabled = previewState === "disabled";
+    const day = String(props.day || "");
+    const month = String(props.month || "");
+    const year = String(props.year || "");
+    const disabledAttr = disabled ? " disabled" : "";
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDay = Number(day);
+    const selectedMonth = Number(month);
+    const selectedYear = Number(year);
+    const visibleYear = selectedYear >= 1900 && selectedYear <= 2100
+      ? selectedYear
+      : today.getFullYear();
+    const visibleMonth = selectedMonth >= 1 && selectedMonth <= 12
+      ? selectedMonth - 1
+      : today.getMonth();
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const weekdayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+    const rootClasses = ["uif-input-field", "date"];
+    if (isOpen) rootClasses.push("is-open");
+
+    let html = `<div class="uif-form-field date-picker-field">`;
+    html += `<label class="uif-field-label" id="date-picker-playground-label" for="date-picker-playground-day"><span class="uif-label-content"><span class="uif-label-content-text">Travel date</span></span></label>`;
+    html += `<div class="${rootClasses.join(" ")}" role="group" aria-labelledby="date-picker-playground-label">`;
+    html += `<div class="date-segments">`;
+    html += `<input class="date-segment day" id="date-picker-playground-day" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day" value="${quoteAttr(day)}"${disabledAttr}>`;
+    html += `<span class="date-separator">/</span>`;
+    html += `<input class="date-segment month" id="date-picker-playground-month" type="text" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Month" value="${quoteAttr(month)}"${disabledAttr}>`;
+    html += `<span class="date-separator">/</span>`;
+    html += `<input class="date-segment year" id="date-picker-playground-year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year" value="${quoteAttr(year)}"${disabledAttr}>`;
+    html += `</div>`;
+    html += `<span class="uif-input-field-control">`;
+    html += `<button type="button" aria-label="Open calendar" aria-expanded="${isOpen}" aria-haspopup="grid" aria-controls="date-picker-playground-calendar"${disabledAttr}>`;
+    html += `<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>`;
+    html += `</button></span>`;
+    html += `<div class="uif-calendar" id="date-picker-playground-calendar"><div class="uif-calendar-header">`;
+    html += `<button type="button" class="uif-button ghost" aria-label="Previous month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
+    html += `<span class="uif-calendar-selectors"><select class="uif-select uif-calendar-header-select" name="month" aria-label="Month">`;
+    monthNames.forEach((m, i) => { html += `<option value="${i}"${i === visibleMonth ? " selected" : ""}>${m}</option>`; });
+    html += `</select><select class="uif-select uif-calendar-header-select" name="year" aria-label="Year">`;
+    for (let y = 2020; y <= 2030; y++) { html += `<option value="${y}"${y === visibleYear ? " selected" : ""}>${y}</option>`; }
+    html += `</select></span>`;
+    html += `<button type="button" class="uif-button ghost" aria-label="Next month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
+    const monthLabel = `${monthNames[visibleMonth]} ${visibleYear}`;
+    html += `</div><table class="uif-calendar-table" role="grid" aria-label="${monthLabel}"><thead><tr>`;
+    weekdayNames.forEach((d) => { html += `<th scope="col">${d}</th>`; });
+    html += `</tr></thead><tbody>`;
+    const firstDay = new Date(visibleYear, visibleMonth, 1);
+    const daysInMonth = new Date(visibleYear, visibleMonth + 1, 0).getDate();
+    const startDow = (firstDay.getDay() + 6) % 7;
+    let d = 1;
+    let started = false;
+    for (let w = 0; w < 6; w++) {
+      if (d > daysInMonth) break;
+      html += "<tr>";
+      for (let dow = 0; dow < 7; dow++) {
+        if (!started && dow < startDow) {
+          html += "<td></td>";
+        } else if (d <= daysInMonth) {
+          started = true;
+          const date = new Date(visibleYear, visibleMonth, d);
+          const classes = ["uif-calendar-cell"];
+          const isSelected = selectedDay === d && selectedMonth === visibleMonth + 1 && selectedYear === visibleYear;
+          const isToday = date.toDateString() === today.toDateString();
+          if (isSelected) classes.push("is-selected");
+          if (isToday) classes.push("is-today");
+          html += `<td><button type="button" class="${classes.join(" ")}" aria-selected="${isSelected ? "true" : "false"}" tabindex="${d === 1 ? "0" : "-1"}">${d}</button></td>`;
+          d++;
+        } else {
+          html += "<td></td>";
+        }
+      }
+      html += "</tr>";
+    }
+    html += `</tbody></table></div></div></div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+
+    return { element, code: html };
+  };
+
+  const renderVanillaDropzone = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const disabled = previewState === "disabled" || asBoolean(props.disabled);
+    const filled = previewState === "filled" || asBoolean(props.filled);
+    const label = String(props.label || "Drag and drop files here");
+    const hint = String(props.hint || "or");
+    const buttonLabel = String(props.buttonLabel || "Choose files");
+    const accept = String(props.accept || "");
+    const multiple = asBoolean(props.multiple);
+    const filesText = filled
+      ? String(props.filesText || (multiple ? "2 files selected" : "invoice.pdf"))
+      : String(props.filesText || "No files selected");
+
+    const wrapper = document.createElement("div");
+    const classes = ["uif-dropzone"];
+    if (previewState === "dragover") classes.push("is-dragover");
+    if (disabled) classes.push("is-disabled");
+    if (filled) classes.push("is-filled");
+    if (props.className) classes.push(String(props.className));
+    wrapper.className = classes.join(" ");
+    wrapper.setAttribute("role", "group");
+    wrapper.setAttribute("aria-label", "File upload drop zone");
+
+    const input = document.createElement("input");
+    input.className = "uif-dropzone-input";
+    input.type = "file";
+    if (accept) input.setAttribute("accept", accept);
+    if (multiple) input.multiple = true;
+    if (disabled) input.disabled = true;
+
+    const icon = createIconElement({ name: "upload", decorative: true });
+    const labelEl = document.createElement("span");
+    labelEl.className = "uif-dropzone-label";
+    labelEl.textContent = label;
+    const hintEl = document.createElement("span");
+    hintEl.className = "uif-dropzone-hint";
+    hintEl.textContent = hint;
+    const button = document.createElement("button");
+    button.className = "uif-button outline uif-dropzone-button";
+    button.type = "button";
+    button.textContent = buttonLabel;
+    button.disabled = disabled;
+    const files = document.createElement("span");
+    files.className = "uif-dropzone-files";
+    files.setAttribute("aria-live", "polite");
+    files.textContent = filesText;
+
+    wrapper.append(input);
+    if (icon) wrapper.append(icon);
+    wrapper.append(labelEl, hintEl, button, files);
+
+    const inputAttrs = ['class="uif-dropzone-input"', 'type="file"'];
+    if (accept) inputAttrs.push(`accept="${quoteAttr(accept)}"`);
+    if (multiple) inputAttrs.push("multiple");
+    if (disabled) inputAttrs.push("disabled");
+    const buttonAttrs = ['class="uif-button outline uif-dropzone-button"', 'type="button"'];
+    if (disabled) buttonAttrs.push("disabled");
+    const code = `<div class="${quoteAttr(wrapper.className)}" role="group" aria-label="File upload drop zone">
+  <input ${inputAttrs.join(" ")} />
+  ${iconCode({ name: "upload", decorative: true })}
+  <span class="uif-dropzone-label">${quoteAttr(label)}</span>
+  <span class="uif-dropzone-hint">${quoteAttr(hint)}</span>
+  <button ${buttonAttrs.join(" ")}>${quoteAttr(buttonLabel)}</button>
+  <span class="uif-dropzone-files" aria-live="polite">${quoteAttr(filesText)}</span>
+</div>`;
+
+    return { element: wrapper, code };
+  };
+
+
+  const renderVanillaRangeSlider = ({ props }) => {
+    const labelText = String(props.label || "Price range");
+    const min = Number.isFinite(Number(props.min)) ? Number(props.min) : 0;
+    const max = Number.isFinite(Number(props.max)) ? Number(props.max) : 100;
+    const step = Number.isFinite(Number(props.step)) && Number(props.step) > 0
+      ? Number(props.step)
+      : 1;
+    const disabled = asBoolean(props.disabled);
+    const lowerDefault = Number.isFinite(Number(props.lowerValue))
+      ? Number(props.lowerValue)
+      : min;
+    const upperDefault = Number.isFinite(Number(props.upperValue))
+      ? Number(props.upperValue)
+      : max;
+
+    const clamp = (value) => Math.min(max, Math.max(min, value));
+    const wrapper = document.createElement("div");
+    const wrapperClasses = ["uif-range-slider-field"];
+    if (disabled) wrapperClasses.push("is-disabled");
+    wrapper.className = wrapperClasses.join(" ");
+
+    const header = document.createElement("div");
+    header.className = "uif-range-slider-header";
+
+    const label = document.createElement("span");
+    label.className = "uif-range-slider-label";
+    label.textContent = labelText;
+
+    const output = document.createElement("output");
+    output.className = "uif-range-slider-value";
+    output.setAttribute("aria-live", "polite");
+
+    const lowerSpan = document.createElement("span");
+    lowerSpan.className = "uif-range-slider-value-lower";
+    const separator = document.createElement("span");
+    separator.className = "uif-range-slider-value-separator";
+    separator.textContent = "–";
+    const upperSpan = document.createElement("span");
+    upperSpan.className = "uif-range-slider-value-upper";
+    output.append(lowerSpan, separator, upperSpan);
+    header.append(label, output);
+
+    const slider = document.createElement("div");
+    slider.className = "uif-range-slider";
+
+    const lowerInput = document.createElement("input");
+    lowerInput.className = "uif-range-slider-input is-lower";
+    lowerInput.type = "range";
+    lowerInput.min = String(min);
+    lowerInput.max = String(max);
+    lowerInput.step = String(step);
+    lowerInput.setAttribute("aria-label", "Minimum value");
+    lowerInput.disabled = disabled;
+
+    const upperInput = document.createElement("input");
+    upperInput.className = "uif-range-slider-input is-upper";
+    upperInput.type = "range";
+    upperInput.min = String(min);
+    upperInput.max = String(max);
+    upperInput.step = String(step);
+    upperInput.setAttribute("aria-label", "Maximum value");
+    upperInput.disabled = disabled;
+
+    const sync = (source) => {
+      let lower = clamp(Number(lowerInput.value || lowerDefault));
+      let upper = clamp(Number(upperInput.value || upperDefault));
+
+      if (source === "lower" && lower > upper) lower = upper;
+      if (source === "upper" && upper < lower) upper = lower;
+      if (source !== "lower" && source !== "upper" && lower > upper) {
+        lower = upper;
+      }
+
+      lowerInput.value = String(lower);
+      upperInput.value = String(upper);
+      slider.dataset.lowerValue = String(lower);
+      slider.dataset.upperValue = String(upper);
+
+      const range = max - min || 1;
+      const lowerPercent = ((lower - min) / range) * 100;
+      const upperPercent = ((upper - min) / range) * 100;
+      slider.style.setProperty("--_range-slider-start", String(lowerPercent));
+      slider.style.setProperty("--_range-slider-end", String(upperPercent));
+
+      lowerSpan.textContent = String(lower);
+      upperSpan.textContent = String(upper);
+    };
+
+    lowerInput.value = String(clamp(lowerDefault));
+    upperInput.value = String(clamp(upperDefault));
+    lowerInput.addEventListener("input", () => sync("lower"));
+    upperInput.addEventListener("input", () => sync("upper"));
+
+    slider.append(lowerInput, upperInput);
+    wrapper.append(header, slider);
+    sync();
+
+    const fieldAttrs = [`class="${quoteAttr(wrapper.className)}"`];
+    const inputAttrs = (position, value, ariaLabel) => {
+      const attrs = [
+        `class="uif-range-slider-input is-${position}"`,
+        'type="range"',
+        `min="${quoteAttr(min)}"`,
+        `max="${quoteAttr(max)}"`,
+        `step="${quoteAttr(step)}"`,
+        `value="${quoteAttr(value)}"`,
+        `aria-label="${quoteAttr(ariaLabel)}"`,
+      ];
+      if (disabled) attrs.push("disabled");
+      return attrs.join(" ");
+    };
+    const code = `<div ${fieldAttrs.join(" ")}>
+  <div class="uif-range-slider-header">
+    <span class="uif-range-slider-label">${quoteAttr(labelText)}</span>
+    <output class="uif-range-slider-value" aria-live="polite"><span class="uif-range-slider-value-lower">${quoteAttr(lowerInput.value)}</span><span class="uif-range-slider-value-separator">–</span><span class="uif-range-slider-value-upper">${quoteAttr(upperInput.value)}</span></output>
+  </div>
+  <div class="uif-range-slider" data-min="${quoteAttr(min)}" data-max="${quoteAttr(max)}" data-lower-value="${quoteAttr(lowerInput.value)}" data-upper-value="${quoteAttr(upperInput.value)}" style="--_range-slider-start: ${quoteAttr(slider.style.getPropertyValue("--_range-slider-start"))}; --_range-slider-end: ${quoteAttr(slider.style.getPropertyValue("--_range-slider-end"))};">
+    <input ${inputAttrs("lower", lowerInput.value, "Minimum value")} />
+    <input ${inputAttrs("upper", upperInput.value, "Maximum value")} />
+  </div>
+</div>`;
+
+    return { element: wrapper, code };
+  };
+
+
+  const renderVanillaStatusLight = ({ props, children }) => {
+    const variant = String(props.variant || "neutral");
+    const size = String(props.size || "md");
+    const rawText =
+      typeof children === "undefined" ? "Status" : String(children || "");
+
+    const element = document.createElement("span");
+    const classes = ["uif-status-light"];
+    if (variant && variant !== "neutral") classes.push(variant);
+    if (size === "sm") classes.push("sm");
+    element.className = classes.join(" ");
+
+    const indicator = document.createElement("span");
+    indicator.className = "uif-status-light-indicator";
+    indicator.setAttribute("aria-hidden", "true");
+    element.append(indicator);
+
+    const textSpan = document.createElement("span");
+    textSpan.className = "uif-status-light-text";
+    textSpan.textContent = rawText;
+    element.append(textSpan);
+
+    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
+    const code = `<span class="${codeClasses}"><span class="uif-status-light-indicator" aria-hidden="true"></span><span class="uif-status-light-text">${quoteAttr(rawText)}</span></span>`;
+    return { element, code };
+  };
+
+
+  const renderVanillaIllustratedMessage = ({ props }) => {
+    const preset = resolveIllustratedMessagePreset(String(props.preset || "empty"));
+    const defaults = ILLUSTRATED_MESSAGE_PRESETS[preset];
+    const heading = String(props.heading || defaults.heading);
+    const description = String(props.description || defaults.description);
+    const actionLabel = String(props.actionLabel || "");
+    const actionHref = sanitizeHref(props.actionHref);
+    const actionVariant =
+      props.actionVariant === "outline" || props.actionVariant === "ghost"
+        ? String(props.actionVariant)
+        : "solid";
+    const illustrationIcon = normalizeIconName(props.illustrationIcon) || defaults.icon;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "uif-illustrated-message";
+    wrapper.dataset.preset = preset;
+
+    const illustration = document.createElement("div");
+    illustration.className = "uif-illustrated-message-illustration";
+    illustration.setAttribute("aria-hidden", "true");
+    const icon = createIconElement({ name: illustrationIcon, decorative: true });
+    if (icon) illustration.append(icon);
+
+    const content = document.createElement("div");
+    content.className = "uif-illustrated-message-content";
+
+    if (heading) {
+      const title = document.createElement("h2");
+      title.className = "uif-illustrated-message-heading";
+      title.textContent = heading;
+      content.append(title);
+    }
+
+    if (description) {
+      const body = document.createElement("p");
+      body.className = "uif-illustrated-message-description";
+      body.textContent = description;
+      content.append(body);
+    }
+
+    wrapper.append(illustration, content);
+
+    let actionCode = "";
+    if (actionLabel) {
+      const actions = document.createElement("div");
+      actions.className = "uif-illustrated-message-actions";
+      if (actionHref) {
+        const actionLink = document.createElement("a");
+        actionLink.className = `uif-button ${actionVariant}`;
+        actionLink.href = actionHref;
+        actionLink.textContent = actionLabel;
+        actions.append(actionLink);
+        actionCode = `<a class="uif-button ${quoteAttr(actionVariant)}" href="${quoteAttr(actionHref)}">${escapeHtml(actionLabel)}</a>`;
+      } else {
+        const actionButton = document.createElement("button");
+        actionButton.className = `uif-button ${actionVariant}`;
+        actionButton.type = "button";
+        actionButton.textContent = actionLabel;
+        actions.append(actionButton);
+        actionCode = `<button class="uif-button ${quoteAttr(actionVariant)}" type="button">${escapeHtml(actionLabel)}</button>`;
+      }
+      wrapper.append(actions);
+    }
+
+    const headingCode = heading
+      ? `<h2 class="uif-illustrated-message-heading">${escapeHtml(heading)}</h2>`
+      : "";
+    const descriptionCode = description
+      ? `<p class="uif-illustrated-message-description">${escapeHtml(description)}</p>`
+      : "";
+    const code = `<div class="uif-illustrated-message" data-preset="${quoteAttr(preset)}"><div class="uif-illustrated-message-illustration" aria-hidden="true">${iconCode({ name: illustrationIcon, decorative: true })}</div><div class="uif-illustrated-message-content">${headingCode}${descriptionCode}</div>${actionCode ? `<div class="uif-illustrated-message-actions">${actionCode}</div>` : ""}</div>`;
+
+    return { element: wrapper, code };
+  };
+
+
+  const renderVanillaProgressCircle = ({ props }) => {
+    const size = String(props.size || "md");
+    const indeterminate = asBoolean(props.indeterminate);
+    const ariaLabel = String(props.ariaLabel || "Loading");
+    const rawValue = Number.parseFloat(String(props.value || "0"));
+    const value = Number.isFinite(rawValue)
+      ? Math.min(100, Math.max(0, rawValue))
+      : 0;
+
+    const element = document.createElement("span");
+    const classes = ["uif-progress-circle"];
+    if (size === "sm" || size === "lg") classes.push(size);
+    if (indeterminate) classes.push("is-indeterminate");
+    element.className = classes.join(" ");
+    element.setAttribute("role", "progressbar");
+    element.setAttribute("aria-label", ariaLabel);
+
+    if (!indeterminate) {
+      element.setAttribute("aria-valuemin", "0");
+      element.setAttribute("aria-valuemax", "100");
+      element.setAttribute("aria-valuenow", String(value));
+      element.style.setProperty("--_progress-circle-value", String(value));
+    }
+
+    element.innerHTML = `<svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle><circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle></svg>`;
+
+    const attrs = [
+      `class="${quoteAttr(element.className)}"`,
+      'role="progressbar"',
+      `aria-label="${quoteAttr(ariaLabel)}"`,
+    ];
+    if (!indeterminate) {
+      attrs.push('aria-valuemin="0"');
+      attrs.push('aria-valuemax="100"');
+      attrs.push(`aria-valuenow="${value}"`);
+      attrs.push(`style="--_progress-circle-value: ${value};"`);
+    }
+
+    const code = `<span ${attrs.join(" ")}><svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle><circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle></svg></span>`;
+    return { element, code };
+  };
+
+
+  const renderVanillaMenu = ({ props }) => {
+    const itemCount = Number(props.items || 4);
+    const showDivider = props.divider === "true" || props.divider === true;
+    const includeDisabled = props.disabled === "true" || props.disabled === true;
+    const includeSelected = props.selected === "true" || props.selected === true;
+    const showIcons = props.icons === "true" || props.icons === true;
+
+    const ICONS = ["✏️", "📋", "🔗", "🗑️", "⭐", "📂", "🔔", "⚙️"];
+    const wrapper = document.createElement("ul");
+    wrapper.className = "uif-menu";
+    wrapper.setAttribute("role", "menu");
+    wrapper.setAttribute("aria-label", "Options");
+
+    let codeLines = ['<ul class="uif-menu" role="menu" aria-label="Options">'];
+
+    for (let i = 0; i < itemCount; i++) {
+      const isDisabled = includeDisabled && i === itemCount - 1;
+      const isSelected = includeSelected && i === 0;
+      const dividerBefore = showDivider && i === itemCount - 1 && itemCount > 1;
+
+      if (dividerBefore) {
+        const divider = document.createElement("li");
+        divider.className = "uif-menu-divider";
+        divider.setAttribute("role", "separator");
+        wrapper.append(divider);
+        codeLines.push('  <li class="uif-menu-divider" role="separator"></li>');
+      }
+
+      const li = document.createElement("li");
+      const classes = ["uif-menu-item"];
+      if (isDisabled) classes.push("is-disabled");
+      if (isSelected) classes.push("is-selected");
+      li.className = classes.join(" ");
+      li.setAttribute("role", "menuitem");
+      li.setAttribute("tabindex", i === 0 ? "0" : "-1");
+      if (isDisabled) li.setAttribute("aria-disabled", "true");
+      if (isSelected) li.setAttribute("aria-checked", "true");
+
+      let innerCode = "";
+      if (showIcons) {
+        const iconSpan = document.createElement("span");
+        iconSpan.className = "uif-menu-item-icon";
+        iconSpan.setAttribute("aria-hidden", "true");
+        iconSpan.textContent = ICONS[i % ICONS.length];
+        li.append(iconSpan);
+        innerCode += `<span class="uif-menu-item-icon" aria-hidden="true">${ICONS[i % ICONS.length]}</span>`;
+      }
+
+      const label = isDisabled ? "Disabled item" : `Item ${i + 1}`;
+      li.append(document.createTextNode(label));
+      innerCode += label;
+      wrapper.append(li);
+
+      const attrStr = [
+        isDisabled ? ' aria-disabled="true"' : "",
+        isSelected ? ' aria-checked="true"' : "",
+      ].join("");
+      codeLines.push(`  <li class="${classes.join(" ")}" role="menuitem" tabindex="${i === 0 ? "0" : "-1"}"${attrStr}>${innerCode}</li>`);
+    }
+
+    codeLines.push("</ul>");
+    return { element: wrapper, code: codeLines.join("\n") };
+  };
+
+
+  const renderVanillaTreeView = ({ props }) => {
+    const selection = String(props.selection || "single") === "multi" ? "multi" : "single";
+    const expanded = asBoolean(props.expanded);
+    const draggable = asBoolean(props.draggable);
+    const lazy = asBoolean(props.lazy);
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "uif-tree-view-demo";
+
+    const tree = document.createElement("ul");
+    tree.className = "uif-tree-view";
+    tree.setAttribute("role", "tree");
+    tree.dataset.selection = selection;
+
+    const rootA = document.createElement("li");
+    rootA.className = "uif-tree-node is-selected";
+    rootA.setAttribute("role", "treeitem");
+    rootA.setAttribute("aria-selected", "true");
+    rootA.setAttribute("aria-expanded", expanded ? "true" : "false");
+    rootA.dataset.nodeId = "root-a";
+
+    const rootARow = document.createElement("div");
+    rootARow.className = "uif-tree-node-row";
+    rootARow.tabIndex = 0;
+    rootARow.draggable = draggable;
+    rootARow.innerHTML = '<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button><span class="uif-tree-label">Projects</span>';
+    rootA.append(rootARow);
+
+    const children = document.createElement("ul");
+    children.className = "uif-tree-children";
+    children.setAttribute("role", "group");
+    children.innerHTML = '<li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-a"><div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Design system</span></div></li><li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-b"><div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Runtime package</span></div></li>';
+    rootA.append(children);
+
+    const rootB = document.createElement("li");
+    rootB.className = "uif-tree-node";
+    rootB.setAttribute("role", "treeitem");
+    rootB.setAttribute("aria-selected", "false");
+    rootB.dataset.nodeId = "root-b";
+    if (lazy) {
+      rootB.setAttribute("aria-expanded", "false");
+      rootB.setAttribute("data-lazy-url", "/api/tree-view/lazy.json");
+    }
+
+    const rootBRow = document.createElement("div");
+    rootBRow.className = "uif-tree-node-row";
+    rootBRow.tabIndex = -1;
+    rootBRow.draggable = draggable;
+    rootBRow.innerHTML = `${lazy ? '<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>' : ""}<span class="uif-tree-label">Archived</span>`;
+    rootB.append(rootBRow);
+
+    tree.append(rootA, rootB);
+    wrapper.append(tree);
+
+    const codeLines = [
+      `<uif-tree-view selection="${selection}"${draggable ? " draggable" : ""}>`,
+      `  <ul class="uif-tree-view" role="tree">`,
+      `    <li class="uif-tree-node is-selected" role="treeitem" aria-selected="true" aria-expanded="${expanded ? "true" : "false"}" data-node-id="root-a">`,
+      `      <div class="uif-tree-node-row" tabindex="0">`,
+      `        <button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>`,
+      `        <span class="uif-tree-label">Projects</span>`,
+      `      </div>`,
+      `      <ul class="uif-tree-children" role="group">`,
+      `        <li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-a">`,
+      `          <div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Design system</span></div>`,
+      `        </li>`,
+      `        <li class="uif-tree-node" role="treeitem" aria-selected="false" data-node-id="child-b">`,
+      `          <div class="uif-tree-node-row" tabindex="-1"><span class="uif-tree-label">Runtime package</span></div>`,
+      `        </li>`,
+      `      </ul>`,
+      `    </li>`,
+      `    <li class="uif-tree-node" role="treeitem" aria-selected="false"${lazy ? ' aria-expanded="false" data-lazy-url="/api/tree-view/lazy.json"' : ""} data-node-id="root-b">`,
+      `      <div class="uif-tree-node-row" tabindex="-1">${lazy ? '<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>' : ""}<span class="uif-tree-label">Archived</span></div>`,
+      `    </li>`,
+      `  </ul>`,
+      `</uif-tree-view>`,
+    ];
+
+    return { element: wrapper, code: codeLines.join("\n") };
+  };
+
+  // ─── Divider ──────────────────────────────────
+
+
+  const renderVanillaComboBox = ({ props, meta }) => {
+    const placeholder = String(props.placeholder || "Search destinations");
+    const loading = asBoolean(props.loading);
+    const allowCustomValue = asBoolean(props.allowCustomValue);
+    const descriptions = asBoolean(props.descriptions);
+    const disabled =
+      String(meta.state || "default") === "disabled" || asBoolean(props.disabled);
+
+    const element = document.createElement("uif-combobox");
+    element.setAttribute("placeholder", placeholder);
+    element.setAttribute("aria-label", "Destination search");
+    if (loading) element.setAttribute("loading", "");
+    if (allowCustomValue) element.setAttribute("allow-custom-value", "");
+    if (disabled) element.setAttribute("disabled", "");
+
+    element.options = descriptions
+      ? [
+          { value: "pmi", label: "Palma de Mallorca", description: "Spain" },
+          { value: "her", label: "Heraklion", description: "Greece" },
+          { value: "fue", label: "Fuerteventura", description: "Canary Islands" },
+        ]
+      : [
+          { value: "pmi", label: "Palma de Mallorca" },
+          { value: "her", label: "Heraklion" },
+          { value: "fue", label: "Fuerteventura" },
+        ];
+
+    const attrs = [
+      `placeholder="${quoteAttr(placeholder)}"`,
+      'aria-label="Destination search"',
+    ];
+    if (loading) attrs.push("loading");
+    if (allowCustomValue) attrs.push("allow-custom-value");
+    if (disabled) attrs.push("disabled");
+
+    const optionsCode = descriptions
+      ? `\n  <option value="pmi" data-description="Spain">Palma de Mallorca</option>\n  <option value="her" data-description="Greece">Heraklion</option>\n  <option value="fue" data-description="Canary Islands">Fuerteventura</option>`
+      : `\n  <option value="pmi">Palma de Mallorca</option>\n  <option value="her">Heraklion</option>\n  <option value="fue">Fuerteventura</option>`;
+
+    return {
+      element,
+      code: `<uif-combobox ${attrs.join(" ")}>${optionsCode}\n</uif-combobox>`,
+    };
+  };
+
+
+  const renderVanillaPopover = ({ props, children }) => {
+    const placement = String(props.placement || "bottom");
+    const showArrow = props.arrow === true || props.arrow === "true";
+    const content = String(props.content || "Popover content");
+    const triggerText = String(children || "Open");
+
+    const container = document.createElement("span");
+    container.className = "uif-popover-container";
+
+    const btn = document.createElement("button");
+    btn.className = "uif-button outline";
+    btn.type = "button";
+    btn.textContent = triggerText;
+    container.append(btn);
+
+    const panel = document.createElement("div");
+    panel.className = "uif-popover is-open";
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-modal", "false");
+    panel.setAttribute("data-placement", placement);
+
+    if (showArrow) {
+      const arrow = document.createElement("span");
+      arrow.className = "uif-popover-arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      panel.append(arrow);
+    }
+
+    const contentEl = document.createElement("div");
+    contentEl.className = "uif-popover-content";
+    contentEl.textContent = content;
+    panel.append(contentEl);
+    container.append(panel);
+
+    const arrowMarkup = showArrow
+      ? `\n  <span class="uif-popover-arrow" aria-hidden="true"></span>`
+      : "";
+    const code = `<span class="uif-popover-container">
+  <button class="uif-button outline" type="button">${quoteAttr(triggerText)}</button>
+  <div class="uif-popover" role="dialog" aria-modal="false" data-placement="${quoteAttr(placement)}">${arrowMarkup}
+    <div class="uif-popover-content">${quoteAttr(content)}</div>
+  </div>
+</span>`;
+
+    return { element: container, code };
+  };
+
+
   const renderVanillaActionBar = ({ props }) => {
     const count = Math.max(0, parseInt(String(props.count || "3"), 10) || 0);
     const isOpen = asBoolean(props.open !== undefined ? props.open : true);
@@ -1701,6 +1938,7 @@
 
     return { element: bar, code };
   };
+
 
   const renderVanillaBreadcrumbs = ({ props }) => {
     const depth = Math.max(2, Number(props.depth || 4));
@@ -1817,81 +2055,7 @@
   };
 
   // ─── Calendar ─────────────────────────────────────────────────────
-  const renderVanillaCalendar = ({ props, meta }) => {
-    const month = String(props.month || "2026-07");
-    const selectedDate = String(props.selectedDate || "");
-    const rangeStart = Number(props.rangeStart || 0);
-    const rangeEnd = Number(props.rangeEnd || 0);
-    const hasRange = rangeStart > 0 && rangeEnd >= rangeStart;
-    const todayDate = String(props.todayDate || "1");
-    const previewState = String(meta.state || "default");
-    const hasContainer = props.container !== false;
-    const disabled = asBoolean(props.disabled);
 
-    const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const [yearValue, monthValue] = month.split("-");
-    const selectedYear = Number(yearValue) || 2026;
-    const selectedMonth = Math.max(0, Math.min(11, (Number(monthValue) || 7) - 1));
-    const disabledAttr = disabled ? " disabled" : "";
-
-    // Build header with selects
-    let headerHtml = `<div class="uif-calendar-header">`;
-    headerHtml += `<button type="button" class="uif-button ghost" aria-label="Previous month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
-    headerHtml += `<span class="uif-calendar-selectors">`;
-    headerHtml += `<select class="uif-select uif-calendar-header-select" name="month" aria-label="Month"${disabledAttr}>`;
-    months.forEach((m, i) => { headerHtml += `<option value="${i}"${i === selectedMonth ? " selected" : ""}>${m}</option>`; });
-    headerHtml += `</select>`;
-    headerHtml += `<select class="uif-select uif-calendar-header-select" name="year" aria-label="Year"${disabledAttr}>`;
-    for (let y = 2020; y <= 2030; y++) { headerHtml += `<option value="${y}"${y === selectedYear ? " selected" : ""}>${y}</option>`; }
-    headerHtml += `</select></span>`;
-    headerHtml += `<button type="button" class="uif-button ghost" aria-label="Next month"${disabledAttr}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
-    headerHtml += `</div>`;
-
-    // Build table
-    const theadHtml = `<thead><tr>${weekdays.map((d) => `<th scope="col" abbr="${d}">${d}</th>`).join("")}</tr></thead>`;
-
-    let tbodyHtml = "<tbody>";
-    let day = 1;
-    for (let week = 0; week < 5; week++) {
-      tbodyHtml += "<tr>";
-      for (let dow = 0; dow < 7; dow++) {
-        if (day <= 31) {
-          const classes = ["uif-calendar-cell"];
-          if (previewState === "hover" && day === 15) classes.push("is-hover");
-          if (previewState === "focus" && day === 15) classes.push("is-focus-visible");
-          if (selectedDate === String(day)) classes.push("is-selected");
-          if (hasRange && day === rangeStart) classes.push("is-range-start");
-          if (hasRange && day > rangeStart && day < rangeEnd) classes.push("is-range-middle");
-          if (hasRange && day === rangeEnd) classes.push("is-range-end");
-          if (todayDate === String(day)) classes.push("is-today");
-          if (disabled) classes.push("is-disabled");
-
-          const selected = selectedDate === String(day) || (hasRange && day >= rangeStart && day <= rangeEnd) ? "true" : "false";
-          const tabindex = day === 1 ? "0" : "-1";
-          tbodyHtml += `<td><button type="button" class="${classes.join(" ")}" aria-selected="${selected}" tabindex="${tabindex}"${disabledAttr}>${day}</button></td>`;
-          day++;
-        } else {
-          tbodyHtml += "<td></td>";
-        }
-      }
-      tbodyHtml += "</tr>";
-    }
-    tbodyHtml += "</tbody>";
-
-    const calendarClasses = ["uif-calendar"];
-    if (hasContainer) calendarClasses.push("has-container");
-    const html = `<div class="${calendarClasses.join(" ")}">${headerHtml}<table class="uif-calendar-table" role="grid" aria-label="${quoteAttr(month)}">${theadHtml}${tbodyHtml}</table></div>`;
-
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = html;
-    const element = wrapper.firstElementChild;
-
-    const code = html;
-    return { element, code };
-  };
-
-  // ─── Number Field ─────────────────────────────────────────────────
   const renderVanillaNumberField = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
     const value = props.value != null ? String(props.value) : "";
@@ -1985,102 +2149,6 @@
   };
 
   // ─── Date Picker ──────────────────────────────────────────────────
-  const renderVanillaDatePicker = ({ props, meta }) => {
-    const previewState = String(meta.state || "default");
-    const isOpen = previewState === "open";
-    const disabled = previewState === "disabled";
-    const day = String(props.day || "");
-    const month = String(props.month || "");
-    const year = String(props.year || "");
-    const disabledAttr = disabled ? " disabled" : "";
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const selectedDay = Number(day);
-    const selectedMonth = Number(month);
-    const selectedYear = Number(year);
-    const visibleYear = selectedYear >= 1900 && selectedYear <= 2100
-      ? selectedYear
-      : today.getFullYear();
-    const visibleMonth = selectedMonth >= 1 && selectedMonth <= 12
-      ? selectedMonth - 1
-      : today.getMonth();
-    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    const weekdayNames = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-
-    const rootClasses = ["uif-input-field", "date"];
-    if (isOpen) rootClasses.push("is-open");
-
-    let html = `<div class="uif-form-field date-picker-field">`;
-    html += `<label class="uif-field-label" id="date-picker-playground-label" for="date-picker-playground-day"><span class="uif-label-content"><span class="uif-label-content-text">Travel date</span></span></label>`;
-    html += `<div class="${rootClasses.join(" ")}" role="group" aria-labelledby="date-picker-playground-label">`;
-    html += `<div class="date-segments">`;
-    html += `<input class="date-segment day" id="date-picker-playground-day" type="text" inputmode="numeric" maxlength="2" placeholder="DD" aria-label="Day" value="${quoteAttr(day)}"${disabledAttr}>`;
-    html += `<span class="date-separator">/</span>`;
-    html += `<input class="date-segment month" id="date-picker-playground-month" type="text" inputmode="numeric" maxlength="2" placeholder="MM" aria-label="Month" value="${quoteAttr(month)}"${disabledAttr}>`;
-    html += `<span class="date-separator">/</span>`;
-    html += `<input class="date-segment year" id="date-picker-playground-year" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" aria-label="Year" value="${quoteAttr(year)}"${disabledAttr}>`;
-    html += `</div>`;
-    html += `<span class="uif-input-field-control">`;
-    html += `<button type="button" aria-label="Open calendar" aria-expanded="${isOpen}" aria-haspopup="grid" aria-controls="date-picker-playground-calendar"${disabledAttr}>`;
-    html += `<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/calendar.svg');" aria-hidden="true"></span>`;
-    html += `</button></span>`;
-    html += `<div class="uif-calendar" id="date-picker-playground-calendar"><div class="uif-calendar-header">`;
-    html += `<button type="button" class="uif-button ghost" aria-label="Previous month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--left.svg');" aria-hidden="true"></span></button>`;
-    html += `<span class="uif-calendar-selectors"><select class="uif-select uif-calendar-header-select" name="month" aria-label="Month">`;
-    monthNames.forEach((m, i) => { html += `<option value="${i}"${i === visibleMonth ? " selected" : ""}>${m}</option>`; });
-    html += `</select><select class="uif-select uif-calendar-header-select" name="year" aria-label="Year">`;
-    for (let y = 2020; y <= 2030; y++) { html += `<option value="${y}"${y === visibleYear ? " selected" : ""}>${y}</option>`; }
-    html += `</select></span>`;
-    html += `<button type="button" class="uif-button ghost" aria-label="Next month"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron.svg');" aria-hidden="true"></span></button>`;
-    const monthLabel = `${monthNames[visibleMonth]} ${visibleYear}`;
-    html += `</div><table class="uif-calendar-table" role="grid" aria-label="${monthLabel}"><thead><tr>`;
-    weekdayNames.forEach((d) => { html += `<th scope="col">${d}</th>`; });
-    html += `</tr></thead><tbody>`;
-    const firstDay = new Date(visibleYear, visibleMonth, 1);
-    const daysInMonth = new Date(visibleYear, visibleMonth + 1, 0).getDate();
-    const startDow = (firstDay.getDay() + 6) % 7;
-    let d = 1;
-    let started = false;
-    for (let w = 0; w < 6; w++) {
-      if (d > daysInMonth) break;
-      html += "<tr>";
-      for (let dow = 0; dow < 7; dow++) {
-        if (!started && dow < startDow) {
-          html += "<td></td>";
-        } else if (d <= daysInMonth) {
-          started = true;
-          const date = new Date(visibleYear, visibleMonth, d);
-          const classes = ["uif-calendar-cell"];
-          const isSelected = selectedDay === d && selectedMonth === visibleMonth + 1 && selectedYear === visibleYear;
-          const isToday = date.toDateString() === today.toDateString();
-          if (isSelected) classes.push("is-selected");
-          if (isToday) classes.push("is-today");
-          html += `<td><button type="button" class="${classes.join(" ")}" aria-selected="${isSelected ? "true" : "false"}" tabindex="${d === 1 ? "0" : "-1"}">${d}</button></td>`;
-          d++;
-        } else {
-          html += "<td></td>";
-        }
-      }
-      html += "</tr>";
-    }
-    html += `</tbody></table></div></div></div>`;
-
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = html;
-    const element = wrapper.firstElementChild;
-
-    return { element, code: html };
-  };
-
-  // ─── Table ────────────────────────────────────
-
-  const TABLE_ROWS = [
-    ["Mallorca", "15 Aug 2025", "7 nights", "€499"],
-    ["Tenerife", "22 Aug 2025", "14 nights", "€799"],
-    ["Lanzarote", "01 Sep 2025", "10 nights", "€649"],
-    ["Fuerteventura", "10 Sep 2025", "7 nights", "€529"],
-    ["Rhodes", "18 Sep 2025", "7 nights", "€589"],
-  ];
 
   const renderVanillaTable = ({ props }) => {
     const density = String(props.density || "default");
@@ -2122,6 +2190,7 @@
 
     return { element, code: html };
   };
+
 
   const renderVanillaInlineAlert = ({ props }) => {
     const variant = String(props.variant || "info");
@@ -2192,6 +2261,7 @@
     return { element: wrapper, code };
   };
 
+
   const renderVanillaCard = ({ props, children }) => {
     const title =
       typeof children === "undefined" ? "Card title" : String(children || "Card title");
@@ -2261,6 +2331,7 @@
     return { element: card, code };
   };
 
+
   const renderVanillaSkeleton = ({ props }) => {
     const shape = String(props.shape || "text");
     const size = String(props.size || "md");
@@ -2287,6 +2358,7 @@
   };
 
   // ─── Segmented Control ────────────────────────
+
 
   const renderVanillaSegmentedControl = ({ props }) => {
     const segmentCount = Number(props.segments || 3);
@@ -2321,39 +2393,41 @@
     return { element: wrapper, code: codeLines.join("\n") };
   };
 
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
-      "status-light": renderVanillaStatusLight,
       button: renderVanillaButton,
       "button-group": renderVanillaButtonGroup,
-      card: renderVanillaCard,
       checkbox: renderVanillaCheckbox,
       divider: renderVanillaDivider,
       icon: renderVanillaIcon,
       input: renderVanillaInput,
-      dropzone: renderVanillaDropzone,
       label: renderVanillaLabel,
       link: renderVanillaLink,
-      "range-slider": renderVanillaRangeSlider,
-      "progress-circle": renderVanillaProgressCircle,
-      breadcrumbs: renderVanillaBreadcrumbs,
       radio: renderVanillaRadio,
       switch: renderVanillaSwitch,
       textarea: renderVanillaTextarea,
       avatar: renderVanillaAvatar,
-      "illustrated-message": renderVanillaIllustratedMessage,
       accordion: renderVanillaAccordion,
       tabs: renderVanillaTabs,
-      "tree-view": renderVanillaTreeView,
       tooltip: renderVanillaTooltip,
-      popover: renderVanillaPopover,
       select: renderVanillaSelect,
-      combobox: renderVanillaComboBox,
+      colorPicker: renderVanillaColorPicker,
       form: renderVanillaForm,
-      actionBar: renderVanillaActionBar,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      "status-light": renderVanillaStatusLight,
+      card: renderVanillaCard,
+      dropzone: renderVanillaDropzone,
+      "range-slider": renderVanillaRangeSlider,
+      "progress-circle": renderVanillaProgressCircle,
+      breadcrumbs: renderVanillaBreadcrumbs,
+      "illustrated-message": renderVanillaIllustratedMessage,
+      "tree-view": renderVanillaTreeView,
+      popover: renderVanillaPopover,
+      combobox: renderVanillaComboBox,
+      actionBar: renderVanillaActionBar,
       table: renderVanillaTable,
       "inline-alert": renderVanillaInlineAlert,
       skeleton: renderVanillaSkeleton,

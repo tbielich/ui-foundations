@@ -202,6 +202,13 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>DropZone</h2>
       <p>Drag-and-drop upload target with accessible file picker fallback.</p>
+  <a class="docs-component-card" href="/patterns/color-picker/">
+    <div class="docs-component-card-preview">
+      {{ uif.colorPicker(value="#6366f1") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Color Picker</h2>
+      <p>Composite color selection with area, sliders, wheel, swatch preview, and value inputs.</p>
     </div>
   </a>
     </div>

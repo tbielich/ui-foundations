@@ -42,6 +42,41 @@
 </div>
 {%- endmacro %}
 
+{% macro colorPicker(value='#6366f1', format='hex', state='default', disabled=false, swatches=[], className='') -%}
+{%- set classes = "uif-color-picker" -%}
+{%- if state == "disabled" or disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{%- set palette = swatches if swatches and swatches.length else ['#111827', '#1d4ed8', '#0f766e', '#15803d', '#a16207', '#b91c1c', '#be185d', '#6d28d9'] -%}
+<div class="{{ classes }}" data-format="{{ format }}" style="--uif-color-picker-accent-color: {{ value }}">
+  <div class="uif-color-picker-panel">
+    <div class="uif-color-picker-area" role="application" aria-label="Color area">
+      <span class="uif-color-picker-area-thumb" aria-hidden="true"></span>
+    </div>
+    <div class="uif-color-picker-sliders">
+      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value=""{% if state == "disabled" or disabled %} disabled{% endif %} />
+      <input class="uif-color-picker-slider alpha" type="range" min="0" max="100" value="100"{% if state == "disabled" or disabled %} disabled{% endif %} />
+    </div>
+    <div class="uif-color-picker-wheel" role="img" aria-label="Color wheel"></div>
+    <div class="uif-color-picker-swatch" aria-hidden="true"></div>
+    <div class="uif-color-picker-inputs">
+      <label class="uif-color-picker-input-group"><span>HEX</span><input class="uif-color-picker-input" type="text" value="{{ value }}"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>A</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="100"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+    </div>
+    <div class="uif-color-picker-grid" role="listbox" aria-label="Swatch picker">
+      {%- for swatch in palette -%}
+      <button type="button" class="uif-color-picker-grid-item" style="background: {{ swatch }}" aria-label="Select {{ swatch }}"{% if state == "disabled" or disabled %} disabled{% endif %}></button>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- endmacro %}
+
 {% macro checkbox(label='Checkbox', checked=false, disabled=false, state='default', indeterminate=false, className='', wrapperClassName='', id='', name='', value='on') -%}
 {%- set checkboxClasses = "uif-checkbox" -%}
 {%- set fieldClasses = "uif-checkbox-field" -%}

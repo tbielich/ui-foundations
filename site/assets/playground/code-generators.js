@@ -177,48 +177,22 @@
     return "<uif-select " + attrs.join(" ") + ">" + options + "</uif-select>";
   }
 
-  function njkComboBox(state) {
+  function njkColorPicker(state) {
     var p = state.props;
-    var placeholder = p.placeholder || "Search destinations";
-    var loading = p.loading === true || p.loading === "true";
-    var allowCustomValue =
-      p.allowCustomValue === true || p.allowCustomValue === "true";
-    var descriptions = p.descriptions === true || p.descriptions === "true";
-    var disabled = state.meta.state === "disabled";
     var parts = [];
-    parts.push(
-      "options=[" +
-        (descriptions
-          ? '{value: "pmi", label: "Palma de Mallorca", description: "Spain"}, {value: "her", label: "Heraklion", description: "Greece"}, {value: "fue", label: "Fuerteventura", description: "Canary Islands"}'
-          : '{value: "pmi", label: "Palma de Mallorca"}, {value: "her", label: "Heraklion"}, {value: "fue", label: "Fuerteventura"}') +
-        "]",
-    );
-    parts.push('placeholder="' + quoteAttr(placeholder) + '"');
-    if (loading) parts.push("loading=true");
-    if (allowCustomValue) parts.push("allowCustomValue=true");
-    if (disabled) parts.push("disabled=true");
-    return "{{ uif.combobox(" + parts.join(", ") + ") }}";
+    if (p.value) parts.push('value="' + quoteAttr(p.value) + '"');
+    if (p.format && p.format !== "hex") parts.push('format="' + quoteAttr(p.format) + '"');
+    if (state.meta.state === "disabled") parts.push("disabled=true");
+    return "{{ uif.colorPicker(" + parts.join(", ") + ") }}";
   }
 
-  function wcComboBox(state) {
+  function wcColorPicker(state) {
     var p = state.props;
-    var placeholder = p.placeholder || "Search destinations";
-    var loading = p.loading === true || p.loading === "true";
-    var allowCustomValue =
-      p.allowCustomValue === true || p.allowCustomValue === "true";
-    var descriptions = p.descriptions === true || p.descriptions === "true";
-    var disabled = state.meta.state === "disabled";
-    var attrs = [
-      'placeholder="' + quoteAttr(placeholder) + '"',
-      'aria-label="Destination search"',
-    ];
-    if (loading) attrs.push("loading");
-    if (allowCustomValue) attrs.push("allow-custom-value");
-    if (disabled) attrs.push("disabled");
-    var options = descriptions
-      ? '\n  <option value="pmi" data-description="Spain">Palma de Mallorca</option>\n  <option value="her" data-description="Greece">Heraklion</option>\n  <option value="fue" data-description="Canary Islands">Fuerteventura</option>\n'
-      : '\n  <option value="pmi">Palma de Mallorca</option>\n  <option value="her">Heraklion</option>\n  <option value="fue">Fuerteventura</option>\n';
-    return "<uif-combobox " + attrs.join(" ") + ">" + options + "</uif-combobox>";
+    var attrs = [];
+    if (p.value) attrs.push('value="' + quoteAttr(p.value) + '"');
+    if (p.format && p.format !== "hex") attrs.push('format="' + quoteAttr(p.format) + '"');
+    if (state.meta.state === "disabled") attrs.push("disabled");
+    return "<uif-color-picker" + (attrs.length ? " " + attrs.join(" ") : "") + "></uif-color-picker>";
   }
 
   function njkForm(state) {
@@ -290,7 +264,7 @@
       label: function () { return '{{ uif.labelContent("text", "icon") }}'; },
       "button-group": function () { return '{% call uif.buttonGroup() %}...{% endcall %}'; },
       select: njkSelect,
-      combobox: njkComboBox,
+      colorPicker: njkColorPicker,
       form: njkForm,
       calendar: njkCalendar,
       divider: function (state) {
@@ -331,37 +305,11 @@
       tabs: function () {
         return '{% call uif.tabList(ariaLabel="Tabs") %}\n  {{ uif.tab("Tab 1", selected=true, controls="p1") }}\n  {{ uif.tab("Tab 2", controls="p2") }}\n{% endcall %}\n{% call uif.tabPanel(id="p1") %}Panel 1{% endcall %}\n{% call uif.tabPanel(id="p2", hidden=true) %}Panel 2{% endcall %}';
       },
-      breadcrumbs: function (state) {
-        var p = state.props;
-        var depth = Math.max(2, Number(p.depth || 4));
-        var labels = ["Home", "Category", "Collection", "Details", "Current page"];
-        var parts = [];
-        for (var i = 0; i < depth; i++) {
-          var item = '{label: "' + quoteAttr(labels[i] || ("Level " + (i + 1))) + '"';
-          if (i < depth - 1) item += ', url: "#' + (i + 1) + '"';
-          if (i === depth - 1) item += ", current: true";
-          item += "}";
-          parts.push(item);
-        }
-        var args = ['items=[' + parts.join(", ") + "]"];
-        if (p.separator && p.separator !== "/") args.push('separator="' + quoteAttr(p.separator) + '"');
-        if (p.collapse && p.collapse !== "responsive") args.push('collapse="' + quoteAttr(p.collapse) + '"');
-        if (p.maxItems && p.maxItems !== "4") args.push('maxItems=' + Number(p.maxItems));
-        return "{{ uif.breadcrumbs(" + args.join(", ") + ") }}";
-      },
       tooltip: function (state) {
         var p = state.props;
         var text = p.text || "Tooltip text";
         var placement = p.placement || "top";
         return '{% call uif.tooltip("' + quoteAttr(text) + '", placement="' + placement + '") %}<button class="uif-button">Hover me</button>{% endcall %}';
-      },
-      table: function (state) {
-        var p = state.props;
-        var density = p.density && p.density !== "default" ? ', density="' + p.density + '"' : "";
-        var selection = p.selection && p.selection !== "none" ? ', selection="' + p.selection + '"' : "";
-        var sortable = p.sortable ? ", sortable=true" : "";
-        var resizable = p.resizable ? ", resizable=true" : "";
-        return '{% call uif.table(caption="Destinations"' + density + selection + sortable + resizable + ') %}\n  {% call uif.tableHead() %}\n    {{ uif.th("Destination") }}\n    {{ uif.th("Departure") }}\n    {{ uif.th("Duration") }}\n    {{ uif.th("Price") }}\n  {% endcall %}\n  {% call uif.tableBody() %}\n    {{ uif.tr(["Mallorca", "15 Aug 2025", "7 nights", "€499"]) }}\n    {{ uif.tr(["Tenerife", "22 Aug 2025", "14 nights", "€799"]) }}\n  {% endcall %}\n{% endcall %}';
       },
     },
     wc: {
@@ -370,7 +318,7 @@
       label: function () { return "<uif-field-label>...</uif-field-label>"; },
       "button-group": function () { return "<uif-button-group>...</uif-button-group>"; },
       select: wcSelect,
-      combobox: wcComboBox,
+      colorPicker: wcColorPicker,
       form: wcForm,
       calendar: function () {
         return "<!-- Calendar is provided as Nunjucks/static HTML in this package. -->";
@@ -413,31 +361,11 @@
       tabs: function () {
         return '<uif-tab-list aria-label="Tabs">\n  <uif-tab label="Tab 1" selected controls="p1"></uif-tab>\n  <uif-tab label="Tab 2" controls="p2"></uif-tab>\n</uif-tab-list>\n<uif-tab-panel id="p1">Panel 1</uif-tab-panel>\n<uif-tab-panel id="p2" hidden>Panel 2</uif-tab-panel>';
       },
-      breadcrumbs: function (state) {
-        var p = state.props;
-        var depth = Math.max(2, Number(p.depth || 4));
-        var labels = ["Home", "Category", "Collection", "Details", "Current page"];
-        var items = [];
-        for (var i = 0; i < depth; i++) {
-          var entry = { label: labels[i] || ("Level " + (i + 1)) };
-          if (i < depth - 1) entry.url = "#" + (i + 1);
-          if (i === depth - 1) entry.current = true;
-          items.push(entry);
-        }
-        var attrs = ['items=\'' + quoteAttr(JSON.stringify(items)) + "'"];
-        if (p.separator && p.separator !== "/") attrs.push('separator="' + quoteAttr(p.separator) + '"');
-        if (p.collapse && p.collapse !== "responsive") attrs.push('collapse="' + quoteAttr(p.collapse) + '"');
-        if (p.maxItems && p.maxItems !== "4") attrs.push('max-items="' + Number(p.maxItems) + '"');
-        return "<uif-breadcrumbs " + attrs.join(" ") + "></uif-breadcrumbs>";
-      },
       tooltip: function (state) {
         var p = state.props;
         var text = p.text || "Tooltip text";
         var placement = p.placement || "top";
         return '<uif-tooltip text="' + quoteAttr(text) + '" placement="' + placement + '">\n  <button class="uif-button">Hover me</button>\n</uif-tooltip>';
-      },
-      table: function () {
-        return "<!-- Table is a CSS/JS pattern — no Web Component variant. Use the HTML output directly. -->";
       },
     },
   };
