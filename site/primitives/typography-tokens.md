@@ -163,6 +163,93 @@ permalink: /primitives/typography/
 </div>
 </section>
 
+<!-- FLUID TYPOGRAPHY -->
+
+<section id="fluid-typography">
+<h2 id="fluid-typography-heading">Fluid Typography</h2>
+<p class="section-description">
+  Large text sizes scale fluidly between viewport boundaries using <code>clamp()</code>. 
+  No breakpoints needed — font sizes interpolate smoothly from mobile to desktop.
+</p>
+
+<div class="type-scale-table-wrap">
+  <table class="type-scale-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Min (375px)</th>
+        <th>Max (1440px)</th>
+        <th>CSS Output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>--fluid-font-size-lg</code></td>
+        <td>1.125rem (18px)</td>
+        <td>1.25rem (20px)</td>
+        <td><code>clamp(1.125rem, 1.081rem + 0.19vw, 1.25rem)</code></td>
+      </tr>
+      <tr>
+        <td><code>--fluid-font-size-xl</code></td>
+        <td>1.25rem (20px)</td>
+        <td>1.5rem (24px)</td>
+        <td><code>clamp(1.25rem, 1.162rem + 0.38vw, 1.5rem)</code></td>
+      </tr>
+      <tr>
+        <td><code>--fluid-font-size-xxl</code></td>
+        <td>1.5rem (20px)</td>
+        <td>2rem (32px)</td>
+        <td><code>clamp(1.5rem, 1.324rem + 0.75vw, 2rem)</code></td>
+      </tr>
+      <tr>
+        <td><code>--fluid-font-size-xxxl</code></td>
+        <td>1.75rem (28px)</td>
+        <td>2.5rem (40px)</td>
+        <td><code>clamp(1.75rem, 1.486rem + 1.13vw, 2.5rem)</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>Line Heights</h3>
+<div class="type-scale-table-wrap">
+  <table class="type-scale-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Min</th>
+        <th>Max</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>--fluid-line-height-lg</code></td><td>1.5rem</td><td>1.75rem</td></tr>
+      <tr><td><code>--fluid-line-height-xl</code></td><td>1.75rem</td><td>2rem</td></tr>
+      <tr><td><code>--fluid-line-height-xxl</code></td><td>2rem</td><td>2.75rem</td></tr>
+      <tr><td><code>--fluid-line-height-xxxl</code></td><td>2.25rem</td><td>3.5rem</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>How it works</h3>
+<ul>
+  <li>Source: <strong>Typography (Liquid)</strong> Figma collection with Min/Max modes</li>
+  <li>Viewport range: <code>375px</code> → <code>1440px</code></li>
+  <li>Below 375px: locks to Min value; above 1440px: locks to Max value</li>
+  <li>Between: interpolates linearly via <code>clamp(min, preferred, max)</code></li>
+</ul>
+
+<h3>Usage</h3>
+
+```css
+.hero-heading {
+  font-size: var(--fluid-font-size-xxxl);
+  line-height: var(--fluid-line-height-xxxl);
+}
+```
+
+<p>Use fluid tokens for headings and large display text. Body text and UI labels should continue using fixed-size tokens for optical precision at small sizes.</p>
+</section>
+
 <!-- USAGE GUIDELINES -->
 
 <section id="usage">
