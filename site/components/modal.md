@@ -25,7 +25,7 @@ playgroundLabel: Open Modal Playground
       <dialog class="uif-modal alert md" open aria-labelledby="docs-modal-title" aria-describedby="docs-modal-description" style="position: relative;">
         <header class="uif-modal-header">
           <h2 class="uif-modal-title" id="docs-modal-title">Delete file?</h2>
-          <button class="uif-modal-close" type="button" aria-label="Close dialog">&times;</button>
+          <button class="uif-button ghost uif-modal-close" type="button" aria-label="Close dialog"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg')" aria-hidden="true"></span></button>
         </header>
         <div class="uif-modal-body">
           <p class="uif-modal-description" id="docs-modal-description">This action cannot be undone.</p>
