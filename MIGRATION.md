@@ -64,6 +64,7 @@ parts follow the same prefix replacement.
 | Label composition | `.uif-label-content`, `.uif-label-content-text`, `.uif-field-label*` | `--uif-field-label-*`; separately governed `--typography-label-*` remains unchanged | `<uif-field-label>` |
 | Link | `.uif-link` | `--uif-link-*` | `<uif-link>` |
 | Progress Circle | `.uif-progress-circle`, `.uif-progress-circle-*` | `--uif-progress-circle-*` | `<uif-progress-circle>` |
+| Progress Bar | `.uif-progress-bar`, `.uif-progress-bar-track`, `.uif-progress-bar-fill`, `.uif-progress-bar-header`, `.uif-progress-bar-label`, `.uif-progress-bar-value` | `--uif-progress-bar-*` | `<uif-progress-bar>` |
 | Radio | `.uif-radio`, `.uif-radio-field`, `.uif-radio-field-text` | `--uif-radio-*` | `<uif-radio>` |
 | RangeSlider | `.uif-range-slider`, `.uif-range-slider-*` | `--uif-range-slider-*` | `<uif-range-slider>` |
 | Select | `.uif-select` | `--uif-select-*` | `<uif-select>` |

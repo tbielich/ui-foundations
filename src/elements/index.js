@@ -44,3 +44,4 @@ export { UINumberField } from "./ui-number-field.js";
 export { UIMenu } from "./ui-menu.js";
 export { UISegmentedControl, UISegmentedControlItem } from "./ui-segmented-control.js";
 export { UIColorPicker } from "./ui-color-picker.js";
+export { UIProgressBar } from "./ui-progress-bar.js";

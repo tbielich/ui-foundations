@@ -13,45 +13,6 @@
 
   const iconSrcFromName = (name) => `/assets/icons/${name}.svg`;
 
-  const parseHexColor = (value) => {
-    const match = String(value || "").trim().match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i);
-    if (!match) return null;
-    const hex = match[1].length === 3
-      ? match[1].split("").map((char) => char + char).join("")
-      : match[1];
-    return {
-      r: Number.parseInt(hex.slice(0, 2), 16),
-      g: Number.parseInt(hex.slice(2, 4), 16),
-      b: Number.parseInt(hex.slice(4, 6), 16),
-    };
-  };
-
-  const rgbToHsl = (r, g, b) => {
-    const rn = r / 255;
-    const gn = g / 255;
-    const bn = b / 255;
-    const max = Math.max(rn, gn, bn);
-    const min = Math.min(rn, gn, bn);
-    const delta = max - min;
-
-    let h = 0;
-    if (delta !== 0) {
-      if (max === rn) h = ((gn - bn) / delta) % 6;
-      else if (max === gn) h = (bn - rn) / delta + 2;
-      else h = (rn - gn) / delta + 4;
-      h = Math.round(h * 60);
-      if (h < 0) h += 360;
-    }
-
-    const l = (max + min) / 2;
-    const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-    return {
-      h,
-      s: Math.round(s * 100),
-      l: Math.round(l * 100),
-    };
-  };
-
   const createIconElement = ({ name, decorative = true, label, color }) => {
     const normalizedName = normalizeIconName(name);
     if (!normalizedName) return null;
@@ -406,77 +367,6 @@
     return { element: wrapper, code };
   };
 
-  const renderVanillaSearchField = ({ props, meta }) => {
-    const previewState = String(meta.state || "default");
-    const placeholder = String(props.placeholder || "Search");
-    const value = String(props.value || "");
-    const quiet = asBoolean(props.quiet);
-    const isDisabled = previewState === "disabled" || Boolean(props.disabled);
-    const isReadonly = previewState === "readonly" || Boolean(props.readonly);
-
-    const wrapper = document.createElement("div");
-    const wrapperClasses = ["uif-search-field"];
-    if (previewState === "hover") wrapperClasses.push("is-hover");
-    if (previewState === "active") wrapperClasses.push("is-active");
-    if (previewState === "focus") wrapperClasses.push("is-focus-visible");
-    if (isDisabled) wrapperClasses.push("is-disabled");
-    if (isReadonly) wrapperClasses.push("is-readonly");
-    if (quiet) wrapperClasses.push("is-quiet");
-    if (props.className) wrapperClasses.push(String(props.className));
-    wrapper.className = wrapperClasses.join(" ");
-    if (quiet) wrapper.dataset.variant = "quiet";
-
-    const startControl = document.createElement("span");
-    startControl.className = "uif-search-field-control";
-    startControl.dataset.slot = "start";
-    const startIcon = createIconElement({ name: "search", decorative: true });
-    if (startIcon) {
-      startIcon.dataset.slot = "start";
-      startControl.appendChild(startIcon);
-    }
-    wrapper.appendChild(startControl);
-
-    const input = document.createElement("input");
-    input.className = "uif-search-field-input";
-    input.type = "search";
-    input.placeholder = placeholder;
-    input.value = value;
-    input.disabled = isDisabled;
-    input.readOnly = isReadonly;
-    wrapper.appendChild(input);
-
-    const endControl = document.createElement("span");
-    endControl.className = "uif-search-field-control";
-    endControl.dataset.slot = "end";
-    const clearButton = document.createElement("button");
-    clearButton.type = "button";
-    clearButton.setAttribute("aria-label", "Clear search");
-    clearButton.tabIndex = -1;
-    if (isDisabled || isReadonly) clearButton.disabled = true;
-    const clearIcon = createIconElement({ name: "cross-circled", decorative: true });
-    if (clearIcon) clearButton.appendChild(clearIcon);
-    endControl.appendChild(clearButton);
-    wrapper.appendChild(endControl);
-
-    const inputAttrs = ['class="uif-search-field-input"', 'type="search"'];
-    if (placeholder) inputAttrs.push(`placeholder="${quoteAttr(placeholder)}"`);
-    if (value) inputAttrs.push(`value="${quoteAttr(value)}"`);
-    if (isDisabled) inputAttrs.push("disabled");
-    if (isReadonly) inputAttrs.push("readonly");
-
-    const code = `<div class="${quoteAttr(wrapper.className)}"${quiet ? ' data-variant="quiet"' : ""}>
-  <span class="uif-search-field-control" data-slot="start">
-    ${iconCode({ name: "search", decorative: true }).replace('class="uif-icon"', 'class="uif-icon" data-slot="start"')}
-  </span>
-  <input ${inputAttrs.join(" ")} />
-  <span class="uif-search-field-control" data-slot="end">
-    <button type="button" aria-label="Clear search" tabindex="-1">${iconCode({ name: "cross-circled", decorative: true })}</button>
-  </span>
-</div>`;
-
-    return { element: wrapper, code };
-  };
-
   const renderVanillaCheckbox = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
     const labelText = String(props.label || "Accept terms");
@@ -713,60 +603,6 @@
     const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
     const iconMarkup = startIcon ? iconCode({ name: startIcon, decorative: true }) : "";
     const code = `<span class="${codeClasses}">${iconMarkup}<span class="uif-badge-text">${quoteAttr(rawText)}</span></span>`;
-
-    return { element, code };
-  };
-
-  const renderVanillaMeter = ({ props }) => {
-    const label = String(props.label || "Storage used");
-    const min = Number.isFinite(Number(props.min)) ? Number(props.min) : 0;
-    const maxRaw = Number.isFinite(Number(props.max)) ? Number(props.max) : 100;
-    const max = maxRaw <= min ? min + 1 : maxRaw;
-    const valueRaw = Number.isFinite(Number(props.value)) ? Number(props.value) : 0;
-    const value = Math.min(max, Math.max(min, valueRaw));
-    const variant = String(props.variant || "default");
-    const size = String(props.size || "md");
-    const resolvedValueText = String(props.valueText || "").trim();
-    const percent = Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
-    const valueText = resolvedValueText || `${Math.round(percent)}%`;
-
-    const element = document.createElement("div");
-    const classes = ["uif-meter"];
-    if (variant && variant !== "default") classes.push(variant);
-    if (size === "sm") classes.push("sm");
-    element.className = classes.join(" ");
-
-    const header = document.createElement("div");
-    header.className = "uif-meter-header";
-
-    const labelNode = document.createElement("span");
-    labelNode.className = "uif-meter-label";
-    labelNode.textContent = label;
-
-    const valueNode = document.createElement("span");
-    valueNode.className = "uif-meter-value";
-    valueNode.textContent = valueText;
-
-    header.append(labelNode, valueNode);
-
-    const track = document.createElement("div");
-    track.className = "uif-meter-track";
-    track.setAttribute("role", "meter");
-    track.setAttribute("aria-label", label);
-    track.setAttribute("aria-valuemin", String(min));
-    track.setAttribute("aria-valuemax", String(max));
-    track.setAttribute("aria-valuenow", String(value));
-    track.setAttribute("aria-valuetext", valueText);
-
-    const fill = document.createElement("span");
-    fill.className = "uif-meter-fill";
-    fill.style.inlineSize = `${percent}%`;
-    track.append(fill);
-
-    element.append(header, track);
-
-    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
-    const code = `<div class="${codeClasses}"><div class="uif-meter-header"><span class="uif-meter-label">${quoteAttr(label)}</span><span class="uif-meter-value">${quoteAttr(valueText)}</span></div><div class="uif-meter-track" role="meter" aria-label="${quoteAttr(label)}" aria-valuemin="${quoteAttr(min)}" aria-valuemax="${quoteAttr(max)}" aria-valuenow="${quoteAttr(value)}" aria-valuetext="${quoteAttr(valueText)}"><span class="uif-meter-fill" style="inline-size: ${quoteAttr(percent)}%;"></span></div></div>`;
 
     return { element, code };
   };
@@ -1111,64 +947,6 @@
     return { element, code };
   };
 
-  const renderVanillaColorPicker = ({ props, meta }) => {
-    const value = String(props.value || "#6366f1");
-    const format = String(props.format || "hex");
-    const disabled = String(meta.state || "default") === "disabled" || asBoolean(props.disabled);
-    const rgb = parseHexColor(value);
-    const hsl = rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : null;
-    const swatches = [
-      "#111827",
-      "#1d4ed8",
-      "#0f766e",
-      "#15803d",
-      "#a16207",
-      "#b91c1c",
-      "#be185d",
-      "#6d28d9",
-    ];
-
-    const rootClasses = ["uif-color-picker"];
-    if (disabled) rootClasses.push("is-disabled");
-    const disabledAttr = disabled ? " disabled" : "";
-    const swatchButtons = swatches
-      .map(
-        (swatch) =>
-          `<button type="button" class="uif-color-picker-grid-item" style="background: ${quoteAttr(swatch)}" aria-label="Select ${quoteAttr(swatch)}"${disabledAttr}></button>`,
-      )
-      .join("");
-
-    const html = `<div class="${rootClasses.join(" ")}" data-format="${quoteAttr(format)}" style="--uif-color-picker-accent-color: ${quoteAttr(value)}">
-  <div class="uif-color-picker-panel">
-    <div class="uif-color-picker-area" role="application" aria-label="Color area">
-      <span class="uif-color-picker-area-thumb" aria-hidden="true"></span>
-    </div>
-    <div class="uif-color-picker-sliders">
-      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value="${hsl ? hsl.h : 0}" aria-label="Hue"${disabledAttr} />
-      <input class="uif-color-picker-slider alpha" type="range" min="0" max="100" value="100" aria-label="Alpha"${disabledAttr} />
-    </div>
-    <div class="uif-color-picker-wheel" role="img" aria-label="Color wheel"></div>
-    <div class="uif-color-picker-swatch" aria-hidden="true"></div>
-    <div class="uif-color-picker-inputs">
-      <label class="uif-color-picker-input-group"><span>HEX</span><input class="uif-color-picker-input" type="text" value="${quoteAttr(value)}"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.r : ""}"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.g : ""}"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.b : ""}"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value="${hsl ? hsl.h : ""}"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="${hsl ? hsl.s : ""}"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="${hsl ? hsl.l : ""}"${disabledAttr} /></label>
-      <label class="uif-color-picker-input-group"><span>A</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="100"${disabledAttr} /></label>
-    </div>
-    <div class="uif-color-picker-grid" role="listbox" aria-label="Swatch picker">${swatchButtons}</div>
-  </div>
-</div>`;
-
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = html;
-    const element = wrapper.firstElementChild;
-    return { element, code: html };
-  };
-
   const renderVanillaTooltip = ({ props, children }) => {
     const text = String(props.text || "Tooltip");
     const placement = String(props.placement || "top");
@@ -1419,6 +1197,231 @@
     return { element, code: html };
   };
 
+  const renderVanillaProgressBar = ({ props }) => {
+    const rawValue = props.value !== undefined && props.value !== "" ? props.value : null;
+    const variant = String(props.variant || "default");
+    const size = String(props.size || "md");
+    const label = String(props.label || "");
+    const showValue = asBoolean(props.showValue);
+    const forceIndeterminate = asBoolean(props.indeterminate);
+
+    const isIndeterminate = forceIndeterminate || rawValue === null || rawValue === "";
+    const value = isIndeterminate ? null : Math.min(100, Math.max(0, parseFloat(rawValue) || 0));
+
+    const classes = ["uif-progress-bar"];
+    if (variant && variant !== "default") classes.push(variant);
+    if (size === "sm") classes.push("sm");
+    if (size === "lg") classes.push("lg");
+    if (isIndeterminate) classes.push("indeterminate");
+
+    const ariaAttrs = isIndeterminate
+      ? `role="progressbar" aria-label="${quoteAttr(label || "Loading")}" aria-valuemin="0" aria-valuemax="100"`
+      : `role="progressbar" aria-label="${quoteAttr(label || "Progress")}" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="100"`;
+
+    let headerHtml = "";
+    if (label || (showValue && !isIndeterminate)) {
+      headerHtml = `<div class="uif-progress-bar-header">`;
+      if (label) headerHtml += `<span class="uif-progress-bar-label">${quoteAttr(label)}</span>`;
+      if (showValue && !isIndeterminate) headerHtml += `<span class="uif-progress-bar-value">${Math.round(value)}%</span>`;
+      headerHtml += `</div>`;
+    }
+
+    const fillStyle = isIndeterminate ? "" : ` style="--_progress: ${value}"`;
+    const html = `<div class="${classes.join(" ")}" ${ariaAttrs}>${headerHtml}<div class="uif-progress-bar-track"><div class="uif-progress-bar-fill"${fillStyle}></div></div></div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+
+    return { element, code: html };
+  };
+
+  const renderVanillaSearchField = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const placeholder = String(props.placeholder || "Search");
+    const value = String(props.value || "");
+    const quiet = asBoolean(props.quiet);
+    const isDisabled = previewState === "disabled" || Boolean(props.disabled);
+    const isReadonly = previewState === "readonly" || Boolean(props.readonly);
+
+    const wrapper = document.createElement("div");
+    const wrapperClasses = ["uif-search-field"];
+    if (previewState === "hover") wrapperClasses.push("is-hover");
+    if (previewState === "active") wrapperClasses.push("is-active");
+    if (previewState === "focus") wrapperClasses.push("is-focus-visible");
+    if (isDisabled) wrapperClasses.push("is-disabled");
+    if (isReadonly) wrapperClasses.push("is-readonly");
+    if (quiet) wrapperClasses.push("is-quiet");
+    if (props.className) wrapperClasses.push(String(props.className));
+    wrapper.className = wrapperClasses.join(" ");
+    if (quiet) wrapper.dataset.variant = "quiet";
+
+    const startControl = document.createElement("span");
+    startControl.className = "uif-search-field-control";
+    startControl.dataset.slot = "start";
+    const startIcon = createIconElement({ name: "search", decorative: true });
+    if (startIcon) {
+      startIcon.dataset.slot = "start";
+      startControl.appendChild(startIcon);
+    }
+    wrapper.appendChild(startControl);
+
+    const input = document.createElement("input");
+    input.className = "uif-search-field-input";
+    input.type = "search";
+    input.placeholder = placeholder;
+    input.value = value;
+    input.disabled = isDisabled;
+    input.readOnly = isReadonly;
+    wrapper.appendChild(input);
+
+    const endControl = document.createElement("span");
+    endControl.className = "uif-search-field-control";
+    endControl.dataset.slot = "end";
+    const clearButton = document.createElement("button");
+    clearButton.type = "button";
+    clearButton.setAttribute("aria-label", "Clear search");
+    clearButton.tabIndex = -1;
+    if (isDisabled || isReadonly) clearButton.disabled = true;
+    const clearIcon = createIconElement({ name: "cross-circled", decorative: true });
+    if (clearIcon) clearButton.appendChild(clearIcon);
+    endControl.appendChild(clearButton);
+    wrapper.appendChild(endControl);
+
+    const inputAttrs = ['class="uif-search-field-input"', 'type="search"'];
+    if (placeholder) inputAttrs.push(`placeholder="${quoteAttr(placeholder)}"`);
+    if (value) inputAttrs.push(`value="${quoteAttr(value)}"`);
+    if (isDisabled) inputAttrs.push("disabled");
+    if (isReadonly) inputAttrs.push("readonly");
+
+    const code = `<div class="${quoteAttr(wrapper.className)}"${quiet ? ' data-variant="quiet"' : ""}>
+  <span class="uif-search-field-control" data-slot="start">
+    ${iconCode({ name: "search", decorative: true }).replace('class="uif-icon"', 'class="uif-icon" data-slot="start"')}
+  </span>
+  <input ${inputAttrs.join(" ")} />
+  <span class="uif-search-field-control" data-slot="end">
+    <button type="button" aria-label="Clear search" tabindex="-1">${iconCode({ name: "cross-circled", decorative: true })}</button>
+  </span>
+</div>`;
+
+    return { element: wrapper, code };
+  };
+
+
+  const renderVanillaMeter = ({ props }) => {
+    const label = String(props.label || "Storage used");
+    const min = Number.isFinite(Number(props.min)) ? Number(props.min) : 0;
+    const maxRaw = Number.isFinite(Number(props.max)) ? Number(props.max) : 100;
+    const max = maxRaw <= min ? min + 1 : maxRaw;
+    const valueRaw = Number.isFinite(Number(props.value)) ? Number(props.value) : 0;
+    const value = Math.min(max, Math.max(min, valueRaw));
+    const variant = String(props.variant || "default");
+    const size = String(props.size || "md");
+    const resolvedValueText = String(props.valueText || "").trim();
+    const percent = Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
+    const valueText = resolvedValueText || `${Math.round(percent)}%`;
+
+    const element = document.createElement("div");
+    const classes = ["uif-meter"];
+    if (variant && variant !== "default") classes.push(variant);
+    if (size === "sm") classes.push("sm");
+    element.className = classes.join(" ");
+
+    const header = document.createElement("div");
+    header.className = "uif-meter-header";
+
+    const labelNode = document.createElement("span");
+    labelNode.className = "uif-meter-label";
+    labelNode.textContent = label;
+
+    const valueNode = document.createElement("span");
+    valueNode.className = "uif-meter-value";
+    valueNode.textContent = valueText;
+
+    header.append(labelNode, valueNode);
+
+    const track = document.createElement("div");
+    track.className = "uif-meter-track";
+    track.setAttribute("role", "meter");
+    track.setAttribute("aria-label", label);
+    track.setAttribute("aria-valuemin", String(min));
+    track.setAttribute("aria-valuemax", String(max));
+    track.setAttribute("aria-valuenow", String(value));
+    track.setAttribute("aria-valuetext", valueText);
+
+    const fill = document.createElement("span");
+    fill.className = "uif-meter-fill";
+    fill.style.inlineSize = `${percent}%`;
+    track.append(fill);
+
+    element.append(header, track);
+
+    const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
+    const code = `<div class="${codeClasses}"><div class="uif-meter-header"><span class="uif-meter-label">${quoteAttr(label)}</span><span class="uif-meter-value">${quoteAttr(valueText)}</span></div><div class="uif-meter-track" role="meter" aria-label="${quoteAttr(label)}" aria-valuemin="${quoteAttr(min)}" aria-valuemax="${quoteAttr(max)}" aria-valuenow="${quoteAttr(value)}" aria-valuetext="${quoteAttr(valueText)}"><span class="uif-meter-fill" style="inline-size: ${quoteAttr(percent)}%;"></span></div></div>`;
+
+    return { element, code };
+  };
+
+
+  const renderVanillaColorPicker = ({ props, meta }) => {
+    const value = String(props.value || "#6366f1");
+    const format = String(props.format || "hex");
+    const disabled = String(meta.state || "default") === "disabled" || asBoolean(props.disabled);
+    const rgb = parseHexColor(value);
+    const hsl = rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : null;
+    const swatches = [
+      "#111827",
+      "#1d4ed8",
+      "#0f766e",
+      "#15803d",
+      "#a16207",
+      "#b91c1c",
+      "#be185d",
+      "#6d28d9",
+    ];
+
+    const rootClasses = ["uif-color-picker"];
+    if (disabled) rootClasses.push("is-disabled");
+    const disabledAttr = disabled ? " disabled" : "";
+    const swatchButtons = swatches
+      .map(
+        (swatch) =>
+          `<button type="button" class="uif-color-picker-grid-item" style="background: ${quoteAttr(swatch)}" aria-label="Select ${quoteAttr(swatch)}"${disabledAttr}></button>`,
+      )
+      .join("");
+
+    const html = `<div class="${rootClasses.join(" ")}" data-format="${quoteAttr(format)}" style="--uif-color-picker-accent-color: ${quoteAttr(value)}">
+  <div class="uif-color-picker-panel">
+    <div class="uif-color-picker-area" role="application" aria-label="Color area">
+      <span class="uif-color-picker-area-thumb" aria-hidden="true"></span>
+    </div>
+    <div class="uif-color-picker-sliders">
+      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value="${hsl ? hsl.h : 0}" aria-label="Hue"${disabledAttr} />
+      <input class="uif-color-picker-slider alpha" type="range" min="0" max="100" value="100" aria-label="Alpha"${disabledAttr} />
+    </div>
+    <div class="uif-color-picker-wheel" role="img" aria-label="Color wheel"></div>
+    <div class="uif-color-picker-swatch" aria-hidden="true"></div>
+    <div class="uif-color-picker-inputs">
+      <label class="uif-color-picker-input-group"><span>HEX</span><input class="uif-color-picker-input" type="text" value="${quoteAttr(value)}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.r : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.g : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value="${rgb ? rgb.b : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value="${hsl ? hsl.h : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="${hsl ? hsl.s : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="${hsl ? hsl.l : ""}"${disabledAttr} /></label>
+      <label class="uif-color-picker-input-group"><span>A</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="100"${disabledAttr} /></label>
+    </div>
+    <div class="uif-color-picker-grid" role="listbox" aria-label="Swatch picker">${swatchButtons}</div>
+  </div>
+</div>`;
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html;
+    const element = wrapper.firstElementChild;
+    return { element, code: html };
+  };
+
+
   const renderVanillaDropzone = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
     const disabled = previewState === "disabled" || asBoolean(props.disabled);
@@ -1487,6 +1490,7 @@
 
     return { element: wrapper, code };
   };
+
 
 
   const renderVanillaRangeSlider = ({ props }) => {
@@ -1615,6 +1619,7 @@
   };
 
 
+
   const renderVanillaStatusLight = ({ props, children }) => {
     const variant = String(props.variant || "neutral");
     const size = String(props.size || "md");
@@ -1641,6 +1646,7 @@
     const code = `<span class="${codeClasses}"><span class="uif-status-light-indicator" aria-hidden="true"></span><span class="uif-status-light-text">${quoteAttr(rawText)}</span></span>`;
     return { element, code };
   };
+
 
 
   const renderVanillaIllustratedMessage = ({ props }) => {
@@ -1719,6 +1725,7 @@
   };
 
 
+
   const renderVanillaProgressCircle = ({ props }) => {
     const size = String(props.size || "md");
     const indeterminate = asBoolean(props.indeterminate);
@@ -1760,6 +1767,7 @@
     const code = `<span ${attrs.join(" ")}><svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle><circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle></svg></span>`;
     return { element, code };
   };
+
 
 
   const renderVanillaMenu = ({ props }) => {
@@ -1825,6 +1833,7 @@
     codeLines.push("</ul>");
     return { element: wrapper, code: codeLines.join("\n") };
   };
+
 
 
   const renderVanillaTreeView = ({ props }) => {
@@ -1911,6 +1920,7 @@
   // ─── Divider ──────────────────────────────────
 
 
+
   const renderVanillaComboBox = ({ props, meta }) => {
     const placeholder = String(props.placeholder || "Search destinations");
     const loading = asBoolean(props.loading);
@@ -1955,6 +1965,7 @@
       code: `<uif-combobox ${attrs.join(" ")}>${optionsCode}\n</uif-combobox>`,
     };
   };
+
 
 
   const renderVanillaPopover = ({ props, children }) => {
@@ -2003,6 +2014,7 @@
 
     return { element: container, code };
   };
+
 
 
   const renderVanillaActionBar = ({ props }) => {
@@ -2063,6 +2075,7 @@
 
     return { element: bar, code };
   };
+
 
 
   const renderVanillaBreadcrumbs = ({ props }) => {
@@ -2181,6 +2194,7 @@
 
   // ─── Calendar ─────────────────────────────────────────────────────
 
+
   const renderVanillaNumberField = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
     const value = props.value != null ? String(props.value) : "";
@@ -2275,6 +2289,7 @@
 
   // ─── Date Picker ──────────────────────────────────────────────────
 
+
   const renderVanillaTable = ({ props }) => {
     const density = String(props.density || "default");
     const selection = String(props.selection || "none");
@@ -2315,6 +2330,7 @@
 
     return { element, code: html };
   };
+
 
 
   const renderVanillaInlineAlert = ({ props }) => {
@@ -2387,6 +2403,7 @@
   };
 
 
+
   const renderVanillaCard = ({ props, children }) => {
     const title =
       typeof children === "undefined" ? "Card title" : String(children || "Card title");
@@ -2457,6 +2474,7 @@
   };
 
 
+
   const renderVanillaSkeleton = ({ props }) => {
     const shape = String(props.shape || "text");
     const size = String(props.size || "md");
@@ -2483,6 +2501,7 @@
   };
 
   // ─── Segmented Control ────────────────────────
+
 
 
   const renderVanillaSegmentedControl = ({ props }) => {
@@ -2519,17 +2538,16 @@
   };
 
 
+
   global.UIPlaygroundRenderers = {
     renderers: {
       badge: renderVanillaBadge,
-      meter: renderVanillaMeter,
       button: renderVanillaButton,
       "button-group": renderVanillaButtonGroup,
       checkbox: renderVanillaCheckbox,
       divider: renderVanillaDivider,
       icon: renderVanillaIcon,
       input: renderVanillaInput,
-      "search-field": renderVanillaSearchField,
       label: renderVanillaLabel,
       link: renderVanillaLink,
       radio: renderVanillaRadio,
@@ -2540,10 +2558,13 @@
       tabs: renderVanillaTabs,
       tooltip: renderVanillaTooltip,
       select: renderVanillaSelect,
-      colorPicker: renderVanillaColorPicker,
       form: renderVanillaForm,
       calendar: renderVanillaCalendar,
       datePicker: renderVanillaDatePicker,
+      "progress-bar": renderVanillaProgressBar,
+      meter: renderVanillaMeter,
+      "search-field": renderVanillaSearchField,
+      colorPicker: renderVanillaColorPicker,
       "status-light": renderVanillaStatusLight,
       card: renderVanillaCard,
       dropzone: renderVanillaDropzone,

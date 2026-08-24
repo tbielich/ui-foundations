@@ -12537,5 +12537,209 @@
         "com.figma.isOverride": true
       }
     }
+  },
+  "Progress Bar": {
+    "Track": {
+      "Background": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9001:1",
+          "com.figma.isOverride": true,
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-bar-track-background)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:338",
+            "targetVariableName": "Color/Fill/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          }
+        }
+      }
+    },
+    "Fill": {
+      "Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9001:2",
+          "com.figma.isOverride": true,
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-bar-fill-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:337",
+            "targetVariableName": "Color/Fill/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          }
+        }
+      },
+      "Positive": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Success"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9001:3",
+          "com.figma.isOverride": true,
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-bar-fill-positive)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:376",
+            "targetVariableName": "Color/Fill/Success",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          }
+        }
+      },
+      "Negative": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Fill/Danger"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9001:4",
+          "com.figma.isOverride": true,
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-bar-fill-negative)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:357",
+            "targetVariableName": "Color/Fill/Danger",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          }
+        }
+      }
+    },
+    "Label": {
+      "Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9001:5",
+          "com.figma.isOverride": true,
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-progress-bar-label-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:326",
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          }
+        }
+      }
+    },
+    "Border Radius": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Size/Radius/full"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9001:6",
+        "com.figma.isOverride": true,
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-progress-bar-border-radius)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:1:251",
+          "targetVariableName": "Size/Radius/full",
+          "targetVariableSetId": "VariableCollectionId:1:200",
+          "targetVariableSetName": "Core (Primitives)"
+        }
+      }
+    },
+    "Height SM": {
+      "$type": "number",
+      "$value": 4,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9001:7",
+        "com.figma.isOverride": true,
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-progress-bar-height-sm)"
+        }
+      }
+    },
+    "Height MD": {
+      "$type": "number",
+      "$value": 8,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9001:8",
+        "com.figma.isOverride": true,
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-progress-bar-height-md)"
+        }
+      }
+    },
+    "Height LG": {
+      "$type": "number",
+      "$value": 12,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9001:9",
+        "com.figma.isOverride": true,
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-progress-bar-height-lg)"
+        }
+      }
+    },
+    "Gap": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Size/Spacing/200"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9001:10",
+        "com.figma.isOverride": true,
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-progress-bar-gap)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:1:230",
+          "targetVariableName": "Size/Spacing/200",
+          "targetVariableSetId": "VariableCollectionId:1:200",
+          "targetVariableSetName": "Core (Primitives)"
+        }
+      }
+    }
   }
 }

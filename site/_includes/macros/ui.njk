@@ -810,3 +810,29 @@
 {%- if not animated -%}{%- set classes = classes + " no-animation" -%}{%- endif -%}
 <span class="{{ classes }}" role="status" aria-label="Loading…" aria-busy="true"></span>
 {%- endmacro %}
+{% macro progressBar(value='', variant='', size='', label='', showValue=false, indeterminate=false) -%}
+{%- set classes = "uif-progress-bar" -%}
+{%- if variant and variant != "default" -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+{%- if size == "lg" -%}{%- set classes = classes + " lg" -%}{%- endif -%}
+{%- if indeterminate or value === "" -%}{%- set classes = classes + " indeterminate" -%}{%- endif -%}
+{%- if indeterminate or value === "" -%}
+<div class="{{ classes }}" role="progressbar" aria-label="{{ label or "Loading" }}" aria-valuemin="0" aria-valuemax="100">
+{%- else -%}
+<div class="{{ classes }}" role="progressbar" aria-label="{{ label or "Progress" }}" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100">
+{%- endif -%}
+{%- if label or (showValue and not indeterminate) %}
+  <div class="uif-progress-bar-header">
+    {%- if label %}<span class="uif-progress-bar-label">{{ label }}</span>{% endif -%}
+    {%- if showValue and not indeterminate %}<span class="uif-progress-bar-value">{{ value }}%</span>{% endif %}
+  </div>
+{%- endif %}
+  <div class="uif-progress-bar-track">
+    {%- if indeterminate or value === "" %}
+    <div class="uif-progress-bar-fill"></div>
+    {%- else %}
+    <div class="uif-progress-bar-fill" style="--_progress: {{ value }}"></div>
+    {%- endif %}
+  </div>
+</div>
+{%- endmacro %}
