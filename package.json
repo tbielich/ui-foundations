@@ -72,6 +72,7 @@
     "./elements/ui-tabs": "./dist/elements/ui-tabs.js",
     "./elements/ui-tree-view": "./dist/elements/ui-tree-view.js",
     "./elements/ui-tooltip": "./dist/elements/ui-tooltip.js",
+    "./elements/ui-modal": "./dist/elements/ui-modal.js",
     "./elements/ui-select": "./dist/elements/ui-select.js",
     "./elements/ui-link": "./dist/elements/ui-link.js",
     "./elements/ui-breadcrumbs": "./dist/elements/ui-breadcrumbs.js",

@@ -497,6 +497,34 @@
   {%- if icon %}<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ icon }}.svg');" aria-hidden="true"></span>{% endif -%}
   {{ label }}
 </button>
+{% macro modal(title='Dialog', description='', variant='confirmation', size='m', dismissible=true, open=true, confirmLabel='Confirm', cancelLabel='Cancel', className='') -%}
+{%- set resolvedVariant = "alert" if variant == "alert" else "confirmation" -%}
+{%- set resolvedSize = "sm" if size == "s" else ("lg" if size == "l" else "md") -%}
+{%- set rootClasses = "uif-modal-root" -%}
+{%- set modalClasses = "uif-modal " + resolvedVariant + " " + resolvedSize -%}
+{%- if open -%}{%- set rootClasses = rootClasses + " is-open" -%}{%- endif -%}
+{%- if className -%}{%- set modalClasses = modalClasses + " " + className -%}{%- endif -%}
+<div class="{{ rootClasses }}"{% if not open %} hidden{% endif %}>
+  {%- if dismissible -%}
+  <button class="uif-modal-overlay" type="button" aria-label="Dismiss dialog"></button>
+  {%- else -%}
+  <span class="uif-modal-overlay" aria-hidden="true"></span>
+  {%- endif -%}
+  <section class="{{ modalClasses }}" role="dialog" aria-modal="true">
+    <header class="uif-modal-header">
+      <h2 class="uif-modal-title">{{ title }}</h2>
+      {%- if dismissible -%}<button class="uif-modal-close" type="button" aria-label="Close dialog">×</button>{%- endif -%}
+    </header>
+    <div class="uif-modal-body">
+      {%- if description %}<p class="uif-modal-description">{{ description }}</p>{% endif -%}
+      {{ caller() }}
+    </div>
+    <footer class="uif-modal-actions">
+      {%- if dismissible -%}<button class="uif-button outline" type="button">{{ cancelLabel }}</button>{%- endif -%}
+      <button class="uif-button solid" type="button">{{ confirmLabel }}</button>
+    </footer>
+  </section>
+</div>
 {%- endmacro %}
 
 {% macro form(borderless=false, className='') -%}

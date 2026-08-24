@@ -112,6 +112,7 @@ const VAULT_NAMING_CONTRACT = Object.freeze({
       "popover",
       "meter",
       "progress-bar",
+      "modal",
       "radio",
       "range-slider",
       "segmented-control",

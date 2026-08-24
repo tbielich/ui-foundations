@@ -49,6 +49,7 @@ by the importing consumer changes in canonical examples and generated output.
 | `<ui-tab>` | `<uif-tab>` |
 | `<ui-tab-panel>` | `<uif-tab-panel>` |
 | `<ui-tooltip>` | `<uif-tooltip>` |
+| `<ui-modal>` | `<uif-modal>` |
 | `<ui-select>` | `<uif-select>` |
 | `<ui-link>` | `<uif-link>` |
 | `<ui-field-label>` | `<uif-field-label>` |

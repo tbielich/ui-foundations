@@ -181,6 +181,26 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>Breadcrumbs</h2>
       <p>Hierarchical navigation with separators, truncation, and responsive collapse.</p>
+  <a class="docs-component-card" href="/patterns/modal/">
+    <div class="docs-component-card-preview">
+      <div class="uif-modal-root is-preview is-open">
+        <span class="uif-modal-overlay" aria-hidden="true"></span>
+        <section class="uif-modal confirmation sm" role="dialog" aria-modal="true">
+          <header class="uif-modal-header">
+            <h2 class="uif-modal-title">Confirm action</h2>
+          </header>
+          <div class="uif-modal-body">
+            <p class="uif-modal-description">Proceed with this change?</p>
+          </div>
+          <footer class="uif-modal-actions">
+            <button class="uif-button solid" type="button">Confirm</button>
+          </footer>
+        </section>
+      </div>
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Modal</h2>
+      <p>Focused dialogs for alerts and confirmations with trapped focus and backdrop overlay.</p>
     </div>
   </a>
   <a class="docs-component-card" href="/patterns/select/">

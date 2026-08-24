@@ -65,6 +65,7 @@ parts follow the same prefix replacement.
 | Link | `.uif-link` | `--uif-link-*` | `<uif-link>` |
 | Progress Circle | `.uif-progress-circle`, `.uif-progress-circle-*` | `--uif-progress-circle-*` | `<uif-progress-circle>` |
 | Progress Bar | `.uif-progress-bar`, `.uif-progress-bar-track`, `.uif-progress-bar-fill`, `.uif-progress-bar-header`, `.uif-progress-bar-label`, `.uif-progress-bar-value` | `--uif-progress-bar-*` | `<uif-progress-bar>` |
+| Modal | `.uif-modal`, `.uif-modal-*` | `--uif-modal-*` | `<uif-modal>` |
 | Radio | `.uif-radio`, `.uif-radio-field`, `.uif-radio-field-text` | `--uif-radio-*` | `<uif-radio>` |
 | RangeSlider | `.uif-range-slider`, `.uif-range-slider-*` | `--uif-range-slider-*` | `<uif-range-slider>` |
 | Select | `.uif-select` | `--uif-select-*` | `<uif-select>` |
