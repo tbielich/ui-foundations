@@ -34,9 +34,9 @@ playgroundLabel: Open Table Playground
           </tr>
         {% endcall %}
         {% call uif.tableBody() %}
-          {{ uif.tr(["Mallorca", "15 Aug 2025", "7 nights", "£499"]) }}
-          {{ uif.tr(["Tenerife", "22 Aug 2025", "14 nights", "£799"]) }}
-          {{ uif.tr(["Lanzarote", "01 Sep 2025", "10 nights", "£649"], selected=true) }}
+          {{ uif.tr(["Mallorca", "15 Aug 2025", "7 nights", "€499"]) }}
+          {{ uif.tr(["Tenerife", "22 Aug 2025", "14 nights", "€799"]) }}
+          {{ uif.tr(["Lanzarote", "01 Sep 2025", "10 nights", "€649"], selected=true) }}
         {% endcall %}
       {% endcall %}
     </div>
@@ -91,7 +91,7 @@ playgroundLabel: Open Table Playground
     <div class="docs-behavior-preview" style="inline-size: 100%;">
       {% call uif.table() %}
         {% call uif.tableHead() %}<tr>{{ uif.th("Destination", sort=true) }}{{ uif.th("Price", sort=true) }}</tr>{% endcall %}
-        {% call uif.tableBody() %}{{ uif.tr(["Mallorca", "£499"]) }}{{ uif.tr(["Tenerife", "£799"]) }}{% endcall %}
+        {% call uif.tableBody() %}{{ uif.tr(["Mallorca", "€499"]) }}{{ uif.tr(["Tenerife", "€799"]) }}{% endcall %}
       {% endcall %}
     </div>
     <div class="docs-behavior-body">
@@ -104,8 +104,8 @@ playgroundLabel: Open Table Playground
       {% call uif.table(selection="single") %}
         {% call uif.tableHead() %}<tr>{{ uif.th("Destination") }}{{ uif.th("Price") }}</tr>{% endcall %}
         {% call uif.tableBody() %}
-          {{ uif.tr(["Mallorca", "£499"], selected=true) }}
-          {{ uif.tr(["Tenerife", "£799"]) }}
+          {{ uif.tr(["Mallorca", "€499"], selected=true) }}
+          {{ uif.tr(["Tenerife", "€799"]) }}
         {% endcall %}
       {% endcall %}
     </div>
@@ -118,7 +118,7 @@ playgroundLabel: Open Table Playground
     <div class="docs-behavior-preview" style="inline-size: 100%;">
       {% call uif.table() %}
         {% call uif.tableHead() %}<tr>{{ uif.th("Destination", resizable=true) }}{{ uif.th("Departure", resizable=true) }}{{ uif.th("Price") }}</tr>{% endcall %}
-        {% call uif.tableBody() %}{{ uif.tr(["Mallorca", "15 Aug 2025", "£499"]) }}{% endcall %}
+        {% call uif.tableBody() %}{{ uif.tr(["Mallorca", "15 Aug 2025", "€499"]) }}{% endcall %}
       {% endcall %}
     </div>
     <div class="docs-behavior-body">
@@ -132,13 +132,13 @@ playgroundLabel: Open Table Playground
         <table class="uif-table">
           <thead><tr><th>Destination</th><th>Price</th></tr></thead>
           <tbody>
-            <tr><td>Mallorca</td><td>£499</td></tr>
-            <tr><td>Tenerife</td><td>£799</td></tr>
-            <tr><td>Lanzarote</td><td>£649</td></tr>
-            <tr><td>Rhodes</td><td>£589</td></tr>
-            <tr><td>Gran Canaria</td><td>£529</td></tr>
-            <tr><td>Ibiza</td><td>£459</td></tr>
-            <tr><td>Fuerteventura</td><td>£699</td></tr>
+            <tr><td>Mallorca</td><td>€499</td></tr>
+            <tr><td>Tenerife</td><td>€799</td></tr>
+            <tr><td>Lanzarote</td><td>€649</td></tr>
+            <tr><td>Rhodes</td><td>€589</td></tr>
+            <tr><td>Gran Canaria</td><td>€529</td></tr>
+            <tr><td>Ibiza</td><td>€459</td></tr>
+            <tr><td>Fuerteventura</td><td>€699</td></tr>
           </tbody>
         </table>
       </div>
@@ -161,10 +161,10 @@ playgroundLabel: Open Table Playground
         <table class="uif-table uif-table--compact" style="inline-size: 100%;">
           <thead><tr><th>Name</th><th>Price</th></tr></thead>
           <tbody>
-            <tr><td>Mallorca</td><td>£499</td></tr>
-            <tr><td>Tenerife</td><td>£799</td></tr>
-            <tr><td>Lanzarote</td><td>£649</td></tr>
-            <tr><td>Rhodes</td><td>£589</td></tr>
+            <tr><td>Mallorca</td><td>€499</td></tr>
+            <tr><td>Tenerife</td><td>€799</td></tr>
+            <tr><td>Lanzarote</td><td>€649</td></tr>
+            <tr><td>Rhodes</td><td>€589</td></tr>
           </tbody>
         </table>
       </div>
@@ -177,10 +177,10 @@ playgroundLabel: Open Table Playground
         <table class="uif-table" style="inline-size: 100%;">
           <thead><tr><th>Name</th><th>Price</th></tr></thead>
           <tbody>
-            <tr><td>Mallorca</td><td>£499</td></tr>
-            <tr><td>Tenerife</td><td>£799</td></tr>
-            <tr><td>Lanzarote</td><td>£649</td></tr>
-            <tr><td>Rhodes</td><td>£589</td></tr>
+            <tr><td>Mallorca</td><td>€499</td></tr>
+            <tr><td>Tenerife</td><td>€799</td></tr>
+            <tr><td>Lanzarote</td><td>€649</td></tr>
+            <tr><td>Rhodes</td><td>€589</td></tr>
           </tbody>
         </table>
       </div>
@@ -193,10 +193,10 @@ playgroundLabel: Open Table Playground
         <table class="uif-table uif-table--spacious" style="inline-size: 100%;">
           <thead><tr><th>Name</th><th>Price</th></tr></thead>
           <tbody>
-            <tr><td>Mallorca</td><td>£499</td></tr>
-            <tr><td>Tenerife</td><td>£799</td></tr>
-            <tr><td>Lanzarote</td><td>£649</td></tr>
-            <tr><td>Rhodes</td><td>£589</td></tr>
+            <tr><td>Mallorca</td><td>€499</td></tr>
+            <tr><td>Tenerife</td><td>€799</td></tr>
+            <tr><td>Lanzarote</td><td>€649</td></tr>
+            <tr><td>Rhodes</td><td>€589</td></tr>
           </tbody>
         </table>
       </div>
@@ -238,8 +238,8 @@ playgroundLabel: Open Table Playground
       {% call uif.table(selection="single") %}
         {% call uif.tableHead() %}<tr>{{ uif.th("Destination") }}{{ uif.th("Price") }}</tr>{% endcall %}
         {% call uif.tableBody() %}
-          {{ uif.tr(["Mallorca", "£499"], selected=true) }}
-          {{ uif.tr(["Tenerife", "£799"]) }}
+          {{ uif.tr(["Mallorca", "€499"], selected=true) }}
+          {{ uif.tr(["Tenerife", "€799"]) }}
         {% endcall %}
       {% endcall %}
     </div>
@@ -253,8 +253,8 @@ playgroundLabel: Open Table Playground
       {% call uif.table(selection="single") %}
         {% call uif.tableHead() %}<tr>{{ uif.th("Destination") }}{{ uif.th("Price") }}</tr>{% endcall %}
         {% call uif.tableBody() %}
-          {{ uif.tr(["Mallorca", "£499"]) }}
-          {{ uif.tr(["Tenerife", "£799"]) }}
+          {{ uif.tr(["Mallorca", "€499"]) }}
+          {{ uif.tr(["Tenerife", "€799"]) }}
         {% endcall %}
       {% endcall %}
     </div>
@@ -321,7 +321,7 @@ Keep column headers short — 1–3 words. Use sentence case, not title case. Av
     <div class="docs-guideline-preview" style="inline-size: 100%;">
       {% call uif.table() %}
         {% call uif.tableHead() %}<tr>{{ uif.th("Destination") }}{{ uif.th("Departure date") }}{{ uif.th("Price") }}</tr>{% endcall %}
-        {% call uif.tableBody() %}{{ uif.tr(["Mallorca", "15 Aug 2025", "£499"]) }}{% endcall %}
+        {% call uif.tableBody() %}{{ uif.tr(["Mallorca", "15 Aug 2025", "€499"]) }}{% endcall %}
       {% endcall %}
     </div>
     <div class="docs-guideline-body">
@@ -332,7 +332,7 @@ Keep column headers short — 1–3 words. Use sentence case, not title case. Av
   <div class="docs-guideline-item" data-type="dont">
     <div class="docs-guideline-preview" style="inline-size: 100%;">
       {% call uif.table() %}
-        {% call uif.tableHead() %}<tr>{{ uif.th("Dest.") }}{{ uif.th("Dep. Dt.") }}{{ uif.th("Pr. (£)") }}</tr>{% endcall %}
+        {% call uif.tableHead() %}<tr>{{ uif.th("Dest.") }}{{ uif.th("Dep. Dt.") }}{{ uif.th("Pr. (€)") }}</tr>{% endcall %}
         {% call uif.tableBody() %}{{ uif.tr(["Mallorca", "15/08/25", "499"]) }}{% endcall %}
       {% endcall %}
     </div>
@@ -379,7 +379,7 @@ For the full theming architecture — brands, modes, and how tokens cascade — 
       </tr>
     </thead>
     <tbody>
-      <tr><td>Mallorca</td><td>15 Aug 2025</td><td>£499</td></tr>
+      <tr><td>Mallorca</td><td>15 Aug 2025</td><td>€499</td></tr>
     </tbody>
   </table>
 </div>

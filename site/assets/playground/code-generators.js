@@ -298,7 +298,7 @@
         var selection = p.selection && p.selection !== "none" ? ', selection="' + p.selection + '"' : "";
         var sortable = p.sortable ? ", sortable=true" : "";
         var resizable = p.resizable ? ", resizable=true" : "";
-        return '{% call uif.table(caption="Destinations"' + density + selection + sortable + resizable + ') %}\n  {% call uif.tableHead() %}\n    {{ uif.th("Destination") }}\n    {{ uif.th("Departure") }}\n    {{ uif.th("Duration") }}\n    {{ uif.th("Price") }}\n  {% endcall %}\n  {% call uif.tableBody() %}\n    {{ uif.tr(["Mallorca", "15 Aug 2025", "7 nights", "£499"]) }}\n    {{ uif.tr(["Tenerife", "22 Aug 2025", "14 nights", "£799"]) }}\n  {% endcall %}\n{% endcall %}';
+        return '{% call uif.table(caption="Destinations"' + density + selection + sortable + resizable + ') %}\n  {% call uif.tableHead() %}\n    {{ uif.th("Destination") }}\n    {{ uif.th("Departure") }}\n    {{ uif.th("Duration") }}\n    {{ uif.th("Price") }}\n  {% endcall %}\n  {% call uif.tableBody() %}\n    {{ uif.tr(["Mallorca", "15 Aug 2025", "7 nights", "€499"]) }}\n    {{ uif.tr(["Tenerife", "22 Aug 2025", "14 nights", "€799"]) }}\n  {% endcall %}\n{% endcall %}';
       },
     },
     wc: {

@@ -1200,11 +1200,11 @@
   // ─── Table ────────────────────────────────────
 
   const TABLE_ROWS = [
-    ["Mallorca", "15 Aug 2025", "7 nights", "£499"],
-    ["Tenerife", "22 Aug 2025", "14 nights", "£799"],
-    ["Lanzarote", "01 Sep 2025", "10 nights", "£649"],
-    ["Fuerteventura", "10 Sep 2025", "7 nights", "£529"],
-    ["Rhodes", "18 Sep 2025", "7 nights", "£589"],
+    ["Mallorca", "15 Aug 2025", "7 nights", "€499"],
+    ["Tenerife", "22 Aug 2025", "14 nights", "€799"],
+    ["Lanzarote", "01 Sep 2025", "10 nights", "€649"],
+    ["Fuerteventura", "10 Sep 2025", "7 nights", "€529"],
+    ["Rhodes", "18 Sep 2025", "7 nights", "€589"],
   ];
 
   const renderVanillaTable = ({ props }) => {

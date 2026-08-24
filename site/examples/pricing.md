@@ -146,7 +146,7 @@ breadcrumb:
   <article class="pricing-card" role="listitem">
     <div class="pricing-card-header">
       <h3 class="pricing-card-plan">Starter</h3>
-      <p class="pricing-card-price">$9<span class="pricing-card-price-period"> / mo</span></p>
+      <p class="pricing-card-price">€9<span class="pricing-card-price-period"> / mo</span></p>
       <p class="pricing-card-subtitle">For individuals getting started.</p>
     </div>
     <ul class="pricing-card-features">
@@ -177,7 +177,7 @@ breadcrumb:
     {{ uif.badge("Recommended", variant="brand", size="sm") }}
     <div class="pricing-card-header">
       <h3 class="pricing-card-plan">Pro</h3>
-      <p class="pricing-card-price">$29<span class="pricing-card-price-period"> / mo</span></p>
+      <p class="pricing-card-price">€29<span class="pricing-card-price-period"> / mo</span></p>
       <p class="pricing-card-subtitle">For growing teams that need more.</p>
     </div>
     <ul class="pricing-card-features">
@@ -211,7 +211,7 @@ breadcrumb:
   <article class="pricing-card" role="listitem">
     <div class="pricing-card-header">
       <h3 class="pricing-card-plan">Business</h3>
-      <p class="pricing-card-price">$79<span class="pricing-card-price-period"> / mo</span></p>
+      <p class="pricing-card-price">€79<span class="pricing-card-price-period"> / mo</span></p>
       <p class="pricing-card-subtitle">For organizations at scale.</p>
     </div>
     <ul class="pricing-card-features">
