@@ -535,6 +535,21 @@
   <span class="uif-dropzone-hint">{{ hint }}</span>
   <button class="uif-button outline uif-dropzone-button" type="button"{% if disabled %} disabled{% endif %}>{{ buttonLabel }}</button>
   <span class="uif-dropzone-files" aria-live="polite">{{ filesText if filesText else ("Files selected" if filled else "No files selected") }}</span>
+{% macro numberField(value='', min='', max='', step='', format='', placeholder='0', disabled=false, readonly=false, state='default', className='', id='', name='') -%}
+{%- set wrapperClasses = "uif-input-field uif-number-field" -%}
+{%- if state == "hover" -%}{%- set wrapperClasses = wrapperClasses + " is-hover" -%}{%- endif -%}
+{%- if state == "active" -%}{%- set wrapperClasses = wrapperClasses + " is-active" -%}{%- endif -%}
+{%- if state == "focus" -%}{%- set wrapperClasses = wrapperClasses + " is-focus-visible" -%}{%- endif -%}
+{%- if state == "disabled" or disabled -%}{%- set wrapperClasses = wrapperClasses + " is-disabled" -%}{%- endif -%}
+{%- if className -%}{%- set wrapperClasses = wrapperClasses + " " + className -%}{%- endif -%}
+<div class="{{ wrapperClasses }}">
+  {%- if format == "currency" -%}<span class="uif-number-field-prefix" aria-hidden="true">$</span>{%- endif -%}
+  <input class="uif-input" type="number"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if min %} min="{{ min }}"{% endif %}{% if max %} max="{{ max }}"{% endif %}{% if step %} step="{{ step }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %}{% if readonly %} readonly{% endif %} />
+  {%- if format == "percent" -%}<span class="uif-number-field-suffix" aria-hidden="true">%</span>{%- endif -%}
+  <span class="uif-input-field-control">
+    <button type="button" aria-label="Decrease value"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/minus-circled.svg');" aria-hidden="true"></span></button>
+    <button type="button" aria-label="Increase value"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/plus-circled.svg');" aria-hidden="true"></span></button>
+  </span>
 </div>
 {%- endmacro %}
 
