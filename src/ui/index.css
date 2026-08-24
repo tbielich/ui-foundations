@@ -11,6 +11,7 @@
 @import url("./patterns/range-slider.css") layer(components);
 @import url("./patterns/badge.css") layer(components);
 @import url("./patterns/status-light.css") layer(components);
+@import url("./patterns/meter.css") layer(components);
 @import url("./patterns/divider.css") layer(components);
 @import url("./patterns/textarea.css") layer(components);
 @import url("./patterns/avatar.css") layer(components);

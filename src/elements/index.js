@@ -21,6 +21,7 @@ export { UISwitch } from "./ui-switch.js";
 export { UIRangeSlider } from "./ui-range-slider.js";
 export { UIBadge } from "./ui-badge.js";
 export { UIStatusLight } from "./ui-status-light.js";
+export { UIMeter } from "./ui-meter.js";
 export { UIDivider } from "./ui-divider.js";
 export { UITextarea } from "./ui-textarea.js";
 export { UIAvatar } from "./ui-avatar.js";

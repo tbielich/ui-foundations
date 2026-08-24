@@ -71,6 +71,13 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2>Status Light</h2>
       <p>Compact semantic status indicator with optional label and size variants.</p>
+  <a class="docs-component-card" href="/patterns/meter/">
+    <div class="docs-component-card-preview" style="min-inline-size: 12rem;">
+      {{ uif.meter(label="Storage used", value=72, variant="positive", size="sm") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Meter</h2>
+      <p>Visual indicator of a value within a known range.</p>
     </div>
   </a>
   <a class="docs-component-card" href="/patterns/label/">

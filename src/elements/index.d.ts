@@ -28,6 +28,7 @@ export declare class UISwitch extends UIElement {}
 export declare class UIRangeSlider extends UIElement {}
 export declare class UIBadge extends UIElement {}
 export declare class UIStatusLight extends UIElement {}
+export declare class UIMeter extends UIElement {}
 export declare class UIDivider extends UIElement {}
 export declare class UITextarea extends UIElement {}
 export declare class UIAvatar extends UIElement {}
@@ -69,6 +70,7 @@ declare global {
     "uif-range-slider": UIRangeSlider;
     "uif-badge": UIBadge;
     "uif-status-light": UIStatusLight;
+    "uif-meter": UIMeter;
     "uif-divider": UIDivider;
     "uif-textarea": UITextarea;
     "uif-avatar": UIAvatar;

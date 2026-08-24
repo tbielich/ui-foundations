@@ -81,7 +81,8 @@
     "./elements/ui-card": "./dist/elements/ui-card.js",
     "./elements/ui-dropzone": "./dist/elements/ui-dropzone.js",
     "./elements/ui-color-picker": "./dist/elements/ui-color-picker.js",
-    "./elements/ui-search-field": "./dist/elements/ui-search-field.js"
+    "./elements/ui-search-field": "./dist/elements/ui-search-field.js",
+    "./elements/ui-meter": "./dist/elements/ui-meter.js"
   },
   "scripts": {
     "icons:generate-list": "node scripts/generate-icon-list.mjs",
