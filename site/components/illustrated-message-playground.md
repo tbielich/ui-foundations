@@ -4,14 +4,14 @@ title: Illustrated Message Playground
 description: Interactive preview for the Illustrated Message component.
 navTitle: Illustrated Message Playground
 order: 19
-permalink: /patterns/illustrated-message-playground/
+permalink: /components/illustrated-message-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Patterns
-    url: /patterns/
+  - label: Components
+    url: /components/
   - label: Illustrated Message
-    url: /patterns/illustrated-message/
+    url: /components/illustrated-message/
   - label: Playground
 playground:
   id: illustrated-message-playground

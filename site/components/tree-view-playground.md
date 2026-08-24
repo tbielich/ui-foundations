@@ -4,14 +4,14 @@ title: TreeView Playground
 description: Interactive preview for the TreeView component.
 navTitle: TreeView Playground
 order: 23
-permalink: /patterns/tree-view-playground/
+permalink: /components/tree-view-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Patterns
-    url: /patterns/
+  - label: Components
+    url: /components/
   - label: TreeView
-    url: /patterns/tree-view/
+    url: /components/tree-view/
   - label: Playground
 playground:
   id: tree-view-playground

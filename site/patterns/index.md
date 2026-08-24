@@ -58,15 +58,6 @@ permalink: /patterns/
   </article>
   <article class="docs-component-card">
     <div class="docs-component-card-preview">
-      {{ uif.illustratedMessage(preset="empty", actionLabel="Create item") }}
-    </div>
-    <div class="docs-component-card-body">
-      <h2><a href="/patterns/illustrated-message/">Illustrated Message</a></h2>
-      <p>Empty, error, and no-results messaging with optional recovery actions.</p>
-    </div>
-  </article>
-  <article class="docs-component-card">
-    <div class="docs-component-card-preview">
       {{ uif.statusLight("Online", variant="positive") }}
       {{ uif.statusLight("Offline", variant="negative") }}
     </div>
@@ -94,15 +85,6 @@ permalink: /patterns/
     <div class="docs-component-card-body">
       <h2><a href="/patterns/label/">Label</a></h2>
       <p>Text and icon primitives for components and form fields.</p>
-    </div>
-  </article>
-  <article class="docs-component-card">
-    <div class="docs-component-card-preview">
-      {{ uif.combobox(options=[{value: "pmi", label: "Palma de Mallorca"}, {value: "her", label: "Heraklion"}], placeholder="Search destinations") }}
-    </div>
-    <div class="docs-component-card-body">
-      <h2><a href="/patterns/combobox/">ComboBox</a></h2>
-      <p>Input field with autocomplete filtering and expandable suggestions.</p>
     </div>
   </article>
   <article class="docs-component-card">

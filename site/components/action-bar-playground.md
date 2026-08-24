@@ -4,14 +4,14 @@ title: Action Bar Playground
 description: Interactive vanilla preview for the Action Bar component.
 navTitle: Action Bar Playground
 order: 50
-permalink: /patterns/action-bar-playground/
+permalink: /components/action-bar-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Patterns
-    url: /patterns/
+  - label: Components
+    url: /components/
   - label: Action Bar
-    url: /patterns/action-bar/
+    url: /components/action-bar/
   - label: Playground
 playground:
   id: action-bar-playground

@@ -4,8 +4,8 @@ title: Action Bar
 description: A contextual sticky toolbar for bulk actions on selected items. Appears on selection, displays item count, and provides action buttons with select-all and dismiss controls.
 navTitle: Action Bar
 order: 49
-permalink: /patterns/action-bar/
-playgroundUrl: /patterns/action-bar-playground/
+permalink: /components/action-bar/
+playgroundUrl: /components/action-bar-playground/
 playgroundLabel: Open Action Bar Playground
 ---
 {% import "macros/ui.njk" as uif %}

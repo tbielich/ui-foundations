@@ -4,8 +4,8 @@ title: TreeView
 description: Hierarchical tree structure for nested data with expand/collapse, selection, keyboard navigation, drag-and-drop reorder, and lazy loading hooks.
 navTitle: TreeView
 order: 23
-permalink: /patterns/tree-view/
-playgroundUrl: /patterns/tree-view-playground/
+permalink: /components/tree-view/
+playgroundUrl: /components/tree-view-playground/
 playgroundLabel: Open TreeView Playground
 ---
 {% import "macros/ui.njk" as uif %}

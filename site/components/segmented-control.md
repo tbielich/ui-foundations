@@ -4,8 +4,8 @@ title: Segmented Control
 description: Mutually exclusive option selector. Each segment is a button; only one can be active at a time. Supports icon + label, size variants, and disabled segments.
 navTitle: Segmented Control
 order: 21
-permalink: /patterns/segmented-control/
-playgroundUrl: /patterns/segmented-control-playground/
+permalink: /components/segmented-control/
+playgroundUrl: /components/segmented-control-playground/
 playgroundLabel: Open Segmented Control Playground
 ---
 {% import "macros/ui.njk" as uif %}

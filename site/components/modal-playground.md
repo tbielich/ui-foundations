@@ -4,14 +4,14 @@ title: Modal Playground
 description: Interactive preview for the Modal component.
 navTitle: Modal Playground
 order: 22
-permalink: /patterns/modal-playground/
+permalink: /components/modal-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Patterns
-    url: /patterns/
+  - label: Components
+    url: /components/
   - label: Modal
-    url: /patterns/modal/
+    url: /components/modal/
   - label: Playground
 playground:
   id: modal-playground
