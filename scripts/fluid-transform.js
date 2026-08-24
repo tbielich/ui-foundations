@@ -5,10 +5,15 @@
  * collection and generates CSS clamp() values for fluid interpolation.
  *
  * Architecture:
- *   - Reads tokens.config.json for viewport bounds and mode names
+ *   - Reads tokens.config.json for container bounds and mode names
  *   - Identifies tokens where Min ≠ Max
- *   - Generates clamp(minRem, intercept + slope*vw, maxRem)
+ *   - Generates clamp(minRem, intercept + slope*cqi, maxRem)
+ *   - Uses container query inline units (cqi) instead of viewport units (vw)
+ *     so typography scales relative to its container, not the viewport.
+ *     This ensures correct sizing in multi-column layouts, sidebars, and cards.
  *   - Returns transformed CSS values for the pipeline to use
+ *
+ * Requires: container-type: inline-size on an ancestor element.
  *
  * See: docs/foundations/foundation-013-fluid-typography.md
  */
@@ -25,8 +30,8 @@ const CONFIG_PATH = path.join(REPO_ROOT, "tokens.config.json");
  */
 function loadFluidConfig() {
   const defaults = {
-    viewportMin: 375,
-    viewportMax: 1440,
+    containerMin: 320,
+    containerMax: 1200,
     baseFontSize: 16,
     unit: "rem",
     modes: { min: "Min", max: "Max" },
@@ -47,38 +52,41 @@ function loadFluidConfig() {
 }
 
 /**
- * Calculate a CSS clamp() expression from min/max pixel values and viewport bounds.
+ * Calculate a CSS clamp() expression from min/max pixel values and container bounds.
  *
- * Formula (Utopia-aligned):
- *   slope = (max - min) / (viewportMax - viewportMin)
- *   intercept = min - slope * viewportMin
- *   clamp(minRem, interceptRem + slope*100vw, maxRem)
+ * Uses container query inline units (cqi) so text scales relative to its
+ * container width, not the viewport. Works correctly in columns, sidebars, cards.
+ *
+ * Formula (Utopia-aligned, adapted for cqi):
+ *   slope = (max - min) / (containerMax - containerMin)
+ *   intercept = min - slope * containerMin
+ *   clamp(minRem, interceptRem + slope*100cqi, maxRem)
  *
  * @param {number} minPx - Minimum value in pixels
  * @param {number} maxPx - Maximum value in pixels
- * @param {number} viewportMin - Minimum viewport width in pixels
- * @param {number} viewportMax - Maximum viewport width in pixels
+ * @param {number} containerMin - Minimum container width in pixels
+ * @param {number} containerMax - Maximum container width in pixels
  * @param {number} baseFontSize - Base font size for rem conversion (default 16)
  * @returns {string} CSS clamp() expression
  */
-function computeClamp(minPx, maxPx, viewportMin, viewportMax, baseFontSize = 16) {
+function computeClamp(minPx, maxPx, containerMin, containerMax, baseFontSize = 16) {
   if (minPx === maxPx) {
     return `${roundTo(minPx / baseFontSize, 4)}rem`;
   }
 
   const minRem = minPx / baseFontSize;
   const maxRem = maxPx / baseFontSize;
-  const slope = (maxPx - minPx) / (viewportMax - viewportMin);
-  const intercept = minPx - slope * viewportMin;
+  const slope = (maxPx - minPx) / (containerMax - containerMin);
+  const intercept = minPx - slope * containerMin;
   const interceptRem = intercept / baseFontSize;
-  const slopeVw = slope * 100;
+  const slopeCqi = slope * 100;
 
   const minStr = `${roundTo(minRem, 4)}rem`;
   const maxStr = `${roundTo(maxRem, 4)}rem`;
 
-  // Build preferred value: intercept + slope*vw
+  // Build preferred value: intercept + slope*cqi
   const interceptStr = `${roundTo(interceptRem, 4)}rem`;
-  const slopeStr = `${roundTo(slopeVw, 4)}vw`;
+  const slopeStr = `${roundTo(slopeCqi, 4)}cqi`;
 
   let preferred;
   if (interceptRem === 0) {
@@ -87,8 +95,8 @@ function computeClamp(minPx, maxPx, viewportMin, viewportMax, baseFontSize = 16)
     preferred = `${interceptStr} + ${slopeStr}`;
   } else {
     preferred = `${roundTo(Math.abs(interceptRem), 4)}rem - ${slopeStr}`;
-    // Negative intercept with positive slope: intercept + slope*vw
-    // Rewrite as: -|intercept| + slope*vw → slope*vw - |intercept|
+    // Negative intercept with positive slope: intercept + slope*cqi
+    // Rewrite as: -|intercept| + slope*cqi → slope*cqi - |intercept|
     preferred = `${slopeStr} - ${roundTo(Math.abs(interceptRem), 4)}rem`;
   }
 
@@ -170,8 +178,8 @@ function extractFluidTokens(data, config) {
       const clampValue = computeClamp(
         minVal,
         maxVal,
-        config.viewportMin,
-        config.viewportMax,
+        config.containerMin,
+        config.containerMax,
         config.baseFontSize
       );
 
