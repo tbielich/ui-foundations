@@ -6350,6 +6350,271 @@
       }
     }
   },
+  "Breadcrumbs": {
+    "Text": {
+      "Color Default": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:6000:1",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-breadcrumbs-text-color-default)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:326",
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Hover": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Brand"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:6000:2",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-breadcrumbs-text-color-hover)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:340",
+            "targetVariableName": "Color/Text/Brand",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Active": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Strong"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:6000:3",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-breadcrumbs-text-color-active)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:355",
+            "targetVariableName": "Color/Text/Strong",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Current": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Strong"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:6000:4",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-breadcrumbs-text-color-current)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:355",
+            "targetVariableName": "Color/Text/Strong",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Color Disabled": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Disabled"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:6000:5",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-breadcrumbs-text-color-disabled)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:328",
+            "targetVariableName": "Color/Text/Disabled",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Separator": {
+      "Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Border/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:6000:6",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-breadcrumbs-separator-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:343",
+            "targetVariableName": "Color/Border/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Gap": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Spacing/Tight"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:6000:7",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-breadcrumbs-separator-gap)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:2",
+            "targetVariableName": "Brand/Size/Spacing/Tight",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Font Family": {
+      "$type": "string",
+      "$value": {
+        "$ref": "Brand/Font/Base"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:6000:8",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-breadcrumbs-font-family)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2006:213",
+          "targetVariableName": "Brand/Font/Base",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Font Weight": {
+      "$type": "string",
+      "$value": {
+        "$ref": "Typography/Body/Font Weight"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:6000:9",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-breadcrumbs-font-weight)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3014:12",
+          "targetVariableName": "Typography/Body/Font Weight",
+          "targetVariableSetId": "VariableCollectionId:1:264",
+          "targetVariableSetName": "Patterns (UI)"
+        },
+        "com.figma.isOverride": true
+      }
+    },
+    "Font Size": {
+      "$type": "string",
+      "$value": "inherit",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:6000:10",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-breadcrumbs-font-size)"
+        }
+      }
+    },
+    "Line Height": {
+      "$type": "string",
+      "$value": "inherit",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:6000:11",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-breadcrumbs-line-height)"
+        }
+      }
+    },
+    "Label Max Inline Size": {
+      "$type": "string",
+      "$value": "18ch",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:6000:13",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-breadcrumbs-label-max-inline-size)"
+        }
+      }
+    },
+    "Gap": {
+      "$type": "number",
+      "$value": {
+        "$ref": "Brand/Size/Spacing/Tight"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:6000:12",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.codeSyntax": {
+          "WEB": "var(--uif-breadcrumbs-gap)"
+        },
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:3022:2",
+          "targetVariableName": "Brand/Size/Spacing/Tight",
+          "targetVariableSetId": "VariableCollectionId:1:177",
+          "targetVariableSetName": "Semantics (Brands)"
+        },
+        "com.figma.isOverride": true
+      }
+    }
+  },
   "Textarea": {
     "Text": {
       "Color Default": {

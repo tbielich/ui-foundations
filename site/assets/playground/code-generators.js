@@ -331,6 +331,24 @@
       tabs: function () {
         return '{% call uif.tabList(ariaLabel="Tabs") %}\n  {{ uif.tab("Tab 1", selected=true, controls="p1") }}\n  {{ uif.tab("Tab 2", controls="p2") }}\n{% endcall %}\n{% call uif.tabPanel(id="p1") %}Panel 1{% endcall %}\n{% call uif.tabPanel(id="p2", hidden=true) %}Panel 2{% endcall %}';
       },
+      breadcrumbs: function (state) {
+        var p = state.props;
+        var depth = Math.max(2, Number(p.depth || 4));
+        var labels = ["Home", "Category", "Collection", "Details", "Current page"];
+        var parts = [];
+        for (var i = 0; i < depth; i++) {
+          var item = '{label: "' + quoteAttr(labels[i] || ("Level " + (i + 1))) + '"';
+          if (i < depth - 1) item += ', url: "#' + (i + 1) + '"';
+          if (i === depth - 1) item += ", current: true";
+          item += "}";
+          parts.push(item);
+        }
+        var args = ['items=[' + parts.join(", ") + "]"];
+        if (p.separator && p.separator !== "/") args.push('separator="' + quoteAttr(p.separator) + '"');
+        if (p.collapse && p.collapse !== "responsive") args.push('collapse="' + quoteAttr(p.collapse) + '"');
+        if (p.maxItems && p.maxItems !== "4") args.push('maxItems=' + Number(p.maxItems));
+        return "{{ uif.breadcrumbs(" + args.join(", ") + ") }}";
+      },
       tooltip: function (state) {
         var p = state.props;
         var text = p.text || "Tooltip text";
@@ -394,6 +412,23 @@
       },
       tabs: function () {
         return '<uif-tab-list aria-label="Tabs">\n  <uif-tab label="Tab 1" selected controls="p1"></uif-tab>\n  <uif-tab label="Tab 2" controls="p2"></uif-tab>\n</uif-tab-list>\n<uif-tab-panel id="p1">Panel 1</uif-tab-panel>\n<uif-tab-panel id="p2" hidden>Panel 2</uif-tab-panel>';
+      },
+      breadcrumbs: function (state) {
+        var p = state.props;
+        var depth = Math.max(2, Number(p.depth || 4));
+        var labels = ["Home", "Category", "Collection", "Details", "Current page"];
+        var items = [];
+        for (var i = 0; i < depth; i++) {
+          var entry = { label: labels[i] || ("Level " + (i + 1)) };
+          if (i < depth - 1) entry.url = "#" + (i + 1);
+          if (i === depth - 1) entry.current = true;
+          items.push(entry);
+        }
+        var attrs = ['items=\'' + quoteAttr(JSON.stringify(items)) + "'"];
+        if (p.separator && p.separator !== "/") attrs.push('separator="' + quoteAttr(p.separator) + '"');
+        if (p.collapse && p.collapse !== "responsive") attrs.push('collapse="' + quoteAttr(p.collapse) + '"');
+        if (p.maxItems && p.maxItems !== "4") attrs.push('max-items="' + Number(p.maxItems) + '"');
+        return "<uif-breadcrumbs " + attrs.join(" ") + "></uif-breadcrumbs>";
       },
       tooltip: function (state) {
         var p = state.props;

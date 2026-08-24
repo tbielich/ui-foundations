@@ -23,6 +23,7 @@
 @import url("./patterns/tooltip.css") layer(components);
 @import url("./patterns/select.css") layer(components);
 @import url("./patterns/link.css") layer(components);
+@import url("./patterns/breadcrumbs.css") layer(components);
 @import url("./patterns/form.css") layer(components);
 @import url("./patterns/calendar.css") layer(components);
 @import url("./patterns/checkbox.css") layer(components);

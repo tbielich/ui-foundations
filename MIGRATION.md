@@ -49,6 +49,7 @@ parts follow the same prefix replacement.
 | ActionBar | `.uif-action-bar`, `.uif-action-bar-count`, `.uif-action-bar-actions`, `.uif-action-bar-dismiss` | `--uif-action-bar-*` | `<uif-action-bar>` |
 | Avatar | `.uif-avatar`, `.uif-avatar-initials` | `--uif-avatar-*` | `<uif-avatar>` |
 | Badge | `.uif-badge`, `.uif-badge-text` | `--uif-badge-*` | `<uif-badge>` |
+| Breadcrumbs | `.uif-breadcrumbs`, `.uif-breadcrumbs-list`, `.uif-breadcrumb-item`, `.uif-breadcrumb-link`, `.uif-breadcrumb-current` | `--uif-breadcrumbs-*` | `<uif-breadcrumbs>` |
 | Button | `.uif-button` with `.solid`, `.outline`, or `.ghost` | `--uif-button-*` | `<uif-button>` |
 | ButtonGroup | `.uif-button-group` | `--uif-button-group-*` | `<uif-button-group>` |
 | Calendar | `.uif-calendar`, `.uif-calendar-*` | `--uif-calendar-*` | No autonomous Calendar element |
