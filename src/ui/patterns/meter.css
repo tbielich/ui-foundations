@@ -1,0 +1,78 @@
+@layer components {
+  :is(.uif-meter, .meter) {
+    display: grid;
+    gap: var(--uif-meter-gap);
+    font-family: var(--uif-meter-font-family);
+    font-weight: var(--uif-meter-font-weight);
+    font-size: var(--uif-meter-font-size-md);
+    line-height: var(--uif-meter-line-height-md);
+  }
+
+  :is(.uif-meter, .meter) .uif-meter-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--uif-meter-gap);
+  }
+
+  :is(.uif-meter, .meter) .uif-meter-label {
+    color: var(--uif-meter-label-color-default);
+  }
+
+  :is(.uif-meter, .meter) .uif-meter-value {
+    color: var(--uif-meter-value-color-default);
+  }
+
+  /* Native <meter> provides semantics for assistive technology;
+     visually hidden so the token-styled proxy is displayed instead. */
+  :is(.uif-meter, .meter) .uif-meter-native,
+  :is(.uif-meter, .meter) > meter {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    inline-size: 1px;
+    block-size: 1px;
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+  }
+
+  :is(.uif-meter, .meter) .uif-meter-track {
+    position: relative;
+    overflow: hidden;
+    background: var(--uif-meter-track-background-default);
+    border-radius: var(--uif-meter-border-radius);
+    block-size: var(--uif-meter-track-height-md);
+  }
+
+  :is(.uif-meter, .meter) .uif-meter-fill {
+    display: block;
+    block-size: 100%;
+    inline-size: 0%;
+    background: var(--uif-meter-fill-background-default);
+    border-radius: inherit;
+  }
+
+  :is(.uif-meter, .meter).sm {
+    font-size: var(--uif-meter-font-size-sm);
+    line-height: var(--uif-meter-line-height-sm);
+  }
+
+  :is(.uif-meter, .meter).sm .uif-meter-track {
+    block-size: var(--uif-meter-track-height-sm);
+  }
+
+  :is(.uif-meter, .meter).positive .uif-meter-fill {
+    background: var(--uif-meter-fill-background-positive);
+  }
+
+  :is(.uif-meter, .meter).notice .uif-meter-fill {
+    background: var(--uif-meter-fill-background-notice);
+  }
+
+  :is(.uif-meter, .meter).negative .uif-meter-fill {
+    background: var(--uif-meter-fill-background-negative);
+  }
+}

@@ -18,7 +18,8 @@
   }
   
   /* Z-index usage (token export example) */
-  .modal-overlay { z-index: var(--zindex-modal-overlay); }
-  .modal { z-index: var(--zindex-modal); }
+  :is(.uif-modal-overlay, .modal-overlay) { z-index: var(--zindex-modal-overlay); }
+  :is(.uif-modal, .modal) { z-index: var(--zindex-modal); }
   :is(.uif-tooltip, .tooltip) { z-index: var(--zindex-tooltip); }
+  :is(.uif-popover, .popover) { z-index: var(--zindex-popover); }
 }

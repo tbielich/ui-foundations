@@ -1,0 +1,41 @@
+@layer components {
+  /* ─── Number Field ─────────────────────────────────────────────── */
+  /* Numeric input with stepper controls and optional format display. */
+  /* Composes: Input field                                            */
+
+  /* --- Format slot --- */
+
+  .uif-number-field-prefix,
+  .uif-number-field-suffix {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    color: var(--uif-number-field-format-color, var(--uif-input-text-color-default));
+    font: inherit;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* --- Stepper control layout --- */
+  /* Number-field stepper buttons sit in the trailing control slot.  */
+  /* The existing .uif-input-field-control layout handles spacing.   */
+
+  :is(.uif-input-field, .input-field).uif-number-field
+    :is(.uif-input-field-control, .input-field-control) {
+    gap: var(--uif-number-field-stepper-gap, var(--size-spacing-100, 0.25rem));
+  }
+
+  /* --- State: disabled — hide format slots --- */
+
+  :is(.uif-input-field, .input-field).uif-number-field:has(:is(.uif-input, .input):disabled)
+    .uif-number-field-prefix,
+  :is(.uif-input-field, .input-field).uif-number-field:has(:is(.uif-input, .input):disabled)
+    .uif-number-field-suffix,
+  :is(.uif-input-field, .input-field).uif-number-field.is-disabled
+    .uif-number-field-prefix,
+  :is(.uif-input-field, .input-field).uif-number-field.is-disabled
+    .uif-number-field-suffix {
+    color: var(--uif-input-text-color-disabled);
+  }
+}
