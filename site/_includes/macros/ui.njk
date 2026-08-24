@@ -257,6 +257,32 @@
 </details>
 {%- endmacro %}
 
+{% macro treeView(selection='single', className='') -%}
+{%- set classes = "uif-tree-view" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<ul class="{{ classes }}" role="tree" data-selection="{{ "multi" if selection == "multi" else "single" }}">{{ caller() }}</ul>
+{%- endmacro %}
+
+{% macro treeNode(label='', expanded=false, selected=false, disabled=false, id='', lazyUrl='') -%}
+{%- set children = caller() if caller else "" -%}
+{%- set hasChildren = children|trim -%}
+{%- set classes = "uif-tree-node" -%}
+{%- if expanded -%}{%- set classes = classes + " is-expanded" -%}{%- endif -%}
+{%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+<li class="{{ classes }}" role="treeitem" aria-selected="{{ "true" if selected else "false" }}"{% if expanded or hasChildren or lazyUrl %} aria-expanded="{{ "true" if expanded else "false" }}"{% endif %}{% if id %} data-node-id="{{ id }}"{% endif %}{% if lazyUrl %} data-lazy-url="{{ lazyUrl }}"{% endif %}>
+  <div class="uif-tree-node-row" tabindex="-1">
+    {% if hasChildren or lazyUrl %}<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>{% endif %}
+    <span class="uif-tree-label">{{ label }}</span>
+  </div>
+  {% if hasChildren %}
+  <ul class="uif-tree-children" role="group">
+    {{ children }}
+  </ul>
+  {% endif %}
+</li>
+{%- endmacro %}
+
 {% macro tabList(orientation='horizontal', ariaLabel='', className='') -%}
 {%- set classes = "uif-tab-list" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}

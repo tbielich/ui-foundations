@@ -68,6 +68,7 @@
     "./elements/ui-illustrated-message": "./dist/elements/ui-illustrated-message.js",
     "./elements/ui-accordion": "./dist/elements/ui-accordion.js",
     "./elements/ui-tabs": "./dist/elements/ui-tabs.js",
+    "./elements/ui-tree-view": "./dist/elements/ui-tree-view.js",
     "./elements/ui-tooltip": "./dist/elements/ui-tooltip.js",
     "./elements/ui-select": "./dist/elements/ui-select.js",
     "./elements/ui-link": "./dist/elements/ui-link.js",

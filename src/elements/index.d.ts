@@ -34,6 +34,7 @@ export declare class UIAccordionItem extends UIElement {}
 export declare class UITabList extends UIElement {}
 export declare class UITab extends UIElement {}
 export declare class UITabPanel extends UIElement {}
+export declare class UITreeView extends UIElement {}
 export declare class UITooltip extends UIElement {}
 export declare class UISelect extends UIElement {}
 export declare class UILink extends UIElement {}
@@ -67,6 +68,7 @@ declare global {
     "uif-tab-list": UITabList;
     "uif-tab": UITab;
     "uif-tab-panel": UITabPanel;
+    "uif-tree-view": UITreeView;
     "uif-tooltip": UITooltip;
     "uif-select": UISelect;
     "uif-link": UILink;
