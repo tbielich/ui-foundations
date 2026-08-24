@@ -330,6 +330,27 @@
 
 {% macro td(className='') -%}
 <td{% if className %} class="{{ className }}"{% endif %}>{{ caller() }}</td>
+{% macro inlineAlert(title='', description='', variant='', icon='', dismissible=false, className='') -%}
+{%- set classes = "uif-inline-alert" -%}
+{%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{%- if not icon -%}
+  {%- if variant == "info" -%}{%- set icon = "info-circled" -%}
+  {%- elif variant == "positive" -%}{%- set icon = "checkmark-circled" -%}
+  {%- elif variant == "negative" -%}{%- set icon = "cross-circled" -%}
+  {%- elif variant == "notice" -%}{%- set icon = "exclamation-mark-circled" -%}
+  {%- else -%}{%- set icon = "info-circled" -%}
+  {%- endif -%}
+{%- endif -%}
+<div class="{{ classes }}" role="alert">
+  <span class="uif-inline-alert-icon"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ icon }}.svg');" aria-hidden="true"></span></span>
+  <div class="uif-inline-alert-content">
+    {%- if title %}<strong class="uif-inline-alert-title">{{ title }}</strong>{% endif -%}
+    {%- if description %}<p class="uif-inline-alert-description">{{ description }}</p>{% endif -%}
+    {%- if caller %}<span class="uif-inline-alert-action">{{ caller() }}</span>{% endif -%}
+  </div>
+  {%- if dismissible %}<button type="button" class="uif-inline-alert-dismiss" aria-label="Dismiss"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg');" aria-hidden="true"></span></button>{% endif -%}
+</div>
 {%- endmacro %}
 
 {# ─── Re-export Calendar macro ────────────────────────────────────── #}
