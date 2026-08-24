@@ -74,6 +74,23 @@
       {%- endfor -%}
     </div>
   </div>
+{% macro searchField(placeholder='Search', value='', state='default', quiet=false, disabled=false, readonly=false, className='', id='', name='') -%}
+{%- set wrapperClasses = "uif-search-field" -%}
+{%- if state == "hover" -%}{%- set wrapperClasses = wrapperClasses + " is-hover" -%}{%- endif -%}
+{%- if state == "active" -%}{%- set wrapperClasses = wrapperClasses + " is-active" -%}{%- endif -%}
+{%- if state == "focus" -%}{%- set wrapperClasses = wrapperClasses + " is-focus-visible" -%}{%- endif -%}
+{%- if state == "disabled" or disabled -%}{%- set wrapperClasses = wrapperClasses + " is-disabled" -%}{%- endif -%}
+{%- if state == "readonly" or readonly -%}{%- set wrapperClasses = wrapperClasses + " is-readonly" -%}{%- endif -%}
+{%- if quiet -%}{%- set wrapperClasses = wrapperClasses + " is-quiet" -%}{%- endif -%}
+{%- if className -%}{%- set wrapperClasses = wrapperClasses + " " + className -%}{%- endif -%}
+<div class="{{ wrapperClasses }}"{% if quiet %} data-variant="quiet"{% endif %}>
+  <span class="uif-search-field-control" data-slot="start">
+    <span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+  </span>
+  <input class="uif-search-field-input" type="search"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %}{% if readonly or state == "readonly" %} readonly{% endif %} />
+  <span class="uif-search-field-control" data-slot="end">
+    <button type="button" aria-label="Clear search" tabindex="-1"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross-circled.svg');" aria-hidden="true"></span></button>
+  </span>
 </div>
 {%- endmacro %}
 

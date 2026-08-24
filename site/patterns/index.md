@@ -103,6 +103,15 @@ permalink: /patterns/
       <p>Text input with token-driven states for data entry.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/search-field/">
+    <div class="docs-component-card-preview">
+      {{ uif.searchField(placeholder="Search") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Search Field</h2>
+      <p>Search-specialized input with icon, clear action, Enter submit, and quiet variant.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/checkbox/">
     <div class="docs-component-card-preview">
       {{ uif.checkbox("Option A", true) }}

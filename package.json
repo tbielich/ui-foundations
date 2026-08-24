@@ -80,7 +80,8 @@
     "./elements/ui-inline-alert": "./dist/elements/ui-inline-alert.js",
     "./elements/ui-card": "./dist/elements/ui-card.js",
     "./elements/ui-dropzone": "./dist/elements/ui-dropzone.js",
-    "./elements/ui-color-picker": "./dist/elements/ui-color-picker.js"
+    "./elements/ui-color-picker": "./dist/elements/ui-color-picker.js",
+    "./elements/ui-search-field": "./dist/elements/ui-search-field.js"
   },
   "scripts": {
     "icons:generate-list": "node scripts/generate-icon-list.mjs",

@@ -20,6 +20,7 @@ export declare class UIButton extends UIElement {}
 export declare class UIButtonGroup extends UIElement {}
 export declare class UIInput extends UIElement {}
 export declare class UIComboBox extends UIElement {}
+export declare class UISearchField extends UIElement {}
 export declare class UICheckbox extends UIElement {}
 export declare class UIRadio extends UIElement {}
 export declare class UIProgressCircle extends UIElement {}
@@ -60,6 +61,7 @@ declare global {
     "uif-button-group": UIButtonGroup;
     "uif-input": UIInput;
     "uif-combobox": UIComboBox;
+    "uif-search-field": UISearchField;
     "uif-checkbox": UICheckbox;
     "uif-radio": UIRadio;
     "uif-progress-circle": UIProgressCircle;

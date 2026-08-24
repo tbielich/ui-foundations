@@ -406,6 +406,77 @@
     return { element: wrapper, code };
   };
 
+  const renderVanillaSearchField = ({ props, meta }) => {
+    const previewState = String(meta.state || "default");
+    const placeholder = String(props.placeholder || "Search");
+    const value = String(props.value || "");
+    const quiet = asBoolean(props.quiet);
+    const isDisabled = previewState === "disabled" || Boolean(props.disabled);
+    const isReadonly = previewState === "readonly" || Boolean(props.readonly);
+
+    const wrapper = document.createElement("div");
+    const wrapperClasses = ["uif-search-field"];
+    if (previewState === "hover") wrapperClasses.push("is-hover");
+    if (previewState === "active") wrapperClasses.push("is-active");
+    if (previewState === "focus") wrapperClasses.push("is-focus-visible");
+    if (isDisabled) wrapperClasses.push("is-disabled");
+    if (isReadonly) wrapperClasses.push("is-readonly");
+    if (quiet) wrapperClasses.push("is-quiet");
+    if (props.className) wrapperClasses.push(String(props.className));
+    wrapper.className = wrapperClasses.join(" ");
+    if (quiet) wrapper.dataset.variant = "quiet";
+
+    const startControl = document.createElement("span");
+    startControl.className = "uif-search-field-control";
+    startControl.dataset.slot = "start";
+    const startIcon = createIconElement({ name: "search", decorative: true });
+    if (startIcon) {
+      startIcon.dataset.slot = "start";
+      startControl.appendChild(startIcon);
+    }
+    wrapper.appendChild(startControl);
+
+    const input = document.createElement("input");
+    input.className = "uif-search-field-input";
+    input.type = "search";
+    input.placeholder = placeholder;
+    input.value = value;
+    input.disabled = isDisabled;
+    input.readOnly = isReadonly;
+    wrapper.appendChild(input);
+
+    const endControl = document.createElement("span");
+    endControl.className = "uif-search-field-control";
+    endControl.dataset.slot = "end";
+    const clearButton = document.createElement("button");
+    clearButton.type = "button";
+    clearButton.setAttribute("aria-label", "Clear search");
+    clearButton.tabIndex = -1;
+    if (isDisabled || isReadonly) clearButton.disabled = true;
+    const clearIcon = createIconElement({ name: "cross-circled", decorative: true });
+    if (clearIcon) clearButton.appendChild(clearIcon);
+    endControl.appendChild(clearButton);
+    wrapper.appendChild(endControl);
+
+    const inputAttrs = ['class="uif-search-field-input"', 'type="search"'];
+    if (placeholder) inputAttrs.push(`placeholder="${quoteAttr(placeholder)}"`);
+    if (value) inputAttrs.push(`value="${quoteAttr(value)}"`);
+    if (isDisabled) inputAttrs.push("disabled");
+    if (isReadonly) inputAttrs.push("readonly");
+
+    const code = `<div class="${quoteAttr(wrapper.className)}"${quiet ? ' data-variant="quiet"' : ""}>
+  <span class="uif-search-field-control" data-slot="start">
+    ${iconCode({ name: "search", decorative: true }).replace('class="uif-icon"', 'class="uif-icon" data-slot="start"')}
+  </span>
+  <input ${inputAttrs.join(" ")} />
+  <span class="uif-search-field-control" data-slot="end">
+    <button type="button" aria-label="Clear search" tabindex="-1">${iconCode({ name: "cross-circled", decorative: true })}</button>
+  </span>
+</div>`;
+
+    return { element: wrapper, code };
+  };
+
   const renderVanillaCheckbox = ({ props, meta }) => {
     const previewState = String(meta.state || "default");
     const labelText = String(props.label || "Accept terms");
@@ -2403,6 +2474,7 @@
       divider: renderVanillaDivider,
       icon: renderVanillaIcon,
       input: renderVanillaInput,
+      "search-field": renderVanillaSearchField,
       label: renderVanillaLabel,
       link: renderVanillaLink,
       radio: renderVanillaRadio,
