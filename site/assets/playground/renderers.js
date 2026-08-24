@@ -1271,28 +1271,13 @@
     const sizeRaw = String(props.size || "m");
     const size = sizeRaw === "s" ? "sm" : sizeRaw === "l" ? "lg" : "md";
     const dismissible = props.dismissible === undefined ? true : asBoolean(props.dismissible);
-    const open = props.open === undefined ? true : asBoolean(props.open);
     const confirmLabel = String(props.confirmLabel || (variant === "alert" ? "Delete" : "Confirm"));
     const cancelLabel = String(props.cancelLabel || "Cancel");
 
-    const root = document.createElement("div");
-    root.className = `uif-modal-root is-preview${open ? " is-open" : ""}`;
-    if (!open) root.hidden = true;
-
-    const overlay = dismissible ? document.createElement("button") : document.createElement("span");
-    overlay.className = "uif-modal-overlay";
-    if (dismissible) {
-      overlay.type = "button";
-      overlay.setAttribute("aria-label", "Dismiss dialog");
-    } else {
-      overlay.setAttribute("aria-hidden", "true");
-    }
-    root.append(overlay);
-
-    const dialog = document.createElement("section");
+    const dialog = document.createElement("dialog");
     dialog.className = `uif-modal ${variant} ${size}`;
-    dialog.setAttribute("role", "dialog");
-    dialog.setAttribute("aria-modal", "true");
+    dialog.setAttribute("open", "");
+    dialog.style.position = "relative";
 
     const header = document.createElement("header");
     header.className = "uif-modal-header";
@@ -1304,10 +1289,10 @@
 
     if (dismissible) {
       const close = document.createElement("button");
-      close.className = "uif-modal-close";
+      close.className = "uif-button ghost uif-modal-close";
       close.type = "button";
       close.setAttribute("aria-label", "Close dialog");
-      close.textContent = "×";
+      close.innerHTML = '<span class="uif-icon" style="--uif-icon-src: url(\'/assets/icons/cross.svg\')" aria-hidden="true"></span>';
       header.append(close);
     }
 
@@ -1343,29 +1328,23 @@
     actions.append(confirm);
 
     dialog.append(header, body, actions);
-    root.append(dialog);
 
-    const code = `<div class="uif-modal-root${open ? " is-open" : ""}"${open ? "" : " hidden"}>
-  ${dismissible
-    ? '<button class="uif-modal-overlay" type="button" aria-label="Dismiss dialog"></button>'
-    : '<span class="uif-modal-overlay" aria-hidden="true"></span>'}
-  <section class="uif-modal ${quoteAttr(variant)} ${quoteAttr(size)}" role="dialog" aria-modal="true">
-    <header class="uif-modal-header">
-      <h2 class="uif-modal-title">${quoteAttr(title)}</h2>
-      ${dismissible ? '<button class="uif-modal-close" type="button" aria-label="Close dialog">×</button>' : ""}
-    </header>
-    <div class="uif-modal-body">
-      <p class="uif-modal-description">${quoteAttr(description)}</p>
-      ${children ? `<p>${quoteAttr(String(children))}</p>` : ""}
-    </div>
-    <footer class="uif-modal-actions">
-      ${dismissible ? `<button class="uif-button outline" type="button">${quoteAttr(cancelLabel)}</button>` : ""}
-      <button class="uif-button solid" type="button">${quoteAttr(confirmLabel)}</button>
-    </footer>
-  </section>
-</div>`;
+    const code = `<dialog class="uif-modal ${quoteAttr(variant)} ${quoteAttr(size)}" open>
+  <header class="uif-modal-header">
+    <h2 class="uif-modal-title">${quoteAttr(title)}</h2>
+    ${dismissible ? '<button class="uif-button ghost uif-modal-close" type="button" aria-label="Close dialog"><span class="uif-icon" style="--uif-icon-src: url(\'/assets/icons/cross.svg\')" aria-hidden="true"></span></button>' : ""}
+  </header>
+  <div class="uif-modal-body">
+    <p class="uif-modal-description">${quoteAttr(description)}</p>
+    ${children ? `<p>${quoteAttr(String(children))}</p>` : ""}
+  </div>
+  <footer class="uif-modal-actions">
+    ${dismissible ? `<button class="uif-button outline" type="button">${quoteAttr(cancelLabel)}</button>` : ""}
+    <button class="uif-button solid" type="button">${quoteAttr(confirmLabel)}</button>
+  </footer>
+</dialog>`;
 
-    return { element: root, code };
+    return { element: dialog, code };
   };
 
 

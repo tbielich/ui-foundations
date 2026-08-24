@@ -421,6 +421,7 @@
         return "{{ uif.notification(" + attrs.join(", ") + ") }}";
       },
       "search-field": njkSearchField,
+      modal: njkModal,
       breadcrumbs: function (state) {
         var p = state.props;
         var depth = Math.max(2, Number(p.depth || 4));
@@ -529,6 +530,7 @@
         return "<uif-notification " + attrs.join(" ") + "></uif-notification>";
       },
       "search-field": wcSearchField,
+      modal: wcModal,
       breadcrumbs: function (state) {
         var p = state.props;
         var depth = Math.max(2, Number(p.depth || 4));
