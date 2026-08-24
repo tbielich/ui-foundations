@@ -65,6 +65,7 @@
     "./elements/ui-divider": "./dist/elements/ui-divider.js",
     "./elements/ui-textarea": "./dist/elements/ui-textarea.js",
     "./elements/ui-avatar": "./dist/elements/ui-avatar.js",
+    "./elements/ui-illustrated-message": "./dist/elements/ui-illustrated-message.js",
     "./elements/ui-accordion": "./dist/elements/ui-accordion.js",
     "./elements/ui-tabs": "./dist/elements/ui-tabs.js",
     "./elements/ui-tooltip": "./dist/elements/ui-tooltip.js",

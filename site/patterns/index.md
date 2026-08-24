@@ -56,6 +56,15 @@ permalink: /patterns/
       <p>Pill-shaped labels for status, counts, or highlights.</p>
     </div>
   </a>
+  <a class="docs-component-card" href="/patterns/illustrated-message/">
+    <div class="docs-component-card-preview">
+      {{ uif.illustratedMessage(preset="empty", actionLabel="Create item") }}
+    </div>
+    <div class="docs-component-card-body">
+      <h2>Illustrated Message</h2>
+      <p>Empty, error, and no-results messaging with optional recovery actions.</p>
+    </div>
+  </a>
   <a class="docs-component-card" href="/patterns/label/">
     <div class="docs-component-card-preview">
       <span class="uif-label-content">

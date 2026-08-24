@@ -6880,6 +6880,150 @@
       }
     }
   },
+  "Illustrated Message": {
+    "Container": {
+      "Gap": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Brand/Size/Spacing/Component"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3100:1",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-illustrated-message-gap)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:3022:3",
+            "targetVariableName": "Brand/Size/Spacing/Component",
+            "targetVariableSetId": "VariableCollectionId:1:177",
+            "targetVariableSetName": "Semantics (Brands)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Content": {
+      "Gap": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Size/Spacing/200"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3100:2",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-illustrated-message-content-gap)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:230",
+            "targetVariableName": "Size/Spacing/200",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Heading": {
+      "Text Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Default"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3100:3",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-illustrated-message-heading-text-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:326",
+            "targetVariableName": "Color/Text/Default",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Description": {
+      "Text Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3100:4",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-illustrated-message-description-text-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:341",
+            "targetVariableName": "Color/Text/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    },
+    "Illustration": {
+      "Color": {
+        "$type": "color",
+        "$value": {
+          "$ref": "Color/Text/Subtle"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3100:5",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-illustrated-message-illustration-color)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2007:341",
+            "targetVariableName": "Color/Text/Subtle",
+            "targetVariableSetId": "VariableCollectionId:2007:325",
+            "targetVariableSetName": "Appearance (Modes)"
+          },
+          "com.figma.isOverride": true
+        }
+      },
+      "Size": {
+        "$type": "number",
+        "$value": {
+          "$ref": "Font/Size/xl"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3100:6",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.codeSyntax": {
+            "WEB": "var(--uif-illustrated-message-illustration-size)"
+          },
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:1:209",
+            "targetVariableName": "Font/Size/xl",
+            "targetVariableSetId": "VariableCollectionId:1:200",
+            "targetVariableSetName": "Core (Primitives)"
+          },
+          "com.figma.isOverride": true
+        }
+      }
+    }
+  },
   "Typography": {
     "Heading": {
       "Font Family": {
