@@ -288,6 +288,50 @@
 <div class="{{ classes }}"{% if align != "end" %} data-align="{{ align }}"{% endif %}>{{ caller() }}</div>
 {%- endmacro %}
 
+{# ─── Table ───────────────────────────────────────────────────────── #}
+
+{% macro tableWrapper(className='') -%}
+{%- set classes = "uif-table-wrapper" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro table(density='', selection='', sortable=false, resizable=false, className='') -%}
+{%- set classes = "uif-table" -%}
+{%- if density -%}{%- set classes = classes + " uif-table--" + density -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="uif-table-wrapper"><table class="{{ classes }}"{% if selection %} data-selection="{{ selection }}"{% endif %}>{{ caller() }}</table></div>
+{%- endmacro %}
+
+{% macro tableHead() -%}
+<thead>{{ caller() }}</thead>
+{%- endmacro %}
+
+{% macro tableBody() -%}
+<tbody>{{ caller() }}</tbody>
+{%- endmacro %}
+
+{% macro tableFoot() -%}
+<tfoot>{{ caller() }}</tfoot>
+{%- endmacro %}
+
+{% macro th(label='', sort=false, resizable=false, className='') -%}
+{%- if sort -%}<th{% if className %} class="{{ className }}"{% endif %} aria-sort="none">{{ label }}</th>
+{%- elif resizable -%}<th{% if className %} class="{{ className }}"{% endif %} data-resizable>{{ label }}</th>
+{%- else -%}<th{% if className %} class="{{ className }}"{% endif %}>{{ label }}</th>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro tr(cells=[], selected=false, className='') -%}
+<tr{% if selected %} aria-selected="true"{% endif %}{% if className %} class="{{ className }}"{% endif %}>
+  {%- for cell in cells -%}<td>{{ cell }}</td>{%- endfor -%}
+</tr>
+{%- endmacro %}
+
+{% macro td(className='') -%}
+<td{% if className %} class="{{ className }}"{% endif %}>{{ caller() }}</td>
+{%- endmacro %}
+
 {# ─── Re-export Calendar macro ────────────────────────────────────── #}
 
 {%- from "macros/calendar.njk" import calendar as _cal -%}
