@@ -20,3 +20,5 @@
 @import url("./patterns/tooltip.css") layer(components);
 @import url("./patterns/date-input.css") layer(components);
 @import url("./patterns/inline-alert.css") layer(components);
+@import url("./patterns/date-input.css") layer(components);
+@import url("./patterns/card.css") layer(components);

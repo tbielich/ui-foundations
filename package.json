@@ -70,7 +70,8 @@
     "./elements/ui-link": "./dist/elements/ui-link.js",
     "./elements/ui-label": "./dist/elements/ui-label.js",
     "./elements/ui-form": "./dist/elements/ui-form.js",
-    "./elements/ui-inline-alert": "./dist/elements/ui-inline-alert.js"
+    "./elements/ui-inline-alert": "./dist/elements/ui-inline-alert.js",
+    "./elements/ui-card": "./dist/elements/ui-card.js"
   },
   "scripts": {
     "icons:generate-list": "node scripts/generate-icon-list.mjs",

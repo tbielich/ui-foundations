@@ -27,3 +27,4 @@ export { UILink } from "./ui-link.js";
 export { UIFieldLabel } from "./ui-label.js";
 export { UIForm, UIFormGroup, UIFormField, UIFormHelper, UIFormActions } from "./ui-form.js";
 export { UIInlineAlert } from "./ui-inline-alert.js";
+export { UICard, UICardMedia, UICardHeader, UICardBody, UICardFooter } from "./ui-card.js";
