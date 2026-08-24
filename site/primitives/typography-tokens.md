@@ -168,8 +168,8 @@ permalink: /primitives/typography/
 <section id="fluid-typography">
 <h2 id="fluid-typography-heading">Fluid Typography</h2>
 <p class="section-description">
-  Large text sizes scale fluidly between viewport boundaries using <code>clamp()</code>. 
-  No breakpoints needed — font sizes interpolate smoothly from mobile to desktop.
+  Large text sizes scale fluidly based on their <strong>container width</strong> using <code>clamp()</code> with <code>cqi</code> units.
+  Unlike viewport-based scaling (<code>vw</code>), container-based fluid type works correctly in multi-column layouts, sidebars, and cards — text scales relative to its own container, not the window.
 </p>
 
 <div class="type-scale-table-wrap">
@@ -187,25 +187,25 @@ permalink: /primitives/typography/
         <td><code>--fluid-font-size-lg</code></td>
         <td>1.125rem (18px)</td>
         <td>1.25rem (20px)</td>
-        <td><code>clamp(1.125rem, 1.081rem + 0.19vw, 1.25rem)</code></td>
+        <td><code>clamp(1.125rem, 1.08rem + 0.23cqi, 1.25rem)</code></td>
       </tr>
       <tr>
         <td><code>--fluid-font-size-xl</code></td>
         <td>1.25rem (20px)</td>
         <td>1.5rem (24px)</td>
-        <td><code>clamp(1.25rem, 1.162rem + 0.38vw, 1.5rem)</code></td>
+        <td><code>clamp(1.25rem, 1.16rem + 0.45cqi, 1.5rem)</code></td>
       </tr>
       <tr>
         <td><code>--fluid-font-size-xxl</code></td>
-        <td>1.5rem (20px)</td>
+        <td>1.5rem (24px)</td>
         <td>2rem (32px)</td>
-        <td><code>clamp(1.5rem, 1.324rem + 0.75vw, 2rem)</code></td>
+        <td><code>clamp(1.5rem, 1.32rem + 0.91cqi, 2rem)</code></td>
       </tr>
       <tr>
         <td><code>--fluid-font-size-xxxl</code></td>
         <td>1.75rem (28px)</td>
         <td>2.5rem (40px)</td>
-        <td><code>clamp(1.75rem, 1.486rem + 1.13vw, 2.5rem)</code></td>
+        <td><code>clamp(1.75rem, 1.48rem + 1.36cqi, 2.5rem)</code></td>
       </tr>
     </tbody>
   </table>
@@ -233,10 +233,21 @@ permalink: /primitives/typography/
 <h3>How it works</h3>
 <ul>
   <li>Source: <strong>Typography (Liquid)</strong> Figma collection with Min/Max modes</li>
-  <li>Viewport range: <code>375px</code> → <code>1440px</code></li>
-  <li>Below 375px: locks to Min value; above 1440px: locks to Max value</li>
+  <li>Container range: <code>320px</code> → <code>1200px</code> (inline-size)</li>
+  <li>Below 320px container: locks to Min value; above 1200px: locks to Max value</li>
   <li>Between: interpolates linearly via <code>clamp(min, preferred, max)</code></li>
+  <li>Unit: <code>cqi</code> (container query inline) — scales with container, not viewport</li>
 </ul>
+
+<h3>Setup</h3>
+
+<p>For fluid tokens to work, an ancestor element must establish a container context:</p>
+
+```css
+.content-area {
+  container-type: inline-size;
+}
+```
 
 <h3>Usage</h3>
 
@@ -248,6 +259,12 @@ permalink: /primitives/typography/
 ```
 
 <p>Use fluid tokens for headings and large display text. Body text and UI labels should continue using fixed-size tokens for optical precision at small sizes.</p>
+
+<h3>Why container-based?</h3>
+<p>
+  Viewport-based fluid type (<code>vw</code>) breaks in multi-column layouts — a heading in a narrow sidebar would be the same size as in the main area.
+  Container-based (<code>cqi</code>) scales text relative to its own content area, so a column at mobile width gets mobile-sized type regardless of the viewport.
+</p>
 </section>
 
 <!-- USAGE GUIDELINES -->

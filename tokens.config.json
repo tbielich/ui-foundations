@@ -1,7 +1,7 @@
 {
   "fluid": {
-    "viewportMin": 375,
-    "viewportMax": 1440,
+    "containerMin": 320,
+    "containerMax": 1200,
     "baseFontSize": 16,
     "unit": "rem",
     "modes": {
