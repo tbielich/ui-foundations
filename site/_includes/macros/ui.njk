@@ -522,4 +522,11 @@
 {%- set classes = "uif-card-footer" -%}
 {%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
 <div class="{{ classes }}">{{ caller() }}</div>
+{% macro skeleton(shape='text', size='', width='', animated=true) -%}
+{%- set classes = "uif-skeleton" -%}
+{%- if shape -%}{%- set classes = classes + " " + shape -%}{%- endif -%}
+{%- if size == "sm" or size == "lg" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
+{%- if width == "short" or width == "medium" -%}{%- set classes = classes + " " + width -%}{%- endif -%}
+{%- if not animated -%}{%- set classes = classes + " no-animation" -%}{%- endif -%}
+<span class="{{ classes }}" role="status" aria-label="Loading…" aria-busy="true"></span>
 {%- endmacro %}

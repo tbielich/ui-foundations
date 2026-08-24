@@ -63,6 +63,7 @@ parts follow the same prefix replacement.
 | Radio | `.uif-radio`, `.uif-radio-field`, `.uif-radio-field-text` | `--uif-radio-*` | `<uif-radio>` |
 | RangeSlider | `.uif-range-slider`, `.uif-range-slider-*` | `--uif-range-slider-*` | `<uif-range-slider>` |
 | Select | `.uif-select` | `--uif-select-*` | `<uif-select>` |
+| Skeleton | `.uif-skeleton`, `.uif-skeleton-group` | `--uif-skeleton-*` | `<uif-skeleton>` |
 | Switch | `.uif-switch`, `.uif-switch-field`, `.uif-switch-field-text` | `--uif-switch-*` | `<uif-switch>` |
 | Tabs | `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, `.uif-tab-panel` | `--uif-tabs-*` | `<uif-tab-list>`, `<uif-tab>`, `<uif-tab-panel>` |
 | Textarea | `.uif-textarea` | `--uif-textarea-*` | `<uif-textarea>` |
