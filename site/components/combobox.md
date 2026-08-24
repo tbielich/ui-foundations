@@ -4,8 +4,8 @@ title: ComboBox
 description: Text input with autocomplete suggestions, async loading support, free-form entry, and keyboard navigation.
 navTitle: ComboBox
 order: 42
-permalink: /patterns/combobox/
-playgroundUrl: /patterns/combobox-playground/
+permalink: /components/combobox/
+playgroundUrl: /components/combobox-playground/
 playgroundLabel: Open ComboBox Playground
 ---
 

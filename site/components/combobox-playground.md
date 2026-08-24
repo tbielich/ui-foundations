@@ -4,14 +4,14 @@ title: ComboBox Playground
 description: Interactive vanilla preview for combobox states and field properties.
 navTitle: ComboBox Playground
 order: 43
-permalink: /patterns/combobox-playground/
+permalink: /components/combobox-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Patterns
-    url: /patterns/
+  - label: Components
+    url: /components/
   - label: ComboBox
-    url: /patterns/combobox/
+    url: /components/combobox/
   - label: Playground
 playground:
   id: combobox-playground

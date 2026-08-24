@@ -4,14 +4,14 @@ title: Segmented Control Playground
 description: Interactive vanilla preview for the Segmented Control component.
 navTitle: Segmented Control Playground
 order: 22
-permalink: /patterns/segmented-control-playground/
+permalink: /components/segmented-control-playground/
 templateEngineOverride: njk
 isPlayground: true
 breadcrumb:
-  - label: Patterns
-    url: /patterns/
+  - label: Components
+    url: /components/
   - label: Segmented Control
-    url: /patterns/segmented-control/
+    url: /components/segmented-control/
   - label: Playground
 playground:
   id: segmented-control-playground

@@ -4,8 +4,8 @@ title: Modal
 description: Focused dialog for confirmations and alerts that require user attention.
 navTitle: Modal
 order: 22
-permalink: /patterns/modal/
-playgroundUrl: /patterns/modal-playground/
+permalink: /components/modal/
+playgroundUrl: /components/modal-playground/
 playgroundLabel: Open Modal Playground
 ---
 <div class="docs-hero">

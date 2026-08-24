@@ -4,8 +4,8 @@ title: Illustrated Message
 description: Empty, error, and no-results messaging with an illustration, supporting text, and an optional action.
 navTitle: Illustrated Message
 order: 19
-permalink: /patterns/illustrated-message/
-playgroundUrl: /patterns/illustrated-message-playground/
+permalink: /components/illustrated-message/
+playgroundUrl: /components/illustrated-message-playground/
 playgroundLabel: Open Illustrated Message Playground
 ---
 {% import "macros/ui.njk" as uif %}
