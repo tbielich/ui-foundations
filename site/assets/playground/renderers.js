@@ -1566,22 +1566,26 @@
 
     const track = document.createElement("div");
     track.className = "uif-meter-track";
-    track.setAttribute("role", "meter");
-    track.setAttribute("aria-label", label);
-    track.setAttribute("aria-valuemin", String(min));
-    track.setAttribute("aria-valuemax", String(max));
-    track.setAttribute("aria-valuenow", String(value));
-    track.setAttribute("aria-valuetext", valueText);
+    track.setAttribute("aria-hidden", "true");
 
     const fill = document.createElement("span");
     fill.className = "uif-meter-fill";
     fill.style.inlineSize = `${percent}%`;
     track.append(fill);
 
-    element.append(header, track);
+    // Native <meter> for semantics (visually hidden via CSS)
+    const meter = document.createElement("meter");
+    meter.className = "uif-meter-native";
+    meter.min = min;
+    meter.max = max;
+    meter.value = value;
+    meter.setAttribute("aria-label", label);
+    meter.textContent = valueText;
+
+    element.append(header, meter, track);
 
     const codeClasses = classes.map((c) => quoteAttr(c)).join(" ");
-    const code = `<div class="${codeClasses}"><div class="uif-meter-header"><span class="uif-meter-label">${quoteAttr(label)}</span><span class="uif-meter-value">${quoteAttr(valueText)}</span></div><div class="uif-meter-track" role="meter" aria-label="${quoteAttr(label)}" aria-valuemin="${quoteAttr(min)}" aria-valuemax="${quoteAttr(max)}" aria-valuenow="${quoteAttr(value)}" aria-valuetext="${quoteAttr(valueText)}"><span class="uif-meter-fill" style="inline-size: ${quoteAttr(percent)}%;"></span></div></div>`;
+    const code = `<div class="${codeClasses}"><div class="uif-meter-header"><span class="uif-meter-label">${quoteAttr(label)}</span><span class="uif-meter-value">${quoteAttr(valueText)}</span></div><meter class="uif-meter-native" min="${min}" max="${max}" value="${value}" aria-label="${quoteAttr(label)}">${quoteAttr(valueText)}</meter><div class="uif-meter-track" aria-hidden="true"><span class="uif-meter-fill" style="inline-size: ${quoteAttr(percent)}%;"></span></div></div>`;
 
     return { element, code };
   };

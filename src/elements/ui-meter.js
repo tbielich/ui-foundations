@@ -51,21 +51,26 @@ class UIMeter extends UIElement {
 
     header.append(labelNode, valueNode);
 
+    // Native <meter> for semantics and assistive technology
+    const meter = document.createElement("meter");
+    meter.className = "uif-meter-native";
+    meter.min = min;
+    meter.max = max;
+    meter.value = value;
+    meter.setAttribute("aria-label", label);
+    meter.textContent = valueText;
+
+    // Visual proxy for token-controlled presentation
     const track = document.createElement("div");
     track.className = "uif-meter-track";
-    track.setAttribute("role", "meter");
-    track.setAttribute("aria-label", label);
-    track.setAttribute("aria-valuemin", String(min));
-    track.setAttribute("aria-valuemax", String(max));
-    track.setAttribute("aria-valuenow", String(value));
-    track.setAttribute("aria-valuetext", valueText);
+    track.setAttribute("aria-hidden", "true");
 
     const fill = document.createElement("span");
     fill.className = "uif-meter-fill";
     fill.style.inlineSize = `${safePercent}%`;
     track.append(fill);
 
-    root.append(header, track);
+    root.append(header, meter, track);
     this.replaceChildren(root);
   }
 }

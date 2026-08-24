@@ -611,7 +611,8 @@
     <span class="uif-meter-label">{{ label }}</span>
     <span class="uif-meter-value">{{ displayValue }}</span>
   </div>
-  <div class="uif-meter-track" role="meter" aria-label="{{ label }}" aria-valuemin="{{ min }}" aria-valuemax="{{ max }}" aria-valuenow="{{ value }}" aria-valuetext="{{ displayValue }}">
+  <meter class="uif-meter-native" min="{{ min }}" max="{{ max }}" value="{{ value }}" aria-label="{{ label }}">{{ displayValue }}</meter>
+  <div class="uif-meter-track" aria-hidden="true">
     <span class="uif-meter-fill" style="inline-size: {{ normalized }}%;"></span>
   </div>
 </div>
