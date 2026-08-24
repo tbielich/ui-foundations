@@ -1,0 +1,83 @@
+@layer components {
+  :is(.uif-notification-stack, .notification-stack) {
+    display: grid;
+    gap: var(--size-spacing-300);
+  }
+
+  :is(.uif-notification, .notification) {
+    --_notification-accent-color: var(--uif-notification-accent-color-info);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: start;
+    gap: var(--size-spacing-300);
+    inline-size: min(100%, 32rem);
+    padding: var(--size-spacing-300) var(--size-spacing-400);
+    border: var(--size-border-100) solid var(--uif-notification-container-border-color-default);
+    border-inline-start-width: var(--size-border-200);
+    border-inline-start-color: var(--_notification-accent-color);
+    border-radius: var(--size-radius-200);
+    background: var(--uif-notification-container-background-default);
+    color: var(--uif-notification-text-color-default);
+  }
+
+  :is(.uif-notification, .notification).is-success {
+    --_notification-accent-color: var(--uif-notification-accent-color-success);
+  }
+
+  :is(.uif-notification, .notification).is-warning {
+    --_notification-accent-color: var(--uif-notification-accent-color-warning);
+  }
+
+  :is(.uif-notification, .notification).is-error {
+    --_notification-accent-color: var(--uif-notification-accent-color-error);
+  }
+
+  :is(.uif-notification-icon, .notification-icon) {
+    inline-size: var(--size-spacing-300);
+    block-size: var(--size-spacing-300);
+    border-radius: var(--size-radius-full);
+    margin-block-start: var(--size-spacing-100);
+    background: var(--_notification-accent-color);
+  }
+
+  :is(.uif-notification-content, .notification-content) {
+    display: grid;
+    gap: var(--size-spacing-200);
+    min-inline-size: 0;
+  }
+
+  :is(.uif-notification-message, .notification-message) {
+    margin: 0;
+  }
+
+  :is(.uif-notification-action, .notification-action) {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    color: var(--uif-notification-action-text-color-default);
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+
+  :is(.uif-notification-action, .notification-action):hover,
+  :is(.uif-notification-action, .notification-action):focus-visible {
+    color: var(--uif-notification-action-text-color-hover);
+  }
+
+  :is(.uif-notification-dismiss, .notification-dismiss) {
+    border: none;
+    background: transparent;
+    color: var(--uif-notification-dismiss-icon-color-default);
+    font: inherit;
+    cursor: pointer;
+    line-height: 1;
+    padding: var(--size-spacing-100);
+  }
+
+  :is(.uif-notification-dismiss, .notification-dismiss):hover,
+  :is(.uif-notification-dismiss, .notification-dismiss):focus-visible {
+    color: var(--uif-notification-dismiss-icon-color-hover);
+  }
+}

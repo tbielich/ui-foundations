@@ -46,24 +46,40 @@ parts follow the same prefix replacement.
 | Family | Canonical classes | Canonical token slots or runtime inputs | Canonical Custom Elements |
 |---|---|---|---|
 | Accordion | `.uif-accordion`, `.uif-accordion-item`, `.uif-accordion-item-content` | `--uif-accordion-*` | `<uif-accordion>`, `<uif-accordion-item>` |
+| ActionBar | `.uif-action-bar`, `.uif-action-bar-count`, `.uif-action-bar-actions`, `.uif-action-bar-dismiss` | `--uif-action-bar-*` | `<uif-action-bar>` |
 | Avatar | `.uif-avatar`, `.uif-avatar-initials` | `--uif-avatar-*` | `<uif-avatar>` |
 | Badge | `.uif-badge`, `.uif-badge-text` | `--uif-badge-*` | `<uif-badge>` |
+| Breadcrumbs | `.uif-breadcrumbs`, `.uif-breadcrumbs-list`, `.uif-breadcrumb-item`, `.uif-breadcrumb-link`, `.uif-breadcrumb-current` | `--uif-breadcrumbs-*` | `<uif-breadcrumbs>` |
 | Button | `.uif-button` with `.solid`, `.outline`, or `.ghost` | `--uif-button-*` | `<uif-button>` |
 | ButtonGroup | `.uif-button-group` | `--uif-button-group-*` | `<uif-button-group>` |
 | Calendar | `.uif-calendar`, `.uif-calendar-*` | `--uif-calendar-*` | No autonomous Calendar element |
 | Checkbox | `.uif-checkbox`, `.uif-checkbox-field`, `.uif-checkbox-field-text` | `--uif-checkbox-*` | `<uif-checkbox>` |
+| ComboBox | `.uif-combobox`, `.uif-combobox-field`, `.uif-combobox-input`, `.uif-combobox-listbox`, `.uif-combobox-option` | `--uif-combobox-*` | `<uif-combobox>` |
 | Divider | `.uif-divider` | code-only `--uif-divider-color`; no component-scoped Figma variables | `<uif-divider>` |
 | Form | `.uif-form`, `.uif-form-*` | `--uif-form-*` | `<uif-form>`, `<uif-form-group>`, `<uif-form-field>`, `<uif-form-helper>`, `<uif-form-actions>` |
 | Icon | `.uif-icon` | code-only `--uif-icon-src` | `<uif-icon>` |
+| InlineAlert | `.uif-inline-alert`, `.uif-inline-alert-content`, `.uif-inline-alert-title`, `.uif-inline-alert-description` | `--uif-inline-alert-*` | `<uif-inline-alert>` |
 | Input | `.uif-input`, `.uif-input-field`, `.uif-input-field-control` | `--uif-input-*` | `<uif-input>` |
+| Number Field | `.uif-input-field.uif-number-field`, `.uif-number-field-prefix`, `.uif-number-field-suffix` | `--uif-number-field-*` | `<uif-number-field>` |
 | Label composition | `.uif-label-content`, `.uif-label-content-text`, `.uif-field-label*` | `--uif-field-label-*`; separately governed `--typography-label-*` remains unchanged | `<uif-field-label>` |
 | Link | `.uif-link` | `--uif-link-*` | `<uif-link>` |
+| Progress Circle | `.uif-progress-circle`, `.uif-progress-circle-*` | `--uif-progress-circle-*` | `<uif-progress-circle>` |
+| Progress Bar | `.uif-progress-bar`, `.uif-progress-bar-track`, `.uif-progress-bar-fill`, `.uif-progress-bar-header`, `.uif-progress-bar-label`, `.uif-progress-bar-value` | `--uif-progress-bar-*` | `<uif-progress-bar>` |
+| Modal | `.uif-modal`, `.uif-modal-*` | `--uif-modal-*` | `<uif-modal>` |
+| Notification | `.uif-notification`, `.uif-notification-stack`, `.uif-notification-*` | `--uif-notification-*` | `<uif-notification>` |
 | Radio | `.uif-radio`, `.uif-radio-field`, `.uif-radio-field-text` | `--uif-radio-*` | `<uif-radio>` |
+| RangeSlider | `.uif-range-slider`, `.uif-range-slider-*` | `--uif-range-slider-*` | `<uif-range-slider>` |
 | Select | `.uif-select` | `--uif-select-*` | `<uif-select>` |
+| Skeleton | `.uif-skeleton`, `.uif-skeleton-group` | `--uif-skeleton-*` | `<uif-skeleton>` |
+| Segmented Control | `.uif-segmented-control`, `.uif-segmented-control-item` | `--uif-segmented-control-*` | `<uif-segmented-control>`, `<uif-segmented-control-item>` |
 | Switch | `.uif-switch`, `.uif-switch-field`, `.uif-switch-field-text` | `--uif-switch-*` | `<uif-switch>` |
+| Menu | `.uif-menu`, `.uif-menu-item`, `.uif-menu-section`, `.uif-menu-section-label`, `.uif-menu-divider` | `--uif-menu-*` | `<uif-menu>` |
 | Tabs | `.uif-tabs`, `.uif-tab-list`, `.uif-tab`, `.uif-tab-panels`, `.uif-tab-panel` | `--uif-tabs-*` | `<uif-tab-list>`, `<uif-tab>`, `<uif-tab-panel>` |
+| Tag | `.uif-tag`, `.uif-tag-text`, `.uif-tag-remove`, `.uif-tag-group` | `--uif-tag-*` | `<uif-tag>`, `<uif-tag-group>` |
 | Textarea | `.uif-textarea` | `--uif-textarea-*` | `<uif-textarea>` |
+| TreeView | `.uif-tree-view`, `.uif-tree-node`, `.uif-tree-node-row`, `.uif-tree-children` | `--uif-tree-view-*` | `<uif-tree-view>` |
 | Tooltip | `.uif-tooltip`, `.uif-tooltip-trigger` | `--uif-tooltip-*` | `<uif-tooltip>` |
+| Popover | `.uif-popover`, `.uif-popover-container` | `--uif-popover-*` | `<uif-popover>` |
 
 For every token-bearing family, Figma `codeSyntax.WEB` is the naming source and
 generated `dist/` files must be regenerated rather than edited directly.

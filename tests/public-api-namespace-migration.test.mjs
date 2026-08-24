@@ -14,7 +14,9 @@ const TAGS = [
   "input",
   "checkbox",
   "radio",
+  "progress-circle",
   "switch",
+  "range-slider",
   "badge",
   "divider",
   "textarea",
@@ -25,6 +27,8 @@ const TAGS = [
   "tab",
   "tab-panel",
   "tooltip",
+  "modal",
+  "notification",
   "select",
   "link",
   "field-label",
@@ -52,7 +56,7 @@ test("element registrations and TypeScript tag names use the canonical namespace
   }
 
   assert.doesNotMatch(source, /define\("ui-/);
-  assert.doesNotMatch(declarations, /"ui-(?:icon|button|input|checkbox|radio|switch|badge|divider|textarea|avatar|accordion|tab|tooltip|select|link|field-label|form)/);
+  assert.doesNotMatch(declarations, /"ui-(?:icon|button|input|checkbox|radio|switch|badge|divider|textarea|avatar|accordion|tab|tooltip|modal|select|link|field-label|form)/);
 });
 
 test("owned public examples and emitters produce only canonical namespace usage", () => {
