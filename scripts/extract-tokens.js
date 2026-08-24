@@ -29,6 +29,12 @@ const {
   parseScopeKey,
   selectorForScope,
 } = require("./extract-tokens.scope.js");
+const {
+  loadFluidConfig,
+  isFluidCollection,
+  extractFluidTokens,
+  validateFluidTokens,
+} = require("./fluid-transform.js");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const EXPORTS_DIR = path.join(REPO_ROOT, "figma", "exports");
@@ -556,9 +562,49 @@ async function extractTokens() {
     const allTokens = [];
     const perFileTokens = [];
     const shouldMockMissing = !process.argv.includes("--strict");
+    const fluidConfig = loadFluidConfig();
+    const fluidTokenMap = new Map(); // cssVar → clampValue
 
     for (const filePath of files.sort()) {
       const data = readJsonLike(filePath);
+      const fileName = path.basename(filePath);
+
+      // Fluid typography: detect Typography Scale collection and generate clamp() values
+      // instead of expanding per-mode into separate CSS files.
+      if (isFluidCollection(data, fileName, fluidConfig)) {
+        const fluidTokens = extractFluidTokens(data, fluidConfig);
+        const fluidErrors = validateFluidTokens(fluidTokens, fluidConfig);
+        if (fluidErrors.length > 0) {
+          console.warn(`\n⚠️ Fluid typography validation errors in ${fileName}:`);
+          fluidErrors.forEach((e) => console.warn(`   • ${e}`));
+        }
+        for (const ft of fluidTokens) {
+          fluidTokenMap.set(ft.cssVar, ft.clampValue);
+        }
+
+        // Process as a single-scope global file (not per-mode expansion)
+        // Use the Max mode values as $value for the token list
+        const scope = { bucket: "global", id: "typography-scale" };
+        const tokenList = [];
+        flattenTokens(data, [], tokenList, {
+          scope: `${scope.bucket}:${scope.id}`,
+          bucket: scope.bucket,
+          id: scope.id,
+          filePath,
+          fileName,
+        });
+        // Set each token's value to the Max mode value (reference/fallback)
+        for (const token of tokenList) {
+          const maxMode = fluidConfig.modes.max;
+          const modeVal = getModeValue(token, maxMode);
+          if (modeVal !== undefined) {
+            token.value = modeVal;
+          }
+        }
+        allTokens.push(...tokenList);
+        perFileTokens.push({ filePath, tokenList, scope });
+        continue;
+      }
 
       // Content-based scope detection:
       // 1. If file has modeValues → expand per mode, derive scope from mode names
@@ -711,7 +757,7 @@ async function extractTokens() {
       const dtcgColors = convertColorValuesToDTCG(dtcgAliases);
       const cleanTokens = withSchema(stripFigmaExtensions(dtcgColors));
       const jsonOut = JSON.stringify(cleanTokens, null, 2);
-      const cssOut = generateCSS(perTokens, scope);
+      const cssOut = generateCSS(perTokens, scope, fluidTokenMap);
       const tsOut = generateTypeScript(perTokens);
 
       fs.writeFileSync(path.join(jsonDir, `${base}.json`), jsonOut);
@@ -862,7 +908,7 @@ async function extractTokens() {
   }
 }
 
-function generateCSS(tokens, scope) {
+function generateCSS(tokens, scope, fluidMap) {
   const selector = selectorForScope(scope);
   let css = `/* Auto-generated design tokens from Figma */\n/* Generated on ${new Date().toISOString()} */\n\n${selector} {\n`;
 
@@ -879,7 +925,10 @@ function generateCSS(tokens, scope) {
 
   Object.entries(merged).forEach(([key, value]) => {
     let cssValue = value;
-    if (key.startsWith("--font-weight-")) {
+    // Fluid typography: substitute clamp() expression if this token is fluid
+    if (fluidMap && fluidMap.has(key)) {
+      cssValue = fluidMap.get(key);
+    } else if (key.startsWith("--font-weight-")) {
       const mapped = toNumericFontWeight(value);
       if (mapped !== null) cssValue = mapped;
     }

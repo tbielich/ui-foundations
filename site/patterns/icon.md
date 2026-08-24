@@ -281,7 +281,7 @@ Icons adapt automatically across brands and color modes because they inherit
 `currentColor`. Use the hero preview switches above to see it in action.
 
 For the full theming architecture — brands, modes, and how tokens cascade — see
-[Foundations: Theming](/foundations/theming/).
+[Foundations: Design Tokens](/foundations/design-tokens/).
 
 <h2 id="design-checklist">Design checklist</h2>
 

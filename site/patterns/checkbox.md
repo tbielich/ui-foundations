@@ -250,7 +250,7 @@ playgroundLabel: Open Checkbox Playground
 Checkbox adapts automatically across brands and color modes through component
 tokens. Use the hero preview switches above to see it in action.
 
-For the full theming architecture see [Foundations: Theming](/foundations/theming/).
+For the full theming architecture see [Foundations: Design Tokens](/foundations/design-tokens/).
 
 <h2 id="design-checklist">Design checklist</h2>
 
