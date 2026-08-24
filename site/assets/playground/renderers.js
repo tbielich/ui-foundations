@@ -1271,12 +1271,13 @@
     const sizeRaw = String(props.size || "m");
     const size = sizeRaw === "s" ? "sm" : sizeRaw === "l" ? "lg" : "md";
     const dismissible = props.dismissible === undefined ? true : asBoolean(props.dismissible);
+    const open = props.open === undefined ? true : asBoolean(props.open);
     const confirmLabel = String(props.confirmLabel || (variant === "alert" ? "Delete" : "Confirm"));
     const cancelLabel = String(props.cancelLabel || "Cancel");
 
     const dialog = document.createElement("dialog");
     dialog.className = `uif-modal ${variant} ${size}`;
-    dialog.setAttribute("open", "");
+    if (open) dialog.setAttribute("open", "");
     dialog.style.position = "relative";
 
     const header = document.createElement("header");
@@ -1329,7 +1330,7 @@
 
     dialog.append(header, body, actions);
 
-    const code = `<dialog class="uif-modal ${quoteAttr(variant)} ${quoteAttr(size)}" open>
+    const code = `<dialog class="uif-modal ${quoteAttr(variant)} ${quoteAttr(size)}"${open ? " open" : ""}>
   <header class="uif-modal-header">
     <h2 class="uif-modal-title">${quoteAttr(title)}</h2>
     ${dismissible ? '<button class="uif-button ghost uif-modal-close" type="button" aria-label="Close dialog"><span class="uif-icon" style="--uif-icon-src: url(\'/assets/icons/cross.svg\')" aria-hidden="true"></span></button>' : ""}
