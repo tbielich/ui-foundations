@@ -332,9 +332,589 @@
 <td{% if className %} class="{{ className }}"{% endif %}>{{ caller() }}</td>
 {%- endmacro %}
 
+{% macro inlineAlert(title='', description='', variant='', icon='', dismissible=false, className='') -%}
+{%- set classes = "uif-inline-alert" -%}
+{%- if variant -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{%- if not icon -%}
+  {%- if variant == "info" -%}{%- set icon = "info-circled" -%}
+  {%- elif variant == "positive" -%}{%- set icon = "checkmark-circled" -%}
+  {%- elif variant == "negative" -%}{%- set icon = "cross-circled" -%}
+  {%- elif variant == "notice" -%}{%- set icon = "exclamation-mark-circled" -%}
+  {%- else -%}{%- set icon = "info-circled" -%}
+  {%- endif -%}
+{%- endif -%}
+<div class="{{ classes }}" role="alert">
+  <span class="uif-inline-alert-icon"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ icon }}.svg');" aria-hidden="true"></span></span>
+  <div class="uif-inline-alert-content">
+    {%- if title %}<strong class="uif-inline-alert-title">{{ title }}</strong>{% endif -%}
+    {%- if description %}<p class="uif-inline-alert-description">{{ description }}</p>{% endif -%}
+    {%- if caller %}<span class="uif-inline-alert-action">{{ caller() }}</span>{% endif -%}
+  </div>
+  {%- if dismissible %}<button type="button" class="uif-inline-alert-dismiss" aria-label="Dismiss"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg');" aria-hidden="true"></span></button>{% endif -%}
+</div>
+{%- endmacro %}
+
 {# ─── Re-export Calendar macro ────────────────────────────────────── #}
 
 {%- from "macros/calendar.njk" import calendar as _cal -%}
 {%- macro calendar(month='2026-07', selectedDate='', todayDate='', state='default', disabled=false, container=true, className='', id='', rangeStart='', rangeEnd='') -%}
 {{- _cal(month, selectedDate, todayDate, state, disabled, container, className, id, rangeStart, rangeEnd) }}
 {%- endmacro -%}
+
+{% macro popover(placement='bottom', arrow=false, id='', className='') -%}
+{%- set panelClasses = "uif-popover" -%}
+{%- if className -%}{%- set panelClasses = panelClasses + " " + className -%}{%- endif -%}
+<span class="uif-popover-container">
+  {{ caller() }}
+  <div class="{{ panelClasses }}"
+    role="dialog"
+    aria-modal="false"
+    data-placement="{{ placement }}"
+    {% if arrow %}data-arrow{% endif %}
+    {% if id %}id="{{ id }}"{% endif %}
+    aria-hidden="true"
+    tabindex="-1"
+  >{% if arrow %}<span class="uif-popover-arrow" aria-hidden="true"></span>{% endif %}</div>
+</span>
+{%- endmacro %}
+
+{% macro breadcrumbs(items=[], separator='/', collapse='responsive', maxItems=4, ariaLabel='Breadcrumb', className='') -%}
+{%- set total = items | length -%}
+{%- set resolvedCollapse = collapse if collapse == "none" or collapse == "always" or collapse == "responsive" else "responsive" -%}
+{%- set resolvedMaxItems = maxItems | int -%}
+{%- if resolvedMaxItems < 2 -%}{%- set resolvedMaxItems = 2 -%}{%- endif -%}
+{%- set shouldAlwaysCollapse = resolvedCollapse == "always" and total > resolvedMaxItems -%}
+{%- set shouldResponsiveCollapse = resolvedCollapse == "responsive" and total > 2 -%}
+{%- set listClasses = "uif-breadcrumbs-list" -%}
+{%- if shouldAlwaysCollapse -%}{%- set listClasses = listClasses + " is-collapsed" -%}{%- endif -%}
+{%- if shouldResponsiveCollapse -%}{%- set listClasses = listClasses + " is-responsive" -%}{%- endif -%}
+{%- set navClasses = "uif-breadcrumbs" -%}
+{%- if className -%}{%- set navClasses = navClasses + " " + className -%}{%- endif -%}
+<nav class="{{ navClasses }}" aria-label="{{ ariaLabel }}">
+  <ol class="{{ listClasses }}" data-separator="{{ separator }}" data-collapse="{{ resolvedCollapse }}">
+    {%- if shouldAlwaysCollapse -%}
+      {%- set first = items[0] -%}
+      {%- set tailCount = resolvedMaxItems - 1 -%}
+      {%- set tailStart = total - tailCount -%}
+      {%- if first %}
+    <li class="uif-breadcrumb-item" data-separator="{{ separator }}">
+      {%- if first.url and total > 1 -%}
+      <a class="uif-breadcrumb-link" href="{{ first.url }}">{{ first.label }}</a>
+      {%- else -%}
+      <span class="uif-breadcrumb-current" aria-current="page">{{ first.label }}</span>
+      {%- endif -%}
+    </li>
+      {%- endif -%}
+    <li class="uif-breadcrumb-item is-overflow" data-separator="{{ separator }}"><span class="uif-breadcrumb-overflow" aria-hidden="true">…</span></li>
+      {%- for item in items -%}
+        {%- if loop.index0 >= tailStart -%}
+          {%- set isCurrent = item.current or loop.last -%}
+    <li class="uif-breadcrumb-item" data-separator="{{ separator }}">
+          {%- if item.url and not isCurrent -%}
+      <a class="uif-breadcrumb-link" href="{{ item.url }}">{{ item.label }}</a>
+          {%- else -%}
+      <span class="uif-breadcrumb-current" aria-current="page">{{ item.label }}</span>
+          {%- endif -%}
+    </li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for item in items -%}
+        {%- set isCurrent = item.current or loop.last -%}
+        {%- set middle = shouldResponsiveCollapse and not loop.first and not loop.last -%}
+    <li class="uif-breadcrumb-item{% if middle %} is-middle{% endif %}" data-separator="{{ separator }}">
+        {%- if item.url and not isCurrent -%}
+      <a class="uif-breadcrumb-link" href="{{ item.url }}">{{ item.label }}</a>
+        {%- else -%}
+      <span class="uif-breadcrumb-current" aria-current="page">{{ item.label }}</span>
+        {%- endif -%}
+    </li>
+        {%- if shouldResponsiveCollapse and loop.first -%}
+    <li class="uif-breadcrumb-item is-overflow" data-separator="{{ separator }}"><span class="uif-breadcrumb-overflow" aria-hidden="true">…</span></li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </ol>
+</nav>
+{%- endmacro %}
+
+{% macro notificationStack(className='') -%}
+{%- set classes = "uif-notification-stack" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro notification(message='Notification', variant='info', dismissible=true, actionLabel='', actionHref='', duration=0, role='', live='') -%}
+{%- set resolvedVariant = variant if variant in ["info", "success", "warning", "error"] else "info" -%}
+{%- set resolvedRole = role if role else ("alert" if resolvedVariant == "error" else "status") -%}
+{%- set resolvedLive = live if live else ("assertive" if resolvedVariant == "error" else "polite") -%}
+<div class="uif-notification{% if resolvedVariant != "info" %} is-{{ resolvedVariant }}{% endif %}" role="{{ resolvedRole }}" aria-live="{{ resolvedLive }}"{% if duration %} data-duration="{{ duration }}"{% endif %}>
+  <span class="uif-notification-icon" aria-hidden="true"></span>
+  <div class="uif-notification-content">
+    <p class="uif-notification-message">{{ message }}</p>
+    {%- if actionLabel and actionHref %}<a class="uif-notification-action" href="{{ actionHref }}">{{ actionLabel }}</a>{% elif actionLabel %}<button type="button" class="uif-notification-action">{{ actionLabel }}</button>{% endif -%}
+  </div>
+  {%- if dismissible %}<button type="button" class="uif-notification-dismiss" aria-label="Dismiss notification">×</button>{% endif -%}
+</div>
+{%- endmacro %}
+
+{% macro menuDivider() -%}
+<li role="separator" class="uif-menu-divider"></li>
+{%- endmacro %}
+
+{% macro menuSection(label='', className='') -%}
+{%- set classes = "uif-menu-section" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<li class="{{ classes }}" role="none">
+  {%- if label %}<span class="uif-menu-section-label">{{ label }}</span>{% endif -%}
+  <ul role="group"{% if label %} aria-label="{{ label }}"{% endif %}>{{ caller() }}</ul>
+</li>
+{%- endmacro %}
+
+{% macro menuItem(disabled=false, selected=false, icon='', hasSubmenu=false, className='') -%}
+{%- set classes = "uif-menu-item" -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
+{%- if hasSubmenu -%}{%- set classes = classes + " has-submenu" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<li class="{{ classes }}" role="menuitem" tabindex="-1"{% if disabled %} aria-disabled="true"{% endif %}{% if selected %} aria-checked="true"{% endif %}>
+  {%- if icon %}<span class="uif-menu-item-icon uif-icon" aria-hidden="true">{{ icon }}</span>{% endif -%}
+  {{ caller() }}
+  {%- if hasSubmenu %}<span class="uif-menu-item-chevron" aria-hidden="true"></span>{% endif -%}
+</li>
+{%- endmacro %}
+
+{% macro menu(ariaLabel='', role='menu', className='') -%}
+{%- set classes = "uif-menu" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<ul class="{{ classes }}" role="{{ role }}"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>{{ caller() }}</ul>
+{%- endmacro %}
+
+{% macro modal(title='Dialog', description='', variant='confirmation', size='m', dismissible=true, open=true, confirmLabel='Confirm', cancelLabel='Cancel', className='') -%}
+{%- set resolvedVariant = "alert" if variant == "alert" else "confirmation" -%}
+{%- set resolvedSize = "sm" if size == "s" else ("lg" if size == "l" else "md") -%}
+{%- set modalClasses = "uif-modal " + resolvedVariant + " " + resolvedSize -%}
+{%- if className -%}{%- set modalClasses = modalClasses + " " + className -%}{%- endif -%}
+<dialog class="{{ modalClasses }}"{% if open %} open{% endif %}>
+  <header class="uif-modal-header">
+    <h2 class="uif-modal-title">{{ title }}</h2>
+    {%- if dismissible -%}<button class="uif-button ghost uif-modal-close" type="button" aria-label="Close dialog"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg')" aria-hidden="true"></span></button>{%- endif -%}
+  </header>
+  <div class="uif-modal-body">
+    {%- if description %}<p class="uif-modal-description">{{ description }}</p>{% endif -%}
+    {{ caller() }}
+  </div>
+  <footer class="uif-modal-actions">
+    {%- if dismissible -%}<button class="uif-button outline" type="button">{{ cancelLabel }}</button>{%- endif -%}
+    <button class="uif-button solid" type="button">{{ confirmLabel }}</button>
+  </footer>
+</dialog>
+{%- endmacro %}
+
+{% macro tagGroup(noWrap=false, className='') -%}
+{%- set classes = "uif-tag-group" -%}
+{%- if noWrap -%}{%- set classes = classes + " no-wrap" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}" role="group">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro tag(text, size='', removable=false, removeLabel='Remove', selected=false, startIcon='') -%}
+{%- set classes = "uif-tag" -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+{%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
+<span class="{{ classes }}"{% if selected %} aria-selected="true"{% endif %}>
+  {%- if startIcon %}<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ startIcon }}.svg');" aria-hidden="true"></span>{% endif -%}
+  <span class="uif-tag-text">{{ text }}</span>
+  {%- if removable %}<button type="button" class="uif-tag-remove" aria-label="{{ removeLabel }}"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg');" aria-hidden="true"></span></button>{% endif -%}
+</span>
+{%- endmacro %}
+
+{% macro progressCircle(value=0, indeterminate=false, size='md', ariaLabel='', ariaLabelledby='', className='') -%}
+{%- set classes = "uif-progress-circle" -%}
+{%- if size == "sm" or size == "lg" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
+{%- if indeterminate -%}{%- set classes = classes + " is-indeterminate" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<span class="{{ classes }}" role="progressbar"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}{% if ariaLabelledby %} aria-labelledby="{{ ariaLabelledby }}"{% endif %}{% if not indeterminate %} aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ value or 0 }}"{% endif %}{% if not indeterminate %} style="--_progress-circle-value: {{ value or 0 }};"{% endif %}>
+  <svg class="uif-progress-circle-svg" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+    <circle class="uif-progress-circle-track" cx="16" cy="16" r="14" pathLength="100"></circle>
+    <circle class="uif-progress-circle-indicator" cx="16" cy="16" r="14" pathLength="100"></circle>
+  </svg>
+</span>
+{%- endmacro %}
+
+{% macro progressBar(value='', variant='', size='', label='', showValue=false, indeterminate=false) -%}
+{%- set classes = "uif-progress-bar" -%}
+{%- if variant and variant != "default" -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+{%- if size == "lg" -%}{%- set classes = classes + " lg" -%}{%- endif -%}
+{%- if indeterminate or value === "" -%}{%- set classes = classes + " indeterminate" -%}{%- endif -%}
+{%- if indeterminate or value === "" -%}
+<div class="{{ classes }}" role="progressbar" aria-label="{{ label or "Loading" }}" aria-valuemin="0" aria-valuemax="100">
+{%- else -%}
+<div class="{{ classes }}" role="progressbar" aria-label="{{ label or "Progress" }}" aria-valuenow="{{ value }}" aria-valuemin="0" aria-valuemax="100">
+{%- endif -%}
+{%- if label or (showValue and not indeterminate) %}
+  <div class="uif-progress-bar-header">
+    {%- if label %}<span class="uif-progress-bar-label">{{ label }}</span>{% endif -%}
+    {%- if showValue and not indeterminate %}<span class="uif-progress-bar-value">{{ value }}%</span>{% endif %}
+  </div>
+{%- endif %}
+  <div class="uif-progress-bar-track">
+    {%- if indeterminate or value === "" %}
+    <div class="uif-progress-bar-fill"></div>
+    {%- else %}
+    <div class="uif-progress-bar-fill" style="--_progress: {{ value }}"></div>
+    {%- endif %}
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro numberField(value='', min='', max='', step='', format='', placeholder='0', disabled=false, readonly=false, state='default', className='', id='', name='') -%}
+{%- set wrapperClasses = "uif-input-field uif-number-field" -%}
+{%- if state == "hover" -%}{%- set wrapperClasses = wrapperClasses + " is-hover" -%}{%- endif -%}
+{%- if state == "active" -%}{%- set wrapperClasses = wrapperClasses + " is-active" -%}{%- endif -%}
+{%- if state == "focus" -%}{%- set wrapperClasses = wrapperClasses + " is-focus-visible" -%}{%- endif -%}
+{%- if state == "disabled" or disabled -%}{%- set wrapperClasses = wrapperClasses + " is-disabled" -%}{%- endif -%}
+{%- if className -%}{%- set wrapperClasses = wrapperClasses + " " + className -%}{%- endif -%}
+<div class="{{ wrapperClasses }}">
+  {%- if format == "currency" -%}<span class="uif-number-field-prefix" aria-hidden="true">$</span>{%- endif -%}
+  <input class="uif-input" type="number"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if min %} min="{{ min }}"{% endif %}{% if max %} max="{{ max }}"{% endif %}{% if step %} step="{{ step }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %}{% if readonly %} readonly{% endif %} />
+  {%- if format == "percent" -%}<span class="uif-number-field-suffix" aria-hidden="true">%</span>{%- endif -%}
+  <span class="uif-input-field-control">
+    <button type="button" aria-label="Decrease value"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/minus-circled.svg');" aria-hidden="true"></span></button>
+    <button type="button" aria-label="Increase value"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/plus-circled.svg');" aria-hidden="true"></span></button>
+  </span>
+</div>
+{%- endmacro %}
+
+{% macro meter(label='Storage used', value=72, min=0, max=100, variant='default', size='md', valueText='') -%}
+{%- set classes = "uif-meter" -%}
+{%- if variant and variant != "default" -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+{%- set range = (max - min) if (max - min) > 0 else 1 -%}
+{%- set normalized = (((value - min) / range) * 100) -%}
+{%- if normalized < 0 -%}{%- set normalized = 0 -%}{%- endif -%}
+{%- if normalized > 100 -%}{%- set normalized = 100 -%}{%- endif -%}
+{%- set displayValue = valueText if valueText else (normalized | round(0, "floor")) ~ "%" -%}
+<div class="{{ classes }}">
+  <div class="uif-meter-header">
+    <span class="uif-meter-label">{{ label }}</span>
+    <span class="uif-meter-value">{{ displayValue }}</span>
+  </div>
+  <meter class="uif-meter-native" min="{{ min }}" max="{{ max }}" value="{{ value }}" aria-label="{{ label }}">{{ displayValue }}</meter>
+  <div class="uif-meter-track" aria-hidden="true">
+    <span class="uif-meter-fill" style="inline-size: {{ normalized }}%;"></span>
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro searchField(placeholder='Search', value='', state='default', quiet=false, disabled=false, readonly=false, className='', id='', name='') -%}
+{%- set wrapperClasses = "uif-search-field" -%}
+{%- if state == "hover" -%}{%- set wrapperClasses = wrapperClasses + " is-hover" -%}{%- endif -%}
+{%- if state == "active" -%}{%- set wrapperClasses = wrapperClasses + " is-active" -%}{%- endif -%}
+{%- if state == "focus" -%}{%- set wrapperClasses = wrapperClasses + " is-focus-visible" -%}{%- endif -%}
+{%- if state == "disabled" or disabled -%}{%- set wrapperClasses = wrapperClasses + " is-disabled" -%}{%- endif -%}
+{%- if state == "readonly" or readonly -%}{%- set wrapperClasses = wrapperClasses + " is-readonly" -%}{%- endif -%}
+{%- if quiet -%}{%- set wrapperClasses = wrapperClasses + " is-quiet" -%}{%- endif -%}
+{%- if className -%}{%- set wrapperClasses = wrapperClasses + " " + className -%}{%- endif -%}
+<div class="{{ wrapperClasses }}"{% if quiet %} data-variant="quiet"{% endif %}>
+  <span class="uif-search-field-control" data-slot="start">
+    <span class="uif-icon" data-slot="start" style="--uif-icon-src: url('/assets/icons/search.svg');" aria-hidden="true"></span>
+  </span>
+  <input class="uif-search-field-input" type="search"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %}{% if readonly or state == "readonly" %} readonly{% endif %} />
+  <span class="uif-search-field-control" data-slot="end">
+    <button type="button" aria-label="Clear search" tabindex="-1"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross-circled.svg');" aria-hidden="true"></span></button>
+  </span>
+</div>
+{%- endmacro %}
+
+{% macro statusLight(text, variant='neutral', size='md') -%}
+{%- set classes = "uif-status-light" -%}
+{%- if variant and variant != "neutral" -%}{%- set classes = classes + " " + variant -%}{%- endif -%}
+{%- if size == "sm" -%}{%- set classes = classes + " sm" -%}{%- endif -%}
+<span class="{{ classes }}">
+  <span class="uif-status-light-indicator" aria-hidden="true"></span>
+  <span class="uif-status-light-text">{{ text }}</span>
+</span>
+{%- endmacro %}
+
+{% macro colorPicker(value='#6366f1', format='hex', state='default', disabled=false, swatches=[], className='') -%}
+{%- set classes = "uif-color-picker" -%}
+{%- if state == "disabled" or disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{%- set palette = swatches if swatches and swatches.length else ['#111827', '#1d4ed8', '#0f766e', '#15803d', '#a16207', '#b91c1c', '#be185d', '#6d28d9'] -%}
+<div class="{{ classes }}" data-format="{{ format }}" style="--uif-color-picker-accent-color: {{ value }}">
+  <div class="uif-color-picker-panel">
+    <div class="uif-color-picker-area" role="application" aria-label="Color area">
+      <span class="uif-color-picker-area-thumb" aria-hidden="true"></span>
+    </div>
+    <div class="uif-color-picker-sliders">
+      <input class="uif-color-picker-slider hue" type="range" min="0" max="360" value=""{% if state == "disabled" or disabled %} disabled{% endif %} />
+      <input class="uif-color-picker-slider alpha" type="range" min="0" max="100" value="100"{% if state == "disabled" or disabled %} disabled{% endif %} />
+    </div>
+    <div class="uif-color-picker-wheel" role="img" aria-label="Color wheel"></div>
+    <div class="uif-color-picker-swatch" aria-hidden="true"></div>
+    <div class="uif-color-picker-inputs">
+      <label class="uif-color-picker-input-group"><span>HEX</span><input class="uif-color-picker-input" type="text" value="{{ value }}"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>R</span><input class="uif-color-picker-input" type="number" min="0" max="255" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>G</span><input class="uif-color-picker-input" type="number" min="0" max="255" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>B</span><input class="uif-color-picker-input" type="number" min="0" max="255" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>H</span><input class="uif-color-picker-input" type="number" min="0" max="360" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>S</span><input class="uif-color-picker-input" type="number" min="0" max="100" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>L</span><input class="uif-color-picker-input" type="number" min="0" max="100" value=""{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+      <label class="uif-color-picker-input-group"><span>A</span><input class="uif-color-picker-input" type="number" min="0" max="100" value="100"{% if state == "disabled" or disabled %} disabled{% endif %} /></label>
+    </div>
+    <div class="uif-color-picker-grid" role="listbox" aria-label="Swatch picker">
+      {%- for swatch in palette -%}
+      <button type="button" class="uif-color-picker-grid-item" style="background: {{ swatch }}" aria-label="Select {{ swatch }}"{% if state == "disabled" or disabled %} disabled{% endif %}></button>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro dropzone(label='Drag and drop files here', hint='or', buttonLabel='Choose files', accept='', multiple=false, disabled=false, filled=false, filesText='', className='', id='', name='files') -%}
+{%- set classes = "uif-dropzone" -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if filled -%}{%- set classes = classes + " is-filled" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}" role="group" aria-label="File upload drop zone">
+  <input class="uif-dropzone-input" type="file"{% if id %} id="{{ id }}"{% endif %}{% if name %} name="{{ name }}"{% endif %}{% if accept %} accept="{{ accept }}"{% endif %}{% if multiple %} multiple{% endif %}{% if disabled %} disabled{% endif %} />
+  <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/upload.svg');" aria-hidden="true"></span>
+  <span class="uif-dropzone-label">{{ label }}</span>
+  <span class="uif-dropzone-hint">{{ hint }}</span>
+  <button class="uif-button outline uif-dropzone-button" type="button"{% if disabled %} disabled{% endif %}>{{ buttonLabel }}</button>
+  <span class="uif-dropzone-files" aria-live="polite">{{ filesText if filesText else ("Files selected" if filled else "No files selected") }}</span>
+</div>
+{%- endmacro %}
+
+{% macro treeNode(label='', expanded=false, selected=false, disabled=false, id='', lazyUrl='') -%}
+{%- set children = caller() if caller else "" -%}
+{%- set hasChildren = children|trim -%}
+{%- set classes = "uif-tree-node" -%}
+{%- if expanded -%}{%- set classes = classes + " is-expanded" -%}{%- endif -%}
+{%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+<li class="{{ classes }}" role="treeitem" aria-selected="{{ "true" if selected else "false" }}"{% if expanded or hasChildren or lazyUrl %} aria-expanded="{{ "true" if expanded else "false" }}"{% endif %}{% if id %} data-node-id="{{ id }}"{% endif %}{% if lazyUrl %} data-lazy-url="{{ lazyUrl }}"{% endif %}>
+  <div class="uif-tree-node-row" tabindex="-1">
+    {% if hasChildren or lazyUrl %}<button class="uif-tree-toggle" type="button" aria-label="Toggle node"></button>{% endif %}
+    <span class="uif-tree-label">{{ label }}</span>
+  </div>
+  {% if hasChildren %}
+  <ul class="uif-tree-children" role="group">
+    {{ children }}
+  </ul>
+  {% endif %}
+</li>
+{%- endmacro %}
+
+{% macro treeView(selection='single', className='') -%}
+{%- set classes = "uif-tree-view" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<ul class="{{ classes }}" role="tree" data-selection="{{ "multi" if selection == "multi" else "single" }}">{{ caller() }}</ul>
+{%- endmacro %}
+
+{% macro actionBar(count=0, open=false, label='Bulk actions', dismissLabel='Dismiss', className='') -%}
+{%- set classes = "uif-action-bar" -%}
+{%- if open -%}{%- set classes = classes + " is-open" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{%- set countText = (count | string) + (" item selected" if count == 1 else " items selected") -%}
+<div class="{{ classes }}" role="toolbar" aria-label="{{ label }}">
+  <span class="uif-action-bar-count" aria-live="polite">{{ countText }}</span>
+  <div class="uif-action-bar-actions">{{ caller() if caller }}</div>
+  <span class="uif-action-bar-spacer" aria-hidden="true"></span>
+  <button type="button" class="uif-action-bar-dismiss" aria-label="{{ dismissLabel }}">
+    <span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross.svg')" aria-hidden="true"></span>
+  </button>
+</div>
+{%- endmacro %}
+
+{% macro skeleton(shape='text', size='', width='', animated=true) -%}
+{%- set classes = "uif-skeleton" -%}
+{%- if shape -%}{%- set classes = classes + " " + shape -%}{%- endif -%}
+{%- if size == "sm" or size == "lg" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
+{%- if width == "short" or width == "medium" -%}{%- set classes = classes + " " + width -%}{%- endif -%}
+{%- if not animated -%}{%- set classes = classes + " no-animation" -%}{%- endif -%}
+<span class="{{ classes }}" role="status" aria-label="Loading…" aria-busy="true"></span>
+{%- endmacro %}
+
+{% macro segmentedControlItem(label='', selected=false, disabled=false, icon='') -%}
+{%- set classes = "uif-segmented-control-item" -%}
+{%- if selected -%}{%- set classes = classes + " is-active" -%}{%- endif -%}
+{%- if disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+<button class="{{ classes }}" type="button" aria-pressed="{{ "true" if selected else "false" }}"{% if disabled %} disabled aria-disabled="true"{% endif %}>
+  {%- if icon %}<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ icon }}.svg');" aria-hidden="true"></span>{% endif -%}
+  {{ label }}
+</button>
+{%- endmacro %}
+
+{% macro segmentedControl(ariaLabel='', size='', className='') -%}
+{%- set classes = "uif-segmented-control" -%}
+{%- if size and size != "md" -%}{%- set classes = classes + " " + size -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}" role="group"{% if ariaLabel %} aria-label="{{ ariaLabel }}"{% endif %}>{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro illustratedMessage(preset='empty', heading='', description='', actionLabel='', actionHref='', actionVariant='solid', illustrationIcon='', illustrationHtml='', actionHtml='', className='') -%}
+{%- set resolvedPreset = preset if preset == "error" or preset == "no-results" or preset == "empty" else "empty" -%}
+{%- set defaultHeading = "Nothing here yet" -%}
+{%- set defaultDescription = "Add content or create a new item to get started." -%}
+{%- set defaultIcon = "message-info" -%}
+{%- if resolvedPreset == "error" -%}
+  {%- set defaultHeading = "Something went wrong" -%}
+  {%- set defaultDescription = "Try again or go back to the previous step." -%}
+  {%- set defaultIcon = "message-alert" -%}
+{%- elif resolvedPreset == "no-results" -%}
+  {%- set defaultHeading = "No results found" -%}
+  {%- set defaultDescription = "Try adjusting your filters or search terms." -%}
+  {%- set defaultIcon = "search" -%}
+{%- endif -%}
+{%- set resolvedHeading = heading or defaultHeading -%}
+{%- set resolvedDescription = description or defaultDescription -%}
+{%- set resolvedIcon = illustrationIcon or defaultIcon -%}
+{%- set resolvedActionVariant = actionVariant if actionVariant == "outline" or actionVariant == "ghost" else "solid" -%}
+{%- set resolvedActionHref = "#" -%}
+{%- if actionHref and (actionHref.startsWith("https://") or actionHref.startsWith("http://") or actionHref.startsWith("mailto:") or actionHref.startsWith("tel:") or actionHref.startsWith("/") or actionHref.startsWith("#")) -%}
+  {%- set resolvedActionHref = actionHref -%}
+{%- endif -%}
+{%- set classes = "uif-illustrated-message" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{# illustrationHtml/actionHtml are trusted author markup hooks, not user-content sinks. #}
+<div class="{{ classes }}" data-preset="{{ resolvedPreset }}">
+  <div class="uif-illustrated-message-illustration" aria-hidden="true">
+    {%- if illustrationHtml -%}{{ illustrationHtml | safe }}{%- else -%}<span class="uif-icon" style="--uif-icon-src: url('/assets/icons/{{ resolvedIcon }}.svg');" aria-hidden="true"></span>{%- endif -%}
+  </div>
+  <div class="uif-illustrated-message-content">
+    {%- if resolvedHeading %}<h2 class="uif-illustrated-message-heading">{{ resolvedHeading }}</h2>{% endif -%}
+    {%- if resolvedDescription %}<p class="uif-illustrated-message-description">{{ resolvedDescription }}</p>{% endif -%}
+  </div>
+  {%- if actionHtml or actionLabel -%}
+  <div class="uif-illustrated-message-actions">
+    {%- if actionHtml -%}{{ actionHtml | safe }}{%- elif actionHref -%}<a class="uif-button {{ resolvedActionVariant }}" href="{{ resolvedActionHref }}">{{ actionLabel }}</a>{%- else -%}<button class="uif-button {{ resolvedActionVariant }}" type="button">{{ actionLabel }}</button>{%- endif -%}
+  </div>
+  {%- endif %}
+</div>
+{%- endmacro %}
+
+{% macro combobox(options=[], placeholder='', value='', query='', state='default', disabled=false, invalid=false, loading=false, allowCustomValue=false, className='', id='', name='', open=false) -%}
+{%- set classes = "uif-combobox" -%}
+{%- if state == "hover" -%}{%- set classes = classes + " is-hover" -%}{%- endif -%}
+{%- if state == "active" -%}{%- set classes = classes + " is-active" -%}{%- endif -%}
+{%- if state == "focus" -%}{%- set classes = classes + " is-focus-visible" -%}{%- endif -%}
+{%- if state == "disabled" or disabled -%}{%- set classes = classes + " is-disabled" -%}{%- endif -%}
+{%- if invalid -%}{%- set classes = classes + " is-invalid" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{%- set inputValue = query or value -%}
+{%- set normalizedQuery = inputValue|lower -%}
+{%- set exactMatch = false -%}
+{%- set visibleOptions = [] -%}
+{%- for opt in options -%}
+  {%- if inputValue and ((opt.label and opt.label|lower == inputValue|lower) or (opt.value and opt.value|lower == inputValue|lower)) -%}
+    {%- set exactMatch = true -%}
+  {%- endif -%}
+  {%- set haystack = (((opt.label or "") + "\n" + (opt.value or "") + "\n" + (opt.description or "") + "\n" + (opt.group or "") + "\n" + ((opt.keywords or [])|join("\n"))) | lower) -%}
+  {%- if not normalizedQuery or normalizedQuery in haystack -%}
+    {%- set _ = visibleOptions.push(opt) -%}
+  {%- endif -%}
+{%- endfor -%}
+<div class="{{ classes }}" data-open="{{ "true" if open else "false" }}" data-loading="{{ "true" if loading else "false" }}">
+  <div class="uif-combobox-field">
+    <input class="uif-combobox-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="{{ "true" if open else "false" }}"{% if id %} id="{{ id }}"{% endif %}{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if inputValue %} value="{{ inputValue }}"{% endif %}{% if invalid %} aria-invalid="true"{% endif %}{% if loading %} aria-busy="true"{% endif %}{% if disabled or state == "disabled" %} disabled{% endif %} />
+    <span class="uif-combobox-control">
+      {%- if inputValue and not disabled and state != "disabled" -%}
+      <button type="button" aria-label="Clear input" tabindex="-1"><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/cross-circled.svg');" aria-hidden="true"></span></button>
+      {%- endif -%}
+      {%- if loading -%}
+      <span data-loading-indicator><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/sync.svg');" aria-hidden="true"></span></span>
+      {%- endif -%}
+      <button type="button" aria-label="Toggle suggestions" tabindex="-1"{% if disabled or state == "disabled" %} disabled{% endif %}><span class="uif-icon" style="--uif-icon-src: url('/assets/icons/chevron--down.svg');" aria-hidden="true"></span></button>
+    </span>
+  </div>
+  <input class="uif-combobox-value" type="hidden"{% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %} />
+  <div class="uif-combobox-listbox" role="listbox"{% if not open %} hidden{% endif %}>
+    {%- for opt in visibleOptions -%}
+    <button type="button" class="uif-combobox-option{% if opt.value == value %} is-active{% endif %}{% if opt.disabled %} is-disabled{% endif %}" role="option" aria-selected="{{ "true" if opt.value == value else "false" }}"{% if opt.disabled %} disabled{% endif %}>
+      <span class="uif-combobox-option-label">{{ opt.label }}</span>
+      {%- if opt.description or opt.group %}<span class="uif-combobox-option-meta">{{ opt.description or opt.group }}</span>{% endif %}
+    </button>
+    {%- endfor -%}
+    {%- if allowCustomValue and query and not exactMatch -%}
+    <button type="button" class="uif-combobox-option" role="option" aria-selected="false">
+      <span class="uif-combobox-option-label">Use “{{ query }}”</span>
+      <span class="uif-combobox-option-meta">Free-form value</span>
+    </button>
+    {%- elif loading -%}
+    <div class="uif-combobox-status" role="status" aria-live="polite">
+      <span class="uif-combobox-option-label">Loading options…</span>
+      <span class="uif-combobox-option-meta">Results update when loading completes.</span>
+    </div>
+    {%- elif open and not visibleOptions.length -%}
+    <div class="uif-combobox-empty" role="status" aria-live="polite">
+      <span class="uif-combobox-option-label">No matches found</span>
+      <span class="uif-combobox-option-meta">Try a different search term.</span>
+    </div>
+    {%- endif -%}
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro rangeSlider(label='Range', min=0, max=100, lowerValue=25, upperValue=75, step=1, disabled=false, className='', id='', lowerName='', upperName='', lowerAriaLabel='Minimum value', upperAriaLabel='Maximum value') -%}
+{%- set fieldClasses = "uif-range-slider-field" -%}
+{%- if disabled -%}{%- set fieldClasses = fieldClasses + " is-disabled" -%}{%- endif -%}
+{%- if className -%}{%- set fieldClasses = fieldClasses + " " + className -%}{%- endif -%}
+{%- set sliderId = id or "range-slider" -%}
+<div class="{{ fieldClasses }}">
+  <div class="uif-range-slider-header">
+    <span class="uif-range-slider-label">{{ label }}</span>
+    <output class="uif-range-slider-value" aria-live="polite">
+      <span class="uif-range-slider-value-lower">{{ lowerValue }}</span>
+      <span class="uif-range-slider-value-separator">–</span>
+      <span class="uif-range-slider-value-upper">{{ upperValue }}</span>
+    </output>
+  </div>
+  <div class="uif-range-slider" data-min="{{ min }}" data-max="{{ max }}" data-lower-value="{{ lowerValue }}" data-upper-value="{{ upperValue }}">
+    <input class="uif-range-slider-input is-lower" type="range"{% if id %} id="{{ sliderId }}-lower"{% endif %}{% if lowerName %} name="{{ lowerName }}"{% endif %} min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ lowerValue }}" aria-label="{{ lowerAriaLabel }}"{% if disabled %} disabled{% endif %} />
+    <input class="uif-range-slider-input is-upper" type="range"{% if id %} id="{{ sliderId }}-upper"{% endif %}{% if upperName %} name="{{ upperName }}"{% endif %} min="{{ min }}" max="{{ max }}" step="{{ step }}" value="{{ upperValue }}" aria-label="{{ upperAriaLabel }}"{% if disabled %} disabled{% endif %} />
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro cardFooter(className='') -%}
+{%- set classes = "uif-card-footer" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro cardBody(className='') -%}
+{%- set classes = "uif-card-body" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro cardHeader(className='') -%}
+{%- set classes = "uif-card-header" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">{{ caller() }}</div>
+{%- endmacro %}
+
+{% macro cardMedia(src='', alt='', className='') -%}
+{%- set classes = "uif-card-media" -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+<div class="{{ classes }}">
+  {%- if src %}<img src="{{ src }}" alt="{{ alt }}" />{% else %}{{ caller() }}{%- endif -%}
+</div>
+{%- endmacro %}
+
+{% macro card(layout='vertical', interactive=false, selected=false, href='', className='') -%}
+{%- set classes = "uif-card" -%}
+{%- if layout == "horizontal" -%}{%- set classes = classes + " horizontal" -%}{%- endif -%}
+{%- if interactive -%}{%- set classes = classes + " interactive" -%}{%- endif -%}
+{%- if selected -%}{%- set classes = classes + " is-selected" -%}{%- endif -%}
+{%- if className -%}{%- set classes = classes + " " + className -%}{%- endif -%}
+{%- if href -%}
+<a class="{{ classes }}" href="{{ href }}"{% if selected %} aria-current="true"{% endif %}>{{ caller() }}</a>
+{%- else -%}
+<article class="{{ classes }}"{% if interactive %} tabindex="0"{% endif %}{% if selected %} aria-selected="true"{% endif %}>{{ caller() }}</article>
+{%- endif -%}
+{%- endmacro %}

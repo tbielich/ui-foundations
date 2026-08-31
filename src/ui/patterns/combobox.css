@@ -1,0 +1,247 @@
+@layer components {
+  :is(.uif-combobox, .combobox) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--uif-combobox-gap);
+    inline-size: 100%;
+    font-family: var(--uif-combobox-font-family);
+    font-weight: var(--uif-combobox-font-weight);
+    font-size: var(--uif-combobox-font-size);
+    line-height: var(--uif-combobox-line-height, var(--typography-body-line-height));
+  }
+
+  :is(.uif-combobox-field, .combobox-field) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--uif-combobox-gap);
+    inline-size: 100%;
+    block-size: var(--uif-combobox-height, var(--size-spacing-800));
+    color: var(--uif-combobox-text-color-default);
+    background: var(--uif-combobox-container-background-default);
+    border-style: solid;
+    border-width: var(--uif-combobox-border-size-default);
+    border-color: var(--uif-combobox-border-color-default);
+    border-radius: var(--uif-combobox-border-radius);
+    padding-inline: var(--uif-combobox-padding-inline);
+    padding-block: var(--uif-combobox-padding-block);
+  }
+
+  :is(.uif-combobox-input, .combobox-input) {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+    min-inline-size: 0;
+    font: inherit;
+    color: inherit;
+    line-height: inherit;
+  }
+
+  :is(.uif-combobox-input, .combobox-input)::placeholder {
+    color: var(--uif-combobox-text-color-placeholder);
+  }
+
+  :is(.uif-combobox-input, .combobox-input):focus-visible {
+    outline: 2px solid transparent;
+    box-shadow: none;
+  }
+
+  :is(.uif-combobox-input, .combobox-input):disabled {
+    cursor: not-allowed;
+  }
+
+  :is(.uif-combobox-control, .combobox-control) {
+    display: flex;
+    align-items: center;
+    gap: var(--uif-combobox-gap);
+    flex-shrink: 0;
+    color: var(--uif-combobox-icon-color-default);
+  }
+
+  :is(.uif-combobox-control, .combobox-control) button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+    line-height: 1;
+  }
+
+  :is(.uif-combobox-control, .combobox-control) button:disabled {
+    cursor: not-allowed;
+  }
+
+  :is(.uif-combobox-control, .combobox-control) :is(.uif-icon, .icon) {
+    font-size: var(--uif-combobox-font-size);
+  }
+
+  :is(.uif-combobox, .combobox)[data-open="true"]
+    :is(.uif-combobox-control, .combobox-control)
+    button[aria-label="Toggle suggestions"]
+    :is(.uif-icon, .icon) {
+    transform: rotate(180deg);
+  }
+
+  :is(.uif-combobox, .combobox)[data-loading="true"]
+    :is(.uif-combobox-control, .combobox-control)
+    [data-loading-indicator]
+    :is(.uif-icon, .icon) {
+    animation: uif-combobox-spin 1s linear infinite;
+  }
+
+  :is(.uif-combobox-listbox, .combobox-listbox) {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: calc(100% + var(--uif-combobox-gap));
+    z-index: var(--zindex-dropdown, 1000);
+    display: grid;
+    gap: var(--size-spacing-050);
+    max-block-size: calc(var(--uif-combobox-height) * 6);
+    overflow: auto;
+    padding: var(--size-spacing-050);
+    margin: 0;
+    list-style: none;
+    background: var(--uif-combobox-panel-background-default);
+    border: var(--uif-combobox-panel-border-size-default) solid var(--uif-combobox-panel-border-color-default);
+    border-radius: var(--uif-combobox-panel-border-radius);
+  }
+
+  :is(.uif-combobox-listbox, .combobox-listbox)[hidden] {
+    display: none;
+  }
+
+  :is(.uif-combobox-option, .combobox-option),
+  :is(.uif-combobox-status, .combobox-status),
+  :is(.uif-combobox-empty, .combobox-empty) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--size-spacing-050);
+    inline-size: 100%;
+    padding-inline: var(--uif-combobox-padding-inline);
+    padding-block: var(--uif-combobox-padding-block);
+    border: none;
+    border-radius: calc(var(--uif-combobox-panel-border-radius) - var(--uif-combobox-panel-border-size-default));
+    background: var(--uif-combobox-option-background-default);
+    color: var(--uif-combobox-option-text-color-default);
+    font: inherit;
+    text-align: left;
+  }
+
+  :is(.uif-combobox-option, .combobox-option) {
+    cursor: pointer;
+  }
+
+  :is(.uif-combobox-option, .combobox-option):hover,
+  :is(.uif-combobox-option, .combobox-option).is-hover {
+    background: var(--uif-combobox-option-background-hover);
+    color: var(--uif-combobox-option-text-color-hover);
+  }
+
+  :is(.uif-combobox-option, .combobox-option)[aria-selected="true"],
+  :is(.uif-combobox-option, .combobox-option).is-active {
+    background: var(--uif-combobox-option-background-active);
+    color: var(--uif-combobox-option-text-color-active);
+    box-shadow: inset 0 0 0 var(--uif-combobox-border-size-active) var(--uif-combobox-border-color-focus);
+  }
+
+  :is(.uif-combobox-option, .combobox-option):disabled,
+  :is(.uif-combobox-option, .combobox-option).is-disabled {
+    cursor: not-allowed;
+    color: var(--uif-combobox-option-text-color-disabled);
+  }
+
+  :is(.uif-combobox-option-label, .combobox-option-label) {
+    display: block;
+    font: inherit;
+  }
+
+  :is(.uif-combobox-option-meta, .combobox-option-meta) {
+    display: block;
+    color: var(--uif-combobox-text-color-placeholder);
+    font-size: calc(var(--uif-combobox-font-size) * 0.875);
+    line-height: inherit;
+  }
+
+  :is(.uif-combobox, .combobox):hover :is(.uif-combobox-field, .combobox-field),
+  :is(.uif-combobox, .combobox).is-hover :is(.uif-combobox-field, .combobox-field) {
+    background: var(--uif-combobox-container-background-hover);
+    border-width: var(--uif-combobox-border-size-hover);
+    border-color: var(--uif-combobox-border-color-hover);
+    color: var(--uif-combobox-text-color-hover);
+    padding-inline: calc(
+      var(--uif-combobox-padding-inline) + var(--uif-combobox-border-size-default) -
+        var(--uif-combobox-border-size-hover)
+    );
+    padding-block: calc(
+      var(--uif-combobox-padding-block) + var(--uif-combobox-border-size-default) -
+        var(--uif-combobox-border-size-hover)
+    );
+  }
+
+  :is(.uif-combobox, .combobox):focus-within :is(.uif-combobox-field, .combobox-field),
+  :is(.uif-combobox, .combobox).is-focus-visible :is(.uif-combobox-field, .combobox-field) {
+    background: var(--uif-combobox-container-background-focus);
+    border-color: var(--uif-combobox-border-color-focus);
+    outline: 2px solid transparent;
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
+  }
+
+  :is(.uif-combobox, .combobox).is-active :is(.uif-combobox-field, .combobox-field),
+  :is(.uif-combobox, .combobox)[data-open="true"] :is(.uif-combobox-field, .combobox-field) {
+    background: var(--uif-combobox-container-background-active);
+    border-width: var(--uif-combobox-border-size-active);
+    border-color: var(--uif-combobox-border-color-active);
+    color: var(--uif-combobox-text-color-active);
+    padding-inline: calc(
+      var(--uif-combobox-padding-inline) + var(--uif-combobox-border-size-default) -
+        var(--uif-combobox-border-size-active)
+    );
+    padding-block: calc(
+      var(--uif-combobox-padding-block) + var(--uif-combobox-border-size-default) -
+        var(--uif-combobox-border-size-active)
+    );
+  }
+
+  :is(.uif-combobox, .combobox).is-disabled :is(.uif-combobox-field, .combobox-field),
+  :is(.uif-combobox-input, .combobox-input):disabled ~ :is(.uif-combobox-control, .combobox-control),
+  :is(.uif-combobox, .combobox):has(:is(.uif-combobox-input, .combobox-input):disabled)
+    :is(.uif-combobox-field, .combobox-field) {
+    cursor: not-allowed;
+    color: var(--uif-combobox-text-color-disabled);
+    background: var(--uif-combobox-container-background-disabled);
+    border-color: var(--uif-combobox-border-color-disabled);
+  }
+
+  :is(.uif-combobox, .combobox).is-disabled :is(.uif-combobox-control, .combobox-control) {
+    color: var(--uif-combobox-icon-color-disabled);
+  }
+
+  :is(.uif-combobox, .combobox).is-invalid :is(.uif-combobox-field, .combobox-field),
+  :is(.uif-combobox, .combobox):has(:is(.uif-combobox-input, .combobox-input)[aria-invalid="true"])
+    :is(.uif-combobox-field, .combobox-field) {
+    border-color: var(--uif-combobox-border-color-invalid);
+  }
+
+  :is(.uif-combobox-value, .combobox-value) {
+    display: none;
+  }
+
+  @keyframes uif-combobox-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

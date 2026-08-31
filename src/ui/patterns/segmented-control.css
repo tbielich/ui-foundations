@@ -1,0 +1,84 @@
+@layer components {
+  :is(.uif-segmented-control, .segmented-control) {
+    display: inline-flex;
+    align-items: center;
+    background: var(--uif-segmented-control-track-background);
+    border: var(--size-border-100) solid var(--uif-segmented-control-track-border-color);
+    border-radius: var(--size-radius-full);
+    padding: var(--size-spacing-100);
+    gap: 0;
+  }
+
+  :is(.uif-segmented-control-item, .segmented-control-item) {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-spacing-200);
+    padding-inline: var(--uif-segmented-control-padding-inline);
+    padding-block: var(--uif-segmented-control-padding-block);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-500);
+    line-height: var(--line-height-sm);
+    color: var(--uif-segmented-control-text-color-default);
+    background: transparent;
+    border: none;
+    border-radius: var(--size-radius-full);
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    transition:
+      color 0.15s ease,
+      background-color 0.15s ease,
+      box-shadow 0.15s ease;
+    z-index: 1;
+  }
+
+  :is(.uif-segmented-control-item, .segmented-control-item):hover,
+  :is(.uif-segmented-control-item, .segmented-control-item).is-hover {
+    color: var(--uif-segmented-control-text-color-hover);
+  }
+
+  :is(.uif-segmented-control-item, .segmented-control-item)[aria-pressed="true"],
+  :is(.uif-segmented-control-item, .segmented-control-item).is-selected,
+  :is(.uif-segmented-control-item, .segmented-control-item).is-active {
+    color: var(--uif-segmented-control-text-color-active);
+    font-weight: var(--font-weight-600);
+    background: var(--uif-segmented-control-indicator-background);
+    box-shadow: 0 1px 3px 0 color-mix(in srgb, currentColor 12%, transparent),
+      0 0 0 var(--size-border-100) var(--uif-segmented-control-indicator-border-color);
+  }
+
+  :is(.uif-segmented-control-item, .segmented-control-item):focus-visible,
+  :is(.uif-segmented-control-item, .segmented-control-item).is-focus-visible {
+    outline: 2px solid transparent;
+    box-shadow: 0 0 var(--shadow-focus, 0) 0 var(--color-focus, transparent);
+  }
+
+  :is(.uif-segmented-control-item, .segmented-control-item):disabled,
+  :is(.uif-segmented-control-item, .segmented-control-item)[aria-disabled="true"],
+  :is(.uif-segmented-control-item, .segmented-control-item).is-disabled {
+    color: var(--uif-segmented-control-text-color-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Size: sm */
+  :is(.uif-segmented-control, .segmented-control).sm
+    :is(.uif-segmented-control-item, .segmented-control-item) {
+    padding-inline: var(--size-spacing-300);
+    padding-block: var(--size-spacing-100);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
+  }
+
+  /* Size: lg */
+  :is(.uif-segmented-control, .segmented-control).lg
+    :is(.uif-segmented-control-item, .segmented-control-item) {
+    padding-inline: var(--size-spacing-600);
+    padding-block: var(--size-spacing-300);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+  }
+}
